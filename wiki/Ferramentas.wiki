@@ -1,0 +1,7 @@
+#labels Ferramentas,tools
+Essas ferramentas foram selecionadas através de discuções sobre qual seria a linguagem de programação mais benéfica para o usuário final, que quase sempre é leigo em programação.
+
+= Ferramentas usadas para criar o Engine TMW-Maker =
+ [OpenJDK Java 6 Runtime] - É um emulador de aplicativos Java, que permitirá que aplicativos Java seja executados.
+
+ [NetBeans Java IDE 6.7.1] - É um programa responsável pela criação, desenvolvimento e teste de execução(se tiver OpenJDK instalado) do Engine TMW-Maker.
