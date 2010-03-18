@@ -1,10 +1,25 @@
+#labels Wiki,Abas
 = BEM VINDO! =
 
 ==Como ajudar ao projeto TMW-Maker?==
 Você pode participar das abas acima dando sua opinião. Ou se você te experiencia com o Eathena do TMW-BR e em Aplicações Gráfica pode contribuir dando sugestões de aprendizado.
 Sou eu, Lunovox, ques está responsável por criar esta ferramenta, Mas confesso que seu completamente leigo no desenvolvimento de Aplicações Gráficas em Java ou em C++ no Ubuntu Linux. Compre um livro de Java no NetBeans. Vou começar aestuda-lo quando ele chegar. Embora não tenha experiencia em Aplicações Gráficas no Ubuntu Linux, tenho conhecimento no desenvolvimento de Aplicações Gráficas no Windows em Visual Basic e PHP. Faz mais de 15 anos que não mexo em C++.
 
+----
+
 ==O que são cada uma das Abas acima?==
+*Project Home* - É a página inicial. Com os dados do projeto como: Membros desenvolvedores, Feeds de Assinatura e etc...
 
- *[http://code.google.com/p/tmw-maker Project Home ]* - É a página inicial. Com os dados do projeto como: Membros desenvolvedores, Feeds de Assinatura e etc...
+*Wiki* - Esta página que você está vendo é um Wiki. Aqui você encontrará tutoriais sobre o desenvolvimento do TMW-Maker conforme eles forem escritos.
 
+*Issues* - São notas escritas pelos desenvolvedores do projeto e pelo futuros usuários do TMW-Makes. As notificações de defeitos, avisos de conserto e aviso de problemas são feito na sessão "Issues"!
+
+*Source* - São os códigos fonte dos TMW-Maker para qualquer um possa baixar e melhorar o programa do Engine TMW-Maker. Essa sessão é dividida em 3 partes:
+ [Checkout] - É uma explicação de como usar o [Subversion] (Conhecido como SVN) para baixar o código fonte para seu computador.
+ [Browser] - É uma forma de ver o código fonte se sua respectiva modificação pelo navegador sem ser necessário baixa-lo.
+ [Changes] - É uma espécie de relatório que mostra o que foi mudado neste site ou no código fonte.
+
+----
+
+==Por onde começar==
+ *Ferramentas* - São as ferramentas usadas no desenvolvimento do TMW-Maker.
