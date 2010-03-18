@@ -22,4 +22,4 @@ Sou eu, Lunovox, ques está responsável por criar esta ferramenta, Mas confesso
 ----
 
 ==Por onde começar==
- *Ferramentas* - São as ferramentas usadas no desenvolvimento do TMW-Maker.
+ [Ferramentas] - São as ferramentas usadas no desenvolvimento do TMW-Maker.
