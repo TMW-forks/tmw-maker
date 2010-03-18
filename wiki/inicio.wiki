@@ -1,0 +1,10 @@
+= BEM VINDO! =
+
+==Como ajudar ao projeto TMW-Maker?==
+Você pode participar das abas acima dando sua opinião. Ou se você te experiencia com o Eathena do TMW-BR e em Aplicações Gráfica pode contribuir dando sugestões de aprendizado.
+Sou eu, Lunovox, ques está responsável por criar esta ferramenta, Mas confesso que seu completamente leigo no desenvolvimento de Aplicações Gráficas em Java ou em C++ no Ubuntu Linux. Compre um livro de Java no NetBeans. Vou começar aestuda-lo quando ele chegar. Embora não tenha experiencia em Aplicações Gráficas no Ubuntu Linux, tenho conhecimento no desenvolvimento de Aplicações Gráficas no Windows em Visual Basic e PHP. Faz mais de 15 anos que não mexo em C++.
+
+==O que são cada uma das Abas acima?==
+
+ *[http://code.google.com/p/tmw-maker Project Home ]* - É a página inicial. Com os dados do projeto como: Membros desenvolvedores, Feeds de Assinatura e etc...
+
