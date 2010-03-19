@@ -10,5 +10,6 @@
 
 Pronto! Para abrir programas JAR no seu computador é só digitar no terminal:
 {{{
-java <endereço do arquivo java>
+cd <pasta do programa>
+java -jar "TMWMaker2010.jar" 
 }}}
