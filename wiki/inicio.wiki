@@ -16,7 +16,9 @@ Sou eu, Lunovox, ques está responsável por criar esta ferramenta, Mas confesso
 
 *Source* - São os códigos fonte dos TMW-Maker para qualquer um possa baixar e melhorar o programa do Engine TMW-Maker. Essa sessão é dividida em 3 partes:
  [Checkout] - É uma explicação de como usar o [Subversion] (Conhecido como SVN) para baixar o código fonte para seu computador.
+
  [Browser] - É uma forma de ver o código fonte se sua respectiva modificação pelo navegador sem ser necessário baixa-lo.
+
  [Changes] - É uma espécie de relatório que mostra o que foi mudado neste site ou no código fonte.
 
 ----
