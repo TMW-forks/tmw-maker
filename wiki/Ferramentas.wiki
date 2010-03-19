@@ -1,4 +1,4 @@
-#labels JVM,MáquinaVirtual,Java,OpenJDK,Runtime,Ferramenta
+#labels JVM,MáquinaVirtual,Java,OpenJDK,Runtime,Ferramentas,NetBeans,Tools,IDE
 Essas ferramentas foram selecionadas através de discussões sobre qual seria a linguagem de programação mais benéfica para o usuário final, que quase sempre é leigo em programação.
 
 = Ferramentas usadas para criar o Engine TMW-Maker =
