@@ -10,4 +10,4 @@ Mas Só funciona se tiver o [OpenJDK OpenJDK Java 6 Runtime] instalado em sua m�
 svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/tmw-maker_2010.1.1 tmw-maker_2010.1.1
 }}}
 
-|| *ATENÇÃO:* O comando *SVN* acima precisará ter um aplicativo de subversion. E caso você já possua um aplicativo(Tipo NetBeans), o SVN irá pedir "username" e "password". Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação.  ||
+|| *ATENÇÃO:* O comando *SVN* acima precisará ter um aplicativo de subversion. E caso você já possua um aplicativo(Tipo NetBeans), o SVN irá pedir "*username*" e "*password*". Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação.  ||
