@@ -1,4 +1,4 @@
-#labels Versões,Download,2010.1.1
+#labels Versões,Download,TMW-Maker,2010.1.1
 =VERSÕES DO TMW-MAKER=
 O TMW-Maker passa constantemente por várias evoluções. Aqui você pode baixar cada uma delas. Para usar essas versões é só baixar, descompactar e clicar sobre o Arquivo JAR.
 Mas Só funciona se tiver o [OpenJDK OpenJDK Java 6 Runtime] instalado em sua máquina.
