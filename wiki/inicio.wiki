@@ -1,5 +1,5 @@
 #labels Wiki,Abas
-= BEM VINDO! =
+=WIKI TMW-Maker=
 
 ==Como ajudar ao projeto TMW-Maker?==
 Você pode participar das abas acima dando sua opinião. Ou se você te experiencia com o Eathena do TMW-BR e em Aplicações Gráfica pode contribuir dando sugestões de aprendizado.
