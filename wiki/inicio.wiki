@@ -23,5 +23,6 @@ Sou eu, Lunovox, ques está responsável por criar esta ferramenta, Mas confesso
 
 ----
 
-==Por onde começar==
- [Ferramentas] - São as ferramentas usadas no desenvolvimento do TMW-Maker.
+==Por onde começar?==
+ # [Download] - Baixe a versão mais atualizada do Engine TMW-Maker para conhece-lo e ter uma opinião crítica sobre o projeto.
+ # [Ferramentas] - Veja quais são as ferramentas utilizadas e como instalar cada uma das ferramentas de desenvolvimento do TMW-Maker em Java.
