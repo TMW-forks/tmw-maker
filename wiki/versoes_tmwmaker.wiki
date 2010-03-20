@@ -5,7 +5,7 @@ Mas S처 funciona se tiver o [OpenJDK OpenJDK Java 6 Runtime] instalado em sua m�
 
 
 ==TMW-Maker 2010.1.1==
- * [http://tmw-maker.googlecode.com/svn/tags/tmw-maker-2010.1.1.zip Download (773KB)] - Aplicativo inicial esquito em java, que por enquanto n찾o faz nada. Se desejar baixar o c처digo fonte digite o comando abaixo em seu terminal. (20/03/2010)
+ * [http://tmw-maker.googlecode.com/svn/tags/tmw-maker-2010.1.1.zip Download (773KB)] - Aplicativo inicial escrito em java, que por enquanto n찾o faz absolutamente nada. Se desejar baixar o c처digo fonte digite o comando abaixo em seu terminal. (20/03/2010)
 {{{
 svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/tmw-maker_2010.1.1 tmw-maker_2010.1.1
 }}}
