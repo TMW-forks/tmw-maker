@@ -3,4 +3,10 @@
 O TMW-Maker passa constantemente por várias evoluções. Aqui você pode baixar cada uma delas. Para usar essas versões é só baixar, descompactar e clicar sobre o Arquivo JAR.
 Mas Só funciona se tiver o [OpenJDK OpenJDK Java 6 Runtime] instalado em sua máquina.
 
- * [http://tmw-maker.googlecode.com/svn/tags/tmw-maker-2010.1.1.zip tmw-maker-2010.1.1] - Projeto inicial, que por enquanto não faz nada.
+
+==TMW-Maker 2010.1.1==
+ * [http://tmw-maker.googlecode.com/svn/tags/tmw-maker-2010.1.1.zip 5.0 MB] - Aplicativo inicial, que por enquanto não faz nada. Se desejar baixar o código fonte digite o comando abaixo em seu terminal.
+
+{{{
+svn checkout http://tmw-maker.googlecode.com/svn/trunk/java/tmw-maker-2010-0-1 tmw-maker-2010-0-1
+}}}
