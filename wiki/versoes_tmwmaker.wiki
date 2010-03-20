@@ -8,5 +8,5 @@ Mas Só funciona se tiver o [OpenJDK OpenJDK Java 6 Runtime] instalado em sua m�
  * [http://tmw-maker.googlecode.com/svn/tags/tmw-maker-2010.1.1.zip 5.0 MB] - Aplicativo inicial, que por enquanto não faz nada. Se desejar baixar o código fonte digite o comando abaixo em seu terminal.
 
 {{{
-svn checkout http://tmw-maker.googlecode.com/svn/trunk/java/tmw-maker-2010-0-1 tmw-maker-2010-0-1
+svn checkout http://tmw-maker.googlecode.com/svn/trunk/java/tmw-maker-2010-1-1 tmw-maker-2010-1-1
 }}}
