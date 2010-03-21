@@ -11,7 +11,7 @@ http://img517.imageshack.us/img517/4024/capturadetela1v.png
 
 ----
 
-Se desejar baixar o código fonte digite o comando abaixo em seu terminal. (20/03/2010)
+Se desejar baixar o código fonte digite o comando abaixo em seu terminal.
 {{{
 svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/tmw-maker_2010.1.1/ tmw-maker_2010.1.1
 }}}
