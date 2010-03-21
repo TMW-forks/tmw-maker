@@ -1,20 +1,3 @@
 #labels NetBeans,IDE,Copilador,Java,Desenvolvimento,Livre,Grátis
 = NetBeans IDE 6.7.1 =
 É um programa [opensource Open Source] que permite desenvolver Aplicativos Gráficos em Java. Embora ele edite programas Java, o NetBeans só poderá copilar (testar a execução dos programas) se tiver uma [OpenJDK Máquina Virtual Java(JVM)] instalada em seu computador.
-
-----
-
-==Como Instalar no Ubuntu Linux?==
- # Vá em: Aplicativos -> Central de Programas Ubuntu
- # Pesquise a palavra "NetBeans"
- # Instale o programa "NetBeans IDE 6.7.1" ou superior;
-
-Pronto! Vocẽ já pode criar programas em Java ou abrir o Código Fonte do Engine TMW-Maker para melhora-lo conforme suas habilidades de programador. =)
-
-Existem Alguns Pluggins no NetBeans que podem habilita-lo para editar outras linguagens de programão alem do Java, como: Java Web, PHP, C++, e etc...
- http://img221.imageshack.us/img221/618/capturadetelanewproject.png
-
-----
-
-==Como Instalar no Ubuntu Linux?==
- Não sei! Quem souber, fique à vontade para explicar! XP
