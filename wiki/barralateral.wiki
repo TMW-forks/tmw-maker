@@ -3,6 +3,7 @@
 ----
  * [inicio Wiki-Base]
   * [abaswiki Abas do Projeto]
+  * [desenvolvedor_iniciante Desenvolvedor Iniciante]
  * [versoes_tmwmaker Versões do TMW-Maker]
  * [Ferramentas Ferramentas de DEVs]
   * [OpenJDK OpenJDK Java 6 Runtime]
