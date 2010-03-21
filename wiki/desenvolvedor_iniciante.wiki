@@ -8,5 +8,5 @@ Aqui será feito na medida do possível um lista de tarefas que um desenvolvedor
 ==Como começar a ajudar?==
  # *[http://code.google.com/p/tmw-maker/wiki/versoes_tmwmaker Conheça o TMW-Maker]* - Baixe a versão mais atualizada do Engine TMW-Maker para conhece-lo e ter uma opinião crítica sobre o aplicativo. (*NOTA:* O Aplicativo está em fase inicial de desenvolvimento)
  # *[Ferramentas Baixe as Ferramentas de Desenvolvimento]* - Veja quais são as ferramentas utilizadas e como instalar cada uma das ferramentas de desenvolvimento do TMW-Maker em Java.
- # *[Java Desenvolvimento em Java]* - Veja alguns E-Book sobre a linguagem de programação Java.
  # *[http://code.google.com/p/tmw-maker/issues/entry Anote Críticas e Sugestões]* - Os DEVs iniciantes, após baixar o Aplicativo e o Código Fonte, normalmente começam dando sugestões de desenvolvimento através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES].
+ # *[Java Desenvolvimento em Java]* - Veja alguns E-Book sobre a linguagem de programação Java.
