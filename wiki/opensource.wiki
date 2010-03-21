@@ -1,4 +1,4 @@
+#labels OpenSource,TMW-Maker,SoftwareGrátis,ProgramaGrátis
 = Licença tipo Open Source =
 
-*Open Sources* são licenças que permite gratuitamente baixar, instalar, usar, e redistribuir sem precisar dar satisfação a ninguém. Também é permitido gratuitamente modificar o código fonte do programa para melhora-lo conforme suas habilidade, desde que não seja alterado o "*Nome do Projeto*" e nem o seus "*Desenvolvedores Precedentes*".
-
+*Open Sources* são licenças que permite gratuitamente baixar, instalar, usar, e redistribuir sem precisar dar satisfação a ninguém. Também é permitido gratuitamente modificar o código fonte do programa e redistribui-lo novamente, evolui-lo conforme suas habilidade, desde que não seja retirado o "*Nome do Projeto*" e nem o seus "*Desenvolvedores Precedentes*".
