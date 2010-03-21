@@ -2,25 +2,3 @@
 = Java Development Kit =
 
 OpenJDK é uma máquina virtual (JVM) 100% livre e gratuita, que emula(traduz) linguagem de usuário em Java para linguagem de máquina que é entendida por computadores para executar várias tarefas. É usado para executar arquivos compactados extensão JAR como sendo um programa comum. Sem essa JVM os programas em Java não são interpretados pelo computador como sendo um programa.
-
-----
-
-==Como Instalar no Ubuntu Linux?==
- # Vá em: Aplicativos -> Central de Programas Ubuntu
- # Pesquise a palavra "JRE"
- # Instale o programa "OpenJDK Java 6 Runtime" ou superior;
-
-Pronto! Para abrir programas JAR no seu computador é só digitar no terminal:
-{{{
-cd <pasta do programa>
-java -jar "TMWMaker2010.jar" 
-}}}
-
-Ou se preferir é só abrir a propriedade do arquivo ".jar" e marca-lo para abrir como "OpenJDK Java 6 Runtime" sempre que você clicar com o mouse sobre o arquivo:
-
- http://img217.imageshack.us/img217/9324/capturadetelapropriedad.png
-
-----
-
-==Como Instalar no Ubuntu Linux?==
- Não sei! Quem souber, fique à vontade para explicar! XP
