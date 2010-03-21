@@ -1,6 +1,8 @@
 #labels ComoInstalar,NetBeans
 = Como Instalar o NetBeans =
 
+----
+
 ==Como Instalar no Ubuntu Linux?==
  # Vá em: Aplicativos -> Central de Programas Ubuntu
  # Pesquise a palavra "NetBeans"
