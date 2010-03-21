@@ -3,5 +3,7 @@
 ----
  * [inicio Wiki-Base]
  * [versoes_tmwmaker Versões do TMW-Maker]
- * [Ferramentas Ferramentas de DEVs] ||
+ * [Ferramentas Ferramentas de DEVs]
+  * [OpenJDK OpenJDK Java 6 Runtime]
+  * [NetBeans NetBeans IDE 6.7.1]
 ----
