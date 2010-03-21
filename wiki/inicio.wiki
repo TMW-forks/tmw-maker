@@ -7,19 +7,7 @@ Sou eu, Lunovox, ques está responsável por criar esta ferramenta, Mas confesso
 
 ----
 
-==O que são cada uma das Abas acima?==
-*Project Home* - É a página inicial. Com os dados do projeto como: Membros desenvolvedores, Feeds de Assinatura e etc...
 
-*Wiki* - Esta página que você está vendo é um Wiki. Aqui você encontrará tutoriais sobre o desenvolvimento do TMW-Maker conforme eles forem escritos.
-
-*Issues* - São notas escritas pelos desenvolvedores do projeto e pelo futuros usuários do TMW-Makes. As notificações de defeitos, avisos de conserto e aviso de problemas são feito na sessão "Issues"!
-
-*Source* - São os códigos fonte dos TMW-Maker para qualquer um possa baixar e melhorar o programa do Engine TMW-Maker. Essa sessão é dividida em 3 partes:
- [http://code.google.com/p/tmw-maker/source/checkout Checkout] - É uma explicação de como usar o [Subversion] (Conhecido como SVN) para baixar o código fonte para seu computador.
-
- [http://code.google.com/p/tmw-maker/source/browse/ Browser] - É uma forma de ver o código fonte se sua respectiva modificação pelo navegador sem ser necessário baixa-lo.
-
- [http://code.google.com/p/tmw-maker/source/list Changes] - É uma espécie de relatório que mostra o que foi mudado neste site ou no código fonte.
 
 ----
 
