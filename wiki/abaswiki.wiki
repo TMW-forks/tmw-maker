@@ -1,5 +1,5 @@
 #labels Abas,wiki,OQueSao
-= Abas do Wiki do projeto =
+= Abas do Projeto =
 
 ----
 
