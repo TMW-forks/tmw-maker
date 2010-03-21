@@ -1,6 +1,6 @@
 #labels NetBeans,IDE,Copilador,Java,Desenvolvimento,Livre,Grátis
 = NetBeans IDE 6.7.1 =
-É um programa 100% livre, gratuito e habilitado para desenvolver Aplicativos Gráficos em Java. Embora ele edite programas Java, o NetBeans só poderá copilar (testar a execução dos programas) se tiver uma [OpenJDK Máquina Virtual Java(JVM)] instalada em seu computador.
+É um programa [opensource Open Source] que permite desenvolver Aplicativos Gráficos em Java. Embora ele edite programas Java, o NetBeans só poderá copilar (testar a execução dos programas) se tiver uma [OpenJDK Máquina Virtual Java(JVM)] instalada em seu computador.
 
 ----
 
