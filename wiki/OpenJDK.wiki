@@ -1,7 +1,7 @@
 #labels OpenJDK,Emulador,MáquinaVirtual,Java,JVM,Programa,Grátis,Interpretador,Runtime
 = Java Development Kit =
 
-É uma máquina virtual (JVM) 100% livre e gratuita, que emula(traduz) linguagem de usuário em Java para linguagem de máquina que é entendida por computadores para executar várias tarefas. É usado para executar arquivos compactados extensão JAR como sendo um programa comum. Sem essa JVM os programas em Java não são interpretados pelo computador como sendo um programa.
+OpenJDK é uma máquina virtual (JVM) 100% livre e gratuita, que emula(traduz) linguagem de usuário em Java para linguagem de máquina que é entendida por computadores para executar várias tarefas. É usado para executar arquivos compactados extensão JAR como sendo um programa comum. Sem essa JVM os programas em Java não são interpretados pelo computador como sendo um programa.
 
 ----
 
