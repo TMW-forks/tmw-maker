@@ -16,3 +16,5 @@
  [http://code.google.com/p/tmw-maker/source/browse/ Browser] - É uma forma de ver o código fonte se sua respectiva modificação pelo navegador sem ser necessário baixa-lo.
 
  [http://code.google.com/p/tmw-maker/source/list Changes] - É uma espécie de relatório que mostra o que foi mudado neste site ou no código fonte.
+
+|| *DICA:* Agora que você sabe para que serve cada Aba, clique [desenvolvedor_iniciante AQUI] para ler o que todo [desenvolvedor_iniciante Desenvolvedor Iniciante] precisa saber.
