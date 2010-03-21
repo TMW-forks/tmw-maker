@@ -48,7 +48,7 @@ public class TMWMaker2010FrmLinguagem extends javax.swing.JFrame {
       jScrollPane1.setName("jScrollPane1"); // NOI18N
 
       jList1.setModel(new javax.swing.AbstractListModel() {
-         String[] strings = { "Português (Brasil)", "English" };
+         String[] strings = { "Português brasileiro", "Inglês (english-.xml)", "Espanhou (spain.xml)", "Esperanto (esparanto.xml)" };
          public int getSize() { return strings.length; }
          public Object getElementAt(int i) { return strings[i]; }
       });
@@ -71,8 +71,8 @@ public class TMWMaker2010FrmLinguagem extends javax.swing.JFrame {
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jToggleButton1)
             .addContainerGap())
       );
