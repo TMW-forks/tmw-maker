@@ -1,6 +1,8 @@
 #labels Abas,wiki,OQueSao
 = Abas do Wiki do projeto =
 
+----
+
 ==O que são cada uma das Abas acima?==
 *Project Home* - É a página inicial. Com os dados do projeto como: Membros desenvolvedores, Feeds de Assinatura e etc...
 
