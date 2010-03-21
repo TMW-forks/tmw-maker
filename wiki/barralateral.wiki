@@ -1,0 +1,7 @@
+#labels sidebar,barralateral
+== TMW-WIKI-BR ==
+----
+ * [inicio Wiki-Base]
+ * [versoes_tmwmaker Versões do TMW-Maker]
+ * [Ferramentas Ferramentas de DEVs] ||
+----
