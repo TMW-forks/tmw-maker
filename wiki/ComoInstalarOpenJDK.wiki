@@ -4,7 +4,7 @@
 ==Como Instalar no Ubuntu Linux?==
  # Vá em: Aplicativos -> Central de Programas Ubuntu
  # Pesquise a palavra "JRE"
- # Instale o programa "OpenJDK Java 6 Runtime" ou superior;
+ # Instale o programa "[OpenJDK OpenJDK Java 6 Runtime]" ou superior;
 
 Pronto! Para abrir programas JAR no seu computador é só digitar no terminal:
 {{{
