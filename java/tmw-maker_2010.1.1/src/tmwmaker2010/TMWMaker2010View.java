@@ -156,6 +156,7 @@ public class TMWMaker2010View extends FrameView {
       helpMenu.setName("helpMenu"); // NOI18N
 
       jMenuItem1.setAction(actionMap.get("showFrmLinguagens")); // NOI18N
+      jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
       jMenuItem1.setMnemonic('L');
       jMenuItem1.setText(resourceMap.getString("MnuLinguagem.text")); // NOI18N
       jMenuItem1.setActionCommand(resourceMap.getString("MnuLinguagem.actionCommand")); // NOI18N
