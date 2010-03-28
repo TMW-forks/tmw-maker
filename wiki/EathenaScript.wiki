@@ -98,7 +98,9 @@ ou seja, todo o resto da linha após // será ignorado.
 Para evitar confusão, a partir daqui o botão do seu *teclado [TAB]* será renomeado
 para *%TAB%*, ou seja, onde estiver escrito *%TAB%* você deve apertar o botão tab
 do seu teclado e não escrever *%TAB%*.
+
 *Exemplo:* <nome do mapa>%TAB%mapflag%TAB%<flag>
+
 *Ficaria assim:*
 {{{
 <nome do mapa>     mapflag     <flag>
