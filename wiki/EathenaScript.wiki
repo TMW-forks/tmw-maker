@@ -7,7 +7,7 @@ possível. Com o passar do tempo irei atualizando o documento, pondo exemplos, d
 dicas e atualizando para novos comandos e funções implementadas no emulador do eAthena.
 
 Documento totalmente traduzido [http://www.eathena.ws/board/index.php?showtopic=227767
- TecnoCronus]
+ | TecnoCronus]
 
 ----
 
