@@ -93,18 +93,20 @@ Tudo que estiver escrito depois de duas barras // será considerado comentário,
 ou seja, todo o resto da linha após // será ignorado.
 
 
-==Crinando um mapflag:==
+==Criando um mapflag:==
 
-Para evitar confusão, a partir daqui o botão do seu teclado tab será renomeado
+Para evitar confusão, a partir daqui o botão do seu *teclado [TAB]* será renomeado
 para *%TAB%*, ou seja, onde estiver escrito *%TAB%* você deve apertar o botão tab
 do seu teclado e não escrever *%TAB%*.
+*Exemplo:* <nome do mapa>%TAB%mapflag%TAB%<flag>
+*Ficaria assim:*
 {{{
-<nome do mapa>%TAB%mapflag%TAB%<flag>
+<nome do mapa>     mapflag     <flag>
 }}}
 
 Isso vai criar um uma mapflag nesse mapa, essas mapflags estão geralmente dentro
-de arquivos listados em 'conf/mapflag', mas esse comando Top pode ser usado dentro
-de scripts txt
+de arquivos listados em '*conf/mapflag*', mas esse comando Top pode ser usado dentro
+de "*scripts.txt*"
 
 ==Criar um permanente invocamento de monstro==
 {{{
