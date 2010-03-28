@@ -99,11 +99,14 @@ Para evitar confusão, a partir daqui o botão do seu *teclado [TAB]* será reno
 para *%TAB%*, ou seja, onde estiver escrito *%TAB%* você deve apertar o botão tab
 do seu teclado e não escrever *%TAB%*.
 
-*Exemplo:* <nome do mapa>%TAB%mapflag%TAB%<flag>
-
-*Ficaria assim:*
+*Ou seja, ensinaremos assim:* 
 {{{
-<nome do mapa>     mapflag     <flag>
+<NomeDoMapa>%TAB%mapflag%TAB%<flag>
+}}}
+
+*Você digitara o comando assim:*
+{{{
+<NomeDoMapa>     mapflag     <flag>
 }}}
 
 Isso vai criar um uma mapflag nesse mapa, essas mapflags estão geralmente dentro
