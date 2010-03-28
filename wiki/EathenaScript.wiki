@@ -106,47 +106,46 @@ Isso vai criar um uma mapflag nesse mapa, essas mapflags estão geralmente dentr
 de arquivos listados em 'conf/mapflag', mas esse comando Top pode ser usado dentro
 de scripts txt
 
-==Criar um permanente invocamente de monstro==
+==Criar um permanente invocamento de monstro==
 {{{
 <nome do mapa>,<x>,<y>,<xs>,<ys>%TAB%monster%TAB%<nome do monstro>%TAB%<mob id>,<quantidade>,<delay1>,<delay2>,<evento>
 }}}
 
-nome do mapa é o nome do mapa onde os monstros serão invocados. x,y são
+*nome do mapa* é o nome do mapa onde os monstros serão invocados. *x,y* são
 as coordenadas do mapa, se x e y for igual à 0 os monstros serão invocados
 em uma coordenada x e y randômicas. note que esta será as coordenadas iniciais
 pois os monstros são livres para andar além da região que foram invocados.
 
-nome do monstro é o nome que será mostrado na tela, mob id é o "número de
-identificação do monstro", todos esse ids são listados em 'mob_db.txt'.
+*nome do monstro* é o nome que será mostrado na tela, *mob id* é o "número de
+identificação do monstro", todos esse ids são listados em '*mob_db.txt*'.
 
-Se você adicionar 20000 ao id do monstro, ele será invocado como uma 'versão
-gigante' (o tamanho do monstro será aumentado) e se você adicionar 1000, o
-monstro será invocado numa versão pequena, Mas, isso não é recomando.
+|| Se você adicionar 20000 ao id do monstro, ele será invocado como uma 'versão gigante' (o tamanho do monstro será aumentado) e se você adicionar 1000, o monstro será invocado numa versão pequena, Mas, isso não é recomendo. ||
 
-quantidade é a quantidade de monstro sque serão invocados, quando esse comando
-é executado ele é afetado pelo rates de spwan em 'battle_athena.conf'.
+*quantidade* é a quantidade de monstro sque serão invocados, quando esse comando
+é executado ele é afetado pelo rates de spawn em '*battle_athena.conf*'.
 
-Delay1 e Delay2 são os delays de invocação do monstro - o primeiro counta o tempo
+*Delay1* e *Delay2* são os intervalos de invocação do monstro - o primeiro conta o tempo
 desde que um monstro foi invocado até a última invocação. o segundo conta o tempo
 desde sua invocação até a morte do monstro. O Tempo é dado em milésimos de segundo.
 
-Você pode espificar um nível de monstro custom, indicado o nível custom após o nome.
-Exemplo: "Poring,50" esse monstro terá o nome "Poring" mas com nível 50.
+Você pode especificar um nível custo (personalizado) de monstro, indicado o nível custom após o nome.
+*Exemplo:* "Poring,50" esse monstro terá o nome "Poring" mas com nível 50.
 
-evento é o label a ser chamado quando o monstro morrer, note o jogador que matar
+*evento* é o label a ser chamado quando o monstro morrer, note o jogador que matar
 o monstro será "atachado ao script", ou seja, como se ele tivesse clicado no
 npc que tem esse comando. O nome do evento deve seguir o seguinte modelo:
-"NOMEDONPC::OnNome", suponhamos que o nome do nosso npc seja "brA" e o nome do
-label seja Ragnarok, então ficaria assim: "brA::Ragnarok".
+"*NOMEDONPC::OnNome*", suponhamos que o nome do nosso npc seja "brA" e o nome do
+label seja "Ragnarok", então ficaria assim: "*brA::Ragnarok*".
 
 
-** Nomes de NPC
+==Nomes de NPC==
 
-/!\ WARNING: Isto é aplicado para warps, npcs, duplicates e shops /!\
+|| *AVISO:* Isto é aplicado para warps, npcs, duplicates e shops!||
 
 Os nomes de NPC são de um tipo especial e formatados desse jeito:
-
-<Nome para mostrar>{::<nome único>}
+{{{
+<Nome do Monstro>{::<nome único>}
+}}}
 
 Todos os NPCS tem um nome único que é usado para motivos de identificação.
 Quando você quiser identificar um npc, você deverá usar o seu nome único.
@@ -156,28 +155,31 @@ O Client tem um aspecto especial quando mostra nomes:
 se o nome para mostrar tiver um '#', isso vai esconder essa parte do nome.
 ex: Se o nome do seu npc for 'Hunter#hunter1' só será mostrado 'Hunter'.
 
-<Nome para mostrar> deve ter no máximo 24 caracteres
-<nome único> deve ter no máximo 24 caracteres
+*<Nome do Monstro>* - deve ter no máximo 24 caracteres
+*<nome único>* -  deve ter no máximo 24 caracteres
 
-** Definir um ponto de warp
+==Definir um ponto de warp==
+{{{
+<MapaDeOrigem>,<OrigemX>,<OrigemY>,<direção>%TAB%warp%TAB%<nome do warp>%TAB%<LarguraDoGatilho>,<AlturaDoGatilho>,<MapaDeDestino>,<DestinoX>,<DestinoY>
+}}}
 
-<de nome do mapa>,<deX>,<deY>,<direção>%TAB%warp%TAB%<nome do warp>%TAB%<spanx>,<spany>,<to map name>,<paraX>,<paraY>
+Isso vai criar um NPC tipo Warp que vai teleportar um jogador entre mapas, e todos
+os argumentos são óbvios exceto *<LarguraDoGatilho>* e *<AlturaDoGatilho>* que são a Largura e a Altura do Bloco invisível que ficará no chão do mapa em volta do endereço *<MapaDeOrigem>*, *<OrigemX>* e *<OrigemY>*. Se personagem do jogador pisar sobre esse bloco invisível sobre o chão será teletransportar instantaneamente para local com endereço *<MapaDeDestino>*, *<DestinoX>* e *<DestinoY>*.
 
-Isso vai criar um NPC de warp que vai teleportar um jogador entre mapas, e todos
-os argumentos são óbvios exceto span x e y que são: Spanx e y vai deixar essas
-coordenadas sensível ao jogador que não andar diretamente sobre ela.
+Esses NPCs de warp tem um nome. Pois quando quiser ter uma referencia para desabilitar ou reabilitar o Warp através de comandos de GM do tipo "*@enablenpc <NomeDoWarp>*" ou "*@disablenpc <NomeDoWarp>*".
 
-Esses NPCs de warp tem um nome, por que, quando você quiser ter uma referência
-depois com 'enablenpc/disablenpc'.
-
-A Direção para esse tipo NPC é irrelevante, pois de qualquer ângulo que o jogador
+A *Direção* para esse tipo NPC é irrelevante, pois de qualquer ângulo que o jogador
 olhar pro npc ele será o mesmo.
 
 
-** Definir um NPC
-
+==Definir um NPC==
+{{{
 <nome do mapa>,<x>,<y>,<direção>%TAB%script%TAB%<Nome do NPC>%TAB%<sprite id>,{<código>}
+}}}
+ou
+{{{
 <nome do mapa>,<x>,<y>,<direção>%TAB%script%TAB%<Nome do NPC>%TAB%<sprite id>,<triggerX>,<triggerY>,{<código>}
+}}}
 
 Este comando vai criar um NPC no mapa especificado, isso é um comando "top-lvel"
 Direção é a direção que o NPC vai olhar,
