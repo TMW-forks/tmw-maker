@@ -6,8 +6,7 @@ uma versão mais direta, sem exemplos e comentários inúteis, tentando ser o ma
 possível. Com o passar do tempo irei atualizando o documento, pondo exemplos, dando
 dicas e atualizando para novos comandos e funções implementadas no emulador do eAthena.
 
-Documento totalmente traduzido [[http://www.eathena.ws/board/index.php?showtopic=227767
- TecnoCronus]]
+Documento totalmente traduzido [http://www.eathena.ws/board/index.php?showtopic=227767 TecnoCronus]
 
 ----
 
