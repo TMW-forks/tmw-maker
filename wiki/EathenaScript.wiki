@@ -171,9 +171,9 @@ ex: Se o nome do seu npc for 'Hunter#hunter1' só será mostrado 'Hunter'.
 }}}
 
 Isso vai criar um NPC tipo Warp que vai teleportar um jogador entre mapas, e todos
-os argumentos são óbvios exceto *<LarguraDoGatilho>* e *<AlturaDoGatilho>* que são a Largura e a Altura do Bloco invisível que ficará no chão do mapa em volta do endereço *<MapaDeOrigem>*, *<OrigemX>* e *<OrigemY>*. Se personagem do jogador pisar sobre esse bloco invisível sobre o chão será teletransportar instantaneamente para local com endereço *<MapaDeDestino>*, *<DestinoX>* e *<DestinoY>*.
+os argumentos são óbvios exceto "*LarguraDoGatilho*" e "*AlturaDoGatilho*" que são a Largura e a Altura do Bloco invisível que ficará no chão do mapa em volta do endereço "*MapaDeOrigem*", "*OrigemX*" e "*OrigemY*". Se personagem do jogador pisar sobre esse bloco invisível sobre o chão será teletransportar instantaneamente para local com endereço "*MapaDeDestino*", "*DestinoX*" e "*DestinoY*".
 
-Esses NPCs de warp tem um nome. Pois quando quiser ter uma referencia para desabilitar ou reabilitar o Warp através de comandos de GM do tipo "*@enablenpc <NomeDoWarp>*" ou "*@disablenpc <NomeDoWarp>*".
+Esses NPCs de warp tem um nome. Pois quando quiser ter uma referencia para desabilitar ou reabilitar o Warp através de comandos de GM do tipo "*@enablenpc NomeDoWarp*" ou "*@disablenpc NomeDoWarp*".
 
 A *Direção* para esse tipo NPC é irrelevante, pois de qualquer ângulo que o jogador
 olhar pro npc ele será o mesmo.
