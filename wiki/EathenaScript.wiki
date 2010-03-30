@@ -183,69 +183,72 @@ olhar pro npc ele será o mesmo.
 
 ==Definir um NPC==
 {{{
-<nome do mapa>,<x>,<y>,<direção>%TAB%script%TAB%<Nome do NPC>%TAB%<sprite id>,{<código>}
+<NomeDoMapa>,<x>,<y>,<DireçãoDoChar>%TAB%script%TAB%<Nome do NPC>%TAB%<SpriteID>,{
+   #... <código> ...
+}
 }}}
 ou
 {{{
-<nome do mapa>,<x>,<y>,<direção>%TAB%script%TAB%<Nome do NPC>%TAB%<sprite id>,<triggerX>,<triggerY>,{<código>}
+<NomeDoMapa>,<x>,<y>,<DireçãoDoChar>%TAB%script%TAB%<Nome do NPC>%TAB%<SpriteID>,<LarguraDoGatilho>,<AlturaDoGatilho>,{
+   #... <código> ...
+}
 }}}
 
-Este comando vai criar um NPC no mapa especificado, isso é um comando "top-lvel"
+Este comando vai criar um NPC no mapa especificado, isso é um comando "*top-lvel*"
 Direção é a direção que o NPC vai olhar,
 
 Um '-1' em sprite id vai criar um NPC invisível e inclicável.
 Um '111' em sprite id vai criar um NPC sem sprite mas ainda clicável.
 
-TriggerX e TriggerY, se dados, define uma área, centrada no NPC e entre
-a area triggerX até atras da coord x do npc e triggerY atrás da direção da
-cord y do npc, Andando nessa área o NPC deve ser executado.
+"*LarguraDoGatilho*" e "*AlturaDoGatilho*" são a Largura e a Altura do Bloco invisível que ficará no chão do mapa em volta do NPC no endereço "*NomeDoMapa*", "*X*" e "*Y*". Ouseja, se personagem do jogador pisar sobre esse bloco invisível sobre o chão executará o script do NPC que está entre "{" e "}" instantaneamente.
 
-código é o conjuto de funções que vão ser implementadas no NPC.
 
-** Definir um NCP invisível e não-clicável:
-
--%TAB%script%TAB%<Nome do NPC>%TAB%-1,{<código>}
+==Definir um NCP invisível e não-clicável==
+{{{
+<NomeDoMapa>,<x>,<y>,<DireçãoDoChar>%TAB%script%TAB%<Nome do NPC>%TAB%-1,{
+   #... <código> ...
+}
+}}}
 
 Isso vai definir um npc não clicável e invisível, sendo assim, executados
-somente por Rótulos especiais como: OnPCLoadMapEvent, OnPCLoginEvent entre
+somente por Rótulos especiais como: "*OnPCLoadMapEvent*", "*OnPCLoginEvent*" entre
 outros.
 
-** Definar um NPC dos tipos loja/loga de cash.
+==Definar um NPC dos tipos loja/loga de cash.==
+{{{
+<NomeDoMapa>,<x>,<y>,<DireçãoDoChar>%TAB%shop%TAB%<Nome do NPC>%TAB%<sprite id>,<itemid>:<preço>{,<itemid>:<preço>...}
+<NomeDoMapa>,<x>,<y>,<DireçãoDoChar>%TAB%shop%TAB%<Nome do NPC>%TAB%<sprite id>,<itemid>:<preço>{,<itemid>:<preço>...}
+}}}
 
--%TAB%shop%TAB%<Nome do NPC>%TAB%<sprite id>,<itemid>:<preço>{,<itemid>:<preço>...}
-<nome do mapa>,<x>,<y>,<direção>%TAB%shop%TAB%<Nome do NPC>%TAB%<sprite id>,<itemid>:<preço>{,<itemid>:<preço>...}
-
-Este comando "top-level", a diferença desse tipo de NPC para o tipo Script é que
+Este comando "*top-level*", a diferença desse tipo de NPC para o tipo Script é que
 quando o jogador clicar nele, ao invés de aparecer uma janela de mensagem, aparece um
 mini-menu com as opções de comprar ou vender.
 
-O Item id é o id do item em 'item_db.txt'. Se o preço for igual à -1, o preço será
-o padrão especificado na database de items (item_db), se não será vendido pelo preço
+O Item id é o id do item em '[http://themanaworld-br.googlecode.com/svn/eathena-data/db/item_db.txt item_db.txt]'. Se o preço for igual à -1, o preço será
+o padrão especificado na database de items ([http://themanaworld-br.googlecode.com/svn/eathena-data/db/item_db.txt item_db.txt]), se não será vendido pelo preço
 especificado.
 
-Você pode usar "cashshop" no lugar de "shop" para usar a interfance do shop de cash
-isso permite você comprar os items com a variável #CASHPOINTS e #KAFRAPOINTS. Esse
+Você pode usar "*cashshop*" no lugar de "*shop*" para usar a interfance do shop de cash
+isso permite você comprar os items com a variável *#CASHPOINTS* e *#KAFRAPOINTS*. Esse
 tipo de shops não permite que você não venda nada, só compre, e <preço> cotinua
-sendo o preço, mas agora não em zenys, mas sim em ponstos.
+sendo o preço, mas agora não em zenys, mas sim em pontos.
 
-** Definir um NPC duplicado de: warp/shop/cashshop/NPC.
-
-warp: <nome do mapa>,<x>,<y>,<direção>%TAB%duplicate(<rótulo>)%TAB%<Nome do NPC>%TAB%<spanx>,<spany>
-shop/cashshop/npc: -%TAB%duplicate(<rótulo>)%TAB%<Nome do NPC>%TAB%<sprite id>
-shop/cashshop/npc: <nome do mapa>,<x>,<y>,<direção>%TAB%duplicate(<rótulo>)%TAB%<Nome do NPC>%TAB%<sprite id>
-npc: -%TAB%duplicate(<rótulo>)%TAB%<Nome do NPC>%TAB%<sprite id>,<triggerX>,<triggerY>
+==Definir um NPC duplicado de: warp/shop/cashshop/NPC.==
+{{{
+warp: <NomeDoMapa>,<x>,<y>,<direção>%TAB%duplicate(<rótulo>)%TAB%<Nome do NPC>%TAB%<spanx>,<spany>
 npc: <nome do mapa>,<x>,<y>,<direção>%TAB%duplicate(<rótulo>)%TAB%<Nome do NPC>%TAB%<sprite id>,<triggerX>,<triggerY>
+shop/cashshop: <nome do mapa>,<x>,<y>,<direção>%TAB%duplicate(<rótulo>)%TAB%<Nome do NPC>%TAB%<sprite id>
+}}}
+Esse comando vai duplicar um NPC do tipo warp/NPC/shop/cashshop referenciado ao rótulo.
+Um NPC Warp duplicado, herda o destino do NPC Original. Shop/cashop herda a lista de items. NPC Duplicados herdam o código de script.
+O resto (nome, localização, direção, id do psrite, LarguraDoGatilho e AlturaDoGatilho) é obtido pela difinição do NPC duplicado.
 
-Esse comando vai duplicar um NPC do tipo warp/shop/cashshop/NPC referenciado ao rótulo.
-um NPC warp duplicado, herda a localização do NPC Original.
-Shop/cashop herda a lista de items.
-NPC Duplicados herdam o código de script.
-o resto (nome, localização, direção, id do psrite, span/trigger area)
-é obtido pela difinição do NPC duplicado.
-
-** Definir uma função.
-
-function%TAB%script%TAB%<nome da função>%TAB%{<código>}
+==Definir uma função==
+{{{
+function%TAB%script%TAB%<nome da função>%TAB%{
+   #... <código> ...
+}
+}}}
 
 Isso vai definir uma função, chamável pelo comando 'callfunc'. Esse objeto
 vai ser carregado em todo map server separadamente, então você pode chamá-la
@@ -255,10 +258,12 @@ O Código é a parte do script que vai ser executada sempre que que a função f
 chamada pelo comando 'callfunc', ela deve estar entre colchetes, apesar de
 o código estar em colchetes, isto não significa que é um argumento opcional.
 
-~ RID? GID? ~
+----
 
-O que é RID e porque você precisa conhecer
-------------------------------------------
+== RID? GID? [[
+
+=O que é RID e porque você precisa conhecer=
+
 
 A Maioria dos comandos de scripts e funções vai pedir dados sobre um char
 guardar variáveis referenciadas ao char, enviar coisas ao cliente conectado
@@ -281,8 +286,7 @@ começo do script.
 Todas vezes que falamos "jogador que invocou","char/jogador atachado ao script"
 nós estamos falando do RID.
 
-Mas sobre GID?
---- ----- ---
+=Mas sobre GID?=
 
 GID encontra o ID do jogo de algo, isto pode ser um ou outro: o GID obtido
 direto de uma invocação de monstro, ou o ID da conta de um char.
@@ -292,8 +296,9 @@ NPC ou CHAR com sprite de GM para ver o GID.
 Isso é na maioria dos casos usados para as novas versões de habilidades e
 comandos de controle de monstros implementados.
 
-Item e scripts de PET
----------------------
+----
+
+==Item e scripts de PET==
 
 Cada item no banco de dados tem dos campos especiais - EquipScript e UseScript.
 O primeiro é o código que vai ser executado toda vez que o char usar o item,
@@ -310,147 +315,144 @@ comandos e funções que são usados especificamente para scripts de items.
 Todos pet no banco de dados do pet tem um campo chamado PetScript, que determina
 a conduta do pet. Isso é invocado toda vez que um PET é invocado.
 
-Números
--------
+==Números==
+
 
 Junto dos números decimas comuns, que não tem nada especial, há os números
 hexadecimais, que podem ser usados da seguinte forma: 
+{{{
 0x<digit hex>
+}}}
 
-onde <digt hex> equivale aos digitos hexadecimais.
+onde "*digt hex*" equivale aos digitos hexadecimais.
 
 Exemplo:
+{{{
+    mes "O Número imprimido será 16";
+    mes "aqui está o número: 0x10";//Imprime: aqui está o número 16.
+}}}
 
-	mes "O Número imprimido será 16";
-	mes "aqui está o número: 0x10";//Imprime: aqui está o número 16.
-
-variáveis
----------
+==variáveis==
 
 Variáveis é um espaço guardado na memória usado para armazenar dados.
-variáveis são divididas em:
 
-prefixo  - Determina o escopo e o tempo da variável
-nome 	 - Um identificador que consistem '_' e caracteres alfa-numéricos.
-pós-fixo - Determina o tipo de variável: string ou inteiro
+=Variáveis são divididas em:=
+*prefixo*  - Determina o escopo e o tempo da variável
+*nome* 	 - Um identificador que consistem '_' e caracteres alfa-numéricos.
+*pós-fixo* - Determina o tipo de variável: string ou inteiro
 
-Escopo pode ser:
-global    - global para todos os servidores.
-local     - local para o servidor.
-conta	  - atachada na conta do RID indentificado.
-character - atachada ao char identificado pelo RID.(char)
-npc	  - atachada ao NPC
-escopo	  - atachada ao escopo do instante.
+=Escopo pode ser:=
+*global*    	- global para todos os servidores.
+*local*     	- local para o servidor.
+*conta*		- atachada na conta do RID indentificado.
+*character*	- atachada ao char identificado pelo RID.(char)
+*npc*		- atachada ao NPC
+*escopo*	- atachada ao escopo do instante.
 
-Extenção pode ser:
-permanente - Ela ainda existe quando o servidor reseta
-temporária - Ela não existe quando o servidor reseta
+=Extenção pode ser:=
+*permanente* - Ela ainda existe quando o servidor reseta
+*temporária* - Ela não existe quando o servidor reseta
 
-Prefixo: escopo e extenção
-nada  	 - Uma variável permanente atachada ao jogador, o tipo padrão
+=Prefixo: escopo e extenção=
+*nada*  	 - Uma variável permanente atachada ao jogador, o tipo padrão
            de cariável.
-"@"	 - Uma variável temporária atachada ao jogador.
+"*@*"	 - Uma variável temporária atachada ao jogador.
  
-"$"	 - Uma variável global permanente.
+"*$*"	 - Uma variável global permanente.
 	   elas são guardadas em "save\mapreg.txt" ou na tabela de banco
 	   de dados `mapreg`, dependendo do tipo (txt ou sql)
-"$@"	 - Uma variável global temporária.
-"."	 - Uma variável de NPC
+"*$@*"	 - Uma variável global temporária.
+"*.*"	 - Uma variável de NPC
 	   elas existem no NPC e disaparecem quando o servidor reiniciaar ou o
 	   npc for recarregad. pode ser acessada pelo comando 'getvariableofnpc'.
-".@"     - Uma variável de Escopo/ NPC
-"#"	 - Uma variável de conta permanente.
+"*.@*"     - Uma variável de Escopo/ NPC
+"*#*"	 - Uma variável de conta permanente.
 	   Elas são salvas em "save\accreg.txt" ou na tabela 'global_reg_value'
-"##"	 - Uma variável permanente global, guardada no login-server.
+"*##*"	 - Uma variável permanente global, guardada no login-server.
 	   elas são guardadas em "save\account.txt" e nas versões SQL na tabela
 	   'global_reg_value'.
 
-Pós-fixo: inteiro ou string
-nada    - variável inteira, pode guardar número positivos/negativos,
+=Pós-fixo: inteiro ou string=
+*nada*    - variável inteira, pode guardar número positivos/negativos,
           mais somente números inteiro
-'$'     - variável string, pode guardar texto alfanumérico
+'*$*'     - variável string, pode guardar texto alfanumérico
 
-Exemplos:
-  nome  - variável de char permanente e inteira
-  nome$ - variável de char permanente e string
- @nome  - variável de char temporária e inteira
- @nome$ - variável de char temporária e string
- $nome  - variável permanente, global e inteira
- $nome$ - variável permanente, global e string
-$@nome  - variável temporária global e inteira
-$@nome$ - variável temporária global e string
- .nome  - variável de npc inteira
- .nome$ - variável de npc string
-.@nome  - variável de escopo/npc inteira
-.@nome$ - variável de escopo/npc inteira
- #nome  - variável de conta, inteira, permanente e local
- #nome$ - variável de conta, string, permanente e local
-##nome  - variável de conta, inteira, permanente e global
-##nome$ - variável de conta, string, permanente e global
+=Exemplos:=
+*nome*		- variável de char permanente e inteira
+*nome$*		- variável de char permanente e string
+*@nome*		- variável de char temporária e inteira
+*@nome$*	- variável de char temporária e string
+*$nome*		- variável permanente, global e inteira
+*$nome$*	- variável permanente, global e string
+*$@nome*	- variável temporária global e inteira
+*$@nome$*	- variável temporária global e string
+*.nome*		- variável de npc inteira
+*.nome$*	- variável de npc string
+*.@nome*	- variável de escopo/npc inteira
+*.@nome$*	- variável de escopo/npc inteira
+*#nome*		- variável de conta, inteira, permanente e local
+*#nome$*	- variável de conta, string, permanente e local
+*##nome*	- variável de conta, inteira, permanente e global
+*##nome$*	- variável de conta, string, permanente e global
 
-Se uma variável nunca foi definida, ela terá valor 0 para variáveis inteiras
-e "" (vazia) para strings.
+Se uma variável nunca foi definida, ela terá valor 0 para variáveis inteiras e "" (vazia) para strings.
 
-Algumas variáveis são especiais, eis elas:
+=Variáveis definidas pelo Sistema:=
 
-StatusPoint - Quantidade de pontos de status restante.
-BaseLevel   - nível base atual.
-SkillPoint  - Quantidade de pontos de habilidades restante.
-Class       - emprego (job) atual.
-Upper       - 1 se o char for de classe avançada.
-Zeny        - Quantidade de Zeny atual.
-Sex         - Sexo, 1 se for homem 0 se for mulher.
-Weight      - O Peso atual que o jogador carrega.
-MaxWeight   - O Peso máximo que o jogador pode carregar.
-JobLevel    - nível de emprego (job lvl) do jogador.
-BaseExp     - A Quantidade de pontos experiência, se 0 o char acabou de upar.
-NextBaseExp - Quantidade de exepriência que o jogador precisa para upar para
-	      o próximo nível.
-NextJobExp  - O Mesmo para nível de emprego (job lvl).
-Hp          - Quantidade de HP
-MaxHp       - Quantidade máxima de hp
-Sp          - Quantidade de sp
-MaxSp       - Quantidade máxia de sp
-BaseJob     - Isso não é confiável, aparentemente usado para suporte de classes
-	      baby.
-Karma	    - O Karma do char, o sistema de karma não é completamente funcional.
-
-Manner	    - A taxa de delicadeza do char. Se torna negativa se o jogador
-	      proverir palavras probidas de 'manner.txt' (fica na pasta do
-	      jogo).
+*StatusPoint*	- Quantidade de pontos de status restante.
+*BaseLevel*	- nível base atual.
+*SkillPoint*	- Quantidade de pontos de habilidades restante.
+*Class*		- emprego (job) atual.
+*Upper*		- 1 se o char for de classe avançada.
+*Zeny*		- Quantidade de Zeny atual.
+*Sex*		- Sexo, 1 se for homem 0 se for mulher.
+*Weight*	- O Peso atual que o jogador carrega.
+*MaxWeight*	- O Peso máximo que o jogador pode carregar.
+*JobLevel*	- nível de emprego (job lvl) do jogador.
+*BaseExp*	- A Quantidade de pontos experiência, se 0 o char acabou de upar.
+*NextBaseExp*	- Quantidade de exepriência que o jogador precisa para upar para o próximo nível.
+*NextJobExp*	- O Mesmo para nível de emprego (job lvl).
+*Hp*		- Quantidade de HP
+*MaxHp*		- Quantidade máxima de hp
+*Sp*		- Quantidade de sp
+*MaxSp*		- Quantidade máxia de sp
+*BaseJob*	- Isso não é confiável, aparentemente usado para suporte de classes baby.
+*Karma*		- O Karma do char, o sistema de karma não é completamente funcional.
+*Manner*	- A taxa de delicadeza do char. Se torna negativa se o jogador proverir palavras probidas de 'manner.txt' (fica na pasta do jogo).
 
 
-Essas variável são definidas altematicamente. se você tentar definir Zeny com
-um número negativo, o script vai concluir que é um erro
+Essas variável são definidas altematicamente. se você tentar definir Zeny com um número negativo, o script vai concluir que é um erro.
 
-Strings
--------
+==Strings==
 
-Para incluir as aspas "" em uma string você deve usar o prefixo \
+Para incluir as aspas (") ou (') em uma string você deve usar o prefixo \
 
 Exemplo:
+{{{
+    mes "O Meu nome \"brAthena\" vai ser mostrado entre aspas";
+}}}
 
-	mes "O Meu nome \"brAthena\" vai ser mostrado entre aspas";
+==Arrays==
 
-
-Arrays
-------
 
 Arrays são essencialmente um grupo de variáveis, as posições dos valores dentro
 de um array são determinnada pelo índice do array:
-
-<nome da variável>[<índice da variável>]
+{{{
+   <nome da variável>[<índice da variável>]
+}}}
 
 Variáveis são salvas deste jeito, dentro de um array, elas são até chamadas de
 'elementos de array' são especificamente úteis, para guardar um grupo de dados
 similares (como vários ids de items por exemplo). Você pode endereçar qualquer
 array com variáveis, se elas forem definidas com números inteiros normais.
-
+{{{
     setarray @array[0],1;
-
-Exemplo 2:
+}}}
+=Exemplo 2:=
+{{{
     setarray @x,100;
     setarray @array2[@x],10;
+}}}
 
 Isso faz com que @array2[100] seja igual à 10
 Note que os índices de array começar em 0, Arrays não podem ter mais que 128
