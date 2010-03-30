@@ -260,9 +260,9 @@ o código estar em colchetes, isto não significa que é um argumento opcional.
 
 ----
 
-== RID? GID? [[
+== RID? GID?==
 
-=O que é RID e porque você precisa conhecer=
+===O que é RID e porque você precisa conhecer===
 
 
 A Maioria dos comandos de scripts e funções vai pedir dados sobre um char
@@ -286,7 +286,7 @@ começo do script.
 Todas vezes que falamos "jogador que invocou","char/jogador atachado ao script"
 nós estamos falando do RID.
 
-=Mas sobre GID?=
+===Mas sobre GID?===
 
 GID encontra o ID do jogo de algo, isto pode ser um ou outro: o GID obtido
 direto de uma invocação de monstro, ou o ID da conta de um char.
@@ -336,89 +336,79 @@ Exemplo:
 
 Variáveis é um espaço guardado na memória usado para armazenar dados.
 
-=Variáveis são divididas em:=
-*prefixo*  - Determina o escopo e o tempo da variável
-*nome* 	 - Um identificador que consistem '_' e caracteres alfa-numéricos.
-*pós-fixo* - Determina o tipo de variável: string ou inteiro
+===Variáveis são divididas em:===
+ *prefixo*  - Determina o escopo e o tempo da variável
+ *nome* 	 - Um identificador que consistem '_' e caracteres alfa-numéricos.
+ *pós-fixo* - Determina o tipo de variável: string ou inteiro
 
-=Escopo pode ser:=
-*global*    	- global para todos os servidores.
-*local*     	- local para o servidor.
-*conta*		- atachada na conta do RID indentificado.
-*character*	- atachada ao char identificado pelo RID.(char)
-*npc*		- atachada ao NPC
-*escopo*	- atachada ao escopo do instante.
+===Escopo pode ser:===
+ *global*    	- global para todos os servidores.
+ *local*     	- local para o servidor.
+ *conta*		- atachada na conta do RID indentificado.
+ *character*	- atachada ao char identificado pelo RID.(char)
+ *npc*		- atachada ao NPC
+ *escopo*	- atachada ao escopo do instante.
 
-=Extenção pode ser:=
-*permanente* - Ela ainda existe quando o servidor reseta
-*temporária* - Ela não existe quando o servidor reseta
+===Extenção pode ser:===
+ *permanente* - Ela ainda existe quando o servidor reseta
+ *temporária* - Ela não existe quando o servidor reseta
 
-=Prefixo: escopo e extenção=
-*nada*  	 - Uma variável permanente atachada ao jogador, o tipo padrão
-           de cariável.
-"*@*"	 - Uma variável temporária atachada ao jogador.
- 
-"*$*"	 - Uma variável global permanente.
-	   elas são guardadas em "save\mapreg.txt" ou na tabela de banco
-	   de dados `mapreg`, dependendo do tipo (txt ou sql)
-"*$@*"	 - Uma variável global temporária.
-"*.*"	 - Uma variável de NPC
-	   elas existem no NPC e disaparecem quando o servidor reiniciaar ou o
-	   npc for recarregad. pode ser acessada pelo comando 'getvariableofnpc'.
-"*.@*"     - Uma variável de Escopo/ NPC
-"*#*"	 - Uma variável de conta permanente.
-	   Elas são salvas em "save\accreg.txt" ou na tabela 'global_reg_value'
-"*##*"	 - Uma variável permanente global, guardada no login-server.
-	   elas são guardadas em "save\account.txt" e nas versões SQL na tabela
-	   'global_reg_value'.
+===Prefixo: escopo e extenção===
+ *nada*  - Uma variável permanente atachada ao jogador, o tipo padrão de cariável.
+ "*@*"	 - Uma variável temporária atachada ao jogador.
+ "*$*"	 - Uma variável global permanente. Elas são guardadas em "save\mapreg.txt" ou na tabela de banco de dados `mapreg`, dependendo do tipo (txt ou sql)
+ "*$@*"	 - Uma variável global temporária.
+ "*.*"	 - Uma variável de NPC. Elas existem no NPC e disaparecem quando o servidor reiniciaar ou o npc for recarregad. pode ser acessada pelo comando 'getvariableofnpc'.
+ "*.@*"  - Uma variável de Escopo/ NPC
+ "*#*"	 - Uma variável de conta permanente. Elas são salvas em "save\accreg.txt" ou na tabela 'global_reg_value'.
+ "*##*"	 - Uma variável permanente global, guardada no login-server. Elas são guardadas em "save\account.txt" e nas versões SQL na tabela 'global_reg_value'.
 
-=Pós-fixo: inteiro ou string=
-*nada*    - variável inteira, pode guardar número positivos/negativos,
-          mais somente números inteiro
-'*$*'     - variável string, pode guardar texto alfanumérico
+===Pós-fixo: inteiro ou string===
+ *nada*  - variável inteira, pode guardar número positivos/negativos, Mais somente números inteiro.
+ '*$*'   - variável string, pode guardar texto alfanumérico
 
-=Exemplos:=
-*nome*		- variável de char permanente e inteira
-*nome$*		- variável de char permanente e string
-*@nome*		- variável de char temporária e inteira
-*@nome$*	- variável de char temporária e string
-*$nome*		- variável permanente, global e inteira
-*$nome$*	- variável permanente, global e string
-*$@nome*	- variável temporária global e inteira
-*$@nome$*	- variável temporária global e string
-*.nome*		- variável de npc inteira
-*.nome$*	- variável de npc string
-*.@nome*	- variável de escopo/npc inteira
-*.@nome$*	- variável de escopo/npc inteira
-*#nome*		- variável de conta, inteira, permanente e local
-*#nome$*	- variável de conta, string, permanente e local
-*##nome*	- variável de conta, inteira, permanente e global
-*##nome$*	- variável de conta, string, permanente e global
+===Exemplos:===
+ *nome*		- variável de char permanente e inteira
+ *nome$*	- variável de char permanente e string
+ *@nome*	- variável de char temporária e inteira
+ *@nome$*	- variável de char temporária e string
+ *$nome*	- variável permanente, global e inteira
+ *$nome$*	- variável permanente, global e string
+ *$@nome*	- variável temporária global e inteira
+ *$@nome$*	- variável temporária global e string
+ *.nome*	- variável de npc inteira
+ *.nome$*	- variável de npc string
+ *.@nome*	- variável de escopo/npc inteira
+ *.@nome$*	- variável de escopo/npc inteira
+ *#nome*	- variável de conta, inteira, permanente e local
+ *#nome$*	- variável de conta, string, permanente e local
+ *##nome*	- variável de conta, inteira, permanente e global
+ *##nome$*	- variável de conta, string, permanente e global
 
 Se uma variável nunca foi definida, ela terá valor 0 para variáveis inteiras e "" (vazia) para strings.
 
-=Variáveis definidas pelo Sistema:=
+===Variáveis definidas pelo Sistema:===
 
-*StatusPoint*	- Quantidade de pontos de status restante.
-*BaseLevel*	- nível base atual.
-*SkillPoint*	- Quantidade de pontos de habilidades restante.
-*Class*		- emprego (job) atual.
-*Upper*		- 1 se o char for de classe avançada.
-*Zeny*		- Quantidade de Zeny atual.
-*Sex*		- Sexo, 1 se for homem 0 se for mulher.
-*Weight*	- O Peso atual que o jogador carrega.
-*MaxWeight*	- O Peso máximo que o jogador pode carregar.
-*JobLevel*	- nível de emprego (job lvl) do jogador.
-*BaseExp*	- A Quantidade de pontos experiência, se 0 o char acabou de upar.
-*NextBaseExp*	- Quantidade de exepriência que o jogador precisa para upar para o próximo nível.
-*NextJobExp*	- O Mesmo para nível de emprego (job lvl).
-*Hp*		- Quantidade de HP
-*MaxHp*		- Quantidade máxima de hp
-*Sp*		- Quantidade de sp
-*MaxSp*		- Quantidade máxia de sp
-*BaseJob*	- Isso não é confiável, aparentemente usado para suporte de classes baby.
-*Karma*		- O Karma do char, o sistema de karma não é completamente funcional.
-*Manner*	- A taxa de delicadeza do char. Se torna negativa se o jogador proverir palavras probidas de 'manner.txt' (fica na pasta do jogo).
+ *StatusPoint*	- Quantidade de pontos de status restante.
+ *BaseLevel*	- nível base atual.
+ *SkillPoint*	- Quantidade de pontos de habilidades restante.
+ *Class*		- emprego (job) atual.
+ *Upper*		- 1 se o char for de classe avançada.
+ *Zeny*		- Quantidade de Zeny atual.
+ *Sex*		- Sexo, 1 se for homem 0 se for mulher.
+ *Weight*	- O Peso atual que o jogador carrega.
+ *MaxWeight*	- O Peso máximo que o jogador pode carregar.
+ *JobLevel*	- nível de emprego (job lvl) do jogador.
+ *BaseExp*	- A Quantidade de pontos experiência, se 0 o char acabou de upar.
+ *NextBaseExp*	- Quantidade de exepriência que o jogador precisa para upar para o  próximo nível.
+ *NextJobExp*	- O Mesmo para nível de emprego (job lvl).
+ *Hp*		- Quantidade de HP
+ *MaxHp*		- Quantidade máxima de hp
+ *Sp*		- Quantidade de sp
+ *MaxSp*		- Quantidade máxia de sp
+ *BaseJob*	- Isso não é confiável, aparentemente usado para suporte de classes baby.
+ *Karma*		- O Karma do char, o sistema de karma não é completamente  funcional.
+ *Manner*	- A taxa de delicadeza do char. Se torna negativa se o jogador proverir palavras probidas de 'manner.txt' (fica na pasta do jogo).
 
 
 Essas variável são definidas altematicamente. se você tentar definir Zeny com um número negativo, o script vai concluir que é um erro.
@@ -454,7 +444,7 @@ array com variáveis, se elas forem definidas com números inteiros normais.
     setarray @array2[@x],10;
 }}}
 
-Isso faz com que @array2[100] seja igual à 10
+Isso faz com que {{{@array2[100]}}} seja igual à *10*.
 Note que os índices de array começar em 0, Arrays não podem ter mais que 128
 valores, ou seja, você pode guardar até 127 dados em um array.
 
@@ -463,66 +453,48 @@ valores, ou seja, você pode guardar até 127 dados em um array.
 Arrays podem guardar string normalmente:
 
 Arrays can naturaly store strings:
-
-	setarray @texto$[0],"Meu nome é";
+{{{
+    setarray @texto$[0],"Meu nome é";
+}}}
 
 O Exemplo a seguir vai mostrar como usar arrays string como "texto completo":
-
-	for( set @c, 0; @texto$[@c]; set @c, @c + 1)
-	mes @texto$[@c];
-
+{{{
+   for( set @c, 0; @texto$[@c]; set @c, @c + 1)
+   mes @texto$[@c];
+}}}
 Supondo que o array especificado tenha as seguintes string:
-
-"olá","como você vai","eu não te vejo há muito tempo"
-
+    "olá","como você vai","eu não te vejo há muito tempo"
 sendo definidas desse jeito:
-
-setarray @texto$[0],"olá","como você vai ?","eu não te vejo há muito tempo";
-
+{{{
+    setarray @texto$[0],"olá","como você vai ?","eu não te vejo há muito tempo";
+}}}
 o exemplo será igual à fazermos isto:
-
+{{{
 		mes "Olá";
 		mes "Como você vai ?";
 		mes "eu não te vejo há muito tempo";
+}}}
 
-Resumo do arrays permitidos e escopos de arrays
------- -- ------ ---------- - ------- -- ------
+===Resumo do arrays permitidos e escopos de arrays===
 
-+==========+======+=======+
-|Tipo      |Normal| Array |
-+==========+======+=======+
-|$Str$     | OK!  | OK!   |
-+----------+------+-------+
-|$@Str$    | OK!  | OK!   |
-+----------+------+-------+
-|@Str$     | OK!  | OK!   |
-+----------+------+-------+
-|#Str$     | OK!  | FALHA |
-+----------+------+-------+
-|Str$      | OK!  | FALHA |
-+----------+------+-------+
-|$Int      | OK!  | OK!   |
-+----------+------+-------+
-|$@Int     | OK!  | OK!   |
-+----------+------+-------+
-|@Int      | OK!  | OK!   |
-+----------+------+-------+
-|#Int      | OK!  | FALHA |
-+----------+------+-------+
-|Int       | OK!  | FALHA |
-+----------+------+-------+
-|.Str$     | OK!  | OK!   |
-+----------+------+-------+
-|.Int      | OK!  | OK!   |
-+----------+------+-------+
-|.@Str$    | OK!  | OK!   |
-+----------+------+-------+
-|.@Int     | OK!  | OK!   |
-+----------+------+-------+
+||Tipo      ||Normal|| Array ||
+||$Str$     || OK!  || OK!   ||
+||$@Str$    || OK!  || OK!   ||
+||@Str$     || OK!  || OK!   ||
+||#Str$     || OK!  || FALHA ||
+||Str$      || OK!  || FALHA ||
+||$Int      || OK!  || OK!   ||
+||$@Int     || OK!  || OK!   ||
+||@Int      || OK!  || OK!   ||
+||#Int      || OK!  || FALHA ||
+||Int       || OK!  || FALHA ||
+||.Str$     || OK!  || OK!   ||
+||.Int      || OK!  || OK!   ||
+||.@Str$    || OK!  || OK!   ||
+||.@Int     || OK!  || OK!   ||
 
 
-Operadores
-----------
+==Operadores==
 
 Operadores são coisas que você pode usar em números, string, variáveis:
 
@@ -548,10 +520,10 @@ Há também operadores condicionais, usados para checar strings, variáves, núm
 !=	(diferente) se os valores forem diferentes, o retorno será verdadeiro.
 
 Exemplos:
-	if(1==1)		VERDADEIRO
-	if(1<2)			VERDADEIRO
-	if(@x<2)		VERDADEIRO se @x for menor que 2.
-	if(@x$ == @y$)		VERDADEIRO se o valor de ambas variáveis forem guais
+	{{{if(1==1)}}}		VERDADEIRO
+	{{{if(1<2)}}}		VERDADEIRO
+	{{{if(@x<2)}}}		VERDADEIRO se @x for menor que 2.
+	{{{if(@x$ == @y$)}}}	VERDADEIRO se o valor de ambas variáveis forem guais
 
 As comparações podem ser empilhadas numa mesma checagem, usando certo operadores.
 
