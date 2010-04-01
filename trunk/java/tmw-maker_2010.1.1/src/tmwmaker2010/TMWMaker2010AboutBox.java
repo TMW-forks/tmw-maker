@@ -125,7 +125,7 @@ public class TMWMaker2010AboutBox extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(homepageLabel)
                .addComponent(appHomepageLabel))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
             .addComponent(closeButton)
             .addContainerGap())
       );
