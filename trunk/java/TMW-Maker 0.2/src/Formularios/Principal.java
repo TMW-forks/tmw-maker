@@ -39,15 +39,17 @@ public class Principal extends javax.swing.JFrame {
       jMenuItem3 = new javax.swing.JMenuItem();
       jMenuItem4 = new javax.swing.JMenuItem();
       jSeparator2 = new javax.swing.JSeparator();
-      jMenuItem5 = new javax.swing.JMenuItem();
+      MnuSistemaFechar = new javax.swing.JMenuItem();
       jMenu2 = new javax.swing.JMenu();
       jMenu3 = new javax.swing.JMenu();
+      MnuEditarItensImagem = new javax.swing.JMenuItem();
+      MnuEditarItensDados = new javax.swing.JMenuItem();
       jMenu6 = new javax.swing.JMenu();
       jMenu7 = new javax.swing.JMenu();
       jMenu8 = new javax.swing.JMenu();
       jMenu9 = new javax.swing.JMenu();
       jSeparator3 = new javax.swing.JSeparator();
-      jMenuItem6 = new javax.swing.JMenuItem();
+      MnuEditarPoderGM = new javax.swing.JMenuItem();
       jMenu4 = new javax.swing.JMenu();
       jMenuItem7 = new javax.swing.JMenuItem();
       jMenuItem8 = new javax.swing.JMenuItem();
@@ -56,7 +58,7 @@ public class Principal extends javax.swing.JFrame {
       jMenuItem10 = new javax.swing.JMenuItem();
       jMenuItem11 = new javax.swing.JMenuItem();
       jSeparator4 = new javax.swing.JSeparator();
-      jMenuItem12 = new javax.swing.JMenuItem();
+      MnuAjudaSobre = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("TMW-MAKER 0.2");
@@ -87,47 +89,58 @@ public class Principal extends javax.swing.JFrame {
       jMenu1.add(jMenuItem4);
       jMenu1.add(jSeparator2);
 
-      jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-      jMenuItem5.setMnemonic('F');
-      jMenuItem5.setText("Fechar");
-      jMenuItem5.setName("BtnPrincipalFechar"); // NOI18N
-      jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+      MnuSistemaFechar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+      MnuSistemaFechar.setMnemonic('F');
+      MnuSistemaFechar.setText("Fechar");
+      MnuSistemaFechar.setName("BtnPrincipalFechar"); // NOI18N
+      MnuSistemaFechar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem5ActionPerformed(evt);
+            MnuSistemaFecharActionPerformed(evt);
          }
       });
-      jMenu1.add(jMenuItem5);
-      jMenuItem5.getAccessibleContext().setAccessibleName("BtnPrincipalFechar");
+      jMenu1.add(MnuSistemaFechar);
+      MnuSistemaFechar.getAccessibleContext().setAccessibleName("BtnPrincipalFechar");
 
       jMenuBar1.add(jMenu1);
 
       jMenu2.setMnemonic('E');
       jMenu2.setText("Editar");
 
+      jMenu3.setMnemonic('I');
       jMenu3.setText("Itens");
-      jMenu3.setEnabled(false);
+
+      MnuEditarItensImagem.setMnemonic('I');
+      MnuEditarItensImagem.setText("Imagens");
+      MnuEditarItensImagem.setEnabled(false);
+      jMenu3.add(MnuEditarItensImagem);
+
+      MnuEditarItensDados.setMnemonic('D');
+      MnuEditarItensDados.setText("Dados");
+      MnuEditarItensDados.setEnabled(false);
+      jMenu3.add(MnuEditarItensDados);
+
       jMenu2.add(jMenu3);
 
+      jMenu6.setMnemonic('C');
       jMenu6.setText("Campos");
-      jMenu6.setEnabled(false);
       jMenu2.add(jMenu6);
 
+      jMenu7.setMnemonic('P');
       jMenu7.setText("Personagens");
-      jMenu7.setEnabled(false);
       jMenu2.add(jMenu7);
 
-      jMenu8.setText("Inimigos");
-      jMenu8.setEnabled(false);
+      jMenu8.setMnemonic('M');
+      jMenu8.setText("Monstros");
       jMenu2.add(jMenu8);
 
-      jMenu9.setText("Magias");
-      jMenu9.setEnabled(false);
+      jMenu9.setMnemonic('C');
+      jMenu9.setText("Conjurações");
       jMenu2.add(jMenu9);
       jMenu2.add(jSeparator3);
 
-      jMenuItem6.setText("Poder GM");
-      jMenuItem6.setEnabled(false);
-      jMenu2.add(jMenuItem6);
+      MnuEditarPoderGM.setText("Poder GM");
+      MnuEditarPoderGM.setEnabled(false);
+      jMenu2.add(MnuEditarPoderGM);
 
       jMenuBar1.add(jMenu2);
 
@@ -166,15 +179,15 @@ public class Principal extends javax.swing.JFrame {
       jMenu5.add(jMenuItem11);
       jMenu5.add(jSeparator4);
 
-      jMenuItem12.setText("Sobre...");
-      jMenuItem12.setName("MnuPrincipalSobre"); // NOI18N
-      jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+      MnuAjudaSobre.setText("Sobre...");
+      MnuAjudaSobre.setName("MnuPrincipalSobre"); // NOI18N
+      MnuAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem12ActionPerformed(evt);
+            MnuAjudaSobreActionPerformed(evt);
          }
       });
-      jMenu5.add(jMenuItem12);
-      jMenuItem12.getAccessibleContext().setAccessibleName("MnuPrincipalSobre");
+      jMenu5.add(MnuAjudaSobre);
+      MnuAjudaSobre.getAccessibleContext().setAccessibleName("MnuPrincipalSobre");
 
       jMenuBar1.add(jMenu5);
 
@@ -194,16 +207,16 @@ public class Principal extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void MnuSistemaFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaFecharActionPerformed
        // TODO add your handling code here:
        System.exit(0);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_MnuSistemaFecharActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void MnuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaSobreActionPerformed
        // TODO add your handling code here:
        javax.swing.JFrame FrmSplash = new FrmSplash();
        FrmSplash.setVisible(true);
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    }//GEN-LAST:event_MnuAjudaSobreActionPerformed
 
     /**
     * @param args the command line arguments
@@ -217,6 +230,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JMenuItem MnuAjudaSobre;
+   private javax.swing.JMenuItem MnuEditarItensDados;
+   private javax.swing.JMenuItem MnuEditarItensImagem;
+   private javax.swing.JMenuItem MnuEditarPoderGM;
+   private javax.swing.JMenuItem MnuSistemaFechar;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenu jMenu2;
    private javax.swing.JMenu jMenu3;
@@ -230,12 +248,9 @@ public class Principal extends javax.swing.JFrame {
    private javax.swing.JMenuItem jMenuItem1;
    private javax.swing.JMenuItem jMenuItem10;
    private javax.swing.JMenuItem jMenuItem11;
-   private javax.swing.JMenuItem jMenuItem12;
    private javax.swing.JMenuItem jMenuItem2;
    private javax.swing.JMenuItem jMenuItem3;
    private javax.swing.JMenuItem jMenuItem4;
-   private javax.swing.JMenuItem jMenuItem5;
-   private javax.swing.JMenuItem jMenuItem6;
    private javax.swing.JMenuItem jMenuItem7;
    private javax.swing.JMenuItem jMenuItem8;
    private javax.swing.JMenuItem jMenuItem9;
