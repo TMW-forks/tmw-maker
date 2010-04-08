@@ -47,7 +47,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator2">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuSistemaFechar">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Q"/>
@@ -60,7 +60,7 @@
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="BtnPrincipalFechar"/>
               </AccessibilityProperties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuSistemaFecharActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -73,37 +73,53 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenu3">
               <Properties>
+                <Property name="mnemonic" type="int" value="73"/>
                 <Property name="text" type="java.lang.String" value="Itens"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="MnuEditarItensImagem">
+                  <Properties>
+                    <Property name="mnemonic" type="int" value="73"/>
+                    <Property name="text" type="java.lang.String" value="Imagens"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="MnuEditarItensDados">
+                  <Properties>
+                    <Property name="mnemonic" type="int" value="68"/>
+                    <Property name="text" type="java.lang.String" value="Dados"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu6">
               <Properties>
+                <Property name="mnemonic" type="int" value="67"/>
                 <Property name="text" type="java.lang.String" value="Campos"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu7">
               <Properties>
+                <Property name="mnemonic" type="int" value="80"/>
                 <Property name="text" type="java.lang.String" value="Personagens"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Inimigos"/>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="mnemonic" type="int" value="77"/>
+                <Property name="text" type="java.lang.String" value="Monstros"/>
               </Properties>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Magias"/>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="mnemonic" type="int" value="67"/>
+                <Property name="text" type="java.lang.String" value="Conjura&#xe7;&#xf5;es"/>
               </Properties>
             </Menu>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator3">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuEditarPoderGM">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Poder GM"/>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -169,7 +185,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator4">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuAjudaSobre">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sobre..."/>
                 <Property name="name" type="java.lang.String" value="MnuPrincipalSobre" noResource="true"/>
@@ -178,7 +194,7 @@
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="MnuPrincipalSobre"/>
               </AccessibilityProperties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem12ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuAjudaSobreActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
