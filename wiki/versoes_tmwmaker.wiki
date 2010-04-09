@@ -5,15 +5,14 @@ Mas *SOMENTE* funciona se tiver o *[OpenJDK OpenJDK Java 6 Runtime]* instalado e
 
 ----
 
-==TMW-Maker 2010.1.1==
- * [http://tmw-maker.googlecode.com/svn/tags/tmw-maker-2010.1.1.zip Download (773KB)] - Aplicativo inicial escrito em java em fase inicial de desenvolvimento, que por enquanto não faz absolutamente nada. 
-http://img517.imageshack.us/img517/4024/capturadetela1v.png
+==TMW-Maker v0.2==
+ * [http://tmw-maker.googlecode.com/svn/tags/TMW-Maker_0.2.zip Download (1,3MB)] - Aplicativo inicial escrito em java em fase inicial de desenvolvimento, que por enquanto não faz absolutamente nada. 
 
 ----
 
 Se desejar baixar o código fonte digite o comando abaixo em seu terminal.
 {{{
-svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/tmw-maker_2010.1.1/ tmw-maker_2010.1.1
+svn checkout http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker%200.2 TMW-Maker_v0.2
 }}}
 
 || *ATENÇÃO:* O comando *SVN* acima precisará ter um aplicativo de subversion. E caso você já possua um aplicativo(Tipo NetBeans), o SVN irá pedir "*username*" e "*password*". Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação.  ||
