@@ -240,7 +240,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+F9"/>
                 </Property>
-                <Property name="mnemonic" type="int" value="69"/>
+                <Property name="mnemonic" type="int" value="83"/>
                 <Property name="text" type="java.lang.String" value="Estruturar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>

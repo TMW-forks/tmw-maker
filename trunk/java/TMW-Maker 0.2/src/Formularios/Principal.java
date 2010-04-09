@@ -245,7 +245,7 @@ public class Principal extends javax.swing.JFrame {
       jMenu4.add(jMenuItem7);
 
       jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.CTRL_MASK));
-      jMenuItem8.setMnemonic('E');
+      jMenuItem8.setMnemonic('S');
       jMenuItem8.setText("Estruturar");
       jMenuItem8.setEnabled(false);
       jMenu4.add(jMenuItem8);
