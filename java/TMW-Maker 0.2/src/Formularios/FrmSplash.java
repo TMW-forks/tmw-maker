@@ -40,9 +40,10 @@ public class FrmSplash extends javax.swing.JFrame {
       jLabel7 = new javax.swing.JLabel();
       jLabel8 = new javax.swing.JLabel();
       jLabel9 = new javax.swing.JLabel();
-      jButton1 = new javax.swing.JButton();
+      BtnSplashOk = new javax.swing.JButton();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+      setTitle("Informações sobre o TMW-Maker");
       setName("FrmSplash"); // NOI18N
       setResizable(false);
       setUndecorated(true);
@@ -78,12 +79,12 @@ public class FrmSplash extends javax.swing.JFrame {
 
       jLabel9.setText("2010-04-08");
 
-      jButton1.setMnemonic('O');
-      jButton1.setText("Ok");
-      jButton1.setName("BtnSplashOk"); // NOI18N
-      jButton1.addActionListener(new java.awt.event.ActionListener() {
+      BtnSplashOk.setMnemonic('O');
+      BtnSplashOk.setText("Ok");
+      BtnSplashOk.setName("BtnSplashOk"); // NOI18N
+      BtnSplashOk.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
+            BtnSplashOkActionPerformed(evt);
          }
       });
 
@@ -93,22 +94,25 @@ public class FrmSplash extends javax.swing.JFrame {
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
             .addComponent(jLabel1)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(jLabel2)
-                  .addComponent(jLabel3)
-                  .addGroup(layout.createSequentialGroup()
-                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel4))
-                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel7))))
-               .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(layout.createSequentialGroup()
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel2)
+                     .addComponent(jLabel3)
+                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                           .addComponent(jLabel8)
+                           .addComponent(jLabel5)
+                           .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jLabel9)
+                           .addComponent(jLabel6)
+                           .addComponent(jLabel7)))))
+               .addGroup(layout.createSequentialGroup()
+                  .addGap(91, 91, 91)
+                  .addComponent(BtnSplashOk, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
       );
       layout.setVerticalGroup(
@@ -132,18 +136,20 @@ public class FrmSplash extends javax.swing.JFrame {
                .addComponent(jLabel9)
                .addComponent(jLabel8))
             .addGap(190, 190, 190)
-            .addComponent(jButton1))
+            .addComponent(BtnSplashOk))
       );
+
+      getAccessibleContext().setAccessibleParent(this);
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnSplashOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSplashOkActionPerformed
        // TODO add your handling code here:
-       javax.swing.JFrame FrmPrincipal = new Principal();
-       FrmPrincipal.setVisible(true);
-       this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+       //javax.swing.JFrame FrmPrincipal = new Principal();
+       //FrmPrincipal.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_BtnSplashOkActionPerformed
 
     /**
     * @param args the command line arguments
@@ -157,7 +163,7 @@ public class FrmSplash extends javax.swing.JFrame {
     }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton jButton1;
+   private javax.swing.JButton BtnSplashOk;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
