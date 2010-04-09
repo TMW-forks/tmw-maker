@@ -4,7 +4,7 @@
  */
 
 /*
- * Principal.java
+ * FrmPrincipal.java
  *
  * Created on Apr 8, 2010, 2:20:48 PM
  */
@@ -19,10 +19,10 @@ import java.awt.Toolkit;
  *
  * @author indigovox
  */
-public class Principal extends javax.swing.JFrame {
+public class FrmPrincipal extends javax.swing.JFrame {
 
-    /** Creates new form Principal */
-    public Principal() {
+    /** Creates new form FrmPrincipal */
+    public FrmPrincipal() {
         initComponents();
     }
 
@@ -108,7 +108,11 @@ public class Principal extends javax.swing.JFrame {
 
       jMenuItem3.setMnemonic('G');
       jMenuItem3.setText("Configurações");
-      jMenuItem3.setEnabled(false);
+      jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jMenuItem3ActionPerformed(evt);
+         }
+      });
       MnuSistema.add(jMenuItem3);
 
       jMenuItem4.setText("Alterações");
@@ -305,14 +309,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void MnuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaSobreActionPerformed
        // TODO add your handling code here:
-       javax.swing.JFrame FrmSplash = new FrmSplash();
+       javax.swing.JDialog FrmSplash = new FrmSplash(this, rootPaneCheckingEnabled);
        FrmSplash.setLocation(
          ((this.getWidth() - FrmSplash.getWidth())/2) + this.getX() ,
          ((this.getHeight() - FrmSplash.getHeight())/2) + this.getY()
        );
        FrmSplash.pack();
-       FrmSplash.setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
-       FrmSplash.setVisible(true);
+       FrmSplash.setModal(true);
+       FrmSplash.setVisible(true);/**/
     }//GEN-LAST:event_MnuAjudaSobreActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -324,9 +328,21 @@ public class Principal extends javax.swing.JFrame {
           this.getWidth(),
           this.getHeight()
        );
-       this.setExtendedState(MAXIMIZED_BOTH);
+       //this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
 
     }//GEN-LAST:event_formComponentShown
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       // TODO add your handling code here:
+       javax.swing.JDialog FrmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
+       FrmConfiguracao.setLocation(
+         ((this.getWidth() - FrmConfiguracao.getWidth())/2) + this.getX() ,
+         ((this.getHeight() - FrmConfiguracao.getHeight())/2) + this.getY()
+       );
+       FrmConfiguracao.pack();
+       FrmConfiguracao.setModal(true);
+       FrmConfiguracao.setVisible(true);/**/
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -334,7 +350,7 @@ public class Principal extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new FrmPrincipal().setVisible(true);
             }
         });
     }
