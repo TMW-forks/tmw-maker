@@ -705,7 +705,7 @@ A Partir daqui, nós teremos os comando organizados como segue:
 
 =Comandos Básicos=
 
-==*mes "<string>";==
+=={{{*mes "<string>";}}}==
 
 Esse comando irá mostrar um quadrado na tela do jogador invocado, com a string
 especificada no comando, ele não mostra nenhum buttom 'next' ou 'close' a não
@@ -725,7 +725,7 @@ preto (^000000).
 
 ----
 
-==*next;==
+=={{{*next;}}}==
 
 Esse comando vai criar um botão 'next' na Janela de menssagem do jogador atachado
 ao script, se não estiver nenhuma janela na tela, ela será criada, esse comando
@@ -744,7 +744,7 @@ strngs contidas em mes (se houver próximas).
 
 ----
 
-==*close;==
+=={{{*close;}}}==
 
 Esse comando criará um botão 'close' na janela de mensagem do jogador atachado
 ao script,se não estiver nenhuma janela na tela, ela será criada. Esse comando
@@ -760,7 +760,7 @@ irá desaparecer e o script será terminado.
 
 ----
 
-==*close2;==
+=={{{*close2;}}}==
 
 Esse comando é bastante parecido com o comando 'close' a diferença é que a única
 utilidade dele é para fechar a janela de messagem ('mes'), esse comando não
@@ -777,7 +777,7 @@ serve para fehcar a janela.
 
 ----
 
-==*end;==
+=={{{*end;}}}==
 
 Esse comando serve para encerrar um script, ele é geralmente usado quando não se usa o comando
 'mes', e após o comando 'close2', como no exemplo do comando 'close2'.
@@ -788,7 +788,7 @@ Esse comando serve para encerrar um script, ele é geralmente usado quando não 
 
 ----
 
-==*set <variável>,<valor>;==
+=={{{*set <variável>,<valor>;}}}==
 
 Esse comando vai estabelecer um variável, com um o valor indicado, é um dos comando mais
 usados em scripts, os valores podem ser números e/ou strings, strings são um conjunto de
@@ -806,7 +806,7 @@ variável com esse character. (Comentado por TecnoCronus).
 
 ----
 
-==*setd "<nome da variável>",<valor>;==
+=={{{*setd "<nome da variável>",<valor>;}}}==
 
 Funciona identicamente ao comando 'set',a diferença é que o nome da variável é
 identificada com string.
@@ -824,7 +824,7 @@ mes $Poporing123$; // vai mostrar Poporing é legal
 
 ----
 
-==*getd("<variable name>")==
+=={{{*getd("<variable name>")}}}==
 
 Retorna uma referência da variável, o nome pode ser construído dinâmicamente.
 
@@ -836,14 +836,14 @@ set @i, getd("$pikachu");
 
 ----
 
-===*getvariableofnpc(<variável>,"<Nome do NPC>")===
+=={{{*getvariableofnpc(<variável>,"<Nome do NPC>")}}}==
 
 Retorna uma referência da variável do NPC (prefixo .) especificado
 Isso só é usado para variáveis do tipo NPC.
 
 ----
 
-==*goto <rótulo>;==
+=={{{*goto <rótulo>;}}}==
 
 Esse comando faz com que o script "pule" para um rótulo, e é usalmente usado
 com o comando 'if', os rótulos podem ter qualquer nome, mas evite rótulos com
@@ -869,7 +869,7 @@ exemplo 2:
 }}}
 ----
 
-==*menu "<Texto da Opção>",<rótulo_alvo>{,"<texto da opção>",<rótulo_alvo>,...};==
+=={{{*menu "<Texto da Opção>",<rótulo_alvo>{,"<texto da opção>",<rótulo_alvo>,...};}}}==
 
 Esse comando vai criar um menu na tela com varias opções. A opção escolhida direciona
 o jogador para um rótulo específicado.
@@ -924,8 +924,8 @@ não seguindo para nenhum rótulo:
 
 ----
 
-==*select("<opção"{,"<opção>",...})==
-==*prompt("<opção>"{,"<opção>",...})==
+=={{{*select("<opção"{,"<opção>",...})}}}==
+=={{{*prompt("<opção>"{,"<opção>",...})}}}==
 
 Essas duas funções são idênticas ao comando 'menu', úteis quando você mão precisa
 de uma complexa estruturas de rótulos, essas funções ainda definem a variável @menu
@@ -948,7 +948,7 @@ o jogador clicar em 'cancel' essa função retorna 255.
 
 ----
 
-==*input (<variável>{,<mínimo>{,<máximo>}})==
+=={{{*input (<variável>{,<mínimo>{,<máximo>}})}}}==
 
 Esse comando vai criar uma caixa de "inserção" no RID atachado ao script,
 o valor inserido será guardado na variável definida.
@@ -990,8 +990,8 @@ Exemplo:
 
 ----
 
-==*callfunc "<função>"{,<argumento>,...<argumento>};==
-==*callfunc("<função>"{,<argumento>,...<argumento>})==
+=={{{*callfunc "<função>"{,<argumento>,...<argumento>};}}}==
+=={{{*callfunc("<função>"{,<argumento>,...<argumento>})}}}==
 
 Esse comando deixa você chamar uma função de NPC. Uma função de NPC pode ser
 chamada por qualquer script em qualquer map-server. Usando o comando 'return'
@@ -1024,8 +1024,8 @@ function	script	Sorteio	{
 
 ----
 
-==*callsub <rótulo>{,<argumento>,...<argumento>};==
-==*callsub(<rótulo>{,<argumento>,...<argumento>});==
+=={{{*callsub <rótulo>{,<argumento>,...<argumento>};}}}==
+=={{{*callsub(<rótulo>{,<argumento>,...<argumento>});}}}==
 
 Esse comando vai chamar um rótulo específico no script que ele é usado ( não
 use para chamar um rótulo de outro script), a diferença de 'goto' é que esse
@@ -1045,7 +1045,7 @@ comando pode passar argumentos.
 
 ----
 
-==*getarg(<índice>{,<valor padrão>})==
+=={{{*getarg(<índice>{,<valor padrão>})}}}==
 
 Esse comando é usado com os comandos 'callsub' ou 'callfunc', essa função pega
 os argumentos passados pelos comandos 'callsub' ou 'callfunc'.
@@ -1093,7 +1093,7 @@ e getarg(3,-1) será -1, pois não existe "getarg(3)",ou seja, um quarto argumen
 
 ----
 
-==*return {<valor>};==
+=={{{*return {<valor>};}}}==
 
 Quando você usa os commandos 'callsub' ou 'callfunc', esse comando permiti
 que você retorne um valor ou uma variável.
@@ -1114,15 +1114,15 @@ Exemplo:
 
 ----
 
-==*function <nome da função>;==
-==*<nome da função>;==
-==*function <nome da função> { <código> }==
+=={{{*function <nome da função>;}}}==
+=={{{*<nome da função>;}}}==
+=={{{*function <nome da função> { <código> }}}}==
 
 Isso funciona como 'callfunc', mas não suporta argumento como 'callfunc', isso é usado para scripts rápidos que não requer argumentos para funcionar, essas função funcionam como rótulos.
 
 ----
 
-==*if (<condição>) <código>;==
+=={{{*if (<condição>) <código>;}}}==
 
 Isso serve para checar condições e se elas forem verdadeiras ou falsas, o script
 faz algo.
