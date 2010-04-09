@@ -11,6 +11,8 @@
 
 package Formularios;
 
+import java.awt.Color;
+
 /**
  *
  * @author indigovox
@@ -35,44 +37,54 @@ public class FrmConfiguracao extends javax.swing.JDialog {
       jTabbedPane1 = new javax.swing.JTabbedPane();
       jPanel1 = new javax.swing.JPanel();
       jLabel1 = new javax.swing.JLabel();
-      jTextField1 = new javax.swing.JTextField();
+      TxtConfiguracaoConexaoRepositorio = new javax.swing.JTextField();
       jLabel2 = new javax.swing.JLabel();
-      jTextField2 = new javax.swing.JTextField();
+      TxtConfiguracaoConexaoLocalhost = new javax.swing.JTextField();
       jPanel3 = new javax.swing.JPanel();
       jLabel3 = new javax.swing.JLabel();
-      jTextField3 = new javax.swing.JTextField();
+      TxtConfiguracaoConexaoIdentificacaoUsuario = new javax.swing.JTextField();
       jLabel4 = new javax.swing.JLabel();
-      jPasswordField1 = new javax.swing.JPasswordField();
+      TxtConfiguracaoConexaoIdentificacaoSenha = new javax.swing.JPasswordField();
       jPanel2 = new javax.swing.JPanel();
       BtnConfiguracaoCancelar = new javax.swing.JButton();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-      setTitle("Configiurações");
+      setTitle("Configurações");
       setModal(true);
       setResizable(false);
 
       jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       jLabel1.setText("Repositório:");
 
-      jTextField1.setText("http://themanaworld-br.googlecode.com/svn");
+      TxtConfiguracaoConexaoRepositorio.setText("http://themanaworld-br.googlecode.com/svn");
+      TxtConfiguracaoConexaoRepositorio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+         public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            TxtConfiguracaoConexaoRepositorioPropertyChange(evt);
+         }
+      });
+      TxtConfiguracaoConexaoRepositorio.addKeyListener(new java.awt.event.KeyAdapter() {
+         public void keyReleased(java.awt.event.KeyEvent evt) {
+            TxtConfiguracaoConexaoRepositorioKeyReleased(evt);
+         }
+      });
 
       jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       jLabel2.setText("Localhost:");
 
-      jTextField2.setText("~/tmw-br");
+      TxtConfiguracaoConexaoLocalhost.setText("~/tmw-br");
 
       jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Identificação"));
-      jPanel3.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13)); // NOI18N
+      jPanel3.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
 
       jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       jLabel3.setText("Usuário:");
 
-      jTextField3.setEnabled(false);
+      TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(false);
 
       jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       jLabel4.setText("Senha:");
 
-      jPasswordField1.setEnabled(false);
+      TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(false);
 
       javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
       jPanel3.setLayout(jPanel3Layout);
@@ -82,11 +94,11 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addContainerGap()
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel3)
-               .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+               .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel4)
-               .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(TxtConfiguracaoConexaoIdentificacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap())
       );
       jPanel3Layout.setVerticalGroup(
@@ -97,8 +109,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                   .addComponent(jLabel3)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(TxtConfiguracaoConexaoIdentificacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                .addComponent(jLabel4))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       );
@@ -116,8 +128,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                      .addComponent(jLabel2))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)))
+                     .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                     .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)))
                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
       );
@@ -127,10 +139,10 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addContainerGap()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel1)
-               .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel2))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,6 +201,36 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        this.dispose();
     }//GEN-LAST:event_BtnConfiguracaoCancelarActionPerformed
 
+    private void TxtConfiguracaoConexaoRepositorioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
+       // TODO add your handling code here:
+       FunMudaTesto();
+    }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
+
+    private void TxtConfiguracaoConexaoRepositorioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
+       // TODO add your handling code here:
+       FunMudaTesto();
+    }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
+
+    private void FunMudaTesto() {
+       // TODO add your handling code here:
+       String Repositorio = TxtConfiguracaoConexaoRepositorio.getText();
+      String Partes[] = null;
+      Partes = Repositorio.split(":");
+      if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
+         TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(true);
+         TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(true);
+         TxtConfiguracaoConexaoIdentificacaoUsuario.setBackground(java.awt.SystemColor.text);
+         TxtConfiguracaoConexaoIdentificacaoSenha.setBackground(java.awt.SystemColor.text);
+
+      }else{
+         TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(false);
+         TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(false);
+         TxtConfiguracaoConexaoIdentificacaoUsuario.setBackground(java.awt.SystemColor.window);
+         TxtConfiguracaoConexaoIdentificacaoSenha.setBackground(java.awt.SystemColor.window);
+      }
+    }
+
+
     /**
     * @param args the command line arguments
     */
@@ -208,6 +250,10 @@ public class FrmConfiguracao extends javax.swing.JDialog {
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton BtnConfiguracaoCancelar;
+   private javax.swing.JPasswordField TxtConfiguracaoConexaoIdentificacaoSenha;
+   private javax.swing.JTextField TxtConfiguracaoConexaoIdentificacaoUsuario;
+   private javax.swing.JTextField TxtConfiguracaoConexaoLocalhost;
+   private javax.swing.JTextField TxtConfiguracaoConexaoRepositorio;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
@@ -215,11 +261,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;
-   private javax.swing.JPasswordField jPasswordField1;
    private javax.swing.JTabbedPane jTabbedPane1;
-   private javax.swing.JTextField jTextField1;
-   private javax.swing.JTextField jTextField2;
-   private javax.swing.JTextField jTextField3;
    // End of variables declaration//GEN-END:variables
 
 }
