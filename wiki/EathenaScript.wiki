@@ -496,28 +496,22 @@ o exemplo será igual à fazermos isto:
 
 ==Operadores==
 
-Operadores são coisas que você pode usar em números, string, variáveis:
+===Operadores são coisas que você pode usar em números, string, variáveis:===
 
-+	Vai somar números, se usado em string, une uma ou mais strings, resultando
-	em uma só. É o único operador que se pode usar em strings.
--	Vai diminuir números.
-*	Vai multiplicar números.
-/	Vai dividir números.
-%	é o resto da divisão. 7%2 será igual à 1.
+ +	Vai somar números, se usado em string, une uma ou mais strings, resultando em uma só. É o único operador que se pode usar em strings.
+ -	Vai diminuir números.
+ *	Vai multiplicar números.
+ /	Vai dividir números.
+ %	é o resto da divisão. 7%2 será igual à 1.
 
-Há também operadores condicionais, usados para checar strings, variáves, números:
+===Há também operadores condicionais, usados para checar strings, variáves, números:===
 
-==	(exatamente igual) Se ambos lados forem igual o retorno será verdadeiro
-	usado para string ,número, variáveis.
->=	(maior ou igual) se o primeiro valor for igual ou maior ao segundo, o
-	retorno será verdadeiro
-<=	(menor ou igual) se o primeiro valor for menor ou igual, o retorno será
-	verdadeiro
->	(maior que) se o primeiro valor for maior que o segundo, o retorno será
-	verdadeiro (operador válido somente para números).
-<	(menor que) se o primeiro valor for menor que o segundo, o retorno será
-	verdadeiro (operador válido somente para números).
-!=	(diferente) se os valores forem diferentes, o retorno será verdadeiro.
+ ==	(exatamente igual) Se ambos lados forem igual o retorno será verdadeiro usado para string ,número, variáveis.
+ >=	(maior ou igual) se o primeiro valor for igual ou maior ao segundo, o retorno será verdadeiro
+ <=	(menor ou igual) se o primeiro valor for menor ou igual, o retorno será	verdadeiro
+ >	(maior que) se o primeiro valor for maior que o segundo, o retorno será 	verdadeiro (operador válido somente para números).
+ <	(menor que) se o primeiro valor for menor que o segundo, o retorno será verdadeiro (operador válido somente para números).
+ !=	(diferente) se os valores forem diferentes, o retorno será verdadeiro.
 
 Exemplos:
 	{{{if(1==1)}}}		VERDADEIRO
@@ -525,7 +519,7 @@ Exemplos:
 	{{{if(@x<2)}}}		VERDADEIRO se @x for menor que 2.
 	{{{if(@x$ == @y$)}}}	VERDADEIRO se o valor de ambas variáveis forem guais
 
-As comparações podem ser empilhadas numa mesma checagem, usando certo operadores.
+===As comparações podem ser empilhadas numa mesma checagem, usando certo operadores.===
 
  && - é verdadeiro se todos os lados forem iguais.
  || - é verdadeiro se pelo menos um lado for verdadeiro.
@@ -534,41 +528,44 @@ As comparações podem ser empilhadas numa mesma checagem, usando certo operador
  1==1 && 2==1 é falso
  1==1 || 2==1 é verdadeiro, pois a primeira condição é verdadeira.
 
-Operadores lógicos de "parte" só funcionam com números:
+===Operadores lógicos de "parte" só funcionam com números:===
 
  << - Mudança para esquerda.
  >> - Mudança para direita.
 
-	Vamos entender melhor em um exemplo:
+Vamos entender melhor em um exemplo:
+{{{
 		set b,2;
 		set a, b << 3;
 		mes a;
 		set a, a >> 2;
 		mes a;
+}}}
 
-	O Primeiro "mes a" vai mostrar 16, pois fará o seguinte cálculo: 2 x (2 x 2 x 2) = 16.
+O Primeiro "mes a" vai mostrar 16, pois fará o seguinte cálculo: 2 x (2 x 2 x 2) = 16.
 	e o segundo mostrará 4, pois fará o seguinte cálculo: 16 / 2 = 8. 8 / 2 = 4..
 
  &  - e.
  |  - ou.
-		Entenderemos melhor esses dois operadores em exemplos:
+===Entenderemos melhor esses dois operadores em exemplos:===
 
-		& checa se dentro da variável há certo valor.
-		set @options,2|4|16; //(isso é o mesmo que 2+4+16, ou 22)
-		if (@options&1) mes "Opção 1 ativada";
-		if (@options&2) mes "Opção 2 ativada";
-		if (@options&4) mes "Opção 4 ativada";
-		if (@options&8) mes "Opção 8 ativada";
-		if (@options&16) mes "Opção 16 ativada";
-	
-		essa checagem acima deve mostrar "Opção 2 ativada"
-						 "Opção 4 ativada"
-						 "Opção 16 ativada"
+	& checa se dentro da variável há certo valor.
+{{{
+	set @options,2|4|16; //(isso é o mesmo que 2+4+16, ou 22)
+	if (@options&1) mes "Opção 1 ativada";
+	if (@options&2) mes "Opção 2 ativada";
+	if (@options&4) mes "Opção 4 ativada";
+	if (@options&8) mes "Opção 8 ativada";
+	if (@options&16) mes "Opção 16 ativada";
+}}}	
+	essa checagem acima deve mostrar "Opção 2 ativada"
+					 "Opção 4 ativada"
+					 "Opção 16 ativada"
  ^  - Xor.
-	Também entederemos melhor com exemplos.
+===Também entederemos melhor com exemplos.===
 	
 	Examplos:
-
+{{{
 		set inProgress,1|8|16; // quests 1,8,16 em proguesso
 
 		if( inProgress&2 == 0 ){
@@ -579,96 +576,107 @@ Operadores lógicos de "parte" só funcionam com números:
 		}
 		//depois de um tempo ele matou alguém e  ganhou a variável isComplete
 		if( inProgress&1 && isComplete ){
-			// isso vai  desgrupar o pedaço da quest 1 (inProgress tinha esse pedaço definido como 1)
+			// isso vai  desgrupar o pedaço da quest 1 
+			// (inProgress tinha esse pedaço definido como 1)
 			set inProgress,inProgress^1;
 			mes "Quest 1 completa";
 			close;
 		}
+}}}
 
-Rótulos
--------
+----
 
-Nos Scripts, algumas linhas podem ser rótulos:
+==Rótulos==
 
+===Nos Scripts, algumas linhas podem ser rótulos:===
+
+{{{
 <nome do rótulo>:
+}}}
+Rótulos são pontos de referência em um script, esse pontos podem ser direcionados com o comando 'goto' e 'jump_zero', um rótulo pode conter no máximo 22 caracteres sendo que o 23º teria que ser dois pontos ":"
 
-Rótulos são pontos de referência em um script, esse pontos podem ser direcionados
-com o comando 'goto' e 'jump_zero', um rótulo pode conter no máximo 22 caracteres
-sendo que o 23º teria que ser dois pontos ":"
-
-
+{{{
 OnClock<hora><minuto>:
 OnMinute<minuto>:
 OnHour<hora>:
 On<diadasemana><hora><minuto>:
 OnDay<mês><dia>:
-
+}}}
 Esses rótulos serão executados, quando a data do servidor ou hora, for igual
 á do label, horas e minutos são dados em tempo militar. (0105 é igual à 01:05 AM).
 Os dias da semanas são: Sun,Mon,Tue,Wed,Thu,Fri,Sat. Meses vão de 01 à 12, dias
 de 01 à 31, nunca esqueça o zero.
 
+{{{
 OnInit:
 OnInterIfInit:
 OnInterIfInitOnce:
-
+}}}
 O Rótulo OnInit vai ser executado quando o script for carregado completamente.
 OnInterifInit vai ser executado quando o map server se conectar ao char server.
 OnInterifInitOnce é o mesmo de OnInterIfInit, só que vai ser executado ó uma vez.r.
 
+{{{
 OnAgitStart:
 OnAgitEnd:
 OnAgitInit:
 OnAgitStart2:
 OnAgitEnd2:
 OnAgitInit2:
-
+}}}
 OnAgitStart será executado toda vez que o servidor entrar no modo WOE, que pode
 ser pelo comando de GM @agistart ou pelo comando se script 'agitstart'. OnAgitEnd
 será executado toda vez que a WOE termiar. OnAgitInit vai ser executado toda vez
 que um dado de castelo for carregado do char-server pelo map-server.
  
-Nenhum RID vai ser atachado quando esse rótulos de WOE acima forem executados
+===Nenhum RID vai ser atachado quando esse rótulos de WOE acima forem executados===
 
+{{{
 OnTouch:
-
+}}}
 Esse rótulo vai ser executado se uma "àrea de disparo" for definida pelo NPC que
 tem esse rótulo, se essa área não existir, a execução vai começar pelo começo do script
 esse label tem RID atachado.
 
+{{{
 OnPCLoginEvent:
 OnPCLogoutEvent:
 OnPCBaseLvUpEvent:
 OnPCJobLvUpEvent:
-
+}}}
 Isto é um pouco óbvio, esses rótulos são executados especialmente, de acordo
 com a ação do jogador, ele pode invocar esse rótulos.
 
+{{{
 OnPCDieEvent:
-
+}}}
 Esse rótulo é chamado toda vez que um jogador morre. a variável 'killerrid' é
 definida com o ID de quem o matou.
 
+{{{
 OnPCKillEvent:
-
+}}}
 Esse rótulo é chamado toda vez que um jogador mata outro. a variável 'killedrid'
 é definida com o ID do jogador que ele matou.
 
+{{{
 OnNPCKillEvent:
-
+}}}
 Esse rótulo é chamado toda vez que um jogador mata um monstro. a variável 'killedrid'
 é especificada com a classe do monstro morto.
 
+{{{
 OnPCLoadMapEvent:
-
+}}}
 Esse rótulo é chamado toda vez que um jogador muda de mapa.
 
+{{{
 On<nome do label>:
-
+}}}
 Esse erótulo especial é usado na maoria das vezes em comandos de monstro.
 
-Exemplo:
-
+===Exemplo:===
+{{{
 monster "prontera",123,42,"Poringz0rd",2341,23,"Master::OnThisMobDeath";
 
 amatsu,13,152,4	script	Master	767,{
@@ -679,10 +687,10 @@ OnThisMobDeath:
 	announce "Ei, "+strcharinfo(0)+" você matou um Poringz0rd!",bc_blue|bc_all;
 	end;
 }
-
+}}}
 toda vez que você matar um, o npc anunciará a mensagem.
 
------------------------
+----
 
 A Partir daqui, nós teremos os comando organizados como segue:
 
@@ -693,31 +701,31 @@ A Partir daqui, nós teremos os comando organizados como segue:
 5.- Comandos Relativos à NPC/MOBS.
 6.- Outros Comandos.
 
-=======================
-|1.- Comandos Básicos.|
-=======================
----------------------------------------
+----
 
+=Comandos Básicos=
 
-*mes "<string>";
+==*mes "<string>";==
 
 Esse comando irá mostrar um quadrado na tela do jogador invocado, com a string
 especificada no comando, ele não mostra nenhum buttom 'next' ou 'close' a não
 ser que você use esses comandos. Se a string estiver vazia, o comando mostrará
 uma caixa vazia.
-
+{{{
     mes "O Texto vai aparecer no quadrado";
+}}}
 
 Dentro da string você pode por cores, todos os códigos das cores são em RGB e
 começam com um '^', e depois da string que deseja colorir deverá termnar com
 preto (^000000).
 (^FF00FF é considerado invisível)
-
+{{{
     mes "Isso é ^FF0000 Vermelho ^000000 e isso ^00FF00 Verde ^000000";
+}}}
 
----------------------------------------
+----
 
-*next;
+==*next;==
 
 Esse comando vai criar um botão 'next' na Janela de menssagem do jogador atachado
 ao script, se não estiver nenhuma janela na tela, ela será criada, esse comando
@@ -725,82 +733,86 @@ ao script, se não estiver nenhuma janela na tela, ela será criada, esse comand
 quando o jogador clicar em 'next' a janela será "limpada" e mostrará as próxmas
 strngs contidas em mes (se houver próximas).
 
-
+{{{
     mes "[TecnoCronus]";
     mes "Isso Deve aparecer na Tela";
     next;
     // Aqui o comando "limpará" a janela e aparecerá as seguintes strings:
     mes "[TecnoCronus]";
     mes "Isso deverá aparecer na segunda janela";
+}}}
 
----------------------------------------
+----
 
-*close;
+==*close;==
 
 Esse comando criará um botão 'close' na janela de mensagem do jogador atachado
 ao script,se não estiver nenhuma janela na tela, ela será criada. Esse comando
 é muito usado com 'mes', sua utilidade é: Fechar a janela criada pelo comando
 'mes' e terminar o script. Quando o Jogador clicar em 'close' a caixa de janela
 irá desaparecer e o script será terminado.
-
+{{{
     mes "[TecnoCronus]";
     mes "Ok Não vou falar mais com você clique em close para acabar a conversa";
     close;
     mes "Isso não será mostrado, pois o script á foi encerrado";
+}}}
 
----------------------------------------
+----
 
-*close2;
+==*close2;==
 
 Esse comando é bastante parecido com o comando 'close' a diferença é que a única
 utilidade dele é para fechar a janela de messagem ('mes'), esse comando não
 enecerrará o script.
-
+{{{
     mes "[TecnoCronus]";
     mes "Vou te teleportar agora";
     close2;
     warp "prontera",50,50;
     end;
-    
+}}} 
 Você deverá, para encerrar o script, usar o comando 'end' ou close, pois o close2 só
 serve para fehcar a janela.
 
----------------------------------------
+----
 
-*end;
+==*end;==
 
 Esse comando serve para encerrar um script, ele é geralmente usado quando não se usa o comando
 'mes', e após o comando 'close2', como no exemplo do comando 'close2'.
-
+{{{
         dispbottom "Ei Você consegue ler isso ?";
 	end;
+}}}
 
----------------------------------------
+----
 
-*set <variável>,<valor>;
+==*set <variável>,<valor>;==
 
 Esse comando vai estabelecer um variável, com um o valor indicado, é um dos comando mais
 usados em scripts, os valores podem ser números e/ou strings, strings são um conjunto de
 caracteres, incluindo ou não números, todas as strings devem ser delcaradas entre aspas:
-
+{{{
 set @nick$, "TecnoCronus";
-
+}}}
 Veja que no exemplo a variável '@nick$' terá o valor de TecnoCronus, se você fizesse sem
 as aspas, nenhum erro de map-server seria mostrado, mas a variável não estaria incorreta
 e provavelmente ocorreria erros, porque o valor dela, sem aspas, seria considerada outra
 variável.
 
 Nota: variáveis que contém "-" irão mostrar um erro no map-server, então nunca defina uma
-variável com esse character. [TecnoCronus].
+variável com esse character. (Comentado por TecnoCronus).
 
----------------------------------------
+----
 
-*setd "<nome da variável>",<valor>;
+==*setd "<nome da variável>",<valor>;==
 
 Funciona identicamente ao comando 'set',a diferença é que o nome da variável é
 identificada com string.
 
-Exemplo
+*Exemplo*
+{{{
 set $var$, "Poring";
 
 setd "$var$", "Poporing";
@@ -808,40 +820,44 @@ mes $var$; // será mostrado Poporing
 
 setd "$" + $var$ + "123$", "Poporing é legal";
 mes $Poporing123$; // vai mostrar Poporing é legal
+}}}
 
----------------------------------------
+----
 
-*getd("<variable name>")
+==*getd("<variable name>")==
 
 Retorna uma referência da variável, o nome pode ser construído dinâmicamente.
 
-Exemplo:
+*Exemplo:*
+{{{
 set getd("$referenciadavar"), 1;
 set @i, getd("$pikachu");
+}}}
 
----------------------------------------
+----
 
-*getvariableofnpc(<variável>,"<Nome do NPC>")
+===*getvariableofnpc(<variável>,"<Nome do NPC>")===
 
 Retorna uma referência da variável do NPC (prefixo .) especificado
 Isso só é usado para variáveis do tipo NPC.
 
----------------------------------------
+----
 
-*goto <rótulo>;
+==*goto <rótulo>;==
 
 Esse comando faz com que o script "pule" para um rótulo, e é usalmente usado
 com o comando 'if', os rótulos podem ter qualquer nome, mas evite rótulos com
 traço "-", isso às vezes buga:
-
+{{{
 	mes "Isto será visto normalmente";
 	goto L_Label;
 	mes "Isso não será visto";
 
 	L_Label:
 	mes "O Script pulará pra cá";
-
+}}}
 exemplo 2:
+{{{
 	mes "Deixe me ver se você tem zeny suficiente.";
 	if(Zeny < 10) goto L_Zeny;
 	mes "Sim você tem 10 ou mais zenys !!";
@@ -850,21 +866,21 @@ exemplo 2:
 	L_Zeny;
 	mes "me desculpe você tem menos de 10 zenys, não posso continuar";	
 	close;
+}}}
+----
 
----------------------------------------
-
-*menu "<Texto da Opção>",<rótulo_alvo>{,"<texto da opção>",<rótulo_alvo>,...};
+==*menu "<Texto da Opção>",<rótulo_alvo>{,"<texto da opção>",<rótulo_alvo>,...};==
 
 Esse comando vai criar um menu na tela com varias opções. A opção escolhida direciona
 o jogador para um rótulo específicado.
 
 Duas opções podem ser direcionadas à um mesmo rótulo, separadas pelo caractere ':'
-
+{{{
       mes "[Nagato]";
       mes "O Que você deseja";
       mes "senhor "+strcharinfo(0);
       menu "Dinheiro:Money",L_Money,"Nada",L_Nada;//Aparecerá 3 opções: Dinheiro, Money e Nada
-						//Sendo que as 2 primeiras irão pro mesmo rótulo.
+		//Sendo que as 2 primeiras irão pro mesmo rótulo.
       L_Money:
       mes "[Nagato]";
       mes "Vai trabalhar!";
@@ -874,9 +890,9 @@ Duas opções podem ser direcionadas à um mesmo rótulo, separadas pelo caracte
       mes "[Nagato]";
       mes "Então vá embora oras !";
       close;
-
+}}}
 Existe também uma variavel especial @menu, ela contém o numero da opção escolhida.
-
+{{{
       mes "[Nagato]";
       mes "O Que você deseja";
       mes "senhor "+strcharinfo(0);
@@ -892,10 +908,10 @@ Existe também uma variavel especial @menu, ela contém o numero da opção esco
       mes "[Nagato]";
       mes "Então vá embora oras !";
       close;
-
+}}}
 Você pode espeficar, para o rótulo o valor '-', isso fará com que o script continue,
 não seguindo para nenhum rótulo:
-
+{{{
 	menu "oi",l_oi,"tchau",-;
 
 	mes "tchau";//se ele escolher tchau o script continua.
@@ -904,17 +920,19 @@ não seguindo para nenhum rótulo:
 	l_oi:
 	mes "oi";
 	close;
+}}}
 
----------------------------------------
+----
 
-*select("<opção"{,"<opção>",...})
-*prompt("<opção>"{,"<opção>",...})
+==*select("<opção"{,"<opção>",...})==
+==*prompt("<opção>"{,"<opção>",...})==
 
 Essas duas funções são idênticas ao comando 'menu', úteis quando você mão precisa
 de uma complexa estruturas de rótulos, essas funções ainda definem a variável @menu
 seu uso é empregado, geralmente, para checagem rápida.
 
 Exemplo:
+{{{
 	mes "Você vai me dar 5000 Zenys ?";
 	if(select("Sim","Não")==2) {
 		mes "que pena, eu estou precisando de dinheiro";
@@ -924,19 +942,19 @@ Exemplo:
 	set Zeny, Zeny - 5000;
 	mes "Muito obrigado";
 	close;
-
+}}}
 o comando prompt trabalha quase identicalmente ao select, a diferença é que quando
 o jogador clicar em 'cancel' essa função retorna 255.
 
----------------------------------------
+----
 
-*input (<variável>{,<mínimo>{,<máximo>}})
+==*input (<variável>{,<mínimo>{,<máximo>}})==
 
 Esse comando vai criar uma caixa de "inserção" no RID atachado ao script,
 o valor inserido será guardado na variável definida.
 
 Para inserir textos a variável tem que ser do tipo string (pós-fixo $):
-
+{{{
 	mes "digite seu nome";
 	input @nome$;
 	if(@nome$ == strcharinfo(0)) {
@@ -946,7 +964,7 @@ Para inserir textos a variável tem que ser do tipo string (pós-fixo $):
 	mes "Como assim ? você não sabe seu nome ?";
 	close;
 	}
-
+}}}
 Normalmente you talvez não vai inserir um número negativo com esse comando
 Isso é feito para evitar bugs, por exemplo um input negativo pode fazer
 com que o jogador receba zenys.
@@ -959,6 +977,7 @@ valor for menor que 'min' e 0 de outro jeito (isso se 'mínimo' e 'máximo'
 existirem).
 
 Exemplo:
+{{{
 	mes "Insira um número maior que 1 e menor que 10";
 	input @num;
 	if(@num > 1 && @num < 10) {
@@ -967,18 +986,19 @@ Exemplo:
 	}
 	mes "Você não me obedeceu !";
 	close;
+}}}
 
----------------------------------------
+----
 
-*callfunc "<função>"{,<argumento>,...<argumento>};
-*callfunc("<função>"{,<argumento>,...<argumento>})
+==*callfunc "<função>"{,<argumento>,...<argumento>};==
+==*callfunc("<função>"{,<argumento>,...<argumento>})==
 
 Esse comando deixa você chamar uma função de NPC. Uma função de NPC pode ser
 chamada por qualquer script em qualquer map-server. Usando o comando 'return'
 ele te devolve para onde a função foi chamada.
 
 Exemplo:
-
+{{{
 prontera,174,215,6	script	Loteria	98,{
 	mes "[Loteria]";
 	mes "Digite um número menor que 100":
@@ -1000,16 +1020,17 @@ function	script	Sorteio	{
 	close;
 	}
 }
+}}}
 
----------------------------------------
+----
 
-*callsub <rótulo>{,<argumento>,...<argumento>};
-*callsub(<rótulo>{,<argumento>,...<argumento>});
+==*callsub <rótulo>{,<argumento>,...<argumento>};==
+==*callsub(<rótulo>{,<argumento>,...<argumento>});==
 
 Esse comando vai chamar um rótulo específico no script que ele é usado ( não
 use para chamar um rótulo de outro script), a diferença de 'goto' é que esse
 comando pode passar argumentos.
-
+{{{
 		mes "[NPC]";
 		mes "vamos ver se você ganhou";
 		callsub Check, 100;
@@ -1020,10 +1041,11 @@ comando pode passar argumentos.
 		if(@win<=getarg(0)) return;
 		mes "Perdeu";
 		close;
+}}}
 
----------------------------------------
+----
 
-*getarg(<índice>{,<valor padrão>})
+==*getarg(<índice>{,<valor padrão>})==
 
 Esse comando é usado com os comandos 'callsub' ou 'callfunc', essa função pega
 os argumentos passados pelos comandos 'callsub' ou 'callfunc'.
@@ -1031,7 +1053,7 @@ os argumentos passados pelos comandos 'callsub' ou 'callfunc'.
 o primeiro argumento terá índice 0, se nenhum argumento é dado, 0 será retornado.
 
 Exemplo:
-
+{{{
 	aldebaran,123,145,6%TAB%script%NPC1%TAB%718,{
 		mes "[NPC]";
 		mes "Vamo ver se você ganha";
@@ -1054,11 +1076,12 @@ Exemplo:
 		set @win, rand(getarg(0));
 		if(@win==0) return;
 		mes "Perdeu";
+}}}
 
 Você pode passa múltiplos argumento quando chamar uma função:
-
+{{{
 	callfunc "funcNPC",5,4,3;
-
+}}}
 getarg(0) será 5, getarg(1) será 4 e getarg(2) será 3.
 
 getarg tem um parâmetro opcional, se o argumento existe, ele é retornado,
@@ -1068,14 +1091,15 @@ valor padrão é retornado no lugar.
 No exemplo anterior (callfunc "funcNPC",5,4,3;),getarg(2,-1) será igual à 3
 e getarg(3,-1) será -1, pois não existe "getarg(3)",ou seja, um quarto argumento.
 
----------------------------------------
+----
 
-*return {<valor>};
+==*return {<valor>};==
 
 Quando você usa os commandos 'callsub' ou 'callfunc', esse comando permiti
 que você retorne um valor ou uma variável.
 
 Exemplo:
+{{{
 	mes "digite um número";
 	input @n;
 	callfunc "quadrado",@n;
@@ -1086,27 +1110,25 @@ Exemplo:
 	set @q, @n * @n;
 	return @q;
 	}
+}}}
 
----------------------------------------
+----
 
-*function <nome da função>;
-*<nome da função>;
-*function <nome da função> {
-<código>
-}
+==*function <nome da função>;==
+==*<nome da função>;==
+==*function <nome da função> { <código> }==
 
-Isso funciona como 'callfunc', mas não suporta argumento como 'callfunc', isso é usado para
-scripts rápidos que não requer argumentos para funcionar, essas função funcionam como rótulos.
+Isso funciona como 'callfunc', mas não suporta argumento como 'callfunc', isso é usado para scripts rápidos que não requer argumentos para funcionar, essas função funcionam como rótulos.
 
----------------------------------------
+----
 
-*if (<condição>) <código>;
+==*if (<condição>) <código>;==
 
 Isso serve para checar condições e se elas forem verdadeiras ou falsas, o script
 faz algo.
 
 Exemplos:
-
+{{{
 	// Checa se o nome do jogador é "noob"
 	if(strcharinfo(0) == "noob") mes "Sim seu nome é noob";
 
@@ -1115,12 +1137,12 @@ Exemplos:
 		mes "Você tem mais de 10 zenys";
 		close;
 	}
-	
+}}}	
 	Perceba nesse segundo exemplo, ouso de colchetes, bem esses colchetes
 	servem para executar mais de um comando se a condição for verdadeira,
 	ou seja, se a condição for verdadeira, o script executará todos os
 	comandos/funções que estiverem dentro dos colchetes.
-
+{{{
 	// Checa se o jogador tem nível maior que 10.
 	if(BaseLevel > 10) {
 		mes "Seu nível é maior que 10";
@@ -1128,14 +1150,14 @@ Exemplos:
 		mes "Seu nível é menor que 10";
 	}
 	close;
-
+}}}
 	Esse terceiro exemplo tem um comando "novo" o 'else', essa função
 	vai fazer o contrário de if, ou seja se a condição for negativa
 	o conjunto de comandos contido nos colchetes que vem depois dela
 	será executado, nesse exemplo o 'close' será exibido independentemente
 	da condição.
 
-
+{{{
 	// Checa a opção escolhida
 
 	set @menu, select("1","2","3");
@@ -1147,7 +1169,7 @@ Exemplos:
 		mes "você escolheu 3";
 	}
 	close;
-
+}}}
 	Esse quarto exemplo, tem uma coisa nova: "else if", isso funciona,
 	basicamente como outro if, isso quer diser "se a condição anterior
 	for falsa e se a próxima condição for verdadeira".
