@@ -25,6 +25,15 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         initComponents();
     }
 
+    private void setMarcarComponente(String Componente) {
+       FrmPrincipal.ComponenteSelecionado = Componente.toString();
+       if(FrmPrincipal.ComponenteSelecionado != "") {
+         BtnConfiguracaoAjuda.setEnabled(true);
+       } else {
+         BtnConfiguracaoAjuda.setEnabled(false);
+       }
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -46,17 +55,38 @@ public class FrmConfiguracao extends javax.swing.JDialog {
       jLabel4 = new javax.swing.JLabel();
       TxtConfiguracaoConexaoIdentificacaoSenha = new javax.swing.JPasswordField();
       jPanel2 = new javax.swing.JPanel();
+      jLabel5 = new javax.swing.JLabel();
+      TxtConfiguracaoExecucaoComando = new javax.swing.JTextField();
+      jPanel5 = new javax.swing.JPanel();
+      jLabel6 = new javax.swing.JLabel();
+      TxtConfiguracaoExecucaoParamentroTMWData = new javax.swing.JTextField();
+      jLabel7 = new javax.swing.JLabel();
+      TxtConfiguracaoExecucaoParamentroServidor = new javax.swing.JTextField();
+      jLabel8 = new javax.swing.JLabel();
+      TxtConfiguracaoExecucaoParamentroConta = new javax.swing.JTextField();
+      jLabel9 = new javax.swing.JLabel();
+      TxtConfiguracaoExecucaoParamentroSenha = new javax.swing.JTextField();
+      jLabel10 = new javax.swing.JLabel();
+      TxtConfiguracaoExecucaoParamentroPersonagem = new javax.swing.JTextField();
+      ChkConfiguracaoExecucaoSemopengl = new javax.swing.JCheckBox();
+      jPanel4 = new javax.swing.JPanel();
       BtnConfiguracaoCancelar = new javax.swing.JButton();
+      BtnConfiguracaoOk = new javax.swing.JButton();
+      BtnConfiguracaoAjuda = new javax.swing.JButton();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
       setTitle("Configurações");
       setModal(true);
-      setResizable(false);
 
       jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       jLabel1.setText("Repositório:");
 
       TxtConfiguracaoConexaoRepositorio.setText("http://themanaworld-br.googlecode.com/svn");
+      TxtConfiguracaoConexaoRepositorio.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            TxtConfiguracaoConexaoRepositorioFocusGained(evt);
+         }
+      });
       TxtConfiguracaoConexaoRepositorio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
          public void propertyChange(java.beans.PropertyChangeEvent evt) {
             TxtConfiguracaoConexaoRepositorioPropertyChange(evt);
@@ -72,6 +102,11 @@ public class FrmConfiguracao extends javax.swing.JDialog {
       jLabel2.setText("Localhost:");
 
       TxtConfiguracaoConexaoLocalhost.setText("~/tmw-br");
+      TxtConfiguracaoConexaoLocalhost.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            TxtConfiguracaoConexaoLocalhostFocusGained(evt);
+         }
+      });
 
       jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Identificação"));
       jPanel3.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
@@ -80,11 +115,21 @@ public class FrmConfiguracao extends javax.swing.JDialog {
       jLabel3.setText("Usuário:");
 
       TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(false);
+      TxtConfiguracaoConexaoIdentificacaoUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained(evt);
+         }
+      });
 
       jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       jLabel4.setText("Senha:");
 
       TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(false);
+      TxtConfiguracaoConexaoIdentificacaoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained(evt);
+         }
+      });
 
       javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
       jPanel3.setLayout(jPanel3Layout);
@@ -94,7 +139,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addContainerGap()
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel3)
-               .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+               .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel4)
@@ -128,8 +173,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                      .addComponent(jLabel2))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                     .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)))
+                     .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                     .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)))
                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
       );
@@ -146,23 +191,144 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                .addComponent(jLabel2))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(29, Short.MAX_VALUE))
+            .addContainerGap(112, Short.MAX_VALUE))
       );
 
       jTabbedPane1.addTab("Conexão", jPanel1);
+
+      jLabel5.setText("Comando de ativação:");
+
+      TxtConfiguracaoExecucaoComando.setText("tmw");
+
+      jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Parâmetros"));
+
+      jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+      jLabel6.setText("tmwdata:");
+
+      TxtConfiguracaoExecucaoParamentroTMWData.setText("-ud /home/indigovox/tmwdata");
+
+      jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+      jLabel7.setText("Servidor:");
+
+      TxtConfiguracaoExecucaoParamentroServidor.setText("-s localhost");
+
+      jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+      jLabel8.setText("Conta:");
+
+      TxtConfiguracaoExecucaoParamentroConta.setText("-U Lunovox");
+
+      jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+      jLabel9.setText("Senha:");
+
+      TxtConfiguracaoExecucaoParamentroSenha.setText("-P ********");
+      TxtConfiguracaoExecucaoParamentroSenha.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            TxtConfiguracaoExecucaoParamentroSenhaActionPerformed(evt);
+         }
+      });
+
+      jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+      jLabel10.setText("Personagem:");
+
+      TxtConfiguracaoExecucaoParamentroPersonagem.setText("-c Lunovox");
+      TxtConfiguracaoExecucaoParamentroPersonagem.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            TxtConfiguracaoExecucaoParamentroPersonagemActionPerformed(evt);
+         }
+      });
+
+      ChkConfiguracaoExecucaoSemopengl.setSelected(true);
+      ChkConfiguracaoExecucaoSemopengl.setText("Sem OpenGL (Recomendado)");
+
+      javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+      jPanel5.setLayout(jPanel5Layout);
+      jPanel5Layout.setHorizontalGroup(
+         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel5Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(jLabel6)
+               .addComponent(jLabel7)
+               .addComponent(jLabel8)
+               .addComponent(jLabel9)
+               .addComponent(jLabel10))
+            .addGap(4, 4, 4)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(ChkConfiguracaoExecucaoSemopengl)
+               .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroTMWData, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroPersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap())
+      );
+      jPanel5Layout.setVerticalGroup(
+         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jLabel6)
+               .addComponent(TxtConfiguracaoExecucaoParamentroTMWData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jLabel7))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jLabel8))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jLabel9))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(TxtConfiguracaoExecucaoParamentroPersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jLabel10))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(ChkConfiguracaoExecucaoSemopengl)
+            .addContainerGap(14, Short.MAX_VALUE))
+      );
 
       javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
       jPanel2.setLayout(jPanel2Layout);
       jPanel2Layout.setHorizontalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 428, Short.MAX_VALUE)
+         .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel5)
+                  .addGap(4, 4, 4)
+                  .addComponent(TxtConfiguracaoExecucaoComando, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)))
+            .addContainerGap())
       );
       jPanel2Layout.setVerticalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 188, Short.MAX_VALUE)
+         .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jLabel5)
+               .addComponent(TxtConfiguracaoExecucaoComando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
       );
 
       jTabbedPane1.addTab("Execução", jPanel2);
+
+      javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+      jPanel4.setLayout(jPanel4Layout);
+      jPanel4Layout.setHorizontalGroup(
+         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGap(0, 554, Short.MAX_VALUE)
+      );
+      jPanel4Layout.setVerticalGroup(
+         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGap(0, 273, Short.MAX_VALUE)
+      );
+
+      jTabbedPane1.addTab("Documentação", jPanel4);
 
       BtnConfiguracaoCancelar.setMnemonic('C');
       BtnConfiguracaoCancelar.setText("Cancelar");
@@ -172,24 +338,48 @@ public class FrmConfiguracao extends javax.swing.JDialog {
          }
       });
 
+      BtnConfiguracaoOk.setMnemonic('O');
+      BtnConfiguracaoOk.setText("Ok");
+      BtnConfiguracaoOk.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BtnConfiguracaoOkActionPerformed(evt);
+         }
+      });
+
+      BtnConfiguracaoAjuda.setMnemonic('A');
+      BtnConfiguracaoAjuda.setText("Ajuda");
+      BtnConfiguracaoAjuda.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BtnConfiguracaoAjudaActionPerformed(evt);
+         }
+      });
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(layout.createSequentialGroup()
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-               .addComponent(BtnConfiguracaoCancelar, javax.swing.GroupLayout.Alignment.TRAILING))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+               .addGroup(layout.createSequentialGroup()
+                  .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
+                  .addComponent(BtnConfiguracaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(BtnConfiguracaoCancelar)))
             .addContainerGap())
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(layout.createSequentialGroup()
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BtnConfiguracaoCancelar)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(BtnConfiguracaoOk)
+               .addComponent(BtnConfiguracaoCancelar)
+               .addComponent(BtnConfiguracaoAjuda))
             .addContainerGap())
       );
 
@@ -209,7 +399,40 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoConexaoRepositorioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
        // TODO add your handling code here:
        FunMudaTesto();
+       setMarcarComponente("");
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
+
+    private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_BtnConfiguracaoOkActionPerformed
+
+    private void BtnConfiguracaoAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoAjudaActionPerformed
+       FrmPrincipal.AbrirNavegador("http://code.google.com/p/tmw-maker/wiki/" + FrmPrincipal.ComponenteSelecionado.trim());
+    }//GEN-LAST:event_BtnConfiguracaoAjudaActionPerformed
+
+    private void TxtConfiguracaoConexaoRepositorioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioFocusGained
+       setMarcarComponente("TxtConfiguracaoConexaoRepositorio");
+    }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioFocusGained
+
+    private void TxtConfiguracaoConexaoLocalhostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoLocalhostFocusGained
+       setMarcarComponente("TxtConfiguracaoConexaoLocalhost");
+    }//GEN-LAST:event_TxtConfiguracaoConexaoLocalhostFocusGained
+
+    private void TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained
+       setMarcarComponente("TxtConfiguracaoConexaoIdentificacaoUsuario");
+    }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained
+
+    private void TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained
+       setMarcarComponente("TxtConfiguracaoConexaoIdentificacaoSenha");
+    }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained
+
+    private void TxtConfiguracaoExecucaoParamentroSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroSenhaActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroSenhaActionPerformed
+
+    private void TxtConfiguracaoExecucaoParamentroPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroPersonagemActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroPersonagemActionPerformed
 
     private void FunMudaTesto() {
        // TODO add your handling code here:
@@ -249,18 +472,35 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton BtnConfiguracaoAjuda;
    private javax.swing.JButton BtnConfiguracaoCancelar;
+   private javax.swing.JButton BtnConfiguracaoOk;
+   private javax.swing.JCheckBox ChkConfiguracaoExecucaoSemopengl;
    private javax.swing.JPasswordField TxtConfiguracaoConexaoIdentificacaoSenha;
    private javax.swing.JTextField TxtConfiguracaoConexaoIdentificacaoUsuario;
    private javax.swing.JTextField TxtConfiguracaoConexaoLocalhost;
    private javax.swing.JTextField TxtConfiguracaoConexaoRepositorio;
+   private javax.swing.JTextField TxtConfiguracaoExecucaoComando;
+   private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroConta;
+   private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroPersonagem;
+   private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroSenha;
+   private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroServidor;
+   private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroTMWData;
    private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
    private javax.swing.JLabel jLabel4;
+   private javax.swing.JLabel jLabel5;
+   private javax.swing.JLabel jLabel6;
+   private javax.swing.JLabel jLabel7;
+   private javax.swing.JLabel jLabel8;
+   private javax.swing.JLabel jLabel9;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;
+   private javax.swing.JPanel jPanel4;
+   private javax.swing.JPanel jPanel5;
    private javax.swing.JTabbedPane jTabbedPane1;
    // End of variables declaration//GEN-END:variables
 
