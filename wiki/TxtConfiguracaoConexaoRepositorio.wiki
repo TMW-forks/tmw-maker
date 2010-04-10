@@ -1,4 +1,4 @@
-==Configuração -> Conexão -> Repositório==
+==Sistema -> Configuração -> Conexão -> Repositório==
 
 É o endereço onde fica o Repositório(sistema) do servidor de The Mana World. Normalmente é divido em apenas 2 pastas: "eathena-data", "tmwdata". Escolha o endereço do seu repositório preferido.
 
