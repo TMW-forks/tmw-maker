@@ -22,6 +22,12 @@ import javax.swing.JOptionPane;
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
+   static String ComponenteSelecionado = "";
+
+   /*public void setFocoEmComponente(String NomeDoComponente) {
+      ComponenteSelecionado = NomeDoComponente.toString();
+   }/**/
+
    /** Creates new form FrmPrincipal */
    public FrmPrincipal() {
       initComponents();
