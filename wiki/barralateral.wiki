@@ -3,6 +3,11 @@
 ----
  * [inicio Wiki-Base]
   * [abaswiki Abas do Projeto]
+  * [Menu]
+   * [Sistema]
+    * [Configuração]
+     * [Conexão]
+      * [TxtConfiguracaoConexaoRepositorio Repositório]
   * [desenvolvedor_iniciante Desenvolvedor Iniciante]
  * [versoes_tmwmaker Versões do TMW-Maker]
  * [Ferramentas Ferramentas de DEVs]
