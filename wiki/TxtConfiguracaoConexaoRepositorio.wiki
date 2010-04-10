@@ -1,8 +1,8 @@
-https://tmw-maker.googlecode.com/svn/Imagens/Componentes/TxtConfiguracaoConexao.png
-
 ==Configuração -> Conexão -> Repositório==
 
 É o endereço onde fica o Repositório(sistema) do servidor de The Mana World. Normalmente é divido em apenas 2 pastas: "eathena-data", "tmwdata". Escolha o endereço do seu repositório preferido.
+
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/TxtConfiguracaoConexao.png
 
 Se endereço do repositório começar com "*https*" então o TMW-Maker pedirá uma identificação com *Nome de Usuário* e *Senha*, que se forem fornecidas corretamente darão ao usuário o poder de re-enviar o arquivos do computador para o repositório na internet se forem modificados.
 
