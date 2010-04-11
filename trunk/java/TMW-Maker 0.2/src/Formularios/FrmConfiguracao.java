@@ -97,6 +97,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             Propriedade = Documento.createElement("Conexao");
             Propriedade.setAttribute("Versao", FrmPrincipal.AppVersao);
             Propriedade.setAttribute("Repositorio", FrmPrincipal.ConexaoRepositorio);
+            Propriedade.setAttribute("Localhost", FrmPrincipal.ConexaoLocalhost);
             Propriedade.setAttribute("Usuario", FrmPrincipal.ConexaoUsuario);
             Propriedade.setAttribute("Senha", FrmPrincipal.ConexaoSenha);
             Configuracao.appendChild(Propriedade);
