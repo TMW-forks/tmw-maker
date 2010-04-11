@@ -6,6 +6,11 @@
     <Property name="title" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
     <Property name="modal" type="boolean" value="true"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+      <ComponentRef name="Form"/>
+    </Property>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -74,20 +79,26 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoConexaoRepositorio" pref="443" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel3" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="TxtConfiguracaoConexaoLocalhost" pref="443" max="32767" attributes="0"/>
-                                  <Component id="TxtConfiguracaoConexaoRepositorio" alignment="0" pref="443" max="32767" attributes="0"/>
+                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TxtConfiguracaoConexaoLocalhost" alignment="0" pref="443" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -102,13 +113,15 @@
                           <Component id="TxtConfiguracaoConexaoRepositorio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="TxtConfiguracaoConexaoLocalhost" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="112" max="32767" attributes="0"/>
+                      <EmptySpace pref="92" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -121,9 +134,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoConexaoRepositorio">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="http://themanaworld-br.googlecode.com/svn"/>
-              </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoRepositorioFocusGained"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoRepositorioPropertyChange"/>
@@ -137,11 +147,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoConexaoLocalhost">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="~/tmw-br"/>
-              </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoLocalhostFocusGained"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoLocalhostPropertyChange"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel3">
@@ -206,6 +214,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
@@ -220,10 +229,20 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="jLabel15">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Bitstream Vera Sans" size="12" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;OBS.:&lt;/b&gt; Inicie com &quot;https://&quot; para ativar campos &quot;Usu&#xe1;rio&quot; e &quot;Senha&quot;"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -274,9 +293,10 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoComando">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="tmw"/>
-              </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoComandoFocusGained"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoComandoPropertyChange"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>
@@ -301,12 +321,12 @@
                           </Group>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ChkConfiguracaoExecucaoSemopengl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="405" max="32767" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroTMWData" alignment="0" pref="405" max="32767" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroConta" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -340,8 +360,8 @@
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ChkConfiguracaoExecucaoSemopengl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                          <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -354,9 +374,10 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroTMWData">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="-ud /home/indigovox/tmwdata"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
@@ -365,9 +386,10 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroServidor">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="-s localhost"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroServidorFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroServidorPropertyChange"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
@@ -376,9 +398,10 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroConta">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="-U Lunovox"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroContaFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroContaPropertyChange"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
@@ -387,11 +410,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroSenha">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="-P ********"/>
-                  </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaActionPerformed"/>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaPropertyChange"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
@@ -401,24 +422,33 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroPersonagem">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="-c Lunovox"/>
-                  </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemActionPerformed"/>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="ChkConfiguracaoExecucaoSemopengl">
+                <Component class="javax.swing.JCheckBox" name="ChkConfiguracaoExecucaoParamentroSemopengl">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Sem OpenGL (Recomendado)"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel4">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Locais onde o TMW-Maker procurar&#xe1; sobre:"/>
+              </Border>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Documenta&#xe7;&#xe3;o">
@@ -430,15 +460,102 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="554" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" pref="412" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="0" pref="412" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="0" pref="412" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="0" pref="412" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="273" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="126" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel11">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Altera&#xe7;&#xf5;es:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoAlteracoes">
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesFocusGained"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesPropertyChange"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel12">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Componentes:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoComponentes">
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoComponentesFocusGained"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoComponentesPropertyChange"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel13">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Coment&#xe1;rios:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoComentarios">
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoComentariosFocusGained"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoComentariosPropertyChange"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel14">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Tradu&#xe7;&#xf5;es:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoTraducoes">
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoTraducoesFocusGained"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoTraducoesPropertyChange"/>
+              </Events>
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>
