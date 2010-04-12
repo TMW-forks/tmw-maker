@@ -244,7 +244,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoExecutarActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoEstruturar">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+F9"/>
@@ -376,14 +376,14 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="LblEstatus" pref="483" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jProgressBar1" min="-2" max="-2" attributes="0"/>
+                  <Component id="PgbBarra" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="LblEstatus" alignment="0" pref="20" max="32767" attributes="0"/>
-              <Component id="jProgressBar1" alignment="0" pref="20" max="32767" attributes="0"/>
+              <Component id="LblEstatus" alignment="0" pref="21" max="32767" attributes="0"/>
+              <Component id="PgbBarra" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -399,7 +399,12 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JProgressBar" name="jProgressBar1">
+        <Component class="javax.swing.JProgressBar" name="PgbBarra">
+          <Properties>
+            <Property name="minimum" type="int" value="100"/>
+            <Property name="string" type="java.lang.String" value="..."/>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

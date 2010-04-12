@@ -34,7 +34,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jTabbedPane1" alignment="0" pref="566" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BtnConfiguracaoAjuda" min="-2" pref="81" max="-2" attributes="1"/>
+                      <Component id="BtnConfiguracaoAjuda" pref="81" max="32767" attributes="1"/>
                       <EmptySpace pref="337" max="32767" attributes="0"/>
                       <Component id="BtnConfiguracaoOk" min="-2" pref="74" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -150,6 +150,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoLocalhostFocusGained"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoLocalhostPropertyChange"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoLocalhostKeyReleased"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel3">
@@ -215,6 +216,7 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained"/>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
@@ -230,6 +232,7 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained"/>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -296,6 +299,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoComandoFocusGained"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoComandoPropertyChange"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoComandoKeyReleased"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
@@ -325,8 +329,8 @@
                               <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="405" max="32767" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroTMWData" alignment="0" pref="405" max="32767" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroConta" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -351,8 +355,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -377,6 +381,7 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataFocusGained"/>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
@@ -389,6 +394,7 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroServidorFocusGained"/>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroServidorPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroServidorKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
@@ -401,6 +407,7 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroContaFocusGained"/>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroContaPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroContaKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
@@ -408,12 +415,6 @@
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="Senha:"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroSenha">
-                  <Events>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaPropertyChange"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
@@ -425,6 +426,7 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemFocusGained"/>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="ChkConfiguracaoExecucaoParamentroSemopengl">
@@ -435,6 +437,14 @@
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglFocusGained"/>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglKeyReleased"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JPasswordField" name="TxtConfiguracaoExecucaoParamentroSenha">
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaFocusGained"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaPropertyChange"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaKeyReleased"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -517,6 +527,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesFocusGained"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesPropertyChange"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
@@ -529,6 +540,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoComponentesFocusGained"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoComponentesPropertyChange"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoComponentesKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
@@ -541,6 +553,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoComentariosFocusGained"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoComentariosPropertyChange"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoComentariosKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
@@ -553,6 +566,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoTraducoesFocusGained"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoTraducoesPropertyChange"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoTraducoesKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>
@@ -580,7 +594,8 @@
     <Component class="javax.swing.JButton" name="BtnConfiguracaoAjuda">
       <Properties>
         <Property name="mnemonic" type="int" value="65"/>
-        <Property name="text" type="java.lang.String" value="Ajuda"/>
+        <Property name="text" type="java.lang.String" value="Ajuda (F1)"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnConfiguracaoAjudaActionPerformed"/>
