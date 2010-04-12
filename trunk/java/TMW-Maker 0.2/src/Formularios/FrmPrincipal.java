@@ -10,6 +10,7 @@
  */
 package Formularios;
 
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import javax.xml.transform.dom.DOMSource;
 
 import java.io.File;
 import org.w3c.dom.*;
+
 
 /**
  *
@@ -149,17 +151,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
    static String AppVersao = "0.2";
 
+
+
    static String ConexaoRepositorio = "http://themanaworld-br.googlecode.com/svn";
-   static String ConexaoLocalhost = "~/tmw-br";
+   static String ConexaoLocalhost = System.getProperty("user.home");
    static String ConexaoUsuario = "";
    static String ConexaoSenha = "";
 
-   static String    ExecucaoComando = "tmw"; //Esse é o comando que o TMW-Maker executará no Terminal
-   static String    ExecucaoParametroTMWData = "-ud /home/indigovox/tmwdata";
-   static String    ExecucaoParametroServidor = "-s localhost";
-   static String    ExecucaoParametroConta = "-U [Login]"; //Inicia sem valor
-   static String    ExecucaoParametroSenha = "-P [Senha]"; //Inicia sem valor
-   static String    ExecucaoParametroPersonagem = "-c [Personagem]"; //Inicia sem valor
+   static String    ExecucaoComando = "mana";
+   static String    ExecucaoParametroTMWData = System.getProperty("user.home")+"/tmwdata";
+   static String    ExecucaoParametroServidor = "localhost";
+   static String    ExecucaoParametroConta = ""; //Inicia sem valor
+   static String    ExecucaoParametroSenha = ""; //Inicia sem valor
+   static String    ExecucaoParametroPersonagem = ""; //Inicia sem valor
    static boolean   ExecucaoParametroSemopengl = true; //Inicia Sem OpenGL
 
    static String DocumentacaoAlteracoes = "http://code.google.com/p/tmw-maker/source/list";
@@ -167,23 +171,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
    static String DocumentacaoComentarios = "http://code.google.com/p/tmw-maker/issues/entry";
    static String DocumentacaoTraducoes = "";
 
+   
+ 
 
-    public static void setAppVersao(String AppVersao) {
-        FrmPrincipal.AppVersao = AppVersao;
-    }
-    /*public static String getAvisoDeEstatus() {
-        return this.LblEstatus.getText();
-    }/**/
-    public void setAvisoDeEstatus(String Aviso) {
-        //LblEstatus.setText(Aviso.toString());
-        //FrmPrincipal.LblEstatus.setText(Aviso);
-        //javax.swing.JLabel LblEstatus = LblEstatus;
-       LblEstatus.setText(Aviso.toString());
-
-    }
-
-
-
+        
         /** Creates new form FrmPrincipal */
     public FrmPrincipal() {
         initComponents();
@@ -234,7 +225,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarPoderGM = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        MnuJogoExecutar = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -263,7 +254,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         LblEstatus.setBackground(java.awt.SystemColor.activeCaptionBorder);
         LblEstatus.setText("Bem Vindo ao TMW-Maker!");
         LblEstatus.setBorder(null);
-        LblEstatus.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -437,11 +427,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu4.setMnemonic('J');
         jMenu4.setText("Jogo");
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
-        jMenuItem7.setMnemonic('E');
-        jMenuItem7.setText("Executar");
-        jMenuItem7.setEnabled(false);
-        jMenu4.add(jMenuItem7);
+        MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        MnuJogoExecutar.setMnemonic('E');
+        MnuJogoExecutar.setText("Executar");
+        MnuJogoExecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuJogoExecutarActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MnuJogoExecutar);
 
         jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem8.setMnemonic('S');
@@ -510,7 +504,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
        // TODO add your handling code here:
        System.exit(0);
     }//GEN-LAST:event_MnuSistemaFecharActionPerformed
-
     private void MnuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaSobreActionPerformed
        // TODO add your handling code here:
        javax.swing.JDialog FrmSplash = new FrmSplash(this, rootPaneCheckingEnabled);
@@ -521,7 +514,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
        FrmSplash.setModal(true);
        FrmSplash.setVisible(true);/**/
     }//GEN-LAST:event_MnuAjudaSobreActionPerformed
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
        // TODO add your handling code here:
        Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
@@ -530,10 +522,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                (Tela.height - this.getHeight()) / 2,
                this.getWidth(),
                this.getHeight());
-       //this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
-
+       this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
     }//GEN-LAST:event_formComponentShown
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
        // TODO add your handling code here:
        javax.swing.JDialog FrmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
@@ -547,58 +537,119 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public static boolean AbrirNavegador(String URL) {
-      //minimizes the app
+        //minimizes the app
 
-      String SistemaOperacional = System.getProperty("os.name").toLowerCase();
-      Runtime rt = Runtime.getRuntime();
-      try {
-         if (SistemaOperacional.indexOf("win") >= 0) {
-            String[] cmd = new String[4];
-            cmd[0] = "cmd.exe";
-            cmd[1] = "/C";
-            cmd[2] = "start";
-            cmd[3] = URL;
-            rt.exec(cmd);
-         } else if (SistemaOperacional.indexOf("mac") >= 0) {
-            rt.exec("open " + URL);
-         } else {
-            //prioritized 'guess' of users' preference
-            String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx"};
-
-            StringBuffer cmd = new StringBuffer();
-            for (int i = 0; i < browsers.length; i++) {
-               cmd.append((i == 0 ? "" : " || ") + browsers[i] + " \"" +
-                       URL + "\" ");
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        Runtime Executador = Runtime.getRuntime();
+        try {
+            if (SistemaOperacional.indexOf("win") >= 0) {
+                String[] cmd = new String[4];
+                cmd[0] = "cmd.exe";
+                cmd[1] = "/C";
+                cmd[2] = "start";
+                cmd[3] = URL;
+                Executador.exec(cmd);
+            } else if (SistemaOperacional.indexOf("mac") >= 0) {
+                Executador.exec("open " + URL);
+            } else {
+                //prioritized 'guess' of users' preference
+                String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx"};
+                StringBuffer cmd = new StringBuffer();
+                for (int i = 0; i < browsers.length; i++) {
+                   cmd.append((i == 0 ? "" : " || ") + browsers[i] + " \"" +
+                           URL + "\" ");
+                }
+                Executador.exec(new String[]{"sh", "-c", cmd.toString()});
+                //rt.exec("firefox http://www.google.com");
+                //System.out.println(cmd.toString());
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                null,
+                "\n\n O TMW-Maker não conseguiu abrir o seu navegador padrão ao tentar acessar: \n\n " + URL + "\n\n",
+                "Erro de acesso ao Navegado",
+                JOptionPane.WARNING_MESSAGE
+            );
 
-            rt.exec(new String[]{"sh", "-c", cmd.toString()});
-            //rt.exec("firefox http://www.google.com");
-            //System.out.println(cmd.toString());
-
-         }
-      } catch (IOException e) {
-         e.printStackTrace();
-         JOptionPane.showMessageDialog(
-            null,
-            "\n\n The system failed to invoke your default web browser while attempting to access: \n\n " + URL + "\n\n",
-            "Browser Error",
-            JOptionPane.WARNING_MESSAGE
-         );
-
-        return false;
+            return false;
+        }
+        return true;
     }
-    return true;
-   }
+    public static void Mensagem_Erro(String Aviso, String Titulo) {
+        JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
+    }
+    public static void Esperar(int Milisegundos){
+        long TempoInicio,TempoAtual;
+        TempoInicio=System.currentTimeMillis();
+        do{
+            TempoAtual=System.currentTimeMillis();
+        }
+        while (TempoAtual-TempoInicio<Milisegundos);
+    }
 
     private void MnuSistemaAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAlteracoesActionPerformed
        // TODO add your handling code here:
        AbrirNavegador("http://code.google.com/p/tmw-maker/source/list");
     }//GEN-LAST:event_MnuSistemaAlteracoesActionPerformed
-
     private void MnuAjudaComentariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaComentariosActionPerformed
        // TODO add your handling code here:
        AbrirNavegador("http://code.google.com/p/tmw-maker/issues/entry");
     }//GEN-LAST:event_MnuAjudaComentariosActionPerformed
+    private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        Runtime Executador = Runtime.getRuntime();
+        String Comando = null;
+
+        try {
+            if (SistemaOperacional.indexOf("win") >= 0) {
+                /*String[] cmd = new String[4];
+                cmd[0] = "cmd.exe";
+                cmd[1] = "/C";
+                cmd[2] = "start";
+                cmd[3] = URL;
+                Executador.exec(cmd);/**/
+            } else if (SistemaOperacional.indexOf("mac") >= 0) {
+                /*Executador.exec("open " + URL);/**/
+            } else {
+                ///home/indigovox/eathena-data/eathena.sh restart
+                LblEstatus.setText("Abrindo aplicativo \""+ExecucaoComando+"\"...");
+                Comando=ExecucaoComando+" "+
+                (ExecucaoParametroTMWData.isEmpty()?"":("-ud "+ExecucaoParametroTMWData+" "))+
+                (ExecucaoParametroServidor.isEmpty()?"":("--server "+ExecucaoParametroServidor+" "))+
+                (ExecucaoParametroConta.isEmpty()?"":("--username "+ExecucaoParametroConta+" "))+
+                (ExecucaoParametroSenha.isEmpty()?"":("--password "+ExecucaoParametroSenha+" "))+
+                (ExecucaoParametroPersonagem.isEmpty()?"":("--character "+ExecucaoParametroPersonagem+" "))+
+                (ExecucaoParametroSemopengl==true?"--no-opengl":"");
+
+                LblEstatus.setText("Reiniciando localhost...");
+                LblEstatus.updateUI();
+                Executador.exec(ConexaoLocalhost+"/eathena-data/eathena.sh restart");
+                LblEstatus.setText("Espere 5 segundos...");
+                LblEstatus.updateUI();
+                Esperar(5500);
+                Executador.exec(Comando);
+                LblEstatus.setText("Concluido!");
+                LblEstatus.updateUI();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            LblEstatus.setText("ERRO: "+Comando);
+            Mensagem_Erro("<html><b>O TMW-Maker não conseguiu abrir o aplicativo cliente padrão para The Mana World:</b><br/><br/>"+
+                "01: <font face=\"monospace\" color=\"#FF0000\">"+ConexaoLocalhost+"/eathena-data/eathena.sh restart</font><br/>"+
+                "02: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"/eathena-data/eathena.sh restart</font><br/>"+
+                "</html>",
+                "Erro de "+ExecucaoComando
+            );
+            /*JOptionPane.showMessageDialog(
+                null,
+                "<html><b>O TMW-Maker não conseguiu abrir o aplicativo cliente padrão para The Mana World:</b><br/><br/>"+
+                "<font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font></html>",
+                "Erro de "+ExecucaoComando,
+                JOptionPane.WARNING_MESSAGE
+            );/**/
+        }
+    }//GEN-LAST:event_MnuJogoExecutarActionPerformed
 
 
    /**
@@ -636,6 +687,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenuItem MnuEditarPoderGM;
+    private javax.swing.JMenuItem MnuJogoExecutar;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
     private javax.swing.JMenuItem MnuSistemaFechar;
@@ -648,7 +700,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;

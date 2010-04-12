@@ -60,7 +60,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             FrmPrincipal.ExecucaoParametroConta = TxtConfiguracaoExecucaoParamentroConta.getText();
             FrmPrincipal.ExecucaoParametroSenha = TxtConfiguracaoExecucaoParamentroSenha.getText();
             FrmPrincipal.ExecucaoParametroPersonagem = TxtConfiguracaoExecucaoParamentroPersonagem.getText();
-            FrmPrincipal.ExecucaoParametroSemopengl = TxtConfiguracaoExecucaoParamentroServidor.getText()=="true"?true:false;
+            FrmPrincipal.ExecucaoParametroSemopengl = ChkConfiguracaoExecucaoParamentroSemopengl.isSelected();
 
             FrmPrincipal.DocumentacaoAlteracoes = TxtConfiguracaoDocumentacaoAlteracoes.getText();
             FrmPrincipal.DocumentacaoComentarios = TxtConfiguracaoDocumentacaoComentarios.getText();
