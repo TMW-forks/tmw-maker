@@ -151,10 +151,15 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarPersonagemScript">
                   <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="Ctrl+N"/>
+                    </Property>
                     <Property name="mnemonic" type="int" value="83"/>
                     <Property name="text" type="java.lang.String" value="Script"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuEditarPersonagemScriptActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
