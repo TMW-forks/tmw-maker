@@ -17,135 +17,6 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.dom.DOMSource;
-
-import java.io.File;
-import org.w3c.dom.*;
-
-
-/**
- *
- * @author indigovox
- */
-
-class XMLFile {
-
-
-    private String mFirstName;
-    private String mLastName;
-    private int mYearsOld;
-    private String mAddress;
-    private String mCity;
-    private String mState;
-    private String mPhoneNumber;
-    private String mEmail;
-
-    public void setFirstName(String value) {
-        this.mFirstName = value;
-    }
-    public void setLastName(String value) {
-        this.mLastName = value;
-    }
-    public void setYearsOld(int value) {
-        this.mYearsOld = value;
-    }
-    public void setAddress(String value) {
-        this.mAddress = value;
-    }
-    public void setCity(String value) {
-        this.mCity = value;
-    }
-    public void setState(String value) {
-        this.mState = value;
-    }
-    public void setPhoneNumber(String value) {
-        this.mPhoneNumber = value;
-    }
-    public void setEmail(String value) {
-        this.mEmail = value;
-    }
-    public String getFirstName() {
-        return this.mFirstName;
-    }
-    public String getLastName() {
-        return this.mLastName;
-    }
-    public int getYearsOld() {
-        return this.mYearsOld;
-    }
-    public String getAddress() {
-        return this.mAddress;
-    }
-    public String getCity() {
-        return this.mCity;
-    }
-    public String getState() {
-        return this.mState;
-    }
-    public String getPhoneNumber() {
-        return this.mPhoneNumber;
-    }
-    public String getEmail() {
-        return this.mEmail;
-    }
-
-    //
-    public boolean saveTo(String filename) {
-        try {
-            //DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
-            //DocumentBuilder builder = fac.newDocumentBuilder();
-            //Document doc = builder.newDocument();
-
-            /**
-             * <vcard>
-             *    <name first="Stately" last="Máximos"/>
-             *    <age value="99"/>
-             *    <address city="Acolá" state="PE">Rua dos Bobo nº0</address>
-             *    <contact email="dono@provedor.com.br" phone="06660666"/>
-             * </vcard>
-             */
-            Document Documento = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-
-            Documento.setXmlVersion("1.0");
-            Element vcard = Documento.createElement("vcard");
-            Documento.appendChild(vcard);
-            Element Elemento = Documento.createElement("name");
-            vcard.appendChild(Elemento);
-            Elemento.setAttribute("first", this.mFirstName);
-            Elemento.setAttribute("last", this.mLastName);
-            Elemento = Documento.createElement("age");
-            vcard.appendChild(Elemento);
-            Elemento.setAttribute("value", String.valueOf(this.mYearsOld));
-            Elemento = Documento.createElement("address");
-            vcard.appendChild(Elemento);
-            Elemento.setAttribute("city", this.mCity);
-            Elemento.setAttribute("state", this.mState);
-            Elemento.appendChild(Documento.createTextNode(this.mAddress));
-            Elemento = Documento.createElement("contact");
-            vcard.appendChild(Elemento);
-            Elemento.setAttribute("phone", this.mPhoneNumber);
-            Elemento.setAttribute("email", this.mEmail);
-
-            Source source = new DOMSource(Documento);
-            File file = new File(filename);
-            Result result = new StreamResult(file);
-            TransformerFactory facxformer = TransformerFactory.newInstance();
-            Transformer xformer = facxformer.newTransformer();
-            xformer.transform(source, result);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-}
-
-
 public class FrmPrincipal extends javax.swing.JFrame {
 
     static String ComponenteSelecionado = "";
@@ -430,9 +301,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarPersonagemLoja.setEnabled(false);
         MnuEditarPersonagem.add(MnuEditarPersonagemLoja);
 
+        MnuEditarPersonagemScript.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         MnuEditarPersonagemScript.setMnemonic('S');
         MnuEditarPersonagemScript.setText("Script");
-        MnuEditarPersonagemScript.setEnabled(false);
+        MnuEditarPersonagemScript.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuEditarPersonagemScriptActionPerformed(evt);
+            }
+        });
         MnuEditarPersonagem.add(MnuEditarPersonagemScript);
 
         MnuEditar.add(MnuEditarPersonagem);
@@ -585,7 +461,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
        this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
     }//GEN-LAST:event_formComponentShown
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       // TODO add your handling code here:
        javax.swing.JDialog FrmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
        FrmConfiguracao.setLocation(
                ((this.getWidth() - FrmConfiguracao.getWidth()) / 2) + this.getX(),
@@ -593,8 +468,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
        FrmConfiguracao.pack();
        FrmConfiguracao.setModal(true);
        FrmConfiguracao.setVisible(true);/**/
-
-       
     }//GEN-LAST:event_jMenuItem3ActionPerformed
     private void MnuSistemaAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAlteracoesActionPerformed
        // TODO add your handling code here:
@@ -655,6 +528,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
+
+    private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
+        javax.swing.JDialog FrmNpcScript = new FrmNpcScript(this, rootPaneCheckingEnabled);
+        FrmNpcScript.setLocation(
+            ((this.getWidth() - FrmNpcScript.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmNpcScript.getHeight()) / 2) + this.getY());
+        FrmNpcScript.pack();
+        FrmNpcScript.setModal(true);
+        FrmNpcScript.setVisible(true);/**/
+    }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
 
 
     public static void main(String args[]) {
