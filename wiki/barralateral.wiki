@@ -1,7 +1,7 @@
 #labels sidebar,barralateral
 == TMW-WIKI-BR ==
 ----
- * [inicio Início]
+ * [inicio INÍCIO]
   * [abaswiki Abas do Projeto]
   * [desenvolvedor_iniciante Desenvolvedor Iniciante]
   * [RepositorioSVN Repositório SVN]
