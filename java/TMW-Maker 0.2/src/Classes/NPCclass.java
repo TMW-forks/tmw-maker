@@ -12,7 +12,7 @@ public class NPCclass {
     }
 
     public void setMapa(String NomeDoMapa){
-        Mapa=NomeDoMapa.toLowerCase().toString();
+        Mapa=NomeDoMapa.toString();
     }
     public void setX(int CoordenadaX){
         X=CoordenadaX;
@@ -21,17 +21,17 @@ public class NPCclass {
         Y=CoordenadaY;
     }
     public void setScript(String ScriptDoNPC){
-        Script=ScriptDoNPC.toLowerCase().toString();
+        Script=ScriptDoNPC.toString();
     }
     public void setNome(String NpmeDoNPC){
-        Nome=NpmeDoNPC.toLowerCase().toString();
+        Nome=NpmeDoNPC.toString();
     }
     public void setImagem(int BlocoDaImagem){
         Imagem=BlocoDaImagem;
     }
 
     public String getMapa(){
-        return Mapa.toLowerCase().toString();
+        return Mapa.toString();
     }
     public int getX(){
         return X;
@@ -40,10 +40,10 @@ public class NPCclass {
         return Y;
     }
     public String getScript(){
-        return Script.toLowerCase().toString();
+        return Script.toString();
     }
     public String getNome(){
-        return Nome.toLowerCase().toString();
+        return Nome.toString();
     }
     public int getImagem(){
         return Imagem;

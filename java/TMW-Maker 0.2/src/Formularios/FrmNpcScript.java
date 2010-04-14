@@ -14,7 +14,11 @@ package Formularios;
 
 import Classes.NPCclass;
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmNpcScript extends javax.swing.JDialog {  
@@ -23,18 +27,25 @@ public class FrmNpcScript extends javax.swing.JDialog {
         initComponents();
     }
 
-    NPCclass NPC[] = null;
+    static NPCclass NPC[];
 
     public void ExemploDeConteudo(){
         try {
-            //NPCclass NovoNPC = new NPCclass;
+            NPC= new NPCclass[2]; // Diz que são 2 NPCs
+
+            NPC[0] = new NPCclass();// Cria o NPC nº0
             NPC[0].setNome("Elias");
             NPC[0].setMapa("008");
             NPC[0].setX(107);
             NPC[0].setY(32);
             NPC[0].setImagem(0);
-            NPC[0].setScript(" ");
+            NPC[0].setScript(
+                "//Editando os Arquivo do NPC!\n"+
+                "//Pode Ficar Tranquilo... (T_T)"
+            );
 
+
+            NPC[1] = new NPCclass();// Cria o NPC nº1
             NPC[1].setNome("Roger");
             NPC[1].setMapa("008");
             NPC[1].setX(108);
@@ -46,11 +57,9 @@ public class FrmNpcScript extends javax.swing.JDialog {
             "     next;\n"+
             "     mes \"Hã!!! Eu não estava dormindo.\";\n"+
             "     close;");/**/
-        }catch(Exception e){
-            Mensagem_Erro("Ocorreu um Erro durante instanciação!","ERRO");
-        }
+        }catch(Exception e){Mensagem_Erro("Ocorreu um Erro durante instanciação!","ERRO");}
     }
-    public String NPCsArray2String(NPCclass NPCs[]){
+    public String NPCsArray2String(NPCclass[] NPCs){
         String Codigo="";
         for(int i=0;i<NPCs.length;i++){
             //008.gat,108,23,0	script	Roger	308,{
@@ -62,17 +71,15 @@ public class FrmNpcScript extends javax.swing.JDialog {
         }
         return Codigo;
     }
-    public String NPCsArray2String(NPCclass NPCs){
-        String Codigo="";
-        Codigo+=
-        NPCs.getMapa()+".gat,"+NPCs.getX()+","+NPCs.getY()+",0\tscript\t"+NPCs.getNome()+"\t"+NPCs.getImagem()+",{\n"+
-            NPCs.getScript()+"\n"+
-        "}";
-        return Codigo;
-    }
     public boolean salvarNPC(String Endereco){
         //ExemploDeConteudo();
         try {
+            /*int i = CmbScript.getSelectedIndex();
+            this.setTitle(Integer.toString(i));
+            String Cod= NPC[i].getScript().toString();
+            TxtScript.setText(Cod.toString());/**/
+            int i = CmbScript.getSelectedIndex();
+            NPC[i].setScript(TxtScript.getText().toString());
             FileWriter out = new FileWriter(Endereco);
             out.write(NPCsArray2String(NPC));
             out.close();
@@ -131,11 +138,21 @@ public class FrmNpcScript extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editando NPC /008_Ilha_Fortaleza/guardas.conf]");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         TxtScript.setColumns(20);
-        TxtScript.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        TxtScript.setFont(new java.awt.Font("Monospaced", 0, 14));
         TxtScript.setRows(5);
         TxtScript.setText("     mes \"[Roger (Guarda da Torre)]\";\n     mes \"ZzzZzzZ...\";\n     next;\n     mes \"Hã!!! Eu não estava dormindo.\";\n     close;");
+        TxtScript.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtScriptKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(TxtScript);
 
         CmbScript.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Elias  (008:107,32)", "Roger (008:108,23)" }));
@@ -171,16 +188,51 @@ public class FrmNpcScript extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbScriptActionPerformed
-        // TODO add your handling code here:
-        //NPC[0].setNome("Elias");
-
-        //ExemploDeConteudo();
-        //int i = CmbScript.getSelectedIndex();
+        int i = CmbScript.getSelectedIndex();
         //this.setTitle(Integer.toString(i));
-        //String Cod= NPC[i].getScript().toString();
-        //TxtScript.setText(Cod.toString());/**/
-
+        String Cod= NPC[i].getScript().toString();
+        TxtScript.setText(Cod.toString());/**/
     }//GEN-LAST:event_CmbScriptActionPerformed
+    private void TxtScriptKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtScriptKeyReleased
+        int i = CmbScript.getSelectedIndex();
+        NPC[i].setScript(TxtScript.getText().toString());
+
+        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
+            ExemploDeConteudo();
+            
+        }
+        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
+            salvarNPC("ScriptNPC.txt");
+            /**try {
+                FileWriter CapsulaDeEscrever = new FileWriter("ScriptNPC.txt");
+                //out.write(NPCsArray2String(NPC));
+                CapsulaDeEscrever.write(TxtScript.getText());
+                CapsulaDeEscrever.close();
+                //T1.setText("Arquivo gravado com sucesso !");
+                Mensagem_Erro("Arquivo gravado com sucesso !","AVISO");
+            } catch (java.io.IOException exc) {
+                Mensagem_Erro("Não foi possivel gravar o arquivo!","AVISO");
+            }/**/
+        }
+        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
+            try {
+                String Conteudo="";
+                FileReader CapsulaDeLer = new FileReader("ScriptNPC.txt");
+                int Caracater = CapsulaDeLer.read();
+                while (Caracater!=-1) {
+                    Conteudo = Conteudo + (char) Caracater;
+                    Caracater = CapsulaDeLer.read();
+                }
+                TxtScript.setText(Conteudo.toString());
+                CapsulaDeLer.close();
+                Mensagem_Erro("Arquivo Aberto com sucesso!", "AVISO");
+            } catch (java.io.IOException exc) {Mensagem_Erro("Não foi possivel abrir o arquivo!","AVISO");}
+        }
+    }//GEN-LAST:event_TxtScriptKeyReleased
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        ExemploDeConteudo();
+    }//GEN-LAST:event_formWindowActivated
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

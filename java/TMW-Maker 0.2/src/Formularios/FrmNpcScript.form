@@ -8,6 +8,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowActivated"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -62,6 +65,9 @@
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="     mes &quot;[Roger (Guarda da Torre)]&quot;;&#xa;     mes &quot;ZzzZzzZ...&quot;;&#xa;     next;&#xa;     mes &quot;H&#xe3;!!! Eu n&#xe3;o estava dormindo.&quot;;&#xa;     close;"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtScriptKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
