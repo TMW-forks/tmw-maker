@@ -279,6 +279,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MnuAjudaComentarios">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_comentario.gif"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="67"/>
                 <Property name="text" type="java.lang.String" value="Coment&#xe1;rios"/>
               </Properties>

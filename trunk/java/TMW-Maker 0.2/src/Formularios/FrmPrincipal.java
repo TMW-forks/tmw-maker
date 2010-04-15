@@ -390,6 +390,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem9.setEnabled(false);
         jMenu5.add(jMenuItem9);
 
+        MnuAjudaComentarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
         MnuAjudaComentarios.setMnemonic('C');
         MnuAjudaComentarios.setText("Comentários");
         MnuAjudaComentarios.addActionListener(new java.awt.event.ActionListener() {
