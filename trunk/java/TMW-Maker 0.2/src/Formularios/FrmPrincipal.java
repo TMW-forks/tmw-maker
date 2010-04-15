@@ -205,12 +205,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.setText("Sistema");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
         jMenuItem1.setMnemonic('E');
         jMenuItem1.setText("Enviar");
         jMenuItem1.setEnabled(false);
         MnuSistema.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
         jMenuItem2.setMnemonic('R');
         jMenuItem2.setText("Receber");
         jMenuItem2.setEnabled(false);
@@ -218,6 +220,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.add(jSeparator1);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.gif"))); // NOI18N
         jMenuItem3.setMnemonic('G');
         jMenuItem3.setText("Configurações");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +230,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuSistema.add(jMenuItem3);
 
+        MnuSistemaAlteracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_file_rss.gif"))); // NOI18N
         MnuSistemaAlteracoes.setText("Alterações");
         MnuSistemaAlteracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +257,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditar.setMnemonic('E');
         MnuEditar.setText("Editar");
 
+        MnuEditarItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_presente.gif"))); // NOI18N
         MnuEditarItens.setMnemonic('I');
         MnuEditarItens.setText("Itens");
 
@@ -268,6 +273,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarItens);
 
+        MnuEditarCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_terreno.gif"))); // NOI18N
         MnuEditarCampos.setMnemonic('C');
         MnuEditarCampos.setText("Campos");
 
@@ -288,6 +294,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarCampos);
 
+        MnuEditarPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))); // NOI18N
         MnuEditarPersonagem.setMnemonic('P');
         MnuEditarPersonagem.setText("Personagem");
 
@@ -313,6 +320,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarPersonagem);
 
+        MnuEditarInimigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_robotuatec.gif"))); // NOI18N
         MnuEditarInimigos.setMnemonic('N');
         MnuEditarInimigos.setText("Inimigos");
 
@@ -333,6 +341,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarInimigos);
 
+        MnuEditarMagias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_arvore.gif"))); // NOI18N
         MnuEditarMagias.setMnemonic('M');
         MnuEditarMagias.setText("Magias");
 
@@ -364,6 +373,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Jogo");
 
         MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
         MnuJogoExecutar.setMnemonic('E');
         MnuJogoExecutar.setText("Executar");
         MnuJogoExecutar.addActionListener(new java.awt.event.ActionListener() {
@@ -405,6 +415,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu5.add(jMenuItem11);
         jMenu5.add(jSeparator4);
 
+        MnuAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_contato.gif"))); // NOI18N
         MnuAjudaSobre.setText("Sobre...");
         MnuAjudaSobre.setName("MnuPrincipalSobre"); // NOI18N
         MnuAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
@@ -531,7 +542,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
 
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
-        javax.swing.JDialog FrmNpcScript = new FrmNpcScript(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmNpcScript = new FrmScript(this, rootPaneCheckingEnabled);
         FrmNpcScript.setLocation(
             ((this.getWidth() - FrmNpcScript.getWidth()) / 2) + this.getX(),
             ((this.getHeight() - FrmNpcScript.getHeight()) / 2) + this.getY());

@@ -26,11 +26,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" alignment="0" pref="440" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
-              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-              <Component id="jScrollPane1" pref="416" max="32767" attributes="0"/>
-              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="599" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="TbrComandos" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="546" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -39,8 +40,13 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jToolBar1" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="130" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" pref="412" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="TbrComandos" alignment="0" pref="424" max="32767" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,19 +59,21 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="TxtScript">
+        <Component class="javax.swing.JTextArea" name="TxtScriptPalco">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Monospaced" size="14" style="0"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="     mes &quot;[Roger (Guarda da Torre)]&quot;;&#xa;     mes &quot;ZzzZzzZ...&quot;;&#xa;     next;&#xa;     mes &quot;H&#xe3;!!! Eu n&#xe3;o estava dormindo.&quot;;&#xa;     close;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtScriptKeyPressed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtScriptPalcoKeyPressed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -127,15 +135,70 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
-                <StringItem index="0" value="001&#xba; Elias  (008:107,32)"/>
+                <StringItem index="0" value="001&#xba; ExemploDeFuncao"/>
                 <StringItem index="1" value="002&#xba; Roger (008:108,23)"/>
               </StringArray>
             </Property>
-            <Property name="selectedIndex" type="int" value="1"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbScriptActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JToolBar" name="TbrComandos">
+      <Properties>
+        <Property name="floatable" type="boolean" value="false"/>
+        <Property name="orientation" type="int" value="1"/>
+        <Property name="rollover" type="boolean" value="true"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="BtnScriptMes">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/sbl_comentario.gif"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;MES:&lt;/b&gt; Fala de pesonagem"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnScriptMesActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BtnScriptNext">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/pausa.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;NEXT:&lt;/b&gt; Intervalo entre falas de personagem"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnScriptNextActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BtnScriptClose">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/fechar.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;CLOSE:&lt;/b&gt; Fecha janela de dialogo do personagem"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnScriptCloseActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
