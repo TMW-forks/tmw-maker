@@ -4,7 +4,7 @@
  */
 
 /*
- * FrmNpcScript.java
+ * FrmScript.java
  *
  * Created on Apr 12, 2010, 8:22:51 PM
  */
@@ -12,7 +12,9 @@
 package Formularios;
 
 
-import Classes.NPCclass;
+import Classes.BlocoDeScript;
+import Formularios.FrmPrincipal;
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,86 +23,99 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class FrmNpcScript extends javax.swing.JDialog {  
-    public FrmNpcScript(java.awt.Frame parent, boolean modal) {
+public class FrmScript extends javax.swing.JDialog {
+    public FrmScript(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 //#####################################################################################################
-    public NPCclass NPC[];
+    public BlocoDeScript Instancia[];
 //#####################################################################################################
-    public String NPCsArray2String(NPCclass[] NPCs){
+    public String InstanciasArray2String(BlocoDeScript[] Instancias){
         String Codigo="";
-        for(int i=0;i<NPCs.length;i++){
+        for(int i=0;i<Instancias.length;i++){
             //008.gat,108,23,0	script	Roger	308,{
-            Codigo+=
-            NPCs[i].getMapa()+".gat,"+NPCs[i].getX()+","+NPCs[i].getY()+",0\tscript\t"+NPCs[i].getNome()+"\t"+NPCs[i].getImagem()+",{\n"+
-                NPCs[i].getScript()+"\n"+
-            "}";
-            if(i<(NPCs.length-1)){Codigo+="\n\n";}//<<<< Cria uma linha em branco antes de por o 2º NPC
+            if(Instancias[i].getTipo()=="script"){
+                Codigo+=
+                Instancias[i].getMapa()+".gat,"+Instancias[i].getX()+","+Instancias[i].getY()+",0\tscript\t"+Instancias[i].getNome()+"\t"+Instancias[i].getImagem()+",{\n"+
+                    Instancias[i].getScript()+"\n"+
+                "}";
+            }else if(Instancias[i].getTipo()=="function\tscript"){
+                Codigo+=
+                "function\tscript\t"+Instancias[i].getNome()+"\t{\n"+
+                    Instancias[i].getScript()+"\n"+
+                "}";
+            }
+            if(i<(Instancias.length-1)){Codigo+="\n\n";}//<<<< Cria uma linha em branco antes de por o 2º Instancia
         }
         return Codigo;
     }
     public void ExemploDeConteudo(){
         try {
-            NPC= new NPCclass[2]; // Diz que são 2 NPCs
+            Instancia= new BlocoDeScript[2]; // Diz que são 2 Instancias
 
-            NPC[0] = new NPCclass();// Cria o NPC nº0
-            NPC[0].setNome("Elias");
-            NPC[0].setMapa("008");
-            NPC[0].setX(107);
-            NPC[0].setY(32);
-            NPC[0].setImagem(0);
-            NPC[0].setScript(
-                "//Editando os Arquivo do NPC!\n"+
-                "//Pode Ficar Tranquilo... (T_T)"
+            Instancia[0] = new BlocoDeScript();// Cria o Instancia nº0
+            Instancia[0].setNome("ExemploDeFuncao");
+            Instancia[0].setTipo("function\tscript");
+            Instancia[0].setScript(
+                "_inicio:\n"+
+                "     //Editando os Arquivo do Instancia!\n"+
+                "     //Pode Ficar Tranquilo... (T_T)\n"+
+                "_retorno:"
             );
 
-            NPC[1] = new NPCclass();// Cria o NPC nº1
-            NPC[1].setNome("Roger");
-            NPC[1].setMapa("008");
-            NPC[1].setX(108);
-            NPC[1].setY(2);
-            NPC[1].setImagem(0);
-            NPC[1].setScript(""+
+            Instancia[1] = new BlocoDeScript();// Cria o Instancia nº1
+            Instancia[1].setNome("Roger");
+            Instancia[1].setTipo("script");
+            Instancia[1].setMapa("008");
+            Instancia[1].setX(108);
+            Instancia[1].setY(2);
+            Instancia[1].setImagem(0);
+            Instancia[1].setScript(""+
+            "_inicio:\n"+
             "     mes \"[Roger (Guarda da Torre)]\";\n"+
             "     mes \"ZzzZzzZ...\";\n"+
             "     next;\n"+
             "     mes \"Hã!!! Eu não estava dormindo.\";\n"+
-            "     close;");/**/
+            "close;");/**/
+
+            TxtScriptPalco.setText(Instancia[(int)CmbScript.getSelectedIndex()].getScript());
+            //TxtScriptPalco.setEditable(true);
         }catch(Exception e){
             Mensagem_Erro("Ocorreu um Erro durante instanciação do exemplo de Script!","ERRO");
         }
     }
-    public void novoNPC(){
+    public void novoInstancia(){
         ExemploDeConteudo();
         //TxtScript.setEnabled(true);
         //CmbScript.setEnabled(true);
         BtnSalvarScript.setEnabled(true);
         //CmbScript.setEnabled(true);
-        TxtScript.setEnabled(true);
+        TxtScriptPalco.setEnabled(true);
+        BarraDeCodigos(true);
     }
-    public boolean salvarNPC(String Endereco){
+    public boolean salvarInstancia(String Endereco){
         //ExemploDeConteudo();
         try {
             /*int i = CmbScript.getSelectedIndex();
             this.setTitle(Integer.toString(i));
-            String Cod= NPC[i].getScript().toString();
+            String Cod= Instancia[i].getScript().toString();
             TxtScript.setText(Cod.toString());/**/
-            /*NPC= new NPCclass[CmbScript.getItemCount()];
+            /*Instancia= new BlocoDeScript[CmbScript.getItemCount()];
             for(i=0;i<CmbScript.getItemCount();i++){
-                NPC[i] = new NPCclass();// Cria o NPC nº0
+                Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
             }/**/
 
 
             int i = CmbScript.getSelectedIndex();
-            NPC[i].setScript(TxtScript.getText().toString());
+            Instancia[i].setScript(TxtScriptPalco.getText().toString());
             FileWriter out = new FileWriter(Endereco);
-            out.write(NPCsArray2String(NPC));
+            out.write(InstanciasArray2String(Instancia));
             out.close();
             //T1.setText("Arquivo gravado com sucesso !");
             CmbScript.setEnabled(true);
-            TxtScript.setEnabled(true);
+            TxtScriptPalco.setEnabled(true);
+            BarraDeCodigos(true);
             BtnSalvarScript.setEnabled(false);
             BtnAbrirScript.setEnabled(true);
             this.setTitle("Editor de Scripts ["+Endereco+"]");
@@ -112,7 +127,7 @@ public class FrmNpcScript extends javax.swing.JDialog {
         }
 
     }
-    public void abrirNPC(String Endereco){
+    public void abrirInstancia(String Endereco){
         try {
             String Conteudo="", Cabecalho="", Bloco="";
             FileReader CapsulaDeLer = new FileReader(Endereco);
@@ -129,13 +144,13 @@ public class FrmNpcScript extends javax.swing.JDialog {
                 if(AbreBloco>=1) blocos++;
             }while(AbreBloco>=1);
             if(blocos>=1){
-                NPC= new NPCclass[blocos]; // Diz que são 2 NPCs
+                Instancia= new BlocoDeScript[blocos]; // Diz que são 2 Instancias
                 
                 StringBuffer Manipulador = new StringBuffer(Conteudo);
                 for(int i=0;i<blocos;i++){
                     AbreBloco=FechaBloco;
                     //if(i==0){
-                        NPC[i] = new NPCclass();// Cria o NPC nº0
+                        Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
                         //System.out.println(sb);
                         
                         AbreBloco= Conteudo.indexOf("{",AbreBloco)+1;//Só adiciona +1 pq foi feito o teste de existencia de blocos;
@@ -154,11 +169,11 @@ public class FrmNpcScript extends javax.swing.JDialog {
                         Bloco=Conteudo.substring(AbreBloco+1,FechaBloco-1);
                         //Mensagem_Erro(Bloco, "Nota de Programador");
                         //Mensagem_Erro(CmbScript.getItemAt(i), "Nota de Programador");
-                        NPC[i].setScript(Bloco);
+                        Instancia[i].setScript(Bloco);
                         if(CmbScript.getSelectedIndex()==i){
                             CmbScript.setSelectedItem(i);
                             CmbScript.setActionCommand(Cabecalho);
-                            TxtScript.setText(Bloco.substring(0,Bloco.length()));
+                            TxtScriptPalco.setText(Bloco.substring(0,Bloco.length()));
                         }
 
                         /*Mensagem_Erro(
@@ -169,12 +184,13 @@ public class FrmNpcScript extends javax.swing.JDialog {
                             Cabecalho+"\"\n"
                         , "Nota de Programador");/**/
                     /*}else{
-                        NPC[i] = new NPCclass();// Cria o NPC nº0
-                        NPC[i].setScript("");
+                        Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
+                        Instancia[i].setScript("");
                         Mensagem_Erro("ERRO: Bloco nº"+(i+1)+" não aproveitado pelo TMW-Maker!", "ERRO");
                     }/**/
                 }
-                TxtScript.setEnabled(true);
+                TxtScriptPalco.setEnabled(true);
+                BarraDeCodigos(true);
                 CmbScript.setEnabled(true);
                 this.setTitle("Editor de Scripts ["+Endereco+"]");
                 //Mensagem_Erro("Arquivo possui "+blocos+" blocos!", "AVISO");
@@ -193,19 +209,43 @@ public class FrmNpcScript extends javax.swing.JDialog {
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
     }
+    public void addScript(String Codigo){
+        String Conteudo=FrmScript.TxtScriptPalco.getText();
+        String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
+        String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
+        FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal);
+    }
+    public void BarraDeCodigos(boolean SeAtivo){
+        BtnScriptMes.setEnabled(SeAtivo);
+        BtnScriptNext.setEnabled(SeAtivo);
+        BtnScriptClose.setEnabled(SeAtivo);
+    }
+    public void showMes() {
+        javax.swing.JDialog FrmMes = new FrmMes(this,false);
+        FrmMes.setLocation(
+            ((this.getWidth() - FrmMes.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmMes.getHeight()) / 2) + this.getY());
+        FrmMes.pack();
+        FrmMes.setModal(true);
+        FrmMes.setVisible(true);/**/
+    }
 //#####################################################################################################
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        TxtScript = new javax.swing.JTextArea();
+        TxtScriptPalco = new javax.swing.JTextArea();
         jToolBar1 = new javax.swing.JToolBar();
         BtnNovoScript = new javax.swing.JButton();
         BtnSalvarScript = new javax.swing.JButton();
         BtnAbrirScript = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         CmbScript = new javax.swing.JComboBox();
+        TbrComandos = new javax.swing.JToolBar();
+        BtnScriptMes = new javax.swing.JButton();
+        BtnScriptNext = new javax.swing.JButton();
+        BtnScriptClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editor de Scripts");
@@ -215,17 +255,16 @@ public class FrmNpcScript extends javax.swing.JDialog {
             }
         });
 
-        TxtScript.setColumns(20);
-        TxtScript.setFont(new java.awt.Font("Monospaced", 0, 14));
-        TxtScript.setRows(5);
-        TxtScript.setText("     mes \"[Roger (Guarda da Torre)]\";\n     mes \"ZzzZzzZ...\";\n     next;\n     mes \"Hã!!! Eu não estava dormindo.\";\n     close;");
-        TxtScript.setEnabled(false);
-        TxtScript.addKeyListener(new java.awt.event.KeyAdapter() {
+        TxtScriptPalco.setColumns(20);
+        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        TxtScriptPalco.setRows(5);
+        TxtScriptPalco.setEnabled(false);
+        TxtScriptPalco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TxtScriptKeyPressed(evt);
+                TxtScriptPalcoKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(TxtScript);
+        jScrollPane1.setViewportView(TxtScriptPalco);
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -269,8 +308,7 @@ public class FrmNpcScript extends javax.swing.JDialog {
         jToolBar1.add(BtnAbrirScript);
         jToolBar1.add(jSeparator1);
 
-        CmbScript.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "001º Elias  (008:107,32)", "002º Roger (008:108,23)" }));
-        CmbScript.setSelectedIndex(1);
+        CmbScript.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "001º ExemploDeFuncao", "002º Roger (008:108,23)" }));
         CmbScript.setEnabled(false);
         CmbScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,23 +317,70 @@ public class FrmNpcScript extends javax.swing.JDialog {
         });
         jToolBar1.add(CmbScript);
 
+        TbrComandos.setFloatable(false);
+        TbrComandos.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        TbrComandos.setRollover(true);
+
+        BtnScriptMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
+        BtnScriptMes.setToolTipText("<html><b>MES:</b> Fala de pesonagem");
+        BtnScriptMes.setEnabled(false);
+        BtnScriptMes.setFocusable(false);
+        BtnScriptMes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnScriptMes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnScriptMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScriptMesActionPerformed(evt);
+            }
+        });
+        TbrComandos.add(BtnScriptMes);
+
+        BtnScriptNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/pausa.png"))); // NOI18N
+        BtnScriptNext.setToolTipText("<html><b>NEXT:</b> Intervalo entre falas de personagem");
+        BtnScriptNext.setEnabled(false);
+        BtnScriptNext.setFocusable(false);
+        BtnScriptNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnScriptNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnScriptNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScriptNextActionPerformed(evt);
+            }
+        });
+        TbrComandos.add(BtnScriptNext);
+
+        BtnScriptClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/fechar.png"))); // NOI18N
+        BtnScriptClose.setToolTipText("<html><b>CLOSE:</b> Fecha janela de dialogo do personagem");
+        BtnScriptClose.setEnabled(false);
+        BtnScriptClose.setFocusable(false);
+        BtnScriptClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnScriptClose.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnScriptClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScriptCloseActionPerformed(evt);
+            }
+        });
+        TbrComandos.add(BtnScriptClose);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addComponent(TbrComandos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(TbrComandos, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)))
         );
 
         pack();
@@ -304,34 +389,49 @@ public class FrmNpcScript extends javax.swing.JDialog {
     private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbScriptActionPerformed
         int i = CmbScript.getSelectedIndex();
         //this.setTitle(Integer.toString(i));
-        abrirNPC("ScriptNPC.txt");
-        //String Cod= NPC[i].getScript().toString();
+        abrirInstancia("ScriptExemplo.conf");
+        //String Cod= Instancia[i].getScript().toString();
         //TxtScript.setText(Cod.toString());/**/
     }//GEN-LAST:event_CmbScriptActionPerformed
-    private void TxtScriptKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtScriptKeyPressed
-        //int i = CmbScript.getSelectedIndex();
-        //NPC[i].setScript(TxtScript.getText().toString());
-
-        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
+    private void TxtScriptPalcoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtScriptPalcoKeyPressed
+        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_F1 && evt.isControlDown()){
             ExemploDeConteudo();
-        }else  if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
-            salvarNPC("ScriptNPC.txt");
+        }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
+            ExemploDeConteudo();
+        }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
+            salvarInstancia("ScriptExemplo.conf");
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
-            abrirNPC("ScriptNPC.txt");
-        }else{
+            abrirInstancia("ScriptExemplo.conf");
+        }else if(!evt.isControlDown() && !evt.isAltDown() && !evt.isShiftDown() &&
+
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_CAPS_LOCK &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_ESCAPE &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_LEFT &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_RIGHT &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_UP &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_DOWN &&
+
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_PAGE_UP &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_PAGE_DOWN &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_INSERT &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_HOME &&
+                    evt.getKeyCode()!=java.awt.event.KeyEvent.VK_END &&
+                    
+                    1==1
+                ){
             CmbScript.setEnabled(false);
             BtnSalvarScript.setEnabled(true);
-        }
-    }//GEN-LAST:event_TxtScriptKeyPressed
+        }/**/
+    }//GEN-LAST:event_TxtScriptPalcoKeyPressed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //ExemploDeConteudo();
-        abrirNPC("ScriptNPC.txt");
+        abrirInstancia("ScriptExemplo.conf");
     }//GEN-LAST:event_formWindowOpened
     private void BtnAbrirScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirScriptActionPerformed
-        abrirNPC("ScriptNPC.txt");
+        abrirInstancia("ScriptExemplo.conf");
         /*try {
             String Conteudo="";
-            FileReader CapsulaDeLer = new FileReader("ScriptNPC.txt");
+            FileReader CapsulaDeLer = new FileReader("ScriptExemplo.conf");
             int Caracater = CapsulaDeLer.read();
             while (Caracater!=-1) {
                 Conteudo = Conteudo + (char) Caracater;
@@ -343,17 +443,46 @@ public class FrmNpcScript extends javax.swing.JDialog {
         } catch (java.io.IOException exc) {Mensagem_Erro("Não foi possivel abrir o arquivo!","AVISO");}/**/
     }//GEN-LAST:event_BtnAbrirScriptActionPerformed
     private void BtnSalvarScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarScriptActionPerformed
-        salvarNPC("ScriptNPC.txt");
+        salvarInstancia("ScriptExemplo.conf");
     }//GEN-LAST:event_BtnSalvarScriptActionPerformed
     private void BtnNovoScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoScriptActionPerformed
-        novoNPC();
+        novoInstancia();
     }//GEN-LAST:event_BtnNovoScriptActionPerformed
+
+    private void BtnScriptMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptMesActionPerformed
+        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
+            showMes();
+        }
+    }//GEN-LAST:event_BtnScriptMesActionPerformed
+
+    private void BtnScriptNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptNextActionPerformed
+        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
+            addScript("next;\n");
+            /*String Conteudo=FrmScript.TxtScriptPalco.getText();
+            String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
+            String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
+            String Codigo="next;";
+            FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal+"\n");/**/
+        }
+    }//GEN-LAST:event_BtnScriptNextActionPerformed
+
+    private void BtnScriptCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptCloseActionPerformed
+        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
+            addScript("close;\n");
+            /*String Conteudo=FrmScript.TxtScriptPalco.getText();
+            String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
+            String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
+            String Codigo="close;";
+            FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal+"\n");
+            dispose();/**/
+        }
+    }//GEN-LAST:event_BtnScriptCloseActionPerformed
 //#####################################################################################################
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmNpcScript dialog = new FrmNpcScript(new javax.swing.JFrame(), true);
+                FrmScript dialog = new FrmScript(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -368,8 +497,12 @@ public class FrmNpcScript extends javax.swing.JDialog {
     private javax.swing.JButton BtnAbrirScript;
     private javax.swing.JButton BtnNovoScript;
     private javax.swing.JButton BtnSalvarScript;
+    private javax.swing.JButton BtnScriptClose;
+    private javax.swing.JButton BtnScriptMes;
+    private javax.swing.JButton BtnScriptNext;
     private javax.swing.JComboBox CmbScript;
-    private javax.swing.JTextArea TxtScript;
+    private javax.swing.JToolBar TbrComandos;
+    public static javax.swing.JTextArea TxtScriptPalco;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar1;
