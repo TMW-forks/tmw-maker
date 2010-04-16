@@ -3,9 +3,4 @@ Sistema -> Configuração -> Conexão -> Localhost
 É o endereço onde o localhost está instalado no sistema. O endereço do Localhost ou servidor local é o da pasta onde está o "eathena-data" com os respectivos arquivos binários.
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+http://tmw-maker.googlecode.com/svn/Imagens/Componentes/TxtConfiguracaoLocalhost.JPG
