@@ -3,4 +3,4 @@
 É o endereço onde o localhost está instalado no sistema. O endereço do Localhost ou servidor local é o da pasta onde está o "eathena-data" com os respectivos arquivos binários.
 Normalmente não é necessário alterar esse endereço pq ele já vem configurado internamente.
 
-https://tmw-maker.googlecode.com/svn/Imagens/Componentes/TxtConfiguracaoConexao.png
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoConexao.png
