@@ -1,8 +1,6 @@
-#summary One-sentence summary of this page.
+Sistema -> Configuração -> Conexão -> Localhost
 
-= Introduction =
-teste
-Add your content here.
+É o endereço onde o localhost está instalado no sistema. O endereço do Localhost ou servidor local é o da pasta onde está o "eathena-data" com os respectivos arquivos binários.
 
 
 = Details =
