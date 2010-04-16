@@ -8,4 +8,4 @@ Se endereço do repositório começar com "*http*" (sem "s") então o TMW-Maker 
 
 || Futuramente faremos o TMW-Maker se adequar a linguagem do sistema. Quando isso ocorrer colocaremos os repositórios SVNs oficias de cada pais que possuir um servidor The Mana World, ||
 
-https://tmw-maker.googlecode.com/svn/Imagens/Componentes/TxtConfiguracaoConexao.png
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoConexao.png
