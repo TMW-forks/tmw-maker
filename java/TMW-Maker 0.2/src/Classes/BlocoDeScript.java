@@ -10,7 +10,7 @@ public class BlocoDeScript {
     private String Script="";
     //public BlocoDeScript(){...}
 
-    public void setNome(String NpmeDoBloco){Nome=NpmeDoBloco.toString();}
+    public void setNome(String NomeDoBloco){Nome=NomeDoBloco.toString();}
     public void setTipo(String TipoDeBloco){Tipo=TipoDeBloco.toString();}
     public void setMapa(String NomeDoMapa){Mapa=NomeDoMapa.toString();}
     public void setX(int CoordenadaX){X=CoordenadaX;}

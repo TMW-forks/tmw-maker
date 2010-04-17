@@ -61,7 +61,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
       }
     }
     public static void showAjuda(){
-        FrmPrincipal.AbrirNavegador(FrmPrincipal.DocumentacaoComponentes.trim() + FrmPrincipal.ComponenteSelecionado.trim());
+        FrmPrincipal.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes().trim() + FrmPrincipal.ComponenteSelecionado.trim());
         Toolkit.getDefaultToolkit().beep();
     }
     public static void showAjuda(java.awt.event.KeyEvent evt){
@@ -73,23 +73,23 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             //DocumentBuilder builder = fac.newDocumentBuilder();
             //Document doc = builder.newDocument();
 
-            FrmPrincipal.ConexaoRepositorio = TxtConfiguracaoConexaoRepositorio.getText();
-            FrmPrincipal.ConexaoLocalhost = TxtConfiguracaoConexaoLocalhost.getText();
-            FrmPrincipal.ConexaoUsuario = TxtConfiguracaoConexaoIdentificacaoUsuario.getText();
-            FrmPrincipal.ConexaoSenha = TxtConfiguracaoConexaoIdentificacaoSenha.getText();
+            FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
+            FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
+            FrmPrincipal.Config.setConexaoUsuario (TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
+            FrmPrincipal.Config.setConexaoSenha (TxtConfiguracaoConexaoIdentificacaoSenha.getText());
 
-            FrmPrincipal.ExecucaoComando = TxtConfiguracaoExecucaoComando.getText();
-            FrmPrincipal.ExecucaoParametroTMWData = TxtConfiguracaoExecucaoParamentroTMWData.getText();
-            FrmPrincipal.ExecucaoParametroServidor = TxtConfiguracaoExecucaoParamentroServidor.getText();
-            FrmPrincipal.ExecucaoParametroConta = TxtConfiguracaoExecucaoParamentroConta.getText();
-            FrmPrincipal.ExecucaoParametroSenha = TxtConfiguracaoExecucaoParamentroSenha.getText();
-            FrmPrincipal.ExecucaoParametroPersonagem = TxtConfiguracaoExecucaoParamentroPersonagem.getText();
-            FrmPrincipal.ExecucaoParametroSemopengl = ChkConfiguracaoExecucaoParamentroSemopengl.isSelected();
+            FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoComando.getText());
+            FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
+            FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
+            FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
+            FrmPrincipal.Config.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
+            FrmPrincipal.Config.setExecucaoParametroPersonagem(TxtConfiguracaoExecucaoParamentroPersonagem.getText());
+            FrmPrincipal.Config.setExecucaoParametroSemopengl(ChkConfiguracaoExecucaoParamentroSemopengl.isSelected());
 
-            FrmPrincipal.DocumentacaoAlteracoes = TxtConfiguracaoDocumentacaoAlteracoes.getText();
-            FrmPrincipal.DocumentacaoComentarios = TxtConfiguracaoDocumentacaoComentarios.getText();
-            FrmPrincipal.DocumentacaoComponentes = TxtConfiguracaoDocumentacaoComponentes.getText();
-            FrmPrincipal.DocumentacaoTraducoes = TxtConfiguracaoDocumentacaoTraducoes.getText();
+            FrmPrincipal.Config.setDocumentacaoAlteracoes(TxtConfiguracaoDocumentacaoAlteracoes.getText());
+            FrmPrincipal.Config.setDocumentacaoComentarios(TxtConfiguracaoDocumentacaoComentarios.getText());
+            FrmPrincipal.Config.setDocumentacaoComponentes(TxtConfiguracaoDocumentacaoComponentes.getText());
+            FrmPrincipal.Config.setDocumentacaoTraducoes(TxtConfiguracaoDocumentacaoTraducoes.getText());
             /**
              * <Propriedade>
              *    <TMWMaker Versao="0.2"/>
@@ -119,28 +119,28 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             Element Propriedade;
 
             Propriedade = Documento.createElement("Conexao");
-            Propriedade.setAttribute("Versao", FrmPrincipal.AppVersao);
-            Propriedade.setAttribute("Repositorio", FrmPrincipal.ConexaoRepositorio);
-            Propriedade.setAttribute("Localhost", FrmPrincipal.ConexaoLocalhost);
-            Propriedade.setAttribute("Usuario", FrmPrincipal.ConexaoUsuario);
-            Propriedade.setAttribute("Senha", FrmPrincipal.ConexaoSenha);
+            Propriedade.setAttribute("Versao", FrmPrincipal.Config.getVersao());
+            Propriedade.setAttribute("Repositorio", FrmPrincipal.Config.getConexaoRepositorio());
+            Propriedade.setAttribute("Localhost", FrmPrincipal.Config.getConexaoLocalhost());
+            Propriedade.setAttribute("Usuario", FrmPrincipal.Config.getConexaoUsuario());
+            Propriedade.setAttribute("Senha", FrmPrincipal.Config.getConexaoSenha());
             Configuracao.appendChild(Propriedade);
 
             Propriedade = Documento.createElement("Execucao");
-            Propriedade.setAttribute("Comando", FrmPrincipal.ExecucaoComando);
-            Propriedade.setAttribute("TMWData", FrmPrincipal.ExecucaoParametroTMWData);
-            Propriedade.setAttribute("Servidor", FrmPrincipal.ExecucaoParametroServidor);
-            Propriedade.setAttribute("Conta", FrmPrincipal.ExecucaoParametroConta);
-            Propriedade.setAttribute("Senha", FrmPrincipal.ExecucaoParametroSenha);
-            Propriedade.setAttribute("Personagem", FrmPrincipal.ExecucaoParametroPersonagem);
-            Propriedade.setAttribute("SemOpenGL", FrmPrincipal.ExecucaoParametroSemopengl?"true":"false");
+            Propriedade.setAttribute("Comando", FrmPrincipal.Config.getExecucaoComando());
+            Propriedade.setAttribute("TMWData", FrmPrincipal.Config.getExecucaoParametroTMWData());
+            Propriedade.setAttribute("Servidor", FrmPrincipal.Config.getExecucaoParametroServidor());
+            Propriedade.setAttribute("Conta", FrmPrincipal.Config.getExecucaoParametroConta());
+            Propriedade.setAttribute("Senha", FrmPrincipal.Config.getExecucaoParametroSenha());
+            Propriedade.setAttribute("Personagem", FrmPrincipal.Config.getExecucaoParametroPersonagem());
+            Propriedade.setAttribute("SemOpenGL", FrmPrincipal.Config.getExecucaoParametroSemopengl()?"true":"false");
             Configuracao.appendChild(Propriedade);
 
             Propriedade = Documento.createElement("Documentacao");
-            Propriedade.setAttribute("Alteracoes", FrmPrincipal.DocumentacaoAlteracoes);
-            Propriedade.setAttribute("Comentarios", FrmPrincipal.DocumentacaoComentarios);
-            Propriedade.setAttribute("Componentes", FrmPrincipal.DocumentacaoComponentes);
-            Propriedade.setAttribute("Traducoes", FrmPrincipal.DocumentacaoTraducoes);
+            Propriedade.setAttribute("Alteracoes", FrmPrincipal.Config.getDocumentacaoAlteracoes());
+            Propriedade.setAttribute("Comentarios", FrmPrincipal.Config.getDocumentacaoComentarios());
+            Propriedade.setAttribute("Componentes", FrmPrincipal.Config.getDocumentacaoComponentes());
+            Propriedade.setAttribute("Traducoes", FrmPrincipal.Config.getDocumentacaoTraducoes());
             Configuracao.appendChild(Propriedade);
 
 
@@ -780,7 +780,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
     private void TxtConfiguracaoConexaoRepositorioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
-        TxtConfiguracaoConexaoRepositorio.setText(FrmPrincipal.ConexaoRepositorio);
+        TxtConfiguracaoConexaoRepositorio.setText(FrmPrincipal.Config.getConexaoRepositorio().toString());
         FunMudaTesto();
         setMarcarComponente("");
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
@@ -837,50 +837,50 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        setMarcarComponente("TxtConfiguracaoDocumentacaoTraducoes");
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesFocusGained
     private void TxtConfiguracaoConexaoLocalhostPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoLocalhostPropertyChange
-        TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.ConexaoLocalhost);
+        TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.Config.getConexaoLocalhost());
     }//GEN-LAST:event_TxtConfiguracaoConexaoLocalhostPropertyChange
     private void TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange
-        TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.ConexaoUsuario);
+        TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.Config.getConexaoUsuario());
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange
     private void TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange
-        TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.ConexaoSenha);
+        TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.Config.getConexaoSenha());
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange
     private void TxtConfiguracaoExecucaoComandoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoComandoPropertyChange
-        TxtConfiguracaoExecucaoComando.setText(FrmPrincipal.ExecucaoComando);
+        TxtConfiguracaoExecucaoComando.setText(FrmPrincipal.Config.getExecucaoComando());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoComandoPropertyChange
     private void TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange
-        TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.ExecucaoParametroTMWData);
+        TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange
     private void TxtConfiguracaoExecucaoParamentroServidorPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroServidorPropertyChange
-        TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.ExecucaoParametroServidor);
+        TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.Config.getExecucaoParametroServidor());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroServidorPropertyChange
 
     private void TxtConfiguracaoExecucaoParamentroContaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroContaPropertyChange
-        TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.ExecucaoParametroConta);
+        TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.Config.getExecucaoParametroConta());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroContaPropertyChange
 
     private void TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange
-        TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmPrincipal.ExecucaoParametroPersonagem);
+        TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmPrincipal.Config.getExecucaoParametroPersonagem());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange
 
     private void ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange
-        ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmPrincipal.ExecucaoParametroSemopengl);
+        ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmPrincipal.Config.getExecucaoParametroSemopengl());
     }//GEN-LAST:event_ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange
 
     private void TxtConfiguracaoDocumentacaoAlteracoesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoAlteracoesPropertyChange
-        TxtConfiguracaoDocumentacaoAlteracoes.setText(FrmPrincipal.DocumentacaoAlteracoes);
+        TxtConfiguracaoDocumentacaoAlteracoes.setText(FrmPrincipal.Config.getDocumentacaoAlteracoes());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoAlteracoesPropertyChange
 
     private void TxtConfiguracaoDocumentacaoComponentesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoComponentesPropertyChange
-        TxtConfiguracaoDocumentacaoComponentes.setText(FrmPrincipal.DocumentacaoComponentes);
+        TxtConfiguracaoDocumentacaoComponentes.setText(FrmPrincipal.Config.getDocumentacaoComponentes());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoComponentesPropertyChange
 
     private void TxtConfiguracaoDocumentacaoComentariosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoComentariosPropertyChange
-        TxtConfiguracaoDocumentacaoComentarios.setText(FrmPrincipal.DocumentacaoComentarios);
+        TxtConfiguracaoDocumentacaoComentarios.setText(FrmPrincipal.Config.getDocumentacaoComentarios());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoComentariosPropertyChange
 
     private void TxtConfiguracaoDocumentacaoTraducoesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesPropertyChange
-        TxtConfiguracaoDocumentacaoTraducoes.setText(FrmPrincipal.DocumentacaoTraducoes);
+        TxtConfiguracaoDocumentacaoTraducoes.setText(FrmPrincipal.Config.getDocumentacaoTraducoes());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesPropertyChange
     
 
@@ -889,7 +889,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroSenhaFocusGained
 
     private void TxtConfiguracaoExecucaoParamentroSenhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroSenhaPropertyChange
-        TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.ExecucaoParametroSenha);
+        TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.Config.getExecucaoParametroSenha());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroSenhaPropertyChange
 
     private void TxtConfiguracaoConexaoLocalhostKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoLocalhostKeyReleased

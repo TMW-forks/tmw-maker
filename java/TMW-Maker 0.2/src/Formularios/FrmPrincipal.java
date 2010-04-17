@@ -11,6 +11,7 @@
 package Formularios;
 
 
+import Classes.ConfigClass;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -20,26 +21,7 @@ import javax.swing.JOptionPane;
 public class FrmPrincipal extends javax.swing.JFrame {
 
     static String ComponenteSelecionado = "";
-    static String AppVersao = "0.2";
-
-    static String ConexaoRepositorio = "http://themanaworld-br.googlecode.com/svn/trunk";
-    static String ConexaoLocalhost = System.getProperty("user.home")+"/tmw-br";
-    static String ConexaoUsuario = "";
-    static String ConexaoSenha = "";
-
-    static String    ExecucaoComando = "mana";
-    static String    ExecucaoParametroTMWData = ConexaoLocalhost+"/tmwdata";
-    static String    ExecucaoParametroServidor = "localhost";
-    static String    ExecucaoParametroConta = ""; //Inicia sem valor
-    static String    ExecucaoParametroSenha = ""; //Inicia sem valor
-    static String    ExecucaoParametroPersonagem = ""; //Inicia sem valor
-    static boolean   ExecucaoParametroSemopengl = true; //Inicia Sem OpenGL
-
-    static String DocumentacaoAlteracoes = "http://code.google.com/p/tmw-maker/source/list";
-    static String DocumentacaoComponentes = "http://code.google.com/p/tmw-maker/wiki/";
-    static String DocumentacaoComentarios = "http://code.google.com/p/tmw-maker/issues/entry";
-    static String DocumentacaoTraducoes = "";
-
+    public static ConfigClass Config = new ConfigClass();
         
     public FrmPrincipal() {
         initComponents();
@@ -483,11 +465,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
     private void MnuSistemaAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAlteracoesActionPerformed
        // TODO add your handling code here:
-       AbrirNavegador(DocumentacaoAlteracoes);
+       AbrirNavegador(FrmPrincipal.Config.getDocumentacaoAlteracoes());
     }//GEN-LAST:event_MnuSistemaAlteracoesActionPerformed
     private void MnuAjudaComentariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaComentariosActionPerformed
        // TODO add your handling code here:
-       AbrirNavegador(DocumentacaoComentarios);
+       AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComentarios());
     }//GEN-LAST:event_MnuAjudaComentariosActionPerformed
     private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
@@ -508,19 +490,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 /*Executador.exec("open " + URL);/**/
                 Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
             } else {
-                LblEstatus.setText("Abrindo aplicativo \""+ExecucaoComando+"\"...");
-                Comando=ExecucaoComando+" "+
-                (ExecucaoParametroTMWData.isEmpty()?"":("-ud "+ExecucaoParametroTMWData+" "))+
-                (ExecucaoParametroServidor.isEmpty()?"":("--server "+ExecucaoParametroServidor+" "))+
-                (ExecucaoParametroConta.isEmpty()?"":("--username "+ExecucaoParametroConta+" "))+
-                (ExecucaoParametroSenha.isEmpty()?"":("--password "+ExecucaoParametroSenha+" "))+
-                (ExecucaoParametroPersonagem.isEmpty()?"":("--character "+ExecucaoParametroPersonagem+" "))+
-                (ExecucaoParametroSemopengl==true?"--no-opengl":"");
+                LblEstatus.setText("Abrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
+                Comando=FrmPrincipal.Config.getExecucaoComando()+" "+
+                (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty()?"":("-ud "+FrmPrincipal.Config.getExecucaoParametroTMWData()+" "))+
+                (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty()?"":("--server "+FrmPrincipal.Config.getExecucaoParametroServidor()+" "))+
+                (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty()?"":("--username "+FrmPrincipal.Config.getExecucaoParametroConta()+" "))+
+                (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty()?"":("--password "+FrmPrincipal.Config.getExecucaoParametroSenha()+" "))+
+                (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"":("--character "+FrmPrincipal.Config.getExecucaoParametroPersonagem()+" "))+
+                (FrmPrincipal.Config.getExecucaoParametroSemopengl()==true?"--no-opengl":"");
 
                 LblEstatus.setText("Reiniciando localhost...");
                 setAviso("Reiniciando localhost...");
                 LblEstatus.updateUI();
-                Executador.exec(ConexaoLocalhost+"/eathena-data/eathena.sh restart");
+                Executador.exec(FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart");
                 LblEstatus.setText("Espere 5 segundos...");
                 LblEstatus.updateUI();
                 Esperar(5500);
@@ -532,10 +514,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             e.printStackTrace();
             LblEstatus.setText("ERRO: "+Comando);
             Mensagem_Erro("<html><b>O TMW-Maker não conseguiu abrir o aplicativo cliente padrão para The Mana World:</b><br/><br/>"+
-                "01: <font face=\"monospace\" color=\"#FF0000\">"+ConexaoLocalhost+"/eathena-data/eathena.sh restart</font><br/>"+
+                "01: <font face=\"monospace\" color=\"#FF0000\">"+FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart</font><br/>"+
                 "02: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"/eathena-data/eathena.sh restart</font><br/>"+
                 "</html>",
-                "Erro de "+ExecucaoComando
+                "Erro de "+FrmPrincipal.Config.getExecucaoComando()
             );
         }
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

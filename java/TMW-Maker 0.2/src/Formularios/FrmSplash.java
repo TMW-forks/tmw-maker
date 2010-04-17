@@ -184,7 +184,7 @@ public class FrmSplash extends javax.swing.JDialog {
 
     private void LblLunovoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblLunovoxMouseClicked
         // TODO add your handling code here:
-        FrmPrincipal.AbrirNavegador("mailto:Lunovox<rui.gravata@hotmail.com>?subject=Usuário do TMW-Maker v"+FrmPrincipal.AppVersao);
+        FrmPrincipal.AbrirNavegador("mailto:Lunovox<rui.gravata@hotmail.com>?subject=Usuário do TMW-Maker v"+FrmPrincipal.Config.getVersao());
         LblLunovox.setForeground(Color.GRAY);
         Toolkit.getDefaultToolkit().beep();
     }//GEN-LAST:event_LblLunovoxMouseClicked
