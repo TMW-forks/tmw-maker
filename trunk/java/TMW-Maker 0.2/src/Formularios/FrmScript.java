@@ -217,17 +217,10 @@ public class FrmScript extends javax.swing.JDialog {
         FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal);
     }
     public void BarraDeCodigos(boolean SeAtivo){
-        BtnScriptMes.setEnabled(SeAtivo);
+        BtnScriptComandoMes.setEnabled(SeAtivo);
+        BtnScriptComandoIF.setEnabled(SeAtivo);
     }
-    public void showMes() {
-        javax.swing.JDialog FrmMes = new FrmMes(this,false);
-        FrmMes.setLocation(
-            ((this.getWidth() - FrmMes.getWidth()) / 2) + this.getX(),
-            ((this.getHeight() - FrmMes.getHeight()) / 2) + this.getY());
-        FrmMes.pack();
-        FrmMes.setModal(true);
-        FrmMes.setVisible(true);/**/
-    }
+
 //#####################################################################################################
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -242,7 +235,8 @@ public class FrmScript extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JToolBar.Separator();
         CmbScript = new javax.swing.JComboBox();
         TbrComandos = new javax.swing.JToolBar();
-        BtnScriptMes = new javax.swing.JButton();
+        BtnScriptComandoMes = new javax.swing.JButton();
+        BtnScriptComandoIF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editor de Scripts");
@@ -253,7 +247,7 @@ public class FrmScript extends javax.swing.JDialog {
         });
 
         TxtScriptPalco.setColumns(20);
-        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14));
         TxtScriptPalco.setRows(5);
         TxtScriptPalco.setEnabled(false);
         TxtScriptPalco.addCaretListener(new javax.swing.event.CaretListener() {
@@ -323,18 +317,31 @@ public class FrmScript extends javax.swing.JDialog {
         TbrComandos.setOrientation(javax.swing.SwingConstants.VERTICAL);
         TbrComandos.setRollover(true);
 
-        BtnScriptMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
-        BtnScriptMes.setToolTipText("<html><b>MES:</b> Fala de pesonagem");
-        BtnScriptMes.setEnabled(false);
-        BtnScriptMes.setFocusable(false);
-        BtnScriptMes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnScriptMes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnScriptMes.addActionListener(new java.awt.event.ActionListener() {
+        BtnScriptComandoMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
+        BtnScriptComandoMes.setToolTipText("<html><b>MES:</b> Fala de pesonagem");
+        BtnScriptComandoMes.setEnabled(false);
+        BtnScriptComandoMes.setFocusable(false);
+        BtnScriptComandoMes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnScriptComandoMes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnScriptComandoMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnScriptMesActionPerformed(evt);
+                BtnScriptComandoMesActionPerformed(evt);
             }
         });
-        TbrComandos.add(BtnScriptMes);
+        TbrComandos.add(BtnScriptComandoMes);
+
+        BtnScriptComandoIF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/losangulo.gif"))); // NOI18N
+        BtnScriptComandoIF.setToolTipText("<html><b>IF:</b> Teste de Condição");
+        BtnScriptComandoIF.setEnabled(false);
+        BtnScriptComandoIF.setFocusable(false);
+        BtnScriptComandoIF.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnScriptComandoIF.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnScriptComandoIF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScriptComandoIFActionPerformed(evt);
+            }
+        });
+        TbrComandos.add(BtnScriptComandoIF);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -424,19 +431,43 @@ public class FrmScript extends javax.swing.JDialog {
     private void BtnNovoScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoScriptActionPerformed
         novoInstancia();
     }//GEN-LAST:event_BtnNovoScriptActionPerformed
-    private void BtnScriptMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptMesActionPerformed
-        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){showMes();}
-    }//GEN-LAST:event_BtnScriptMesActionPerformed
+    private void BtnScriptComandoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptComandoMesActionPerformed
+        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
+            javax.swing.JDialog FrmMes = new FrmMes(this,false);
+            FrmMes.setLocation(
+                ((this.getWidth() - FrmMes.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmMes.getHeight()) / 2) + this.getY());
+            FrmMes.pack();
+            FrmMes.setModal(true);
+            FrmMes.setVisible(true);/**/
+        }
+    }//GEN-LAST:event_BtnScriptComandoMesActionPerformed
     private void TxtScriptPalcoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TxtScriptPalcoCaretUpdate
-        int linha, coluna;
-        try {
-            linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition())+1;
-            coluna = FrmScript.TxtScriptPalco.getCaretPosition() - FrmScript.TxtScriptPalco.getLineStartOffset(linha)+1;
-            FrmPrincipal.LblEstatus.setText("Linha:"+linha+" Coluna:"+coluna);
-        } catch (BadLocationException ex) {
-            Logger.getLogger(FrmScript.class.getName()).log(Level.SEVERE, null, ex);
+        int linha = 0, coluna = 0;
+        if(FrmScript.TxtScriptPalco.getCaretPosition()>=0){
+            try {
+                linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition());
+                coluna = (FrmScript.TxtScriptPalco.getCaretPosition()-FrmScript.TxtScriptPalco.getLineStartOffset(linha));
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrmScript.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            FrmPrincipal.LblEstatus.setText("Linha:"+Integer.toString(linha+1)+" Coluna:"+Integer.toString(coluna));
+        }else{
+            FrmPrincipal.LblEstatus.setText("");
         }
     }//GEN-LAST:event_TxtScriptPalcoCaretUpdate
+
+    private void BtnScriptComandoIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptComandoIFActionPerformed
+        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
+            javax.swing.JDialog FrmIF = new FrmIF(this,false);
+            FrmIF.setLocation(
+                ((this.getWidth() - FrmIF.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmIF.getHeight()) / 2) + this.getY());
+            FrmIF.pack();
+            FrmIF.setModal(true);
+            FrmIF.setVisible(true);/**/
+        }
+    }//GEN-LAST:event_BtnScriptComandoIFActionPerformed
 //#####################################################################################################
 
     public static void main(String args[]) {
@@ -457,7 +488,8 @@ public class FrmScript extends javax.swing.JDialog {
     private javax.swing.JButton BtnAbrirScript;
     private javax.swing.JButton BtnNovoScript;
     private javax.swing.JButton BtnSalvarScript;
-    private javax.swing.JButton BtnScriptMes;
+    private javax.swing.JButton BtnScriptComandoIF;
+    private javax.swing.JButton BtnScriptComandoMes;
     private javax.swing.JComboBox CmbScript;
     private javax.swing.JToolBar TbrComandos;
     public static javax.swing.JTextArea TxtScriptPalco;

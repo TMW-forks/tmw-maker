@@ -36,9 +36,9 @@
                   <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BtnAplicar" min="-2" pref="84" max="-2" attributes="1"/>
+                      <Component id="BtnAdicionar" linkSize="1" min="-2" pref="84" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BtnFechar" min="-2" pref="88" max="-2" attributes="1"/>
+                      <Component id="BtnFechar" linkSize="1" min="-2" pref="88" max="-2" attributes="1"/>
                   </Group>
                   <Component id="jScrollPane1" alignment="1" pref="451" max="32767" attributes="0"/>
               </Group>
@@ -57,8 +57,8 @@
               <Component id="jPanel2" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BtnFechar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnAplicar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnFechar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnAdicionar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -85,14 +85,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="BtnAplicar">
+    <Component class="javax.swing.JButton" name="BtnAdicionar">
       <Properties>
         <Property name="mnemonic" type="int" value="65"/>
-        <Property name="text" type="java.lang.String" value="Aplicar"/>
+        <Property name="text" type="java.lang.String" value="Adicionar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAplicarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAdicionarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnFechar">
