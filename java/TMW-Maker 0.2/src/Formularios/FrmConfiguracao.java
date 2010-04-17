@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * FrmConfiguracao.java
- *
- * Created on Apr 9, 2010, 1:51:19 PM
- */
 
 package Formularios;
 
+import java.awt.Color;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.Transformer;
@@ -22,10 +13,7 @@ import javax.xml.transform.dom.DOMSource;
 import java.io.*;
 import org.w3c.dom.*;
 import java.awt.Toolkit;
-/**
- *
- * @author indigovox
- */
+
 public class FrmConfiguracao extends javax.swing.JDialog {
     
     public FrmConfiguracao(java.awt.Frame parent, boolean modal) {
@@ -43,22 +31,20 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         }
     }
     private void FunMudaTesto() {
-
-       String Repositorio = TxtConfiguracaoConexaoRepositorio.getText();
-      String Partes[] = null;
-      Partes = Repositorio.split(":");
-      if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
-         TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(true);
-         TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(true);
-         TxtConfiguracaoConexaoIdentificacaoUsuario.setBackground(java.awt.SystemColor.text);
-         TxtConfiguracaoConexaoIdentificacaoSenha.setBackground(java.awt.SystemColor.text);
-
-      }else{
-         TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(false);
-         TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(false);
-         TxtConfiguracaoConexaoIdentificacaoUsuario.setBackground(java.awt.SystemColor.window);
-         TxtConfiguracaoConexaoIdentificacaoSenha.setBackground(java.awt.SystemColor.window);
-      }
+        String Repositorio = TxtConfiguracaoConexaoRepositorio.getText();
+        String Partes[] = null;
+        Partes = Repositorio.split(":");
+        if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
+            TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(true);
+            TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(true);
+            TxtConfiguracaoConexaoIdentificacaoUsuario.setBackground(java.awt.SystemColor.text);
+            TxtConfiguracaoConexaoIdentificacaoSenha.setBackground(java.awt.SystemColor.text);
+        }else{
+            TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(false);
+            TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(false);
+            TxtConfiguracaoConexaoIdentificacaoUsuario.setBackground(java.awt.SystemColor.window);
+            TxtConfiguracaoConexaoIdentificacaoSenha.setBackground(java.awt.SystemColor.window);
+        }
     }
     public static void showAjuda(){
         FrmPrincipal.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes().trim() + FrmPrincipal.ComponenteSelecionado.trim());
@@ -156,6 +142,26 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         return true;
 
     }
+    public void ImportarConfiguracao() {
+        TxtConfiguracaoConexaoRepositorio.setText(FrmPrincipal.Config.getConexaoRepositorio().toString());
+        TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.Config.getConexaoLocalhost());
+        TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.Config.getConexaoUsuario());
+        TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.Config.getConexaoSenha());
+
+        TxtConfiguracaoExecucaoComando.setText(FrmPrincipal.Config.getExecucaoComando());
+        TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
+        TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.Config.getExecucaoParametroServidor());
+        TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.Config.getExecucaoParametroConta());
+        TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.Config.getExecucaoParametroSenha());
+        TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmPrincipal.Config.getExecucaoParametroPersonagem());
+        ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmPrincipal.Config.getExecucaoParametroSemopengl());
+
+        TxtConfiguracaoDocumentacaoAlteracoes.setText(FrmPrincipal.Config.getDocumentacaoAlteracoes());
+        TxtConfiguracaoDocumentacaoComponentes.setText(FrmPrincipal.Config.getDocumentacaoComponentes());
+        TxtConfiguracaoDocumentacaoComentarios.setText(FrmPrincipal.Config.getDocumentacaoComentarios());
+        TxtConfiguracaoDocumentacaoTraducoes.setText(FrmPrincipal.Config.getDocumentacaoTraducoes());
+        FunMudaTesto();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -204,6 +210,14 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configurações");
         setModal(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowDeactivated(java.awt.event.WindowEvent evt) {
+                formWindowDeactivated(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Repositório:");
@@ -211,11 +225,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoConexaoRepositorio.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoConexaoRepositorioFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoConexaoRepositorio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoConexaoRepositorioPropertyChange(evt);
             }
         });
         TxtConfiguracaoConexaoRepositorio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -230,11 +239,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoConexaoLocalhost.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoConexaoLocalhostFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoConexaoLocalhost.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoConexaoLocalhostPropertyChange(evt);
             }
         });
         TxtConfiguracaoConexaoLocalhost.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -255,11 +259,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained(evt);
             }
         });
-        TxtConfiguracaoConexaoIdentificacaoUsuario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange(evt);
-            }
-        });
         TxtConfiguracaoConexaoIdentificacaoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtConfiguracaoConexaoIdentificacaoUsuarioKeyReleased(evt);
@@ -273,11 +272,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoConexaoIdentificacaoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoConexaoIdentificacaoSenha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange(evt);
             }
         });
         TxtConfiguracaoConexaoIdentificacaoSenha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -369,11 +363,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 TxtConfiguracaoExecucaoComandoFocusGained(evt);
             }
         });
-        TxtConfiguracaoExecucaoComando.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoExecucaoComandoPropertyChange(evt);
-            }
-        });
         TxtConfiguracaoExecucaoComando.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtConfiguracaoExecucaoComandoKeyReleased(evt);
@@ -390,11 +379,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 TxtConfiguracaoExecucaoParamentroTMWDataFocusGained(evt);
             }
         });
-        TxtConfiguracaoExecucaoParamentroTMWData.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange(evt);
-            }
-        });
         TxtConfiguracaoExecucaoParamentroTMWData.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased(evt);
@@ -409,11 +393,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 TxtConfiguracaoExecucaoParamentroServidorFocusGained(evt);
             }
         });
-        TxtConfiguracaoExecucaoParamentroServidor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoExecucaoParamentroServidorPropertyChange(evt);
-            }
-        });
         TxtConfiguracaoExecucaoParamentroServidor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtConfiguracaoExecucaoParamentroServidorKeyReleased(evt);
@@ -426,11 +405,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoExecucaoParamentroConta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoExecucaoParamentroContaFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoExecucaoParamentroConta.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoExecucaoParamentroContaPropertyChange(evt);
             }
         });
         TxtConfiguracaoExecucaoParamentroConta.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -450,11 +424,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 TxtConfiguracaoExecucaoParamentroPersonagemFocusGained(evt);
             }
         });
-        TxtConfiguracaoExecucaoParamentroPersonagem.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange(evt);
-            }
-        });
         TxtConfiguracaoExecucaoParamentroPersonagem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtConfiguracaoExecucaoParamentroPersonagemKeyReleased(evt);
@@ -468,11 +437,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 ChkConfiguracaoExecucaoParamentroSemopenglFocusGained(evt);
             }
         });
-        ChkConfiguracaoExecucaoParamentroSemopengl.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange(evt);
-            }
-        });
         ChkConfiguracaoExecucaoParamentroSemopengl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ChkConfiguracaoExecucaoParamentroSemopenglKeyReleased(evt);
@@ -482,11 +446,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoExecucaoParamentroSenha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoExecucaoParamentroSenhaFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoExecucaoParamentroSenha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoExecucaoParamentroSenhaPropertyChange(evt);
             }
         });
         TxtConfiguracaoExecucaoParamentroSenha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -582,11 +541,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 TxtConfiguracaoDocumentacaoAlteracoesFocusGained(evt);
             }
         });
-        TxtConfiguracaoDocumentacaoAlteracoes.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoDocumentacaoAlteracoesPropertyChange(evt);
-            }
-        });
         TxtConfiguracaoDocumentacaoAlteracoes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtConfiguracaoDocumentacaoAlteracoesKeyReleased(evt);
@@ -599,11 +553,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoDocumentacaoComponentes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoDocumentacaoComponentesFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoDocumentacaoComponentes.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoDocumentacaoComponentesPropertyChange(evt);
             }
         });
         TxtConfiguracaoDocumentacaoComponentes.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -620,11 +569,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 TxtConfiguracaoDocumentacaoComentariosFocusGained(evt);
             }
         });
-        TxtConfiguracaoDocumentacaoComentarios.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoDocumentacaoComentariosPropertyChange(evt);
-            }
-        });
         TxtConfiguracaoDocumentacaoComentarios.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtConfiguracaoDocumentacaoComentariosKeyReleased(evt);
@@ -637,11 +581,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoDocumentacaoTraducoes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoDocumentacaoTraducoesFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoDocumentacaoTraducoes.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                TxtConfiguracaoDocumentacaoTraducoesPropertyChange(evt);
             }
         });
         TxtConfiguracaoDocumentacaoTraducoes.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -759,11 +698,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        FunMudaTesto();
        showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
-    private void TxtConfiguracaoConexaoRepositorioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
-        TxtConfiguracaoConexaoRepositorio.setText(FrmPrincipal.Config.getConexaoRepositorio().toString());
-        FunMudaTesto();
-        setMarcarComponente("");
-    }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
     private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
         try {
             //SalvarConfiguracao("config.xml");
@@ -835,51 +769,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoDocumentacaoTraducoesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesFocusGained
        setMarcarComponente("TxtConfiguracaoDocumentacaoTraducoes");
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesFocusGained
-    private void TxtConfiguracaoConexaoLocalhostPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoLocalhostPropertyChange
-        TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.Config.getConexaoLocalhost());
-    }//GEN-LAST:event_TxtConfiguracaoConexaoLocalhostPropertyChange
-    private void TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange
-        TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.Config.getConexaoUsuario());
-    }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange
-    private void TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange
-        TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.Config.getConexaoSenha());
-    }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange
-    private void TxtConfiguracaoExecucaoComandoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoComandoPropertyChange
-        TxtConfiguracaoExecucaoComando.setText(FrmPrincipal.Config.getExecucaoComando());
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoComandoPropertyChange
-    private void TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange
-        TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange
-    private void TxtConfiguracaoExecucaoParamentroServidorPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroServidorPropertyChange
-        TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.Config.getExecucaoParametroServidor());
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroServidorPropertyChange
-    private void TxtConfiguracaoExecucaoParamentroContaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroContaPropertyChange
-        TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.Config.getExecucaoParametroConta());
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroContaPropertyChange
-    private void TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange
-        TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmPrincipal.Config.getExecucaoParametroPersonagem());
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange
-    private void ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange
-        ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmPrincipal.Config.getExecucaoParametroSemopengl());
-    }//GEN-LAST:event_ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange
-    private void TxtConfiguracaoDocumentacaoAlteracoesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoAlteracoesPropertyChange
-        TxtConfiguracaoDocumentacaoAlteracoes.setText(FrmPrincipal.Config.getDocumentacaoAlteracoes());
-    }//GEN-LAST:event_TxtConfiguracaoDocumentacaoAlteracoesPropertyChange
-    private void TxtConfiguracaoDocumentacaoComponentesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoComponentesPropertyChange
-        TxtConfiguracaoDocumentacaoComponentes.setText(FrmPrincipal.Config.getDocumentacaoComponentes());
-    }//GEN-LAST:event_TxtConfiguracaoDocumentacaoComponentesPropertyChange
-    private void TxtConfiguracaoDocumentacaoComentariosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoComentariosPropertyChange
-        TxtConfiguracaoDocumentacaoComentarios.setText(FrmPrincipal.Config.getDocumentacaoComentarios());
-    }//GEN-LAST:event_TxtConfiguracaoDocumentacaoComentariosPropertyChange
-    private void TxtConfiguracaoDocumentacaoTraducoesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesPropertyChange
-        TxtConfiguracaoDocumentacaoTraducoes.setText(FrmPrincipal.Config.getDocumentacaoTraducoes());
-    }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesPropertyChange
     private void TxtConfiguracaoExecucaoParamentroSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroSenhaFocusGained
         setMarcarComponente("TxtConfiguracaoExecucaoParamentroSenha");
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroSenhaFocusGained
-    private void TxtConfiguracaoExecucaoParamentroSenhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroSenhaPropertyChange
-        TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.Config.getExecucaoParametroSenha());
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroSenhaPropertyChange
     private void TxtConfiguracaoConexaoLocalhostKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoLocalhostKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoLocalhostKeyReleased
@@ -890,6 +782,18 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased
     private void TxtConfiguracaoExecucaoComandoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoComandoKeyReleased
+        if(!TxtConfiguracaoExecucaoComando.getText().isEmpty()){
+            boolean SeProcede=FrmPrincipal.Config.SeComandoProcede(TxtConfiguracaoExecucaoComando.getText());
+            if(SeProcede){
+                TxtConfiguracaoExecucaoComando.setForeground(java.awt.SystemColor.textText);
+                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoComando.getText()+"\" Ok!");
+            }else{
+                TxtConfiguracaoExecucaoComando.setForeground(Color.red);
+                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoComando.getText()+"\" não procede!");
+            }
+        }else{
+            FrmPrincipal.LblEstatus.setText("Digite o comando que abrirá o jogo The Mana World!");
+        }
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoExecucaoComandoKeyReleased
     private void TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased
@@ -922,6 +826,14 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoDocumentacaoTraducoesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        ImportarConfiguracao();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
+        FrmPrincipal.LblEstatus.setText("Janela de configurações fechada!");
+    }//GEN-LAST:event_formWindowDeactivated
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
