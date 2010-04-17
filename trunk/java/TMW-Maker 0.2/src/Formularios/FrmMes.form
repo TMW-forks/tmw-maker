@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="GrupoDonoDaFala">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="GrupoFinalDeFala">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Comando MES"/>
@@ -27,12 +33,14 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="408" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BtnOk" min="-2" pref="90" max="-2" attributes="1"/>
+                      <Component id="BtnAplicar" min="-2" pref="84" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BtnCancelar" min="-2" pref="96" max="-2" attributes="1"/>
+                      <Component id="BtnFechar" min="-2" pref="88" max="-2" attributes="1"/>
                   </Group>
+                  <Component id="jScrollPane1" alignment="1" pref="451" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -42,11 +50,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="192" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="98" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel2" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnOk" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnFechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnAplicar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -67,26 +79,176 @@
             <Property name="rows" type="int" value="5"/>
             <Property name="toolTipText" type="java.lang.String" value="Digite aqui o que o NPC ir&#xe1; dizer!"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtMensagemKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="BtnOk">
+    <Component class="javax.swing.JButton" name="BtnAplicar">
       <Properties>
-        <Property name="mnemonic" type="int" value="79"/>
-        <Property name="text" type="java.lang.String" value="Ok"/>
+        <Property name="mnemonic" type="int" value="65"/>
+        <Property name="text" type="java.lang.String" value="Aplicar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnOkActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAplicarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BtnCancelar">
+    <Component class="javax.swing.JButton" name="BtnFechar">
       <Properties>
-        <Property name="mnemonic" type="int" value="67"/>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="mnemonic" type="int" value="70"/>
+        <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnFecharActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Dono da Fala"/>
+          </Border>
+        </Property>
+        <Property name="opaque" type="boolean" value="false"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="OptFalaDeNinguem" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="OptFalaDeJogador" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="OptFalaDePersonagem" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="TxtNomeDoPersonagem" pref="134" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="OptFalaDeNinguem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="OptFalaDeJogador" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TxtNomeDoPersonagem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="OptFalaDePersonagem" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JRadioButton" name="OptFalaDeJogador">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoDonoDaFala"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Jogador"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="OptFalaDePersonagem">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoDonoDaFala"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Personagem:"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="OptFalaDePersonagemStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="TxtNomeDoPersonagem">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="df" green="df" id="Window" palette="2" red="df" type="palette"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="OptFalaDeNinguem">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoDonoDaFala"/>
+            </Property>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Ninguem"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="No final da fala a caixa de dialogo ir&#xe1;:"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="OptAoFinalContinuar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="OptAoFinalPausar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="OptAoFinalFechar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="180" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="OptAoFinalContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="OptAoFinalPausar" min="-2" max="-2" attributes="0"/>
+                      <Component id="OptAoFinalFechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JRadioButton" name="OptAoFinalContinuar">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoFinalDeFala"/>
+            </Property>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Continuar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="OptAoFinalPausar">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoFinalDeFala"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pausar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OptAoFinalPausarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="OptAoFinalFechar">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoFinalDeFala"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fechar"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

@@ -22,6 +22,7 @@ import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.BadLocationException;
 
 public class FrmScript extends javax.swing.JDialog {
     public FrmScript(java.awt.Frame parent, boolean modal) {
@@ -217,8 +218,6 @@ public class FrmScript extends javax.swing.JDialog {
     }
     public void BarraDeCodigos(boolean SeAtivo){
         BtnScriptMes.setEnabled(SeAtivo);
-        BtnScriptNext.setEnabled(SeAtivo);
-        BtnScriptClose.setEnabled(SeAtivo);
     }
     public void showMes() {
         javax.swing.JDialog FrmMes = new FrmMes(this,false);
@@ -244,8 +243,6 @@ public class FrmScript extends javax.swing.JDialog {
         CmbScript = new javax.swing.JComboBox();
         TbrComandos = new javax.swing.JToolBar();
         BtnScriptMes = new javax.swing.JButton();
-        BtnScriptNext = new javax.swing.JButton();
-        BtnScriptClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editor de Scripts");
@@ -259,6 +256,11 @@ public class FrmScript extends javax.swing.JDialog {
         TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         TxtScriptPalco.setRows(5);
         TxtScriptPalco.setEnabled(false);
+        TxtScriptPalco.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                TxtScriptPalcoCaretUpdate(evt);
+            }
+        });
         TxtScriptPalco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TxtScriptPalcoKeyPressed(evt);
@@ -333,32 +335,6 @@ public class FrmScript extends javax.swing.JDialog {
             }
         });
         TbrComandos.add(BtnScriptMes);
-
-        BtnScriptNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/pausa.png"))); // NOI18N
-        BtnScriptNext.setToolTipText("<html><b>NEXT:</b> Intervalo entre falas de personagem");
-        BtnScriptNext.setEnabled(false);
-        BtnScriptNext.setFocusable(false);
-        BtnScriptNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnScriptNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnScriptNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnScriptNextActionPerformed(evt);
-            }
-        });
-        TbrComandos.add(BtnScriptNext);
-
-        BtnScriptClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/fechar.png"))); // NOI18N
-        BtnScriptClose.setToolTipText("<html><b>CLOSE:</b> Fecha janela de dialogo do personagem");
-        BtnScriptClose.setEnabled(false);
-        BtnScriptClose.setFocusable(false);
-        BtnScriptClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnScriptClose.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnScriptClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnScriptCloseActionPerformed(evt);
-            }
-        });
-        TbrComandos.add(BtnScriptClose);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -448,35 +424,19 @@ public class FrmScript extends javax.swing.JDialog {
     private void BtnNovoScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoScriptActionPerformed
         novoInstancia();
     }//GEN-LAST:event_BtnNovoScriptActionPerformed
-
     private void BtnScriptMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptMesActionPerformed
-        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
-            showMes();
-        }
+        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){showMes();}
     }//GEN-LAST:event_BtnScriptMesActionPerformed
-
-    private void BtnScriptNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptNextActionPerformed
-        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
-            addScript("next;\n");
-            /*String Conteudo=FrmScript.TxtScriptPalco.getText();
-            String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
-            String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
-            String Codigo="next;";
-            FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal+"\n");/**/
+    private void TxtScriptPalcoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TxtScriptPalcoCaretUpdate
+        int linha, coluna;
+        try {
+            linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition())+1;
+            coluna = FrmScript.TxtScriptPalco.getCaretPosition() - FrmScript.TxtScriptPalco.getLineStartOffset(linha)+1;
+            FrmPrincipal.LblEstatus.setText("Linha:"+linha+" Coluna:"+coluna);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(FrmScript.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_BtnScriptNextActionPerformed
-
-    private void BtnScriptCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptCloseActionPerformed
-        if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
-            addScript("close;\n");
-            /*String Conteudo=FrmScript.TxtScriptPalco.getText();
-            String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
-            String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
-            String Codigo="close;";
-            FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal+"\n");
-            dispose();/**/
-        }
-    }//GEN-LAST:event_BtnScriptCloseActionPerformed
+    }//GEN-LAST:event_TxtScriptPalcoCaretUpdate
 //#####################################################################################################
 
     public static void main(String args[]) {
@@ -497,9 +457,7 @@ public class FrmScript extends javax.swing.JDialog {
     private javax.swing.JButton BtnAbrirScript;
     private javax.swing.JButton BtnNovoScript;
     private javax.swing.JButton BtnSalvarScript;
-    private javax.swing.JButton BtnScriptClose;
     private javax.swing.JButton BtnScriptMes;
-    private javax.swing.JButton BtnScriptNext;
     private javax.swing.JComboBox CmbScript;
     private javax.swing.JToolBar TbrComandos;
     public static javax.swing.JTextArea TxtScriptPalco;

@@ -39,6 +39,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             BtnConfiguracaoAjuda.setEnabled(false);
         } else {
             BtnConfiguracaoAjuda.setEnabled(true);
+            FrmPrincipal.LblEstatus.setText("Clique em F1 para obter ajuda sobre ["+Componente.toString()+"]...");
         }
     }
     private void FunMudaTesto() {
