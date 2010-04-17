@@ -22,13 +22,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static String ComponenteSelecionado = "";
     static String AppVersao = "0.2";
 
-    static String ConexaoRepositorio = "http://themanaworld-br.googlecode.com/svn";
-    static String ConexaoLocalhost = System.getProperty("user.home");
+    static String ConexaoRepositorio = "http://themanaworld-br.googlecode.com/svn/trunk";
+    static String ConexaoLocalhost = System.getProperty("user.home")+"/tmw-br";
     static String ConexaoUsuario = "";
     static String ConexaoSenha = "";
 
     static String    ExecucaoComando = "mana";
-    static String    ExecucaoParametroTMWData = System.getProperty("user.home")+"/tmwdata";
+    static String    ExecucaoParametroTMWData = ConexaoLocalhost+"/tmwdata";
     static String    ExecucaoParametroServidor = "localhost";
     static String    ExecucaoParametroConta = ""; //Inicia sem valor
     static String    ExecucaoParametroSenha = ""; //Inicia sem valor
@@ -562,7 +562,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LblEstatus;
+    public static javax.swing.JLabel LblEstatus;
     private javax.swing.JMenuItem MnuAjudaComentarios;
     private javax.swing.JMenuItem MnuAjudaSobre;
     private javax.swing.JMenu MnuEditar;
