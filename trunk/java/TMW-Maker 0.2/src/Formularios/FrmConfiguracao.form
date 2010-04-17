@@ -14,6 +14,10 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowActivated"/>
+    <EventHandler event="windowDeactivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowDeactivated"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -136,7 +140,6 @@
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoConexaoRepositorio">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoRepositorioFocusGained"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoRepositorioPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoRepositorioKeyReleased"/>
               </Events>
             </Component>
@@ -149,7 +152,6 @@
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoConexaoLocalhost">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoLocalhostFocusGained"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoLocalhostPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoLocalhostKeyReleased"/>
               </Events>
             </Component>
@@ -215,7 +217,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioKeyReleased"/>
                   </Events>
                 </Component>
@@ -231,7 +232,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased"/>
                   </Events>
                 </Component>
@@ -298,7 +298,6 @@
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoComando">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoComandoFocusGained"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoComandoPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoComandoKeyReleased"/>
               </Events>
             </Component>
@@ -380,7 +379,6 @@
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroTMWData">
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased"/>
                   </Events>
                 </Component>
@@ -393,7 +391,6 @@
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroServidor">
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroServidorFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroServidorPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroServidorKeyReleased"/>
                   </Events>
                 </Component>
@@ -406,7 +403,6 @@
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroConta">
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroContaFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroContaPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroContaKeyReleased"/>
                   </Events>
                 </Component>
@@ -425,7 +421,6 @@
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroPersonagem">
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroPersonagemKeyReleased"/>
                   </Events>
                 </Component>
@@ -436,14 +431,12 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="TxtConfiguracaoExecucaoParamentroSenha">
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaFocusGained"/>
-                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaPropertyChange"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroSenhaKeyReleased"/>
                   </Events>
                 </Component>
@@ -526,7 +519,6 @@
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoAlteracoes">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesFocusGained"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoAlteracoesKeyReleased"/>
               </Events>
             </Component>
@@ -539,7 +531,6 @@
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoComponentes">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoComponentesFocusGained"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoComponentesPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoComponentesKeyReleased"/>
               </Events>
             </Component>
@@ -552,7 +543,6 @@
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoComentarios">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoComentariosFocusGained"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoComentariosPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoComentariosKeyReleased"/>
               </Events>
             </Component>
@@ -565,7 +555,6 @@
             <Component class="javax.swing.JTextField" name="TxtConfiguracaoDocumentacaoTraducoes">
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoDocumentacaoTraducoesFocusGained"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TxtConfiguracaoDocumentacaoTraducoesPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoDocumentacaoTraducoesKeyReleased"/>
               </Events>
             </Component>

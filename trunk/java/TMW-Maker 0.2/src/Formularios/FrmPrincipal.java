@@ -22,27 +22,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
-
-    static String ComponenteSelecionado = "";
-    public static ConfigClass Config = new ConfigClass();
-        
     public FrmPrincipal() {
         initComponents();
      }
-    public void setAviso(final String Aviso){
-        //tProgressBar.setIndeterminate(true);
-        Thread tThread = new Thread(
-            new Runnable() {
-                public void run() {
-                    // operacao demorada
-                    //tProgressBar.setIndeterminate(false);
-                    LblEstatus.setText(Aviso.toString());
-                }
-            }
-        );
-        tThread.start();
-    }
-    public void Esperar(int Milisegundos){
+
+    static String ComponenteSelecionado = "";
+    public static ConfigClass Config = new ConfigClass();
+
+    /*public void Esperar(int Milisegundos){
         long TempoInicio,TempoAtual;
 
         TempoInicio=System.currentTimeMillis();
@@ -50,10 +37,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             TempoAtual=System.currentTimeMillis();
         }
         while (TempoAtual-TempoInicio<Milisegundos);
-    }
-    public static void AbrirConfiguracoes() {
-         //new CadastroUsuariosGUJ();
-    }
+    }/**/
     public static boolean AbrirNavegador(String URL) {
         //minimizes the app
 
@@ -83,7 +67,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            Mensagem_Erro(
+            ConfigClass.Mensagem_Erro(
                 "\n\n O TMW-Maker não conseguiu abrir o seu navegador padrão ao tentar acessar: \n\n " + URL + "\n\n",
                 "Erro de acesso ao Navegado"
             );
@@ -92,11 +76,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
         return true;
     }
-    public static void Mensagem_Erro(String Aviso, String Titulo) {
-        Toolkit.getDefaultToolkit().beep();
-        JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
-    }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -164,6 +144,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1.setAlignmentY(0.0F);
 
         LblEstatus.setBackground(java.awt.SystemColor.activeCaptionBorder);
+        LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
         LblEstatus.setText("Bem Vindo ao TMW-Maker!");
         LblEstatus.setBorder(null);
 
@@ -487,19 +468,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
         String Comando = null;
         
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        try {
-            if (SistemaOperacional.indexOf("win") >= 0) {
-                /*String[] cmd = new String[4];
-                cmd[0] = "cmd.exe";
-                cmd[1] = "/C";
-                cmd[2] = "start";
-                cmd[3] = URL;
-                Executador.exec(cmd);/**/
-                Mensagem_Erro("Este comando ainda não foi implementado para o windows!","Descupe!");
-            } else if (SistemaOperacional.indexOf("mac") >= 0) {
-                /*Executador.exec("open " + URL);/**/
-                Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
-            } else {
+        
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            /*String[] cmd = new String[4];
+            cmd[0] = "cmd.exe";
+            cmd[1] = "/C";
+            cmd[2] = "start";
+            cmd[3] = URL;
+            Executador.exec(cmd);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!","Descupe!");
+            //C:\cygwin\cygwin.exe
+            //C:\Arquivos de programas\Mana\mana.exe
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            try {
                 LblEstatus.setText("Abrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
                 Comando=FrmPrincipal.Config.getExecucaoComando()+" "+
                 (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty()?"":("-ud "+FrmPrincipal.Config.getExecucaoParametroTMWData()+" "))+
@@ -509,27 +493,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"":("--character "+FrmPrincipal.Config.getExecucaoParametroPersonagem()+" "))+
                 (FrmPrincipal.Config.getExecucaoParametroSemopengl()==true?"--no-opengl":"");
 
-                LblEstatus.setText("Reiniciando localhost...");
-                setAviso("Reiniciando localhost...");
-                LblEstatus.updateUI();
-                Executador.exec(FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart");
-                LblEstatus.setText("Espere 5 segundos...");
-                LblEstatus.updateUI();
-                Esperar(5500);
+                if(FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")){
+                    LblEstatus.setText("Reiniciando localhost...");
+                    Executador.exec(FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart");
+                    LblEstatus.setText("Espere 5 segundos...");
+                    FrmPrincipal.Config.Esperar(5500);
+                }
                 Executador.exec(Comando);
-                LblEstatus.setText("Concluido!");
-                LblEstatus.updateUI();
+                LblEstatus.setText("Abrindo \""+FrmPrincipal.Config.getExecucaoComando()+"\"!");
+            } catch (IOException e) {
+                e.printStackTrace();
+                LblEstatus.setText("ERRO: "+Comando);
+                ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu abrir o aplicativo cliente padrão para The Mana World:</b><br/><br/>"+
+                    "01: <font face=\"monospace\" color=\"#FF0000\">"+FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart</font><br/>"+
+                    "02: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"/eathena-data/eathena.sh restart</font><br/>"+
+                    "</html>",
+                    "Erro de "+FrmPrincipal.Config.getExecucaoComando()
+                );
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            LblEstatus.setText("ERRO: "+Comando);
-            Mensagem_Erro("<html><b>O TMW-Maker não conseguiu abrir o aplicativo cliente padrão para The Mana World:</b><br/><br/>"+
-                "01: <font face=\"monospace\" color=\"#FF0000\">"+FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart</font><br/>"+
-                "02: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"/eathena-data/eathena.sh restart</font><br/>"+
-                "</html>",
-                "Erro de "+FrmPrincipal.Config.getExecucaoComando()
-            );
         }
+        
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
 

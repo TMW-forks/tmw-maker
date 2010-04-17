@@ -63,9 +63,39 @@ public class ConfigClass {
     public void setDocumentacaoComentarios(String URLdeComentarios){DocumentacaoComentarios=URLdeComentarios.toString();}
     public void setDocumentacaoTraducoes(String URLdeTraducoes){DocumentacaoTraducoes=URLdeTraducoes.toString();}
 
+    public void Esperar(int Milisegundos){
+        long TempoInicio,TempoAtual;
+
+        TempoInicio=System.currentTimeMillis();
+        do{
+            TempoAtual=System.currentTimeMillis();
+        }
+        while (TempoAtual-TempoInicio<Milisegundos);
+    }
     public static void Mensagem_Erro(String Aviso, String Titulo) {
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
+    }
+    public boolean SeComandoProcede(String Comando) {
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        Runtime Executador = Runtime.getRuntime();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            return false;
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            //Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            return false;
+        } else {
+            try {
+                Executador.exec(Comando+" --help");
+                return true;
+            } catch (IOException e) {
+                return false;
+            }
+        }
+    }
+    public boolean SeComandoProcede() {
+        return SeComandoProcede(getExecucaoComando()+" --help");
     }
     public static String getPropriedade(String Conteudo, String Propriedade) {
         int OndeEncontrado= Conteudo.indexOf("\n"+Propriedade+":",0);
