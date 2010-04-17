@@ -42,7 +42,7 @@ public class FrmMes extends javax.swing.JDialog {
         GrupoFinalDeFala = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtMensagem = new javax.swing.JTextArea();
-        BtnAplicar = new javax.swing.JButton();
+        BtnAdicionar = new javax.swing.JButton();
         BtnFechar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         OptFalaDeJogador = new javax.swing.JRadioButton();
@@ -68,12 +68,12 @@ public class FrmMes extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(TxtMensagem);
 
-        BtnAplicar.setMnemonic('A');
-        BtnAplicar.setText("Aplicar");
-        BtnAplicar.setEnabled(false);
-        BtnAplicar.addActionListener(new java.awt.event.ActionListener() {
+        BtnAdicionar.setMnemonic('A');
+        BtnAdicionar.setText("Adicionar");
+        BtnAdicionar.setEnabled(false);
+        BtnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAplicarActionPerformed(evt);
+                BtnAdicionarActionPerformed(evt);
             }
         });
 
@@ -133,7 +133,6 @@ public class FrmMes extends javax.swing.JDialog {
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("No final da fala a caixa de dialogo irá:"));
-        jPanel2.setToolTipText("null");
 
         GrupoFinalDeFala.add(OptAoFinalContinuar);
         OptAoFinalContinuar.setSelected(true);
@@ -183,12 +182,15 @@ public class FrmMes extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnAplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnAdicionar, BtnFechar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -201,9 +203,11 @@ public class FrmMes extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnFechar)
-                    .addComponent(BtnAplicar))
+                    .addComponent(BtnAdicionar))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnAdicionar, BtnFechar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,7 +215,7 @@ public class FrmMes extends javax.swing.JDialog {
     private void BtnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFecharActionPerformed
         dispose();
     }//GEN-LAST:event_BtnFecharActionPerformed
-    private void BtnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAplicarActionPerformed
+    private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
         String Conteudo=FrmScript.TxtScriptPalco.getText();
         String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
         String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
@@ -219,8 +223,10 @@ public class FrmMes extends javax.swing.JDialog {
         int linha = 0, coluna = 0;
 
         try {
+            //linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition());
+            //coluna = FrmScript.TxtScriptPalco.getCaretPosition() - FrmScript.TxtScriptPalco.getLineStartOffset(linha);
             linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition());
-            coluna = FrmScript.TxtScriptPalco.getCaretPosition() - FrmScript.TxtScriptPalco.getLineStartOffset(linha);
+            coluna = (FrmScript.TxtScriptPalco.getCaretPosition()-FrmScript.TxtScriptPalco.getLineStartOffset(linha));
             for(int i=0;i<coluna;i++){
                 Tabulacao+=" ";
             }
@@ -249,7 +255,7 @@ public class FrmMes extends javax.swing.JDialog {
         FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal);
         dispose();
 
-    }//GEN-LAST:event_BtnAplicarActionPerformed
+    }//GEN-LAST:event_BtnAdicionarActionPerformed
     private void OptAoFinalPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OptAoFinalPausarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_OptAoFinalPausarActionPerformed
@@ -258,7 +264,7 @@ public class FrmMes extends javax.swing.JDialog {
         TxtNomeDoPersonagem.setBackground(TxtNomeDoPersonagem.isEnabled()?java.awt.SystemColor.text:java.awt.SystemColor.window);
     }//GEN-LAST:event_OptFalaDePersonagemStateChanged
     private void TxtMensagemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtMensagemKeyReleased
-        BtnAplicar.setEnabled(!TxtMensagem.getText().isEmpty());
+        BtnAdicionar.setEnabled(!TxtMensagem.getText().isEmpty());
     }//GEN-LAST:event_TxtMensagemKeyReleased
 
     /**
@@ -279,7 +285,7 @@ public class FrmMes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAplicar;
+    private javax.swing.JButton BtnAdicionar;
     private javax.swing.JButton BtnFechar;
     private javax.swing.ButtonGroup GrupoDonoDaFala;
     private javax.swing.ButtonGroup GrupoFinalDeFala;

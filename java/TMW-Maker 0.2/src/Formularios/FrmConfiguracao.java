@@ -90,25 +90,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             FrmPrincipal.Config.setDocumentacaoComentarios(TxtConfiguracaoDocumentacaoComentarios.getText());
             FrmPrincipal.Config.setDocumentacaoComponentes(TxtConfiguracaoDocumentacaoComponentes.getText());
             FrmPrincipal.Config.setDocumentacaoTraducoes(TxtConfiguracaoDocumentacaoTraducoes.getText());
-            /**
-             * <Propriedade>
-             *    <TMWMaker Versao="0.2"/>
-             *    <Conexao>
-             *      <Repositorio Valor="http://themanaworld-br.googlecode.com/svn"/>
-             *      <Localhost Valor="~/TMW/"/>
-             *      <Usuario Valor="rui.gravata"/>
-             *      <Senha Valor="********"/>
-             *    </Conexao>
-             *    <Execucao>
-             *      <Comando Valor="tmw"/>
-             *      <TMWData Valor="-ud /home/indigovox/tmwdata"/>
-             *      <Servidor Valor="-S locahost"/>
-             *      <Usuario Valor="-U [Login]"/>
-             *      <Senha Valor="-P [Senha]"/>
-             *      <Personagem Valor="-c [char]"/>
-             *    </Execucao>
-             * </Propriedade>
-             */
 
             Document Documento = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 
@@ -774,7 +755,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        this.dispose();
        //System.exit(0);
     }//GEN-LAST:event_BtnConfiguracaoCancelarActionPerformed
-
     private void TxtConfiguracaoConexaoRepositorioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
        FunMudaTesto();
        showAjuda(evt);
@@ -784,16 +764,35 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         FunMudaTesto();
         setMarcarComponente("");
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioPropertyChange
-
     private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
-        SalvarConfiguracao("config.xml");
-        this.dispose();
+        try {
+            //SalvarConfiguracao("config.xml");
+            FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
+            FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
+            FrmPrincipal.Config.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
+            FrmPrincipal.Config.setConexaoSenha(TxtConfiguracaoConexaoIdentificacaoSenha.getText());
+            FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoComando.getText());
+            FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
+            FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
+            FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
+            FrmPrincipal.Config.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
+            FrmPrincipal.Config.setExecucaoParametroPersonagem(TxtConfiguracaoExecucaoParamentroPersonagem.getText());
+            FrmPrincipal.Config.setExecucaoParametroSemopengl(ChkConfiguracaoExecucaoParamentroSemopengl.isSelected());
+            FrmPrincipal.Config.setDocumentacaoAlteracoes(TxtConfiguracaoDocumentacaoAlteracoes.getText());
+            FrmPrincipal.Config.setDocumentacaoComponentes(TxtConfiguracaoDocumentacaoComponentes.getText());
+            FrmPrincipal.Config.setDocumentacaoComentarios(TxtConfiguracaoDocumentacaoComentarios.getText());
+            FrmPrincipal.Config.setDocumentacaoTraducoes(TxtConfiguracaoDocumentacaoTraducoes.getText());
+            
+            FrmPrincipal.Config.ConfiguracoesGravar();
+            this.dispose();
+        } catch (IOException ex) {
+            //Logger.getLogger(FrmConfiguracao.class.getName()).log(Level.SEVERE, null, ex);
+            FrmPrincipal.Config.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
+        }
     }//GEN-LAST:event_BtnConfiguracaoOkActionPerformed
-
     private void BtnConfiguracaoAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoAjudaActionPerformed
         showAjuda();
     }//GEN-LAST:event_BtnConfiguracaoAjudaActionPerformed
-
     private void TxtConfiguracaoConexaoRepositorioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioFocusGained
        setMarcarComponente("TxtConfiguracaoConexaoRepositorio");
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioFocusGained
@@ -854,44 +853,33 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoExecucaoParamentroServidorPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroServidorPropertyChange
         TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.Config.getExecucaoParametroServidor());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroServidorPropertyChange
-
     private void TxtConfiguracaoExecucaoParamentroContaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroContaPropertyChange
         TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.Config.getExecucaoParametroConta());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroContaPropertyChange
-
     private void TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange
         TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmPrincipal.Config.getExecucaoParametroPersonagem());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroPersonagemPropertyChange
-
     private void ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange
         ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmPrincipal.Config.getExecucaoParametroSemopengl());
     }//GEN-LAST:event_ChkConfiguracaoExecucaoParamentroSemopenglPropertyChange
-
     private void TxtConfiguracaoDocumentacaoAlteracoesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoAlteracoesPropertyChange
         TxtConfiguracaoDocumentacaoAlteracoes.setText(FrmPrincipal.Config.getDocumentacaoAlteracoes());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoAlteracoesPropertyChange
-
     private void TxtConfiguracaoDocumentacaoComponentesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoComponentesPropertyChange
         TxtConfiguracaoDocumentacaoComponentes.setText(FrmPrincipal.Config.getDocumentacaoComponentes());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoComponentesPropertyChange
-
     private void TxtConfiguracaoDocumentacaoComentariosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoComentariosPropertyChange
         TxtConfiguracaoDocumentacaoComentarios.setText(FrmPrincipal.Config.getDocumentacaoComentarios());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoComentariosPropertyChange
-
     private void TxtConfiguracaoDocumentacaoTraducoesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesPropertyChange
         TxtConfiguracaoDocumentacaoTraducoes.setText(FrmPrincipal.Config.getDocumentacaoTraducoes());
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesPropertyChange
-    
-
     private void TxtConfiguracaoExecucaoParamentroSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroSenhaFocusGained
         setMarcarComponente("TxtConfiguracaoExecucaoParamentroSenha");
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroSenhaFocusGained
-
     private void TxtConfiguracaoExecucaoParamentroSenhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroSenhaPropertyChange
         TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.Config.getExecucaoParametroSenha());
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroSenhaPropertyChange
-
     private void TxtConfiguracaoConexaoLocalhostKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoLocalhostKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoLocalhostKeyReleased
