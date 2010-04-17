@@ -8,7 +8,7 @@ Mas *SOMENTE* funciona se tiver o *[OpenJDK OpenJDK Java 6 Runtime]* instalado e
 https://tmw-maker.googlecode.com/svn/Imagens/Versoes/TMW-Maker_v0.2.png
 
 ==TMW-Maker v0.2==
- * [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker_v0.2/TMW-Maker_0.2.jar Download (692kB)] - Aplicativo inicial escrito em java em fase inicial de desenvolvimento, que por enquanto não faz absolutamente nada. 
+ * [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker_v0.2/TMW-Maker_0.2.jar Download (702kB)] - Aplicativo inicial escrito em java em fase inicial de desenvolvimento, que por enquanto não faz absolutamente nada. 
 
 ----
 
