@@ -783,7 +783,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased
     private void TxtConfiguracaoExecucaoComandoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoComandoKeyReleased
         if(!TxtConfiguracaoExecucaoComando.getText().isEmpty()){
-            boolean SeProcede=FrmPrincipal.Config.SeComandoProcede(TxtConfiguracaoExecucaoComando.getText());
+            boolean SeProcede=FrmPrincipal.Config.SeComandoProcede(TxtConfiguracaoExecucaoComando.getText()+" --help");
             if(SeProcede){
                 TxtConfiguracaoExecucaoComando.setForeground(java.awt.SystemColor.textText);
                 FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoComando.getText()+"\" Ok!");
