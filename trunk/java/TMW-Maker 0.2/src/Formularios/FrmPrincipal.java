@@ -15,8 +15,10 @@ import Classes.ConfigClass;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,15 +31,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static String ComponenteSelecionado = "";
     public static ConfigClass Config = new ConfigClass();
 
-    /*public void Esperar(int Milisegundos){
-        long TempoInicio,TempoAtual;
-
-        TempoInicio=System.currentTimeMillis();
-        do{
-            TempoAtual=System.currentTimeMillis();
-        }
-        while (TempoAtual-TempoInicio<Milisegundos);
-    }/**/
     public static boolean AbrirNavegador(String URL) {
         //minimizes the app
 
@@ -76,7 +69,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,8 +80,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PgbBarra = new javax.swing.JProgressBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnuSistema = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        MnuSistemaEnviar = new javax.swing.JMenuItem();
+        MnuSistemaReceber = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuItem3 = new javax.swing.JMenuItem();
         MnuSistemaAlteracoes = new javax.swing.JMenuItem();
@@ -129,6 +122,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TMW-MAKER 0.2");
         setForeground(java.awt.Color.white);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -148,8 +146,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         LblEstatus.setText("Bem Vindo ao TMW-Maker!");
         LblEstatus.setBorder(null);
 
-        PgbBarra.setMinimum(100);
-        PgbBarra.setString("...");
+        PgbBarra.setString("");
         PgbBarra.setStringPainted(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -170,19 +167,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.setMnemonic('S');
         MnuSistema.setText("Sistema");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
-        jMenuItem1.setMnemonic('E');
-        jMenuItem1.setText("Enviar");
-        jMenuItem1.setEnabled(false);
-        MnuSistema.add(jMenuItem1);
+        MnuSistemaEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
+        MnuSistemaEnviar.setMnemonic('E');
+        MnuSistemaEnviar.setText("Enviar");
+        MnuSistemaEnviar.setEnabled(false);
+        MnuSistema.add(MnuSistemaEnviar);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
-        jMenuItem2.setMnemonic('R');
-        jMenuItem2.setText("Receber");
-        jMenuItem2.setEnabled(false);
-        MnuSistema.add(jMenuItem2);
+        MnuSistemaReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
+        MnuSistemaReceber.setMnemonic('R');
+        MnuSistemaReceber.setText("Receber");
+        MnuSistemaReceber.setEnabled(false);
+        MnuSistemaReceber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuSistemaReceberActionPerformed(evt);
+            }
+        });
+        MnuSistema.add(MnuSistemaReceber);
         MnuSistema.add(jSeparator1);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
@@ -515,7 +517,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
-
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
         javax.swing.JDialog FrmNpcScript = new FrmScript(this, rootPaneCheckingEnabled);
         FrmNpcScript.setLocation(
@@ -525,6 +526,88 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmNpcScript.setModal(true);
         FrmNpcScript.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if(Config.SeComandoProcede("svn --help")){
+            MnuSistemaReceber.setEnabled(true);
+            //MnuSistemaEnviar.setEnabled(true);
+        }else{
+            MnuSistemaReceber.setEnabled(false);
+            MnuSistemaEnviar.setEnabled(false);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void MnuSistemaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaReceberActionPerformed
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            PgbBarra.setIndeterminate(true);
+            PgbBarra.setString("Preparando...");
+            FrmPrincipal.LblEstatus.setText("Preparando para baixar...");
+            PgbBarra.setEnabled(true);
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    // operacao demorada
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+
+                    Comando ="svn checkout "+Config.getConexaoRepositorio()+" "+Config.getConexaoLocalhost();
+                    Partes = Config.getConexaoRepositorio().split(":");
+                    if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
+                        Comando+=" --username "+Config.getConexaoUsuario()+" --password "+Config.getConexaoSenha();
+                    }
+
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.LblEstatus.setText("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                            Arquivos++;
+                            PgbBarra.setString("nº"+Arquivos);
+                            //Partes=line.split("/");
+                            //PgbBarra.setString(Partes[Partes.length-1]);
+                        }
+                        //ConfigClass.Mensagem_Erro("Repositório \""+Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        FrmPrincipal.LblEstatus.setText("<html>Repositório \"<font color=\"#0000FF\"><b>"+Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
+                        PgbBarra.setString("Concluido!");
+                    } catch (IOException e) {
+                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+Config.getConexaoUsuario()+"\"!", "ERRO");
+                        FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+Config.getConexaoUsuario()+"</b>\"!");
+                        PgbBarra.setString("ERRO!");
+                    }/**/
+                    PgbBarra.setIndeterminate(false);
+                    
+                }
+            });
+            tThread.start();
+
+
+
+            /*if(SeConclui){
+                ConfigClass.Mensagem_Erro("Repositório \""+Config.getConexaoUsuario()+"\" recebido com sucesso!", "AVISO");
+            }else{
+                ConfigClass.Mensagem_Erro("Falha ao receber o repositório \""+Config.getConexaoUsuario()+"\"!", "ERRO");
+            }/**/
+            /*try {
+                Process Retorno=Executador.exec(Comando);
+                BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                while ((line = in.readLine()) != null) {
+                    System.out.println(line);
+                }
+                ConfigClass.Mensagem_Erro("Repositório \""+Config.getConexaoUsuario()+"\" recebido com sucesso!", "AVISO");
+            } catch (IOException e) {
+                ConfigClass.Mensagem_Erro("Falha ao receber o repositório \""+Config.getConexaoUsuario()+"\"!", "ERRO");
+            }/**/
+        }
+    }//GEN-LAST:event_MnuSistemaReceberActionPerformed
 
 
     public static void main(String args[]) {
@@ -564,15 +647,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuJogoExecutar;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
+    private javax.swing.JMenuItem MnuSistemaEnviar;
     private javax.swing.JMenuItem MnuSistemaFechar;
+    private javax.swing.JMenuItem MnuSistemaReceber;
     private javax.swing.JProgressBar PgbBarra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;

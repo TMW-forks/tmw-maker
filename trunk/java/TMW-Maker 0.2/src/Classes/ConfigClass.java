@@ -87,7 +87,7 @@ public class ConfigClass {
             return false;
         } else {
             try {
-                Executador.exec(Comando+" --help");
+                Executador.exec(Comando);
                 return true;
             } catch (IOException e) {
                 return false;
