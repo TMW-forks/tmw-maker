@@ -337,78 +337,78 @@ Exemplo:
 Variáveis é um espaço guardado na memória usado para armazenar dados.
 
 ===Variáveis são divididas em:===
- *prefixo*  - Determina o escopo e o tempo da variável
- *nome* 	 - Um identificador que consistem '_' e caracteres alfa-numéricos.
- *pós-fixo* - Determina o tipo de variável: string ou inteiro
+ * *prefixo*  - Determina o escopo e o tempo da variável
+ * *nome* 	 - Um identificador que consistem '_' e caracteres alfa-numéricos.
+ * *pós-fixo* - Determina o tipo de variável: string ou inteiro
 
 ===Escopo pode ser:===
- *global*    	- global para todos os servidores.
- *local*     	- local para o servidor.
- *conta*		- atachada na conta do RID indentificado.
- *character*	- atachada ao char identificado pelo RID.(char)
- *npc*		- atachada ao NPC
- *escopo*	- atachada ao escopo do instante.
+ * *global*    	- global para todos os servidores.
+ * *local*     	- local para o servidor.
+ * *conta*		- atachada na conta do RID indentificado.
+ * *character*	- atachada ao char identificado pelo RID.(char)
+ * *npc*		- atachada ao NPC
+ * *escopo*	- atachada ao escopo do instante.
 
 ===Extenção pode ser:===
- *permanente* - Ela ainda existe quando o servidor reseta
- *temporária* - Ela não existe quando o servidor reseta
+ * *permanente* - Ela ainda existe quando o servidor reseta
+ * *temporária* - Ela não existe quando o servidor reseta
 
 ===Prefixo: escopo e extenção===
- *nada*  - Uma variável permanente atachada ao jogador, o tipo padrão de cariável.
- "*@*"	 - Uma variável temporária atachada ao jogador.
- "*$*"	 - Uma variável global permanente. Elas são guardadas em "save\mapreg.txt" ou na tabela de banco de dados `mapreg`, dependendo do tipo (txt ou sql)
- "*$@*"	 - Uma variável global temporária.
- "*.*"	 - Uma variável de NPC. Elas existem no NPC e disaparecem quando o servidor reiniciaar ou o npc for recarregad. pode ser acessada pelo comando 'getvariableofnpc'.
- "*.@*"  - Uma variável de Escopo/ NPC
- "*#*"	 - Uma variável de conta permanente. Elas são salvas em "save\accreg.txt" ou na tabela 'global_reg_value'.
- "*##*"	 - Uma variável permanente global, guardada no login-server. Elas são guardadas em "save\account.txt" e nas versões SQL na tabela 'global_reg_value'.
+ * *nada*  - Uma variável permanente atachada ao jogador, o tipo padrão de cariável.
+ * "*@*"	 - Uma variável temporária atachada ao jogador.
+ * "*$*"	 - Uma variável global permanente. Elas são guardadas em "save\mapreg.txt" ou na tabela de banco de dados `mapreg`, dependendo do tipo (txt ou sql)
+ * "*$@*"	 - Uma variável global temporária.
+ * "*.*"	 - Uma variável de NPC. Elas existem no NPC e disaparecem quando o servidor reiniciaar ou o npc for recarregad. pode ser acessada pelo comando 'getvariableofnpc'.
+ * "*.@*"  - Uma variável de Escopo/ NPC
+ * "*#*"	 - Uma variável de conta permanente. Elas são salvas em "save\accreg.txt" ou na tabela 'global_reg_value'.
+ * "*##*"	 - Uma variável permanente global, guardada no login-server. Elas são guardadas em "save\account.txt" e nas versões SQL na tabela 'global_reg_value'.
 
 ===Pós-fixo: inteiro ou string===
- *nada*  - variável inteira, pode guardar número positivos/negativos, Mais somente números inteiro.
- '*$*'   - variável string, pode guardar texto alfanumérico
+ * *nada*  - variável inteira, pode guardar número positivos/negativos, Mais somente números inteiro.
+ * '*$*'   - variável string, pode guardar texto alfanumérico
 
 ===Exemplos:===
- *nome*		- variável de char permanente e inteira
- *nome$*	- variável de char permanente e string
- *@nome*	- variável de char temporária e inteira
- *@nome$*	- variável de char temporária e string
- *$nome*	- variável permanente, global e inteira
- *$nome$*	- variável permanente, global e string
- *$@nome*	- variável temporária global e inteira
- *$@nome$*	- variável temporária global e string
- *.nome*	- variável de npc inteira
- *.nome$*	- variável de npc string
- *.@nome*	- variável de escopo/npc inteira
- *.@nome$*	- variável de escopo/npc inteira
- *#nome*	- variável de conta, inteira, permanente e local
- *#nome$*	- variável de conta, string, permanente e local
- *##nome*	- variável de conta, inteira, permanente e global
- *##nome$*	- variável de conta, string, permanente e global
+ * *nome*	- variável de char permanente e inteira
+ * *nome$*	- variável de char permanente e string
+ * *@nome*	- variável de char temporária e inteira
+ * *@nome$*	- variável de char temporária e string
+ * *$nome*	- variável permanente, global e inteira
+ * *$nome$*	- variável permanente, global e string
+ * *$@nome*	- variável temporária global e inteira
+ * *$@nome$*	- variável temporária global e string
+ * *.nome*	- variável de npc inteira
+ * *.nome$*	- variável de npc string
+ * *.@nome*	- variável de escopo/npc inteira
+ * *.@nome$*	- variável de escopo/npc inteira
+ * *#nome*	- variável de conta, inteira, permanente e local
+ * *#nome$*	- variável de conta, string, permanente e local
+ * *##nome*	- variável de conta, inteira, permanente e global
+ * *##nome$*	- variável de conta, string, permanente e global
 
 Se uma variável nunca foi definida, ela terá valor 0 para variáveis inteiras e "" (vazia) para strings.
 
 ===Variáveis definidas pelo Sistema:===
 
- *StatusPoint*	- Quantidade de pontos de status restante.
- *BaseLevel*	- nível base atual.
- *SkillPoint*	- Quantidade de pontos de habilidades restante.
- *Class*		- emprego (job) atual.
- *Upper*		- 1 se o char for de classe avançada.
- *Zeny*		- Quantidade de Zeny atual.
- *Sex*		- Sexo, 1 se for homem 0 se for mulher.
- *Weight*	- O Peso atual que o jogador carrega.
- *MaxWeight*	- O Peso máximo que o jogador pode carregar.
- *JobLevel*	- nível de emprego (job lvl) do jogador.
- *BaseExp*	- A Quantidade de pontos experiência, se 0 o char acabou de upar.
- *NextBaseExp*	- Quantidade de exepriência que o jogador precisa para upar para o  próximo nível.
- *NextJobExp*	- O Mesmo para nível de emprego (job lvl).
- *Hp*		- Quantidade de HP
- *MaxHp*		- Quantidade máxima de hp
- *Sp*		- Quantidade de sp
- *MaxSp*		- Quantidade máxia de sp
- *BaseJob*	- Isso não é confiável, aparentemente usado para suporte de classes baby.
- *Karma*		- O Karma do char, o sistema de karma não é completamente  funcional.
- *Manner*	- A taxa de delicadeza do char. Se torna negativa se o jogador proverir palavras probidas de 'manner.txt' (fica na pasta do jogo).
+ * *StatusPoint*	- Quantidade de pontos de status restante.
+ * *BaseLevel*		- nível base atual.
+ * *SkillPoint*		- Quantidade de pontos de habilidades restante.
+ * *Class*		- emprego (job) atual.
+ * *Upper*		- 1 se o char for de classe avançada.
+ * *Zeny*		- Quantidade de Zeny atual.
+ * *Sex*		- Sexo, 1 se for homem 0 se for mulher.
+ * *Weight*		- O Peso atual que o jogador carrega.
+ * *MaxWeight*		- O Peso máximo que o jogador pode carregar.
+ * *JobLevel*		- nível de emprego (job lvl) do jogador.
+ * *BaseExp*		- A Quantidade de pontos experiência, se 0 o char acabou de upar.
+ * *NextBaseExp*	- Quantidade de exepriência que o jogador precisa para upar para o próximo nível.
+ * *NextJobExp*		- O Mesmo para nível de emprego (job lvl).
+ * *Hp*			- Quantidade de HP
+ * *MaxHp*		- Quantidade máxima de hp
+ * *Sp*			- Quantidade de sp
+ * *MaxSp*		- Quantidade máxia de sp
+ * *BaseJob*		- Isso não é confiável, aparentemente usado para suporte de classes baby.
+ * *Karma*		- O Karma do char, o sistema de karma não é completamente  funcional.
+ * *Manner*		- A taxa de delicadeza do char. Se torna negativa se o jogador proverir palavras probidas de 'manner.txt' (fica na pasta do jogo).
 
 
 Essas variável são definidas altematicamente. se você tentar definir Zeny com um número negativo, o script vai concluir que é um erro.
@@ -498,20 +498,20 @@ o exemplo será igual à fazermos isto:
 
 ===Operadores são coisas que você pode usar em números, string, variáveis:===
 
- +	Vai somar números, se usado em string, une uma ou mais strings, resultando em uma só. É o único operador que se pode usar em strings.
- -	Vai diminuir números.
- *	Vai multiplicar números.
- /	Vai dividir números.
- %	é o resto da divisão. 7%2 será igual à 1.
+ * *+*	Vai somar números, se usado em string, une uma ou mais strings, resultando em uma só. É o único operador que se pode usar em strings.
+ * *-*	Vai diminuir números.
+ * *{{{*}}} *	Vai multiplicar números.
+ * */*	Vai dividir números.
+ * *%*	é o resto da divisão. 7%2 será igual à 1.
 
 ===Há também operadores condicionais, usados para checar strings, variáves, números:===
 
- ==	(exatamente igual) Se ambos lados forem igual o retorno será verdadeiro usado para string ,número, variáveis.
- >=	(maior ou igual) se o primeiro valor for igual ou maior ao segundo, o retorno será verdadeiro
- <=	(menor ou igual) se o primeiro valor for menor ou igual, o retorno será	verdadeiro
- >	(maior que) se o primeiro valor for maior que o segundo, o retorno será 	verdadeiro (operador válido somente para números).
- <	(menor que) se o primeiro valor for menor que o segundo, o retorno será verdadeiro (operador válido somente para números).
- !=	(diferente) se os valores forem diferentes, o retorno será verdadeiro.
+ * *==*	(exatamente igual) Se ambos lados forem igual o retorno será verdadeiro usado para string ,número, variáveis.
+ * *>=*	(maior ou igual) se o primeiro valor for igual ou maior ao segundo, o retorno será verdadeiro
+ * *<=*	(menor ou igual) se o primeiro valor for menor ou igual, o retorno será	verdadeiro
+ * *>*	(maior que) se o primeiro valor for maior que o segundo, o retorno será 	verdadeiro (operador válido somente para números).
+ * *<*	(menor que) se o primeiro valor for menor que o segundo, o retorno será verdadeiro (operador válido somente para números).
+ * *!=*	(diferente) se os valores forem diferentes, o retorno será verdadeiro.
 
 Exemplos:
 	{{{if(1==1)}}}		VERDADEIRO
@@ -521,17 +521,17 @@ Exemplos:
 
 ===As comparações podem ser empilhadas numa mesma checagem, usando certo operadores.===
 
- && - é verdadeiro se todos os lados forem iguais.
- || - é verdadeiro se pelo menos um lado for verdadeiro.
+ * *&&* - é verdadeiro se todos os lados forem iguais.
+ * *||* - é verdadeiro se pelo menos um lado for verdadeiro.
 
- 1==1 && 2==2 é verdadeiro.
- 1==1 && 2==1 é falso
- 1==1 || 2==1 é verdadeiro, pois a primeira condição é verdadeira.
+ * *1==1 && 2==2* é verdadeiro.
+ * *1==1 && 2==1* é falso
+ * *1==1 || 2==1* é verdadeiro, pois a primeira condição é verdadeira.
 
 ===Operadores lógicos de "parte" só funcionam com números:===
 
- << - Mudança para esquerda.
- >> - Mudança para direita.
+ * *<<* - Mudança para esquerda.
+ * *>>* - Mudança para direita.
 
 Vamos entender melhor em um exemplo:
 {{{
@@ -545,8 +545,8 @@ Vamos entender melhor em um exemplo:
 O Primeiro "mes a" vai mostrar 16, pois fará o seguinte cálculo: 2 x (2 x 2 x 2) = 16.
 	e o segundo mostrará 4, pois fará o seguinte cálculo: 16 / 2 = 8. 8 / 2 = 4..
 
- &  - e.
- |  - ou.
+ * *&*  - e.
+ * *|*  - ou.
 ===Entenderemos melhor esses dois operadores em exemplos:===
 
 	& checa se dentro da variável há certo valor.
@@ -561,7 +561,7 @@ O Primeiro "mes a" vai mostrar 16, pois fará o seguinte cálculo: 2 x (2 x 2 x 
 	essa checagem acima deve mostrar "Opção 2 ativada"
 					 "Opção 4 ativada"
 					 "Opção 16 ativada"
- ^  - Xor.
+ * *^*  - Xor.
 ===Também entederemos melhor com exemplos.===
 	
 	Examplos:
@@ -694,14 +694,13 @@ toda vez que você matar um, o npc anunciará a mensagem.
 
 A Partir daqui, nós teremos os comando organizados como segue:
 
-1.- Comandos Básicos.
-2.- Comandos de Recuperação de Informações.
-3.- Comandos de Checagem.
-4.- Comandos Relativos aos jogadores.
-5.- Comandos Relativos à NPC/MOBS.
-6.- Outros Comandos.
+ * Comandos Básicos.
+ * Comandos de Recuperação de Informações.
+ * Comandos de Checagem.
+ * Comandos Relativos aos jogadores.
+ * Comandos Relativos à NPC/MOBS.
+ * Outros Comandos.
 
-----
 
 =Comandos Básicos=
 
