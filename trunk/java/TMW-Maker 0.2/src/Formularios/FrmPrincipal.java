@@ -109,10 +109,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         MnuEditarPoderGM = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        MnuJogo = new javax.swing.JMenu();
         MnuJogoExecutar = new javax.swing.JMenuItem();
         MnuJogoEstruturar = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        MnuAjuda = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         MnuAjudaComentarios = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -337,8 +337,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(MnuEditar);
 
-        jMenu4.setMnemonic('J');
-        jMenu4.setText("Jogo");
+        MnuJogo.setMnemonic('J');
+        MnuJogo.setText("Jogo");
 
         MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
         MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
@@ -349,24 +349,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 MnuJogoExecutarActionPerformed(evt);
             }
         });
-        jMenu4.add(MnuJogoExecutar);
+        MnuJogo.add(MnuJogoExecutar);
 
         MnuJogoEstruturar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.CTRL_MASK));
         MnuJogoEstruturar.setMnemonic('S');
         MnuJogoEstruturar.setText("Estruturar");
         MnuJogoEstruturar.setEnabled(false);
-        jMenu4.add(MnuJogoEstruturar);
+        MnuJogo.add(MnuJogoEstruturar);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(MnuJogo);
 
-        jMenu5.setMnemonic('A');
-        jMenu5.setText("Ajuda");
+        MnuAjuda.setMnemonic('A');
+        MnuAjuda.setText("Ajuda");
 
         jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuItem9.setMnemonic('P');
         jMenuItem9.setText("Componentes");
         jMenuItem9.setEnabled(false);
-        jMenu5.add(jMenuItem9);
+        MnuAjuda.add(jMenuItem9);
 
         MnuAjudaComentarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
         MnuAjudaComentarios.setMnemonic('C');
@@ -376,12 +376,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 MnuAjudaComentariosActionPerformed(evt);
             }
         });
-        jMenu5.add(MnuAjudaComentarios);
+        MnuAjuda.add(MnuAjudaComentarios);
 
         jMenuItem11.setText("Traduções");
         jMenuItem11.setEnabled(false);
-        jMenu5.add(jMenuItem11);
-        jMenu5.add(jSeparator4);
+        MnuAjuda.add(jMenuItem11);
+        MnuAjuda.add(jSeparator4);
 
         MnuAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_contato.gif"))); // NOI18N
         MnuAjudaSobre.setText("Sobre...");
@@ -391,10 +391,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 MnuAjudaSobreActionPerformed(evt);
             }
         });
-        jMenu5.add(MnuAjudaSobre);
+        MnuAjuda.add(MnuAjudaSobre);
         MnuAjudaSobre.getAccessibleContext().setAccessibleName("MnuPrincipalSobre");
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(MnuAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -466,11 +466,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MnuAjudaComentariosActionPerformed
     private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
-        Runtime Executador = Runtime.getRuntime();
-        String Comando = null;
         
+        MnuSistema.setEnabled(false);
+        MnuEditar.setEnabled(false);
+        MnuJogo.setEnabled(false);
+        MnuAjuda.setEnabled(false);
+
+        PgbBarra.setEnabled(true);
+        PgbBarra.setValue(0);
+        PgbBarra.setMinimum(0);
+        PgbBarra.setMaximum(5);
+
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        
+
         if (SistemaOperacional.indexOf("win") >= 0) {
             /*String[] cmd = new String[4];
             cmd[0] = "cmd.exe";
@@ -482,39 +490,77 @@ public class FrmPrincipal extends javax.swing.JFrame {
             //C:\cygwin\cygwin.exe
             //C:\Arquivos de programas\Mana\mana.exe
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
-            /*Executador.exec("open " + URL);/**/
+            //Executador.exec("open " + URL);
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
-            try {
-                LblEstatus.setText("Abrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
-                Comando=FrmPrincipal.Config.getExecucaoComando()+" "+
-                (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty()?"":("-ud "+FrmPrincipal.Config.getExecucaoParametroTMWData()+" "))+
-                (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty()?"":("--server "+FrmPrincipal.Config.getExecucaoParametroServidor()+" "))+
-                (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty()?"":("--username "+FrmPrincipal.Config.getExecucaoParametroConta()+" "))+
-                (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty()?"":("--password "+FrmPrincipal.Config.getExecucaoParametroSenha()+" "))+
-                (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"":("--character "+FrmPrincipal.Config.getExecucaoParametroPersonagem()+" "))+
-                (FrmPrincipal.Config.getExecucaoParametroSemopengl()==true?"--no-opengl":"");
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Comando="";
 
-                if(FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")){
-                    LblEstatus.setText("Reiniciando localhost...");
-                    Executador.exec(FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart");
-                    LblEstatus.setText("Espere 5 segundos...");
-                    FrmPrincipal.Config.Esperar(5500);
+                    if(FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")){
+                        PgbBarra.setString("Reiniciando...");
+                        LblEstatus.setText("Reiniciando localhost...");
+                        try {
+                            Comando=FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart";
+                            Executador.exec(Comando);
+                            LblEstatus.setText("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
+                            long TempoInicio=0,TempoAtual=0,Milisegundos=5500,Segundos=0;
+                            TempoInicio=System.currentTimeMillis();
+                            do{
+                                TempoAtual=System.currentTimeMillis();
+                                Segundos=(TempoAtual-TempoInicio)/1000;
+                                //LblEstatus.setText("Espere "+Segundos+"/5 segundos...");
+                                PgbBarra.setValue((int)Segundos);
+                                PgbBarra.setString("00:00:0"+(5-((int)Segundos)));
+                            }
+                            while (TempoAtual-TempoInicio<Milisegundos);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
+                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"+
+                                "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
+                                "</html>",
+                                "ERRO DE EXECUÇÃO"
+                            );
+                        }
+                    }
+                    PgbBarra.setIndeterminate(true);
+                    LblEstatus.setText("Abrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
+                    Comando=FrmPrincipal.Config.getExecucaoComando()+" "+
+                    (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty()?"":("-ud "+FrmPrincipal.Config.getExecucaoParametroTMWData()+" "))+
+                    (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty()?"":("--server "+FrmPrincipal.Config.getExecucaoParametroServidor()+" "))+
+                    (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty()?"":("--username "+FrmPrincipal.Config.getExecucaoParametroConta()+" "))+
+                    (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty()?"":("--password "+FrmPrincipal.Config.getExecucaoParametroSenha()+" "))+
+                    (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"":("--character "+FrmPrincipal.Config.getExecucaoParametroPersonagem()+" "))+
+                    (FrmPrincipal.Config.getExecucaoParametroSemopengl()==true?"--no-opengl":"");
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\": "+line);
+                            PgbBarra.setString("Executando...");
+                        }
+                        PgbBarra.setString("Encerrado!");
+                        LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\" executado e fechando com sucesso!");
+                        PgbBarra.setIndeterminate(false);
+                    } catch (IOException e) {
+                        PgbBarra.setIndeterminate(false);
+                        e.printStackTrace();
+                        PgbBarra.setString("ERRO...");
+                        LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> "+Comando);
+                        ConfigClass.Mensagem_Erro("O TMW-Maker não conseguiu abrir o jogo THE MANA WORLD!","ERRO DE EXECUÇÃO");
+                    }
                 }
-                Executador.exec(Comando);
-                LblEstatus.setText("Abrindo \""+FrmPrincipal.Config.getExecucaoComando()+"\"!");
-            } catch (IOException e) {
-                e.printStackTrace();
-                LblEstatus.setText("ERRO: "+Comando);
-                ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu abrir o aplicativo cliente padrão para The Mana World:</b><br/><br/>"+
-                    "01: <font face=\"monospace\" color=\"#FF0000\">"+FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart</font><br/>"+
-                    "02: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"/eathena-data/eathena.sh restart</font><br/>"+
-                    "</html>",
-                    "Erro de "+FrmPrincipal.Config.getExecucaoComando()
-                );
-            }
+            });
+            tThread.start();
         }
-        
+        PgbBarra.setValue(5);
+        MnuSistema.setEnabled(true);
+        MnuEditar.setEnabled(true);
+        MnuJogo.setEnabled(true);
+        MnuAjuda.setEnabled(true);
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
@@ -526,7 +572,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmNpcScript.setModal(true);
         FrmNpcScript.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if(Config.SeComandoProcede("svn --help")){
             MnuSistemaReceber.setEnabled(true);
@@ -536,7 +581,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuSistemaEnviar.setEnabled(false);
         }
     }//GEN-LAST:event_formWindowActivated
-
     private void MnuSistemaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaReceberActionPerformed
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
@@ -588,24 +632,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }
             });
             tThread.start();
-
-
-
-            /*if(SeConclui){
-                ConfigClass.Mensagem_Erro("Repositório \""+Config.getConexaoUsuario()+"\" recebido com sucesso!", "AVISO");
-            }else{
-                ConfigClass.Mensagem_Erro("Falha ao receber o repositório \""+Config.getConexaoUsuario()+"\"!", "ERRO");
-            }/**/
-            /*try {
-                Process Retorno=Executador.exec(Comando);
-                BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                while ((line = in.readLine()) != null) {
-                    System.out.println(line);
-                }
-                ConfigClass.Mensagem_Erro("Repositório \""+Config.getConexaoUsuario()+"\" recebido com sucesso!", "AVISO");
-            } catch (IOException e) {
-                ConfigClass.Mensagem_Erro("Falha ao receber o repositório \""+Config.getConexaoUsuario()+"\"!", "ERRO");
-            }/**/
         }
     }//GEN-LAST:event_MnuSistemaReceberActionPerformed
 
@@ -621,6 +647,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel LblEstatus;
+    private javax.swing.JMenu MnuAjuda;
     private javax.swing.JMenuItem MnuAjudaComentarios;
     private javax.swing.JMenuItem MnuAjudaSobre;
     private javax.swing.JMenu MnuEditar;
@@ -643,6 +670,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenuItem MnuEditarPoderGM;
+    private javax.swing.JMenu MnuJogo;
     private javax.swing.JMenuItem MnuJogoEstruturar;
     private javax.swing.JMenuItem MnuJogoExecutar;
     private javax.swing.JMenu MnuSistema;
@@ -652,8 +680,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuSistemaReceber;
     private javax.swing.JProgressBar PgbBarra;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem3;
