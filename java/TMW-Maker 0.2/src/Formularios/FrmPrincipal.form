@@ -261,7 +261,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="MnuJogo">
           <Properties>
             <Property name="mnemonic" type="int" value="74"/>
             <Property name="text" type="java.lang.String" value="Jogo"/>
@@ -294,7 +294,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu5">
+        <Menu class="javax.swing.JMenu" name="MnuAjuda">
           <Properties>
             <Property name="mnemonic" type="int" value="65"/>
             <Property name="text" type="java.lang.String" value="Ajuda"/>
