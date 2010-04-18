@@ -21,16 +21,39 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.accessibility.AccessibleContext;
 import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 
 public class FrmScript extends javax.swing.JDialog {
+
     public FrmScript(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 //#####################################################################################################
-    public BlocoDeScript Instancia[];
+    public static BlocoDeScript Instancia[];
+    /*public static void InstanciaAdicionar(String NomeDoScript, String Mapa, int CoordX, int CoordY, int LargDoGatilho, int AltuDoGatilho, int Imagem, String Utilidade) {
+        //Instancia.length
+        //Object[] itens = { obj1, obj2 }
+
+        int newSize = Instancia.length + 1;
+        BlocoDeScript[] NovoInstancia = new BlocoDeScript[newSize];
+        //copia elemento por elemento de intes para newItens
+        //então
+        for(int i=0;i<Instancia.length;i++){
+            NovoInstancia[i] = Instancia[i];
+        }
+        NovoInstancia[Instancia.length-1] = new BlocoDeScript();
+        NovoInstancia[Instancia.length-1].setTipo("script");
+        NovoInstancia[Instancia.length-1].setNome(NomeDoScript);
+        NovoInstancia[Instancia.length-1].setMapa(Mapa);
+        NovoInstancia[Instancia.length-1].setX(CoordX);
+        NovoInstancia[Instancia.length-1].setY(CoordY);
+        NovoInstancia[Instancia.length-1].setImagem(Imagem);
+
+        Instancia = NovoInstancia;
+    }/**/
 //#####################################################################################################
     public String InstanciasArray2String(BlocoDeScript[] Instancias){
         String Codigo="";
@@ -87,7 +110,7 @@ public class FrmScript extends javax.swing.JDialog {
         }
     }
     public void novoInstancia(){
-        ExemploDeConteudo();
+        //ExemploDeConteudo();
         //TxtScript.setEnabled(true);
         //CmbScript.setEnabled(true);
         BtnSalvarScript.setEnabled(true);
@@ -293,7 +316,6 @@ public class FrmScript extends javax.swing.JDialog {
         BtnAbrirScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
         BtnAbrirScript.setText("Abrir");
         BtnAbrirScript.setToolTipText("Abrir script salvo (Ctrl+O)");
-        BtnAbrirScript.setEnabled(false);
         BtnAbrirScript.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         BtnAbrirScript.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         BtnAbrirScript.addActionListener(new java.awt.event.ActionListener() {
@@ -370,17 +392,17 @@ public class FrmScript extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 //#####################################################################################################
     private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbScriptActionPerformed
-        int i = CmbScript.getSelectedIndex();
+        //abrirInstancia("ScriptExemplo.conf");
         //this.setTitle(Integer.toString(i));
-        abrirInstancia("ScriptExemplo.conf");
-        //String Cod= Instancia[i].getScript().toString();
-        //TxtScript.setText(Cod.toString());/**/
+        int i = CmbScript.getSelectedIndex();
+        String Cod= Instancia[i].getScript().toString();
+        TxtScriptPalco.setText(Cod.toString());/**/
     }//GEN-LAST:event_CmbScriptActionPerformed
     private void TxtScriptPalcoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtScriptPalcoKeyPressed
         if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_F1 && evt.isControlDown()){
-            ExemploDeConteudo();
+            //ExemploDeConteudo();
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
-            ExemploDeConteudo();
+            //ExemploDeConteudo();
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
             salvarInstancia("ScriptExemplo.conf");
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
@@ -408,7 +430,7 @@ public class FrmScript extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtScriptPalcoKeyPressed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //ExemploDeConteudo();
-        abrirInstancia("ScriptExemplo.conf");
+        //abrirInstancia("ScriptExemplo.conf");
     }//GEN-LAST:event_formWindowOpened
     private void BtnAbrirScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirScriptActionPerformed
         abrirInstancia("ScriptExemplo.conf");
@@ -429,7 +451,16 @@ public class FrmScript extends javax.swing.JDialog {
         salvarInstancia("ScriptExemplo.conf");
     }//GEN-LAST:event_BtnSalvarScriptActionPerformed
     private void BtnNovoScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoScriptActionPerformed
-        novoInstancia();
+        //novoInstancia();
+        if(BtnNovoScript.isEnabled()){
+            javax.swing.JDialog FrmNovoBloco = new FrmNovoBloco(this,false);
+            FrmNovoBloco.setLocation(
+                ((this.getWidth() - FrmNovoBloco.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmNovoBloco.getHeight()) / 2) + this.getY());
+            FrmNovoBloco.pack();
+            FrmNovoBloco.setModal(true);
+            FrmNovoBloco.setVisible(true);/**/
+        }
     }//GEN-LAST:event_BtnNovoScriptActionPerformed
     private void BtnScriptComandoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptComandoMesActionPerformed
         if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
@@ -488,9 +519,9 @@ public class FrmScript extends javax.swing.JDialog {
     private javax.swing.JButton BtnAbrirScript;
     private javax.swing.JButton BtnNovoScript;
     private javax.swing.JButton BtnSalvarScript;
-    private javax.swing.JButton BtnScriptComandoIF;
-    private javax.swing.JButton BtnScriptComandoMes;
-    private javax.swing.JComboBox CmbScript;
+    public static javax.swing.JButton BtnScriptComandoIF;
+    public static javax.swing.JButton BtnScriptComandoMes;
+    public static javax.swing.JComboBox CmbScript;
     private javax.swing.JToolBar TbrComandos;
     public static javax.swing.JTextArea TxtScriptPalco;
     private javax.swing.JScrollPane jScrollPane1;
