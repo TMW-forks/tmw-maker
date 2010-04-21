@@ -265,7 +265,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Ele pegar&#xe1; XXX itens e YYYY GP, &#xa;e dar&#xe1; um item Z."/>
+                    <Property name="text" type="java.lang.String" value="Pegar&#xe1; XXX itens e YYYY de GP (dinheiro).&#xa;Dar&#xe1; um item Z."/>
                   </Properties>
                 </Component>
               </SubComponents>

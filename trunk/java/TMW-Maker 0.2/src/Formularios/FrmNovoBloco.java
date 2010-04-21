@@ -3,7 +3,10 @@ package Formularios;
 
 import Classes.BlocoDeScript;
 import java.lang.Object;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.text.BadLocationException;
 
 public class FrmNovoBloco extends javax.swing.JDialog {
     public FrmNovoBloco(java.awt.Dialog parent, boolean modal) {
@@ -81,7 +84,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
 
         TxtNovoBlocoScriptUtilidade.setColumns(20);
         TxtNovoBlocoScriptUtilidade.setRows(5);
-        TxtNovoBlocoScriptUtilidade.setText("Ele pegará XXX itens e YYYY GP, \ne dará um item Z.");
+        TxtNovoBlocoScriptUtilidade.setText("Pegará XXX itens e YYYY de GP (dinheiro).\nDará um item Z.");
         jScrollPane2.setViewportView(TxtNovoBlocoScriptUtilidade);
 
         jLabel13.setText("Descrição da Utilidade:");
@@ -284,11 +287,23 @@ public class FrmNovoBloco extends javax.swing.JDialog {
                 for (i = 0; i<(newSize-1); i++) {
                     NovoInstancia[i] = FrmScript.Instancia[i];
                     Titulo[i] = new Object();
-                    Titulo[i] = i + "º " + FrmScript.Instancia[i].getNome() + " (" + FrmScript.Instancia[i].getMapa() + ":" + FrmScript.Instancia[i].getX() + "," + FrmScript.Instancia[i].getY() + ")";
+                    Titulo[i] = (i+1) + "º " + FrmScript.Instancia[i].getNome() + " (" + FrmScript.Instancia[i].getMapa() + ":" + FrmScript.Instancia[i].getX() + "," + FrmScript.Instancia[i].getY() + ")";
+                     Titulo[i] = "<html><font color=\"#888888\">"+(i+1) + "º </font>" +
+                        ""+FrmScript.Instancia[i].getNome()+
+                        " <font color=\"#888888\">"+
+                            "("+FrmScript.Instancia[i].getMapa()+":"+FrmScript.Instancia[i].getX()+","+FrmScript.Instancia[i].getY()+")"+
+                            " [img "+FrmScript.Instancia[i].getImagem()+":"+FrmScript.Instancia[i].getLarguraDeGatilho()+","+FrmScript.Instancia[i].getAlturaDeGatilho()+"]"+
+                        "</font>";
                 }
             }
             Titulo[i] = new Object();
-            Titulo[i] = i+"º "+TxtNovoBlocoScriptNome.getText().toString()+" ("+TxtNovoBlocoScriptMapa.getText().toString()+":"+SpnNovoBlocoScriptCoordX.getValue().toString()+","+SpnNovoBlocoScriptCoordY.getValue().toString()+")";
+            Titulo[i] = "<html><font color=\"#888888\">"+(i+1)+"º </font> "+
+                TxtNovoBlocoScriptNome.getText().toString()+" "+
+                "<font color=\"#888888\">"+
+                    " ("+TxtNovoBlocoScriptMapa.getText().toString()+":"+SpnNovoBlocoScriptCoordX.getValue().toString()+","+SpnNovoBlocoScriptCoordY.getValue().toString()+")"+
+                    " [img "+ ImagemInt +":"+ SpnNovoBlocoScriptGatilhoLargura.getValue() +","+ SpnNovoBlocoScriptGatilhoAltura.getValue() +"]"+
+                "</font>";
+
             
             NovoInstancia[i] = new BlocoDeScript();
             NovoInstancia[i].setTipo("script");
@@ -297,6 +312,8 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             NovoInstancia[i].setX(Integer.parseInt(SpnNovoBlocoScriptCoordX.getValue().toString()));
             NovoInstancia[i].setY(Integer.parseInt(SpnNovoBlocoScriptCoordY.getValue().toString()));
             NovoInstancia[i].setImagem(ImagemInt);
+            NovoInstancia[i].setLarguraDeGatilho(Integer.parseInt(SpnNovoBlocoScriptGatilhoLargura.getValue().toString()));
+            NovoInstancia[i].setAlturaDeGatilho(Integer.parseInt(SpnNovoBlocoScriptGatilhoAltura.getValue().toString()));
     
             FrmScript.Instancia = NovoInstancia;
             
@@ -304,18 +321,55 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             //FrmScript.CmbScript.setModel(model);
             FrmScript.CmbScript.setModel(new DefaultComboBoxModel(Titulo));
 
+            String Utilidade="";
+            TxtNovoBlocoUtilidade.setText(this.TxtNovoBlocoUtilidade.getText().trim());
+            if(!TxtNovoBlocoUtilidade.getText().trim().equals("")){
+                for(int l=0;l<TxtNovoBlocoScriptUtilidade.getLineCount();l++){
+                    try {
+                        Utilidade += "//    * "+
+                        TxtNovoBlocoScriptUtilidade.getText().substring(
+                            TxtNovoBlocoScriptUtilidade.getLineStartOffset(l),
+                            TxtNovoBlocoScriptUtilidade.getLineEndOffset(l)-(l<(TxtNovoBlocoScriptUtilidade.getLineCount()-1)?1:0)
+                        ) +
+                        "\n";
+                    } catch (BadLocationException ex) {
+                        Logger.getLogger(FrmNovoBloco.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            NovoInstancia[i].setScript(
+                "///////////////////////////////////////////////////////////////////\n"+
+                "// IDE: TMW-Maker "+FrmPrincipal.Config.getVersao()+"\n"+
+                "// Criador: "+(FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"<Desconhecido>":FrmPrincipal.Config.getExecucaoParametroPersonagem())+"\n"+
+                (Utilidade.isEmpty()?"":"// Utilidade:\n"+Utilidade)+
+                "///////////////////////////////////////////////////////////////////\n"+
+                "\n"+
+                "_inicio:\n"+
+                "\n"+
+                "\t//Insira seu Código de Eathena aqui...\n"+
+                "\n"+
+                "close;"
+            );
+            FrmScript.TxtScriptPalco.setText(NovoInstancia[i].getScript());
+
+            
             FrmScript.CmbScript.setEnabled(true);
             FrmScript.CmbScript.setVisible(true);
             FrmScript.TxtScriptPalco.setEnabled(true);
-            //CmbNovoBlocoScriptImagem.setItemAt(CmbNovoBlocoScriptImagem.getSelectedIndex()).toString()
             FrmScript.BtnScriptComandoMes.setEnabled(true);
             FrmScript.BtnScriptComandoIF.setEnabled(true);
-
-            //FrmScript.Mensagem_Erro("Contagem = "+FrmScript.Instancia.length, "Teste de Execucao");
+            dispose();
         }else if(TbpTipoDeBloco.getSelectedIndex()==1){
-            //???
+            //*
+            //*
+            //*
+            //*
+            FrmPrincipal.Config.Mensagem_Erro("Ainda não é possivel adicionar Funções!", null);
+            //*
+            //*
+            //*
+            //*
         }
-        dispose();
     }//GEN-LAST:event_BtnAdicionarActionPerformed
 
     public static void main(String args[]) {
