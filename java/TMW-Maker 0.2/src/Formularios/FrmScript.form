@@ -134,9 +134,8 @@
         <Component class="javax.swing.JComboBox" name="CmbScript">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="001&#xba; ExemploDeFuncao"/>
-                <StringItem index="1" value="002&#xba; Roger (008:108,23)"/>
+              <StringArray count="1">
+                <StringItem index="0" value="&lt;sem blocos&gt;"/>
               </StringArray>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>

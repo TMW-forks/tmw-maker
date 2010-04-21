@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 
 public class ConfigClass {
     private String Versao = "0.2";
-    private String EnderecoPadrao = "config.ini";
+    private String EnderecoPadrao = ".tmw-maker.ini";
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
-    private String  ConexaoLocalhost =              System.getProperty("user.home")+"/tmw-br";
+    private String  ConexaoLocalhost =              System.getProperty("user.home")+System.getProperty("file.separator")+"tmw-br";
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
     private String  ExecucaoComando =               "mana";
-    private String  ExecucaoParametroTMWData =      ConexaoLocalhost+"/tmwdata";
+    private String  ExecucaoParametroTMWData =      ConexaoLocalhost+System.getProperty("file.separator")+"tmwdata";
     private String  ExecucaoParametroServidor =     "localhost";
     private String  ExecucaoParametroConta =        ""; //Inicia sem valor
     private String  ExecucaoParametroSenha =        ""; //Inicia sem valor
@@ -71,6 +71,12 @@ public class ConfigClass {
             TempoAtual=System.currentTimeMillis();
         }
         while (TempoAtual-TempoInicio<Milisegundos);
+    }
+    public static String EnderecoDoJAR(){
+        return System.getProperty("user.dir");
+    }
+    public static String EnderecoDoTMWMaker(){
+        return System.getProperty("user.home")+System.getProperty("file.separator")+"tmw-maker";
     }
     public static void Mensagem_Erro(String Aviso, String Titulo) {
         Toolkit.getDefaultToolkit().beep();

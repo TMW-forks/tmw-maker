@@ -13,17 +13,14 @@ package Formularios;
 
 
 import Classes.BlocoDeScript;
-import Formularios.FrmPrincipal;
-import java.awt.Frame;
 import java.awt.Toolkit;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.accessibility.AccessibleContext;
 import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.DefaultComboBoxModel;
 
 public class FrmScript extends javax.swing.JDialog {
 
@@ -33,35 +30,18 @@ public class FrmScript extends javax.swing.JDialog {
     }
 //#####################################################################################################
     public static BlocoDeScript Instancia[];
-    /*public static void InstanciaAdicionar(String NomeDoScript, String Mapa, int CoordX, int CoordY, int LargDoGatilho, int AltuDoGatilho, int Imagem, String Utilidade) {
-        //Instancia.length
-        //Object[] itens = { obj1, obj2 }
-
-        int newSize = Instancia.length + 1;
-        BlocoDeScript[] NovoInstancia = new BlocoDeScript[newSize];
-        //copia elemento por elemento de intes para newItens
-        //então
-        for(int i=0;i<Instancia.length;i++){
-            NovoInstancia[i] = Instancia[i];
-        }
-        NovoInstancia[Instancia.length-1] = new BlocoDeScript();
-        NovoInstancia[Instancia.length-1].setTipo("script");
-        NovoInstancia[Instancia.length-1].setNome(NomeDoScript);
-        NovoInstancia[Instancia.length-1].setMapa(Mapa);
-        NovoInstancia[Instancia.length-1].setX(CoordX);
-        NovoInstancia[Instancia.length-1].setY(CoordY);
-        NovoInstancia[Instancia.length-1].setImagem(Imagem);
-
-        Instancia = NovoInstancia;
-    }/**/
+    public static String EnderecoDoScript="ScriptExemplo.conf";
 //#####################################################################################################
     public String InstanciasArray2String(BlocoDeScript[] Instancias){
         String Codigo="";
         for(int i=0;i<Instancias.length;i++){
             //008.gat,108,23,0	script	Roger	308,{
             if(Instancias[i].getTipo()=="script"){
-                Codigo+=
-                Instancias[i].getMapa()+".gat,"+Instancias[i].getX()+","+Instancias[i].getY()+",0\tscript\t"+Instancias[i].getNome()+"\t"+Instancias[i].getImagem()+",{\n"+
+                Codigo+=Instancias[i].getMapa()+".gat,"+Instancias[i].getX()+","+Instancias[i].getY()+",0\tscript\t"+Instancias[i].getNome()+"\t"+Instancias[i].getImagem()+",";
+                if(Instancias[i].getLarguraDeGatilho()>=1 || Instancias[i].getAlturaDeGatilho()>=1){
+                    Codigo+=Instancias[i].getLarguraDeGatilho()+","+Instancias[i].getAlturaDeGatilho()+",";
+                }
+                Codigo+="{\n"+
                     Instancias[i].getScript()+"\n"+
                 "}";
             }else if(Instancias[i].getTipo()=="function\tscript"){
@@ -74,79 +54,26 @@ public class FrmScript extends javax.swing.JDialog {
         }
         return Codigo;
     }
-    public void ExemploDeConteudo(){
-        try {
-            Instancia= new BlocoDeScript[2]; // Diz que são 2 Instancias
-
-            Instancia[0] = new BlocoDeScript();// Cria o Instancia nº0
-            Instancia[0].setNome("ExemploDeFuncao");
-            Instancia[0].setTipo("function\tscript");
-            Instancia[0].setScript(
-                "_inicio:\n"+
-                "     //Editando os Arquivo do Instancia!\n"+
-                "     //Pode Ficar Tranquilo... (T_T)\n"+
-                "_retorno:"
-            );
-
-            Instancia[1] = new BlocoDeScript();// Cria o Instancia nº1
-            Instancia[1].setNome("Roger");
-            Instancia[1].setTipo("script");
-            Instancia[1].setMapa("008");
-            Instancia[1].setX(108);
-            Instancia[1].setY(2);
-            Instancia[1].setImagem(0);
-            Instancia[1].setScript(""+
-            "_inicio:\n"+
-            "     mes \"[Roger (Guarda da Torre)]\";\n"+
-            "     mes \"ZzzZzzZ...\";\n"+
-            "     next;\n"+
-            "     mes \"Hã!!! Eu não estava dormindo.\";\n"+
-            "close;");/**/
-
-            TxtScriptPalco.setText(Instancia[(int)CmbScript.getSelectedIndex()].getScript());
-            //TxtScriptPalco.setEditable(true);
-        }catch(Exception e){
-            Mensagem_Erro("Ocorreu um Erro durante instanciação do exemplo de Script!","ERRO");
-        }
-    }
-    public void novoInstancia(){
-        //ExemploDeConteudo();
-        //TxtScript.setEnabled(true);
-        //CmbScript.setEnabled(true);
-        BtnSalvarScript.setEnabled(true);
-        //CmbScript.setEnabled(true);
-        TxtScriptPalco.setEnabled(true);
-        BarraDeCodigos(true);
-    }
     public boolean salvarInstancia(String Endereco){
-        //ExemploDeConteudo();
         try {
-            /*int i = CmbScript.getSelectedIndex();
-            this.setTitle(Integer.toString(i));
-            String Cod= Instancia[i].getScript().toString();
-            TxtScript.setText(Cod.toString());/**/
-            /*Instancia= new BlocoDeScript[CmbScript.getItemCount()];
-            for(i=0;i<CmbScript.getItemCount();i++){
-                Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
-            }/**/
-
-
             int i = CmbScript.getSelectedIndex();
             Instancia[i].setScript(TxtScriptPalco.getText().toString());
             FileWriter out = new FileWriter(Endereco);
             out.write(InstanciasArray2String(Instancia));
             out.close();
-            //T1.setText("Arquivo gravado com sucesso !");
+            
             CmbScript.setEnabled(true);
             TxtScriptPalco.setEnabled(true);
             BarraDeCodigos(true);
             BtnSalvarScript.setEnabled(false);
             BtnAbrirScript.setEnabled(true);
             this.setTitle("Editor de Scripts ["+Endereco+"]");
+            FrmPrincipal.LblEstatus.setText("Arquivo gravado com sucesso !");
             //Mensagem_Erro("Arquivo gravado com sucesso !","AVISO");
             return true;
         } catch (java.io.IOException exc) {
-            Mensagem_Erro("Não foi possivel gravar o arquivo!","AVISO");
+            FrmPrincipal.LblEstatus.setText("<font color=\"#FF0000\">ERRO:</font> Falha ao gravar arquivo!");
+            Mensagem_Erro("Não foi possivel gravar \""+EnderecoDoScript+"\"!","AVISO");
             return false;
         }
 
@@ -169,49 +96,89 @@ public class FrmScript extends javax.swing.JDialog {
             }while(AbreBloco>=1);
             if(blocos>=1){
                 Instancia= new BlocoDeScript[blocos]; // Diz que são 2 Instancias
+                Object[] TituloDeBloco= new java.lang.Object[blocos];
+                StringBuffer Manipulador = null;
+                String[] ParteDeSessao= null;
+                String[] ParteDoMapa= null;
+                String[] ParteDaPosicao= null;
+                String[] ParteFacutativa= null;
+                javax.swing.ImageIcon Icone = null;
                 
-                StringBuffer Manipulador = new StringBuffer(Conteudo);
                 for(int i=0;i<blocos;i++){
                     AbreBloco=FechaBloco;
-                    //if(i==0){
-                        Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
-                        //System.out.println(sb);
-                        
-                        AbreBloco= Conteudo.indexOf("{",AbreBloco)+1;//Só adiciona +1 pq foi feito o teste de existencia de blocos;
+                    Manipulador = new StringBuffer(Conteudo);
+                    Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
+                    //System.out.println(sb);
+
+                    AbreBloco= Conteudo.indexOf("{",AbreBloco)+1;//Só adiciona +1 pq foi feito o teste de existencia de blocos;
+                    Manipulador.reverse();
+                    PontaDeBloco=0;
+                    PontaDeBloco= Manipulador.indexOf("\n",Conteudo.length()-AbreBloco);
+                    if(PontaDeBloco>=1){
                         Manipulador.reverse();
-                        PontaDeBloco=0;
-                        PontaDeBloco= Manipulador.indexOf("\n",Conteudo.length()-AbreBloco);
-                        if(PontaDeBloco>=1){
-                            Manipulador.reverse();
-                            PontaDeBloco= Conteudo.length()-PontaDeBloco;//Recolaliza ponta de Bloco ao Inverter String
-                        }else{
-                            PontaDeBloco=0;//Põe a Ponta de Bloco no inicio do código
-                        }
-                         //Mensagem_Erro(Conteudo.substring(PontaDeBloco,AbreBloco), "ERRO");
-                        Cabecalho=Conteudo.substring(PontaDeBloco,AbreBloco);
-                        FechaBloco= Conteudo.indexOf("}",AbreBloco);//Só adiciona +1 pq foi feito o teste de existencia de blocos;
-                        Bloco=Conteudo.substring(AbreBloco+1,FechaBloco-1);
-                        //Mensagem_Erro(Bloco, "Nota de Programador");
-                        //Mensagem_Erro(CmbScript.getItemAt(i), "Nota de Programador");
-                        Instancia[i].setScript(Bloco);
-                        if(CmbScript.getSelectedIndex()==i){
-                            CmbScript.setSelectedItem(i);
-                            CmbScript.setActionCommand(Cabecalho);
-                            TxtScriptPalco.setText(Bloco.substring(0,Bloco.length()));
+                        PontaDeBloco= Conteudo.length()-PontaDeBloco;//Recolaliza ponta de Bloco ao Inverter String
+                    }else{
+                        PontaDeBloco=0;//Põe a Ponta de Bloco no inicio do código
+                    }
+                    
+                    Cabecalho=Conteudo.substring(PontaDeBloco,AbreBloco-1);
+                    FechaBloco= Conteudo.indexOf("}",AbreBloco);//Só adiciona +1 pq foi feito o teste de existencia de blocos;
+                    Bloco=Conteudo.substring(AbreBloco+1,FechaBloco-1);
+
+
+                    ParteDeSessao = Cabecalho.split("\t");
+                    if(ParteDeSessao.length>=2){
+                        if(ParteDeSessao[1].equals("script")){
+                            Instancia[i].setTipo("script");
+                            Instancia[i].setNome(ParteDeSessao[2].toString());
+
+                            ParteDaPosicao = ParteDeSessao[0].split(",");
+                            ParteDoMapa = ParteDaPosicao[0].split(",");
+                            Instancia[i].setMapa(ParteDoMapa[0].toString());
+                            Instancia[i].setX(Integer.parseInt(ParteDaPosicao[1].toString()));
+                            Instancia[i].setY(Integer.parseInt(ParteDaPosicao[2].toString()));
+
+                            ParteFacutativa = ParteDeSessao[3].split(",");
+                            //Mensagem_Erro("ParteFacutativa=\""+ParteFacutativa.length+"\"", "Nota de Programador");
+                            Instancia[i].setImagem(Integer.parseInt(ParteFacutativa[0].toString()));
+                            if(ParteFacutativa.length>=2) {
+                                if(!ParteFacutativa[1].equals("")) {
+                                    Mensagem_Erro("ParteFacutativa[1]=\""+ParteFacutativa[1]+"\"", "Nota de Programador");
+                                    Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[1].toString()));
+                                }
+                            }
+                            if(ParteFacutativa.length>=3) {
+                                if(!ParteFacutativa[2].equals("")) {
+                                    Instancia[i].setAlturaDeGatilho(Integer.parseInt(ParteFacutativa[2].toString()));
+                                }
+                            }
+
+                            //BtnSalvarScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
+                            Icone=new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"));
+                            TituloDeBloco[i] = new Object();
+                            TituloDeBloco[i] = "<html><font color=\"#888888\">"+(i+1) + "º </font>" +
+                                ""+Instancia[i].getNome()+
+                                " <font color=\"#888888\">"+
+                                    "("+Instancia[i].getMapa()+":"+Instancia[i].getX()+","+Instancia[i].getY()+")"+
+                                    " [img "+Instancia[i].getImagem()+":"+Instancia[i].getLarguraDeGatilho()+","+Instancia[i].getAlturaDeGatilho()+"]"+
+                                "</font>";
                         }
 
-                        /*Mensagem_Erro(
-                            "PontaDeBloco="+PontaDeBloco+", "+
-                            "AbreBloco="+AbreBloco+", "+
-                            "FechaBloco="+FechaBloco+", "+
-                            "\n\""+
-                            Cabecalho+"\"\n"
-                        , "Nota de Programador");/**/
-                    /*}else{
-                        Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
-                        Instancia[i].setScript("");
-                        Mensagem_Erro("ERRO: Bloco nº"+(i+1)+" não aproveitado pelo TMW-Maker!", "ERRO");
-                    }/**/
+                        Instancia[i].setScript(Bloco);
+                        CmbScript.setModel(new DefaultComboBoxModel(TituloDeBloco));
+                        if(CmbScript.getSelectedIndex()==i){
+                            CmbScript.setSelectedItem(i);
+                            TxtScriptPalco.setText(Bloco.substring(0,Bloco.length()));
+                        }
+                    }else{
+                        //TxtScript.setText(Conteudo.toString());
+                        FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Cabeçalho de Bloco com formato inválido!");
+                        Mensagem_Erro(
+                            "Cabeçalho de Bloco com formato inválido!\n"+
+                            "<html><font color=\"#FF0000\">"+Cabecalho,
+                            "ERRO"
+                        );
+                    }
                 }
                 TxtScriptPalco.setEnabled(true);
                 BarraDeCodigos(true);
@@ -220,10 +187,12 @@ public class FrmScript extends javax.swing.JDialog {
                 //Mensagem_Erro("Arquivo possui "+blocos+" blocos!", "AVISO");
             }else{
                 //TxtScript.setText(Conteudo.toString());
+                FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> O arquivo possui conteúdo incompatível com o Eathena Script!");
                 Mensagem_Erro("O arquivo possui conteúdo incompatível com o Eathena Script!", "ERRO");
             }
         } catch (java.io.IOException exc) {
-            //Mensagem_Erro("Não foi possivel abrir o arquivo!","AVISO");
+            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+EnderecoDoScript+"\"!");
+            Mensagem_Erro("Não foi possivel abrir \""+EnderecoDoScript+"\"!","AVISO");
             //ExemploDeConteudo();
             //TxtScript.setEnabled(true);
             //CmbScript.setEnabled(true);
@@ -326,7 +295,7 @@ public class FrmScript extends javax.swing.JDialog {
         jToolBar1.add(BtnAbrirScript);
         jToolBar1.add(jSeparator1);
 
-        CmbScript.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "001º ExemploDeFuncao", "002º Roger (008:108,23)" }));
+        CmbScript.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<sem blocos>" }));
         CmbScript.setEnabled(false);
         CmbScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,7 +361,7 @@ public class FrmScript extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 //#####################################################################################################
     private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbScriptActionPerformed
-        //abrirInstancia("ScriptExemplo.conf");
+        //abrirInstancia(EnderecoDoScript);
         //this.setTitle(Integer.toString(i));
         int i = CmbScript.getSelectedIndex();
         String Cod= Instancia[i].getScript().toString();
@@ -403,10 +372,10 @@ public class FrmScript extends javax.swing.JDialog {
             //ExemploDeConteudo();
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
             //ExemploDeConteudo();
-        }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
-            salvarInstancia("ScriptExemplo.conf");
-        }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
-            abrirInstancia("ScriptExemplo.conf");
+        }else if(BtnSalvarScript.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
+            salvarInstancia(EnderecoDoScript);
+        }else if(BtnAbrirScript.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
+            abrirInstancia(EnderecoDoScript);
         }else if(!evt.isControlDown() && !evt.isAltDown() && !evt.isShiftDown() &&
 
                     evt.getKeyCode()!=java.awt.event.KeyEvent.VK_CAPS_LOCK &&
@@ -430,28 +399,15 @@ public class FrmScript extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtScriptPalcoKeyPressed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //ExemploDeConteudo();
-        //abrirInstancia("ScriptExemplo.conf");
+        //abrirInstancia(EnderecoDoScript);
     }//GEN-LAST:event_formWindowOpened
     private void BtnAbrirScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirScriptActionPerformed
-        abrirInstancia("ScriptExemplo.conf");
-        /*try {
-            String Conteudo="";
-            FileReader CapsulaDeLer = new FileReader("ScriptExemplo.conf");
-            int Caracater = CapsulaDeLer.read();
-            while (Caracater!=-1) {
-                Conteudo = Conteudo + (char) Caracater;
-                Caracater = CapsulaDeLer.read();
-            }
-            TxtScript.setText(Conteudo.toString());
-            CapsulaDeLer.close();
-            Mensagem_Erro("Arquivo Aberto com sucesso!", "AVISO");
-        } catch (java.io.IOException exc) {Mensagem_Erro("Não foi possivel abrir o arquivo!","AVISO");}/**/
+        abrirInstancia(EnderecoDoScript);
     }//GEN-LAST:event_BtnAbrirScriptActionPerformed
     private void BtnSalvarScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarScriptActionPerformed
-        salvarInstancia("ScriptExemplo.conf");
+        salvarInstancia(EnderecoDoScript);
     }//GEN-LAST:event_BtnSalvarScriptActionPerformed
     private void BtnNovoScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoScriptActionPerformed
-        //novoInstancia();
         if(BtnNovoScript.isEnabled()){
             javax.swing.JDialog FrmNovoBloco = new FrmNovoBloco(this,false);
             FrmNovoBloco.setLocation(
