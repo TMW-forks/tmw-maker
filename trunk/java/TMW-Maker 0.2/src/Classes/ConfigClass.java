@@ -2,6 +2,7 @@ package Classes;
 
 import Formularios.FrmPrincipal;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,14 +12,15 @@ import javax.swing.JOptionPane;
 
 public class ConfigClass {
     private String Versao = "0.2";
-    private String EnderecoPadrao = ".tmw-maker.ini";
+    private String Barra = System.getProperty("file.separator");
+    private String EnderecoPadrao = System.getProperty("user.home")+Barra+".tmw-maker.ini";
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
-    private String  ConexaoLocalhost =              System.getProperty("user.home")+System.getProperty("file.separator")+"tmw-br";
+    private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"tmw-br";
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
     private String  ExecucaoComando =               "mana";
-    private String  ExecucaoParametroTMWData =      ConexaoLocalhost+System.getProperty("file.separator")+"tmwdata";
+    private String  ExecucaoParametroTMWData =      ConexaoLocalhost+Barra+"tmwdata";
     private String  ExecucaoParametroServidor =     "localhost";
     private String  ExecucaoParametroConta =        ""; //Inicia sem valor
     private String  ExecucaoParametroSenha =        ""; //Inicia sem valor
@@ -102,6 +104,15 @@ public class ConfigClass {
     }
     public boolean SeComandoProcede() {
         return SeComandoProcede(getExecucaoComando()+" --help");
+    }
+    public static boolean SeExiste(String PastaOuArquivo){
+        File Capsula;
+        Capsula = new File(PastaOuArquivo);
+        if (Capsula.exists()){
+            return true;
+        }else{
+            return false;
+        }
     }
     public static String getPropriedade(String Conteudo, String Propriedade) {
         int OndeEncontrado= Conteudo.indexOf("\n"+Propriedade+":",0);

@@ -107,7 +107,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarMagiasCompetencias = new javax.swing.JMenuItem();
         MnuEditarMagiasConjurações = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
-        MnuEditarPoderGM = new javax.swing.JMenuItem();
+        MnuEditarContas = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         MnuJogo = new javax.swing.JMenu();
         MnuJogoExecutar = new javax.swing.JMenuItem();
@@ -150,7 +150,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatusLayout.setHorizontalGroup(
             PnlBarraDeEstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlBarraDeEstatusLayout.createSequentialGroup()
-                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(PgbBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -326,9 +326,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditar.add(MnuEditarMagias);
         MnuEditar.add(jSeparator3);
 
-        MnuEditarPoderGM.setText("Poder GM");
-        MnuEditarPoderGM.setEnabled(false);
-        MnuEditar.add(MnuEditarPoderGM);
+        MnuEditarContas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MnuEditarContas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_contato.gif"))); // NOI18N
+        MnuEditarContas.setMnemonic('T');
+        MnuEditarContas.setText("Contas");
+        MnuEditarContas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuEditarContasActionPerformed(evt);
+            }
+        });
+        MnuEditar.add(MnuEditarContas);
 
         jMenuItem6.setMnemonic('A');
         jMenuItem6.setText("Partículas");
@@ -403,12 +410,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -582,13 +589,45 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmNpcScript.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        if(Config.SeComandoProcede("svn --help")){
-            MnuSistemaReceber.setEnabled(true);
-            //MnuSistemaEnviar.setEnabled(true);
-        }else{
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
             MnuSistemaReceber.setEnabled(false);
             MnuSistemaEnviar.setEnabled(false);
+            MnuEditarContas.setEnabled(false);
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+
+            MnuSistemaReceber.setEnabled(false);
+            MnuSistemaEnviar.setEnabled(false);
+            MnuEditarContas.setEnabled(false);
+        } else {
+            if(Config.SeComandoProcede("svn --help")){
+                MnuSistemaReceber.setEnabled(true);
+                //MnuSistemaEnviar.setEnabled(true);
+            }else{
+                MnuSistemaReceber.setEnabled(false);
+                MnuSistemaEnviar.setEnabled(false);
+            }
+            if(
+                ConfigClass.SeExiste(
+                    Config.getConexaoLocalhost()+
+                    System.getProperty("file.separator")+"eathena-data"+
+                    System.getProperty("file.separator")+"save"+
+                    System.getProperty("file.separator")+"account.txt"
+                )
+                &&
+                ConfigClass.SeExiste(
+                    Config.getConexaoLocalhost()+
+                    System.getProperty("file.separator")+"eathena-data"+
+                    System.getProperty("file.separator")+"conf"+
+                    System.getProperty("file.separator")+"gm_account.txt"
+                )
+            ){
+                MnuEditarContas.setEnabled(true);
+            }else{
+                MnuEditarContas.setEnabled(false);
+            }
         }
+        
     }//GEN-LAST:event_formWindowActivated
     private void MnuSistemaFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaFecharActionPerformed
         // TODO add your handling code here:
@@ -616,6 +655,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmCheckout.setModal(true);
         FrmCheckout.setVisible(true);/**/
 }//GEN-LAST:event_MnuSistemaReceberActionPerformed
+    private void MnuEditarContasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarContasActionPerformed
+        javax.swing.JDialog FrmContas = new FrmContas(this, rootPaneCheckingEnabled);
+        FrmContas.setLocation(
+                ((this.getWidth() - FrmContas.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmContas.getHeight()) / 2) + this.getY());
+        FrmContas.pack();
+        FrmContas.setModal(true);
+        FrmContas.setVisible(true);/**/
+    }//GEN-LAST:event_MnuEditarContasActionPerformed
 
     public static void main(String args[]) {
       java.awt.EventQueue.invokeLater(new Runnable() {
@@ -637,6 +685,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarCamposMapas;
     private javax.swing.JMenuItem MnuEditarCamposPortais;
     private javax.swing.JMenuItem MnuEditarCamposTilesets;
+    private javax.swing.JMenuItem MnuEditarContas;
     private javax.swing.JMenu MnuEditarInimigos;
     private javax.swing.JMenuItem MnuEditarInimigosAnimacao;
     private javax.swing.JMenuItem MnuEditarInimigosArenas;
@@ -651,7 +700,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemAparencia;
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
-    private javax.swing.JMenuItem MnuEditarPoderGM;
     private javax.swing.JMenu MnuJogo;
     private javax.swing.JMenuItem MnuJogoEstruturar;
     private javax.swing.JMenuItem MnuJogoExecutar;

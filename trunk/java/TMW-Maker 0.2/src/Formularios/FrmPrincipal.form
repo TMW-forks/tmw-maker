@@ -246,11 +246,20 @@
             </Menu>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator3">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuEditarPoderGM">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuEditarContas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poder GM"/>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+T"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_contato.gif"/>
+                </Property>
+                <Property name="mnemonic" type="int" value="84"/>
+                <Property name="text" type="java.lang.String" value="Contas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuEditarContasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
@@ -381,13 +390,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="PnlBarraDeEstatus" alignment="0" max="32767" attributes="0"/>
-          <Component id="jLabel1" alignment="0" pref="672" max="32767" attributes="0"/>
+          <Component id="jLabel1" alignment="0" pref="685" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jLabel1" pref="353" max="32767" attributes="0"/>
+              <Component id="jLabel1" pref="427" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="PnlBarraDeEstatus" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -410,7 +419,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="LblEstatus" pref="498" max="32767" attributes="0"/>
+                  <Component id="LblEstatus" pref="511" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="PgbBarra" min="-2" max="-2" attributes="0"/>
               </Group>

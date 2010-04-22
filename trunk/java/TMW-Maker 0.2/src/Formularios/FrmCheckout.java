@@ -140,57 +140,80 @@ public class FrmCheckout extends javax.swing.JDialog {
             } else {
                 Thread tThread = new Thread(new Runnable() {
                     public void run() {
-                        FrmPrincipal.PgbBarra.setEnabled(true);
-                        BtnFechar.setEnabled(false);
-                        BtnBaixar.setEnabled(false);
-                        ChkForcar.setEnabled(false);
-                        FrmPrincipal.PgbBarra.setIndeterminate(true);
-                        FrmPrincipal.PgbBarra.setString("Preparando...");
-                        TxtEstatus.setText("Preparando para baixar...");
-                        FrmPrincipal.LblEstatus.setText("Preparando para baixar...");
-                        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                        // operacao demorada
                         boolean SeConclui=false;
                         Runtime Executador = Runtime.getRuntime();
                         String line="", Partes[];
                         String Comando ="";
                         int Arquivos=0;
+                        int R = JOptionPane.YES_OPTION;
 
-                        Comando ="svn checkout "+FrmPrincipal.Config.getConexaoRepositorio()+" "+FrmPrincipal.Config.getConexaoLocalhost();
-                        if(ChkForcar.isSelected()){Comando+=" --force";}
+                        FrmPrincipal.PgbBarra.setEnabled(true);
+                        BtnFechar.setEnabled(false);
+                        BtnBaixar.setEnabled(false);
+                        ChkForcar.setEnabled(false);
+
                         Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
-                        TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Comando);
-                        if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
-                            Comando+=" --username "+FrmPrincipal.Config.getConexaoUsuario()+" --password "+FrmPrincipal.Config.getConexaoSenha();
+                        if(Partes.length>1 && Partes[0].toLowerCase().equals("http")){
+                            Object[] options = {"Somente Leitura", "Cancelar"};
+
+                            R = JOptionPane.showOptionDialog(
+                                null,
+                                "<html>Você está tentando baixar o repositório sem identificar <font color=\"#FF0000\">Usuário</font> e <font color=\"#FF0000\">Senha</font> nas configurações.<br/>"+
+                                "Posteriormente não será possível enviar suas alteração ao repositório.<br/>"+
+                                "Tem certeza que deseja fazer uma <font color=\"#FF0000\">Cópia somente de leitura</font> do repositório?",
+                                "CÓPIA SOMENTE LEITURA?",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                options,
+                                options[1]
+                            );
                         }
 
-                        try {
-                            Process Retorno=Executador.exec(Comando);
-                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                            while ((line = in.readLine()) != null) {
-                                System.out.println(line);
-                                FrmPrincipal.LblEstatus.setText("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
-                                Arquivos++;
-                                FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
-                                TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Arquivos+": "+line);
-                                //Partes=line.split("/");
-                                //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                        if (R == JOptionPane.YES_OPTION) {
+                            FrmPrincipal.PgbBarra.setIndeterminate(true);
+                            FrmPrincipal.PgbBarra.setString("Preparando...");
+                            TxtEstatus.setText("Preparando para baixar...");
+                            FrmPrincipal.LblEstatus.setText("Preparando para baixar...");
+                            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                            // operacao demorada
+
+
+                            Comando ="svn checkout "+FrmPrincipal.Config.getConexaoRepositorio()+" "+FrmPrincipal.Config.getConexaoLocalhost();
+                            if(ChkForcar.isSelected()){Comando+=" --force";}
+                            TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Comando);
+                            if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
+                                Comando+=" --username "+FrmPrincipal.Config.getConexaoUsuario()+" --password "+FrmPrincipal.Config.getConexaoSenha();
                             }
-                            //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
-                            FrmPrincipal.LblEstatus.setText("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
-                            TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
-                            FrmPrincipal.PgbBarra.setString("Concluido!");
-                        } catch (IOException e) {
-                            TxtEstatus.setText(TxtEstatus.getText()+"\nFalha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
-                            //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
-                            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
-                            FrmPrincipal.PgbBarra.setString("ERRO!");
-                        }/**/
-                        FrmPrincipal.PgbBarra.setIndeterminate(false);
-                        BtnFechar.setEnabled(true);
-                        BtnBaixar.setEnabled(true);
-                        ChkForcar.setEnabled(true);
-                        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                            try {
+                                Process Retorno=Executador.exec(Comando);
+                                BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                while ((line = in.readLine()) != null) {
+                                    System.out.println(line);
+                                    FrmPrincipal.LblEstatus.setText("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                                    Arquivos++;
+                                    FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                                    TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Arquivos+": "+line);
+                                    //Partes=line.split("/");
+                                    //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                                }
+                                //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                                FrmPrincipal.LblEstatus.setText("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
+                                TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
+                                FrmPrincipal.PgbBarra.setString("Concluido!");
+                            } catch (IOException e) {
+                                TxtEstatus.setText(TxtEstatus.getText()+"\nFalha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
+                                //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                                FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
+                                FrmPrincipal.PgbBarra.setString("ERRO!");
+                            }/**/
+                            FrmPrincipal.PgbBarra.setIndeterminate(false);
+                            BtnFechar.setEnabled(true);
+                            BtnBaixar.setEnabled(true);
+                            ChkForcar.setEnabled(true);
+                            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        }
                     }
                 });
                 tThread.start();
