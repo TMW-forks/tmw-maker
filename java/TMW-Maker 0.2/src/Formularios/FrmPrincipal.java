@@ -74,16 +74,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        PnlBarraDeEstatus = new javax.swing.JPanel();
         LblEstatus = new javax.swing.JLabel();
         PgbBarra = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnuSistema = new javax.swing.JMenu();
         MnuSistemaEnviar = new javax.swing.JMenuItem();
         MnuSistemaReceber = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        MnuConfiguracoes = new javax.swing.JMenuItem();
         MnuSistemaAlteracoes = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         MnuSistemaFechar = new javax.swing.JMenuItem();
@@ -133,13 +133,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/tmw-maker.jpg"))); // NOI18N
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setAlignmentX(0.0F);
-        jPanel1.setAlignmentY(0.0F);
+        PnlBarraDeEstatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PnlBarraDeEstatus.setAlignmentX(0.0F);
+        PnlBarraDeEstatus.setAlignmentY(0.0F);
 
         LblEstatus.setBackground(java.awt.SystemColor.activeCaptionBorder);
         LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
@@ -149,20 +145,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PgbBarra.setString("");
         PgbBarra.setStringPainted(true);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+        javax.swing.GroupLayout PnlBarraDeEstatusLayout = new javax.swing.GroupLayout(PnlBarraDeEstatus);
+        PnlBarraDeEstatus.setLayout(PnlBarraDeEstatusLayout);
+        PnlBarraDeEstatusLayout.setHorizontalGroup(
+            PnlBarraDeEstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlBarraDeEstatusLayout.createSequentialGroup()
+                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(PgbBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PnlBarraDeEstatusLayout.setVerticalGroup(
+            PnlBarraDeEstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
             .addComponent(PgbBarra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/tmw-maker.jpg"))); // NOI18N
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         MnuSistema.setMnemonic('S');
         MnuSistema.setText("Sistema");
@@ -187,16 +187,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.add(MnuSistemaReceber);
         MnuSistema.add(jSeparator1);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.gif"))); // NOI18N
-        jMenuItem3.setMnemonic('G');
-        jMenuItem3.setText("Configurações");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        MnuConfiguracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        MnuConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.gif"))); // NOI18N
+        MnuConfiguracoes.setMnemonic('G');
+        MnuConfiguracoes.setText("Configurações");
+        MnuConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                MnuConfiguracoesActionPerformed(evt);
             }
         });
-        MnuSistema.add(jMenuItem3);
+        MnuSistema.add(MnuConfiguracoes);
 
         MnuSistemaAlteracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_file_rss.gif"))); // NOI18N
         MnuSistemaAlteracoes.setText("Alterações");
@@ -402,24 +402,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, Short.MAX_VALUE)
+            .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MnuSistemaFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaFecharActionPerformed
-       // TODO add your handling code here:
-       System.exit(0);
-    }//GEN-LAST:event_MnuSistemaFecharActionPerformed
     private void MnuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaSobreActionPerformed
        // TODO add your handling code here:
        javax.swing.JDialog FrmSplash = new FrmSplash(this, rootPaneCheckingEnabled);
@@ -447,19 +443,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formComponentShown
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       javax.swing.JDialog FrmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
-       FrmConfiguracao.setLocation(
-               ((this.getWidth() - FrmConfiguracao.getWidth()) / 2) + this.getX(),
-               ((this.getHeight() - FrmConfiguracao.getHeight()) / 2) + this.getY());
-       FrmConfiguracao.pack();
-       FrmConfiguracao.setModal(true);
-       FrmConfiguracao.setVisible(true);/**/
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-    private void MnuSistemaAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAlteracoesActionPerformed
-       // TODO add your handling code here:
-       AbrirNavegador(FrmPrincipal.Config.getDocumentacaoAlteracoes());
-    }//GEN-LAST:event_MnuSistemaAlteracoesActionPerformed
     private void MnuAjudaComentariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaComentariosActionPerformed
        // TODO add your handling code here:
        AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComentarios());
@@ -467,18 +450,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         
-        MnuSistema.setEnabled(false);
-        MnuEditar.setEnabled(false);
-        MnuJogo.setEnabled(false);
-        MnuAjuda.setEnabled(false);
-
-        PgbBarra.setEnabled(true);
-        PgbBarra.setValue(0);
-        PgbBarra.setMinimum(0);
-        PgbBarra.setMaximum(5);
-
-        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
         if (SistemaOperacional.indexOf("win") >= 0) {
             /*String[] cmd = new String[4];
             cmd[0] = "cmd.exe";
@@ -493,17 +464,50 @@ public class FrmPrincipal extends javax.swing.JFrame {
             //Executador.exec("open " + URL);
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
+
+
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
+                    MnuSistema.setEnabled(false);
+                    MnuEditar.setEnabled(false);
+                    MnuJogo.setEnabled(false);
+                    MnuAjuda.setEnabled(false);
+
+                    PgbBarra.setEnabled(true);
+                    PgbBarra.setValue(0);
+                    PgbBarra.setMinimum(0);
+                    PgbBarra.setMaximum(5);
+
+                    /*javax.swing.JFrame FrmEstatus = new FrmEstatus();
+                    Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
+                    FrmEstatus.setBounds(
+                        (Tela.width - FrmEstatus.getWidth()) / 2,
+                        (Tela.height - FrmEstatus.getHeight()) / 2,
+                    FrmEstatus.getWidth(),
+                    FrmEstatus.getHeight());
+                    //FrmEstatus.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
+                     * FrmEstatus.setVisible(true);
+                    /**/
+                    
+
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     Runtime Executador = Runtime.getRuntime();
                     String line="", Comando="";
 
                     if(FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")){
                         PgbBarra.setString("Reiniciando...");
                         LblEstatus.setText("Reiniciando localhost...");
+                        //TxtEstatus.setText("Reiniciando localhost...");
                         try {
                             Comando=FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart";
-                            Executador.exec(Comando);
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\n"+Comando);
+                            Process Retorno=Executador.exec(Comando);
+                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                            while ((line = in.readLine()) != null) {
+                                System.out.println(line);
+                                //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
+                            }
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\nEathena reiniciado (Espere 5 segundos...)\n");
                             LblEstatus.setText("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
                             long TempoInicio=0,TempoAtual=0,Milisegundos=5500,Segundos=0;
                             TempoInicio=System.currentTimeMillis();
@@ -517,6 +521,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             while (TempoAtual-TempoInicio<Milisegundos);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
                             LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
                             ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"+
                                 "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
@@ -526,6 +531,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         }
                     }
                     PgbBarra.setIndeterminate(true);
+                    //TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
                     LblEstatus.setText("Abrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
                     Comando=FrmPrincipal.Config.getExecucaoComando()+" "+
                     (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty()?"":("-ud "+FrmPrincipal.Config.getExecucaoParametroTMWData()+" "))+
@@ -539,9 +545,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                         while ((line = in.readLine()) != null) {
                             System.out.println(line);
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
                             FrmPrincipal.LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\": "+line);
                             PgbBarra.setString("Executando...");
                         }
+                        //TxtEstatus.setText(TxtEstatus.getText()+"\nEncerrado!");
                         PgbBarra.setString("Encerrado!");
                         LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\" executado e fechando com sucesso!");
                         PgbBarra.setIndeterminate(false);
@@ -549,19 +557,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         PgbBarra.setIndeterminate(false);
                         e.printStackTrace();
                         PgbBarra.setString("ERRO...");
+                        //TxtEstatus.setText(TxtEstatus.getText()+"ERRO DE EXECUÇÃO: "+Comando);
                         LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> "+Comando);
                         ConfigClass.Mensagem_Erro("O TMW-Maker não conseguiu abrir o jogo THE MANA WORLD!","ERRO DE EXECUÇÃO");
                     }
+                    PgbBarra.setValue(5);
+                    MnuSistema.setEnabled(true);
+                    MnuEditar.setEnabled(true);
+                    MnuJogo.setEnabled(true);
+                    MnuAjuda.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
             });
             tThread.start();
         }
-        PgbBarra.setValue(5);
-        MnuSistema.setEnabled(true);
-        MnuEditar.setEnabled(true);
-        MnuJogo.setEnabled(true);
-        MnuAjuda.setEnabled(true);
-        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
         javax.swing.JDialog FrmNpcScript = new FrmScript(this, rootPaneCheckingEnabled);
@@ -581,60 +590,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuSistemaEnviar.setEnabled(false);
         }
     }//GEN-LAST:event_formWindowActivated
+    private void MnuSistemaFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaFecharActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+}//GEN-LAST:event_MnuSistemaFecharActionPerformed
+    private void MnuSistemaAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAlteracoesActionPerformed
+        // TODO add your handling code here:
+        AbrirNavegador(FrmPrincipal.Config.getDocumentacaoAlteracoes());
+}//GEN-LAST:event_MnuSistemaAlteracoesActionPerformed
+    private void MnuConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuConfiguracoesActionPerformed
+        javax.swing.JDialog FrmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
+        FrmConfiguracao.setLocation(
+                ((this.getWidth() - FrmConfiguracao.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmConfiguracao.getHeight()) / 2) + this.getY());
+        FrmConfiguracao.pack();
+        FrmConfiguracao.setModal(true);
+        FrmConfiguracao.setVisible(true);/**/
+}//GEN-LAST:event_MnuConfiguracoesActionPerformed
     private void MnuSistemaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaReceberActionPerformed
-        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
-        if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
-        } else if (SistemaOperacional.indexOf("mac") >= 0) {
-            /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
-        } else {
-            PgbBarra.setIndeterminate(true);
-            PgbBarra.setString("Preparando...");
-            FrmPrincipal.LblEstatus.setText("Preparando para baixar...");
-            PgbBarra.setEnabled(true);
-            Thread tThread = new Thread(new Runnable() {
-                public void run() {
-                    // operacao demorada
-                    boolean SeConclui=false;
-                    Runtime Executador = Runtime.getRuntime();
-                    String line="", Partes[];
-                    String Comando ="";
-                    int Arquivos=0;
-
-                    Comando ="svn checkout "+Config.getConexaoRepositorio()+" "+Config.getConexaoLocalhost();
-                    Partes = Config.getConexaoRepositorio().split(":");
-                    if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
-                        Comando+=" --username "+Config.getConexaoUsuario()+" --password "+Config.getConexaoSenha();
-                    }
-
-                    try {
-                        Process Retorno=Executador.exec(Comando);
-                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                        while ((line = in.readLine()) != null) {
-                            System.out.println(line);
-                            FrmPrincipal.LblEstatus.setText("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
-                            Arquivos++;
-                            PgbBarra.setString("nº"+Arquivos);
-                            //Partes=line.split("/");
-                            //PgbBarra.setString(Partes[Partes.length-1]);
-                        }
-                        //ConfigClass.Mensagem_Erro("Repositório \""+Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
-                        FrmPrincipal.LblEstatus.setText("<html>Repositório \"<font color=\"#0000FF\"><b>"+Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
-                        PgbBarra.setString("Concluido!");
-                    } catch (IOException e) {
-                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+Config.getConexaoUsuario()+"\"!", "ERRO");
-                        FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+Config.getConexaoUsuario()+"</b>\"!");
-                        PgbBarra.setString("ERRO!");
-                    }/**/
-                    PgbBarra.setIndeterminate(false);
-                    
-                }
-            });
-            tThread.start();
-        }
-    }//GEN-LAST:event_MnuSistemaReceberActionPerformed
-
+        javax.swing.JDialog FrmCheckout = new FrmCheckout(this, rootPaneCheckingEnabled);
+        FrmCheckout.setLocation(
+                ((this.getWidth() - FrmCheckout.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmCheckout.getHeight()) / 2) + this.getY());
+        FrmCheckout.pack();
+        FrmCheckout.setModal(true);
+        FrmCheckout.setVisible(true);/**/
+}//GEN-LAST:event_MnuSistemaReceberActionPerformed
 
     public static void main(String args[]) {
       java.awt.EventQueue.invokeLater(new Runnable() {
@@ -650,6 +631,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MnuAjuda;
     private javax.swing.JMenuItem MnuAjudaComentarios;
     private javax.swing.JMenuItem MnuAjudaSobre;
+    private javax.swing.JMenuItem MnuConfiguracoes;
     private javax.swing.JMenu MnuEditar;
     private javax.swing.JMenu MnuEditarCampos;
     private javax.swing.JMenuItem MnuEditarCamposMapas;
@@ -678,14 +660,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuSistemaEnviar;
     private javax.swing.JMenuItem MnuSistemaFechar;
     private javax.swing.JMenuItem MnuSistemaReceber;
-    private javax.swing.JProgressBar PgbBarra;
+    public static javax.swing.JProgressBar PgbBarra;
+    private javax.swing.JPanel PnlBarraDeEstatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
