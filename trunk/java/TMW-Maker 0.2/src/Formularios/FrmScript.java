@@ -143,7 +143,7 @@ public class FrmScript extends javax.swing.JDialog {
                             Instancia[i].setImagem(Integer.parseInt(ParteFacutativa[0].toString()));
                             if(ParteFacutativa.length>=2) {
                                 if(!ParteFacutativa[1].equals("")) {
-                                    Mensagem_Erro("ParteFacutativa[1]=\""+ParteFacutativa[1]+"\"", "Nota de Programador");
+                                    //Mensagem_Erro("ParteFacutativa[1]=\""+ParteFacutativa[1]+"\"", "Nota de Programador");
                                     Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[1].toString()));
                                 }
                             }

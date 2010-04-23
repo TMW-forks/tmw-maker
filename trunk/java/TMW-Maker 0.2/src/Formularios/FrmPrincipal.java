@@ -485,18 +485,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     PgbBarra.setMinimum(0);
                     PgbBarra.setMaximum(5);
 
-                    /*javax.swing.JFrame FrmEstatus = new FrmEstatus();
-                    Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
-                    FrmEstatus.setBounds(
-                        (Tela.width - FrmEstatus.getWidth()) / 2,
-                        (Tela.height - FrmEstatus.getHeight()) / 2,
-                    FrmEstatus.getWidth(),
-                    FrmEstatus.getHeight());
-                    //FrmEstatus.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
-                     * FrmEstatus.setVisible(true);
-                    /**/
-                    
-
                     setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     Runtime Executador = Runtime.getRuntime();
                     String line="", Comando="";
@@ -556,9 +544,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             FrmPrincipal.LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\": "+line);
                             PgbBarra.setString("Executando...");
                         }
-                        //TxtEstatus.setText(TxtEstatus.getText()+"\nEncerrado!");
-                        PgbBarra.setString("Encerrado!");
-                        LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\" executado e fechando com sucesso!");
+                        PgbBarra.setString("Fechado!");
+                        LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\" fechando!");
                         PgbBarra.setIndeterminate(false);
                     } catch (IOException e) {
                         PgbBarra.setIndeterminate(false);
@@ -568,6 +555,34 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> "+Comando);
                         ConfigClass.Mensagem_Erro("O TMW-Maker não conseguiu abrir o jogo THE MANA WORLD!","ERRO DE EXECUÇÃO");
                     }
+
+                    if(FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")){
+                        PgbBarra.setString("Desligando...");
+                        LblEstatus.setText("Desligando localhost...");
+                        //TxtEstatus.setText("Reiniciando localhost...");
+                        try {
+                            Comando=FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh stop";
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\n"+Comando);
+                            Process Retorno=Executador.exec(Comando);
+                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                            while ((line = in.readLine()) != null) {
+                                System.out.println(line);
+                                //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
+                            }
+                            LblEstatus.setText("<html><font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> encerrados com sucesso!");
+                            PgbBarra.setString("Encerrado!");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                            LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
+                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu desligar o eathena:</b><br/><br/>"+
+                                "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
+                                "</html>",
+                                "ERRO DE EXECUÇÃO"
+                            );
+                        }
+                    }
+
                     PgbBarra.setValue(5);
                     MnuSistema.setEnabled(true);
                     MnuEditar.setEnabled(true);
