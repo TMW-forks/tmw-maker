@@ -3,6 +3,7 @@ package Formularios;
 
 import Classes.ConfigClass;
 import java.io.FileReader;
+import java.io.FileWriter;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,11 +45,11 @@ public class FrmContas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Login", "IP", "Acesso", "GM*"
+                "ID", "Login", "GM*", "IP", "Ultimo Acesso", "Acessos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -69,7 +70,6 @@ public class FrmContas extends javax.swing.JDialog {
         BtnAplicar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_contato.gif"))); // NOI18N
         BtnAplicar.setMnemonic('A');
         BtnAplicar.setText("Aplicar");
-        BtnAplicar.setEnabled(false);
         BtnAplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAplicarActionPerformed(evt);
@@ -85,10 +85,10 @@ public class FrmContas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                         .addComponent(BtnAplicar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)))
@@ -119,42 +119,123 @@ public class FrmContas extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_BtnFecharActionPerformed
     private void BtnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAplicarActionPerformed
-        // TODO add your handling code here:
+        //int ID=0,Poder=0;
+        String ID="", Nome="",Poder="", Corpo=
+            "///////////////////////////////////////////////////////\n"+
+            "// Contas de GMs auto-editadas pelo TMW-Maker "+FrmPrincipal.Config.getVersao()+"\n"+
+            "// Sumário: <ContaID> <PoderGM>\n"+
+            "//          Por padrão a ID:2000000 inicia com GM:99.\n"+
+            "///////////////////////////////////////////////////////\n"+
+            "\n";
+        try {
+            for(int c=0;c<TblContas.getRowCount();c++){
+                Nome=TblContas.getModel().getValueAt(c,1).toString();
+                ID=TblContas.getModel().getValueAt(c,0).toString();
+                Poder=TblContas.getModel().getValueAt(c,2).toString();
+                if(Integer.parseInt(Poder)<0) Poder="0";
+                if(Integer.parseInt(Poder)>99) Poder="99";
+                Corpo+=(Integer.parseInt(Poder)<=0?"//":"")+Integer.parseInt(ID)+" "+Integer.parseInt(Poder)+" //"+Nome+"\n";
+                //this.setTitle(this.getTitle()+" \""+Nome+"=GM"+Poder+"\"");
+            }
+            FileWriter out = new FileWriter(EnderecoDeContasGMs);
+            out.write(Corpo);
+            out.close();
+            dispose();
+        } catch (java.io.IOException exc) {
+            ConfigClass.Mensagem_Erro(
+                "<html>Não foi possivel gravar os poderes de GM!<br/>"+
+                "<font face=\"monospace\">"+EnderecoDeContasGMs+"</font> (<font color=\"#FF0000\">Falhou</font>)"
+                ,"ERRO"
+            );
+        } catch (Exception exc) {
+            ConfigClass.Mensagem_Erro(
+                "<html>Não foi possivel gravar os poderes de GM por motivo de valor inválido!<br/><br/>"+
+                "<font color=\"#FF0000\">LOCAL DO ERRO:</font><br/>"+
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: <font face=\"monospace\">"+ID+"</font><br/>"+
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GM: \"<font face=\"monospace\" color=\"#FF0000\">"+Poder+"</font>\"<br/>"+
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login: <font face=\"monospace\">"+Nome+"</font>"
+                ,"ERRO"
+            );
+        }
     }//GEN-LAST:event_BtnAplicarActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        boolean SeArq1=false, SeArq2=false;
+        String ConteudoDeContasUsuarios="",ConteudoDeContasGMs="";
+        int Inicio=0,Fim=0;
+        String ContasUsuarios[] = null,ContasGMs[] = null;
 
-        String Conteudo="";
         try {
             FileReader CapsulaDeUsuarios = new FileReader(EnderecoDeContasUsuarios);
             int Caracater = CapsulaDeUsuarios.read();
             while (Caracater!=-1) {
-                Conteudo = Conteudo + (char) Caracater;
+                ConteudoDeContasUsuarios = ConteudoDeContasUsuarios + (char) Caracater;
                 Caracater = CapsulaDeUsuarios.read();
             }
             CapsulaDeUsuarios.close();
+            Inicio=ConteudoDeContasUsuarios.indexOf("\n2000000");
+            ConteudoDeContasUsuarios = ConteudoDeContasUsuarios.substring(Inicio+1, ConteudoDeContasUsuarios.length());
+            //ConfigClass.Mensagem_Erro(ConteudoDeContasUsuarios, "Nota de Programador");
+            ContasUsuarios = ConteudoDeContasUsuarios.split("\n");
+            SeArq1=true;
+        } catch (java.io.IOException exc) {
+            SeArq1=false;
+        }
 
-            int Inicio =Conteudo.indexOf("2000000");
-            Conteudo = Conteudo.substring(Inicio, Conteudo.length());
-            //ConfigClass.Mensagem_Erro(Conteudo, "Nota de Programador");
+        try {
+            FileReader CapsulaDeGMs = new FileReader(EnderecoDeContasGMs);
+            int Caracater = CapsulaDeGMs.read();
+            while (Caracater!=-1) {
+                ConteudoDeContasGMs = ConteudoDeContasGMs + (char) Caracater;
+                Caracater = CapsulaDeGMs.read();
+            }
+            CapsulaDeGMs.close();
+            Inicio=ConteudoDeContasGMs.indexOf("\n2000000");
+            ConteudoDeContasGMs = ConteudoDeContasGMs.substring(Inicio+1, ConteudoDeContasGMs.length());
+            //ConfigClass.Mensagem_Erro(ConteudoDeContasUsuarios, "Nota de Programador");
+            //ContasGMs = ConteudoDeContasGMs.split("\n");
+            SeArq2=true;
+        } catch (java.io.IOException exc) {
+            SeArq2=false;
+        }
 
-            String Contas[] = Conteudo.split("\n");
+        if(SeArq1==true && SeArq2==true){
             //ConfigClass.Mensagem_Erro("Contagem(Contas)="+Contas.length, "Nota de Programador");
-            String Cabecalho[] = new String [] { "ID", "Login", "IP", "Acesso", "GM*"};
-            Object Corpo[][] = new Object [Contas.length-1][Cabecalho.length];
+            String Cabecalho[] = new String [] { "ID", "Login", "GM*", "IP", "Ultimo Acesso", "Acessos"};
+            Object CorpoDeContasUsuarios[][] = new Object [ContasUsuarios.length-1][Cabecalho.length];
+            //Object CorpoDeContasGMs[] = new Object [ContasUsuarios.length-1];
             String NovaLinha="",PartesDaLinha[];
-            for(int c=0;c<Contas.length-1;c++){
-                PartesDaLinha=Contas[c].split("\t");
-                Corpo[c] = new String [] {
+
+            /*for(int c=0;c<ContasGMs.length-1;c++){
+                PartesDaLinha=ContasGMs[c].split(" ");
+                CorpoDeContasGMs[PartesDaLinha[0]] = new String();
+                CorpoDeContasGMs[PartesDaLinha[0]] = PartesDaLinha[1];
+            }/**/
+
+            String LvlGM;
+            for(int c=0;c<ContasUsuarios.length-1;c++){
+                LvlGM="0";
+                PartesDaLinha=ContasUsuarios[c].split("\t");
+                Inicio=ConteudoDeContasGMs.indexOf(PartesDaLinha[0]);
+                if(Inicio>=0){
+                    Inicio+=PartesDaLinha[0].length()+1;
+                    //Fim=ConteudoDeContasGMs.indexOf("\n", Inicio);
+                    Fim=Inicio+2;
+                    //if(Fim<=Inicio)Fim=ConteudoDeContasGMs.length();
+                    if(Fim>Inicio) LvlGM=ConteudoDeContasGMs.substring(Inicio, Fim).trim();
+                }
+
+                CorpoDeContasUsuarios[c] = new String [] {
                     PartesDaLinha[0],
                     PartesDaLinha[1]+" ("+PartesDaLinha[4]+")",
+                    LvlGM,
                     PartesDaLinha[10],
                     PartesDaLinha[3],
-                    "???"
+                    PartesDaLinha[5]
                 };
             }
 
-            TblContas.setModel(new javax.swing.table.DefaultTableModel(Corpo,Cabecalho) {
-                boolean[] canEdit = new boolean [] {false, false, false, false, true};
+            TblContas.setModel(new javax.swing.table.DefaultTableModel(CorpoDeContasUsuarios,Cabecalho) {
+                boolean[] canEdit = new boolean [] {false, false, true, false, false, false};
                 public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
             });
             TblContas.getTableHeader().getColumnModel().getColumn(0).setMinWidth(75);
@@ -163,19 +244,22 @@ public class FrmContas extends javax.swing.JDialog {
             //TblContas.getTableHeader().getColumnModel().getColumn(1).setMinWidth(150);
             //TblContas.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(150);
 
-            TblContas.getTableHeader().getColumnModel().getColumn(2).setMinWidth(70);
-            TblContas.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(70);
+            TblContas.getTableHeader().getColumnModel().getColumn(2).setMinWidth(40);
+            TblContas.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(40);
 
-            TblContas.getTableHeader().getColumnModel().getColumn(3).setMinWidth(170);
-            TblContas.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(170);
+            TblContas.getTableHeader().getColumnModel().getColumn(3).setMinWidth(70);
+            TblContas.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(70);
 
-            TblContas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(40);
-            TblContas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(40);
+            TblContas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(170);
+            TblContas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(170);
 
-        } catch (java.io.IOException exc) {
+            TblContas.getTableHeader().getColumnModel().getColumn(5).setMinWidth(70);
+            TblContas.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(70);
+        }else{
             ConfigClass.Mensagem_Erro(
-                "<html>Não foi possivel abrir o arquivo!"+
-                "<font face=\"monospace\" color=\"#FF00000\">"+EnderecoDeContasUsuarios
+                "<html>Não foi possivel abrir os arquivos de contas!<br/>"+
+                "<font face=\"monospace\">"+EnderecoDeContasUsuarios+"</font> "+(SeArq1==false?"(<font color=\"#FF0000\">Falhou</font>)":"(<font color=\"#0000FF\">OK</font>)")+"<br/>"+
+                "<font face=\"monospace\">"+EnderecoDeContasGMs+"</font> "+(SeArq2==false?"(<font color=\"#FF0000\">Falhou</font>)":"(<font color=\"#0000FF\">OK</font>)")
                 ,"AVISO"
             );
         }

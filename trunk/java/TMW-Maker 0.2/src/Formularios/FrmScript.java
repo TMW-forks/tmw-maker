@@ -30,7 +30,7 @@ public class FrmScript extends javax.swing.JDialog {
     }
 //#####################################################################################################
     public static BlocoDeScript Instancia[];
-    public static String EnderecoDoScript="ScriptExemplo.conf";
+    public static String EnderecoDoScript=System.getProperty("user.home")+System.getProperty("file.separator")+"ScriptExemplo.conf";
 //#####################################################################################################
     public String InstanciasArray2String(BlocoDeScript[] Instancias){
         String Codigo="";
@@ -133,7 +133,8 @@ public class FrmScript extends javax.swing.JDialog {
                             Instancia[i].setNome(ParteDeSessao[2].toString());
 
                             ParteDaPosicao = ParteDeSessao[0].split(",");
-                            ParteDoMapa = ParteDaPosicao[0].split(",");
+                            ParteDoMapa = ParteDaPosicao[0].split("\\.");
+                            //Mensagem_Erro("ParteDoMapa=\""+ParteDoMapa[0].toString()+"\"", "Nota de Programador");
                             Instancia[i].setMapa(ParteDoMapa[0].toString());
                             Instancia[i].setX(Integer.parseInt(ParteDaPosicao[1].toString()));
                             Instancia[i].setY(Integer.parseInt(ParteDaPosicao[2].toString()));
