@@ -345,9 +345,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
                 "///////////////////////////////////////////////////////////////////\n"+
                 "\n"+
                 "_inicio:\n"+
-                "\n"+
-                "\t//Insira seu Código de Eathena aqui...\n"+
-                "\n"+
+                "     //Insira seu Eathena Script aqui...\n"+
                 "close;"
             );
             FrmScript.TxtScriptPalco.setText(NovoInstancia[i].getScript());
@@ -364,7 +362,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             //*
             //*
             //*
-            FrmPrincipal.Config.Mensagem_Erro("Ainda não é possivel adicionar Funções!", null);
+            FrmPrincipal.Config.Mensagem_Erro("Desculpe! Ainda não é possível utilizar o TMW-Maker para adicionar funções!", "Programa Incompleto");
             //*
             //*
             //*

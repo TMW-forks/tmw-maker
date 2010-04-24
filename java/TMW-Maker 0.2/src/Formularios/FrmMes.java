@@ -53,10 +53,16 @@ public class FrmMes extends javax.swing.JDialog {
         OptAoFinalContinuar = new javax.swing.JRadioButton();
         OptAoFinalPausar = new javax.swing.JRadioButton();
         OptAoFinalFechar = new javax.swing.JRadioButton();
+        ChkDialogoDeAspas = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Comando MES");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         TxtMensagem.setColumns(20);
         TxtMensagem.setRows(5);
@@ -118,7 +124,7 @@ public class FrmMes extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(OptFalaDePersonagem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtNomeDoPersonagem, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                .addComponent(TxtNomeDoPersonagem, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,7 +166,7 @@ public class FrmMes extends javax.swing.JDialog {
                 .addComponent(OptAoFinalPausar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(OptAoFinalFechar)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,6 +178,9 @@ public class FrmMes extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        ChkDialogoDeAspas.setSelected(true);
+        ChkDialogoDeAspas.setText("Dialogo em aspas (\")");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,12 +189,14 @@ public class FrmMes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ChkDialogoDeAspas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addComponent(BtnAdicionar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -193,17 +204,18 @@ public class FrmMes extends javax.swing.JDialog {
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnFechar)
-                    .addComponent(BtnAdicionar))
+                    .addComponent(BtnAdicionar)
+                    .addComponent(ChkDialogoDeAspas))
                 .addContainerGap())
         );
 
@@ -239,13 +251,14 @@ public class FrmMes extends javax.swing.JDialog {
         this.TxtMensagem.setText(this.TxtMensagem.getText().trim());
         for(int i=0;i<this.TxtMensagem.getLineCount();i++){
             try {
-                Codigo += (!Codigo.isEmpty()?Tabulacao:"")+
-                "mes \"" +
+                Codigo += (!Tabulacao.isEmpty()?Tabulacao:"")+
+                "mes \""+((i==0 && ChkDialogoDeAspas.isSelected())?"\\\"":"")+
                     this.TxtMensagem.getText().substring(
                         this.TxtMensagem.getLineStartOffset(i),
                         this.TxtMensagem.getLineEndOffset(i)-(i<(this.TxtMensagem.getLineCount()-1)?1:0)
                     ) +
-                "\";\n";
+                ((i==this.TxtMensagem.getLineCount()-1 && ChkDialogoDeAspas.isSelected())?"\\\"":"")+"\";"+
+                (i<this.TxtMensagem.getLineCount()?"\n":(!Tabulacao.isEmpty()?Tabulacao:""));
             } catch (BadLocationException ex) {
                 Logger.getLogger(FrmMes.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -267,6 +280,10 @@ public class FrmMes extends javax.swing.JDialog {
         BtnAdicionar.setEnabled(!TxtMensagem.getText().isEmpty());
     }//GEN-LAST:event_TxtMensagemKeyReleased
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        TxtNomeDoPersonagem.setText(FrmScript.Instancia[FrmScript.CmbScript.getSelectedIndex()].getNome());
+    }//GEN-LAST:event_formWindowActivated
+
     /**
     * @param args the command line arguments
     */
@@ -287,6 +304,7 @@ public class FrmMes extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdicionar;
     private javax.swing.JButton BtnFechar;
+    private javax.swing.JCheckBox ChkDialogoDeAspas;
     private javax.swing.ButtonGroup GrupoDonoDaFala;
     private javax.swing.ButtonGroup GrupoFinalDeFala;
     private javax.swing.JRadioButton OptAoFinalContinuar;
