@@ -87,8 +87,47 @@ public class ConfigClass {
         return System.getProperty("user.home")+System.getProperty("file.separator")+"tmw-maker";
     }
     public static void Mensagem_Erro(String Aviso, String Titulo) {
+        System.out.println(Aviso);
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
+    }
+    public static boolean AbrirNavegador(String URL) {
+        //minimizes the app
+
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        Runtime Executador = Runtime.getRuntime();
+        try {
+            if (SistemaOperacional.indexOf("win") >= 0) {
+                String[] cmd = new String[4];
+                cmd[0] = "cmd.exe";
+                cmd[1] = "/C";
+                cmd[2] = "start";
+                cmd[3] = URL;
+                Executador.exec(cmd);
+            } else if (SistemaOperacional.indexOf("mac") >= 0) {
+                Executador.exec("open " + URL);
+            } else {
+                //prioritized 'guess' of users' preference
+                String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx"};
+                StringBuffer cmd = new StringBuffer();
+                for (int i = 0; i < browsers.length; i++) {
+                   cmd.append((i == 0 ? "" : " || ") + browsers[i] + " \"" +
+                           URL + "\" ");
+                }
+                Executador.exec(new String[]{"sh", "-c", cmd.toString()});
+                //rt.exec("firefox http://www.google.com");
+                //System.out.println(cmd.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            ConfigClass.Mensagem_Erro(
+                "\n\n O TMW-Maker não conseguiu abrir o seu navegador padrão ao tentar acessar: \n\n " + URL + "\n\n",
+                "Erro de acesso ao Navegado"
+            );
+
+            return false;
+        }
+        return true;
     }
     public boolean SeComandoProcede(String Comando) {
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();

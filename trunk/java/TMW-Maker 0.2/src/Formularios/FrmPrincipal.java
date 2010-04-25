@@ -30,44 +30,223 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     static String ComponenteSelecionado = "";
     public static ConfigClass Config = new ConfigClass();
+    static String Bar=System.getProperty("file.separator");
 
-    public static boolean AbrirNavegador(String URL) {
-        //minimizes the app
-
-        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
-        Runtime Executador = Runtime.getRuntime();
-        try {
-            if (SistemaOperacional.indexOf("win") >= 0) {
-                String[] cmd = new String[4];
-                cmd[0] = "cmd.exe";
-                cmd[1] = "/C";
-                cmd[2] = "start";
-                cmd[3] = URL;
-                Executador.exec(cmd);
-            } else if (SistemaOperacional.indexOf("mac") >= 0) {
-                Executador.exec("open " + URL);
-            } else {
-                //prioritized 'guess' of users' preference
-                String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx"};
-                StringBuffer cmd = new StringBuffer();
-                for (int i = 0; i < browsers.length; i++) {
-                   cmd.append((i == 0 ? "" : " || ") + browsers[i] + " \"" +
-                           URL + "\" ");
-                }
-                Executador.exec(new String[]{"sh", "-c", cmd.toString()});
-                //rt.exec("firefox http://www.google.com");
-                //System.out.println(cmd.toString());
+    public static void setAvisoEmEstatus(String Aviso){
+        System.out.println(Aviso.toString());
+         LblEstatus.setText(Aviso.toString());
+    }
+    public void MontarLocalhost(){
+                if(System.getProperty("os.name").toLowerCase().indexOf("win")>=0){
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!","Descupe!");
+        }else if(System.getProperty("os.name").toLowerCase().indexOf("mac")>=0){
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        }else if(System.getProperty("os.name").toLowerCase().indexOf("linux")>=0){
+            int R = JOptionPane.YES_OPTION;
+            if(
+                ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"char-server") ||
+                ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"login-server") ||
+                ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"map-server")
+            ){
+                Object[] options = {"Remontar", "Cancelar"};
+                R = JOptionPane.showOptionDialog(
+                    null,"<html>"+
+                    "O seu localhost já está montado. Ao remontar você<br/>" +
+                    "<font color=\"#FF0000\">pederá todas as contas</font> de jogadores deste localhost.<br/>"+
+                    "Deseja realmente forçar uma remontagem?",
+                    "REMONTAGEM DE LOCALHOST",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[1]
+                );
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            ConfigClass.Mensagem_Erro(
-                "\n\n O TMW-Maker não conseguiu abrir o seu navegador padrão ao tentar acessar: \n\n " + URL + "\n\n",
-                "Erro de acesso ao Navegado"
-            );
+            if(R == JOptionPane.YES_OPTION){
+                Thread tThread = new Thread(new Runnable() {
+                    public void run() {
+                        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        MnuSistema.setEnabled(false);
+                        MnuEditar.setEnabled(false);
+                        MnuJogo.setEnabled(false);
+                        MnuAjuda.setEnabled(false);
+                        PgbBarra.setEnabled(true);
+                        PgbBarra.setValue(0);
 
-            return false;
+
+                        Runtime Executador = Runtime.getRuntime();
+                        String line="", Comando="";
+                        String OS = System.getProperty("os.name").toLowerCase();
+                        String Arch = System.getProperty("os.arch").toLowerCase();
+                        boolean BinariosEspecificos=false;
+                        int Baixados=0;
+
+                        PgbBarra.setIndeterminate(true);
+                        PgbBarra.setString("Apagando...");
+                        setAvisoEmEstatus("Apagando binários...");
+                        if(ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"bins")){
+                            ConfigClass.Apagar(Config.getConexaoLocalhost()+Bar+"bins");
+                        }
+                        ConfigClass.Apagar(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"char-server");
+                        ConfigClass.Apagar(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"login-server");
+                        ConfigClass.Apagar(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"map-server");
+
+                        PgbBarra.setString("Preparando...");
+                        setAvisoEmEstatus("Preparando para baixar binários novos...");
+                        if(OS.indexOf("linux") >= 0 && Arch.indexOf("i386")>=0){
+                            Comando="svn checkout "+
+                                "http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch+" "+
+                                FrmPrincipal.Config.getConexaoLocalhost()+Bar+"bins";
+                            BinariosEspecificos=true;
+                            System.out.println(Comando);
+                            //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                        }else{
+                            Comando="svn checkout "+
+                                "http://tmw-maker.googlecode.com/svn/bins/compiler "+
+                                FrmPrincipal.Config.getConexaoLocalhost()+Bar+"bins";
+                            BinariosEspecificos=false;
+                            System.out.println(Comando);
+                            //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                        }
+                        try {
+                            Process Retorno=Executador.exec(Comando);
+                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                            while ((line = in.readLine()) != null) {
+                                System.out.println(line);
+                                Baixados++;
+                                setAvisoEmEstatus("<html>"+line+" (<font color=\"#FF0000\">Espere concluir...</font>)");
+                                PgbBarra.setString("Baixando nº"+Baixados+"...");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
+                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu baixar os binários:</b><br/><br/>"+
+                                "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
+                                "</html>",
+                                "ERRO DE EXECUÇÃO"
+                            );
+                        }
+                        if(BinariosEspecificos==true){
+                            PgbBarra.setString("Deslocando...");
+                            if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"char-server")){
+                                ConfigClass.MoverArquivo(
+                                    Config.getConexaoLocalhost()+Bar+"bins"+Bar+"char-server",
+                                    Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"char-server"
+                                );
+                                setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
+                            }
+                            if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"login-server")){
+                                ConfigClass.MoverArquivo(
+                                    Config.getConexaoLocalhost()+Bar+"bins"+Bar+"login-server",
+                                    Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"login-server"
+                                );
+                                setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
+                            }
+                            if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"map-server")){
+                                ConfigClass.MoverArquivo(
+                                    Config.getConexaoLocalhost()+Bar+"bins"+Bar+"map-server",
+                                    Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"map-server"
+                                );
+                                setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
+                            }
+                        }else{
+                            //Desconpactar para usar
+                        }
+
+                        /*
+                        mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
+                        mv -uv conf/battle_local.conf.example conf/battle_local.conf
+                        mv -uv conf/char_local.conf.example conf/char_local.conf
+                        mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
+                        mv -uv conf/gm_account.txt.example conf/gm_account.txt
+                        mv -uv conf/help.txt.example conf/help.txt
+                        mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
+                        mv -uv conf/login_local.conf.example conf/login_local.conf
+                        mv -uv conf/map_local.conf.example conf/map_local.conf
+                        mv -uv conf/motd.txt.example conf/motd.txt
+                        mv -uv save/account.txt.example save/account.txt
+                        /**/
+
+                        setAvisoEmEstatus("Renomeando banco de dados...");
+                        PgbBarra.setString("Renomeando...");
+                        String Pasta[] = new String [] {
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"conf",
+                            Config.getConexaoLocalhost()+Bar+"eathena-data"+Bar+"save"
+                        };
+                        String De[] = new String [] {
+                            "atcommand_local.conf.example",
+                            "battle_local.conf.example",
+                            "char_local.conf.example",
+                            "eathena-monitor.conf.example",
+                            "gm_account.txt.example",
+                            "help.txt.example",
+                            "ladmin_local.conf.example",
+                            "login_local.conf.example",
+                            "map_local.conf.example",
+                            "motd.txt.example",
+                            "account.txt.example"
+                        };
+                        String Para[] = new String [] {
+                            "atcommand_local.conf",
+                            "battle_local.conf",
+                            "char_local.conf",
+                            "eathena-monitor.conf",
+                            "gm_account.txt",
+                            "help.txt",
+                            "ladmin_local.conf",
+                            "login_local.conf",
+                            "map_local.conf",
+                            "motd.txt",
+                            "account.txt"
+                        };
+
+                        for(int r=0;r<De.length;r++){
+                            if(ConfigClass.SeExiste(Pasta[r]+Bar+De[r])){
+                                if(ConfigClass.SeExiste(Pasta[r]+Bar+Para[r])){
+                                    ConfigClass.Apagar(Pasta[r]+Bar+Para[r]);
+                                    setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \""+Para[r]+"\"!");
+                                }
+                                setAvisoEmEstatus("<html><b>Renomeando:</b> \""+De[r]+"\" -> \""+Para[r]+"\"...");
+                                ConfigClass.MoverArquivo(Pasta[r]+Bar+De[r],Pasta[r]+Bar+Para[r]);
+                            }
+                        }
+
+                        /*
+                        Criar pasta de ~/tmw-br/eathena-data/log
+                        gcc -o eathena-monitor eathena-monitor.c
+                        rm $HOME/tmwserver // Apaga Link
+                        ln -s $PWD $HOME/tmwserver //Recria Link
+                        /**/
+
+
+
+                        setAvisoEmEstatus("<html><font color=\"#0000FF\">Locahost montado com sucesso!");
+                        PgbBarra.setString("Concluido!");
+
+                        PgbBarra.setIndeterminate(false);
+                        MnuSistema.setEnabled(true);
+                        MnuEditar.setEnabled(true);
+                        MnuJogo.setEnabled(true);
+                        MnuAjuda.setEnabled(true);
+                        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    }
+                });
+                tThread.start();
+            }else{
+                setAvisoEmEstatus("Remontagem cancelada!");
+                PgbBarra.setString("");
+            }
         }
-        return true;
     }
 
     @SuppressWarnings("unchecked")
@@ -458,7 +637,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
     private void MnuAjudaComentariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaComentariosActionPerformed
        // TODO add your handling code here:
-       AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComentarios());
+       Config.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComentarios());
     }//GEN-LAST:event_MnuAjudaComentariosActionPerformed
     private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
@@ -503,7 +682,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
                     if(FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")){
                         PgbBarra.setString("Reiniciando...");
-                        LblEstatus.setText("Reiniciando localhost...");
+                        setAvisoEmEstatus("Reiniciando localhost...");
                         //TxtEstatus.setText("Reiniciando localhost...");
                         try {
                             Comando=FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh restart";
@@ -515,13 +694,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
                             }
                             //TxtEstatus.setText(TxtEstatus.getText()+"\nEathena reiniciado (Espere 5 segundos...)\n");
-                            LblEstatus.setText("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
+                            setAvisoEmEstatus("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
                             long TempoInicio=0,TempoAtual=0,Milisegundos=5500,Segundos=0;
                             TempoInicio=System.currentTimeMillis();
                             do{
                                 TempoAtual=System.currentTimeMillis();
                                 Segundos=(TempoAtual-TempoInicio)/1000;
-                                //LblEstatus.setText("Espere "+Segundos+"/5 segundos...");
+                                //setAvisoEmEstatus("Espere "+Segundos+"/5 segundos...");
                                 PgbBarra.setValue((int)Segundos);
                                 PgbBarra.setString("00:00:0"+(5-((int)Segundos)));
                             }
@@ -529,7 +708,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         } catch (IOException e) {
                             e.printStackTrace();
                             //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-                            LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
+                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
                             ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"+
                                 "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
                                 "</html>",
@@ -539,7 +718,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     }
                     PgbBarra.setIndeterminate(true);
                     //TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
-                    LblEstatus.setText("Abrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
+                    setAvisoEmEstatus("Abrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
                     Comando=FrmPrincipal.Config.getExecucaoComando()+" "+
                     (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty()?"":("-ud "+FrmPrincipal.Config.getExecucaoParametroTMWData()+" "))+
                     (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty()?"":("--server "+FrmPrincipal.Config.getExecucaoParametroServidor()+" "))+
@@ -553,24 +732,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         while ((line = in.readLine()) != null) {
                             System.out.println(line);
                             //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-                            FrmPrincipal.LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\": "+line);
+                            setAvisoEmEstatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\": "+line);
                             PgbBarra.setString("Executando...");
                         }
                         PgbBarra.setString("Fechado!");
-                        LblEstatus.setText("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\" fechando!");
+                        setAvisoEmEstatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font>\" fechando!");
                         PgbBarra.setIndeterminate(false);
                     } catch (IOException e) {
                         PgbBarra.setIndeterminate(false);
                         e.printStackTrace();
                         PgbBarra.setString("ERRO...");
                         //TxtEstatus.setText(TxtEstatus.getText()+"ERRO DE EXECUÇÃO: "+Comando);
-                        LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> "+Comando);
+                        setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> "+Comando);
                         ConfigClass.Mensagem_Erro("O TMW-Maker não conseguiu abrir o jogo THE MANA WORLD!","ERRO DE EXECUÇÃO");
                     }
 
                     if(FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")){
                         PgbBarra.setString("Desligando...");
-                        LblEstatus.setText("Desligando localhost...");
+                        setAvisoEmEstatus("Desligando localhost...");
                         //TxtEstatus.setText("Reiniciando localhost...");
                         try {
                             Comando=FrmPrincipal.Config.getConexaoLocalhost()+"/eathena-data/eathena.sh stop";
@@ -581,12 +760,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 System.out.println(line);
                                 //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
                             }
-                            LblEstatus.setText("<html><font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> encerrados com sucesso!");
+                            setAvisoEmEstatus("<html><font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getExecucaoComando()+"</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> encerrados com sucesso!");
                             PgbBarra.setString("Encerrado!");
                         } catch (IOException e) {
                             e.printStackTrace();
                             //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-                            LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
+                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
                             ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu desligar o eathena:</b><br/><br/>"+
                                 "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
                                 "</html>",
@@ -653,7 +832,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }else{
                 MnuEditarContas.setEnabled(false);
             }
-            if(ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data")){
+            if(ConfigClass.SeExiste(Config.getConexaoLocalhost()+Bar+"eathena-data")){
                 MnuSistemaMontar.setEnabled(true);
             }else{
                 MnuSistemaMontar.setEnabled(false);
@@ -667,7 +846,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 }//GEN-LAST:event_MnuSistemaFecharActionPerformed
     private void MnuSistemaAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAlteracoesActionPerformed
         // TODO add your handling code here:
-        AbrirNavegador(FrmPrincipal.Config.getDocumentacaoAlteracoes());
+        Config.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoAlteracoes());
 }//GEN-LAST:event_MnuSistemaAlteracoesActionPerformed
     private void MnuConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuConfiguracoesActionPerformed
         javax.swing.JDialog FrmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
@@ -697,157 +876,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmContas.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarContasActionPerformed
     private void MnuSistemaMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaMontarActionPerformed
-        int R = JOptionPane.YES_OPTION;
-        if(
-            ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server") ||
-            ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server") ||
-            ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server")
-        ){
-            Object[] options = {"Remontar", "Cancelar"};
-            R = JOptionPane.showOptionDialog(
-                null,"<html>"+
-                "O seu localhost já está montado. Ao remontar você<br/>" +
-                "<font color=\"#FF0000\">pederá todas as contas</font> de jogadores deste localhost.<br/>"+
-                "Deseja realmente forçar uma remontagem?",
-                "REMONTAGEM DE LOCALHOST",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[1]
-            );
-        }
-        if(R == JOptionPane.YES_OPTION){
-            Thread tThread = new Thread(new Runnable() {
-                public void run() {
-                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    MnuSistema.setEnabled(false);
-                    MnuEditar.setEnabled(false);
-                    MnuJogo.setEnabled(false);
-                    MnuAjuda.setEnabled(false);
-                    PgbBarra.setEnabled(true);
-                    PgbBarra.setValue(0);
-
-
-                    Runtime Executador = Runtime.getRuntime();
-                    String line="", Comando="";
-                    String OS = System.getProperty("os.name").toLowerCase();
-                    String Arch = System.getProperty("os.arch").toLowerCase();
-                    boolean BinariosEspecificos=false;
-                    int Baixados=0;
-
-                    PgbBarra.setIndeterminate(true);
-                    PgbBarra.setString("Apagando...");
-                    LblEstatus.setText("Apagando binários...");
-                    if(ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins")){
-                        ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins");
-                    }
-                    ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server");
-                    ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server");
-                    ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server");
-
-                    PgbBarra.setString("Preparando...");
-                    LblEstatus.setText("Preparando para baixar binários novos...");
-                    if(OS.indexOf("linux") >= 0 && Arch.indexOf("i386")>=0){
-                        Comando="svn checkout "+
-                            "http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch+" "+
-                            FrmPrincipal.Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins";
-                        BinariosEspecificos=true;
-                        System.out.println(Comando);
-                        //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
-                    }else{
-                        Comando="svn checkout "+
-                            "http://tmw-maker.googlecode.com/svn/bins/compiler "+
-                            FrmPrincipal.Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins";
-                        BinariosEspecificos=false;
-                        System.out.println(Comando);
-                        //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
-                    }
-                    try {
-                        Process Retorno=Executador.exec(Comando);
-                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                        while ((line = in.readLine()) != null) {
-                            System.out.println(line);
-                            Baixados++;
-                            FrmPrincipal.LblEstatus.setText("<html>"+line+" (<font color=\"#FF0000\">Espere concluir...</font>)");
-                            PgbBarra.setString("Baixando nº"+Baixados+"...");
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-                        LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
-                        ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"+
-                            "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
-                            "</html>",
-                            "ERRO DE EXECUÇÃO"
-                        );
-                    }
-                    if(BinariosEspecificos==true){
-                        PgbBarra.setString("Deslocando...");
-                        if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server")){
-                            ConfigClass.MoverArquivo(
-                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins"+System.getProperty("file.separator")+"char-server",
-                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server"
-                            );
-                            FrmPrincipal.LblEstatus.setText("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
-                        }
-                        if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server")){
-                            ConfigClass.MoverArquivo(
-                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins"+System.getProperty("file.separator")+"login-server",
-                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server"
-                            );
-                            FrmPrincipal.LblEstatus.setText("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
-                        }
-                        if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server")){
-                            ConfigClass.MoverArquivo(
-                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins"+System.getProperty("file.separator")+"map-server",
-                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server"
-                            );
-                            FrmPrincipal.LblEstatus.setText("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
-                        }
-                    }else{
-                        //Desconpactar para usar
-                    }
-                    FrmPrincipal.LblEstatus.setText("Binários Deslocados!");
-                    PgbBarra.setString("Deslocados!");
-
-                    /*
-                    mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
-                    mv -uv conf/battle_local.conf.example conf/battle_local.conf
-                    mv -uv conf/char_local.conf.example conf/char_local.conf
-                    mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
-                    mv -uv conf/gm_account.txt.example conf/gm_account.txt
-                    mv -uv conf/help.txt.example conf/help.txt
-                    mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
-                    mv -uv conf/login_local.conf.example conf/login_local.conf
-                    mv -uv conf/map_local.conf.example conf/map_local.conf
-                    mv -uv conf/motd.txt.example conf/motd.txt
-                    mv -uv save/account.txt.example save/account.txt
-                    Criar pasta de ~/tmw-br/eathena-data/log
-                    gcc -o eathena-monitor eathena-monitor.c
-                    rm $HOME/tmwserver // Apaga Link
-                    ln -s $PWD $HOME/tmwserver //Recria Link
-                    /**/
-
-
-
-
-                    FrmPrincipal.LblEstatus.setText("Locahost montado com sucesso!");
-                    PgbBarra.setString("Concluido!");
-                    
-                    PgbBarra.setIndeterminate(false);
-                    MnuSistema.setEnabled(true);
-                    MnuEditar.setEnabled(true);
-                    MnuJogo.setEnabled(true);
-                    MnuAjuda.setEnabled(true);
-                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
-            tThread.start();
-        }else{
-            LblEstatus.setText("Remontagem cancelada!");
-            PgbBarra.setString("");
-        }
+        MontarLocalhost();
     }//GEN-LAST:event_MnuSistemaMontarActionPerformed
     public static void main(String args[]) {
       java.awt.EventQueue.invokeLater(new Runnable() {
