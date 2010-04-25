@@ -11,6 +11,7 @@
 
 package Formularios;
 
+import Classes.ConfigClass;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -165,7 +166,7 @@ public class FrmSplash extends javax.swing.JDialog {
 
     private void LblDesenvolvedoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblDesenvolvedoraMouseClicked
        // TODO add your handling code here:
-       FrmPrincipal.AbrirNavegador("http://code.google.com/p/tmw-maker");
+       ConfigClass.AbrirNavegador("http://code.google.com/p/tmw-maker");
        LblDesenvolvedora.setForeground(Color.GRAY);
        Toolkit.getDefaultToolkit().beep();
     }//GEN-LAST:event_LblDesenvolvedoraMouseClicked
@@ -184,7 +185,7 @@ public class FrmSplash extends javax.swing.JDialog {
 
     private void LblLunovoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblLunovoxMouseClicked
         // TODO add your handling code here:
-        FrmPrincipal.AbrirNavegador("mailto:Lunovox<rui.gravata@hotmail.com>?subject=Usuário do TMW-Maker v"+FrmPrincipal.Config.getVersao());
+        ConfigClass.AbrirNavegador("mailto:Lunovox<rui.gravata@hotmail.com>?subject=Usuário do TMW-Maker v"+FrmPrincipal.Config.getVersao());
         LblLunovox.setForeground(Color.GRAY);
         Toolkit.getDefaultToolkit().beep();
     }//GEN-LAST:event_LblLunovoxMouseClicked

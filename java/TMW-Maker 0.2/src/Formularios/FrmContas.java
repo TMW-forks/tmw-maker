@@ -134,7 +134,7 @@ public class FrmContas extends javax.swing.JDialog {
                 Poder=TblContas.getModel().getValueAt(c,2).toString();
                 if(Integer.parseInt(Poder)<0) Poder="0";
                 if(Integer.parseInt(Poder)>99) Poder="99";
-                Corpo+=(Integer.parseInt(Poder)<=0?"//":"")+Integer.parseInt(ID)+" "+Integer.parseInt(Poder)+" //"+Nome+"\n";
+                Corpo+=Integer.parseInt(ID)+" "+Integer.parseInt(Poder)+" //"+Nome+"\n";
                 //this.setTitle(this.getTitle()+" \""+Nome+"=GM"+Poder+"\"");
             }
             FileWriter out = new FileWriter(EnderecoDeContasGMs);

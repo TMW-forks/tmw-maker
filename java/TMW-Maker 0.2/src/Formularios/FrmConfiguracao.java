@@ -1,6 +1,7 @@
 
 package Formularios;
 
+import Classes.ConfigClass;
 import java.awt.Color;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.TransformerFactory;
@@ -47,7 +48,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         }
     }
     public static void showAjuda(){
-        FrmPrincipal.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes().trim() + FrmPrincipal.ComponenteSelecionado.trim());
+        ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes().trim() + FrmPrincipal.ComponenteSelecionado.trim());
         Toolkit.getDefaultToolkit().beep();
     }
     public static void showAjuda(java.awt.event.KeyEvent evt){
