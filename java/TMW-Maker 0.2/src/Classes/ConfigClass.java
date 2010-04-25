@@ -1,12 +1,18 @@
 package Classes;
 
-import Formularios.FrmPrincipal;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.channels.FileChannel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -114,6 +120,58 @@ public class ConfigClass {
             return false;
         }
     }
+    public static void Apagar(String PastaOuArquivo){
+        File Objeto = new File(PastaOuArquivo);
+        Objeto.delete();
+    }
+    public static void CopiarArquivo(String De, String Para) {
+        File CapsulaOrigem=new File(De), CapsulaDestino=new File(Para);
+        CapsulaDestino.setExecutable(CapsulaOrigem.canExecute(),true);
+        CapsulaDestino.setReadable(CapsulaOrigem.canRead());
+        CapsulaDestino.setWritable(CapsulaOrigem.canWrite());
+        try {
+            FileChannel Origem = null, Destino = null;
+            Origem = new FileInputStream(CapsulaOrigem).getChannel();
+            Destino = new FileOutputStream(CapsulaDestino).getChannel();
+            Origem.transferTo(0, Origem.size(),Destino);
+            if (Origem != null && Origem.isOpen()) {
+                Origem.close();
+            }
+            if (Destino != null && Destino.isOpen()) {
+                Destino.close();
+            }
+        } catch(IOException Exc){
+            //
+        }/**/
+
+        /*InputStream entrada=null;
+        OutputStream saida=null;
+        try {
+            entrada = new FileInputStream(CapsulaOrigem);
+            saida = new FileOutputStream(CapsulaDestino);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            byte[] buffer= new byte[1024];
+            int maximo = buffer.length;
+            int lidos = -1;
+            while ((lidos = entrada.read(buffer, 0, maximo)) != -1) {
+                saida.write(buffer, 0, lidos);
+            }
+            saida.flush();
+            entrada.close();
+            saida.close(); 
+        } catch(IOException Exc){
+            //
+        }/**/
+
+    }
+    public static void MoverArquivo(String De, String Para) {
+        File Origem = new File(De);
+        File Destino = new File(Para);
+        Origem.renameTo(Destino);
+    }
     public static String getPropriedade(String Conteudo, String Propriedade) {
         int OndeEncontrado= Conteudo.indexOf("\n"+Propriedade+":",0);
         int FinalDeLinha= Conteudo.indexOf("\n",OndeEncontrado+Propriedade.length()+1);
@@ -195,5 +253,4 @@ public class ConfigClass {
             //CmbScript.setEnabled(true);
         }
     }
-    
 }
