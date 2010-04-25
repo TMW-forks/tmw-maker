@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
     public FrmPrincipal() {
@@ -79,8 +80,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnuSistema = new javax.swing.JMenu();
-        MnuSistemaEnviar = new javax.swing.JMenuItem();
         MnuSistemaReceber = new javax.swing.JMenuItem();
+        MnuSistemaMontar = new javax.swing.JMenuItem();
+        MnuSistemaEnviar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         MnuConfiguracoes = new javax.swing.JMenuItem();
         MnuSistemaAlteracoes = new javax.swing.JMenuItem();
@@ -110,7 +112,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         MnuJogo = new javax.swing.JMenu();
         MnuJogoExecutar = new javax.swing.JMenuItem();
-        MnuJogoEstruturar = new javax.swing.JMenuItem();
         MnuAjuda = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         MnuAjudaComentarios = new javax.swing.JMenuItem();
@@ -166,13 +167,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.setMnemonic('S');
         MnuSistema.setText("Sistema");
 
-        MnuSistemaEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
-        MnuSistemaEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
-        MnuSistemaEnviar.setMnemonic('E');
-        MnuSistemaEnviar.setText("Enviar");
-        MnuSistemaEnviar.setEnabled(false);
-        MnuSistema.add(MnuSistemaEnviar);
-
         MnuSistemaReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
         MnuSistemaReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
         MnuSistemaReceber.setMnemonic('R');
@@ -184,6 +178,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         MnuSistema.add(MnuSistemaReceber);
+
+        MnuSistemaMontar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))); // NOI18N
+        MnuSistemaMontar.setMnemonic('M');
+        MnuSistemaMontar.setText("Montar");
+        MnuSistemaMontar.setEnabled(false);
+        MnuSistemaMontar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuSistemaMontarActionPerformed(evt);
+            }
+        });
+        MnuSistema.add(MnuSistemaMontar);
+
+        MnuSistemaEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
+        MnuSistemaEnviar.setMnemonic('E');
+        MnuSistemaEnviar.setText("Enviar");
+        MnuSistemaEnviar.setEnabled(false);
+        MnuSistema.add(MnuSistemaEnviar);
         MnuSistema.add(jSeparator1);
 
         MnuConfiguracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
@@ -357,12 +370,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuJogo.add(MnuJogoExecutar);
 
-        MnuJogoEstruturar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.CTRL_MASK));
-        MnuJogoEstruturar.setMnemonic('S');
-        MnuJogoEstruturar.setText("Estruturar");
-        MnuJogoEstruturar.setEnabled(false);
-        MnuJogo.add(MnuJogoEstruturar);
-
         jMenuBar1.add(MnuJogo);
 
         MnuAjuda.setMnemonic('A');
@@ -455,7 +462,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MnuAjudaComentariosActionPerformed
     private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
-        
+        //ConfigClass.Mensagem_Erro("SistemaOperacional=\""+System.getProperty("os.name").toString()+"\"","Nota de Programador!");
+        /*System.out.println(
+            System.getProperty("os.name").toString()+":::"+
+            System.getProperty("os.arch").toString()+":::"+
+            System.getProperty("os.version").toString()
+        );/**/
+
         if (SistemaOperacional.indexOf("win") >= 0) {
             /*String[] cmd = new String[4];
             cmd[0] = "cmd.exe";
@@ -640,6 +653,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }else{
                 MnuEditarContas.setEnabled(false);
             }
+            if(ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data")){
+                MnuSistemaMontar.setEnabled(true);
+            }else{
+                MnuSistemaMontar.setEnabled(false);
+            }
         }
         
     }//GEN-LAST:event_formWindowActivated
@@ -678,7 +696,159 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmContas.setModal(true);
         FrmContas.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarContasActionPerformed
+    private void MnuSistemaMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaMontarActionPerformed
+        int R = JOptionPane.YES_OPTION;
+        if(
+            ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server") ||
+            ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server") ||
+            ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server")
+        ){
+            Object[] options = {"Remontar", "Cancelar"};
+            R = JOptionPane.showOptionDialog(
+                null,"<html>"+
+                "O seu localhost já está montado. Ao remontar você<br/>" +
+                "<font color=\"#FF0000\">pederá todas as contas</font> de jogadores deste localhost.<br/>"+
+                "Deseja realmente forçar uma remontagem?",
+                "REMONTAGEM DE LOCALHOST",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[1]
+            );
+        }
+        if(R == JOptionPane.YES_OPTION){
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    MnuSistema.setEnabled(false);
+                    MnuEditar.setEnabled(false);
+                    MnuJogo.setEnabled(false);
+                    MnuAjuda.setEnabled(false);
+                    PgbBarra.setEnabled(true);
+                    PgbBarra.setValue(0);
 
+
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Comando="";
+                    String OS = System.getProperty("os.name").toLowerCase();
+                    String Arch = System.getProperty("os.arch").toLowerCase();
+                    boolean BinariosEspecificos=false;
+                    int Baixados=0;
+
+                    PgbBarra.setIndeterminate(true);
+                    PgbBarra.setString("Apagando...");
+                    LblEstatus.setText("Apagando binários...");
+                    if(ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins")){
+                        ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins");
+                    }
+                    ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server");
+                    ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server");
+                    ConfigClass.Apagar(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server");
+
+                    PgbBarra.setString("Preparando...");
+                    LblEstatus.setText("Preparando para baixar binários novos...");
+                    if(OS.indexOf("linux") >= 0 && Arch.indexOf("i386")>=0){
+                        Comando="svn checkout "+
+                            "http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch+" "+
+                            FrmPrincipal.Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins";
+                        BinariosEspecificos=true;
+                        System.out.println(Comando);
+                        //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                    }else{
+                        Comando="svn checkout "+
+                            "http://tmw-maker.googlecode.com/svn/bins/compiler "+
+                            FrmPrincipal.Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins";
+                        BinariosEspecificos=false;
+                        System.out.println(Comando);
+                        //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                    }
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            Baixados++;
+                            FrmPrincipal.LblEstatus.setText("<html>"+line+" (<font color=\"#FF0000\">Espere concluir...</font>)");
+                            PgbBarra.setString("Baixando nº"+Baixados+"...");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                        LblEstatus.setText("<html><font color=\"#FF0000\"><b>ERRO:</b></font> "+Comando);
+                        ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"+
+                            "01: <font face=\"monospace\" color=\"#FF0000\">"+Comando+"</font><br/>"+
+                            "</html>",
+                            "ERRO DE EXECUÇÃO"
+                        );
+                    }
+                    if(BinariosEspecificos==true){
+                        PgbBarra.setString("Deslocando...");
+                        if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server")){
+                            ConfigClass.MoverArquivo(
+                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins"+System.getProperty("file.separator")+"char-server",
+                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"char-server"
+                            );
+                            FrmPrincipal.LblEstatus.setText("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
+                        }
+                        if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server")){
+                            ConfigClass.MoverArquivo(
+                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins"+System.getProperty("file.separator")+"login-server",
+                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"login-server"
+                            );
+                            FrmPrincipal.LblEstatus.setText("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
+                        }
+                        if(!ConfigClass.SeExiste(Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server")){
+                            ConfigClass.MoverArquivo(
+                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"bins"+System.getProperty("file.separator")+"map-server",
+                                Config.getConexaoLocalhost()+System.getProperty("file.separator")+"eathena-data"+System.getProperty("file.separator")+"map-server"
+                            );
+                            FrmPrincipal.LblEstatus.setText("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
+                        }
+                    }else{
+                        //Desconpactar para usar
+                    }
+                    FrmPrincipal.LblEstatus.setText("Binários Deslocados!");
+                    PgbBarra.setString("Deslocados!");
+
+                    /*
+                    mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
+                    mv -uv conf/battle_local.conf.example conf/battle_local.conf
+                    mv -uv conf/char_local.conf.example conf/char_local.conf
+                    mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
+                    mv -uv conf/gm_account.txt.example conf/gm_account.txt
+                    mv -uv conf/help.txt.example conf/help.txt
+                    mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
+                    mv -uv conf/login_local.conf.example conf/login_local.conf
+                    mv -uv conf/map_local.conf.example conf/map_local.conf
+                    mv -uv conf/motd.txt.example conf/motd.txt
+                    mv -uv save/account.txt.example save/account.txt
+                    Criar pasta de ~/tmw-br/eathena-data/log
+                    gcc -o eathena-monitor eathena-monitor.c
+                    rm $HOME/tmwserver // Apaga Link
+                    ln -s $PWD $HOME/tmwserver //Recria Link
+                    /**/
+
+
+
+
+                    FrmPrincipal.LblEstatus.setText("Locahost montado com sucesso!");
+                    PgbBarra.setString("Concluido!");
+                    
+                    PgbBarra.setIndeterminate(false);
+                    MnuSistema.setEnabled(true);
+                    MnuEditar.setEnabled(true);
+                    MnuJogo.setEnabled(true);
+                    MnuAjuda.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+            tThread.start();
+        }else{
+            LblEstatus.setText("Remontagem cancelada!");
+            PgbBarra.setString("");
+        }
+    }//GEN-LAST:event_MnuSistemaMontarActionPerformed
     public static void main(String args[]) {
       java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -715,12 +885,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenu MnuJogo;
-    private javax.swing.JMenuItem MnuJogoEstruturar;
     private javax.swing.JMenuItem MnuJogoExecutar;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
     private javax.swing.JMenuItem MnuSistemaEnviar;
     private javax.swing.JMenuItem MnuSistemaFechar;
+    private javax.swing.JMenuItem MnuSistemaMontar;
     private javax.swing.JMenuItem MnuSistemaReceber;
     public static javax.swing.JProgressBar PgbBarra;
     private javax.swing.JPanel PnlBarraDeEstatus;
