@@ -8,18 +8,14 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.channels.FileChannel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
 public class ConfigClass {
     private String Versao = "0.2";
     private String Barra = System.getProperty("file.separator");
-    private String EnderecoPadrao = System.getProperty("user.home")+Barra+".tmw-maker.ini";
+    private String ConfiguracaoURL = System.getProperty("user.home")+Barra+".tmw-maker.ini";
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
     private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"tmw-br";
@@ -80,12 +76,12 @@ public class ConfigClass {
         }
         while (TempoAtual-TempoInicio<Milisegundos);
     }
-    public static String EnderecoDoJAR(){
+    /*public static String getEnderecoDoJAR(){
         return System.getProperty("user.dir");
     }
-    public static String EnderecoDoTMWMaker(){
+    public static String getEnderecoDoTMWMaker(){
         return System.getProperty("user.home")+System.getProperty("file.separator")+"tmw-maker";
-    }
+    }/**/
     public static void Mensagem_Erro(String Aviso, String Titulo) {
         System.out.println(Aviso);
         Toolkit.getDefaultToolkit().beep();
@@ -150,7 +146,7 @@ public class ConfigClass {
     public boolean SeComandoProcede() {
         return SeComandoProcede(getExecucaoComando()+" --help");
     }
-    public static boolean SeExiste(String PastaOuArquivo){
+    public boolean SeExiste(String PastaOuArquivo){
         File Capsula;
         Capsula = new File(PastaOuArquivo);
         if (Capsula.exists()){
@@ -159,11 +155,11 @@ public class ConfigClass {
             return false;
         }
     }
-    public static void Apagar(String PastaOuArquivo){
+    public void Apagar(String PastaOuArquivo){
         File Objeto = new File(PastaOuArquivo);
         Objeto.delete();
     }
-    public static void CopiarArquivo(String De, String Para) {
+    public void CopiarArquivo(String De, String Para) {
         File CapsulaOrigem=new File(De), CapsulaDestino=new File(Para);
         CapsulaDestino.setExecutable(CapsulaOrigem.canExecute(),true);
         CapsulaDestino.setReadable(CapsulaOrigem.canRead());
@@ -206,12 +202,16 @@ public class ConfigClass {
         }/**/
 
     }
-    public static void MoverArquivo(String De, String Para) {
+    public void MoverArquivo(String De, String Para) {
         File Origem = new File(De);
         File Destino = new File(Para);
         Origem.renameTo(Destino);
     }
-    public static String getPropriedade(String Conteudo, String Propriedade) {
+    public void CriarPasta(String EnderecoDaNovaPasta){
+        File dir = new File(EnderecoDaNovaPasta);
+        dir.mkdirs();  
+    }
+    public String getPropriedade(String Conteudo, String Propriedade) {
         int OndeEncontrado= Conteudo.indexOf("\n"+Propriedade+":",0);
         int FinalDeLinha= Conteudo.indexOf("\n",OndeEncontrado+Propriedade.length()+1);
         if(OndeEncontrado>=1){
@@ -222,7 +222,7 @@ public class ConfigClass {
             return "";
         }
     }
-    public void ConfiguracoesGravar() throws IOException{ConfiguracoesGravar(EnderecoPadrao);}
+    public void ConfiguracoesGravar() throws IOException{ConfiguracoesGravar(ConfiguracaoURL);}
     public void ConfiguracoesGravar(String Endereco) throws IOException{
         String Corpo=
         "////////////////////////////////\n"+
@@ -258,7 +258,7 @@ public class ConfigClass {
             Mensagem_Erro("Não foi possivel gravar o arquivo!","AVISO");
         }
     }
-    public void ConfiguracoesAbrir() throws FileNotFoundException, IOException{ConfiguracoesAbrir(EnderecoPadrao);}
+    public void ConfiguracoesAbrir() throws FileNotFoundException, IOException{ConfiguracoesAbrir(ConfiguracaoURL);}
     public void ConfiguracoesAbrir(String Endereco) throws FileNotFoundException, IOException{
         //Rotina de Abrir Configuracões
         String Conteudo="";
@@ -291,5 +291,94 @@ public class ConfigClass {
             //TxtScript.setEnabled(true);
             //CmbScript.setEnabled(true);
         }
+    }
+
+    public boolean getSeDependenciaDeConfiguracao() {
+        if(SeExiste(ConfiguracaoURL)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean getSeDependenciaDeSVN(){
+        return SeComandoProcede("svn --help");
+    }
+    public boolean getSeDependenciaDeLocalhost(){
+        return SeExiste(ConexaoLocalhost);
+    }
+    public boolean getSeDependenciaDeGCC(){
+        return SeComandoProcede("gcc --help");
+    }
+    public boolean getSeDependenciaDeMontagem(){
+        if(
+            SeExiste(
+                getConexaoLocalhost().toString()+
+                System.getProperty("file.separator")+"eathena-data"+
+                System.getProperty("file.separator")+"char-server"
+            )
+            &&
+            SeExiste(
+                getConexaoLocalhost().toString()+
+                System.getProperty("file.separator")+"eathena-data"+
+                System.getProperty("file.separator")+"login-server"
+            )
+            &&
+            SeExiste(
+                getConexaoLocalhost().toString()+
+                System.getProperty("file.separator")+"eathena-data"+
+                System.getProperty("file.separator")+"map-server"
+            )
+            &&
+            SeExiste(
+                getConexaoLocalhost().toString()+
+                System.getProperty("file.separator")+"eathena-data"+
+                System.getProperty("file.separator")+"save"+
+                System.getProperty("file.separator")+"account.txt"
+            )
+            &&
+            SeExiste(
+                ConexaoLocalhost+
+                System.getProperty("file.separator")+"eathena-data"+
+                System.getProperty("file.separator")+"conf"+
+                System.getProperty("file.separator")+"gm_account.txt"
+            )
+        ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean getSeDependenciaDeMana(){
+        return SeComandoProcede("mana --help");
+    }
+    public boolean getSeDependenciaDeTMW(){
+        return SeComandoProcede("tmw --help");
+    }
+    public int getDependenciaEmFalta(){
+        if(!getSeDependenciaDeConfiguracao()){
+            return 1;
+        }else if(!getSeDependenciaDeSVN()){
+            return 2;
+        }else if(!getSeDependenciaDeLocalhost()){
+            return 3;
+        }else if(!getSeDependenciaDeGCC()){
+            return 4;
+        }else if(!getSeDependenciaDeMontagem()){
+            return 5;
+        }else if(!getSeDependenciaDeMana() && !getSeDependenciaDeTMW()){
+            return 6;
+        }else{
+            return 0;
+        }
+    }
+
+    public String getOS() {
+        return System.getProperty("os.name").toLowerCase();
+    }
+    public String getArquiteturaOS() {
+        return System.getProperty("os.arch").toLowerCase();
+    }
+    public String getVersaoOS() {
+        return System.getProperty("os.version").toLowerCase();
     }
 }

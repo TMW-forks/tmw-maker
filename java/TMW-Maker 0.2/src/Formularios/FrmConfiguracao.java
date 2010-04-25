@@ -56,10 +56,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     }
     public boolean SalvarConfiguracao(String filename) {
         try {
-            //DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
-            //DocumentBuilder builder = fac.newDocumentBuilder();
-            //Document doc = builder.newDocument();
-
             FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
             FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
             FrmPrincipal.Config.setConexaoUsuario (TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
@@ -119,16 +115,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             TransformerFactory facxformer = TransformerFactory.newInstance();
             Transformer xformer = facxformer.newTransformer();
             xformer.transform(source, result);/**/
-
-            /*FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
-
-            record = new String();
-            while ((record = br.readLine()) != null) {
-                recCount++;
-                System.out.println(recCount + ": " + record);
-            }/**/
-
 
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(rootPane, "Não foi possivel salvar!");
@@ -701,7 +687,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
     private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
         try {
-            //SalvarConfiguracao("config.xml");
             FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
             FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
             FrmPrincipal.Config.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
@@ -721,8 +706,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             FrmPrincipal.Config.ConfiguracoesGravar();
             this.dispose();
         } catch (IOException ex) {
-            //Logger.getLogger(FrmConfiguracao.class.getName()).log(Level.SEVERE, null, ex);
-            FrmPrincipal.Config.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
+            ConfigClass.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
         }
     }//GEN-LAST:event_BtnConfiguracaoOkActionPerformed
     private void BtnConfiguracaoAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoAjudaActionPerformed
@@ -827,11 +811,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoDocumentacaoTraducoesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImportarConfiguracao();
     }//GEN-LAST:event_formWindowActivated
-
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
         FrmPrincipal.LblEstatus.setText("Janela de configurações fechada!");
     }//GEN-LAST:event_formWindowDeactivated
@@ -841,6 +823,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             public void run() {
                 FrmConfiguracao dialog = new FrmConfiguracao(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
