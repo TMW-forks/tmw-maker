@@ -4,6 +4,6 @@
 ==Como ajudar ao projeto TMW-Maker?==
 Você pode participar conhecendo o projeto e dando sua opinião. Ou se você tem experiencia com o [EathenaScript Eathena Script] do TMW-BR e em Aplicações Gráfica, pode contribuir dando sugestões de aprendizado.
 
-Sou eu, [mailto:rui.gravata@gotmail.com Lunovox], quem está responsável por criar esta ferramenta, Mas confesso que seu completamente leigo no desenvolvimento de Aplicações Gráficas em [Java] ou em C++ no Ubuntu Linux. Compre um livro de [Java] no [NetBeans]. Vou começar a estuda-lo quando ele chegar. Embora não tenha experiencia em Aplicações Gráficas no Ubuntu Linux, tenho conhecimento no desenvolvimento de Aplicações Gráficas no Windows em Visual Basic e PHP. Faz mais de 15 anos que não mexo em C++.
+Sou eu, [mailto:rui.gravata@gotmail.com Lunovox], quem está responsável por criar esta ferramenta, Mas confesso que seu completamente leigo no desenvolvimento de Aplicações Gráficas em [Java] no Ubuntu Linux. Comprei um livro de desenvolvimento de [Java] no [NetBeans]. Embora não tenha experiencia em Aplicações Gráficas no Ubuntu Linux, tenho conhecimento no desenvolvimento de Aplicações Gráficas no Windows em Visual Basic e PHP. Faz mais de 15 anos que não mexo em C++.
 
-|| *DICA:* Começe entendendo a utilidade cada Aba, que está inglês acima, clicando [abaswiki AQUI]. ||
+|| *DICA:* Comece entendendo a utilidade cada Aba, que está inglês acima, clicando [abaswiki AQUI]. ||
