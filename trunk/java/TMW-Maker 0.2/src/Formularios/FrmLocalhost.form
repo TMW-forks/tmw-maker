@@ -31,8 +31,10 @@
                   <Component id="jScrollPane1" alignment="0" pref="578" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="ChkForcar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="312" max="32767" attributes="0"/>
+                      <EmptySpace pref="219" max="32767" attributes="0"/>
                       <Component id="BtnBaixar" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="BtnMontar" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="BtnFechar" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -49,8 +51,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtnFechar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnBaixar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ChkForcar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnMontar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnBaixar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -110,6 +113,19 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnBaixarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnMontar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagem/Botoes/tmw-br.png"/>
+        </Property>
+        <Property name="mnemonic" type="int" value="77"/>
+        <Property name="text" type="java.lang.String" value="Montar"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMontarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

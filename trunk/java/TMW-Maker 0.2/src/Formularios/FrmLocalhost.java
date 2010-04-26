@@ -4,7 +4,7 @@
  */
 
 /*
- * FrmCheckout.java
+ * FrmLocalhost.java
  *
  * Created on Apr 21, 2010, 8:10:29 PM
  */
@@ -22,10 +22,10 @@ import javax.swing.JOptionPane;
  *
  * @author indigovox
  */
-public class FrmCheckout extends javax.swing.JDialog {
+public class FrmLocalhost extends javax.swing.JDialog {
 
-    /** Creates new form FrmCheckout */
-    public FrmCheckout(java.awt.Frame parent, boolean modal) {
+    /** Creates new form FrmLocalhost */
+    public FrmLocalhost(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -39,6 +39,7 @@ public class FrmCheckout extends javax.swing.JDialog {
         ChkForcar = new javax.swing.JCheckBox();
         BtnFechar = new javax.swing.JButton();
         BtnBaixar = new javax.swing.JButton();
+        BtnMontar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -49,7 +50,7 @@ public class FrmCheckout extends javax.swing.JDialog {
 
         TxtEstatus.setColumns(20);
         TxtEstatus.setEditable(false);
-        TxtEstatus.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 14)); // NOI18N
+        TxtEstatus.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 14));
         TxtEstatus.setRows(5);
         TxtEstatus.setWrapStyleWord(true);
         TxtEstatus.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -77,6 +78,16 @@ public class FrmCheckout extends javax.swing.JDialog {
             }
         });
 
+        BtnMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
+        BtnMontar.setMnemonic('M');
+        BtnMontar.setText("Montar");
+        BtnMontar.setEnabled(false);
+        BtnMontar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMontarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,14 +98,16 @@ public class FrmCheckout extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(ChkForcar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                         .addComponent(BtnBaixar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnMontar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnFechar)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnBaixar, BtnFechar});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnBaixar, BtnFechar, BtnMontar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,12 +117,13 @@ public class FrmCheckout extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnFechar)
-                    .addComponent(BtnBaixar)
-                    .addComponent(ChkForcar))
+                    .addComponent(ChkForcar)
+                    .addComponent(BtnMontar)
+                    .addComponent(BtnBaixar))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnBaixar, BtnFechar});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnBaixar, BtnFechar, BtnMontar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,13 +242,17 @@ public class FrmCheckout extends javax.swing.JDialog {
         setTitle("svn checkout "+FrmPrincipal.Config.getConexaoRepositorio());
     }//GEN-LAST:event_formWindowActivated
 
+    private void BtnMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMontarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnMontarActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmCheckout dialog = new FrmCheckout(new javax.swing.JFrame(), true);
+                FrmLocalhost dialog = new FrmLocalhost(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -249,6 +267,7 @@ public class FrmCheckout extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBaixar;
     private javax.swing.JButton BtnFechar;
+    private javax.swing.JButton BtnMontar;
     private javax.swing.JCheckBox ChkForcar;
     private javax.swing.JTextArea TxtEstatus;
     private javax.swing.JScrollPane jScrollPane1;
