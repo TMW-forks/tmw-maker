@@ -909,7 +909,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmConfiguracao.setVisible(true);/**/
 }//GEN-LAST:event_MnuConfiguracoesActionPerformed
     private void MnuSistemaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaReceberActionPerformed
-        javax.swing.JDialog FrmCheckout = new FrmCheckout(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmCheckout = new FrmLocalhost(this, rootPaneCheckingEnabled);
         FrmCheckout.setLocation(
                 ((this.getWidth() - FrmCheckout.getWidth()) / 2) + this.getX(),
                 ((this.getHeight() - FrmCheckout.getHeight()) / 2) + this.getY());

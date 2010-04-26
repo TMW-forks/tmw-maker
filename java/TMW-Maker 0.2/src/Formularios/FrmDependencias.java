@@ -16,6 +16,211 @@ public class FrmDependencias extends javax.swing.JDialog {
         initComponents();
     }
 
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TblDependencias = new javax.swing.JTable();
+        BtnResolver = new javax.swing.JButton();
+        BtnAjuda = new javax.swing.JButton();
+        BtnCancelar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Dependencias de Funcionamento");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        TblDependencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Configuração", "Pendente", "Configurações do TMW-Maker"},
+                {"SVN", "Pendente", "Baixa repositório tipo Subversion"},
+                {"Localhost", "Pendente", "Cópia de um servidor TMW"},
+                {"GCC", "Pendente", "Executa aplicativos C++"},
+                {"Montagem", "Pendente", "Localhost pronto para uso"},
+                {"Mana", "Pendente", "Jogo TMW de estilo 4144"},
+                {"TMW", "Facultativo", "Jogo TMW de estilo antigo"}
+            },
+            new String [] {
+                "Dependencia", "Estatus", "Descrição"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TblDependencias.setFocusable(false);
+        TblDependencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TblDependenciasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TblDependencias);
+
+        BtnResolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
+        BtnResolver.setMnemonic('R');
+        BtnResolver.setText("Resolver");
+        BtnResolver.setEnabled(false);
+        BtnResolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResolverActionPerformed(evt);
+            }
+        });
+
+        BtnAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ajuda.gif"))); // NOI18N
+        BtnAjuda.setMnemonic('J');
+        BtnAjuda.setText("Ajudar");
+        BtnAjuda.setFocusable(false);
+        BtnAjuda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        BtnCancelar.setMnemonic('C');
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnAjuda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addComponent(BtnResolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnCancelar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnCancelar, BtnResolver});
+
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnAjuda)
+                    .addComponent(BtnCancelar)
+                    .addComponent(BtnResolver))
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        VerificarPendencias();
+    }//GEN-LAST:event_formWindowActivated
+    private void TblDependenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDependenciasMouseClicked
+        //setTitle("Linha: "+TblDependencias.getSelectedRow());
+        if(TblDependencias.getSelectedRow()==0 && !FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
+            BtnResolver.setEnabled(true);
+        }else if(
+            TblDependencias.getSelectedRow()==2 &&
+            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+            !FrmPrincipal.Config.getSeDependenciaDeLocalhost()
+        ){
+            BtnResolver.setEnabled(true);
+        }else if(
+            TblDependencias.getSelectedRow()==4 &&
+            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+            FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
+            !FrmPrincipal.Config.getSeDependenciaDeMontagem()
+        ){
+            BtnResolver.setEnabled(true);
+        }else{
+            BtnResolver.setEnabled(false);
+        }
+    }//GEN-LAST:event_TblDependenciasMouseClicked
+    private void BtnResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResolverActionPerformed
+        // TODO add your handling code here:
+        if(TblDependencias.getSelectedRow()==0) {
+            try {
+                FrmPrincipal.Config.ConfiguracoesGravar();
+                BtnResolver.setEnabled(false);
+                ConfigClass.Mensagem_Erro("Definida configuração padrão com sucesso!", "CONFIGURAÇÃO");
+                VerificarPendencias();
+            } catch (IOException ex) {
+                //Logger.getLogger(FrmDependencias.class.getName()).log(Level.SEVERE, null, ex);
+                ConfigClass.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
+            }
+        }else if(TblDependencias.getSelectedRow()==2){
+            BaixarLocalhost();
+        }else if(TblDependencias.getSelectedRow()==4){
+            MontarLocalhost();
+        }
+    }//GEN-LAST:event_BtnResolverActionPerformed
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                FrmDependencias dialog = new FrmDependencias(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAjuda;
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnResolver;
+    private javax.swing.JTable TblDependencias;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
+
+    static String Barra = System.getProperty("file.separator");
+
+    public void VerificarPendencias(){
+        String Cabecalho[] = new String [] { "Dependencias", "Estatus", "Descrição"};
+        Object CorpoDePendencias= new Object [][] {
+            {"Configuração", (FrmPrincipal.Config.getSeDependenciaDeConfiguracao()?"Configurado":"<html><font color=\"#FF0000\">Pendente"), "Configurações do TMW-Maker"},
+            {"SVN", (FrmPrincipal.Config.getSeDependenciaDeSVN()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Baixa repositório tipo Subversion"},
+            {"Localhost", (FrmPrincipal.Config.getSeDependenciaDeLocalhost()?"Baixado":"<html><font color=\"#FF0000\">Pendente"), "Cópia de um servidor TMW"},
+            {"GCC", (FrmPrincipal.Config.getSeDependenciaDeGCC()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Executa aplicativos C++"},
+            {"Montagem", (FrmPrincipal.Config.getSeDependenciaDeMontagem()?"Montado":"<html><font color=\"#FF0000\">Pendente"), "Localhost pronto para uso"},
+            {"Mana", (FrmPrincipal.Config.getSeDependenciaDeMana()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Jogo TMW de estilo 4144"},
+            {"TMW", (FrmPrincipal.Config.getSeDependenciaDeTMW()?"Instalado":"Facultativo"), "Jogo TMW de estilo antigo"}
+        };
+        TblDependencias.setModel(new javax.swing.table.DefaultTableModel((Object[][]) CorpoDePendencias,Cabecalho) {
+            boolean[] canEdit = new boolean [] {false, false, false};
+            public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
+        });
+
+        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMinWidth(100);
+        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
+
+        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMinWidth(80);
+        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(80);
+    }
     public void BaixarLocalhost(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
@@ -35,7 +240,7 @@ public class FrmDependencias extends javax.swing.JDialog {
 
                     FrmPrincipal.PgbBarra.setEnabled(true);
 
-                    BtnAplicar.setEnabled(false);
+                    BtnResolver.setEnabled(false);
 
                     Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
                     if(Partes.length>1 && Partes[0].toLowerCase().equals("http")){
@@ -94,7 +299,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("ERRO!");
                         }/**/
                         FrmPrincipal.PgbBarra.setIndeterminate(false);
-                        BtnAplicar.setEnabled(true);
+                        BtnResolver.setEnabled(true);
                         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                     }
                 }
@@ -102,221 +307,273 @@ public class FrmDependencias extends javax.swing.JDialog {
             tThread.start();
         }
     }
+    public void MontarLocalhost() {
+        if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+        } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+        } else if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
+            int R = JOptionPane.YES_OPTION;
+            if(FrmPrincipal.Config.getSeDependenciaDeGCC()){
+                if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server") ||
+                        FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server") ||
+                        FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                    Object[] options = {"Remontar", "Cancelar"};
+                    R = JOptionPane.showOptionDialog(
+                            null, "<html>" +
+                            "O seu localhost já está montado. Ao remontar você<br/>" +
+                            "<font color=\"#FF0000\">pederá todas as contas</font> de jogadores deste localhost.<br/>" +
+                            "Deseja realmente forçar uma remontagem?",
+                            "REMONTAGEM DE LOCALHOST",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            options,
+                            options[1]);
+                }
+                if (R == JOptionPane.YES_OPTION) {
+                    Thread tThread = new Thread(new Runnable() {
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+                        public void run() {
+                            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                            BtnResolver.setEnabled(false);
+                            BtnCancelar.setEnabled(false);
+                            FrmPrincipal.PgbBarra.setEnabled(true);
+                            FrmPrincipal.PgbBarra.setValue(0);
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TblDependencias = new javax.swing.JTable();
-        jToolBar1 = new javax.swing.JToolBar();
-        BtnInstalar = new javax.swing.JButton();
-        BtnDesinstalar = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
-        BtnAplicar = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
-        BtnAjuda = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Dependencias de Funcionamento");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+                            Runtime Executador = Runtime.getRuntime();
+                            String line = "", Comando = "";
+                            String OS = System.getProperty("os.name").toLowerCase();
+                            String Arch = System.getProperty("os.arch").toLowerCase();
+                            boolean BinariosEspecificos = false;
+                            int Baixados = 0;
+
+                            FrmPrincipal.PgbBarra.setIndeterminate(true);
+                            FrmPrincipal.PgbBarra.setString("Apagando...");
+                            FrmPrincipal.setAvisoEmEstatus("Apagando binários...");
+                            if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
+                                FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
+                            }
+                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
+                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
+                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
+
+                            FrmPrincipal.PgbBarra.setString("Preparando...");
+                            FrmPrincipal.setAvisoEmEstatus("Preparando para baixar binários novos...");
+                            if (OS.indexOf("linux") >= 0 && Arch.indexOf("i386") >= 0) {
+                                Comando = "svn checkout " +
+                                        "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
+                                        FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
+                                BinariosEspecificos = true;
+                                System.out.println(Comando);
+                                //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                            } else {
+                                Comando = "svn checkout " +
+                                        "http://tmw-maker.googlecode.com/svn/bins/compiler " +
+                                        FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
+                                BinariosEspecificos = false;
+                                System.out.println(Comando);
+                                //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                            }
+                            try {
+                                Process Retorno = Executador.exec(Comando);
+                                BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                while ((line = in.readLine()) != null) {
+                                    System.out.println(line);
+                                    Baixados++;
+                                    FrmPrincipal.setAvisoEmEstatus("<html>" + line + " (<font color=\"#FF0000\">Espere concluir...</font>)");
+                                    FrmPrincipal.PgbBarra.setString("Baixando nº" + Baixados + "...");
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+                                ConfigClass.Mensagem_Erro(
+                                    "<html><b>O TMW-Maker não conseguiu baixar os binários:</b><br/><br/>" +
+                                    "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
+                                    "</html>",
+                                    "ERRO DE EXECUÇÃO"
+                                );
+                            }
+                            if (BinariosEspecificos == true) {
+                                FrmPrincipal.PgbBarra.setString("Deslocando...");
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server")) {
+                                    FrmPrincipal.Config.MoverArquivo(
+                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "char-server",
+                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
+                                }
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server")) {
+                                    FrmPrincipal.Config.MoverArquivo(
+                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "login-server",
+                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
+                                }
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                                    FrmPrincipal.Config.MoverArquivo(
+                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "map-server",
+                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
+                                }
+                            } else {
+                                //Desconpactar para usar
+                            }
+
+                            /*
+                            mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
+                            mv -uv conf/battle_local.conf.example conf/battle_local.conf
+                            mv -uv conf/char_local.conf.example conf/char_local.conf
+                            mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
+                            mv -uv conf/gm_account.txt.example conf/gm_account.txt
+                            mv -uv conf/help.txt.example conf/help.txt
+                            mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
+                            mv -uv conf/login_local.conf.example conf/login_local.conf
+                            mv -uv conf/map_local.conf.example conf/map_local.conf
+                            mv -uv conf/motd.txt.example conf/motd.txt
+                            mv -uv save/account.txt.example save/account.txt
+                            /**/
+
+                            FrmPrincipal.setAvisoEmEstatus("Renomeando banco de dados...");
+                            FrmPrincipal.PgbBarra.setString("Renomeando...");
+                            String Pasta[] = new String[]{
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
+                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "save"
+                            };
+                            String De[] = new String[]{
+                                "atcommand_local.conf.example",
+                                "battle_local.conf.example",
+                                "char_local.conf.example",
+                                "eathena-monitor.conf.example",
+                                "gm_account.txt.example",
+                                "help.txt.example",
+                                "ladmin_local.conf.example",
+                                "login_local.conf.example",
+                                "map_local.conf.example",
+                                "motd.txt.example",
+                                "account.txt.example"
+                            };
+                            String Para[] = new String[]{
+                                "atcommand_local.conf",
+                                "battle_local.conf",
+                                "char_local.conf",
+                                "eathena-monitor.conf",
+                                "gm_account.txt",
+                                "help.txt",
+                                "ladmin_local.conf",
+                                "login_local.conf",
+                                "map_local.conf",
+                                "motd.txt",
+                                "account.txt"
+                            };
+
+                            for (int r = 0; r < De.length; r++) {
+                                if (FrmPrincipal.Config.SeExiste(Pasta[r] +Barra+ De[r])) {
+                                    if (FrmPrincipal.Config.SeExiste(Pasta[r] +Barra+ Para[r])) {
+                                        FrmPrincipal.Config.Apagar(Pasta[r] +Barra+ Para[r]);
+                                        FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + Para[r] + "\"!");
+                                    }
+                                    FrmPrincipal.setAvisoEmEstatus("<html><b>Renomeando:</b> \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
+                                    FrmPrincipal.Config.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
+                                }
+                            }
+
+                            if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log")) {
+                                FrmPrincipal.setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log\"...");
+                                FrmPrincipal.Config.CriarPasta(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log");
+                            }
+
+                            /*
+                            Criar pasta de ~/tmw-br/eathena-data/log
+                            gcc -o eathena-monitor eathena-monitor.c
+                            /**/
+                            if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor")) {
+                                FrmPrincipal.PgbBarra.setString("Copilando...");
+                                FrmPrincipal.setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
+                                Comando="gcc -o "+
+                                    FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor "+
+                                    FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor.c";
+                                System.out.println(Comando);
+                                try {
+                                    Process Retorno = Executador.exec(Comando);
+                                    BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                    while ((line = in.readLine()) != null) {
+                                        System.out.println(line);
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                    //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+                                    ConfigClass.Mensagem_Erro(
+                                        "<html><b>O TMW-Maker não conseguiu copilar o binário de monitor:</b><br/><br/>" +
+                                        "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
+                                        "</html>",
+                                        "ERRO DE EXECUÇÃO"
+                                    );
+                                }
+                            }
+
+                            /*
+                            rm $HOME/tmwserver // Apaga Link
+                            ln -s $PWD $HOME/tmwserver //Recria Link
+                            /**/
+                            if(FrmPrincipal.Config.SeExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
+                                FrmPrincipal.Config.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
+                            }
+                            FrmPrincipal.PgbBarra.setString("Coligando...");
+                            FrmPrincipal.setAvisoEmEstatus("Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");
+                            Comando="ln -s "+
+                                FrmPrincipal.Config.getConexaoLocalhost()+Barra+ "eathena-data"+" "+
+                                System.getProperty("user.home")+Barra+"tmwserver";
+                            System.out.println(Comando);
+                            try {
+                                Process Retorno = Executador.exec(Comando);
+                                BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                while ((line = in.readLine()) != null) {
+                                    System.out.println(line);
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+                                ConfigClass.Mensagem_Erro(
+                                    "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
+                                    "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
+                                    "</html>",
+                                    "ERRO DE EXECUÇÃO"
+                                );
+                            }
+
+                            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#0000FF\">Locahost montado com sucesso!");
+                            FrmPrincipal.PgbBarra.setString("Concluido!");
+
+                            FrmPrincipal.PgbBarra.setIndeterminate(false);
+                            BtnResolver.setEnabled(true);
+                            BtnCancelar.setEnabled(true);
+                            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        }
+                    });
+                    tThread.start();
+                } else {
+                    FrmPrincipal.setAvisoEmEstatus("Remontagem cancelada!");
+                    FrmPrincipal.PgbBarra.setString("");
+                }
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#0000FF\">CANCELADO:</font> Existe uma dependencia de GCC para você resolver!");
+                ConfigClass.Mensagem_Erro("<html>"+
+                    "Esta função possui a <font face=\"monospace\" color=\"#FF0000\">dependencia</font> do comando GCC!",
+                    "ERRO DE EXECUÇÃO"
+                );
             }
-        });
-
-        TblDependencias.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Configuração", "Pendente", "Configurações do TMW-Maker"},
-                {"SVN", "Pendente", "Baixa repositório tipo Subversion"},
-                {"Localhost", "Pendente", "Cópia de um servidor TMW"},
-                {"GCC", "Pendente", "Executa aplicativos C++"},
-                {"Montagem", "Pendente", "Localhost pronto para uso"},
-                {"Mana", "Pendente", "Jogo TMW de estilo 4144"},
-                {"TMW", "Facultativo", "Jogo TMW de estilo antigo"}
-            },
-            new String [] {
-                "Dependencia", "Estatus", "Descrição"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TblDependencias.setFocusable(false);
-        TblDependencias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TblDependenciasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(TblDependencias);
-
-        jToolBar1.setFloatable(false);
-        jToolBar1.setRollover(true);
-
-        BtnInstalar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
-        BtnInstalar.setMnemonic('I');
-        BtnInstalar.setText("Instalar");
-        BtnInstalar.setEnabled(false);
-        BtnInstalar.setFocusable(false);
-        BtnInstalar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jToolBar1.add(BtnInstalar);
-
-        BtnDesinstalar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
-        BtnDesinstalar.setMnemonic('D');
-        BtnDesinstalar.setText("Desinstalar");
-        BtnDesinstalar.setEnabled(false);
-        BtnDesinstalar.setFocusable(false);
-        BtnDesinstalar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jToolBar1.add(BtnDesinstalar);
-        jToolBar1.add(jSeparator1);
-
-        BtnAplicar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
-        BtnAplicar.setMnemonic('A');
-        BtnAplicar.setText("Aplicar");
-        BtnAplicar.setEnabled(false);
-        BtnAplicar.setFocusable(false);
-        BtnAplicar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnAplicar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAplicarActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(BtnAplicar);
-        jToolBar1.add(jSeparator2);
-
-        BtnAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ajuda.gif"))); // NOI18N
-        BtnAjuda.setMnemonic('J');
-        BtnAjuda.setText("Ajudar");
-        BtnAjuda.setFocusable(false);
-        BtnAjuda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jToolBar1.add(BtnAjuda);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        String Cabecalho[] = new String [] { "Dependencias", "Estatus", "Descrição"};
-        Object CorpoDePendencias= new Object [][] {
-            {"Configuração", (FrmPrincipal.Config.getSeDependenciaDeConfiguracao()?"Configurado":"<html><font color=\"#FF0000\">Pendente"), "Configurações do TMW-Maker"},
-            {"SVN", (FrmPrincipal.Config.getSeDependenciaDeSVN()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Baixa repositório tipo Subversion"},
-            {"Localhost", (FrmPrincipal.Config.getSeDependenciaDeLocalhost()?"Baixado":"<html><font color=\"#FF0000\">Pendente"), "Cópia de um servidor TMW"},
-            {"GCC", (FrmPrincipal.Config.getSeDependenciaDeGCC()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Executa aplicativos C++"},
-            {"Montagem", (FrmPrincipal.Config.getSeDependenciaDeMontagem()?"Montado":"<html><font color=\"#FF0000\">Pendente"), "Localhost pronto para uso"},
-            {"Mana", (FrmPrincipal.Config.getSeDependenciaDeMana()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Jogo TMW de estilo 4144"},
-            {"TMW", (FrmPrincipal.Config.getSeDependenciaDeTMW()?"Instalado":"Facultativo"), "Jogo TMW de estilo antigo"}
-        };
-        TblDependencias.setModel(new javax.swing.table.DefaultTableModel((Object[][]) CorpoDePendencias,Cabecalho) {
-            boolean[] canEdit = new boolean [] {false, false, false};
-            public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
-        });
-
-        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMinWidth(100);
-        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
-
-        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMinWidth(80);
-        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(80);
-    }//GEN-LAST:event_formWindowActivated
-    private void TblDependenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDependenciasMouseClicked
-        //setTitle("Linha: "+TblDependencias.getSelectedRow());
-        if(TblDependencias.getSelectedRow()==0 && !FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
-            BtnInstalar.setEnabled(false);
-            BtnDesinstalar.setEnabled(false);
-            BtnAplicar.setEnabled(true);
-            BtnAplicar.setText("Configurar");
-            BtnAplicar.setMnemonic('C');
-        }else{
-            BtnInstalar.setEnabled(false);
-            BtnDesinstalar.setEnabled(false);
-            BtnAplicar.setEnabled(false);
         }
-        if(
-            TblDependencias.getSelectedRow()==2 &&
-            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-            !FrmPrincipal.Config.getSeDependenciaDeLocalhost()
-        ){
-            BtnInstalar.setEnabled(false);
-            BtnDesinstalar.setEnabled(false);
-            BtnAplicar.setEnabled(true);
-            BtnAplicar.setText("Baixar");
-            BtnAplicar.setMnemonic('B');
-        }else{
-            BtnInstalar.setEnabled(false);
-            BtnDesinstalar.setEnabled(false);
-            BtnAplicar.setEnabled(false);
-        }
-    }//GEN-LAST:event_TblDependenciasMouseClicked
-
-    private void BtnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAplicarActionPerformed
-        // TODO add your handling code here:
-        if(TblDependencias.getSelectedRow()==0) {
-            try {
-                FrmPrincipal.Config.ConfiguracoesGravar();
-                BtnAplicar.setEnabled(false);
-                ConfigClass.Mensagem_Erro("Configuração concluida com sucesso!", "CONFIGURAÇÃO");
-            } catch (IOException ex) {
-                //Logger.getLogger(FrmDependencias.class.getName()).log(Level.SEVERE, null, ex);
-                ConfigClass.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
-            }
-        }else if(TblDependencias.getSelectedRow()==2){
-            BaixarLocalhost();
-        }
-    }//GEN-LAST:event_BtnAplicarActionPerformed
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FrmDependencias dialog = new FrmDependencias(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAjuda;
-    private javax.swing.JButton BtnAplicar;
-    private javax.swing.JButton BtnDesinstalar;
-    private javax.swing.JButton BtnInstalar;
-    private javax.swing.JTable TblDependencias;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JToolBar.Separator jSeparator2;
-    private javax.swing.JToolBar jToolBar1;
-    // End of variables declaration//GEN-END:variables
-
 }
