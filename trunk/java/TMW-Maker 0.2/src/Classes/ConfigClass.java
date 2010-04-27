@@ -33,39 +33,39 @@ public class ConfigClass {
     private String  DocumentacaoComentarios =       "http://code.google.com/p/tmw-maker/issues/entry";
     private String  DocumentacaoTraducoes =         "";
 
-    public String getVersao(){return Versao.toString();}
+    public String getVersao(){return Versao;}
 
-    public String  getConexaoRepositorio(){return ConexaoRepositorio.toString();}
-    public String  getConexaoLocalhost(){return ConexaoLocalhost.toString();}
-    public String  getConexaoUsuario(){return ConexaoUsuario.toString();}
-    public String  getConexaoSenha(){return ConexaoSenha.toString();}
-    public String  getExecucaoComando(){return ExecucaoComando.toString();}
-    public String  getExecucaoParametroTMWData(){return ExecucaoParametroTMWData.toString();}
-    public String  getExecucaoParametroServidor(){return ExecucaoParametroServidor.toString();}
-    public String  getExecucaoParametroConta(){return ExecucaoParametroConta.toString();}
-    public String  getExecucaoParametroSenha(){return ExecucaoParametroSenha.toString();}
-    public String  getExecucaoParametroPersonagem(){return ExecucaoParametroPersonagem.toString();}
+    public String  getConexaoRepositorio(){return ConexaoRepositorio;}
+    public String  getConexaoLocalhost(){return ConexaoLocalhost;}
+    public String  getConexaoUsuario(){return ConexaoUsuario;}
+    public String  getConexaoSenha(){return ConexaoSenha;}
+    public String  getExecucaoComando(){return ExecucaoComando;}
+    public String  getExecucaoParametroTMWData(){return ExecucaoParametroTMWData;}
+    public String  getExecucaoParametroServidor(){return ExecucaoParametroServidor;}
+    public String  getExecucaoParametroConta(){return ExecucaoParametroConta;}
+    public String  getExecucaoParametroSenha(){return ExecucaoParametroSenha;}
+    public String  getExecucaoParametroPersonagem(){return ExecucaoParametroPersonagem;}
     public boolean getExecucaoParametroSemopengl(){return ExecucaoParametroSemopengl;}
-    public String  getDocumentacaoAlteracoes(){return DocumentacaoAlteracoes.toString();}
-    public String  getDocumentacaoComponentes(){return DocumentacaoComponentes.toString();}
-    public String  getDocumentacaoComentarios(){return DocumentacaoComentarios.toString();}
-    public String  getDocumentacaoTraducoes(){return DocumentacaoTraducoes.toString();}
+    public String  getDocumentacaoAlteracoes(){return DocumentacaoAlteracoes;}
+    public String  getDocumentacaoComponentes(){return DocumentacaoComponentes;}
+    public String  getDocumentacaoComentarios(){return DocumentacaoComentarios;}
+    public String  getDocumentacaoTraducoes(){return DocumentacaoTraducoes;}
 
-    public void setConexaoRepositorio(String URL){ConexaoRepositorio=URL.toString();}
-    public void setConexaoLocalhost(String EnderecoDaPasta){ConexaoLocalhost=EnderecoDaPasta.toString();}
-    public void setConexaoUsuario(String Usuario){ConexaoUsuario=Usuario.toString();}
-    public void setConexaoSenha(String Senha){ConexaoSenha=Senha.toString();}
-    public void setExecucaoComando(String Comando){ExecucaoComando=Comando.toString();}
-    public void setExecucaoParametroTMWData(String PastaTMWData){ExecucaoParametroTMWData=PastaTMWData.toString();}
-    public void setExecucaoParametroServidor(String Servidor){ExecucaoParametroServidor=Servidor.toString();}
-    public void setExecucaoParametroConta(String Conta){ExecucaoParametroConta=Conta.toString();}
-    public void setExecucaoParametroSenha(String Senha){ExecucaoParametroSenha=Senha.toString();}
-    public void setExecucaoParametroPersonagem(String Personagem){ExecucaoParametroPersonagem=Personagem.toString();}
+    public void setConexaoRepositorio(String URL){ConexaoRepositorio=URL ;}
+    public void setConexaoLocalhost(String EnderecoDaPasta){ConexaoLocalhost=EnderecoDaPasta ;}
+    public void setConexaoUsuario(String Usuario){ConexaoUsuario=Usuario ;}
+    public void setConexaoSenha(String Senha){ConexaoSenha=Senha ;}
+    public void setExecucaoComando(String Comando){ExecucaoComando=Comando ;}
+    public void setExecucaoParametroTMWData(String PastaTMWData){ExecucaoParametroTMWData=PastaTMWData ;}
+    public void setExecucaoParametroServidor(String Servidor){ExecucaoParametroServidor=Servidor ;}
+    public void setExecucaoParametroConta(String Conta){ExecucaoParametroConta=Conta ;}
+    public void setExecucaoParametroSenha(String Senha){ExecucaoParametroSenha=Senha ;}
+    public void setExecucaoParametroPersonagem(String Personagem){ExecucaoParametroPersonagem=Personagem ;}
     public void setExecucaoParametroSemopengl(boolean SemOpenGL){ExecucaoParametroSemopengl=SemOpenGL;}
-    public void setDocumentacaoAlteracoes(String URLdeAlteracoes){DocumentacaoAlteracoes=URLdeAlteracoes.toString();}
-    public void setDocumentacaoComponentes(String URLdeComponentes){DocumentacaoComponentes=URLdeComponentes.toString();}
-    public void setDocumentacaoComentarios(String URLdeComentarios){DocumentacaoComentarios=URLdeComentarios.toString();}
-    public void setDocumentacaoTraducoes(String URLdeTraducoes){DocumentacaoTraducoes=URLdeTraducoes.toString();}
+    public void setDocumentacaoAlteracoes(String URLdeAlteracoes){DocumentacaoAlteracoes=URLdeAlteracoes ;}
+    public void setDocumentacaoComponentes(String URLdeComponentes){DocumentacaoComponentes=URLdeComponentes ;}
+    public void setDocumentacaoComentarios(String URLdeComentarios){DocumentacaoComentarios=URLdeComentarios ;}
+    public void setDocumentacaoTraducoes(String URLdeTraducoes){DocumentacaoTraducoes=URLdeTraducoes ;}
 
     public void Esperar(int Milisegundos){
         long TempoInicio,TempoAtual;
@@ -222,8 +222,8 @@ public class ConfigClass {
             return "";
         }
     }
-    public void ConfiguracoesGravar() throws IOException{ConfiguracoesGravar(ConfiguracaoURL);}
-    public void ConfiguracoesGravar(String Endereco) throws IOException{
+    public void ConfiguracoesGravar(){ConfiguracoesGravar(ConfiguracaoURL);}
+    public void ConfiguracoesGravar(String Endereco){
         String Corpo=
         "////////////////////////////////\n"+
         "// Configurações do TMW-Maker //\n"+
@@ -255,11 +255,11 @@ public class ConfigClass {
             out.write(Corpo);
             out.close();
         } catch (java.io.IOException exc) {
-            Mensagem_Erro("Não foi possivel gravar o arquivo!","AVISO");
+            Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
         }
     }
-    public void ConfiguracoesAbrir() throws FileNotFoundException, IOException{ConfiguracoesAbrir(ConfiguracaoURL);}
-    public void ConfiguracoesAbrir(String Endereco) throws FileNotFoundException, IOException{
+    public void ConfiguracoesAbrir(){ConfiguracoesAbrir(ConfiguracaoURL);}
+    public void ConfiguracoesAbrir(String Endereco){
         //Rotina de Abrir Configuracões
         String Conteudo="";
         try {
@@ -365,7 +365,11 @@ public class ConfigClass {
             return 4;
         }else if(!getSeDependenciaDeMontagem()){
             return 5;
-        }else if(!getSeDependenciaDeMana() && !getSeDependenciaDeTMW()){
+        }else if(
+            (getExecucaoComando().equals("mana") && !getSeDependenciaDeMana()) ||
+            (getExecucaoComando().equals("tmw") && !getSeDependenciaDeTMW()) ||
+            (!getExecucaoComando().equals("mana") && !getExecucaoComando().equals("tmw") && !SeComandoProcede(ExecucaoComando+" --help"))
+        ){
             return 6;
         }else{
             return 0;

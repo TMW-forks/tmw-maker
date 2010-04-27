@@ -36,7 +36,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jTabbedPane1" alignment="0" pref="566" max="32767" attributes="0"/>
+                  <Component id="AbaConfiguracoes" alignment="0" pref="566" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="BtnConfiguracaoAjuda" pref="81" max="32767" attributes="1"/>
                       <EmptySpace pref="337" max="32767" attributes="0"/>
@@ -53,7 +53,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="314" max="32767" attributes="0"/>
+              <Component id="AbaConfiguracoes" pref="314" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtnConfiguracaoOk" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -66,7 +66,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JTabbedPane" name="AbaConfiguracoes">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>

@@ -136,6 +136,14 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.Config.getConexaoSenha());
 
         TxtConfiguracaoExecucaoComando.setText(FrmPrincipal.Config.getExecucaoComando());
+        if(!FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help")){
+            TxtConfiguracaoExecucaoComando.setForeground(Color.red);
+            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:</font> Aplicativo \"<font color=\"#FF0000\">"+FrmPrincipal.Config.getExecucaoComando()+"</font>\" não existe ou não está funcionando!");
+            AbaConfiguracoes.setSelectedIndex(1);
+            TxtConfiguracaoExecucaoComando.setSelectionStart(0);
+            TxtConfiguracaoExecucaoComando.setSelectionEnd(FrmPrincipal.Config.getExecucaoComando().length()-1);
+            TxtConfiguracaoExecucaoComando.gotFocus(null, TxtConfiguracaoExecucaoComando);
+        }
         TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
         TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.Config.getExecucaoParametroServidor());
         TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.Config.getExecucaoParametroConta());
@@ -154,7 +162,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        AbaConfiguracoes = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         TxtConfiguracaoConexaoRepositorio = new javax.swing.JTextField();
@@ -341,7 +349,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Conexão", jPanel1);
+        AbaConfiguracoes.addTab("Conexão", jPanel1);
 
         jLabel5.setText("Comando de ativação:");
 
@@ -516,7 +524,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Execução", jPanel2);
+        AbaConfiguracoes.addTab("Execução", jPanel2);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Locais onde o TMW-Maker procurará sobre:"));
 
@@ -616,7 +624,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Documentação", jPanel4);
+        AbaConfiguracoes.addTab("Documentação", jPanel4);
 
         BtnConfiguracaoCancelar.setMnemonic('C');
         BtnConfiguracaoCancelar.setText("Cancelar");
@@ -650,7 +658,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+                    .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
@@ -663,7 +671,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnConfiguracaoOk)
@@ -686,28 +694,24 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
     private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
-        try {
-            FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
-            FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
-            FrmPrincipal.Config.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
-            FrmPrincipal.Config.setConexaoSenha(TxtConfiguracaoConexaoIdentificacaoSenha.getText());
-            FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoComando.getText());
-            FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
-            FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
-            FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
-            FrmPrincipal.Config.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
-            FrmPrincipal.Config.setExecucaoParametroPersonagem(TxtConfiguracaoExecucaoParamentroPersonagem.getText());
-            FrmPrincipal.Config.setExecucaoParametroSemopengl(ChkConfiguracaoExecucaoParamentroSemopengl.isSelected());
-            FrmPrincipal.Config.setDocumentacaoAlteracoes(TxtConfiguracaoDocumentacaoAlteracoes.getText());
-            FrmPrincipal.Config.setDocumentacaoComponentes(TxtConfiguracaoDocumentacaoComponentes.getText());
-            FrmPrincipal.Config.setDocumentacaoComentarios(TxtConfiguracaoDocumentacaoComentarios.getText());
-            FrmPrincipal.Config.setDocumentacaoTraducoes(TxtConfiguracaoDocumentacaoTraducoes.getText());
-            
-            FrmPrincipal.Config.ConfiguracoesGravar();
-            this.dispose();
-        } catch (IOException ex) {
-            ConfigClass.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
-        }
+        FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
+        FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
+        FrmPrincipal.Config.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
+        FrmPrincipal.Config.setConexaoSenha(TxtConfiguracaoConexaoIdentificacaoSenha.getText());
+        FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoComando.getText());
+        FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
+        FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
+        FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
+        FrmPrincipal.Config.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
+        FrmPrincipal.Config.setExecucaoParametroPersonagem(TxtConfiguracaoExecucaoParamentroPersonagem.getText());
+        FrmPrincipal.Config.setExecucaoParametroSemopengl(ChkConfiguracaoExecucaoParamentroSemopengl.isSelected());
+        FrmPrincipal.Config.setDocumentacaoAlteracoes(TxtConfiguracaoDocumentacaoAlteracoes.getText());
+        FrmPrincipal.Config.setDocumentacaoComponentes(TxtConfiguracaoDocumentacaoComponentes.getText());
+        FrmPrincipal.Config.setDocumentacaoComentarios(TxtConfiguracaoDocumentacaoComentarios.getText());
+        FrmPrincipal.Config.setDocumentacaoTraducoes(TxtConfiguracaoDocumentacaoTraducoes.getText());
+
+        FrmPrincipal.Config.ConfiguracoesGravar();
+        this.dispose();
     }//GEN-LAST:event_BtnConfiguracaoOkActionPerformed
     private void BtnConfiguracaoAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoAjudaActionPerformed
         showAjuda();
@@ -777,7 +781,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoComando.getText()+"\" não procede!");
             }
         }else{
-            FrmPrincipal.LblEstatus.setText("Digite o comando que abrirá o jogo The Mana World!");
+            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:<font> Digite o comando que abrirá o jogo The Mana World!");
         }
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoExecucaoComandoKeyReleased
@@ -834,6 +838,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane AbaConfiguracoes;
     private javax.swing.JButton BtnConfiguracaoAjuda;
     private javax.swing.JButton BtnConfiguracaoCancelar;
     private javax.swing.JButton BtnConfiguracaoOk;
@@ -872,7 +877,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
 }

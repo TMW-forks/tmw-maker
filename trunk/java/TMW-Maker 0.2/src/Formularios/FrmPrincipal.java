@@ -318,7 +318,190 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         }
     }
+    public void ExecutarJogo(){
+                if (Config.getOS().indexOf("win") >= 0) {
+            /*String[] cmd = new String[4];
+            cmd[0] = "cmd.exe";
+            cmd[1] = "/C";
+            cmd[2] = "start";
+            cmd[3] = URL;
+            Executador.exec(cmd);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+            //C:\cygwin\cygwin.exe
+            //C:\Arquivos de programas\Mana\mana.exe
+        } else if (Config.getOS().indexOf("mac") >= 0) {
+            //Executador.exec("open " + URL);
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    MnuSistema.setEnabled(false);
+                    MnuEditar.setEnabled(false);
+                    MnuJogo.setEnabled(false);
+                    MnuAjuda.setEnabled(false);
 
+                    PgbBarra.setEnabled(true);
+                    PgbBarra.setValue(0);
+                    PgbBarra.setMinimum(0);
+                    PgbBarra.setMaximum(5);
+
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    Runtime Executador = Runtime.getRuntime();
+                    String line = "", Comando = "";
+
+                    if (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")) {
+                        PgbBarra.setString("Reiniciando...");
+                        setAvisoEmEstatus("Reiniciando localhost...");
+                        //TxtEstatus.setText("Reiniciando localhost...");
+                        try {
+                            Comando = FrmPrincipal.Config.getConexaoLocalhost() + "/eathena-data/eathena.sh restart";
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\n"+Comando);
+                            Process Retorno = Executador.exec(Comando);
+                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                            while ((line = in.readLine()) != null) {
+                                System.out.println(line);
+                                //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
+                            }
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\nEathena reiniciado (Espere 5 segundos...)\n");
+                            setAvisoEmEstatus("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
+                            long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
+                            TempoInicio = System.currentTimeMillis();
+                            do {
+                                TempoAtual = System.currentTimeMillis();
+                                Segundos = (TempoAtual - TempoInicio) / 1000;
+                                //setAvisoEmEstatus("Espere "+Segundos+"/5 segundos...");
+                                PgbBarra.setValue((int) Segundos);
+                                PgbBarra.setString("00:00:0" + (5 - ((int) Segundos)));
+                            } while (TempoAtual - TempoInicio < Milisegundos);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>" +
+                                "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
+                                "</html>",
+                                "ERRO DE EXECUÇÃO"
+                            );
+                            PgbBarra.setValue(5);
+                            MnuSistema.setEnabled(true);
+                            MnuEditar.setEnabled(true);
+                            MnuJogo.setEnabled(true);
+                            MnuAjuda.setEnabled(true);
+                            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                            return;
+                        }
+                    }
+                    PgbBarra.setIndeterminate(true);
+                    //TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
+                    setAvisoEmEstatus("Abrindo aplicativo \"" + FrmPrincipal.Config.getExecucaoComando() + "\"...");
+                    Comando = FrmPrincipal.Config.getExecucaoComando() + " " +
+                            (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty() ? "" : ("-ud " + FrmPrincipal.Config.getExecucaoParametroTMWData() + " ")) +
+                            (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + FrmPrincipal.Config.getExecucaoParametroServidor() + " ")) +
+                            (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + FrmPrincipal.Config.getExecucaoParametroConta() + " ")) +
+                            (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + FrmPrincipal.Config.getExecucaoParametroSenha() + " ")) +
+                            (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + FrmPrincipal.Config.getExecucaoParametroPersonagem() + " ")) +
+                            (FrmPrincipal.Config.getExecucaoParametroSemopengl() == true ? "--no-opengl" : "");
+                    try {
+                        Process Retorno = Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
+                            setAvisoEmEstatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font>\": " + line);
+                            PgbBarra.setString("Executando...");
+                        }
+                        PgbBarra.setString("Fechado!");
+                        setAvisoEmEstatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font>\" fechando!");
+                        PgbBarra.setIndeterminate(false);
+                    } catch (IOException e) {
+                        PgbBarra.setIndeterminate(false);
+                        e.printStackTrace();
+                        if(Config.getExecucaoComando().equals("mana") && !Config.getSeDependenciaDeMana() && Config.getSeDependenciaDeTMW()){
+                            Config.setExecucaoComando("tmw");
+                            Config.ConfiguracoesGravar();
+                            ConfigClass.Mensagem_Erro("<html>"+
+                                "O TMW-Maker <b>não encotrou o aplicativo</b> \"<font face=\"monospace\" color=\"#FF0000\"><b>MANA</b></font>\".<br/>" +
+                                "Substituindo por aplicativo \"<font face=\"monospace\" color=\"#0000FF\"><b>TMW</b></font>\"..." +
+                                "</html>",
+                                "ERRO DE EXECUÇÃO"
+                            );
+                            ExecutarJogo();
+                        }else if(Config.getExecucaoComando().equals("tmw") && !Config.getSeDependenciaDeTMW() && Config.getSeDependenciaDeMana()){
+                            Config.setExecucaoComando("mana");
+                            Config.ConfiguracoesGravar();
+                            ConfigClass.Mensagem_Erro("<html>"+
+                                "O TMW-Maker <b>não encotrou o aplicativo</b> \"<font face=\"monospace\" color=\"#FF0000\"><b>TMW</b></font>\".<br/>" +
+                                "Substituindo por aplicativo \"<font face=\"monospace\" color=\"#0000FF\"><b>MANA</b></font>\"..." +
+                                "</html>",
+                                "ERRO DE EXECUÇÃO"
+                            );
+                            ExecutarJogo();
+                        }else{
+                            PgbBarra.setString("ERRO...");
+                            //TxtEstatus.setText(TxtEstatus.getText()+"ERRO DE EXECUÇÃO: "+Comando);
+                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> " + Comando);
+                            ConfigClass.Mensagem_Erro(
+                                "<html>O TMW-Maker <font color=\"#FF0000\">não conseguiu abrir</font> nenhum <br/>" +
+                                "aplicativo cliente(jogo) de THE MANA WORLD!<br/>"+
+                                "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font>"
+                                , "ERRO DE EXECUÇÃO"
+                            );
+                        }
+                        PgbBarra.setValue(5);
+                        MnuSistema.setEnabled(true);
+                        MnuEditar.setEnabled(true);
+                        MnuJogo.setEnabled(true);
+                        MnuAjuda.setEnabled(true);
+                        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        return;
+                    }
+
+                    if (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")) {
+                        PgbBarra.setString("Desligando...");
+                        setAvisoEmEstatus("Desligando localhost...");
+                        //TxtEstatus.setText("Reiniciando localhost...");
+                        try {
+                            Comando = FrmPrincipal.Config.getConexaoLocalhost() + "/eathena-data/eathena.sh stop";
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\n"+Comando);
+                            Process Retorno = Executador.exec(Comando);
+                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                            while ((line = in.readLine()) != null) {
+                                System.out.println(line);
+                                //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
+                            }
+                            setAvisoEmEstatus("<html><font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> encerrados com sucesso!");
+                            PgbBarra.setString("Encerrado!");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+
+                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu desligar o eathena:</b><br/><br/>" +
+                                "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
+                                "</html>",
+                                "ERRO DE EXECUÇÃO"
+                            );
+                            PgbBarra.setValue(5);
+                            MnuSistema.setEnabled(true);
+                            MnuEditar.setEnabled(true);
+                            MnuJogo.setEnabled(true);
+                            MnuAjuda.setEnabled(true);
+                            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                            return;
+                        }
+                    }
+
+                    PgbBarra.setValue(5);
+                    MnuSistema.setEnabled(true);
+                    MnuEditar.setEnabled(true);
+                    MnuJogo.setEnabled(true);
+                    MnuAjuda.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+            tThread.start();
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -714,151 +897,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.getWidth(),
                 this.getHeight());
         this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
-        try {
-            Config.ConfiguracoesAbrir();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Config.ConfiguracoesAbrir();
     }//GEN-LAST:event_formComponentShown
     private void MnuAjudaComentariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaComentariosActionPerformed
         // TODO add your handling code here:
         Config.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComentarios());
     }//GEN-LAST:event_MnuAjudaComentariosActionPerformed
     private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
-        if (Config.getOS().indexOf("win") >= 0) {
-            /*String[] cmd = new String[4];
-            cmd[0] = "cmd.exe";
-            cmd[1] = "/C";
-            cmd[2] = "start";
-            cmd[3] = URL;
-            Executador.exec(cmd);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
-            //C:\cygwin\cygwin.exe
-            //C:\Arquivos de programas\Mana\mana.exe
-        } else if (Config.getOS().indexOf("mac") >= 0) {
-            //Executador.exec("open " + URL);
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
-        } else {
-            Thread tThread = new Thread(new Runnable() {
-
-                public void run() {
-                    MnuSistema.setEnabled(false);
-                    MnuEditar.setEnabled(false);
-                    MnuJogo.setEnabled(false);
-                    MnuAjuda.setEnabled(false);
-
-                    PgbBarra.setEnabled(true);
-                    PgbBarra.setValue(0);
-                    PgbBarra.setMinimum(0);
-                    PgbBarra.setMaximum(5);
-
-                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    Runtime Executador = Runtime.getRuntime();
-                    String line = "", Comando = "";
-
-                    if (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")) {
-                        PgbBarra.setString("Reiniciando...");
-                        setAvisoEmEstatus("Reiniciando localhost...");
-                        //TxtEstatus.setText("Reiniciando localhost...");
-                        try {
-                            Comando = FrmPrincipal.Config.getConexaoLocalhost() + "/eathena-data/eathena.sh restart";
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\n"+Comando);
-                            Process Retorno = Executador.exec(Comando);
-                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                            while ((line = in.readLine()) != null) {
-                                System.out.println(line);
-                                //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-                            }
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\nEathena reiniciado (Espere 5 segundos...)\n");
-                            setAvisoEmEstatus("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
-                            long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
-                            TempoInicio = System.currentTimeMillis();
-                            do {
-                                TempoAtual = System.currentTimeMillis();
-                                Segundos = (TempoAtual - TempoInicio) / 1000;
-                                //setAvisoEmEstatus("Espere "+Segundos+"/5 segundos...");
-                                PgbBarra.setValue((int) Segundos);
-                                PgbBarra.setString("00:00:0" + (5 - ((int) Segundos)));
-                            } while (TempoAtual - TempoInicio < Milisegundos);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>" +
-                                    "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
-                                    "</html>",
-                                    "ERRO DE EXECUÇÃO");
-                        }
-                    }
-                    PgbBarra.setIndeterminate(true);
-                    //TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
-                    setAvisoEmEstatus("Abrindo aplicativo \"" + FrmPrincipal.Config.getExecucaoComando() + "\"...");
-                    Comando = FrmPrincipal.Config.getExecucaoComando() + " " +
-                            (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty() ? "" : ("-ud " + FrmPrincipal.Config.getExecucaoParametroTMWData() + " ")) +
-                            (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + FrmPrincipal.Config.getExecucaoParametroServidor() + " ")) +
-                            (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + FrmPrincipal.Config.getExecucaoParametroConta() + " ")) +
-                            (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + FrmPrincipal.Config.getExecucaoParametroSenha() + " ")) +
-                            (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + FrmPrincipal.Config.getExecucaoParametroPersonagem() + " ")) +
-                            (FrmPrincipal.Config.getExecucaoParametroSemopengl() == true ? "--no-opengl" : "");
-                    try {
-                        Process Retorno = Executador.exec(Comando);
-                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                        while ((line = in.readLine()) != null) {
-                            System.out.println(line);
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-                            setAvisoEmEstatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font>\": " + line);
-                            PgbBarra.setString("Executando...");
-                        }
-                        PgbBarra.setString("Fechado!");
-                        setAvisoEmEstatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font>\" fechando!");
-                        PgbBarra.setIndeterminate(false);
-                    } catch (IOException e) {
-                        PgbBarra.setIndeterminate(false);
-                        e.printStackTrace();
-                        PgbBarra.setString("ERRO...");
-                        //TxtEstatus.setText(TxtEstatus.getText()+"ERRO DE EXECUÇÃO: "+Comando);
-                        setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> " + Comando);
-                        ConfigClass.Mensagem_Erro("O TMW-Maker não conseguiu abrir o jogo THE MANA WORLD!", "ERRO DE EXECUÇÃO");
-                    }
-
-                    if (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost")) {
-                        PgbBarra.setString("Desligando...");
-                        setAvisoEmEstatus("Desligando localhost...");
-                        //TxtEstatus.setText("Reiniciando localhost...");
-                        try {
-                            Comando = FrmPrincipal.Config.getConexaoLocalhost() + "/eathena-data/eathena.sh stop";
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\n"+Comando);
-                            Process Retorno = Executador.exec(Comando);
-                            BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                            while ((line = in.readLine()) != null) {
-                                System.out.println(line);
-                                //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-                            }
-                            setAvisoEmEstatus("<html><font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> encerrados com sucesso!");
-                            PgbBarra.setString("Encerrado!");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-                            setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu desligar o eathena:</b><br/><br/>" +
-                                    "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
-                                    "</html>",
-                                    "ERRO DE EXECUÇÃO");
-                        }
-                    }
-
-                    PgbBarra.setValue(5);
-                    MnuSistema.setEnabled(true);
-                    MnuEditar.setEnabled(true);
-                    MnuJogo.setEnabled(true);
-                    MnuAjuda.setEnabled(true);
-                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
-            tThread.start();
-        }
+        ExecutarJogo();
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
         javax.swing.JDialog FrmNpcScript = new FrmScript(this, rootPaneCheckingEnabled);

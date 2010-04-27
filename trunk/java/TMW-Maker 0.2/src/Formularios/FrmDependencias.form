@@ -69,15 +69,14 @@
         <Component class="javax.swing.JTable" name="TblDependencias">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="7">
+              <Table columnCount="3" rowCount="6">
                 <Column editable="false" title="Dependencia" type="java.lang.String">
                   <Data value="Configura&#xe7;&#xe3;o"/>
                   <Data value="SVN"/>
                   <Data value="Localhost"/>
                   <Data value="GCC"/>
                   <Data value="Montagem"/>
-                  <Data value="Mana"/>
-                  <Data value="TMW"/>
+                  <Data value="Cliente"/>
                 </Column>
                 <Column editable="false" title="Estatus" type="java.lang.String">
                   <Data value="Pendente"/>
@@ -86,7 +85,6 @@
                   <Data value="Pendente"/>
                   <Data value="Pendente"/>
                   <Data value="Pendente"/>
-                  <Data value="Facultativo"/>
                 </Column>
                 <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.String">
                   <Data value="Configura&#xe7;&#xf5;es do TMW-Maker"/>
@@ -94,8 +92,7 @@
                   <Data value="C&#xf3;pia de um servidor TMW"/>
                   <Data value="Executa aplicativos C++"/>
                   <Data value="Localhost pronto para uso"/>
-                  <Data value="Jogo TMW de estilo 4144"/>
-                  <Data value="Jogo TMW de estilo antigo"/>
+                  <Data value="Aplicativo do Jogo \&quot;The Mana World\&quot;"/>
                 </Column>
               </Table>
             </Property>

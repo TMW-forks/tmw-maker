@@ -41,8 +41,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                 {"Localhost", "Pendente", "Cópia de um servidor TMW"},
                 {"GCC", "Pendente", "Executa aplicativos C++"},
                 {"Montagem", "Pendente", "Localhost pronto para uso"},
-                {"Mana", "Pendente", "Jogo TMW de estilo 4144"},
-                {"TMW", "Facultativo", "Jogo TMW de estilo antigo"}
+                {"Cliente", "Pendente", "Aplicativo do Jogo \"The Mana World\""}
             },
             new String [] {
                 "Dependencia", "Estatus", "Descrição"
@@ -151,26 +150,55 @@ public class FrmDependencias extends javax.swing.JDialog {
             !FrmPrincipal.Config.getSeDependenciaDeMontagem()
         ){
             BtnResolver.setEnabled(true);
+        }else if(
+            TblDependencias.getSelectedRow()==5 &&
+            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+            FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
+            FrmPrincipal.Config.getSeDependenciaDeMontagem() &&
+            FrmPrincipal.Config.getDependenciaEmFalta()==6
+        ){
+            BtnResolver.setEnabled(true);
         }else{
             BtnResolver.setEnabled(false);
         }
+
     }//GEN-LAST:event_TblDependenciasMouseClicked
     private void BtnResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResolverActionPerformed
         // TODO add your handling code here:
         if(TblDependencias.getSelectedRow()==0) {
-            try {
+
                 FrmPrincipal.Config.ConfiguracoesGravar();
                 BtnResolver.setEnabled(false);
-                ConfigClass.Mensagem_Erro("Definida configuração padrão com sucesso!", "CONFIGURAÇÃO");
+                FrmPrincipal.setAvisoEmEstatus("Definida configuração padrão com sucesso!");
                 VerificarPendencias();
-            } catch (IOException ex) {
+                if(!FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+                    int R = JOptionPane.YES_OPTION;
+                    Object[] options = {"Baixar", "Cancelar"};
+                    R = JOptionPane.showOptionDialog(
+                        null, "<html>" +
+                        "Você ainda não possuir um localhost para editar.<br/>" +
+                        "Deseja que o tmw-maker baixe o seu localhost?",
+                        "BAIXAR LOCALHOST",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]
+                    );
+                    if(R == JOptionPane.YES_OPTION) BaixarLocalhost();
+
+                }
+            /*} catch (IOException ex) {
                 //Logger.getLogger(FrmDependencias.class.getName()).log(Level.SEVERE, null, ex);
                 ConfigClass.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
-            }
+            }/**/
         }else if(TblDependencias.getSelectedRow()==2){
             BaixarLocalhost();
         }else if(TblDependencias.getSelectedRow()==4){
             MontarLocalhost();
+        }else if(TblDependencias.getSelectedRow()==5){
+            ProcurarCliente();
         }
     }//GEN-LAST:event_BtnResolverActionPerformed
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -207,8 +235,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             {"Localhost", (FrmPrincipal.Config.getSeDependenciaDeLocalhost()?"Baixado":"<html><font color=\"#FF0000\">Pendente"), "Cópia de um servidor TMW"},
             {"GCC", (FrmPrincipal.Config.getSeDependenciaDeGCC()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Executa aplicativos C++"},
             {"Montagem", (FrmPrincipal.Config.getSeDependenciaDeMontagem()?"Montado":"<html><font color=\"#FF0000\">Pendente"), "Localhost pronto para uso"},
-            {"Mana", (FrmPrincipal.Config.getSeDependenciaDeMana()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Jogo TMW de estilo 4144"},
-            {"TMW", (FrmPrincipal.Config.getSeDependenciaDeTMW()?"Instalado":"Facultativo"), "Jogo TMW de estilo antigo"}
+            {"Cliente",((FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help"))?(FrmPrincipal.Config.getExecucaoComando().toUpperCase()):"<html><font color=\"#FF0000\">Pendente"), "Aplicativo do Jogo \"The Mana World\""}
         };
         TblDependencias.setModel(new javax.swing.table.DefaultTableModel((Object[][]) CorpoDePendencias,Cabecalho) {
             boolean[] canEdit = new boolean [] {false, false, false};
@@ -241,6 +268,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                     FrmPrincipal.PgbBarra.setEnabled(true);
 
                     BtnResolver.setEnabled(false);
+                    BtnCancelar.setEnabled(false);
+                    TblDependencias.setEnabled(false);
 
                     Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
                     if(Partes.length>1 && Partes[0].toLowerCase().equals("http")){
@@ -299,8 +328,27 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("ERRO!");
                         }/**/
                         FrmPrincipal.PgbBarra.setIndeterminate(false);
-                        BtnResolver.setEnabled(true);
+                        BtnCancelar.setEnabled(true);
+                        TblDependencias.setEnabled(true);
                         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                        VerificarPendencias();
+                        if(!FrmPrincipal.Config.getSeDependenciaDeMontagem()){
+                            R = JOptionPane.YES_OPTION;
+                            Object[] options = {"Montar", "Cancelar"};
+                            R = JOptionPane.showOptionDialog(
+                                null, "<html>" +
+                                "O seu localhost não funcionará enquanto não for montado.<br/>" +
+                                "Deseja que o tmw-maker monte o seu localhost?",
+                                "MONTAR LOCALHOST",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                options,
+                                options[1]
+                            );
+                            if(R == JOptionPane.YES_OPTION) MontarLocalhost();
+                        }
                     }
                 }
             });
@@ -316,28 +364,29 @@ public class FrmDependencias extends javax.swing.JDialog {
             int R = JOptionPane.YES_OPTION;
             if(FrmPrincipal.Config.getSeDependenciaDeGCC()){
                 if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server") ||
-                        FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server") ||
-                        FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                    FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server") ||
+                    FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
                     Object[] options = {"Remontar", "Cancelar"};
                     R = JOptionPane.showOptionDialog(
-                            null, "<html>" +
-                            "O seu localhost já está montado. Ao remontar você<br/>" +
-                            "<font color=\"#FF0000\">pederá todas as contas</font> de jogadores deste localhost.<br/>" +
-                            "Deseja realmente forçar uma remontagem?",
-                            "REMONTAGEM DE LOCALHOST",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,
-                            options,
-                            options[1]);
+                        null, "<html>" +
+                        "O seu localhost já está montado. Ao remontar você<br/>" +
+                        "<font color=\"#FF0000\">pederá todas as contas</font> de jogadores deste localhost.<br/>" +
+                        "Deseja realmente forçar uma remontagem?",
+                        "REMONTAGEM DE LOCALHOST",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]
+                    );
                 }
                 if (R == JOptionPane.YES_OPTION) {
                     Thread tThread = new Thread(new Runnable() {
-
                         public void run() {
                             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             BtnResolver.setEnabled(false);
                             BtnCancelar.setEnabled(false);
+                            TblDependencias.setEnabled(false);
                             FrmPrincipal.PgbBarra.setEnabled(true);
                             FrmPrincipal.PgbBarra.setValue(0);
 
@@ -557,9 +606,20 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("Concluido!");
 
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
-                            BtnResolver.setEnabled(true);
                             BtnCancelar.setEnabled(true);
+                            TblDependencias.setEnabled(true);
                             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                            if(FrmPrincipal.Config.getSeDependenciaDeMana() || FrmPrincipal.Config.getSeDependenciaDeTMW()){
+                                VerificarPendencias();
+                                ConfigClass.Mensagem_Erro("<html>"+
+                                    "Locahost <font color=\"#0000FF\">montado com sucesso</font>!<br/>"+
+                                    "Para executar o tmw-maker <b>pressione tecla F9</b> de "+
+                                    "crie uma nova conta de jogador no servidor \"localhost\"."
+                                    , "AVISO"
+                                );
+                            }
+                            
                         }
                     });
                     tThread.start();
@@ -574,6 +634,40 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "ERRO DE EXECUÇÃO"
                 );
             }
+        }
+    }
+    private void ProcurarCliente() {
+        if(FrmPrincipal.Config.getExecucaoComando().equals("mana") && !FrmPrincipal.Config.getSeDependenciaDeMana() && FrmPrincipal.Config.getSeDependenciaDeTMW()){
+            FrmPrincipal.Config.setExecucaoComando("tmw");
+            FrmPrincipal.Config.ConfiguracoesGravar();
+            VerificarPendencias();
+            BtnResolver.setEnabled(false);
+        }else if(FrmPrincipal.Config.getExecucaoComando().equals("tmw") && FrmPrincipal.Config.getSeDependenciaDeMana() && !FrmPrincipal.Config.getSeDependenciaDeTMW()){
+            FrmPrincipal.Config.setExecucaoComando("mana");
+            FrmPrincipal.Config.ConfiguracoesGravar();
+            VerificarPendencias();
+            BtnResolver.setEnabled(false);
+        }else if(
+            (!FrmPrincipal.Config.getExecucaoComando().equals("mana") && !FrmPrincipal.Config.getExecucaoComando().equals("tmw")) &&
+            (FrmPrincipal.Config.getSeDependenciaDeMana() || FrmPrincipal.Config.getSeDependenciaDeTMW())
+        ){
+            if(FrmPrincipal.Config.getSeDependenciaDeMana()){
+                FrmPrincipal.Config.setExecucaoComando("mana");
+                FrmPrincipal.Config.ConfiguracoesGravar();
+                VerificarPendencias();
+                BtnResolver.setEnabled(false);
+            }else if(FrmPrincipal.Config.getSeDependenciaDeTMW()){
+                FrmPrincipal.Config.setExecucaoComando("tmw");
+                FrmPrincipal.Config.ConfiguracoesGravar();
+                VerificarPendencias();
+                BtnResolver.setEnabled(false);
+            }
+        }else{
+            ConfigClass.Mensagem_Erro(
+                "<html>O TMW-Maker não conseguiu encontrar o programa <font color=\"#FF0000\">"+FrmPrincipal.Config.getExecucaoComando()+"</font>!"
+                , "Dependencia não resolvida!"
+            );
+            VerificarPendencias();
         }
     }
 }
