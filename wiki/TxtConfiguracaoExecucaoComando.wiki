@@ -1,16 +1,18 @@
 #labels Execução,MANA,TMW,TMW-Maker,Jogo,MMORPG,RPG
 ==Sistema -> Configurações -> Execução -> Comando de Ativação==
 
-É o modo como o sistema operacional encontrará algumas das versões do jogo The Mana World(TMW). Atualmente existem apenas 2 versões de TMW:
+É o modo como o sistema operacional encontrará algumas das versões do jogo The Mana World(TMW). Por padrão o campo "Comando de Ativação" ja vem preenchi com o comando "mana."
+
+Se aparecer o nome em vermelho ao preencher o campo "Comando de Ativação" nas configurações do TMW-Maker, significa que o TMW-Maker não está encontrando o comandode programa que foi preenchido. 
+
+|| Caso essa pendência de comando não seja resolvida, o TMW-Maker não poderá testar as modificações do jogo que o usuário fizer.||
+
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao.png
+
+Atualmente existem apenas 2 versões de TMW:
 
  * *[http://sites.google.com/site/tmwbrasil/downloads MANA]* - É a vensão que está em constante desenvolvimento atualmente. Dependendo da maneira como você o instalou ele pode se atualizar altomaticamente ou não. (*Recomendado*)
 
  * *TMW* - É a vensão mais antiga deste jogo, corre o boato que seu desenvolvimento estagnou. Por enquanto é a forma mais fácil de se instalar.
 
 || Saiba como instalar alguma destas versões através do link acima. ||
-
-https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao.png
-
-Se aparecer o nome em vermelho ao preencher o campo "Comando de Ativação" nas configurações do TMW-Maker, significa que o TMW-Maker não está encontrando o comandode programa que foi preenchido. 
-
-|| Caso essa pendência de comando não seja resolvida, o TMW-Maker não poderá testar as modificações do jogo que o usuário fizer.||
