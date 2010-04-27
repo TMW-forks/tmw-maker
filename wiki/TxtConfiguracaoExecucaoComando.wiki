@@ -1,9 +1,9 @@
 #labels Execução,MANA,TMW,TMW-Maker,Jogo,MMORPG,RPG
 ==Sistema -> Configurações -> Execução -> Comando de Ativação==
 
-É o modo como o sistema operacional encontrará algumas das versões do jogo The Mana World(TMW). Por padrão o campo "Comando de Ativação" ja vem preenchi com o comando "mana."
+É o modo como o sistema operacional encontrará algumas das versões do jogo The Mana World(MANA/TMW). Por padrão o campo "Comando de Ativação" ja vem preenchi com o comando "mana."
 
-Se aparecer o nome em vermelho ao preencher o campo "Comando de Ativação" nas configurações do TMW-Maker, significa que o TMW-Maker não está encontrando o comandode programa que foi preenchido. 
+Se aparecer o nome em vermelho no campo "Comando de Ativação" nas configurações do TMW-Maker, significa que o TMW-Maker não está encontrando o comando preenchido no campo, criando uma Dependência para Funcionamento. 
 
 || *AVISO:* Caso essa pendência de comando não seja resolvida, o TMW-Maker não poderá testar as modificações do jogo que o usuário fizer.||
 
