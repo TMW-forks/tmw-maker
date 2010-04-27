@@ -17,7 +17,7 @@
     * [Conexao]
      * [TxtConfiguracaoConexaoRepositorio Repositório]
     * [Execucao]
-     * [TxtConfiguracaoExecucaoComando Comando]
+     * [TxtConfiguracaoExecucaoComando Comando de Ativação]
      * [Parametros Parâmetros]
       * [TxtConfiguracaoExecucaoParamentroServidor Localhost]
  * [Ferramentas Ferramentas de DEVs]
