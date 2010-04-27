@@ -4,6 +4,6 @@
 
 É possivel se colocar endereço de um remotehosts(servidores remoto) ao invés de um locahost(servidor local). Mas, neste caso, o TMW-Maker não poderá testar as alterações o jogo que você fizer em seu computador.
 
-|| *NOTA:* Recomendamos que de deixe preenchido o valor padrão "localhost" para o bom funcionamento do TMW-Maker. ||
+|| *NOTA:* Recomendamos que de deixe preenchido o valor padrão "localhost"(tudo com letras minúsculas e sem espaço) para o bom funcionamento do TMW-Maker. ||
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao.png
