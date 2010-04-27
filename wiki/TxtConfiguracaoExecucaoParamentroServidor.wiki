@@ -2,7 +2,7 @@
 
 É o endereço de localhost(servidor local) onde o jogo The Mana World irá se conectar. Por padrão o campo "Servidor" ja vem preenchido com "*localhost*" ou com o IP "*127.0.0.1*" que na verdade são o mesmo endereço.
 
-É possivel se colocar endereço de um remotehosts(servidores remoto) ao invés de um locahost(servidor local). Mas, neste caso, o TMW-Maker não poderá testar as alterações que você fizer em seu computador.
+É possivel se colocar endereço de um remotehosts(servidores remoto) ao invés de um locahost(servidor local). Mas, neste caso, o TMW-Maker não poderá testar as alterações o jogo que você fizer em seu computador.
 
 || *NOTA:* Recomendamos que de deixe preenchido o valor padrão "localhost" para o bom funcionamento do TMW-Maker. ||
 
