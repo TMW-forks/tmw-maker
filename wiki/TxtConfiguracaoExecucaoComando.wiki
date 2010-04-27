@@ -5,7 +5,7 @@
 
 Se aparecer o nome em vermelho ao preencher o campo "Comando de Ativação" nas configurações do TMW-Maker, significa que o TMW-Maker não está encontrando o comandode programa que foi preenchido. 
 
-|| Caso essa pendência de comando não seja resolvida, o TMW-Maker não poderá testar as modificações do jogo que o usuário fizer.||
+|| *AVISO:* Caso essa pendência de comando não seja resolvida, o TMW-Maker não poderá testar as modificações do jogo que o usuário fizer.||
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao.png
 
@@ -15,4 +15,4 @@ Atualmente existem apenas 2 versões de TMW:
 
  * *TMW* - É a vensão mais antiga deste jogo, corre o boato que seu desenvolvimento estagnou. Por enquanto é a forma mais fácil de se instalar.
 
-|| Saiba como instalar alguma destas versões através do link acima. ||
+|| *NOTA:* Saiba como instalar alguma destas versões através do link acima. ||
