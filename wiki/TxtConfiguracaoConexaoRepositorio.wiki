@@ -11,6 +11,6 @@
 
  * *HTTP* - Se endereço do repositório svn começar com "*http*" (sem "s") então o TMW-Maker NÃO pedirá nenhuma uma identificação. Possibilitando apenas que o usuário baixe um cópia somente leitura do repositório para o computador do usuário do TMW-Maker. Ou seja, você usará e modificará o jogo sem precisa da intenet, mas não conseguirá compartilhar suas alterações no jogo e nem conseguirá receber ajudar de outros usuários, via internet pelo TMM-Maker. (Sem a colaboração múltiplos usuários)
 
-|| *NOTA:* Futuramente faremos o TMW-Maker se adequar ao idioma padrão do sistema do usuário. Quando isso ocorrer colocaremos os repositórios SVNs oficias de cada pais que possuir um servidor The Mana World. ||
-
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoConexao.png
+
+|| *NOTA:* Futuramente faremos o TMW-Maker se adequar ao idioma padrão do sistema do usuário. Quando isso ocorrer colocaremos os repositórios SVNs oficias de cada pais que possuir um servidor The Mana World. ||
