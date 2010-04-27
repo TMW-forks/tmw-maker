@@ -1,7 +1,9 @@
 #labels Repositório,TMW,MMORPG,RPG,Jogo,Game,TheManaWorld,TMW-Maker
 ==Sistema -> Configuração -> Conexão -> Repositório==
 
-É o endereço onde fica o Repositório(sistema na internet) do tipo Subversion (também conhecido como "SVN") do servidor de The Mana World. Normalmente é divido em apenas 2 pastas: "eathena-data", "tmwdata". Escolha o endereço do seu repositório preferido.
+É o endereço onde fica o Repositório(sistema na internet) do tipo Subversion (também conhecido como "SVN") do servidor de The Mana World. Normalmente é divido em apenas 2 pastas: "eathena-data", "tmwdata". Por padrão j´vem preenchido com o endereço do repositório snv do TMW-BR "http://themanaworld-br.googlecode.com/svn/trunk", mas você pode escolher o endereço do seu repositório svn preferido. Os mais experientes conseguem criar seu próprio repositório svn a partir de cópias de outros repositórios svn.
+
+===Tipos de conexão SVN===
 
 Se endereço do repositório svn começar com "*https*" (com "s") então o TMW-Maker pedirá uma identificação com *Nome de Usuário* e *Senha*, que se forem fornecidas corretamente darão o poder de re-enviar as alterações do jogo de volta para o repositório na internet, para que todos vejam o que foi feito pelo usuário do TMW-Maker. Isso permite que vários usuários de locais diferentes do planeta possas editar um único jogo. (Ativa a colaboração multi-usuário)
 
