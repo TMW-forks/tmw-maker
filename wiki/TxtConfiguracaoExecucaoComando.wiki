@@ -5,7 +5,7 @@
 
 || *NOTA:* por enquanto o TMW-Maker está sendo fabricado apenas para o sistema operacional *Ubuntu Linux i386*. Mais tarde, ampliaremos para outras distribuições do sistema operacional linux e para o sistema operacional windows.||
 
-Se aparecer o nome em vermelho no campo "Comando de Ativação" nas configurações do TMW-Maker, significa que o TMW-Maker não está encontrando o comando preenchido no campo, criando uma Dependência para Funcionamento. 
+Se aparecer o nome em vermelho no campo "Comando de Ativação" nas configurações do TMW-Maker, significa que o TMW-Maker não está encontrando o comando preenchido no campo, criando uma *Dependência de Cliente* que impedirá o funcionamento completo do TMW-Maker. 
 
 || *AVISO:* Caso essa pendência de comando não seja resolvida, o TMW-Maker não poderá testar as modificações do jogo que o usuário fizer.||
 
