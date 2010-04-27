@@ -5,7 +5,7 @@
 
 ===Tipos de conexão SVN===
 
-Se endereço do repositório svn começar com "*https*" (com "s") então o TMW-Maker pedirá uma identificação com *Nome de Usuário* e *Senha*, que se forem fornecidas corretamente darão o poder de re-enviar as alterações do jogo de volta para o repositório na internet, para que todos vejam o que foi feito pelo usuário do TMW-Maker. Isso permite que vários usuários de locais diferentes do planeta possas editar um único jogo. (Ativa a colaboração multi-usuário)
+Se endereço do repositório svn começar com "*https*" (com "s") então o TMW-Maker pedirá uma identificação com *Nome de Usuário* e *Senha* que, se forem fornecidas corretamente, darão o poder de re-enviar as alterações do jogo de volta para o repositório na internet, para que todos vejam o que foi feito pelo usuário do TMW-Maker. Isso permite que vários usuários de locais diferentes do planeta possas editar um único jogo. (Ativa a colaboração multi-usuário)
 
 Se endereço do repositório svn começar com "*http*" (sem "s") então o TMW-Maker NÃO pedirá nenhuma uma identificação. Possibilitando apenas que o usuário baixe um cópia somente leitura do repositório para o computador do usuário do TMW-Maker. Ou seja, você usará e modificará o jogo sem precisa da intenet, mas não conseguirá compartilhar suas alterações no jogo e nem conseguirá receber ajudar de outros usuários, via internet pelo TMM-Maker. (Sem a colaboração múltiplos usuários)
 
