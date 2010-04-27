@@ -275,7 +275,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
 
             int newSize=0;
             try{
-                newSize = FrmScript.Instancia.length + 1;
+                newSize = FrmPalco.Instancia.length + 1;
             } catch (Exception Er){
                 newSize=1;
             }
@@ -285,14 +285,14 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             Object[] Titulo= new java.lang.Object[newSize];
             if(newSize >= 2){
                 for (i = 0; i<(newSize-1); i++) {
-                    NovoInstancia[i] = FrmScript.Instancia[i];
+                    NovoInstancia[i] = FrmPalco.Instancia[i];
                     Titulo[i] = new Object();
-                    Titulo[i] = (i+1) + "º " + FrmScript.Instancia[i].getNome() + " (" + FrmScript.Instancia[i].getMapa() + ":" + FrmScript.Instancia[i].getX() + "," + FrmScript.Instancia[i].getY() + ")";
+                    Titulo[i] = (i+1) + "º " + FrmPalco.Instancia[i].getNome() + " (" + FrmPalco.Instancia[i].getMapa() + ":" + FrmPalco.Instancia[i].getX() + "," + FrmPalco.Instancia[i].getY() + ")";
                      Titulo[i] = "<html><font color=\"#888888\">"+(i+1) + "º </font>" +
-                        ""+FrmScript.Instancia[i].getNome()+
+                        ""+FrmPalco.Instancia[i].getNome()+
                         " <font color=\"#888888\">"+
-                            "("+FrmScript.Instancia[i].getMapa()+":"+FrmScript.Instancia[i].getX()+","+FrmScript.Instancia[i].getY()+")"+
-                            " [img "+FrmScript.Instancia[i].getImagem()+":"+FrmScript.Instancia[i].getLarguraDeGatilho()+","+FrmScript.Instancia[i].getAlturaDeGatilho()+"]"+
+                            "("+FrmPalco.Instancia[i].getMapa()+":"+FrmPalco.Instancia[i].getX()+","+FrmPalco.Instancia[i].getY()+")"+
+                            " [img "+FrmPalco.Instancia[i].getImagem()+":"+FrmPalco.Instancia[i].getLarguraDeGatilho()+","+FrmPalco.Instancia[i].getAlturaDeGatilho()+"]"+
                         "</font>";
                 }
             }
@@ -315,11 +315,11 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             NovoInstancia[i].setLarguraDeGatilho(Integer.parseInt(SpnNovoBlocoScriptGatilhoLargura.getValue().toString()));
             NovoInstancia[i].setAlturaDeGatilho(Integer.parseInt(SpnNovoBlocoScriptGatilhoAltura.getValue().toString()));
     
-            FrmScript.Instancia = NovoInstancia;
+            FrmPalco.Instancia = NovoInstancia;
             
 
-            //FrmScript.CmbScript.setModel(model);
-            FrmScript.CmbScript.setModel(new DefaultComboBoxModel(Titulo));
+            //FrmPalco.CmbScript.setModel(model);
+            FrmPalco.CmbScript.setModel(new DefaultComboBoxModel(Titulo));
 
             String Utilidade="";
             TxtNovoBlocoUtilidade.setText(this.TxtNovoBlocoUtilidade.getText().trim());
@@ -348,14 +348,14 @@ public class FrmNovoBloco extends javax.swing.JDialog {
                 "     //Insira seu Eathena Script aqui...\n"+
                 "close;"
             );
-            FrmScript.TxtScriptPalco.setText(NovoInstancia[i].getScript());
+            FrmPalco.TxtScriptPalco.setText(NovoInstancia[i].getScript());
 
             
-            FrmScript.CmbScript.setEnabled(true);
-            FrmScript.CmbScript.setVisible(true);
-            FrmScript.TxtScriptPalco.setEnabled(true);
-            FrmScript.BtnScriptComandoMes.setEnabled(true);
-            FrmScript.BtnScriptComandoIF.setEnabled(true);
+            FrmPalco.CmbScript.setEnabled(true);
+            FrmPalco.CmbScript.setVisible(true);
+            FrmPalco.TxtScriptPalco.setEnabled(true);
+            FrmPalco.BtnScriptComandoMes.setEnabled(true);
+            FrmPalco.BtnScriptComandoIF.setEnabled(true);
             dispose();
         }else if(TbpTipoDeBloco.getSelectedIndex()==1){
             //*

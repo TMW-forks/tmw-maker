@@ -4,7 +4,7 @@
  */
 
 /*
- * FrmScript.java
+ * FrmPalco.java
  *
  * Created on Apr 12, 2010, 8:22:51 PM
  */
@@ -22,9 +22,9 @@ import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.DefaultComboBoxModel;
 
-public class FrmScript extends javax.swing.JDialog {
+public class FrmPalco extends javax.swing.JDialog {
 
-    public FrmScript(java.awt.Frame parent, boolean modal) {
+    public FrmPalco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -204,10 +204,10 @@ public class FrmScript extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
     }
     public void addScript(String Codigo){
-        String Conteudo=FrmScript.TxtScriptPalco.getText();
-        String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
-        String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
-        FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal);
+        String Conteudo=FrmPalco.TxtScriptPalco.getText();
+        String TxtInicio=Conteudo.substring(0,FrmPalco.TxtScriptPalco.getSelectionStart());
+        String TxtFinal=Conteudo.substring(FrmPalco.TxtScriptPalco.getSelectionStart(),FrmPalco.TxtScriptPalco.getText().length());
+        FrmPalco.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal);
     }
     public void BarraDeCodigos(boolean SeAtivo){
         BtnScriptComandoMes.setEnabled(SeAtivo);
@@ -432,12 +432,12 @@ public class FrmScript extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnScriptComandoMesActionPerformed
     private void TxtScriptPalcoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TxtScriptPalcoCaretUpdate
         int linha = 0, coluna = 0;
-        if(FrmScript.TxtScriptPalco.getCaretPosition()>=0){
+        if(FrmPalco.TxtScriptPalco.getCaretPosition()>=0){
             try {
-                linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition());
-                coluna = (FrmScript.TxtScriptPalco.getCaretPosition()-FrmScript.TxtScriptPalco.getLineStartOffset(linha));
+                linha = FrmPalco.TxtScriptPalco.getLineOfOffset(FrmPalco.TxtScriptPalco.getCaretPosition());
+                coluna = (FrmPalco.TxtScriptPalco.getCaretPosition()-FrmPalco.TxtScriptPalco.getLineStartOffset(linha));
             } catch (BadLocationException ex) {
-                Logger.getLogger(FrmScript.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FrmPalco.class.getName()).log(Level.SEVERE, null, ex);
             }
             FrmPrincipal.LblEstatus.setText("Linha:"+Integer.toString(linha+1)+" Coluna:"+Integer.toString(coluna));
         }else{
@@ -461,7 +461,7 @@ public class FrmScript extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmScript dialog = new FrmScript(new javax.swing.JFrame(), true);
+                FrmPalco dialog = new FrmPalco(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

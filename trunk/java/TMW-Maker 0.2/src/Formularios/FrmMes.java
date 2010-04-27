@@ -228,17 +228,17 @@ public class FrmMes extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_BtnFecharActionPerformed
     private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
-        String Conteudo=FrmScript.TxtScriptPalco.getText();
-        String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
-        String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
+        String Conteudo=FrmPalco.TxtScriptPalco.getText();
+        String TxtInicio=Conteudo.substring(0,FrmPalco.TxtScriptPalco.getSelectionStart());
+        String TxtFinal=Conteudo.substring(FrmPalco.TxtScriptPalco.getSelectionStart(),FrmPalco.TxtScriptPalco.getText().length());
         String Codigo="",Tabulacao="";
         int linha = 0, coluna = 0;
 
         try {
-            //linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition());
-            //coluna = FrmScript.TxtScriptPalco.getCaretPosition() - FrmScript.TxtScriptPalco.getLineStartOffset(linha);
-            linha = FrmScript.TxtScriptPalco.getLineOfOffset(FrmScript.TxtScriptPalco.getCaretPosition());
-            coluna = (FrmScript.TxtScriptPalco.getCaretPosition()-FrmScript.TxtScriptPalco.getLineStartOffset(linha));
+            //linha = FrmPalco.TxtScriptPalco.getLineOfOffset(FrmPalco.TxtScriptPalco.getCaretPosition());
+            //coluna = FrmPalco.TxtScriptPalco.getCaretPosition() - FrmPalco.TxtScriptPalco.getLineStartOffset(linha);
+            linha = FrmPalco.TxtScriptPalco.getLineOfOffset(FrmPalco.TxtScriptPalco.getCaretPosition());
+            coluna = (FrmPalco.TxtScriptPalco.getCaretPosition()-FrmPalco.TxtScriptPalco.getLineStartOffset(linha));
             for(int i=0;i<coluna;i++){
                 Tabulacao+=" ";
             }
@@ -265,7 +265,7 @@ public class FrmMes extends javax.swing.JDialog {
         }
         if(OptAoFinalPausar.isSelected())Codigo+=(!Codigo.isEmpty()?Tabulacao:"")+"next;";
         if(OptAoFinalFechar.isSelected())Codigo+=(!Codigo.isEmpty()?Tabulacao:"")+"close;";
-        FrmScript.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal);
+        FrmPalco.TxtScriptPalco.setText(TxtInicio+Codigo+TxtFinal);
         dispose();
 
     }//GEN-LAST:event_BtnAdicionarActionPerformed
@@ -281,7 +281,7 @@ public class FrmMes extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtMensagemKeyReleased
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        TxtNomeDoPersonagem.setText(FrmScript.Instancia[FrmScript.CmbScript.getSelectedIndex()].getNome());
+        TxtNomeDoPersonagem.setText(FrmPalco.Instancia[FrmPalco.CmbScript.getSelectedIndex()].getNome());
     }//GEN-LAST:event_formWindowActivated
 
     /**

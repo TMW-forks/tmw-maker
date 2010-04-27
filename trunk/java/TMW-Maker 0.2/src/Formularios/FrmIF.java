@@ -456,10 +456,10 @@ public class FrmIF extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowActivated
 
     private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
-        String Conteudo=FrmScript.TxtScriptPalco.getText();
-        String TxtInicio=Conteudo.substring(0,FrmScript.TxtScriptPalco.getSelectionStart());
-        String TxtFinal=Conteudo.substring(FrmScript.TxtScriptPalco.getSelectionStart(),FrmScript.TxtScriptPalco.getText().length());
-        FrmScript.TxtScriptPalco.setText(TxtInicio+TxtResultado.getText()+TxtFinal+" ");
+        String Conteudo=FrmPalco.TxtScriptPalco.getText();
+        String TxtInicio=Conteudo.substring(0,FrmPalco.TxtScriptPalco.getSelectionStart());
+        String TxtFinal=Conteudo.substring(FrmPalco.TxtScriptPalco.getSelectionStart(),FrmPalco.TxtScriptPalco.getText().length());
+        FrmPalco.TxtScriptPalco.setText(TxtInicio+TxtResultado.getText()+TxtFinal+" ");
         dispose();
     }//GEN-LAST:event_BtnAdicionarActionPerformed
 

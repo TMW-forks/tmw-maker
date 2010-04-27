@@ -907,7 +907,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         ExecutarJogo();
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
-        javax.swing.JDialog FrmNpcScript = new FrmScript(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmNpcScript = new FrmPalco(this, rootPaneCheckingEnabled);
         FrmNpcScript.setLocation(
                 ((this.getWidth() - FrmNpcScript.getWidth()) / 2) + this.getX(),
                 ((this.getHeight() - FrmNpcScript.getHeight()) / 2) + this.getY());
