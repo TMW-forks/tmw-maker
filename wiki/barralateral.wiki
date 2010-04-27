@@ -18,7 +18,7 @@
      * [TxtConfiguracaoConexaoRepositorio Repositório]
     * [Execucao]
      * [TxtConfiguracaoExecucaoComando Comando]
-     * [Parâmetros]
+     * [Parametros Parâmetros]
       * [TxtConfiguracaoExecucaoParamentroServidor Localhost]
  * [Ferramentas Ferramentas de DEVs]
   * [OpenJDK OpenJDK Java 6 Runtime]
