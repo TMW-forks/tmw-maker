@@ -19,7 +19,7 @@
     * [Execucao]
      * [TxtConfiguracaoExecucaoComando Comando de Ativação]
      * [Parametros Parâmetros]
-      * [TxtConfiguracaoExecucaoParamentroServidor Localhost]
+      * [TxtConfiguracaoExecucaoParamentroServidor Servidor]
  * [Ferramentas Ferramentas de DEVs]
   * [OpenJDK OpenJDK Java 6 Runtime]
   * [NetBeans NetBeans IDE 6.7.1]
