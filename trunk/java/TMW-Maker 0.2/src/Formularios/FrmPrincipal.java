@@ -907,13 +907,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         ExecutarJogo();
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
-        javax.swing.JDialog FrmNpcScript = new FrmPalco(this, rootPaneCheckingEnabled);
-        FrmNpcScript.setLocation(
-                ((this.getWidth() - FrmNpcScript.getWidth()) / 2) + this.getX(),
-                ((this.getHeight() - FrmNpcScript.getHeight()) / 2) + this.getY());
-        FrmNpcScript.pack();
-        FrmNpcScript.setModal(true);
-        FrmNpcScript.setVisible(true);/**/
+        javax.swing.JDialog FrmScript = new FrmScript(this, rootPaneCheckingEnabled);
+        FrmScript.setLocation(
+                ((this.getWidth() - FrmScript.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmScript.getHeight()) / 2) + this.getY());
+        FrmScript.pack();
+        FrmScript.setModal(true);
+        FrmScript.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (Config.getOS().indexOf("win") >= 0) {
