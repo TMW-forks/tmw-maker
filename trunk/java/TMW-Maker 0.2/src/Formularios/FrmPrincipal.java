@@ -233,7 +233,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             }
 
                             /*
-                            Criar pasta de ~/tmw-br/eathena-data/log
+                            Criar pasta de ~/localhost/eathena-data/log
                             gcc -o eathena-monitor eathena-monitor.c
                             /**/
                             if(!Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor")) {
@@ -395,7 +395,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     //TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
                     setAvisoEmEstatus("Abrindo aplicativo \"" + FrmPrincipal.Config.getExecucaoComando() + "\"...");
                     Comando = FrmPrincipal.Config.getExecucaoComando() + " " +
-                            (FrmPrincipal.Config.getExecucaoParametroTMWData().isEmpty() ? "" : ("-ud " + FrmPrincipal.Config.getExecucaoParametroTMWData() + " ")) +
+                            ((!FrmPrincipal.Config.getTMWData().isEmpty() && (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("127.0.0.1")))?("-ud " + FrmPrincipal.Config.getTMWData() + " "):"") +
                             (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + FrmPrincipal.Config.getExecucaoParametroServidor() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + FrmPrincipal.Config.getExecucaoParametroConta() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + FrmPrincipal.Config.getExecucaoParametroSenha() + " ")) +
@@ -469,7 +469,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 System.out.println(line);
                                 //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
                             }
-                            setAvisoEmEstatus("<html><font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> encerrados com sucesso!");
+                            setAvisoEmEstatus("<html><font color=\"#0000FF\"><b>" + FrmPrincipal.Config.getExecucaoComando() + "</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> executados e encerrados com sucesso!");
                             PgbBarra.setString("Encerrado!");
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -512,13 +512,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnuSistema = new javax.swing.JMenu();
-        MnuSistemaReceber = new javax.swing.JMenuItem();
-        MnuSistemaMontar = new javax.swing.JMenuItem();
-        MnuSistemaEnviar = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JSeparator();
-        MnuConfiguracoes = new javax.swing.JMenuItem();
         MnuSistemaDependencias = new javax.swing.JMenuItem();
         MnuSistemaAlteracoes = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
+        MnuConfiguracoes = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         MnuSistemaFechar = new javax.swing.JMenuItem();
         MnuEditar = new javax.swing.JMenu();
@@ -544,6 +541,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarContas = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         MnuJogo = new javax.swing.JMenu();
+        MnuJogoReceber = new javax.swing.JMenuItem();
+        MnuJogoMontar = new javax.swing.JMenuItem();
+        MnuJogoEnviar = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JSeparator();
         MnuJogoExecutar = new javax.swing.JMenuItem();
         MnuAjuda = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -574,7 +575,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatus.setAlignmentY(0.0F);
 
         LblEstatus.setBackground(java.awt.SystemColor.activeCaptionBorder);
-        LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
+        LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
         LblEstatus.setText("Bem Vindo ao TMW-Maker!");
         LblEstatus.setBorder(null);
 
@@ -602,49 +603,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.setMnemonic('S');
         MnuSistema.setText("Sistema");
 
-        MnuSistemaReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
-        MnuSistemaReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
-        MnuSistemaReceber.setMnemonic('R');
-        MnuSistemaReceber.setText("Receber");
-        MnuSistemaReceber.setEnabled(false);
-        MnuSistemaReceber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuSistemaReceberActionPerformed(evt);
-            }
-        });
-        MnuSistema.add(MnuSistemaReceber);
-
-        MnuSistemaMontar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        MnuSistemaMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))); // NOI18N
-        MnuSistemaMontar.setMnemonic('M');
-        MnuSistemaMontar.setText("Montar");
-        MnuSistemaMontar.setEnabled(false);
-        MnuSistemaMontar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuSistemaMontarActionPerformed(evt);
-            }
-        });
-        MnuSistema.add(MnuSistemaMontar);
-
-        MnuSistemaEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
-        MnuSistemaEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
-        MnuSistemaEnviar.setMnemonic('E');
-        MnuSistemaEnviar.setText("Enviar");
-        MnuSistemaEnviar.setEnabled(false);
-        MnuSistema.add(MnuSistemaEnviar);
-        MnuSistema.add(jSeparator1);
-
-        MnuConfiguracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        MnuConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.gif"))); // NOI18N
-        MnuConfiguracoes.setMnemonic('G');
-        MnuConfiguracoes.setText("Configurações");
-        MnuConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuConfiguracoesActionPerformed(evt);
-            }
-        });
-        MnuSistema.add(MnuConfiguracoes);
-
         MnuSistemaDependencias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         MnuSistemaDependencias.setMnemonic('D');
         MnuSistemaDependencias.setText("Dependencias");
@@ -663,6 +621,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         MnuSistema.add(MnuSistemaAlteracoes);
+        MnuSistema.add(jSeparator1);
+
+        MnuConfiguracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        MnuConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.gif"))); // NOI18N
+        MnuConfiguracoes.setMnemonic('G');
+        MnuConfiguracoes.setText("Configurações");
+        MnuConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuConfiguracoesActionPerformed(evt);
+            }
+        });
+        MnuSistema.add(MnuConfiguracoes);
         MnuSistema.add(jSeparator2);
 
         MnuSistemaFechar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -808,8 +778,40 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogo.setMnemonic('J');
         MnuJogo.setText("Jogo");
 
+        MnuJogoReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
+        MnuJogoReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
+        MnuJogoReceber.setMnemonic('R');
+        MnuJogoReceber.setText("Receber");
+        MnuJogoReceber.setEnabled(false);
+        MnuJogoReceber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuJogoReceberActionPerformed(evt);
+            }
+        });
+        MnuJogo.add(MnuJogoReceber);
+
+        MnuJogoMontar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MnuJogoMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))); // NOI18N
+        MnuJogoMontar.setMnemonic('M');
+        MnuJogoMontar.setText("Montar");
+        MnuJogoMontar.setEnabled(false);
+        MnuJogoMontar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuJogoMontarActionPerformed(evt);
+            }
+        });
+        MnuJogo.add(MnuJogoMontar);
+
+        MnuJogoEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
+        MnuJogoEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
+        MnuJogoEnviar.setMnemonic('E');
+        MnuJogoEnviar.setText("Enviar");
+        MnuJogoEnviar.setEnabled(false);
+        MnuJogo.add(MnuJogoEnviar);
+        MnuJogo.add(jSeparator5);
+
         MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
-        MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
+        MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
         MnuJogoExecutar.setMnemonic('E');
         MnuJogoExecutar.setText("Executar");
         MnuJogoExecutar.addActionListener(new java.awt.event.ActionListener() {
@@ -870,7 +872,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -907,33 +909,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
         ExecutarJogo();
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
-        javax.swing.JDialog FrmScript = new FrmScript(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmScript = new FrmPalco(this, rootPaneCheckingEnabled);
         FrmScript.setLocation(
-                ((this.getWidth() - FrmScript.getWidth()) / 2) + this.getX(),
-                ((this.getHeight() - FrmScript.getHeight()) / 2) + this.getY());
+            ((this.getWidth() - FrmScript.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmScript.getHeight()) / 2) + this.getY());
         FrmScript.pack();
         FrmScript.setModal(true);
         FrmScript.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (Config.getOS().indexOf("win") >= 0) {
-            MnuSistemaReceber.setEnabled(false);
-            MnuSistemaEnviar.setEnabled(false);
+            MnuJogoReceber.setEnabled(false);
+            MnuJogoEnviar.setEnabled(false);
             MnuEditarContas.setEnabled(false);
         } else if (Config.getOS().indexOf("mac") >= 0) {
 
-            MnuSistemaReceber.setEnabled(false);
-            MnuSistemaEnviar.setEnabled(false);
+            MnuJogoReceber.setEnabled(false);
+            MnuJogoEnviar.setEnabled(false);
             MnuEditarContas.setEnabled(false);
         } else {
             if (Config.getSeDependenciaDeSVN()) {
-                MnuSistemaReceber.setEnabled(true);
+                MnuJogoReceber.setEnabled(true);
                 //MnuSistemaEnviar.setEnabled(true);
             } else {
-                MnuSistemaReceber.setEnabled(false);
-                MnuSistemaEnviar.setEnabled(false);
+                MnuJogoReceber.setEnabled(false);
+                MnuJogoEnviar.setEnabled(false);
             }
-            MnuSistemaMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
+            MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
             MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
         }
     }//GEN-LAST:event_formWindowActivated
@@ -954,7 +956,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmConfiguracao.setModal(true);
         FrmConfiguracao.setVisible(true);/**/
 }//GEN-LAST:event_MnuConfiguracoesActionPerformed
-    private void MnuSistemaReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaReceberActionPerformed
+    private void MnuJogoReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoReceberActionPerformed
         javax.swing.JDialog FrmCheckout = new FrmLocalhost(this, rootPaneCheckingEnabled);
         FrmCheckout.setLocation(
                 ((this.getWidth() - FrmCheckout.getWidth()) / 2) + this.getX(),
@@ -962,7 +964,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmCheckout.pack();
         FrmCheckout.setModal(true);
         FrmCheckout.setVisible(true);/**/
-}//GEN-LAST:event_MnuSistemaReceberActionPerformed
+}//GEN-LAST:event_MnuJogoReceberActionPerformed
     private void MnuEditarContasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarContasActionPerformed
         javax.swing.JDialog FrmContas = new FrmContas(this, rootPaneCheckingEnabled);
         FrmContas.setLocation(
@@ -972,9 +974,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmContas.setModal(true);
         FrmContas.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarContasActionPerformed
-    private void MnuSistemaMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaMontarActionPerformed
+    private void MnuJogoMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoMontarActionPerformed
         MontarLocalhost();
-    }//GEN-LAST:event_MnuSistemaMontarActionPerformed
+    }//GEN-LAST:event_MnuJogoMontarActionPerformed
     private void MnuSistemaDependenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaDependenciasActionPerformed
         MostrarDePendencias();
     }//GEN-LAST:event_MnuSistemaDependenciasActionPerformed
@@ -1019,14 +1021,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenu MnuJogo;
+    private javax.swing.JMenuItem MnuJogoEnviar;
     private javax.swing.JMenuItem MnuJogoExecutar;
+    private javax.swing.JMenuItem MnuJogoMontar;
+    private javax.swing.JMenuItem MnuJogoReceber;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
     private javax.swing.JMenuItem MnuSistemaDependencias;
-    private javax.swing.JMenuItem MnuSistemaEnviar;
     private javax.swing.JMenuItem MnuSistemaFechar;
-    private javax.swing.JMenuItem MnuSistemaMontar;
-    private javax.swing.JMenuItem MnuSistemaReceber;
     public static javax.swing.JProgressBar PgbBarra;
     private javax.swing.JPanel PnlBarraDeEstatus;
     private javax.swing.JLabel jLabel1;
@@ -1038,5 +1040,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     // End of variables declaration//GEN-END:variables
 }

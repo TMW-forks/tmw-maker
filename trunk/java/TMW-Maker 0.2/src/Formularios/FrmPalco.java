@@ -258,7 +258,7 @@ public class FrmPalco extends javax.swing.JDialog {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        BtnNovoScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
+        BtnNovoScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
         BtnNovoScript.setText("Novo");
         BtnNovoScript.setToolTipText("Cria novo script (Ctrl+N)");
         BtnNovoScript.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);

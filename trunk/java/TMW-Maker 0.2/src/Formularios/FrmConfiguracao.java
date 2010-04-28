@@ -22,6 +22,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         initComponents();
     }
 
+    static String Barra = System.getProperty("file.separator");
+
+
     private void setMarcarComponente(String Componente) {
         FrmPrincipal.ComponenteSelecionado = Componente.toString();
         if(FrmPrincipal.ComponenteSelecionado.isEmpty()) {
@@ -48,7 +51,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         }
     }
     public static void showAjuda(){
-        ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes().trim() + FrmPrincipal.ComponenteSelecionado.trim());
+        ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+FrmPrincipal.ComponenteSelecionado);
         Toolkit.getDefaultToolkit().beep();
     }
     public static void showAjuda(java.awt.event.KeyEvent evt){
@@ -61,8 +64,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             FrmPrincipal.Config.setConexaoUsuario (TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
             FrmPrincipal.Config.setConexaoSenha (TxtConfiguracaoConexaoIdentificacaoSenha.getText());
 
-            FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoComando.getText());
-            FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
+            FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
+            //FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
             FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
             FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
             FrmPrincipal.Config.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
@@ -92,7 +95,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
 
             Propriedade = Documento.createElement("Execucao");
             Propriedade.setAttribute("Comando", FrmPrincipal.Config.getExecucaoComando());
-            Propriedade.setAttribute("TMWData", FrmPrincipal.Config.getExecucaoParametroTMWData());
+            //Propriedade.setAttribute("TMWData", FrmPrincipal.Config.getExecucaoParametroTMWData());
             Propriedade.setAttribute("Servidor", FrmPrincipal.Config.getExecucaoParametroServidor());
             Propriedade.setAttribute("Conta", FrmPrincipal.Config.getExecucaoParametroConta());
             Propriedade.setAttribute("Senha", FrmPrincipal.Config.getExecucaoParametroSenha());
@@ -135,16 +138,16 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.Config.getConexaoUsuario());
         TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.Config.getConexaoSenha());
 
-        TxtConfiguracaoExecucaoComando.setText(FrmPrincipal.Config.getExecucaoComando());
+        TxtConfiguracaoExecucaoSoftwareCliente.setText(FrmPrincipal.Config.getExecucaoComando());
         if(!FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help")){
-            TxtConfiguracaoExecucaoComando.setForeground(Color.red);
+            TxtConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:</font> Aplicativo \"<font color=\"#FF0000\">"+FrmPrincipal.Config.getExecucaoComando()+"</font>\" não existe ou não está funcionando!");
             AbaConfiguracoes.setSelectedIndex(1);
-            TxtConfiguracaoExecucaoComando.setSelectionStart(0);
-            TxtConfiguracaoExecucaoComando.setSelectionEnd(FrmPrincipal.Config.getExecucaoComando().length()-1);
-            TxtConfiguracaoExecucaoComando.gotFocus(null, TxtConfiguracaoExecucaoComando);
+            TxtConfiguracaoExecucaoSoftwareCliente.setSelectionStart(0);
+            TxtConfiguracaoExecucaoSoftwareCliente.setSelectionEnd(FrmPrincipal.Config.getExecucaoComando().length()-1);
+            TxtConfiguracaoExecucaoSoftwareCliente.gotFocus(null, TxtConfiguracaoExecucaoSoftwareCliente);
         }
-        TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
+        //TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
         TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.Config.getExecucaoParametroServidor());
         TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.Config.getExecucaoParametroConta());
         TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.Config.getExecucaoParametroSenha());
@@ -176,10 +179,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        TxtConfiguracaoExecucaoComando = new javax.swing.JTextField();
+        TxtConfiguracaoExecucaoSoftwareCliente = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        TxtConfiguracaoExecucaoParamentroTMWData = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TxtConfiguracaoExecucaoParamentroServidor = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -206,11 +207,11 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         setTitle("Configurações");
         setModal(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
-            public void windowDeactivated(java.awt.event.WindowEvent evt) {
-                formWindowDeactivated(evt);
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -283,7 +284,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+                    .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -304,9 +305,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel15.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 12));
+        jLabel15.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 12)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel15.setText("<html><b>OBS.:</b> Inicie com \"https://\" para ativar campos \"Usuário\" e \"Senha\"");
+        jLabel15.setText("<html><b>OBS.:</b> Inicie com <font color=\"#0000FF\"><b>https://</b></font> para ativar a identificação.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -318,7 +319,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
+                        .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -327,8 +328,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))))
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                            .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -346,39 +347,25 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         AbaConfiguracoes.addTab("Conexão", jPanel1);
 
-        jLabel5.setText("Comando de ativação:");
+        jLabel5.setText("Software Cliente:");
 
-        TxtConfiguracaoExecucaoComando.addFocusListener(new java.awt.event.FocusAdapter() {
+        TxtConfiguracaoExecucaoSoftwareCliente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                TxtConfiguracaoExecucaoComandoFocusGained(evt);
+                TxtConfiguracaoExecucaoSoftwareClienteFocusGained(evt);
             }
         });
-        TxtConfiguracaoExecucaoComando.addKeyListener(new java.awt.event.KeyAdapter() {
+        TxtConfiguracaoExecucaoSoftwareCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                TxtConfiguracaoExecucaoComandoKeyReleased(evt);
+                TxtConfiguracaoExecucaoSoftwareClienteKeyReleased(evt);
             }
         });
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Parâmetros"));
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("tmwdata:");
-
-        TxtConfiguracaoExecucaoParamentroTMWData.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TxtConfiguracaoExecucaoParamentroTMWDataFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoExecucaoParamentroTMWData.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased(evt);
-            }
-        });
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Servidor:");
@@ -426,7 +413,12 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         });
 
         ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(true);
-        ChkConfiguracaoExecucaoParamentroSemopengl.setText("Sem OpenGL (Recomendado)");
+        ChkConfiguracaoExecucaoParamentroSemopengl.setText("<html>Sem OpenGL (<font color=\"#FF0000\">Recomendado</font>)");
+        ChkConfiguracaoExecucaoParamentroSemopengl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed(evt);
+            }
+        });
         ChkConfiguracaoExecucaoParamentroSemopengl.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 ChkConfiguracaoExecucaoParamentroSemopenglFocusGained(evt);
@@ -456,7 +448,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
@@ -464,8 +455,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChkConfiguracaoExecucaoParamentroSemopengl)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroTMWData, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroPersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -474,10 +464,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroTMWData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -509,7 +495,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(4, 4, 4)
-                        .addComponent(TxtConfiguracaoExecucaoComando, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)))
+                        .addComponent(TxtConfiguracaoExecucaoSoftwareCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -518,7 +504,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(TxtConfiguracaoExecucaoComando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtConfiguracaoExecucaoSoftwareCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -597,10 +583,10 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
+                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -621,7 +607,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         AbaConfiguracoes.addTab("Documentação", jPanel4);
@@ -658,10 +644,10 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+                    .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
+                        .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                         .addComponent(BtnConfiguracaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnConfiguracaoCancelar)))
@@ -671,7 +657,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnConfiguracaoOk)
@@ -698,8 +684,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
         FrmPrincipal.Config.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
         FrmPrincipal.Config.setConexaoSenha(TxtConfiguracaoConexaoIdentificacaoSenha.getText());
-        FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoComando.getText());
-        FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
+        FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
+        //FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
         FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
         FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
         FrmPrincipal.Config.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
@@ -728,12 +714,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained
        setMarcarComponente("TxtConfiguracaoConexaoIdentificacaoSenha");
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained
-    private void TxtConfiguracaoExecucaoComandoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoComandoFocusGained
+    private void TxtConfiguracaoExecucaoSoftwareClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoSoftwareClienteFocusGained
        setMarcarComponente("TxtConfiguracaoExecucaoComando");
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoComandoFocusGained
-    private void TxtConfiguracaoExecucaoParamentroTMWDataFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroTMWDataFocusGained
-       setMarcarComponente("TxtConfiguracaoExecucaoParamentroTMWData");
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroTMWDataFocusGained
+    }//GEN-LAST:event_TxtConfiguracaoExecucaoSoftwareClienteFocusGained
     private void TxtConfiguracaoExecucaoParamentroServidorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroServidorFocusGained
        setMarcarComponente("TxtConfiguracaoExecucaoParamentroServidor");
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroServidorFocusGained
@@ -770,24 +753,21 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased
-    private void TxtConfiguracaoExecucaoComandoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoComandoKeyReleased
-        if(!TxtConfiguracaoExecucaoComando.getText().isEmpty()){
-            boolean SeProcede=FrmPrincipal.Config.SeComandoProcede(TxtConfiguracaoExecucaoComando.getText()+" --help");
+    private void TxtConfiguracaoExecucaoSoftwareClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoSoftwareClienteKeyReleased
+        if(!TxtConfiguracaoExecucaoSoftwareCliente.getText().isEmpty()){
+            boolean SeProcede=FrmPrincipal.Config.SeComandoProcede(TxtConfiguracaoExecucaoSoftwareCliente.getText()+" --help");
             if(SeProcede){
-                TxtConfiguracaoExecucaoComando.setForeground(java.awt.SystemColor.textText);
-                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoComando.getText()+"\" Ok!");
+                TxtConfiguracaoExecucaoSoftwareCliente.setForeground(java.awt.SystemColor.textText);
+                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoSoftwareCliente.getText()+"\" Ok!");
             }else{
-                TxtConfiguracaoExecucaoComando.setForeground(Color.red);
-                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoComando.getText()+"\" não procede!");
+                TxtConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
+                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoSoftwareCliente.getText()+"\" não procede!");
             }
         }else{
             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:<font> Digite o comando que abrirá o jogo The Mana World!");
         }
         showAjuda(evt);
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoComandoKeyReleased
-    private void TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased
-        showAjuda(evt);
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased
+    }//GEN-LAST:event_TxtConfiguracaoExecucaoSoftwareClienteKeyReleased
     private void TxtConfiguracaoExecucaoParamentroServidorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroServidorKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroServidorKeyReleased
@@ -815,12 +795,18 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoDocumentacaoTraducoesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ImportarConfiguracao();
-    }//GEN-LAST:event_formWindowActivated
-    private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmPrincipal.LblEstatus.setText("Janela de configurações fechada!");
-    }//GEN-LAST:event_formWindowDeactivated
+    }//GEN-LAST:event_formWindowClosed
+
+    private void ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -851,12 +837,11 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JTextField TxtConfiguracaoDocumentacaoComentarios;
     private javax.swing.JTextField TxtConfiguracaoDocumentacaoComponentes;
     private javax.swing.JTextField TxtConfiguracaoDocumentacaoTraducoes;
-    private javax.swing.JTextField TxtConfiguracaoExecucaoComando;
     private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroConta;
     private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroPersonagem;
     private javax.swing.JPasswordField TxtConfiguracaoExecucaoParamentroSenha;
     private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroServidor;
-    private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroTMWData;
+    private javax.swing.JTextField TxtConfiguracaoExecucaoSoftwareCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -868,7 +853,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -15,8 +15,8 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
   <Events>
-    <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowActivated"/>
-    <EventHandler event="windowDeactivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowDeactivated"/>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -36,10 +36,10 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="AbaConfiguracoes" alignment="0" pref="566" max="32767" attributes="0"/>
+                  <Component id="AbaConfiguracoes" alignment="0" pref="482" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BtnConfiguracaoAjuda" pref="81" max="32767" attributes="1"/>
-                      <EmptySpace pref="337" max="32767" attributes="0"/>
+                      <Component id="BtnConfiguracaoAjuda" pref="108" max="32767" attributes="1"/>
+                      <EmptySpace pref="226" max="32767" attributes="0"/>
                       <Component id="BtnConfiguracaoOk" min="-2" pref="74" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="BtnConfiguracaoCancelar" min="-2" max="-2" attributes="1"/>
@@ -53,7 +53,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="AbaConfiguracoes" pref="314" max="32767" attributes="0"/>
+              <Component id="AbaConfiguracoes" pref="283" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtnConfiguracaoOk" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -88,7 +88,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoConexaoRepositorio" pref="443" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoConexaoRepositorio" pref="359" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -99,8 +99,8 @@
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TxtConfiguracaoConexaoLocalhost" alignment="0" pref="443" max="32767" attributes="0"/>
+                                  <Component id="jLabel15" alignment="0" pref="359" max="32767" attributes="0"/>
+                                  <Component id="TxtConfiguracaoConexaoLocalhost" alignment="0" pref="359" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -125,7 +125,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
+                      <EmptySpace pref="63" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -174,7 +174,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" pref="347" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" pref="263" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -243,7 +243,7 @@
                   <Font name="Bitstream Vera Sans" size="12" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;OBS.:&lt;/b&gt; Inicie com &quot;https://&quot; para ativar campos &quot;Usu&#xe1;rio&quot; e &quot;Senha&quot;"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;OBS.:&lt;/b&gt; Inicie com &lt;font color=&quot;#0000FF&quot;&gt;&lt;b&gt;https://&lt;/b&gt;&lt;/font&gt; para ativar a identifica&#xe7;&#xe3;o."/>
               </Properties>
             </Component>
           </SubComponents>
@@ -267,7 +267,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoComando" pref="382" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoSoftwareCliente" pref="334" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -280,7 +280,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoExecucaoComando" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoExecucaoSoftwareCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel5" max="32767" attributes="0"/>
@@ -292,13 +292,13 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Comando de ativa&#xe7;&#xe3;o:"/>
+                <Property name="text" type="java.lang.String" value="Software Cliente:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoComando">
+            <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoSoftwareCliente">
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoComandoFocusGained"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoComandoKeyReleased"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoSoftwareClienteFocusGained"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoSoftwareClienteKeyReleased"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
@@ -316,7 +316,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -325,8 +324,7 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="405" max="32767" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroTMWData" alignment="0" pref="405" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="321" max="32767" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroConta" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
@@ -338,11 +336,6 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroTMWData" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="TxtConfiguracaoExecucaoParamentroServidor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -370,18 +363,6 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel6">
-                  <Properties>
-                    <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value="tmwdata:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoParamentroTMWData">
-                  <Events>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataFocusGained"/>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoParamentroTMWDataKeyReleased"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="4"/>
@@ -427,9 +408,10 @@
                 <Component class="javax.swing.JCheckBox" name="ChkConfiguracaoExecucaoParamentroSemopengl">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="Sem OpenGL (Recomendado)"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;Sem OpenGL (&lt;font color=&quot;#FF0000&quot;&gt;Recomendado&lt;/font&gt;)"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed"/>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglFocusGained"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ChkConfiguracaoExecucaoParamentroSemopenglKeyReleased"/>
                   </Events>
@@ -473,10 +455,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" pref="412" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="0" pref="412" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="0" pref="412" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="0" pref="412" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" pref="328" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="0" pref="328" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="0" pref="328" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="0" pref="328" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -504,7 +486,7 @@
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="126" max="32767" attributes="0"/>
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

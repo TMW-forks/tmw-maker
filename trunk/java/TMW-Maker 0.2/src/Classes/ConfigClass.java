@@ -3,7 +3,6 @@ package Classes;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,7 +17,7 @@ public class ConfigClass {
     private String ConfiguracaoURL = System.getProperty("user.home")+Barra+".tmw-maker.ini";
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
-    private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"tmw-br";
+    private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"localhost";
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
     private String  ExecucaoComando =               "mana";
@@ -29,7 +28,7 @@ public class ConfigClass {
     private String  ExecucaoParametroPersonagem =   ""; //Inicia sem valor
     private boolean ExecucaoParametroSemopengl =    true; //Inicia Sem OpenGL
     private String  DocumentacaoAlteracoes =        "http://code.google.com/p/tmw-maker/source/list";
-    private String  DocumentacaoComponentes =       "http://code.google.com/p/tmw-maker/wiki/";
+    private String  DocumentacaoComponentes =       "http://code.google.com/p/tmw-maker/wiki";
     private String  DocumentacaoComentarios =       "http://code.google.com/p/tmw-maker/issues/entry";
     private String  DocumentacaoTraducoes =         "";
 
@@ -40,7 +39,6 @@ public class ConfigClass {
     public String  getConexaoUsuario(){return ConexaoUsuario;}
     public String  getConexaoSenha(){return ConexaoSenha;}
     public String  getExecucaoComando(){return ExecucaoComando;}
-    public String  getExecucaoParametroTMWData(){return ExecucaoParametroTMWData;}
     public String  getExecucaoParametroServidor(){return ExecucaoParametroServidor;}
     public String  getExecucaoParametroConta(){return ExecucaoParametroConta;}
     public String  getExecucaoParametroSenha(){return ExecucaoParametroSenha;}
@@ -56,7 +54,7 @@ public class ConfigClass {
     public void setConexaoUsuario(String Usuario){ConexaoUsuario=Usuario ;}
     public void setConexaoSenha(String Senha){ConexaoSenha=Senha ;}
     public void setExecucaoComando(String Comando){ExecucaoComando=Comando ;}
-    public void setExecucaoParametroTMWData(String PastaTMWData){ExecucaoParametroTMWData=PastaTMWData ;}
+    //public void setExecucaoParametroTMWData(String PastaTMWData){ExecucaoParametroTMWData=PastaTMWData ;}
     public void setExecucaoParametroServidor(String Servidor){ExecucaoParametroServidor=Servidor ;}
     public void setExecucaoParametroConta(String Conta){ExecucaoParametroConta=Conta ;}
     public void setExecucaoParametroSenha(String Senha){ExecucaoParametroSenha=Senha ;}
@@ -222,6 +220,10 @@ public class ConfigClass {
             return "";
         }
     }
+
+    public String  getEathenaData(){return ConexaoLocalhost+Barra+"eathena-data";}
+    public String  getTMWData(){return ConexaoLocalhost+Barra+"tmwdata";}
+
     public void ConfiguracoesGravar(){ConfiguracoesGravar(ConfiguracaoURL);}
     public void ConfiguracoesGravar(String Endereco){
         String Corpo=
@@ -237,7 +239,7 @@ public class ConfigClass {
         "ConexaoSenha: "+getConexaoSenha()+"\n"+
 
         "ExecucaoComando: "+getExecucaoComando()+"\n"+
-        "ExecucaoParametroTMWData: "+getExecucaoParametroTMWData()+"\n"+
+        //"ExecucaoParametroTMWData: "+getExecucaoParametroTMWData()+"\n"+
         "ExecucaoParametroServidor: "+getExecucaoParametroServidor()+"\n"+
         "ExecucaoParametroConta: "+getExecucaoParametroConta()+"\n"+
         "ExecucaoParametroSenha: "+getExecucaoParametroSenha()+"\n"+
@@ -275,7 +277,7 @@ public class ConfigClass {
             setConexaoUsuario(getPropriedade(Conteudo,"ConexaoUsuario"));
             setConexaoSenha(getPropriedade(Conteudo,"ConexaoSenha"));
             setExecucaoComando(getPropriedade(Conteudo,"ExecucaoComando"));
-            setExecucaoParametroTMWData(getPropriedade(Conteudo,"ExecucaoParametroTMWData"));
+            //setExecucaoParametroTMWData(getPropriedade(Conteudo,"ExecucaoParametroTMWData"));
             setExecucaoParametroServidor(getPropriedade(Conteudo,"ExecucaoParametroServidor"));
             setExecucaoParametroConta(getPropriedade(Conteudo,"ExecucaoParametroConta"));
             setExecucaoParametroSenha(getPropriedade(Conteudo,"ExecucaoParametroSenha"));
