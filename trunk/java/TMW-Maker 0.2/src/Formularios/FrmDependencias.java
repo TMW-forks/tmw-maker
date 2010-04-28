@@ -627,7 +627,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             TblDependencias.setEnabled(true);
                             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                            if(FrmPrincipal.Config.getSeDependenciaDeMana() || FrmPrincipal.Config.getSeDependenciaDeTMW()){
+                            if(FrmPrincipal.Config.getSeDependenciaDeManaplus() || FrmPrincipal.Config.getSeDependenciaDeTMW()){
                                 VerificarPendencias();
                                 ConfigClass.Mensagem_Erro("<html>"+
                                     "Locahost <font color=\"#0000FF\">montado com sucesso</font>!<br/>"+
@@ -654,22 +654,22 @@ public class FrmDependencias extends javax.swing.JDialog {
         }
     }
     private void ProcurarCliente() {
-        if(FrmPrincipal.Config.getExecucaoComando().equals("mana") && !FrmPrincipal.Config.getSeDependenciaDeMana() && FrmPrincipal.Config.getSeDependenciaDeTMW()){
+        if(FrmPrincipal.Config.getExecucaoComando().equals("manaplus") && !FrmPrincipal.Config.getSeDependenciaDeManaplus() && FrmPrincipal.Config.getSeDependenciaDeTMW()){
             FrmPrincipal.Config.setExecucaoComando("tmw");
             FrmPrincipal.Config.ConfiguracoesGravar();
             VerificarPendencias();
             BtnResolver.setEnabled(false);
-        }else if(FrmPrincipal.Config.getExecucaoComando().equals("tmw") && FrmPrincipal.Config.getSeDependenciaDeMana() && !FrmPrincipal.Config.getSeDependenciaDeTMW()){
-            FrmPrincipal.Config.setExecucaoComando("mana");
+        }else if(FrmPrincipal.Config.getExecucaoComando().equals("tmw") && FrmPrincipal.Config.getSeDependenciaDeManaplus() && !FrmPrincipal.Config.getSeDependenciaDeTMW()){
+            FrmPrincipal.Config.setExecucaoComando("manaplus");
             FrmPrincipal.Config.ConfiguracoesGravar();
             VerificarPendencias();
             BtnResolver.setEnabled(false);
         }else if(
-            (!FrmPrincipal.Config.getExecucaoComando().equals("mana") && !FrmPrincipal.Config.getExecucaoComando().equals("tmw")) &&
-            (FrmPrincipal.Config.getSeDependenciaDeMana() || FrmPrincipal.Config.getSeDependenciaDeTMW())
+            (!FrmPrincipal.Config.getExecucaoComando().equals("manaplus") && !FrmPrincipal.Config.getExecucaoComando().equals("tmw")) &&
+            (FrmPrincipal.Config.getSeDependenciaDeManaplus() || FrmPrincipal.Config.getSeDependenciaDeTMW())
         ){
-            if(FrmPrincipal.Config.getSeDependenciaDeMana()){
-                FrmPrincipal.Config.setExecucaoComando("mana");
+            if(FrmPrincipal.Config.getSeDependenciaDeManaplus()){
+                FrmPrincipal.Config.setExecucaoComando("manaplus");
                 FrmPrincipal.Config.ConfiguracoesGravar();
                 VerificarPendencias();
                 BtnResolver.setEnabled(false);

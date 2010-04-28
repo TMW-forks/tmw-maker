@@ -416,7 +416,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     } catch (IOException e) {
                         PgbBarra.setIndeterminate(false);
                         e.printStackTrace();
-                        if(Config.getExecucaoComando().equals("mana") && !Config.getSeDependenciaDeMana() && Config.getSeDependenciaDeTMW()){
+                        if(Config.getExecucaoComando().equals("manaplus") && !Config.getSeDependenciaDeManaplus() && Config.getSeDependenciaDeTMW()){
                             Config.setExecucaoComando("tmw");
                             Config.ConfiguracoesGravar();
                             ConfigClass.Mensagem_Erro("<html>"+
@@ -426,8 +426,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 "ERRO DE EXECUÇÃO"
                             );
                             ExecutarJogo();
-                        }else if(Config.getExecucaoComando().equals("tmw") && !Config.getSeDependenciaDeTMW() && Config.getSeDependenciaDeMana()){
-                            Config.setExecucaoComando("mana");
+                        }else if(Config.getExecucaoComando().equals("tmw") && !Config.getSeDependenciaDeTMW() && Config.getSeDependenciaDeManaplus()){
+                            Config.setExecucaoComando("manaplus");
                             Config.ConfiguracoesGravar();
                             ConfigClass.Mensagem_Erro("<html>"+
                                 "O TMW-Maker <b>não encotrou o aplicativo</b> \"<font face=\"monospace\" color=\"#FF0000\"><b>TMW</b></font>\".<br/>" +
