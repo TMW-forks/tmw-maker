@@ -70,7 +70,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(TblDependencias);
 
-        BtnResolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
+        BtnResolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
         BtnResolver.setMnemonic('R');
         BtnResolver.setText("Resolver");
         BtnResolver.setEnabled(false);
@@ -82,9 +82,15 @@ public class FrmDependencias extends javax.swing.JDialog {
 
         BtnAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ajuda.gif"))); // NOI18N
         BtnAjuda.setMnemonic('J');
-        BtnAjuda.setText("Ajudar");
+        BtnAjuda.setText("Ajuda (F1)");
+        BtnAjuda.setEnabled(false);
         BtnAjuda.setFocusable(false);
         BtnAjuda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAjudaActionPerformed(evt);
+            }
+        });
 
         BtnCancelar.setMnemonic('C');
         BtnCancelar.setText("Cancelar");
@@ -103,7 +109,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnAjuda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                         .addComponent(BtnResolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnCancelar))
@@ -133,6 +139,8 @@ public class FrmDependencias extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowActivated
     private void TblDependenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDependenciasMouseClicked
         //setTitle("Linha: "+TblDependencias.getSelectedRow());
+        if(TblDependencias.getSelectedRow()>=0) BtnAjuda.setEnabled(true);
+        
         if(TblDependencias.getSelectedRow()==0 && !FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
             BtnResolver.setEnabled(true);
         }else if(
@@ -162,6 +170,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         }else{
             BtnResolver.setEnabled(false);
         }
+
 
     }//GEN-LAST:event_TblDependenciasMouseClicked
     private void BtnResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResolverActionPerformed
@@ -204,6 +213,14 @@ public class FrmDependencias extends javax.swing.JDialog {
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+    private void BtnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAjudaActionPerformed
+        if(TblDependencias.getSelectedRow()==0) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeConfiguracao");
+        }else if(TblDependencias.getSelectedRow()==5) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
+        }
+
+    }//GEN-LAST:event_BtnAjudaActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -363,9 +380,9 @@ public class FrmDependencias extends javax.swing.JDialog {
         } else if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
             int R = JOptionPane.YES_OPTION;
             if(FrmPrincipal.Config.getSeDependenciaDeGCC()){
-                if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server") ||
-                    FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server") ||
-                    FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server") ||
+                    FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server") ||
+                    FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
                     Object[] options = {"Remontar", "Cancelar"};
                     R = JOptionPane.showOptionDialog(
                         null, "<html>" +
@@ -404,9 +421,9 @@ public class FrmDependencias extends javax.swing.JDialog {
                             if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
                                 FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
                             }
-                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
-                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
-                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
+                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server");
+                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
+                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
 
                             FrmPrincipal.PgbBarra.setString("Preparando...");
                             FrmPrincipal.setAvisoEmEstatus("Preparando para baixar binários novos...");
@@ -447,22 +464,22 @@ public class FrmDependencias extends javax.swing.JDialog {
                             }
                             if (BinariosEspecificos == true) {
                                 FrmPrincipal.PgbBarra.setString("Deslocando...");
-                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server")) {
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server")) {
                                     FrmPrincipal.Config.MoverArquivo(
                                             FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "char-server",
-                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
+                                            FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
                                 }
-                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server")) {
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server")) {
                                     FrmPrincipal.Config.MoverArquivo(
                                             FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "login-server",
-                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
+                                            FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
                                 }
-                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
                                     FrmPrincipal.Config.MoverArquivo(
                                             FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "map-server",
-                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
+                                            FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
                                 }
                             } else {
@@ -486,17 +503,17 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.setAvisoEmEstatus("Renomeando banco de dados...");
                             FrmPrincipal.PgbBarra.setString("Renomeando...");
                             String Pasta[] = new String[]{
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "save"
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "conf",
+                                FrmPrincipal.Config.getEathenaData()  +Barra+ "save"
                             };
                             String De[] = new String[]{
                                 "atcommand_local.conf.example",
@@ -536,21 +553,21 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 }
                             }
 
-                            if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log")) {
-                                FrmPrincipal.setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log\"...");
-                                FrmPrincipal.Config.CriarPasta(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log");
+                            if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
+                                FrmPrincipal.setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
+                                FrmPrincipal.Config.CriarPasta(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
                             }
 
                             /*
-                            Criar pasta de ~/tmw-br/eathena-data/log
+                            Criar pasta de ~/localhost/eathena-data/log
                             gcc -o eathena-monitor eathena-monitor.c
                             /**/
-                            if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor")) {
+                            if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
                                 FrmPrincipal.PgbBarra.setString("Copilando...");
                                 FrmPrincipal.setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
                                 Comando="gcc -o "+
-                                    FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor "+
-                                    FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor.c";
+                                    FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor "+
+                                    FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor.c";
                                 System.out.println(Comando);
                                 try {
                                     Process Retorno = Executador.exec(Comando);
@@ -614,8 +631,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 VerificarPendencias();
                                 ConfigClass.Mensagem_Erro("<html>"+
                                     "Locahost <font color=\"#0000FF\">montado com sucesso</font>!<br/>"+
-                                    "Para executar o tmw-maker <b>pressione tecla F9</b> de "+
-                                    "crie uma nova conta de jogador no servidor \"localhost\"."
+                                    "Para executar o tmw-maker <b>pressione tecla F9</b>.<br/>"+
+                                    "Crie uma nova conta de jogador no servidor \"localhost\"!"
                                     , "AVISO"
                                 );
                             }

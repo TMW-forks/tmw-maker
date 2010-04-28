@@ -78,7 +78,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
             }
         });
 
-        BtnMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/tmw-br.png"))); // NOI18N
+        BtnMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
         BtnMontar.setMnemonic('M');
         BtnMontar.setText("Montar");
         BtnMontar.setEnabled(false);
