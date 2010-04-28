@@ -20,7 +20,7 @@ public class ConfigClass {
     private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"localhost";
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
-    private String  ExecucaoComando =               "mana";
+    private String  ExecucaoComando =               "manaplus";
     private String  ExecucaoParametroTMWData =      ConexaoLocalhost+Barra+"tmwdata";
     private String  ExecucaoParametroServidor =     "localhost";
     private String  ExecucaoParametroConta =        ""; //Inicia sem valor
@@ -350,8 +350,8 @@ public class ConfigClass {
             return false;
         }
     }
-    public boolean getSeDependenciaDeMana(){
-        return SeComandoProcede("mana --help");
+    public boolean getSeDependenciaDeManaplus(){
+        return SeComandoProcede("manaplus --help");
     }
     public boolean getSeDependenciaDeTMW(){
         return SeComandoProcede("tmw --help");
@@ -368,9 +368,9 @@ public class ConfigClass {
         }else if(!getSeDependenciaDeMontagem()){
             return 5;
         }else if(
-            (getExecucaoComando().equals("mana") && !getSeDependenciaDeMana()) ||
+            (getExecucaoComando().equals("manaplus") && !getSeDependenciaDeManaplus()) ||
             (getExecucaoComando().equals("tmw") && !getSeDependenciaDeTMW()) ||
-            (!getExecucaoComando().equals("mana") && !getExecucaoComando().equals("tmw") && !SeComandoProcede(ExecucaoComando+" --help"))
+            (!getExecucaoComando().equals("manaplus") && !getExecucaoComando().equals("tmw") && !SeComandoProcede(ExecucaoComando+" --help"))
         ){
             return 6;
         }else{
