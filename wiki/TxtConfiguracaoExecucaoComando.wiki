@@ -1,7 +1,7 @@
 #labels Execução,MANA,TMW,TMW-Maker,Jogo,MMORPG,RPG
 ==Sistema -> Configurações -> Execução -> Software Cliente==
 
-É o modo como o sistema operacional encontrará algumas das versões do jogo The Mana World(MANA/TMW). Por padrão o campo "Software Cliente" ja vem preenchi com o comando "mana" que funciona apenas no Linux. 
+É o modo como o sistema operacional encontrará algumas das versões do jogo The Mana World("manaplus" ou "tmw"). Por padrão o campo "Software Cliente" já vem preenchi com o comando "manaplus" que funciona apenas no Linux. 
 
 || *NOTA:* por enquanto o TMW-Maker está sendo fabricado apenas para o sistema operacional *Ubuntu Linux i386*. Mais tarde, ampliaremos para outras distribuições do sistema operacional linux e para o sistema operacional windows.||
 
