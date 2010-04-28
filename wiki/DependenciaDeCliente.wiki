@@ -4,9 +4,9 @@ Software cliente é o nome técnico para o programa que foi instalado no computa
 
 ===Resolvendo Dependência de Cliente===
 Atualmente existem apenas 2 formas de resolver essa *Dependências de Cliente* do TMW-Maker:
- * *[http://sites.google.com/site/tmwbrasil/downloads MANA]* - É a vensão que está em constante desenvolvimento atualmente. Dependendo da maneira como você o instalou ele pode se atualizar altomaticamente ou não. (*Recomendado*)
+ * *[http://sites.google.com/site/tmwbrasil/downloads MANAPLUS]* - É a versão que está em constante desenvolvimento atualmente. Dependendo da maneira como você o instalou ele pode se atualizar automaticamente ou não. (*Recomendado*)
 
- * *TMW* - É a vensão mais antiga deste jogo, corre o boato que seu desenvolvimento estagnou. Por enquanto é a forma mais fácil de se instalar.
+ * *TMW* - É a versão mais antiga deste jogo, corre o boato que seu desenvolvimento estagnou. Por enquanto é a forma mais fácil de se instalar.
 
 || *NOTA:* Saiba como instalar alguma destas versões através do link acima. ||
 
