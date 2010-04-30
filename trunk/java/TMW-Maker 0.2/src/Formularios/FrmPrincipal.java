@@ -36,6 +36,92 @@ public class FrmPrincipal extends javax.swing.JFrame {
         LblEstatus.setText(Aviso.toString());
     }
 
+    public void Atualizar(){
+        Thread tThread = new Thread(new Runnable() {
+            public void run() {
+                boolean SeConclui=false;
+                Runtime Executador = Runtime.getRuntime();
+                String line="", Partes[];
+                String Comando ="",Link="",Simbolo="";
+                int Arquivos=0;
+
+                FrmPrincipal.PgbBarra.setEnabled(true);
+                MnuSistema.setEnabled(false);
+                MnuEditar.setEnabled(false);
+                MnuJogo.setEnabled(false);
+                MnuAjuda.setEnabled(false);
+
+
+                FrmPrincipal.PgbBarra.setIndeterminate(true);
+                FrmPrincipal.PgbBarra.setString("Baixando...");
+                FrmPrincipal.setAvisoEmEstatus("Baixando atualização...");
+                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                String Destino=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmw-maker";
+                Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Destino;
+
+                try {
+                    Process Retorno=Executador.exec(Comando);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                    while ((line = in.readLine()) != null) {
+                        Arquivos++;
+                        System.out.println(Arquivos+"º "+line);
+                        FrmPrincipal.setAvisoEmEstatus("<html>"+Arquivos+"º: "+line);
+                        FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                    }
+                } catch (IOException e) {
+                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">Falha ao receber a atualização!");
+                    FrmPrincipal.PgbBarra.setString("ERRO!");
+                    return;
+                }/**/
+
+                if(Arquivos>=2){
+                    //ln -t /home/indigovox/Desktop -s /home/indigovox/localhost/tmw-maker/TMW-Maker_0.2.jar
+                    Link=Config.getConexaoLocalhost()+Barra+ "tmw-maker"+Barra+ "TMW-Maker.jar";
+                    Simbolo=System.getProperty("user.home")+Barra+"Desktop";
+                    if(Config.SeExiste(Simbolo)) Config.Apagar(Simbolo+Barra+"TMW-Maker.jar");
+                    PgbBarra.setString("Coligando...");
+                    setAvisoEmEstatus("Criando link \""+Link+"\"...");
+                    Comando="ln -t "+Simbolo+" -s "+Link;
+                    System.out.println(Comando);
+                    try {
+                        Process Retorno = Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+                        ConfigClass.Mensagem_Erro(
+                            "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
+                            "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
+                            "</html>",
+                            "ERRO DE EXECUÇÃO"
+                        );
+                        return;
+                    }
+                    FrmPrincipal.setAvisoEmEstatus("<html>Atualização do recebida com sucesso! (<font color=\"#0000FF\"><b>Favor reiniciar pelo link em Área de Trabalho</b></font>)");
+                }else{
+                    FrmPrincipal.setAvisoEmEstatus("<html>Este \"<font color=\"#0000FF\"><b>TMW-Maker</b></font>\" já é a versão mais atualizada!");
+                }
+                FrmPrincipal.Config.setAtualizacaoAgora();
+                FrmPrincipal.Config.ConfiguracoesGravar();
+                FrmPrincipal.PgbBarra.setString("Concluido!");
+
+
+                FrmPrincipal.PgbBarra.setIndeterminate(false);
+
+                MnuSistema.setEnabled(true);
+                MnuEditar.setEnabled(true);
+                MnuJogo.setEnabled(true);
+                MnuAjuda.setEnabled(true);
+
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+        tThread.start();
+    }
     public void MostrarDePendencias() {
         javax.swing.JDialog FrmDependencias = new FrmDependencias(this, rootPaneCheckingEnabled);
         FrmDependencias.setLocation(
@@ -514,6 +600,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema = new javax.swing.JMenu();
         MnuSistemaDependencias = new javax.swing.JMenuItem();
         MnuSistemaAlteracoes = new javax.swing.JMenuItem();
+        MnuSistemaAtualizar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         MnuConfiguracoes = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
@@ -613,7 +700,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuSistema.add(MnuSistemaDependencias);
 
+        MnuSistemaAlteracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.CTRL_MASK));
         MnuSistemaAlteracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_file_rss.gif"))); // NOI18N
+        MnuSistemaAlteracoes.setMnemonic('T');
         MnuSistemaAlteracoes.setText("Alterações");
         MnuSistemaAlteracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -621,6 +710,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         MnuSistema.add(MnuSistemaAlteracoes);
+
+        MnuSistemaAtualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
+        MnuSistemaAtualizar.setMnemonic('A');
+        MnuSistemaAtualizar.setText("Atualizar");
+        MnuSistemaAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuSistemaAtualizarActionPerformed(evt);
+            }
+        });
+        MnuSistema.add(MnuSistemaAtualizar);
         MnuSistema.add(jSeparator1);
 
         MnuConfiguracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
@@ -938,6 +1037,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
             MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
         }
+        if(FrmPrincipal.Config.getOS().indexOf("linux") >= 0) {
+            if(FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
+                if(FrmPrincipal.Config.getSeDependenciaDeSVN()){
+                    if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+                        if(ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacao()+FrmPrincipal.Config.getAtualizacaoIntervalo()){
+                            Atualizar();
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_formWindowActivated
     private void MnuSistemaFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaFecharActionPerformed
         // TODO add your handling code here:
@@ -980,12 +1090,34 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void MnuSistemaDependenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaDependenciasActionPerformed
         MostrarDePendencias();
     }//GEN-LAST:event_MnuSistemaDependenciasActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (Config.getDependenciaEmFalta() >= 1) {
             MostrarDePendencias();
         }
     }//GEN-LAST:event_formWindowOpened
+    private void MnuSistemaAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAtualizarActionPerformed
+        if (FrmPrincipal.Config.getOS().indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (FrmPrincipal.Config.getOS().indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            if(FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
+                if(FrmPrincipal.Config.getSeDependenciaDeSVN()){
+                    if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+                        Atualizar();
+                    }else{
+                        ConfigClass.Mensagem_Erro("Para atualizar é necessário atender a dependência de Localhost!","ERRO");
+                    }
+                }else{
+                    ConfigClass.Mensagem_Erro("Para atualizar é necessário atender a dependência de SNV!","ERRO");
+                }
+            }else{
+                ConfigClass.Mensagem_Erro("Para atualizar é necessário atender a dependência de Configuração!","ERRO");
+            }
+        }
+
+    }//GEN-LAST:event_MnuSistemaAtualizarActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1027,6 +1159,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuJogoReceber;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
+    private javax.swing.JMenuItem MnuSistemaAtualizar;
     private javax.swing.JMenuItem MnuSistemaDependencias;
     private javax.swing.JMenuItem MnuSistemaFechar;
     public static javax.swing.JProgressBar PgbBarra;
