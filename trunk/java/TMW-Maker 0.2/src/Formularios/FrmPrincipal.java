@@ -598,11 +598,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnuSistema = new javax.swing.JMenu();
-        MnuSistemaDependencias = new javax.swing.JMenuItem();
         MnuSistemaAlteracoes = new javax.swing.JMenuItem();
         MnuSistemaAtualizar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
-        MnuConfiguracoes = new javax.swing.JMenuItem();
+        MnuSistemaConfiguracoes = new javax.swing.JMenuItem();
+        MnuSistemaDependencias = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         MnuSistemaFechar = new javax.swing.JMenuItem();
         MnuEditar = new javax.swing.JMenu();
@@ -634,8 +634,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         MnuJogoExecutar = new javax.swing.JMenuItem();
         MnuAjuda = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        MnuAjudaComentarios = new javax.swing.JMenuItem();
+        MnuAjudaComponentes = new javax.swing.JMenuItem();
+        MnuAjudaIndicarDefeito = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JSeparator();
         MnuAjudaSobre = new javax.swing.JMenuItem();
@@ -690,16 +690,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.setMnemonic('S');
         MnuSistema.setText("Sistema");
 
-        MnuSistemaDependencias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        MnuSistemaDependencias.setMnemonic('D');
-        MnuSistemaDependencias.setText("Dependencias");
-        MnuSistemaDependencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuSistemaDependenciasActionPerformed(evt);
-            }
-        });
-        MnuSistema.add(MnuSistemaDependencias);
-
         MnuSistemaAlteracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.CTRL_MASK));
         MnuSistemaAlteracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_file_rss.gif"))); // NOI18N
         MnuSistemaAlteracoes.setMnemonic('T');
@@ -712,6 +702,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.add(MnuSistemaAlteracoes);
 
         MnuSistemaAtualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
+        MnuSistemaAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_update.gif"))); // NOI18N
         MnuSistemaAtualizar.setMnemonic('A');
         MnuSistemaAtualizar.setText("Atualizar");
         MnuSistemaAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -722,16 +713,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.add(MnuSistemaAtualizar);
         MnuSistema.add(jSeparator1);
 
-        MnuConfiguracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        MnuConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.gif"))); // NOI18N
-        MnuConfiguracoes.setMnemonic('G');
-        MnuConfiguracoes.setText("Configurações");
-        MnuConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
+        MnuSistemaConfiguracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.gif"))); // NOI18N
+        MnuSistemaConfiguracoes.setMnemonic('G');
+        MnuSistemaConfiguracoes.setText("Configurações");
+        MnuSistemaConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuConfiguracoesActionPerformed(evt);
+                MnuSistemaConfiguracoesActionPerformed(evt);
             }
         });
-        MnuSistema.add(MnuConfiguracoes);
+        MnuSistema.add(MnuSistemaConfiguracoes);
+
+        MnuSistemaDependencias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaDependencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_dependencias.gif"))); // NOI18N
+        MnuSistemaDependencias.setMnemonic('D');
+        MnuSistemaDependencias.setText("Dependencias");
+        MnuSistemaDependencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuSistemaDependenciasActionPerformed(evt);
+            }
+        });
+        MnuSistema.add(MnuSistemaDependencias);
         MnuSistema.add(jSeparator2);
 
         MnuSistemaFechar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -925,21 +927,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuAjuda.setMnemonic('A');
         MnuAjuda.setText("Ajuda");
 
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        jMenuItem9.setMnemonic('P');
-        jMenuItem9.setText("Componentes");
-        jMenuItem9.setEnabled(false);
-        MnuAjuda.add(jMenuItem9);
+        MnuAjudaComponentes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        MnuAjudaComponentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ajuda.gif"))); // NOI18N
+        MnuAjudaComponentes.setMnemonic('P');
+        MnuAjudaComponentes.setText("Componentes");
+        MnuAjuda.add(MnuAjudaComponentes);
 
-        MnuAjudaComentarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
-        MnuAjudaComentarios.setMnemonic('C');
-        MnuAjudaComentarios.setText("Comentários");
-        MnuAjudaComentarios.addActionListener(new java.awt.event.ActionListener() {
+        MnuAjudaIndicarDefeito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/fechar.png"))); // NOI18N
+        MnuAjudaIndicarDefeito.setMnemonic('D');
+        MnuAjudaIndicarDefeito.setText("Indicar Defeito");
+        MnuAjudaIndicarDefeito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuAjudaComentariosActionPerformed(evt);
+                MnuAjudaIndicarDefeitoActionPerformed(evt);
             }
         });
-        MnuAjuda.add(MnuAjudaComentarios);
+        MnuAjuda.add(MnuAjudaIndicarDefeito);
 
         jMenuItem11.setText("Traduções");
         jMenuItem11.setEnabled(false);
@@ -1000,10 +1002,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
         Config.ConfiguracoesAbrir();
     }//GEN-LAST:event_formComponentShown
-    private void MnuAjudaComentariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaComentariosActionPerformed
+    private void MnuAjudaIndicarDefeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaIndicarDefeitoActionPerformed
         // TODO add your handling code here:
         Config.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComentarios());
-    }//GEN-LAST:event_MnuAjudaComentariosActionPerformed
+    }//GEN-LAST:event_MnuAjudaIndicarDefeitoActionPerformed
     private void MnuJogoExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoExecutarActionPerformed
         ExecutarJogo();
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
@@ -1057,7 +1059,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Config.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoAlteracoes());
 }//GEN-LAST:event_MnuSistemaAlteracoesActionPerformed
-    private void MnuConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuConfiguracoesActionPerformed
+    private void MnuSistemaConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaConfiguracoesActionPerformed
         javax.swing.JDialog FrmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
         FrmConfiguracao.setLocation(
             ((this.getWidth() - FrmConfiguracao.getWidth()) / 2) + this.getX(),
@@ -1065,7 +1067,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmConfiguracao.pack();
         FrmConfiguracao.setModal(true);
         FrmConfiguracao.setVisible(true);/**/
-}//GEN-LAST:event_MnuConfiguracoesActionPerformed
+}//GEN-LAST:event_MnuSistemaConfiguracoesActionPerformed
     private void MnuJogoReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoReceberActionPerformed
         javax.swing.JDialog FrmCheckout = new FrmLocalhost(this, rootPaneCheckingEnabled);
         FrmCheckout.setLocation(
@@ -1129,9 +1131,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel LblEstatus;
     private javax.swing.JMenu MnuAjuda;
-    private javax.swing.JMenuItem MnuAjudaComentarios;
+    private javax.swing.JMenuItem MnuAjudaComponentes;
+    private javax.swing.JMenuItem MnuAjudaIndicarDefeito;
     private javax.swing.JMenuItem MnuAjudaSobre;
-    private javax.swing.JMenuItem MnuConfiguracoes;
     private javax.swing.JMenu MnuEditar;
     private javax.swing.JMenu MnuEditarCampos;
     private javax.swing.JMenuItem MnuEditarCamposMapas;
@@ -1160,6 +1162,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
     private javax.swing.JMenuItem MnuSistemaAtualizar;
+    private javax.swing.JMenuItem MnuSistemaConfiguracoes;
     private javax.swing.JMenuItem MnuSistemaDependencias;
     private javax.swing.JMenuItem MnuSistemaFechar;
     public static javax.swing.JProgressBar PgbBarra;
@@ -1168,7 +1171,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
