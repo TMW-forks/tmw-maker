@@ -8,11 +8,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 
 public class ConfigClass {
     private String Versao = "0.2";
+    private long Atualizacao = 0;
     private String Barra = System.getProperty("file.separator");
     private String ConfiguracaoURL = System.getProperty("user.home")+Barra+".tmw-maker.ini";
 
@@ -33,7 +36,22 @@ public class ConfigClass {
     private String  DocumentacaoTraducoes =         "";
 
     public String getVersao(){return Versao;}
-
+    public long getAtualizacao(){return Atualizacao;}
+    public long getAtualizacaoIntervalo(){
+        /**
+          * 1000 = Milisegundos
+          * 60 = Segundos
+          * 60 = Minutos
+          * 24 = horas
+          **/
+        return 1000*60*60*24; //Intervalo de 1 dias
+    }
+    public static long getAgora(){
+        // um calendar também é criado com a data atual
+        GregorianCalendar calendar = new GregorianCalendar();
+        Date data = calendar.getTime();
+        return data.getTime();
+    }
     public String  getConexaoRepositorio(){return ConexaoRepositorio;}
     public String  getConexaoLocalhost(){return ConexaoLocalhost;}
     public String  getConexaoUsuario(){return ConexaoUsuario;}
@@ -49,6 +67,8 @@ public class ConfigClass {
     public String  getDocumentacaoComentarios(){return DocumentacaoComentarios;}
     public String  getDocumentacaoTraducoes(){return DocumentacaoTraducoes;}
 
+    public void setAtualizacao(long Quando){Atualizacao=Quando;}
+    public void setAtualizacaoAgora(){Atualizacao=getAgora();}
     public void setConexaoRepositorio(String URL){ConexaoRepositorio=URL ;}
     public void setConexaoLocalhost(String EnderecoDaPasta){ConexaoLocalhost=EnderecoDaPasta ;}
     public void setConexaoUsuario(String Usuario){ConexaoUsuario=Usuario ;}
@@ -232,6 +252,7 @@ public class ConfigClass {
         "////////////////////////////////\n"+
         "\n"+
         "Versao: "+getVersao()+"\n"+
+        "Atualizacao: "+getAtualizacao()+"\n"+
 
         "ConexaoRepositorio: "+getConexaoRepositorio()+"\n"+
         "ConexaoLocalhost: "+getConexaoLocalhost()+"\n"+
@@ -272,6 +293,7 @@ public class ConfigClass {
                 Caracater = CapsulaDeLer.read();
             }
             CapsulaDeLer.close();
+            setAtualizacao(Long.parseLong(getPropriedade(Conteudo,"Atualizacao")));
             setConexaoRepositorio(getPropriedade(Conteudo,"ConexaoRepositorio"));
             setConexaoLocalhost(getPropriedade(Conteudo,"ConexaoLocalhost"));
             setConexaoUsuario(getPropriedade(Conteudo,"ConexaoUsuario"));
