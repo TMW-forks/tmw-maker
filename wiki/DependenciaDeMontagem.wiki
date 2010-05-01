@@ -7,6 +7,6 @@ Monte o localhost automaticamente através do menu "*Jogo -> Montar*" ou atravé
 
 Por enquanto o localhost só será  montando corretamente apenas para usuários do sistema operacional Ubuntu Linux i386. Se você possui outro sistema operacional precisará consegui manualmente os 3 binário "*char-server*", "*login-server*" e "*map-server*" compatíveis com seus sistema operacional que ficam na pasta "*eathena-data*".
 
-|| *NOTA:* Pedimos desculpas por não conseguir fornecer os 3 binários diferencias para cada tipo de sistema operacional do mundo inteiros. Se você conseguir manualmente os 3 binário "char-server", "login-server" e "map-server" compatíveis com seus sistema operacional que ficam na pasta "eathena-data", por favor os envie para o e-mail [mailto:rui.gravata@hotmail.com rui.gravata@hotmail.com] para que possamos fazer o TMW-Maker montar automaticamente para outros usuários que usam um sistema sistema operacional igual ao seu. ||
+|| *AVISO IMPORTANTE:* Pedimos desculpas por não conseguir fornecer os 3 binários diferenciados para cada tipo de sistema operacional do mundo inteiros. Se você conseguir manualmente os 3 binário "char-server", "login-server" e "map-server" compatíveis com seus sistema operacional que ficam na pasta "eathena-data", por favor os envie para o e-mail [mailto:rui.gravata@hotmail.com rui.gravata@hotmail.com] para que possamos fazer o TMW-Maker montar automaticamente para outros usuários que usam um sistema sistema operacional igual ao seu. ||
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
