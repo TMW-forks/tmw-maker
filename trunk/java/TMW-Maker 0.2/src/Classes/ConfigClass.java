@@ -328,7 +328,7 @@ public class ConfigClass {
         return SeComandoProcede("svn --help");
     }
     public boolean getSeDependenciaDeLocalhost(){
-        return SeExiste(ConexaoLocalhost);
+        return SeExiste(getConexaoLocalhost());
     }
     public boolean getSeDependenciaDeGCC(){
         return SeComandoProcede("gcc --help");

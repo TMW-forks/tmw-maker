@@ -1,13 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * FrmPrincipal.java
- *
- * Created on Apr 8, 2010, 2:20:48 PM
- */
 package Formularios;
 
 import Classes.ConfigClass;
@@ -15,11 +6,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -1010,7 +998,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         ExecutarJogo();
     }//GEN-LAST:event_MnuJogoExecutarActionPerformed
     private void MnuEditarPersonagemScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarPersonagemScriptActionPerformed
-        javax.swing.JDialog FrmScript = new FrmPalco(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmScript = new FrmScript(this, rootPaneCheckingEnabled);
         FrmScript.setLocation(
             ((this.getWidth() - FrmScript.getWidth()) / 2) + this.getX(),
             ((this.getHeight() - FrmScript.getHeight()) / 2) + this.getY());
