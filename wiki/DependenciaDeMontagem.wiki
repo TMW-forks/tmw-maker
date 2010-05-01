@@ -1,6 +1,9 @@
 ==Sistema -> Dependências -> Montagem==
 
-Para que o jogo consiga rodar o localhost(servidor local) que não precisa de intenet para funcionar. É necessário montar o locahost que foi baixado recentemente. Essa montagem só é necessária apenas uma vez. Monte-o automaticamente através do menu "Jogo -> Montar" ou através do painel de dependências, clicando no nome de "Montagem" depois no botão "Resolver". Ambas montam automaticamente o Localhost da mesma forma. 
+Para que o jogo consiga rodar o localhost(servidor local) que não precisa de intenet para funcionar. É necessário montar o locahost que foi baixado recentemente. Essa montagem só é necessária apenas uma vez. 
+
+===Resolvendo a Dependência de Montagem===
+Monte o localhost automaticamente através do menu "*Jogo -> Montar*" ou através do painel de dependências, clicando no nome de "Montagem" depois no botão "Resolver". Ambas montam automaticamente e da mesma forma o Localhost. 
 
 Por enquanto o localhost só será  montando corretamente apenas para usuários do sistema operacional Ubuntu Linux i386. Se você possui outro sistema operacional precisará consegui manualmente os 3 binário "*char-server*", "*login-server*" e "*map-server*" compatíveis com seus sistema operacional que ficam na pasta "*eathena-data*".
 
