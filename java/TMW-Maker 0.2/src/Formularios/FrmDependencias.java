@@ -3,6 +3,7 @@ package Formularios;
 
 import Classes.ConfigClass;
 import java.awt.Cursor;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -68,6 +69,11 @@ public class FrmDependencias extends javax.swing.JDialog {
                 TblDependenciasMouseClicked(evt);
             }
         });
+        TblDependencias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TblDependenciasKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(TblDependencias);
 
         BtnResolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
@@ -77,6 +83,11 @@ public class FrmDependencias extends javax.swing.JDialog {
         BtnResolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnResolverActionPerformed(evt);
+            }
+        });
+        BtnResolver.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnResolverKeyPressed(evt);
             }
         });
 
@@ -91,12 +102,22 @@ public class FrmDependencias extends javax.swing.JDialog {
                 BtnAjudaActionPerformed(evt);
             }
         });
+        BtnAjuda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnAjudaKeyPressed(evt);
+            }
+        });
 
         BtnCancelar.setMnemonic('C');
         BtnCancelar.setText("Cancelar");
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarActionPerformed(evt);
+            }
+        });
+        BtnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCancelarKeyPressed(evt);
             }
         });
 
@@ -109,11 +130,11 @@ public class FrmDependencias extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnAjuda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                         .addComponent(BtnResolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnCancelar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -139,7 +160,58 @@ public class FrmDependencias extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowActivated
     private void TblDependenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDependenciasMouseClicked
         //setTitle("Linha: "+TblDependencias.getSelectedRow());
-        if(TblDependencias.getSelectedRow()>=0) BtnAjuda.setEnabled(true);
+        if(TblDependencias.getSelectedRow()>=0) {
+            BtnAjuda.setEnabled(true);
+            if(TblDependencias.getSelectedRow()==0) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeConfiguracao");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de Configuracao</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre Configuração (F1)");
+            }else if(TblDependencias.getSelectedRow()==1) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeSVN");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de SVN</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre SVN (F1)");
+            }else if(TblDependencias.getSelectedRow()==2) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de Localhost</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre Localhost (F1)");
+            }else if(TblDependencias.getSelectedRow()==3) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeGCC");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de GCC</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre GCC (F1)");
+            }else if(TblDependencias.getSelectedRow()==4) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de Montagem</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre Montagem (F1)");
+            }else if(TblDependencias.getSelectedRow()==5) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de Cliente</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre Cliente (F1)");
+            }
+        }
         
         if(TblDependencias.getSelectedRow()==0 && !FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
             BtnResolver.setEnabled(true);
@@ -214,13 +286,20 @@ public class FrmDependencias extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
     private void BtnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAjudaActionPerformed
-        if(TblDependencias.getSelectedRow()==0) {
-            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeConfiguracao");
-        }else if(TblDependencias.getSelectedRow()==5) {
-            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
-        }
-
+        showAjuda();
     }//GEN-LAST:event_BtnAjudaActionPerformed
+    private void TblDependenciasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TblDependenciasKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
+    }//GEN-LAST:event_TblDependenciasKeyPressed
+    private void BtnAjudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAjudaKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
+    }//GEN-LAST:event_BtnAjudaKeyPressed
+    private void BtnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCancelarKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
+    }//GEN-LAST:event_BtnCancelarKeyPressed
+    private void BtnResolverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnResolverKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
+    }//GEN-LAST:event_BtnResolverKeyPressed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -685,6 +764,22 @@ public class FrmDependencias extends javax.swing.JDialog {
                 , "Dependencia não resolvida!"
             );
             VerificarPendencias();
+        }
+    }
+
+    private void showAjuda() {
+        if(TblDependencias.getSelectedRow()==0) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeConfiguracao");
+        }else if(TblDependencias.getSelectedRow()==1) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeSVN");
+        }else if(TblDependencias.getSelectedRow()==2) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
+        }else if(TblDependencias.getSelectedRow()==3) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeGCC");
+        }else if(TblDependencias.getSelectedRow()==4) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
+        }else if(TblDependencias.getSelectedRow()==5) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
         }
     }
 }
