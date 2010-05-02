@@ -1,15 +1,21 @@
 package Classes;
 
 import java.awt.Toolkit;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import javax.swing.JOptionPane;
 
 
@@ -409,4 +415,39 @@ public class ConfigClass {
     public String getVersaoOS() {
         return System.getProperty("os.version").toLowerCase();
     }
+
+    public void Descompactar(String Arquivo, String EmPasta) {
+        Enumeration entries;
+        ZipFile zipFile;
+        try {
+            zipFile = new ZipFile(Arquivo);
+            entries = zipFile.entries();
+            InputStream Entrada=null;
+            OutputStream Saida=null;
+            while (entries.hasMoreElements()) {
+                ZipEntry entry = (ZipEntry) entries.nextElement();
+                if (entry.isDirectory()) {
+                    System.err.println("Descompactando diretório: " + EmPasta+Barra+entry.getName());
+                    (new File(EmPasta+Barra+entry.getName())).mkdir();
+                    continue;
+                }
+                System.out.println("Descompactando arquivo:" + EmPasta+Barra+entry.getName());
+                
+                Entrada=zipFile.getInputStream(entry);
+                Saida=new BufferedOutputStream(new FileOutputStream(EmPasta+Barra+entry.getName()));
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = Entrada.read(buffer)) >= 0) {
+                    Saida.write(buffer, 0, len);
+                }
+                Entrada.close();
+                Saida.close();
+            }
+            zipFile.close();
+        } catch (IOException ioe) {
+            System.err.println("Erro ao descompactar:" + ioe.getMessage());
+            return;
+        }
+    }
+
 }

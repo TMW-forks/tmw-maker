@@ -26,12 +26,14 @@ public class FrmDependencias extends javax.swing.JDialog {
         BtnResolver = new javax.swing.JButton();
         BtnAjuda = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TxtEstatus = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dependencias de Funcionamento");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -121,6 +123,14 @@ public class FrmDependencias extends javax.swing.JDialog {
             }
         });
 
+        TxtEstatus.setBackground(java.awt.Color.darkGray);
+        TxtEstatus.setColumns(20);
+        TxtEstatus.setEditable(false);
+        TxtEstatus.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        TxtEstatus.setForeground(java.awt.Color.white);
+        TxtEstatus.setRows(5);
+        jScrollPane2.setViewportView(TxtEstatus);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,13 +138,14 @@ public class FrmDependencias extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BtnAjuda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
                         .addComponent(BtnResolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnCancelar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                        .addComponent(BtnCancelar)))
                 .addContainerGap())
         );
 
@@ -142,9 +153,11 @@ public class FrmDependencias extends javax.swing.JDialog {
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnAjuda)
@@ -155,9 +168,6 @@ public class FrmDependencias extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        VerificarPendencias();
-    }//GEN-LAST:event_formWindowActivated
     private void TblDependenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDependenciasMouseClicked
         //setTitle("Linha: "+TblDependencias.getSelectedRow());
         if(TblDependencias.getSelectedRow()>=0) {
@@ -170,6 +180,13 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "\"<font color=\"#0000FF\">Dependencia de Configuracao</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre Configuração (F1)");
+                BtnResolver.setText("Configurar");
+                BtnResolver.setMnemonic('C');
+                if(!FrmPrincipal.Config.getSeDependenciaDeConfiguracao()) {
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
             }else if(TblDependencias.getSelectedRow()==1) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeSVN");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
@@ -178,6 +195,9 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "\"<font color=\"#0000FF\">Dependencia de SVN</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre SVN (F1)");
+                BtnResolver.setText("Resolver");
+                BtnResolver.setMnemonic('R');
+                BtnResolver.setEnabled(false);
             }else if(TblDependencias.getSelectedRow()==2) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
@@ -186,6 +206,16 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "\"<font color=\"#0000FF\">Dependencia de Localhost</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre Localhost (F1)");
+                BtnResolver.setText("Baixar");
+                BtnResolver.setMnemonic('B');
+                if(
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    FrmPrincipal.Config.getSeDependenciaDeSVN()
+                ){
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
             }else if(TblDependencias.getSelectedRow()==3) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeGCC");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
@@ -194,6 +224,9 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "\"<font color=\"#0000FF\">Dependencia de GCC</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre GCC (F1)");
+                BtnResolver.setText("Resolver");
+                BtnResolver.setMnemonic('R');
+                BtnResolver.setEnabled(false);
             }else if(TblDependencias.getSelectedRow()==4) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
@@ -202,6 +235,22 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "\"<font color=\"#0000FF\">Dependencia de Montagem</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre Montagem (F1)");
+                if(
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+                    FrmPrincipal.Config.getSeDependenciaDeLocalhost()
+                ){
+                    if(!FrmPrincipal.Config.getSeDependenciaDeMontagem()){
+                        BtnResolver.setText("Montar");
+                        BtnResolver.setMnemonic('M');
+                    }else{
+                        BtnResolver.setText("Re-montar");
+                        BtnResolver.setMnemonic('R');
+                    }
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
             }else if(TblDependencias.getSelectedRow()==5) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
@@ -210,19 +259,27 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "\"<font color=\"#0000FF\">Dependencia de Cliente</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre Cliente (F1)");
+                BtnResolver.setText("Resolver");
+                BtnResolver.setMnemonic('R');
+                if(
+                    TblDependencias.getSelectedRow()==5 &&
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+                    FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
+                    FrmPrincipal.Config.getSeDependenciaDeMontagem() &&
+                    FrmPrincipal.Config.getDependenciaEmFalta()==6
+                ){
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
             }
         }
         
-        if(TblDependencias.getSelectedRow()==0 && !FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
-            BtnResolver.setEnabled(true);
-        }else if(
-            TblDependencias.getSelectedRow()==2 &&
-            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
-            !FrmPrincipal.Config.getSeDependenciaDeLocalhost()
-        ){
-            BtnResolver.setEnabled(true);
-        }else if(
+
+        /*{
+            
+        }elseelse if(
             TblDependencias.getSelectedRow()==4 &&
             FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
             FrmPrincipal.Config.getSeDependenciaDeSVN() &&
@@ -230,18 +287,9 @@ public class FrmDependencias extends javax.swing.JDialog {
             !FrmPrincipal.Config.getSeDependenciaDeMontagem()
         ){
             BtnResolver.setEnabled(true);
-        }else if(
-            TblDependencias.getSelectedRow()==5 &&
-            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
-            FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
-            FrmPrincipal.Config.getSeDependenciaDeMontagem() &&
-            FrmPrincipal.Config.getDependenciaEmFalta()==6
-        ){
-            BtnResolver.setEnabled(true);
-        }else{
+        }else else{
             BtnResolver.setEnabled(false);
-        }
+        }/**/
 
 
     }//GEN-LAST:event_TblDependenciasMouseClicked
@@ -300,6 +348,9 @@ public class FrmDependencias extends javax.swing.JDialog {
     private void BtnResolverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnResolverKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
     }//GEN-LAST:event_BtnResolverKeyPressed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        VerificarPendencias();
+    }//GEN-LAST:event_formWindowOpened
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -318,7 +369,9 @@ public class FrmDependencias extends javax.swing.JDialog {
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnResolver;
     private javax.swing.JTable TblDependencias;
+    private javax.swing.JTextArea TxtEstatus;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     static String Barra = System.getProperty("file.separator");
@@ -338,11 +391,11 @@ public class FrmDependencias extends javax.swing.JDialog {
             public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
         });
 
-        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMinWidth(100);
-        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
+        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMinWidth(120);
+        TblDependencias.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(120);
 
-        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMinWidth(80);
-        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(80);
+        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMinWidth(100);
+        TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(100);
     }
     public void BaixarLocalhost(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
@@ -388,7 +441,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     if (R == JOptionPane.YES_OPTION) {
                         FrmPrincipal.PgbBarra.setIndeterminate(true);
                         FrmPrincipal.PgbBarra.setString("Preparando...");
-                        //TxtEstatus.setText("Preparando para baixar...");
+                        addLinhaDeEstatus("Preparando para baixar...");
                         FrmPrincipal.LblEstatus.setText("Preparando para baixar...");
                         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         // operacao demorada
@@ -396,7 +449,7 @@ public class FrmDependencias extends javax.swing.JDialog {
 
                         Comando ="svn checkout "+FrmPrincipal.Config.getConexaoRepositorio()+" "+FrmPrincipal.Config.getConexaoLocalhost();
                         //if(ChkForcar.isSelected()){Comando+=" --force";}
-                        //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Comando);
+                        addLinhaDeEstatus("     svn checkout "+FrmPrincipal.Config.getConexaoRepositorio());
                         if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
                             Comando+=" --username "+FrmPrincipal.Config.getConexaoUsuario()+" --password "+FrmPrincipal.Config.getConexaoSenha();
                         }
@@ -409,16 +462,16 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 FrmPrincipal.LblEstatus.setText("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
                                 Arquivos++;
                                 FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
-                                //TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Arquivos+": "+line);
+                                addLinhaDeEstatus("     "+Arquivos+": "+line);
                                 //Partes=line.split("/");
                                 //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                             }
                             //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
                             FrmPrincipal.LblEstatus.setText("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
+                            addLinhaDeEstatus("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
                             FrmPrincipal.PgbBarra.setString("Concluido!");
                         } catch (IOException e) {
-                            //TxtEstatus.setText(TxtEstatus.getText()+"\nFalha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
+                            addLinhaDeEstatus("Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
                             //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
                             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
                             FrmPrincipal.PgbBarra.setString("ERRO!");
@@ -497,6 +550,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setIndeterminate(true);
                             FrmPrincipal.PgbBarra.setString("Apagando...");
                             FrmPrincipal.setAvisoEmEstatus("Apagando binários...");
+                            addLinhaDeEstatus("Apagando binários...");
                             if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
                                 FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
                             }
@@ -504,8 +558,9 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
                             FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
 
-                            FrmPrincipal.PgbBarra.setString("Preparando...");
-                            FrmPrincipal.setAvisoEmEstatus("Preparando para baixar binários novos...");
+                            FrmPrincipal.PgbBarra.setString("Abaixando...");
+                            FrmPrincipal.setAvisoEmEstatus("Baixando binários novos...");
+                            addLinhaDeEstatus("Baixando binários novos...");
                             if (OS.indexOf("linux") >= 0 && Arch.indexOf("i386") >= 0) {
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
@@ -517,6 +572,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/compiler " +
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
+                                addLinhaDeEstatus("svn checkout http://tmw-maker.googlecode.com/svn/bins/compiler ");
                                 BinariosEspecificos = false;
                                 System.out.println(Comando);
                                 //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
@@ -528,11 +584,12 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     System.out.println(line);
                                     Baixados++;
                                     FrmPrincipal.setAvisoEmEstatus("<html>" + line + " (<font color=\"#FF0000\">Espere concluir...</font>)");
+                                    addLinhaDeEstatus("     "+line + " (Espere concluir...)");
                                     FrmPrincipal.PgbBarra.setString("Baixando nº" + Baixados + "...");
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
-                                //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                                addLinhaDeEstatus("ERRO: "+Comando);
                                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
                                 ConfigClass.Mensagem_Erro(
                                     "<html><b>O TMW-Maker não conseguiu baixar os binários:</b><br/><br/>" +
@@ -540,45 +597,128 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     "</html>",
                                     "ERRO DE EXECUÇÃO"
                                 );
+                                FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                BtnCancelar.setEnabled(true);
+                                TblDependencias.setEnabled(true);
+                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                return;
                             }
                             if (BinariosEspecificos == true) {
                                 FrmPrincipal.PgbBarra.setString("Deslocando...");
-                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server")) {
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"char-server")) {
                                     FrmPrincipal.Config.MoverArquivo(
-                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "char-server",
-                                            FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server");
+                                            FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"char-server",
+                                            FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
+                                    addLinhaDeEstatus("     Deslocando char-server...");
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">char-server</font>\"!");
+                                    addLinhaDeEstatus("ERRO: Falha ao deslocar \"char-server\"!");
+                                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                    BtnCancelar.setEnabled(true);
+                                    TblDependencias.setEnabled(true);
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    return;
                                 }
-                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server")) {
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"login-server")) {
                                     FrmPrincipal.Config.MoverArquivo(
-                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "login-server",
-                                            FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server");
+                                            FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"login-server",
+                                            FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
+                                    addLinhaDeEstatus("     Deslocando login-server...");
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">login-server</font>\"!");
+                                    addLinhaDeEstatus("ERRO: Falha ao deslocar \"login-server\"!");
+                                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                    BtnCancelar.setEnabled(true);
+                                    TblDependencias.setEnabled(true);
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    return;
                                 }
-                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"map-server")) {
                                     FrmPrincipal.Config.MoverArquivo(
-                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "map-server",
-                                            FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server");
+                                            FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins"+Barra+"map-server",
+                                            FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
+                                    addLinhaDeEstatus("     Deslocando map-server...");
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">map-server</font>\"!");
+                                    addLinhaDeEstatus("ERRO: Falha ao deslocar \"map-server\"!");
+                                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                    BtnCancelar.setEnabled(true);
+                                    TblDependencias.setEnabled(true);
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    return;
                                 }
                             } else {
                                 //Desconpactar para usar
+                                FrmPrincipal.PgbBarra.setString("Descompactando...");
+                                FrmPrincipal.setAvisoEmEstatus("Descompactando \"eathena.zip\"...");
+                                addLinhaDeEstatus("     Descompactando \"eathena.zip\"...");
+                                FrmPrincipal.Config.Descompactar(
+                                    FrmPrincipal.Config.getConexaoLocalhost()+Barra+ "bins"+Barra+ "eathena.zip",
+                                    FrmPrincipal.Config.getConexaoLocalhost()+Barra+ "bins"
+                                );/**/
+
+                                FrmPrincipal.PgbBarra.setString("Deslocando...");
+
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server")) {
+                                    FrmPrincipal.Config.MoverArquivo(
+                                            FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server",
+                                            FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
+                                    addLinhaDeEstatus("     Deslocando char-server...");
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">char-server</font>\"!");
+                                    addLinhaDeEstatus("ERRO: Falha ao deslocar \"char-server\"!");
+                                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                    BtnCancelar.setEnabled(true);
+                                    TblDependencias.setEnabled(true);
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    return;
+                                }
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server")) {
+                                    FrmPrincipal.Config.MoverArquivo(
+                                            FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server",
+                                            FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
+                                    addLinhaDeEstatus("     Deslocando login-server...");
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">login-server</font>\"!");
+                                    addLinhaDeEstatus("ERRO: Falha ao deslocar \"login-server\"!");
+                                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                    BtnCancelar.setEnabled(true);
+                                    TblDependencias.setEnabled(true);
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    return;
+                                }
+                                if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server")) {
+                                    FrmPrincipal.Config.MoverArquivo(
+                                            FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server",
+                                            FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
+                                    addLinhaDeEstatus("     Deslocando map-server...");
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">map-server</font>\"!");
+                                    addLinhaDeEstatus("ERRO: Falha ao deslocar \"map-server\"!");
+                                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                    BtnCancelar.setEnabled(true);
+                                    TblDependencias.setEnabled(true);
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    return;
+                                }
+
+                                
+                                FrmPrincipal.setAvisoEmEstatus("PARADA FORÇADA...");
+                                addLinhaDeEstatus("PARADA FORÇADA...");
+                                FrmPrincipal.PgbBarra.setString("BLOQUEIO!!!");
+                                FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                BtnCancelar.setEnabled(true);
+                                TblDependencias.setEnabled(true);
+                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                return;
                             }
-
-                            /*
-                            mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
-                            mv -uv conf/battle_local.conf.example conf/battle_local.conf
-                            mv -uv conf/char_local.conf.example conf/char_local.conf
-                            mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
-                            mv -uv conf/gm_account.txt.example conf/gm_account.txt
-                            mv -uv conf/help.txt.example conf/help.txt
-                            mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
-                            mv -uv conf/login_local.conf.example conf/login_local.conf
-                            mv -uv conf/map_local.conf.example conf/map_local.conf
-                            mv -uv conf/motd.txt.example conf/motd.txt
-                            mv -uv save/account.txt.example save/account.txt
-                            /**/
-
+                            addLinhaDeEstatus("Renomeando banco de dados...");
                             FrmPrincipal.setAvisoEmEstatus("Renomeando banco de dados...");
                             FrmPrincipal.PgbBarra.setString("Renomeando...");
                             String Pasta[] = new String[]{
@@ -625,14 +765,17 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 if (FrmPrincipal.Config.SeExiste(Pasta[r] +Barra+ De[r])) {
                                     if (FrmPrincipal.Config.SeExiste(Pasta[r] +Barra+ Para[r])) {
                                         FrmPrincipal.Config.Apagar(Pasta[r] +Barra+ Para[r]);
+                                        addLinhaDeEstatus("     Apagando: \"" + Para[r] + "\"!");
                                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + Para[r] + "\"!");
                                     }
+                                    addLinhaDeEstatus("     Renomeando: \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
                                     FrmPrincipal.setAvisoEmEstatus("<html><b>Renomeando:</b> \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
                                     FrmPrincipal.Config.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
                                 }
                             }
 
                             if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
+                                addLinhaDeEstatus("     Criando Pasta: \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
                                 FrmPrincipal.setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
                                 FrmPrincipal.Config.CriarPasta(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
                             }
@@ -643,6 +786,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             /**/
                             if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
                                 FrmPrincipal.PgbBarra.setString("Copilando...");
+                                addLinhaDeEstatus("     Copilando binário \"eathena-monitor\"...");
                                 FrmPrincipal.setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
                                 Comando="gcc -o "+
                                     FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor "+
@@ -656,7 +800,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     }
                                 } catch (IOException e) {
                                     e.printStackTrace();
-                                    //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                                    addLinhaDeEstatus("ERRO: "+Comando);
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
                                     ConfigClass.Mensagem_Erro(
                                         "<html><b>O TMW-Maker não conseguiu copilar o binário de monitor:</b><br/><br/>" +
@@ -664,6 +808,11 @@ public class FrmDependencias extends javax.swing.JDialog {
                                         "</html>",
                                         "ERRO DE EXECUÇÃO"
                                     );
+                                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                    BtnCancelar.setEnabled(true);
+                                    TblDependencias.setEnabled(true);
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    return;
                                 }
                             }
 
@@ -675,6 +824,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 FrmPrincipal.Config.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
                             }
                             FrmPrincipal.PgbBarra.setString("Coligando...");
+                            addLinhaDeEstatus("     Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");
                             FrmPrincipal.setAvisoEmEstatus("Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");
                             Comando="ln -s "+
                                 FrmPrincipal.Config.getConexaoLocalhost()+Barra+ "eathena-data"+" "+
@@ -688,7 +838,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
-                                //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+                                addLinhaDeEstatus("ERRO: "+Comando);
                                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
                                 ConfigClass.Mensagem_Erro(
                                     "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
@@ -696,9 +846,14 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     "</html>",
                                     "ERRO DE EXECUÇÃO"
                                 );
+                                FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                BtnCancelar.setEnabled(true);
+                                TblDependencias.setEnabled(true);
+                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                return;
                             }
-
-                            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#0000FF\">Locahost montado com sucesso!");
+                            addLinhaDeEstatus("Localhost montado com sucesso! (Pressione F9 para Executar)");
+                            FrmPrincipal.setAvisoEmEstatus("<html>Locahost montado com sucesso! (<font color=\"#0000FF\">Pressione F9 para Executar</font>)");
                             FrmPrincipal.PgbBarra.setString("Concluido!");
 
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
@@ -714,6 +869,11 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     "Crie uma nova conta de jogador no servidor \"localhost\"!"
                                     , "AVISO"
                                 );
+                                FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                BtnCancelar.setEnabled(true);
+                                TblDependencias.setEnabled(true);
+                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                return;
                             }
                             
                         }
@@ -721,10 +881,12 @@ public class FrmDependencias extends javax.swing.JDialog {
                     tThread.start();
                 } else {
                     FrmPrincipal.setAvisoEmEstatus("Remontagem cancelada!");
+                    addLinhaDeEstatus("Remontagem cancelada!");
                     FrmPrincipal.PgbBarra.setString("");
                 }
             }else{
                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#0000FF\">CANCELADO:</font> Existe uma dependencia de GCC para você resolver!");
+                addLinhaDeEstatus("CANCELADO: Existe uma dependencia de GCC para você resolver!");
                 ConfigClass.Mensagem_Erro("<html>"+
                     "Esta função possui a <font face=\"monospace\" color=\"#FF0000\">dependencia</font> do comando GCC!",
                     "ERRO DE EXECUÇÃO"
@@ -738,11 +900,13 @@ public class FrmDependencias extends javax.swing.JDialog {
             FrmPrincipal.Config.ConfiguracoesGravar();
             VerificarPendencias();
             BtnResolver.setEnabled(false);
+            addLinhaDeEstatus("Auto-selecionando cliente\"TMW\"!");
         }else if(FrmPrincipal.Config.getExecucaoComando().equals("tmw") && FrmPrincipal.Config.getSeDependenciaDeManaplus() && !FrmPrincipal.Config.getSeDependenciaDeTMW()){
             FrmPrincipal.Config.setExecucaoComando("manaplus");
             FrmPrincipal.Config.ConfiguracoesGravar();
             VerificarPendencias();
             BtnResolver.setEnabled(false);
+            addLinhaDeEstatus("Auto-selecionando cliente\"MANAPLUS\"!");
         }else if(
             (!FrmPrincipal.Config.getExecucaoComando().equals("manaplus") && !FrmPrincipal.Config.getExecucaoComando().equals("tmw")) &&
             (FrmPrincipal.Config.getSeDependenciaDeManaplus() || FrmPrincipal.Config.getSeDependenciaDeTMW())
@@ -752,13 +916,16 @@ public class FrmDependencias extends javax.swing.JDialog {
                 FrmPrincipal.Config.ConfiguracoesGravar();
                 VerificarPendencias();
                 BtnResolver.setEnabled(false);
+                addLinhaDeEstatus("Auto-selecionando cliente\"TMW\"!");
             }else if(FrmPrincipal.Config.getSeDependenciaDeTMW()){
                 FrmPrincipal.Config.setExecucaoComando("tmw");
                 FrmPrincipal.Config.ConfiguracoesGravar();
                 VerificarPendencias();
                 BtnResolver.setEnabled(false);
+                addLinhaDeEstatus("Auto-selecionando cliente\"MANAPLUS\"!");
             }
         }else{
+            addLinhaDeEstatus("ERRO: Programa "+FrmPrincipal.Config.getExecucaoComando()+" não encontrado!");
             ConfigClass.Mensagem_Erro(
                 "<html>O TMW-Maker não conseguiu encontrar o programa <font color=\"#FF0000\">"+FrmPrincipal.Config.getExecucaoComando()+"</font>!"
                 , "Dependencia não resolvida!"
@@ -781,5 +948,11 @@ public class FrmDependencias extends javax.swing.JDialog {
         }else if(TblDependencias.getSelectedRow()==5) {
             ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
         }
+    }
+
+    private void addLinhaDeEstatus(String Linha) {
+        TxtEstatus.setText(TxtEstatus.getText()+"\n"+Linha);
+        TxtEstatus.setSelectionStart(TxtEstatus.getText().length()-1);
+        TxtEstatus.setSelectionEnd(TxtEstatus.getText().length()-1);
     }
 }
