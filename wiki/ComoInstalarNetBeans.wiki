@@ -15,7 +15,7 @@ Existem Alguns Pluggins no NetBeans que podem habilita-lo para editar outras lin
 
 ----
 
-==Como Instalar no Ubuntu Linux?==
+==Como Instalar no Windows?==
  Não sei! Quem souber, fique à vontade para explicar! XP
 
 ----
