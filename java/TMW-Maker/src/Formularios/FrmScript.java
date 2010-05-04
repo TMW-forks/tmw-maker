@@ -1,6 +1,7 @@
 
 package Formularios;
 
+import Classes.ConfigClass;
 import java.io.File;
 import java.util.Arrays;
 
@@ -12,6 +13,7 @@ public class FrmScript extends javax.swing.JDialog {
     }
 
     static String Barra = System.getProperty("file.separator");
+    public static String EnderecoDoScript="";
 
     private String[] ListarPastas(String Endereco){
         ///home/indigovox/localhost/eathena-data/npc
@@ -63,8 +65,10 @@ public class FrmScript extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TreScripts = new javax.swing.JTree();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TxtScript = new javax.swing.JTextArea();
+        jToolBar1 = new javax.swing.JToolBar();
+        BtnNovo = new javax.swing.JButton();
+        BtnAbrir = new javax.swing.JButton();
+        BtnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Árvore de Scripts");
@@ -109,29 +113,67 @@ public class FrmScript extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(TreScripts);
 
-        TxtScript.setColumns(20);
-        TxtScript.setRows(5);
-        TxtScript.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(TxtScript);
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+
+        BtnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script.png"))); // NOI18N
+        BtnNovo.setMnemonic('N');
+        BtnNovo.setText("Novo");
+        BtnNovo.setEnabled(false);
+        BtnNovo.setFocusable(false);
+        BtnNovo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnNovo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNovoActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BtnNovo);
+
+        BtnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
+        BtnAbrir.setMnemonic('A');
+        BtnAbrir.setText("Abrir");
+        BtnAbrir.setEnabled(false);
+        BtnAbrir.setFocusable(false);
+        BtnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAbrirActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BtnAbrir);
+
+        BtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lixeira.png"))); // NOI18N
+        BtnExcluir.setMnemonic('E');
+        BtnExcluir.setText("Excluir");
+        BtnExcluir.setEnabled(false);
+        BtnExcluir.setFocusable(false);
+        BtnExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnExcluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExcluirActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BtnExcluir);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -139,8 +181,48 @@ public class FrmScript extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TreScriptsValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_TreScriptsValueChanged
-        setTitle("Script - "+evt.getPath().getLastPathComponent().toString());
-        TxtScript.setText(evt.getPath().toString());
+        if(evt.getPath().getPathCount()==2){
+            BtnNovo.setEnabled(true);
+        }else{
+            BtnNovo.setEnabled(false);
+        }
+
+        EnderecoDoScript=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc";
+        if(evt.getPath().getPathCount()==4){
+            BtnAbrir.setEnabled(true);
+            BtnExcluir.setEnabled(true);
+            String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
+            String PartesDoEndereco[]=Endereco.split(", ");
+            for(int t=2;t<PartesDoEndereco.length;t++){
+                EnderecoDoScript+=Barra+evt.getPath().getPathComponent(t).toString();
+            }
+            //setTitle("EnderecoDoScript = \""+EnderecoDoScript+"\"");
+            setTitle("Script - "+evt.getPath().getLastPathComponent().toString());
+        }else if(evt.getPath().getPathCount()==3 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
+            BtnAbrir.setEnabled(true);
+            BtnExcluir.setEnabled(true);
+            String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
+            String PartesDoEndereco[]=Endereco.split(", ");
+            EnderecoDoScript+=Barra+"functions";
+            for(int t=2;t<PartesDoEndereco.length;t++){
+                EnderecoDoScript+=Barra+evt.getPath().getPathComponent(t).toString();
+            }
+            //setTitle("EnderecoDoScript = \""+EnderecoDoScript+"\"");
+            setTitle("Script - "+evt.getPath().getLastPathComponent().toString());
+        }else{
+            BtnAbrir.setEnabled(false);
+            BtnExcluir.setEnabled(false);
+            setTitle("Árvore de Scripts");
+        }
+        
+        //setTitle("getPathCount() = \""+evt.getPath().getPathCount()+"\" getPathComponent(1) = \""+evt.getPath().getPathComponent(1).toString()+"\"");
+
+        //EnderecoDoScript
+        //TxtScript.setText(evt.getPath().toString());
+
+        //setTitle("Endereco = \""+Endereco+"\"");
+
+        //setTitle("lenght - "+evt.getPaths().length);
     }//GEN-LAST:event_TreScriptsValueChanged
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         javax.swing.tree.DefaultMutableTreeNode No1 = new javax.swing.tree.DefaultMutableTreeNode("localhost");
@@ -203,6 +285,25 @@ public class FrmScript extends javax.swing.JDialog {
         
         TreScripts.setModel(new javax.swing.tree.DefaultTreeModel(No1));
     }//GEN-LAST:event_formWindowOpened
+
+    private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
+        javax.swing.JDialog FrmPalco = new FrmPalco(this, rootPaneCheckingEnabled);
+        FrmPalco.setLocation(
+            ((this.getWidth() - FrmPalco.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmPalco.getHeight()) / 2) + this.getY());
+        FrmPalco.pack();
+        FrmPalco.setModal(true);
+        FrmPalco.setVisible(true);/**/
+        //this.setVisible(false);
+    }//GEN-LAST:event_BtnAbrirActionPerformed
+
+    private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
+        ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");
+    }//GEN-LAST:event_BtnNovoActionPerformed
+
+    private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
+        ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");
+    }//GEN-LAST:event_BtnExcluirActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -218,10 +319,12 @@ public class FrmScript extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTree TreScripts;
-    private javax.swing.JTextArea TxtScript;
+    private javax.swing.JButton BtnAbrir;
+    private javax.swing.JButton BtnExcluir;
+    private javax.swing.JButton BtnNovo;
+    public static javax.swing.JTree TreScripts;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -13,6 +13,7 @@ package Formularios;
 
 
 import Classes.BlocoDeScript;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,13 +25,17 @@ import javax.swing.DefaultComboBoxModel;
 
 public class FrmPalco extends javax.swing.JDialog {
 
-    public FrmPalco(java.awt.Frame parent, boolean modal) {
+    public FrmPalco(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 //#####################################################################################################
     public static BlocoDeScript Instancia[];
-    public static String EnderecoDoScript=System.getProperty("user.home")+System.getProperty("file.separator")+"ScriptExemplo.conf";
+    //FrmScript.EnderecoDoScript=System.getProperty("user.home")+System.getProperty("file.separator")+"ScriptExemplo.conf";
+    //public static String FrmScript.EnderecoDoScript=FrmScript.FrmScript.EnderecoDoScript;
+
+    //String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
+    //FrmScript.EnderecoDoScript
 //#####################################################################################################
     public String InstanciasArray2String(BlocoDeScript[] Instancias){
         String Codigo="";
@@ -73,7 +78,7 @@ public class FrmPalco extends javax.swing.JDialog {
             return true;
         } catch (java.io.IOException exc) {
             FrmPrincipal.LblEstatus.setText("<font color=\"#FF0000\">ERRO:</font> Falha ao gravar arquivo!");
-            Mensagem_Erro("Não foi possivel gravar \""+EnderecoDoScript+"\"!","AVISO");
+            Mensagem_Erro("Não foi possivel gravar \""+FrmScript.EnderecoDoScript+"\"!","AVISO");
             return false;
         }
 
@@ -192,8 +197,8 @@ public class FrmPalco extends javax.swing.JDialog {
                 Mensagem_Erro("O arquivo possui conteúdo incompatível com o Eathena Script!", "ERRO");
             }
         } catch (java.io.IOException exc) {
-            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+EnderecoDoScript+"\"!");
-            Mensagem_Erro("Não foi possivel abrir \""+EnderecoDoScript+"\"!","AVISO");
+            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!");
+            Mensagem_Erro("Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!","AVISO");
             //ExemploDeConteudo();
             //TxtScript.setEnabled(true);
             //CmbScript.setEnabled(true);
@@ -236,6 +241,11 @@ public class FrmPalco extends javax.swing.JDialog {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
             }
         });
 
@@ -362,7 +372,7 @@ public class FrmPalco extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 //#####################################################################################################
     private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbScriptActionPerformed
-        //abrirInstancia(EnderecoDoScript);
+        //abrirInstancia(FrmScript.EnderecoDoScript);
         //this.setTitle(Integer.toString(i));
         int i = CmbScript.getSelectedIndex();
         String Cod= Instancia[i].getScript().toString();
@@ -374,9 +384,9 @@ public class FrmPalco extends javax.swing.JDialog {
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
             //ExemploDeConteudo();
         }else if(BtnSalvarScript.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
-            salvarInstancia(EnderecoDoScript);
+            salvarInstancia(FrmScript.EnderecoDoScript);
         }else if(BtnAbrirScript.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
-            abrirInstancia(EnderecoDoScript);
+            abrirInstancia(FrmScript.EnderecoDoScript);
         }else if(!evt.isControlDown() && !evt.isAltDown() && !evt.isShiftDown() &&
 
                     evt.getKeyCode()!=java.awt.event.KeyEvent.VK_CAPS_LOCK &&
@@ -400,13 +410,13 @@ public class FrmPalco extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtScriptPalcoKeyPressed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //ExemploDeConteudo();
-        //abrirInstancia(EnderecoDoScript);
+        abrirInstancia(FrmScript.EnderecoDoScript);
     }//GEN-LAST:event_formWindowOpened
     private void BtnAbrirScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirScriptActionPerformed
-        abrirInstancia(EnderecoDoScript);
+        abrirInstancia(FrmScript.EnderecoDoScript);
     }//GEN-LAST:event_BtnAbrirScriptActionPerformed
     private void BtnSalvarScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarScriptActionPerformed
-        salvarInstancia(EnderecoDoScript);
+        salvarInstancia(FrmScript.EnderecoDoScript);
     }//GEN-LAST:event_BtnSalvarScriptActionPerformed
     private void BtnNovoScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoScriptActionPerformed
         if(BtnNovoScript.isEnabled()){
@@ -456,12 +466,23 @@ public class FrmPalco extends javax.swing.JDialog {
             FrmIF.setVisible(true);/**/
         }
     }//GEN-LAST:event_BtnScriptComandoIFActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
+        /*this.setBounds(
+                (Tela.width - this.getWidth()) / 2,
+                (Tela.height - this.getHeight()) / 2,
+                this.getWidth(),
+                this.getHeight());/**/
+        this.setBounds(0,70,Tela.width,Tela.height-120);/**/
+        //this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
+    }//GEN-LAST:event_formComponentShown
 //#####################################################################################################
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmPalco dialog = new FrmPalco(new javax.swing.JFrame(), true);
+                FrmPalco dialog = new FrmPalco(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
