@@ -1,5 +1,5 @@
 #labels sidebar,barralateral
-== TMW-WIKI-BR ==
+== TMW-WIKI-MAKER ==
 ----
  * [inicio INÍCIO]
   * [abaswiki Abas do Projeto]
