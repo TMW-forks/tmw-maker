@@ -19,7 +19,7 @@ Ou se preferir é só abrir a propriedade do arquivo ".jar" e marca-lo para abri
 
 ----
 
-==Como Instalar no Ubuntu Linux?==
+==Como Instalar no Windows?==
  Não sei! Quem souber, fique à vontade para explicar! XP
 
 ----
