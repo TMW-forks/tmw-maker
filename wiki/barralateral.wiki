@@ -20,7 +20,7 @@
      * [TxtConfiguracaoExecucaoComando Comando de Ativação]
      * [Parametros Parâmetros]
       * [TxtConfiguracaoExecucaoParamentroServidor Servidor]
-   * [Dependências]
+   * [Dependencias Dependências]
     * [DependenciaDeConfiguracao De Configuração]
     * [DependenciaDeSVN De SVN]
     * [DependenciaDeLocalhost De Localhost]
