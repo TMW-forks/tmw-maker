@@ -30,8 +30,7 @@ Veja sugestões do que pôr acima em:
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoDocumentacao.png
 
 Veja sugestões do que pôr acima em:
- * [SoftwareCliente Software Cliente]
- * [Servidor]
- * [Conta]
- * [Senha]
- * [SemOpenGL Sem OpenGL]
+ * [Alteracoes Alterações]
+ * [Componentes]
+ * [Comentarios Comentários]
+ * [Traducoes Traduções]
