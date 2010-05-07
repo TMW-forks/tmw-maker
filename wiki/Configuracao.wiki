@@ -3,9 +3,9 @@
 Para o bom funcionamento, antes de tudo, configure o tmw-maker. Para confugurar manualmente acesse o menu "Sistema -> Configurações". 
 
 É posssivel fazer configurações personalizadas, mas para iniciantes sugerimos que ponha as configurações das 3 fotos abaixo:
- 
- 
- 
+
+
+
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoConexao.png
 
 Veja sugestões do que por em:
@@ -13,9 +13,9 @@ Veja sugestões do que por em:
  * [Localhost]
  * [Usuário]
  * [Senha]
- 
- 
- 
+
+
+
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao.png
 
 Veja sugestões do que por em:
@@ -24,9 +24,9 @@ Veja sugestões do que por em:
  * [Conta]
  * [Senha]
  * [SemOpenGL Sem OpenGL]
- 
- 
- 
+
+
+
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoDocumentacao.png
 
 Veja sugestões do que por em:
