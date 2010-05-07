@@ -10,7 +10,7 @@ https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoConexao.
 
 Veja sugestões do que pôr acima em:
  * [TxtConfiguracaoConexaoRepositorio Repositório]
- * [Localhost]
+ * [TxtConfiguracaoConexaoLocalhost Localhost]
  * [Usuario Usuário]
  * [Senha]
 
