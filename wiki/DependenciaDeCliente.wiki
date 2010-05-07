@@ -4,6 +4,10 @@ Software cliente é o nome técnico para o programa que foi instalado no computa
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
 
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoConexao.png
+
+
+
 ===Resolvendo Dependência de Cliente===
 Atualmente existem apenas 2 formas de resolver essa *Dependências de Cliente* do TMW-Maker:
 
