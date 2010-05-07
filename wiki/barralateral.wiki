@@ -16,6 +16,7 @@
    * [Configuracao]
     * [Conexao]
      * [TxtConfiguracaoConexaoRepositorio Repositório]
+     * [TxtConfiguracaoConexaoLocalhost Localhost]
     * [Execucao]
      * [TxtConfiguracaoExecucaoComando Comando de Ativação]
      * [Parametros Parâmetros]
