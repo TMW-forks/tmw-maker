@@ -8,17 +8,17 @@ Para o bom funcionamento, antes de tudo, configure o tmw-maker. Para confugurar 
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoConexao.png
 
-Veja sugestões do que por em:
+Veja sugestões do que pôr acima em:
  * [TxtConfiguracaoConexaoRepositorio Repositório]
  * [Localhost]
- * [Usuário]
+ * [Usuario Usuário]
  * [Senha]
 
 
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao.png
 
-Veja sugestões do que por em:
+Veja sugestões do que pôr acima em:
  * [SoftwareCliente Software Cliente]
  * [Servidor]
  * [Conta]
@@ -29,7 +29,7 @@ Veja sugestões do que por em:
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoDocumentacao.png
 
-Veja sugestões do que por em:
+Veja sugestões do que pôr acima em:
  * [SoftwareCliente Software Cliente]
  * [Servidor]
  * [Conta]
