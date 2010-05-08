@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author indigovox
@@ -40,22 +41,25 @@ public class FrmLocalhost extends javax.swing.JDialog {
         BtnFechar = new javax.swing.JButton();
         BtnBaixar = new javax.swing.JButton();
         BtnMontar = new javax.swing.JButton();
+        BtnEnviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Localhost");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
 
+        TxtEstatus.setBackground(java.awt.Color.darkGray);
         TxtEstatus.setColumns(20);
         TxtEstatus.setEditable(false);
-        TxtEstatus.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 14));
+        TxtEstatus.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 14)); // NOI18N
+        TxtEstatus.setForeground(java.awt.Color.white);
         TxtEstatus.setRows(5);
         TxtEstatus.setWrapStyleWord(true);
         TxtEstatus.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         TxtEstatus.setFocusCycleRoot(true);
-        TxtEstatus.setOpaque(false);
         jScrollPane1.setViewportView(TxtEstatus);
 
         ChkForcar.setMnemonic('F');
@@ -82,9 +86,14 @@ public class FrmLocalhost extends javax.swing.JDialog {
         BtnMontar.setMnemonic('M');
         BtnMontar.setText("Montar");
         BtnMontar.setEnabled(false);
-        BtnMontar.addActionListener(new java.awt.event.ActionListener() {
+
+        BtnEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
+        BtnEnviar.setMnemonic('E');
+        BtnEnviar.setText("Enviar");
+        BtnEnviar.setEnabled(false);
+        BtnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMontarActionPerformed(evt);
+                BtnEnviarActionPerformed(evt);
             }
         });
 
@@ -95,11 +104,13 @@ public class FrmLocalhost extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(ChkForcar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                         .addComponent(BtnBaixar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnEnviar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnMontar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,6 +130,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                     .addComponent(BtnFechar)
                     .addComponent(ChkForcar)
                     .addComponent(BtnMontar)
+                    .addComponent(BtnEnviar)
                     .addComponent(BtnBaixar))
                 .addContainerGap())
         );
@@ -188,7 +200,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setIndeterminate(true);
                             FrmPrincipal.PgbBarra.setString("Preparando...");
                             TxtEstatus.setText("Preparando para baixar...");
-                            FrmPrincipal.LblEstatus.setText("Preparando para baixar...");
+                            FrmPrincipal.setAvisoEmEstatus("Preparando para baixar...");
                             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             // operacao demorada
 
@@ -205,7 +217,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                                 while ((line = in.readLine()) != null) {
                                     System.out.println(line);
-                                    FrmPrincipal.LblEstatus.setText("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
                                     Arquivos++;
                                     FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
                                     TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Arquivos+": "+line);
@@ -213,13 +225,13 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                     //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                                 }
                                 //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
-                                FrmPrincipal.LblEstatus.setText("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
+                                FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
                                 TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
                                 FrmPrincipal.PgbBarra.setString("Concluido!");
                             } catch (IOException e) {
                                 TxtEstatus.setText(TxtEstatus.getText()+"\nFalha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
                                 //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
-                                FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
+                                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
                                 FrmPrincipal.PgbBarra.setString("ERRO!");
                             }/**/
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
@@ -239,12 +251,110 @@ public class FrmLocalhost extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnFecharActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        setTitle("svn checkout "+FrmPrincipal.Config.getConexaoRepositorio());
+        //setTitle("svn checkout "+FrmPrincipal.Config.getConexaoRepositorio());
     }//GEN-LAST:event_formWindowActivated
 
-    private void BtnMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMontarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnMontarActionPerformed
+    private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    //String[] Comando = new String[2];
+                    int Arquivos=0;
+                    int R = JOptionPane.YES_OPTION;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+                    BtnFechar.setEnabled(false);
+                    BtnBaixar.setEnabled(false);
+                    ChkForcar.setEnabled(false);
+
+                    Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
+                    if(Partes.length>1 && Partes[0].toLowerCase().equals("https") && !FrmPrincipal.Config.getConexaoUsuario().equals("") && !FrmPrincipal.Config.getConexaoSenha().equals("")){
+                        if (R == JOptionPane.YES_OPTION) {
+                            FrmPrincipal.PgbBarra.setIndeterminate(true);
+                            FrmPrincipal.PgbBarra.setString("Preparando...");
+                            TxtEstatus.setText("Preparando para enviar...");
+                            FrmPrincipal.setAvisoEmEstatus("Preparando para enviar...");
+                            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                            // operacao demorada
+
+
+                            try {
+                                //Executador.exec(Comando);
+                                Comando ="cd "+FrmPrincipal.Config.getConexaoLocalhost();
+                                TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Comando);
+                                Process Retorno=Executador.exec(Comando);
+                                BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                while ((line = in.readLine()) != null) {
+                                    System.out.println(line);
+                                    FrmPrincipal.setAvisoEmEstatus("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                                    Arquivos++;
+                                    FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                                    TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Arquivos+": "+line);
+                                    //Partes=line.split("/");
+                                    //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                                }
+
+                                Comando ="svn commit "+FrmPrincipal.Config.getConexaoLocalhost();//+" --message Sincronizar...";
+                                //if(ChkForcar.isSelected()){Comando+=" --force";}
+                                TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Comando);
+                                /*if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
+                                    Comando[1]+=" --username "+FrmPrincipal.Config.getConexaoUsuario()+" --password "+FrmPrincipal.Config.getConexaoSenha();
+                                }/**/
+                                Retorno=Executador.exec(Comando);
+                                in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                while ((line = in.readLine()) != null) {
+                                    System.out.println(line);
+                                    FrmPrincipal.setAvisoEmEstatus("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                                    Arquivos++;
+                                    FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                                    TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Arquivos+": "+line);
+                                    //Partes=line.split("/");
+                                    //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                                }
+
+                                //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                                FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
+                                TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
+                                FrmPrincipal.PgbBarra.setString("Concluido!");
+                                /**/
+                            } catch (IOException e) {
+                                TxtEstatus.setText(TxtEstatus.getText()+"\nFalha ao enviar o repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\"!");
+                                //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                                FrmPrincipal.setAvisoEmEstatus("<html>Falha ao enviar o repositório: <font color=\"#FF0000\"> <b>"+Comando+"</b></font>!");
+                                ConfigClass.Mensagem_Erro("<html>" +
+                                    "Falha ao enviar o repositório:<br/> " +
+                                    "<font color=\"#FF0000\"> <b>"+Comando+"</b>!"
+                                    , "ERRO"
+                                );
+                                FrmPrincipal.PgbBarra.setString("ERRO!");
+                            }/**/
+                        }else{
+                            TxtEstatus.setText(TxtEstatus.getText()+"\n>ERRO:Somente enviar trabalhos através de conexões \"HTTPS\"!");
+                            //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</fonte> Somente enviar trabalhos através de conexões \"HTTPS\"!");
+                            FrmPrincipal.PgbBarra.setString("ERRO!");
+                        }
+                        FrmPrincipal.PgbBarra.setIndeterminate(false);
+                        BtnFechar.setEnabled(true);
+                        BtnBaixar.setEnabled(true);
+                        ChkForcar.setEnabled(true);
+                        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    }
+                }
+            });
+            tThread.start();
+        }
+    }//GEN-LAST:event_BtnEnviarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -266,6 +376,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBaixar;
+    private javax.swing.JButton BtnEnviar;
     private javax.swing.JButton BtnFechar;
     private javax.swing.JButton BtnMontar;
     private javax.swing.JCheckBox ChkForcar;

@@ -285,26 +285,26 @@
             <Property name="text" type="java.lang.String" value="Jogo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoReceber">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuLocalhost">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+PAGE_DOWN"/>
+                  <KeyStroke key="Ctrl+L"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_download.gif"/>
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_load.gif"/>
                 </Property>
-                <Property name="mnemonic" type="int" value="82"/>
-                <Property name="text" type="java.lang.String" value="Receber"/>
+                <Property name="mnemonic" type="int" value="76"/>
+                <Property name="text" type="java.lang.String" value="Localhost"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoReceberActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuLocalhostActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MnuJogoMontar">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Shift+Ctrl+HOME"/>
+                  <KeyStroke key="Ctrl+M"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagem/Botoes/puzzle.png"/>
@@ -316,19 +316,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoMontarActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoEnviar">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+PAGE_UP"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_upload.gif"/>
-                </Property>
-                <Property name="mnemonic" type="int" value="69"/>
-                <Property name="text" type="java.lang.String" value="Enviar"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator5">
             </MenuItem>
