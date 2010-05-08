@@ -878,7 +878,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogo.add(jSeparator5);
 
         MnuLocalhost.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        MnuLocalhost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_load.gif"))); // NOI18N
+        MnuLocalhost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))); // NOI18N
         MnuLocalhost.setMnemonic('L');
         MnuLocalhost.setText("Localhost");
         MnuLocalhost.setEnabled(false);

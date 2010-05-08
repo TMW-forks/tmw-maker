@@ -308,7 +308,7 @@
                   <KeyStroke key="Ctrl+L"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_load.gif"/>
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_localhost-tmw.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="76"/>
                 <Property name="text" type="java.lang.String" value="Localhost"/>
