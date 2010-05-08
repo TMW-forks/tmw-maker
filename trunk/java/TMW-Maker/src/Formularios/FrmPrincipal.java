@@ -616,10 +616,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarContas = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         MnuJogo = new javax.swing.JMenu();
-        MnuLocalhost = new javax.swing.JMenuItem();
-        MnuJogoMontar = new javax.swing.JMenuItem();
-        jSeparator5 = new javax.swing.JSeparator();
         MnuJogoExecutar = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JSeparator();
+        MnuLocalhost = new javax.swing.JMenuItem();
         MnuAjuda = new javax.swing.JMenu();
         MnuAjudaComponentes = new javax.swing.JMenuItem();
         MnuAjudaIndicarDefeito = new javax.swing.JMenuItem();
@@ -866,6 +865,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogo.setMnemonic('J');
         MnuJogo.setText("Jogo");
 
+        MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
+        MnuJogoExecutar.setMnemonic('E');
+        MnuJogoExecutar.setText("Executar");
+        MnuJogoExecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuJogoExecutarActionPerformed(evt);
+            }
+        });
+        MnuJogo.add(MnuJogoExecutar);
+        MnuJogo.add(jSeparator5);
+
         MnuLocalhost.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         MnuLocalhost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_load.gif"))); // NOI18N
         MnuLocalhost.setMnemonic('L');
@@ -877,30 +888,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         MnuJogo.add(MnuLocalhost);
-
-        MnuJogoMontar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-        MnuJogoMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))); // NOI18N
-        MnuJogoMontar.setMnemonic('M');
-        MnuJogoMontar.setText("Montar");
-        MnuJogoMontar.setEnabled(false);
-        MnuJogoMontar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuJogoMontarActionPerformed(evt);
-            }
-        });
-        MnuJogo.add(MnuJogoMontar);
-        MnuJogo.add(jSeparator5);
-
-        MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
-        MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
-        MnuJogoExecutar.setMnemonic('E');
-        MnuJogoExecutar.setText("Executar");
-        MnuJogoExecutar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuJogoExecutarActionPerformed(evt);
-            }
-        });
-        MnuJogo.add(MnuJogoExecutar);
 
         jMenuBar1.add(MnuJogo);
 
@@ -1016,7 +1003,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 MnuLocalhost.setEnabled(false);
                 MnuLocalhost.setEnabled(false);
             }
-            MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
+            //MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
             MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
         }
         if(FrmPrincipal.Config.getOS().indexOf("linux") >= 0) {
@@ -1066,9 +1053,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmContas.setModal(true);
         FrmContas.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarContasActionPerformed
-    private void MnuJogoMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoMontarActionPerformed
-        MontarLocalhost();
-    }//GEN-LAST:event_MnuJogoMontarActionPerformed
     private void MnuSistemaDependenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaDependenciasActionPerformed
         MostrarDePendencias();
     }//GEN-LAST:event_MnuSistemaDependenciasActionPerformed
@@ -1136,7 +1120,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenu MnuJogo;
     private javax.swing.JMenuItem MnuJogoExecutar;
-    private javax.swing.JMenuItem MnuJogoMontar;
     private javax.swing.JMenuItem MnuLocalhost;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;

@@ -450,7 +450,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                         Comando ="svn checkout "+FrmPrincipal.Config.getConexaoRepositorio()+" "+FrmPrincipal.Config.getConexaoLocalhost();
                         //if(ChkForcar.isSelected()){Comando+=" --force";}
                         addLinhaDeEstatus("     svn checkout "+FrmPrincipal.Config.getConexaoRepositorio());
-                        if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
+                        if(Partes.length>1 && Partes[0].toLowerCase().equals("https") && !FrmPrincipal.Config.getConexaoUsuario().equals("") && !FrmPrincipal.Config.getConexaoSenha().equals("")){
                             Comando+=" --username "+FrmPrincipal.Config.getConexaoUsuario()+" --password "+FrmPrincipal.Config.getConexaoSenha();
                         }
 
