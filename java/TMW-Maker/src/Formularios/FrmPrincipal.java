@@ -393,7 +393,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
     public void ExecutarJogo(){
-                if (Config.getOS().indexOf("win") >= 0) {
+        if (Config.getOS().indexOf("win") >= 0) {
             /*String[] cmd = new String[4];
             cmd[0] = "cmd.exe";
             cmd[1] = "/C";
@@ -616,9 +616,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarContas = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         MnuJogo = new javax.swing.JMenu();
-        MnuJogoReceber = new javax.swing.JMenuItem();
+        MnuLocalhost = new javax.swing.JMenuItem();
         MnuJogoMontar = new javax.swing.JMenuItem();
-        MnuJogoEnviar = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JSeparator();
         MnuJogoExecutar = new javax.swing.JMenuItem();
         MnuAjuda = new javax.swing.JMenu();
@@ -867,19 +866,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogo.setMnemonic('J');
         MnuJogo.setText("Jogo");
 
-        MnuJogoReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
-        MnuJogoReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
-        MnuJogoReceber.setMnemonic('R');
-        MnuJogoReceber.setText("Receber");
-        MnuJogoReceber.setEnabled(false);
-        MnuJogoReceber.addActionListener(new java.awt.event.ActionListener() {
+        MnuLocalhost.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        MnuLocalhost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_load.gif"))); // NOI18N
+        MnuLocalhost.setMnemonic('L');
+        MnuLocalhost.setText("Localhost");
+        MnuLocalhost.setEnabled(false);
+        MnuLocalhost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuJogoReceberActionPerformed(evt);
+                MnuLocalhostActionPerformed(evt);
             }
         });
-        MnuJogo.add(MnuJogoReceber);
+        MnuJogo.add(MnuLocalhost);
 
-        MnuJogoMontar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MnuJogoMontar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         MnuJogoMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))); // NOI18N
         MnuJogoMontar.setMnemonic('M');
         MnuJogoMontar.setText("Montar");
@@ -890,13 +889,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         MnuJogo.add(MnuJogoMontar);
-
-        MnuJogoEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
-        MnuJogoEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
-        MnuJogoEnviar.setMnemonic('E');
-        MnuJogoEnviar.setText("Enviar");
-        MnuJogoEnviar.setEnabled(false);
-        MnuJogo.add(MnuJogoEnviar);
         MnuJogo.add(jSeparator5);
 
         MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
@@ -1008,21 +1000,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (Config.getOS().indexOf("win") >= 0) {
-            MnuJogoReceber.setEnabled(false);
-            MnuJogoEnviar.setEnabled(false);
+            MnuLocalhost.setEnabled(false);
+            MnuLocalhost.setEnabled(false);
             MnuEditarContas.setEnabled(false);
         } else if (Config.getOS().indexOf("mac") >= 0) {
 
-            MnuJogoReceber.setEnabled(false);
-            MnuJogoEnviar.setEnabled(false);
+            MnuLocalhost.setEnabled(false);
+            MnuLocalhost.setEnabled(false);
             MnuEditarContas.setEnabled(false);
         } else {
             if (Config.getSeDependenciaDeSVN()) {
-                MnuJogoReceber.setEnabled(true);
+                MnuLocalhost.setEnabled(true);
                 //MnuSistemaEnviar.setEnabled(true);
             } else {
-                MnuJogoReceber.setEnabled(false);
-                MnuJogoEnviar.setEnabled(false);
+                MnuLocalhost.setEnabled(false);
+                MnuLocalhost.setEnabled(false);
             }
             MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
             MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
@@ -1056,7 +1048,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmConfiguracao.setModal(true);
         FrmConfiguracao.setVisible(true);/**/
 }//GEN-LAST:event_MnuSistemaConfiguracoesActionPerformed
-    private void MnuJogoReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoReceberActionPerformed
+    private void MnuLocalhostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLocalhostActionPerformed
         javax.swing.JDialog FrmCheckout = new FrmLocalhost(this, rootPaneCheckingEnabled);
         FrmCheckout.setLocation(
                 ((this.getWidth() - FrmCheckout.getWidth()) / 2) + this.getX(),
@@ -1064,7 +1056,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmCheckout.pack();
         FrmCheckout.setModal(true);
         FrmCheckout.setVisible(true);/**/
-}//GEN-LAST:event_MnuJogoReceberActionPerformed
+}//GEN-LAST:event_MnuLocalhostActionPerformed
     private void MnuEditarContasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarContasActionPerformed
         javax.swing.JDialog FrmContas = new FrmContas(this, rootPaneCheckingEnabled);
         FrmContas.setLocation(
@@ -1143,10 +1135,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenu MnuJogo;
-    private javax.swing.JMenuItem MnuJogoEnviar;
     private javax.swing.JMenuItem MnuJogoExecutar;
     private javax.swing.JMenuItem MnuJogoMontar;
-    private javax.swing.JMenuItem MnuJogoReceber;
+    private javax.swing.JMenuItem MnuLocalhost;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
     private javax.swing.JMenuItem MnuSistemaAtualizar;
