@@ -8,7 +8,7 @@ Abra o terminal e digite os comando:
 sudo apt-get install gcc
 }}}
 
-Se tudo tiver ocorrido bem, ao reabrir a janela de "Dependencia de Funcionamento (Ctrl+D)", a dependência de GCC(veja foto abaixo) estará marcada como instalada.
+Se tudo tiver ocorrido bem, ao reabrir a janela de "Dependencia de Funcionamento (Ctrl+D)", a dependência de GCC mostrada na foto abaixo estará marcada como instalada.
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
 
