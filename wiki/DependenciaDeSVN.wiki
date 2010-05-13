@@ -15,4 +15,4 @@ https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
 
 Mais simples que isso não existe! XD
 
-|| *NOTA:* Clique [TxtConfiguracaoConexaoRepositorio AQUI] e veja o tipo de Configuração de Conexão SVN mais conveniente para você! ||
+|| *NOTA:* Clique [TxtConfiguracaoConexaoRepositorio AQUI] e veja o tipo de configuração do TMW-Maker para ter uma "Conexão SVN" mais conveniente para você! ||
