@@ -10,10 +10,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.swing.JOptionPane;
@@ -110,6 +118,28 @@ public class ConfigClass {
         System.out.println(Aviso);
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
+    }
+    public static String UTF8toISO88591(String UTF8){
+        try{
+            String busca = new String(UTF8.getBytes("ISO-8859-1"), "UTF-8");
+            if(busca.indexOf("?")>=0) {
+                return busca;
+            }else{
+                return UTF8;
+            }
+        } catch(UnsupportedEncodingException E){
+            return UTF8;
+
+        }
+    }
+    public static String ISO88591toUTF8(String ISO88591){
+        try{
+            String busca = new String(ISO88591.getBytes("UTF-8"), "ISO-8859-1");
+            return busca;
+        } catch(UnsupportedEncodingException E){
+            return ISO88591;
+
+        }
     }
     public static boolean AbrirNavegador(String URL) {
         //minimizes the app
@@ -449,5 +479,6 @@ public class ConfigClass {
             return;
         }
     }
+
 
 }

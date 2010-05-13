@@ -13,6 +13,7 @@ package Formularios;
 
 
 import Classes.BlocoDeScript;
+import Classes.ConfigClass;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.FileReader;
@@ -24,19 +25,13 @@ import javax.swing.text.BadLocationException;
 import javax.swing.DefaultComboBoxModel;
 
 public class FrmPalco extends javax.swing.JDialog {
-
     public FrmPalco(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-//#####################################################################################################
-    public static BlocoDeScript Instancia[];
-    //FrmScript.EnderecoDoScript=System.getProperty("user.home")+System.getProperty("file.separator")+"ScriptExemplo.conf";
-    //public static String FrmScript.EnderecoDoScript=FrmScript.FrmScript.EnderecoDoScript;
 
-    //String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
-    //FrmScript.EnderecoDoScript
-//#####################################################################################################
+    public static BlocoDeScript Instancia[];
+
     public String InstanciasArray2String(BlocoDeScript[] Instancias){
         String Codigo="";
         for(int i=0;i<Instancias.length;i++){
@@ -64,7 +59,9 @@ public class FrmPalco extends javax.swing.JDialog {
             int i = CmbScript.getSelectedIndex();
             Instancia[i].setScript(TxtScriptPalco.getText().toString());
             FileWriter out = new FileWriter(Endereco);
-            out.write(InstanciasArray2String(Instancia));
+            String Capsula=InstanciasArray2String(Instancia);
+            //Capsula=ConfigClass.ISO88591toUTF8(Capsula);
+            out.write(Capsula);
             out.close();
             
             CmbScript.setEnabled(true);
@@ -93,7 +90,8 @@ public class FrmPalco extends javax.swing.JDialog {
                 Caracater = CapsulaDeLer.read();
             }
             CapsulaDeLer.close();
-            
+            Conteudo=ConfigClass.UTF8toISO88591(Conteudo);
+
             int blocos = 0, AbreBloco=0, PontaDeBloco=0, FechaBloco=0;
             do{
                 AbreBloco= Conteudo.indexOf("{",AbreBloco+1);
@@ -107,7 +105,8 @@ public class FrmPalco extends javax.swing.JDialog {
                 String[] ParteDoMapa= null;
                 String[] ParteDaPosicao= null;
                 String[] ParteFacutativa= null;
-                javax.swing.ImageIcon Icone = null;
+                //javax.swing.ImageIcon Icone = null;
+                int BlocoSelecionado=-1;
                 
                 for(int i=0;i<blocos;i++){
                     AbreBloco=FechaBloco;
@@ -133,7 +132,17 @@ public class FrmPalco extends javax.swing.JDialog {
 
                     ParteDeSessao = Cabecalho.split("\t");
                     if(ParteDeSessao.length>=2){
-                        if(ParteDeSessao[1].equals("script")){
+                        if(ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
+                            Instancia[i].setTipo("function");
+                            Instancia[i].setNome(ParteDeSessao[2].toString());
+                            Instancia[i].setMapa("");
+                            Instancia[i].setX(0);
+                            Instancia[i].setY(0);
+                            Instancia[i].setLarguraDeGatilho(0);
+                            Instancia[i].setAlturaDeGatilho(0);
+                            TituloDeBloco[i] = new Object();
+                            TituloDeBloco[i] = "<html><font color=\"#888888\">"+(i+1) + "º </font>" +Instancia[i].getNome()+"()";
+                        }else if(!ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
                             Instancia[i].setTipo("script");
                             Instancia[i].setNome(ParteDeSessao[2].toString());
 
@@ -160,21 +169,26 @@ public class FrmPalco extends javax.swing.JDialog {
                             }
 
                             //BtnSalvarScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
-                            Icone=new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"));
+                            //Icone=new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"));
                             TituloDeBloco[i] = new Object();
-                            TituloDeBloco[i] = "<html><font color=\"#888888\">"+(i+1) + "º </font>" +
-                                ""+Instancia[i].getNome()+
+                            TituloDeBloco[i] = "<html>" +
+                                "<font color=\"#888888\">"+(i+1) + "º </font>" +
+                                Instancia[i].getNome()+
                                 " <font color=\"#888888\">"+
                                     "("+Instancia[i].getMapa()+":"+Instancia[i].getX()+","+Instancia[i].getY()+")"+
                                     " [img "+Instancia[i].getImagem()+":"+Instancia[i].getLarguraDeGatilho()+","+Instancia[i].getAlturaDeGatilho()+"]"+
                                 "</font>";
                         }
-
                         Instancia[i].setScript(Bloco);
-                        CmbScript.setModel(new DefaultComboBoxModel(TituloDeBloco));
-                        if(CmbScript.getSelectedIndex()==i){
-                            CmbScript.setSelectedItem(i);
-                            TxtScriptPalco.setText(Bloco.substring(0,Bloco.length()));
+                        if(CmbScript.getSelectedIndex()==i) BlocoSelecionado=i;
+
+                        if(i==blocos-1){
+                            CmbScript.setModel(new DefaultComboBoxModel(TituloDeBloco));
+                            //if(BlocoSelecionado>=0 && BlocoSelecionado<=CmbScript.getItemCount()-1){
+                            if(BlocoSelecionado>=0 && BlocoSelecionado<=blocos-1){
+                                CmbScript.setSelectedItem(BlocoSelecionado);
+                                TxtScriptPalco.setText(Instancia[BlocoSelecionado].getScript());
+                            }
                         }
                     }else{
                         //TxtScript.setText(Conteudo.toString());

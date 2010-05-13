@@ -245,6 +245,7 @@ public class FrmScript extends javax.swing.JDialog {
                     Arquivo = ListarArquivos(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc"+Barra+Pasta[p]);
                     for(int a=0; a<Arquivo.length; a++){
                         if(
+                            !Arquivo[a].substring(Arquivo[a].toString().length()-1, Arquivo[a].toString().length()).equals("~") &&
                             !Arquivo[a].equals("_import.txt") &&
                             !Arquivo[a].equals("_mobs.txt") &&
                             !Arquivo[a].equals("_warps.txt")
@@ -285,7 +286,6 @@ public class FrmScript extends javax.swing.JDialog {
         
         TreScripts.setModel(new javax.swing.tree.DefaultTreeModel(No1));
     }//GEN-LAST:event_formWindowOpened
-
     private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
         javax.swing.JDialog FrmPalco = new FrmPalco(this, rootPaneCheckingEnabled);
         FrmPalco.setLocation(
@@ -296,11 +296,9 @@ public class FrmScript extends javax.swing.JDialog {
         FrmPalco.setVisible(true);/**/
         //this.setVisible(false);
     }//GEN-LAST:event_BtnAbrirActionPerformed
-
     private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
         ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");
     }//GEN-LAST:event_BtnNovoActionPerformed
-
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");
     }//GEN-LAST:event_BtnExcluirActionPerformed
