@@ -17,6 +17,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
@@ -66,6 +67,13 @@ public class ConfigClass {
         Date data = calendar.getTime();
         return data.getTime();
     }
+    public static String AGORAtoFORMATO(String Formato){
+        //Formato = "dd/MM/yyyy";
+        //Formato = "h:mm - a";
+        java.util.Date Agora = new java.util.Date();
+        SimpleDateFormat Formatador = new SimpleDateFormat(Formato);
+        return Formatador.format(Agora);
+    }
     public String  getConexaoRepositorio(){return ConexaoRepositorio;}
     public String  getConexaoLocalhost(){return ConexaoLocalhost;}
     public String  getConexaoUsuario(){return ConexaoUsuario;}
@@ -108,12 +116,6 @@ public class ConfigClass {
         }
         while (TempoAtual-TempoInicio<Milisegundos);
     }
-    /*public static String getEnderecoDoJAR(){
-        return System.getProperty("user.dir");
-    }
-    public static String getEnderecoDoTMWMaker(){
-        return System.getProperty("user.home")+System.getProperty("file.separator")+"tmw-maker";
-    }/**/
     public static void Mensagem_Erro(String Aviso, String Titulo) {
         System.out.println(Aviso);
         Toolkit.getDefaultToolkit().beep();

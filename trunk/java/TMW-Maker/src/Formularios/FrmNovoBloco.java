@@ -2,6 +2,7 @@
 package Formularios;
 
 import Classes.BlocoDeScript;
+import Classes.ConfigClass;
 import java.lang.Object;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -339,13 +340,14 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             }
             NovoInstancia[i].setScript(
                 "///////////////////////////////////////////////////////////////////\n"+
-                "// IDE: TMW-Maker "+FrmPrincipal.Config.getVersao()+"\n"+
-                "// Criador: "+(FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"<Desconhecido>":FrmPrincipal.Config.getExecucaoParametroPersonagem())+"\n"+
-                (Utilidade.isEmpty()?"":"// Utilidade:\n"+Utilidade)+
+                "//  PROGRAMADOR: "+(FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"<Desconhecido>":FrmPrincipal.Config.getExecucaoParametroPersonagem())+"\n"+
+                "//  ACRIAÇÃO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+                (Utilidade.equals("")?"":"//  UTILIDADE DO SCRIPT:\n"+Utilidade)+
                 "///////////////////////////////////////////////////////////////////\n"+
-                "\n"+
                 "_inicio:\n"+
+                "\n"+
                 "     //Insira seu Eathena Script aqui...\n"+
+                "\n"+
                 "close;"
             );
             FrmPalco.TxtScriptPalco.setText(NovoInstancia[i].getScript());
