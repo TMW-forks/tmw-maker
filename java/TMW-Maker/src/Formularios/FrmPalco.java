@@ -36,6 +36,12 @@ public class FrmPalco extends javax.swing.JDialog {
         String Codigo="";
         for(int i=0;i<Instancias.length;i++){
             //008.gat,108,23,0	script	Roger	308,{
+            Codigo+=
+            "///////////////////////////////////////////////////////////////////\n"+
+            "//  IDE: TMW-Maker v"+FrmPrincipal.Config.getVersao()+"\n"+
+            "//  MODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+            "///////////////////////////////////////////////////////////////////\n"+
+            "\n";
             if(Instancias[i].getTipo()=="script"){
                 Codigo+=Instancias[i].getMapa()+".gat,"+Instancias[i].getX()+","+Instancias[i].getY()+",0\tscript\t"+Instancias[i].getNome()+"\t"+Instancias[i].getImagem()+",";
                 if(Instancias[i].getLarguraDeGatilho()>=1 || Instancias[i].getAlturaDeGatilho()>=1){
@@ -44,7 +50,7 @@ public class FrmPalco extends javax.swing.JDialog {
                 Codigo+="{\n"+
                     Instancias[i].getScript()+"\n"+
                 "}";
-            }else if(Instancias[i].getTipo()=="function\tscript"){
+            }else if(Instancias[i].getTipo()=="function"){
                 Codigo+=
                 "function\tscript\t"+Instancias[i].getNome()+"\t{\n"+
                     Instancias[i].getScript()+"\n"+
