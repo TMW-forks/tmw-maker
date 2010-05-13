@@ -5,6 +5,7 @@ Para que alguns binários necessarios para o funcionamento do localhost sejam co
 ===Resolvendo a Dependência de GCC no Ubuntu===
 Abra o terminal e digite os comando:
 {{{
+sudo apt-get update
 sudo apt-get install gcc
 }}}
 
