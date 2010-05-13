@@ -1,0 +1,16 @@
+==Sistema -> Dependências -> SVN==
+
+Subvertion tb conhecido como SVN é um programa que roda no terminal shell usado para ler e escrever cópias de Códigos Fonte para programas em geral. O TMW-Maker utilizar o SVN para baixar o localhost para seus usuários, e tb utilizara para receber contribuições em forma de trabalhos no desenvolvimento do jogo.
+
+===Resolvendo a Dependência de SVN no Ubuntu===
+Abra o terminal e digite os comandos:
+{{{
+sudo apt-get update
+sudo apt-get install subversion
+}}}
+
+Se tudo tiver ocorrido bem, ao reabrir a janela de "Dependencia de Funcionamento (Ctrl+D)", a dependência de SVN(veja foto abaixo) estará marcada como instalada.
+
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
+
+Mais simples que isso não existe! XD
