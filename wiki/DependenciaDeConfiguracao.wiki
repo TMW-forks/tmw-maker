@@ -1,7 +1,7 @@
 ==Sistema -> Dependências -> Configuração==
 
-Para o bom funcionamento, antes de tudo, configure o TMW-Maker. O processo de  de configuração pode ser manualmente através do menu "Sistema -> Configurações". Ou pode ser automaticamente automaticamente através do painel de dependências, clicando no nome de "Configurações" depois no botão "Resolver". Caso você escolha configurar automaticamente o tmw-maker adotará configurações padrões.
+Para o bom funcionamento, antes de tudo, configure o TMW-Maker. O processo de  de configuração pode ser manualmente através do menu "Sistema -> Configurações". Ou pode ser automaticamente automaticamente através do painel de dependências, clicando no nome de "Configurações" depois no botão "Resolver". Caso você escolha configurar automaticamente o TMW-Maker adotará configurações padrões.
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
 
-|| *NOTA:* No final da auto-configuração, o TMW-Maker irá lhe perguntar se você deseja fazer uma cópia somente leitura do repositório svn do TMW-BR. Antes de responder "sim", leia sobre os benefícios da configuração manual do TMW-Maker para baixar  [TxtConfiguracaoConexaoRepositorio Repositórios SVN]! ||
+|| *NOTA:* No final da auto-configuração, o TMW-Maker irá lhe perguntar se você deseja fazer uma cópia somente leitura do repositório SVN do TMW-BR. Antes de responder "sim", leia sobre os benefícios da configuração manual do TMW-Maker para baixar  [TxtConfiguracaoConexaoRepositorio Repositórios SVN]! ||
