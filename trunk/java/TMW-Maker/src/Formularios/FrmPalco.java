@@ -66,7 +66,7 @@ public class FrmPalco extends javax.swing.JDialog {
             Instancia[i].setScript(TxtScriptPalco.getText().toString());
             FileWriter out = new FileWriter(Endereco);
             String Capsula=InstanciasArray2String(Instancia);
-            //Capsula=ConfigClass.ISO88591toUTF8(Capsula);
+            Capsula=ConfigClass.ISO88591toUTF8(Capsula);
             out.write(Capsula);
             out.close();
             
