@@ -4,4 +4,4 @@ Para o bom funcionamento, antes de tudo, configure o TMW-Maker. O processo de co
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
 
-|| *NOTA:* No final da auto-configuração, o TMW-Maker irá lhe perguntar se você deseja fazer uma cópia somente leitura do repositório SVN do TMW-BR. Antes de responder "sim", leia sobre os benefícios da configuração manual do TMW-Maker para baixar  [TxtConfiguracaoConexaoRepositorio Repositórios SVN]! ||
+|| *NOTA:* No final da auto-configuração, se a dependência de SVN mostrada na foto acima não estiver marcada como pendente, o TMW-Maker irá lhe perguntar se você deseja fazer uma cópia somente leitura do Localhost do TMW-BR. Antes de responder "sim", leia sobre os benefícios da configuração manual do TMW-Maker para baixar  [TxtConfiguracaoConexaoRepositorio Repositórios SVN]! ||
