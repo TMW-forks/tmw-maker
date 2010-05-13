@@ -1,8 +1,9 @@
 ==Sistema -> Dependências==
 
-TMW-Maker possui várias funcções e trabalha em conjunto com outros programas. Para que todas as funções do TMW-Maker funcionem completamente necessario atender todas as dependencias que o TMW-Maker tem deste programas.
-
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
+
+TMW-Maker possui várias funções que trabalham em conjunto com outros programas. Para que todas as funções do TMW-Maker funcionem completamente é necessario atender todas as dependencias que o TMW-Maker tem deste programas.
+
 Ao abrir o TMW-Maker pela primeira vez, será exibido todas as dependencias de funcionamento. A maioria desta dependencias são resolvidas selecionando as linhas marcadas de vermelho e clicando no botão "Resolver".
 
-É possivel obter ajudar de como resolver uma Dependencia Manual selecionado a dependencia pendente e pressionando o botão "Ajuda (F1)". Ou se preferir, clicando no nome da dependencia mostrada no menu a esquerda deste site que você está lendo.
+É possivel obter ajudar de como resolver uma dependencia manualmente, selecionado a dependencia pendente e pressionando o botão "Ajuda (F1)". Ou se preferir, clicando no nome da dependencia mostrada no menu a esquerda deste site que você está lendo.
