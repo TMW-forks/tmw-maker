@@ -1,0 +1,15 @@
+==Sistema -> Dependências -> GCC==
+
+Para que alguns binários necessarios para o funcionamento do localhost sejam copilados. É necessário possuir o aplicativo GCC específico que rode no terminal sheel.
+
+===Resolvendo a Dependência de GCC no Ubuntu===
+Abra o terminal e digite os comando:
+{{{
+sudo apt-get install gcc
+}}}
+
+Se tudo tiver ocorrido bem, ao reabrir a janela de "Dependencia de Funcionamento (Ctrl+D)", a dependência de GCC(veja foto abaixo) estará marcada como instalada.
+
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
+
+Mais simples que isso não existe! XD
