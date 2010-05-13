@@ -9,7 +9,7 @@ sudo apt-get update
 sudo apt-get install subversion
 }}}
 
-Se tudo tiver ocorrido bem, ao reabrir a janela de "Dependencia de Funcionamento (Ctrl+D)", a dependência de SVN(veja foto abaixo) estará marcada como instalada.
+Se tudo tiver ocorrido bem, ao reabrir a janela de "Dependencia de Funcionamento (Ctrl+D)", a dependência de SVN mostrada foto abaixo estará marcada como instalada.
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
 
