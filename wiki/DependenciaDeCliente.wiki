@@ -1,4 +1,4 @@
-==Sistema -> Dependências -> Cliente==
+==Sistema → Dependências → Cliente==
 
 Software cliente é o nome técnico para o programa que foi instalado no computador que abre o jogo The Mana World. Ou seja, é o próprio jogo. Sem um software cliente o usuário ficará impossibilitado de testar os NPCs, Monstros, Itens desenvolvidos pelo TMW-Maker para o jogo The Mana World.
 
