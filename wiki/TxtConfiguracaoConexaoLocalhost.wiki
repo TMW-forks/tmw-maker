@@ -1,4 +1,4 @@
-==Sistema -> Configuração -> Conexão -> Localhost==
+==Sistema → Configuração(Ctrl+G) → Conexão → Localhost==
 
 É o endereço onde o localhost está instalado no seu sistema operacional. O endereço do Localhost ou servidor local é o da pasta onde está o "eathena-data" com os respectivos arquivos binários.
 Normalmente não é necessário alterar esse endereço pq ele já vem configurado internamente.
