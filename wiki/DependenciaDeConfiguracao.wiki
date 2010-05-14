@@ -1,6 +1,6 @@
 ==Sistema → Dependências → Configuração==
 
-Para o bom funcionamento, antes de tudo, configure o TMW-Maker. O processo de configuração pode ser manualmente através do menu "Sistema -> [Configuracao Configurações]". Ou pode ser automaticamente através do painel de dependências, clicando no nome de "Configurações" depois no botão "Resolver". Caso você escolha configurar automaticamente o TMW-Maker adotará configurações padrões.
+Para o bom funcionamento, antes de tudo, configure o TMW-Maker. O processo de configuração pode ser manualmente através do menu "*Sistema → [Configuracao Configurações (Ctrl+G)]*". Ou pode ser automaticamente através do painel de dependências, clicando no nome de "Configurações" depois no botão "Resolver". Caso você escolha configurar automaticamente o TMW-Maker adotará configurações padrões.
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
 
