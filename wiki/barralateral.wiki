@@ -11,17 +11,17 @@
    * [EathenaScript Eathena Script]
    * [Java]
  * [versoes_tmwmaker Download do TMW-Maker]
- * [Menu]
-  * [Sistema]
+ * Menu
+  * Sistema
    * [Alteracoes Alterações (Ctrl+F12)]
    * [Atualizar Atualizar (F12)]
    * [Configuracao Configurações (Ctrl+G)]
-    * [Conexao]
+    * Conexão
      * [TxtConfiguracaoConexaoRepositorio Repositório]
      * [TxtConfiguracaoConexaoLocalhost Localhost]
-    * [Execucao]
+    * Execução
      * [TxtConfiguracaoExecucaoComando Software Cliente]
-     * [Parametros Parâmetros]
+     * Parâmetros
       * [TxtConfiguracaoExecucaoParamentroServidor Servidor]
    * [Dependencias Dependências (Ctrl+D)]
     * [DependenciaDeConfiguracao De Configuração]
@@ -30,10 +30,10 @@
     * [DependenciaDeGCC De GCC]
     * [DependenciaDeMontagem De Montagem]
     * [DependenciaDeCliente De Cliente]
-  * [Editar]
-   * [EditarPersonagem Personagem (NPC)]
+  * Editar
+   * Personagem (NPC)
     * [EditarPersonagemScript Script (Ctrl+N)]
-  * [Jogo]
+  * Jogo
    * [JogoExecutar Executar (F9)]
    * [JogoLocalhost Localhost (Ctrl+L)]
  * [Ferramentas Ferramentas de DEVs]
