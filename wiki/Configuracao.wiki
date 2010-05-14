@@ -19,8 +19,9 @@ https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao
 Veja sugestões do que pôr acima em:
  * [TxtConfiguracaoExecucaoComando Software Cliente]
  * [TxtConfiguracaoExecucaoParametrosServidor Servidor]
- * [TxtConfiguracaoExecucaoParametrosConta Conta]
- * [TxtConfiguracaoExecucaoParametrosSenha Senha]
+ * Conta - Registre sua própria Conta
+ * Senha - Registre sua própria senha
+ * Personagem - Registre seu próprio Personagem.
  * [TxtConfiguracaoExecucaoParametrosSemOpenGL Sem OpenGL]
 
 
