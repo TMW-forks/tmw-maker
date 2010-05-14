@@ -1,4 +1,4 @@
-==Sistema -> Configurações -> Execução -> Parâmetros -> Servidor==
+==Sistema → Configurações(Ctrl+G) → Execução → Parâmetros → Servidor==
 
 É o endereço de localhost(servidor local) onde o jogo The Mana World irá se conectar. Por padrão o campo "Servidor" ja vem preenchido com "*localhost*" ou com o IP "*127.0.0.1*" que na verdade são o mesmo endereço.
 
