@@ -1,8 +1,6 @@
 ==Sistema → Configuração (Ctrl+G)==
 
-Para o bom funcionamento, antes de tudo, configure o tmw-maker. Para confugurar manualmente acesse o menu "Sistema -> Configurações". 
-
-É posssivel fazer configurações personalizadas, mas para iniciantes sugerimos que ponha as configurações das 3 fotos abaixo:
+Para o bom funcionamento, antes de tudo, configure o tmw-maker. É posssivel fazer configurações personalizadas, mas para leigos sugerimos que ponha as configurações das 3 fotos abaixo:
 
 
 
@@ -19,11 +17,11 @@ Veja sugestões do que pôr acima em:
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoExecucao.png
 
 Veja sugestões do que pôr acima em:
- * [SoftwareCliente Software Cliente]
- * [SoftwareServidor Servidor]
- * [SoftwareConta Conta]
- * [SoftwareSenha Senha]
- * [SoftwareSemOpenGL Sem OpenGL]
+ * [TxtConfiguracaoExecucaoComando Software Cliente]
+ * [TxtConfiguracaoExecucaoParametrosServidor Servidor]
+ * [TxtConfiguracaoExecucaoParametrosConta Conta]
+ * [TxtConfiguracaoExecucaoParametrosSenha Senha]
+ * [TxtConfiguracaoExecucaoParametrosSemOpenGL Sem OpenGL]
 
 
 
