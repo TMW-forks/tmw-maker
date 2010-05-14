@@ -1,4 +1,4 @@
-==Sistema -> Dependências -> Montagem==
+==Sistema → Dependências → Montagem==
 
 Para que o jogo consiga rodar o localhost(servidor local) que não precisa de intenet para funcionar. É necessário montar o locahost que foi baixado recentemente. Essa montagem só é necessária apenas uma vez. 
 
