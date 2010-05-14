@@ -779,9 +779,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarCampos);
 
-        MnuEditarPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))); // NOI18N
+        MnuEditarPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_char.png"))); // NOI18N
         MnuEditarPersonagem.setMnemonic('P');
-        MnuEditarPersonagem.setText("Personagem");
+        MnuEditarPersonagem.setText("Personagem (NPC)");
 
         MnuEditarPersonagemAparencia.setMnemonic('A');
         MnuEditarPersonagemAparencia.setText("Aparencia");
@@ -794,6 +794,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarPersonagem.add(MnuEditarPersonagemLoja);
 
         MnuEditarPersonagemScript.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        MnuEditarPersonagemScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script.png"))); // NOI18N
         MnuEditarPersonagemScript.setMnemonic('S');
         MnuEditarPersonagemScript.setText("Script");
         MnuEditarPersonagemScript.addActionListener(new java.awt.event.ActionListener() {

@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * FrmPalco.java
- *
- * Created on Apr 12, 2010, 8:22:51 PM
- */
 
 package Formularios;
 
@@ -33,15 +23,14 @@ public class FrmPalco extends javax.swing.JDialog {
     public static BlocoDeScript Instancia[];
 
     public String InstanciasArray2String(BlocoDeScript[] Instancias){
-        String Codigo="";
+        String Codigo=
+        "///////////////////////////////////////////////////////////////////\n"+
+        "//  IDE: TMW-Maker v"+FrmPrincipal.Config.getVersao()+"\n"+
+        "//  MODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+        "///////////////////////////////////////////////////////////////////\n"+
+        "\n";
         for(int i=0;i<Instancias.length;i++){
             //008.gat,108,23,0	script	Roger	308,{
-            Codigo+=
-            "///////////////////////////////////////////////////////////////////\n"+
-            "//  IDE: TMW-Maker v"+FrmPrincipal.Config.getVersao()+"\n"+
-            "//  MODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
-            "///////////////////////////////////////////////////////////////////\n"+
-            "\n";
             if(Instancias[i].getTipo()=="script"){
                 Codigo+=Instancias[i].getMapa()+".gat,"+Instancias[i].getX()+","+Instancias[i].getY()+",0\tscript\t"+Instancias[i].getNome()+"\t"+Instancias[i].getImagem()+",";
                 if(Instancias[i].getLarguraDeGatilho()>=1 || Instancias[i].getAlturaDeGatilho()>=1){
@@ -66,15 +55,15 @@ public class FrmPalco extends javax.swing.JDialog {
             Instancia[i].setScript(TxtScriptPalco.getText().toString());
             FileWriter out = new FileWriter(Endereco);
             String Capsula=InstanciasArray2String(Instancia);
-            Capsula=ConfigClass.ISO88591toUTF8(Capsula);
+            //Capsula=ConfigClass.ISO88591toUTF8(Capsula);
             out.write(Capsula);
             out.close();
             
             CmbScript.setEnabled(true);
             TxtScriptPalco.setEnabled(true);
             BarraDeCodigos(true);
-            BtnSalvarScript.setEnabled(false);
-            BtnAbrirScript.setEnabled(true);
+            BtnSalvarBloco.setEnabled(false);
+            BtnAbrirBloco.setEnabled(true);
             this.setTitle("Editor de Scripts ["+Endereco+"]");
             FrmPrincipal.LblEstatus.setText("Arquivo gravado com sucesso !");
             //Mensagem_Erro("Arquivo gravado com sucesso !","AVISO");
@@ -96,7 +85,7 @@ public class FrmPalco extends javax.swing.JDialog {
                 Caracater = CapsulaDeLer.read();
             }
             CapsulaDeLer.close();
-            Conteudo=ConfigClass.UTF8toISO88591(Conteudo);
+            //Conteudo=ConfigClass.UTF8toISO88591(Conteudo);
 
             int blocos = 0, AbreBloco=0, PontaDeBloco=0, FechaBloco=0;
             do{
@@ -111,14 +100,12 @@ public class FrmPalco extends javax.swing.JDialog {
                 String[] ParteDoMapa= null;
                 String[] ParteDaPosicao= null;
                 String[] ParteFacutativa= null;
-                //javax.swing.ImageIcon Icone = null;
                 int BlocoSelecionado=-1;
                 
                 for(int i=0;i<blocos;i++){
                     AbreBloco=FechaBloco;
                     Manipulador = new StringBuffer(Conteudo);
                     Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
-                    //System.out.println(sb);
 
                     AbreBloco= Conteudo.indexOf("{",AbreBloco)+1;//Só adiciona +1 pq foi feito o teste de existencia de blocos;
                     Manipulador.reverse();
@@ -135,7 +122,6 @@ public class FrmPalco extends javax.swing.JDialog {
                     FechaBloco= Conteudo.indexOf("}",AbreBloco);//Só adiciona +1 pq foi feito o teste de existencia de blocos;
                     Bloco=Conteudo.substring(AbreBloco+1,FechaBloco-1);
 
-
                     ParteDeSessao = Cabecalho.split("\t");
                     if(ParteDeSessao.length>=2){
                         if(ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
@@ -147,7 +133,7 @@ public class FrmPalco extends javax.swing.JDialog {
                             Instancia[i].setLarguraDeGatilho(0);
                             Instancia[i].setAlturaDeGatilho(0);
                             TituloDeBloco[i] = new Object();
-                            TituloDeBloco[i] = "<html><font color=\"#888888\">"+(i+1) + "º </font>" +Instancia[i].getNome()+"()";
+                            TituloDeBloco[i] = "<html><font color=\"#888888\">"+(i+1) + "º function</font> " +Instancia[i].getNome()+"<font color=\"#888888\">( )</font>";
                         }else if(!ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
                             Instancia[i].setTipo("script");
                             Instancia[i].setNome(ParteDeSessao[2].toString());
@@ -160,7 +146,6 @@ public class FrmPalco extends javax.swing.JDialog {
                             Instancia[i].setY(Integer.parseInt(ParteDaPosicao[2].toString()));
 
                             ParteFacutativa = ParteDeSessao[3].split(",");
-                            //Mensagem_Erro("ParteFacutativa=\""+ParteFacutativa.length+"\"", "Nota de Programador");
                             Instancia[i].setImagem(Integer.parseInt(ParteFacutativa[0].toString()));
                             if(ParteFacutativa.length>=2) {
                                 if(!ParteFacutativa[1].equals("")) {
@@ -173,12 +158,9 @@ public class FrmPalco extends javax.swing.JDialog {
                                     Instancia[i].setAlturaDeGatilho(Integer.parseInt(ParteFacutativa[2].toString()));
                                 }
                             }
-
-                            //BtnSalvarScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
-                            //Icone=new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"));
                             TituloDeBloco[i] = new Object();
                             TituloDeBloco[i] = "<html>" +
-                                "<font color=\"#888888\">"+(i+1) + "º </font>" +
+                                "<font color=\"#888888\">"+(i+1) + "º script</font> " +
                                 Instancia[i].getNome()+
                                 " <font color=\"#888888\">"+
                                     "("+Instancia[i].getMapa()+":"+Instancia[i].getX()+","+Instancia[i].getY()+")"+
@@ -186,18 +168,15 @@ public class FrmPalco extends javax.swing.JDialog {
                                 "</font>";
                         }
                         Instancia[i].setScript(Bloco);
-                        if(CmbScript.getSelectedIndex()==i) BlocoSelecionado=i;
 
                         if(i==blocos-1){
+                            BlocoSelecionado=CmbScript.getSelectedIndex();
                             CmbScript.setModel(new DefaultComboBoxModel(TituloDeBloco));
-                            //if(BlocoSelecionado>=0 && BlocoSelecionado<=CmbScript.getItemCount()-1){
-                            if(BlocoSelecionado>=0 && BlocoSelecionado<=blocos-1){
-                                CmbScript.setSelectedItem(BlocoSelecionado);
-                                TxtScriptPalco.setText(Instancia[BlocoSelecionado].getScript());
-                            }
+                            if(BlocoSelecionado<0 || BlocoSelecionado>CmbScript.getItemCount()-1) BlocoSelecionado=CmbScript.getItemCount()-1;
+                            CmbScript.setSelectedIndex(BlocoSelecionado);
+                            TxtScriptPalco.setText(Instancia[BlocoSelecionado].getScript());
                         }
                     }else{
-                        //TxtScript.setText(Conteudo.toString());
                         FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Cabeçalho de Bloco com formato inválido!");
                         Mensagem_Erro(
                             "Cabeçalho de Bloco com formato inválido!\n"+
@@ -209,19 +188,15 @@ public class FrmPalco extends javax.swing.JDialog {
                 TxtScriptPalco.setEnabled(true);
                 BarraDeCodigos(true);
                 CmbScript.setEnabled(true);
+                BtnSalvarBloco.setEnabled(false);
                 this.setTitle("Editor de Scripts ["+Endereco+"]");
-                //Mensagem_Erro("Arquivo possui "+blocos+" blocos!", "AVISO");
             }else{
-                //TxtScript.setText(Conteudo.toString());
                 FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> O arquivo possui conteúdo incompatível com o Eathena Script!");
                 Mensagem_Erro("O arquivo possui conteúdo incompatível com o Eathena Script!", "ERRO");
             }
         } catch (java.io.IOException exc) {
             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!");
             Mensagem_Erro("Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!","AVISO");
-            //ExemploDeConteudo();
-            //TxtScript.setEnabled(true);
-            //CmbScript.setEnabled(true);
         }
     }
     public static void Mensagem_Erro(String Aviso, String Titulo) {
@@ -247,9 +222,10 @@ public class FrmPalco extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtScriptPalco = new javax.swing.JTextArea();
         jToolBar1 = new javax.swing.JToolBar();
-        BtnNovoScript = new javax.swing.JButton();
-        BtnSalvarScript = new javax.swing.JButton();
-        BtnAbrirScript = new javax.swing.JButton();
+        BtnNovoBloco = new javax.swing.JButton();
+        BtnSalvarBloco = new javax.swing.JButton();
+        BtnAbrirBloco = new javax.swing.JButton();
+        BtnExcluirBloco = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         CmbScript = new javax.swing.JComboBox();
         TbrComandos = new javax.swing.JToolBar();
@@ -288,42 +264,51 @@ public class FrmPalco extends javax.swing.JDialog {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        BtnNovoScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
-        BtnNovoScript.setText("Novo");
-        BtnNovoScript.setToolTipText("Cria novo script (Ctrl+N)");
-        BtnNovoScript.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        BtnNovoScript.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        BtnNovoScript.addActionListener(new java.awt.event.ActionListener() {
+        BtnNovoBloco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script_bloco.gif"))); // NOI18N
+        BtnNovoBloco.setText("Novo");
+        BtnNovoBloco.setToolTipText("Cria novo script (Ctrl+N)");
+        BtnNovoBloco.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnNovoBloco.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        BtnNovoBloco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnNovoScriptActionPerformed(evt);
+                BtnNovoBlocoActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnNovoScript);
+        jToolBar1.add(BtnNovoBloco);
 
-        BtnSalvarScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
-        BtnSalvarScript.setText("Salvar");
-        BtnSalvarScript.setToolTipText("Salvar script (Ctrl+S)");
-        BtnSalvarScript.setEnabled(false);
-        BtnSalvarScript.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        BtnSalvarScript.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        BtnSalvarScript.addActionListener(new java.awt.event.ActionListener() {
+        BtnSalvarBloco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
+        BtnSalvarBloco.setText("Salvar");
+        BtnSalvarBloco.setToolTipText("Salvar script (Ctrl+S)");
+        BtnSalvarBloco.setEnabled(false);
+        BtnSalvarBloco.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnSalvarBloco.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        BtnSalvarBloco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSalvarScriptActionPerformed(evt);
+                BtnSalvarBlocoActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnSalvarScript);
+        jToolBar1.add(BtnSalvarBloco);
 
-        BtnAbrirScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
-        BtnAbrirScript.setText("Abrir");
-        BtnAbrirScript.setToolTipText("Abrir script salvo (Ctrl+O)");
-        BtnAbrirScript.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        BtnAbrirScript.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        BtnAbrirScript.addActionListener(new java.awt.event.ActionListener() {
+        BtnAbrirBloco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
+        BtnAbrirBloco.setText("Abrir");
+        BtnAbrirBloco.setToolTipText("Abrir script salvo (Ctrl+O)");
+        BtnAbrirBloco.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnAbrirBloco.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        BtnAbrirBloco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAbrirScriptActionPerformed(evt);
+                BtnAbrirBlocoActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnAbrirScript);
+        jToolBar1.add(BtnAbrirBloco);
+
+        BtnExcluirBloco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lixeira.png"))); // NOI18N
+        BtnExcluirBloco.setMnemonic('E');
+        BtnExcluirBloco.setText("Excluir");
+        BtnExcluirBloco.setEnabled(false);
+        BtnExcluirBloco.setFocusable(false);
+        BtnExcluirBloco.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnExcluirBloco.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(BtnExcluirBloco);
         jToolBar1.add(jSeparator1);
 
         CmbScript.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<sem blocos>" }));
@@ -403,9 +388,9 @@ public class FrmPalco extends javax.swing.JDialog {
             //ExemploDeConteudo();
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
             //ExemploDeConteudo();
-        }else if(BtnSalvarScript.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
+        }else if(BtnSalvarBloco.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_S && evt.isControlDown()){
             salvarInstancia(FrmScript.EnderecoDoScript);
-        }else if(BtnAbrirScript.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
+        }else if(BtnAbrirBloco.isEnabled() && evt.getKeyCode()==java.awt.event.KeyEvent.VK_O && evt.isControlDown()){
             abrirInstancia(FrmScript.EnderecoDoScript);
         }else if(!evt.isControlDown() && !evt.isAltDown() && !evt.isShiftDown() &&
 
@@ -425,21 +410,21 @@ public class FrmPalco extends javax.swing.JDialog {
                     1==1
                 ){
             CmbScript.setEnabled(false);
-            BtnSalvarScript.setEnabled(true);
+            BtnSalvarBloco.setEnabled(true);
         }/**/
     }//GEN-LAST:event_TxtScriptPalcoKeyPressed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //ExemploDeConteudo();
         abrirInstancia(FrmScript.EnderecoDoScript);
     }//GEN-LAST:event_formWindowOpened
-    private void BtnAbrirScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirScriptActionPerformed
+    private void BtnAbrirBlocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirBlocoActionPerformed
         abrirInstancia(FrmScript.EnderecoDoScript);
-    }//GEN-LAST:event_BtnAbrirScriptActionPerformed
-    private void BtnSalvarScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarScriptActionPerformed
+    }//GEN-LAST:event_BtnAbrirBlocoActionPerformed
+    private void BtnSalvarBlocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarBlocoActionPerformed
         salvarInstancia(FrmScript.EnderecoDoScript);
-    }//GEN-LAST:event_BtnSalvarScriptActionPerformed
-    private void BtnNovoScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoScriptActionPerformed
-        if(BtnNovoScript.isEnabled()){
+    }//GEN-LAST:event_BtnSalvarBlocoActionPerformed
+    private void BtnNovoBlocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoBlocoActionPerformed
+        if(BtnNovoBloco.isEnabled()){
             javax.swing.JDialog FrmNovoBloco = new FrmNovoBloco(this,false);
             FrmNovoBloco.setLocation(
                 ((this.getWidth() - FrmNovoBloco.getWidth()) / 2) + this.getX(),
@@ -448,7 +433,7 @@ public class FrmPalco extends javax.swing.JDialog {
             FrmNovoBloco.setModal(true);
             FrmNovoBloco.setVisible(true);/**/
         }
-    }//GEN-LAST:event_BtnNovoScriptActionPerformed
+    }//GEN-LAST:event_BtnNovoBlocoActionPerformed
     private void BtnScriptComandoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptComandoMesActionPerformed
         if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
             javax.swing.JDialog FrmMes = new FrmMes(this,false);
@@ -514,9 +499,10 @@ public class FrmPalco extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAbrirScript;
-    private javax.swing.JButton BtnNovoScript;
-    private javax.swing.JButton BtnSalvarScript;
+    public static javax.swing.JButton BtnAbrirBloco;
+    public static javax.swing.JButton BtnExcluirBloco;
+    public static javax.swing.JButton BtnNovoBloco;
+    public static javax.swing.JButton BtnSalvarBloco;
     public static javax.swing.JButton BtnScriptComandoIF;
     public static javax.swing.JButton BtnScriptComandoMes;
     public static javax.swing.JComboBox CmbScript;
