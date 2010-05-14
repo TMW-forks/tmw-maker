@@ -1,4 +1,4 @@
-==Sistema -> Configuração==
+==Sistema -> Configuração (Ctrl+G)==
 
 Para o bom funcionamento, antes de tudo, configure o tmw-maker. Para confugurar manualmente acesse o menu "Sistema -> Configurações". 
 
