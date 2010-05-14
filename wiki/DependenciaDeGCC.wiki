@@ -1,4 +1,4 @@
-==Sistema -> Dependências -> GCC==
+==Sistema → Dependências → GCC==
 
 Para que alguns binários necessarios para o funcionamento do localhost sejam copilados. É necessário possuir o aplicativo GCC específico que rode no terminal sheel.
 
