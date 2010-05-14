@@ -1,5 +1,5 @@
 #labels Execução,MANA,TMW,TMW-Maker,Jogo,MMORPG,RPG
-==Sistema -> Configurações -> Execução -> Software Cliente==
+==Sistema → Configurações(Ctrl+G) → Execução → Software Cliente==
 
 É o modo como o sistema operacional encontrará algumas das versões do jogo The Mana World("manaplus" ou "tmw"). Por padrão o campo "Software Cliente" já vem preenchi com o comando "manaplus" que funciona apenas no Linux. 
 
