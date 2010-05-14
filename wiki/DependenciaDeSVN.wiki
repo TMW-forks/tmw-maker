@@ -1,4 +1,4 @@
-==Sistema -> Dependências -> SVN==
+==Sistema → Dependências → SVN==
 
 Subvertion também conhecido como SVN é um programa que roda no terminal shell e é usado para ler e escrever cópias de Códigos Fonte para programas em geral. O TMW-Maker utilizar o SVN para baixar cópias do localhost para seus usuários, e também utilizar para receber contribuições em forma de trabalho no desenvolvimento do jogo. A forma como o TMW-Maker vai utilizar o SVN vai depender do tipo de conexão configurada pelo usuário.
 
