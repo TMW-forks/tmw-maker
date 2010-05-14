@@ -44,7 +44,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
         TxtNovoBlocoFuncaoNome = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TxtNovoBlocoUtilidade = new javax.swing.JTextArea();
+        TxtNovoBlocoFunctionUtilidade = new javax.swing.JTextArea();
         BtnFechar = new javax.swing.JButton();
         BtnAdicionar = new javax.swing.JButton();
 
@@ -180,10 +180,10 @@ public class FrmNovoBloco extends javax.swing.JDialog {
 
         jLabel12.setText("Descrição da Utilidade:");
 
-        TxtNovoBlocoUtilidade.setColumns(20);
-        TxtNovoBlocoUtilidade.setRows(5);
-        TxtNovoBlocoUtilidade.setText("Coletar dados de parâmetros 1, 2 ... X,\ne retornar resultado na veriável Y.");
-        jScrollPane1.setViewportView(TxtNovoBlocoUtilidade);
+        TxtNovoBlocoFunctionUtilidade.setColumns(20);
+        TxtNovoBlocoFunctionUtilidade.setRows(5);
+        TxtNovoBlocoFunctionUtilidade.setText("Coletar dados de parâmetros 1, 2 ... X,\ne retornar resultado na veriável Y.");
+        jScrollPane1.setViewportView(TxtNovoBlocoFunctionUtilidade);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -298,7 +298,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
                 }
             }
             Titulo[i] = new Object();
-            Titulo[i] = "<html><font color=\"#888888\">"+(i+1)+"º </font> "+
+            Titulo[i] = "<html><font color=\"#888888\">"+(i+1)+"º script </font> "+
                 TxtNovoBlocoScriptNome.getText().toString()+" "+
                 "<font color=\"#888888\">"+
                     " ("+TxtNovoBlocoScriptMapa.getText().toString()+":"+SpnNovoBlocoScriptCoordX.getValue().toString()+","+SpnNovoBlocoScriptCoordY.getValue().toString()+")"+
@@ -323,8 +323,8 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             FrmPalco.CmbScript.setModel(new DefaultComboBoxModel(Titulo));
 
             String Utilidade="";
-            TxtNovoBlocoUtilidade.setText(this.TxtNovoBlocoUtilidade.getText().trim());
-            if(!TxtNovoBlocoUtilidade.getText().trim().equals("")){
+            TxtNovoBlocoScriptUtilidade.setText(TxtNovoBlocoScriptUtilidade.getText().trim());
+            if(!TxtNovoBlocoScriptUtilidade.getText().trim().equals("")){
                 for(int l=0;l<TxtNovoBlocoScriptUtilidade.getLineCount();l++){
                     try {
                         Utilidade += "//    * "+
@@ -351,25 +351,93 @@ public class FrmNovoBloco extends javax.swing.JDialog {
                 "close;"
             );
             FrmPalco.TxtScriptPalco.setText(NovoInstancia[i].getScript());
-
-            
-            FrmPalco.CmbScript.setEnabled(true);
-            FrmPalco.CmbScript.setVisible(true);
-            FrmPalco.TxtScriptPalco.setEnabled(true);
-            FrmPalco.BtnScriptComandoMes.setEnabled(true);
-            FrmPalco.BtnScriptComandoIF.setEnabled(true);
-            dispose();
         }else if(TbpTipoDeBloco.getSelectedIndex()==1){
-            //*
-            //*
-            //*
-            //*
-            FrmPrincipal.Config.Mensagem_Erro("Desculpe! Ainda não é possível utilizar o TMW-Maker para adicionar funções!", "Programa Incompleto");
-            //*
-            //*
-            //*
-            //*
+            int newSize=0;
+            try{
+                newSize = FrmPalco.Instancia.length + 1;
+            } catch (Exception Er){
+                newSize=1;
+            }
+
+            BlocoDeScript[] NovoInstancia = new BlocoDeScript[newSize];
+            int i=0;
+            Object[] Titulo= new java.lang.Object[newSize];
+            if(newSize >= 2){
+                for (i = 0; i<(newSize-1); i++) {
+                    NovoInstancia[i] = FrmPalco.Instancia[i];
+                    Titulo[i] = new Object();
+                    Titulo[i] = (i+1) + "º " + FrmPalco.Instancia[i].getNome() + " (" + FrmPalco.Instancia[i].getMapa() + ":" + FrmPalco.Instancia[i].getX() + "," + FrmPalco.Instancia[i].getY() + ")";
+                     Titulo[i] = "<html><font color=\"#888888\">"+(i+1) + "º </font>" +
+                        ""+FrmPalco.Instancia[i].getNome()+
+                        " <font color=\"#888888\">"+
+                            "("+FrmPalco.Instancia[i].getMapa()+":"+FrmPalco.Instancia[i].getX()+","+FrmPalco.Instancia[i].getY()+")"+
+                            " [img "+FrmPalco.Instancia[i].getImagem()+":"+FrmPalco.Instancia[i].getLarguraDeGatilho()+","+FrmPalco.Instancia[i].getAlturaDeGatilho()+"]"+
+                        "</font>";
+                }
+            }
+            Titulo[i] = new Object();
+            Titulo[i] = "<html><font color=\"#888888\">"+(i+1)+"º function</font> "+
+                TxtNovoBlocoFuncaoNome.getText().toString()+"<font color=\"#888888\">( )</font>";
+
+
+            NovoInstancia[i] = new BlocoDeScript();
+            NovoInstancia[i].setTipo("function");
+            NovoInstancia[i].setNome(TxtNovoBlocoFuncaoNome.getText().toString());
+            NovoInstancia[i].setMapa("");
+            NovoInstancia[i].setX(0);
+            NovoInstancia[i].setY(0);
+            NovoInstancia[i].setImagem(0);
+            NovoInstancia[i].setLarguraDeGatilho(0);
+            NovoInstancia[i].setAlturaDeGatilho(0);
+
+            FrmPalco.Instancia = NovoInstancia;
+
+
+            //FrmPalco.CmbScript.setModel(model);
+            FrmPalco.CmbScript.setModel(new DefaultComboBoxModel(Titulo));
+
+            String Utilidade="";
+            TxtNovoBlocoFunctionUtilidade.setText(TxtNovoBlocoFunctionUtilidade.getText().trim());
+            if(!TxtNovoBlocoFunctionUtilidade.getText().trim().equals("")){
+                for(int l=0;l<TxtNovoBlocoFunctionUtilidade.getLineCount();l++){
+                    try {
+                        Utilidade += "//    * "+
+                        TxtNovoBlocoFunctionUtilidade.getText().substring(
+                            TxtNovoBlocoFunctionUtilidade.getLineStartOffset(l),
+                            TxtNovoBlocoFunctionUtilidade.getLineEndOffset(l)-(l<(TxtNovoBlocoFunctionUtilidade.getLineCount()-1)?1:0)
+                        ) +
+                        "\n";
+                    } catch (BadLocationException ex) {
+                        Logger.getLogger(FrmNovoBloco.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            NovoInstancia[i].setScript(
+                "///////////////////////////////////////////////////////////////////\n"+
+                "//  PROGRAMADOR: "+(FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty()?"<Desconhecido>":FrmPrincipal.Config.getExecucaoParametroPersonagem())+"\n"+
+                "//  ACRIAÇÃO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+                (Utilidade.equals("")?"":"//  UTILIDADE DO SCRIPT:\n"+Utilidade)+
+                "///////////////////////////////////////////////////////////////////\n"+
+                "_inicio:\n"+
+                "\n"+
+                "     //Insira seu Eathena Script aqui...\n"+
+                "\n"+
+                "_fim:"
+            );
+            FrmPalco.TxtScriptPalco.setText(NovoInstancia[i].getScript());
         }
+        FrmPalco.CmbScript.setSelectedIndex(FrmPalco.CmbScript.getItemCount()-1);
+        FrmPalco.CmbScript.setEnabled(false);
+        //FrmPalco.CmbScript.setVisible(true);
+        FrmPalco.TxtScriptPalco.setEnabled(true);
+        FrmPalco.BtnScriptComandoMes.setEnabled(true);
+        FrmPalco.BtnScriptComandoIF.setEnabled(true);
+
+        FrmPalco.BtnNovoBloco.setEnabled(true);
+        FrmPalco.BtnAbrirBloco.setEnabled(true);
+        FrmPalco.BtnSalvarBloco.setEnabled(true);
+        //FrmPalco.BtnExcluirBloco.setEnabled(true);
+        dispose();
     }//GEN-LAST:event_BtnAdicionarActionPerformed
 
     public static void main(String args[]) {
@@ -396,10 +464,10 @@ public class FrmNovoBloco extends javax.swing.JDialog {
     private javax.swing.JSpinner SpnNovoBlocoScriptGatilhoLargura;
     private javax.swing.JTabbedPane TbpTipoDeBloco;
     private javax.swing.JTextField TxtNovoBlocoFuncaoNome;
+    private javax.swing.JTextArea TxtNovoBlocoFunctionUtilidade;
     private javax.swing.JTextField TxtNovoBlocoScriptMapa;
     private javax.swing.JTextField TxtNovoBlocoScriptNome;
     private javax.swing.JTextArea TxtNovoBlocoScriptUtilidade;
-    private javax.swing.JTextArea TxtNovoBlocoUtilidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
