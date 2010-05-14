@@ -1,4 +1,5 @@
 ==Sistema -> Dependências==
+====Atalho: Ctrl+D====
 
 TMW-Maker possui várias funções que trabalham em conjunto com outros programas. Para que todas as funções do TMW-Maker funcionem completamente é necessario atender todas as dependencias que o TMW-Maker tem deste programas.
 
