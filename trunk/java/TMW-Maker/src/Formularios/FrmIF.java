@@ -64,7 +64,6 @@ public class FrmIF extends javax.swing.JDialog {
 
         AtualizarCodigo();
     }
-
     public void AtualizarCodigo(){
         if(OptCondicaoDeVariavel.isSelected()){
             try {

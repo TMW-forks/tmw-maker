@@ -2,8 +2,6 @@
 package Formularios;
 
 import Classes.ConfigClass;
-import java.io.File;
-import java.util.Arrays;
 
 
 public class FrmScript extends javax.swing.JDialog {
@@ -15,49 +13,6 @@ public class FrmScript extends javax.swing.JDialog {
     static String Barra = System.getProperty("file.separator");
     public static String EnderecoDoScript="";
 
-    private String[] ListarPastas(String Endereco){
-        ///home/indigovox/localhost/eathena-data/npc
-        File Capsula = new File(Endereco);
-        File[] Conteudo = Capsula.listFiles();
-        int ContPastas=0;
-        for(int c=0; c<Conteudo.length; c++){
-            if(Conteudo[c].isDirectory()){
-                ContPastas++;
-            }
-        }
-        String Pasta[] = new String[ContPastas];
-        ContPastas=0;
-        for(int p=0; p<Conteudo.length; p++){
-            if(Conteudo[p].isDirectory()){
-                Pasta[ContPastas]=Conteudo[p].getName();
-                //TxtScript.setText(TxtScript.getText()+Conteudo[c].getName()+"\n");
-                ContPastas++;
-            }
-        }
-        Arrays.sort(Pasta);
-        return Pasta;
-    }
-    private String[] ListarArquivos(String Endereco){
-        ///home/indigovox/localhost/eathena-data/npc
-        File Capsula = new File(Endereco);
-        File[] Conteudo = Capsula.listFiles();
-        int ContArquivos=0;
-        for(int c=0; c<Conteudo.length; c++){
-            if(Conteudo[c].isFile()){
-                ContArquivos++;
-            }
-        }
-        String Arquivos[] = new String[ContArquivos];
-        ContArquivos=0;
-        for(int a=0; a<Conteudo.length; a++){
-            if(Conteudo[a].isFile()){
-                Arquivos[ContArquivos]=Conteudo[a].getName();
-                ContArquivos++;
-            }
-        }
-        Arrays.sort(Arquivos);
-        return Arquivos;
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -181,7 +136,7 @@ public class FrmScript extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TreScriptsValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_TreScriptsValueChanged
-        if(evt.getPath().getPathCount()==2){
+        if(evt.getPath().getPathCount()==2 && !evt.getPath().getPathComponent(1).toString().equals("<localhost-pendente>")){
             BtnNovo.setEnabled(true);
         }else{
             BtnNovo.setEnabled(false);
@@ -231,7 +186,7 @@ public class FrmScript extends javax.swing.JDialog {
         if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
             javax.swing.tree.DefaultMutableTreeNode No3 = null;
             javax.swing.tree.DefaultMutableTreeNode No4 = null;
-            String Pasta[] = ListarPastas(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc");
+            String Pasta[] = FrmPrincipal.Config.ListarPastas(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc");
             String Arquivo[] = null;
             int ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Scripts");
@@ -242,7 +197,7 @@ public class FrmScript extends javax.swing.JDialog {
                     No2.add(No3);
 
                     ContArquivos=0;
-                    Arquivo = ListarArquivos(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc"+Barra+Pasta[p]);
+                    Arquivo = FrmPrincipal.Config.ListarArquivos(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc"+Barra+Pasta[p]);
                     for(int a=0; a<Arquivo.length; a++){
                         if(
                             !Arquivo[a].substring(Arquivo[a].toString().length()-1, Arquivo[a].toString().length()).equals("~") &&
@@ -266,7 +221,7 @@ public class FrmScript extends javax.swing.JDialog {
 
             ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Funções");
-            Arquivo = ListarArquivos(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc"+Barra+"functions");
+            Arquivo = FrmPrincipal.Config.ListarArquivos(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc"+Barra+"functions");
             for(int a=0; a<Arquivo.length; a++){
                 ContArquivos++;
                 //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");
@@ -293,11 +248,16 @@ public class FrmScript extends javax.swing.JDialog {
             ((this.getHeight() - FrmPalco.getHeight()) / 2) + this.getY());
         FrmPalco.pack();
         FrmPalco.setModal(true);
-        FrmPalco.setVisible(true);/**/
-        //this.setVisible(false);
+        FrmPalco.setVisible(true);
     }//GEN-LAST:event_BtnAbrirActionPerformed
     private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
-        ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");
+        javax.swing.JDialog FrmNovoScript = new FrmNovoScript(this, rootPaneCheckingEnabled);
+        FrmNovoScript.setLocation(
+            ((this.getWidth() - FrmNovoScript.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmNovoScript.getHeight()) / 2) + this.getY());
+        FrmNovoScript.pack();
+        FrmNovoScript.setModal(true);
+        FrmNovoScript.setVisible(true);
     }//GEN-LAST:event_BtnNovoActionPerformed
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");

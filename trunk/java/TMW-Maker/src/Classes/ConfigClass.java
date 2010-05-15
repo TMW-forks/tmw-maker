@@ -18,6 +18,7 @@ import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
@@ -265,7 +266,73 @@ public class ConfigClass {
     }
     public void CriarPasta(String EnderecoDaNovaPasta){
         File dir = new File(EnderecoDaNovaPasta);
-        dir.mkdirs();  
+        dir.mkdirs();
+    }
+    public String[] ListarPastas(String Endereco){
+        ///home/indigovox/localhost/eathena-data/npc
+        File Capsula = new File(Endereco);
+        File[] Conteudo = Capsula.listFiles();
+        int ContPastas=0;
+        for(int c=0; c<Conteudo.length; c++){
+            if(Conteudo[c].isDirectory()){
+                ContPastas++;
+            }
+        }
+        String Pasta[] = new String[ContPastas];
+        ContPastas=0;
+        for(int p=0; p<Conteudo.length; p++){
+            if(Conteudo[p].isDirectory()){
+                Pasta[ContPastas]=Conteudo[p].getName();
+                //TxtScript.setText(TxtScript.getText()+Conteudo[c].getName()+"\n");
+                ContPastas++;
+            }
+        }
+        Arrays.sort(Pasta);
+        return Pasta;
+    }
+    public String[] ListarArquivos(String Endereco){
+        ///home/indigovox/localhost/eathena-data/npc
+        File Capsula = new File(Endereco);
+        File[] Conteudo = Capsula.listFiles();
+        int ContArquivos=0;
+        for(int c=0; c<Conteudo.length; c++){
+            if(Conteudo[c].isFile()){
+                ContArquivos++;
+            }
+        }
+        String Arquivos[] = new String[ContArquivos];
+        ContArquivos=0;
+        for(int a=0; a<Conteudo.length; a++){
+            if(Conteudo[a].isFile()){
+                Arquivos[ContArquivos]=Conteudo[a].getName();
+                ContArquivos++;
+            }
+        }
+        Arrays.sort(Arquivos);
+        return Arquivos;
+    }
+    public boolean SeSimpleNomeDeArquivo(File PastaPai, String NomDeArquivo) {
+        /**
+         * Função Copiada de Site "http://forums.sun.com/thread.jspa?threadID=629458"
+         * Eu não entendo essa Função, mas tentei implementa-la para ver se serve.
+         */
+
+        if (PastaPai == null || NomDeArquivo == null) return false;
+        File Arquivo = new File(PastaPai, NomDeArquivo);
+        if(!Arquivo.exists()){ //se o arquivo já existe, pode ser o nome do arquivo está correto
+            try {
+                boolean SeNomeValido = Arquivo.createNewFile();
+                //Apagar o arquivo porque é criado para a verificação de validação
+                if(SeNomeValido) Arquivo.delete();
+                //Se o pai do novo arquivo e o pai dado é diferente, então o nome do arquivo está errado
+                if(!Arquivo.getParent().equals(PastaPai.getPath())) return false;
+                return SeNomeValido;
+            } catch (IOException ioe) {
+                return false;
+            }
+        }
+        //Se o pai do novo arquivo e o pai dado é diferente, então o nome do arquivo está errado
+        return Arquivo.getParent().equals(PastaPai.getPath());
     }
     public String getPropriedade(String Conteudo, String Propriedade) {
         int OndeEncontrado= Conteudo.indexOf("\n"+Propriedade+":",0);
