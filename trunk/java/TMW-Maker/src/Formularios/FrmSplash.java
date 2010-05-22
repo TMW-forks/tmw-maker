@@ -51,6 +51,11 @@ public class FrmSplash extends javax.swing.JDialog {
         setTitle("Sobre o TMW-Maker");
         setModal(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/splash.png"))); // NOI18N
 
@@ -90,7 +95,7 @@ public class FrmSplash extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
         jLabel6.setText("CONTATOS:");
 
-        LblLunovox.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13)); // NOI18N
+        LblLunovox.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
         LblLunovox.setForeground(java.awt.Color.blue);
         LblLunovox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LblLunovox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Animacoes/lunovox.gif"))); // NOI18N
@@ -121,15 +126,15 @@ public class FrmSplash extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel2)
-                                .addComponent(LblDesenvolvedora))
+                                .addComponent(LblDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addContainerGap(30, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(LblLunovox)
+                            .addComponent(LblLunovox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap()))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
@@ -142,15 +147,15 @@ public class FrmSplash extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LblDesenvolvedora)
+                .addComponent(LblDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LblLunovox)
+                .addComponent(LblLunovox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnSplashOk))
             .addComponent(jLabel1)
@@ -201,6 +206,10 @@ public class FrmSplash extends javax.swing.JDialog {
         LblLunovox.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         LblLunovox.setForeground(Color.BLUE);
     }//GEN-LAST:event_LblLunovoxMouseExited
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setTitle("Sobre o TMW-Maker v"+FrmPrincipal.Config.getVersao()+" ("+FrmPrincipal.Config.getOS()+":"+FrmPrincipal.Config.getArquiteturaOS()+")");
+    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments
