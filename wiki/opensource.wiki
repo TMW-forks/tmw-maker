@@ -3,6 +3,8 @@
 
 *Open Sources* são licenças que permite gratuitamente baixar, instalar, usar, e redistribuir sem precisar dar satisfação a ninguém. Também é permitido gratuitamente modificar o código fonte do programa e redistribui-lo novamente, evolui-lo conforme suas habilidade, desde que não seja retirado o "*Nome do Projeto*" e nem o seus "*Desenvolvedores Precedentes*".
 
+http://harmoniaecontraponto.files.wordpress.com/2009/10/opensource_image.jpg
+
 Licenças Open Source não significam que esta ferramenta não pode ser comercializadas. Significa apenas que seus comerciantes não possuem nenhum direto de exclusividade sobre a ferramenta. Isso dá ao usuário do TMW-Maker o livre poder de decisão do que fazer com esta ferramenta, desde que não prejudique outros usuário.
 
 Mais detalhes: [http://pt.wikipedia.org/wiki/Open_source]
