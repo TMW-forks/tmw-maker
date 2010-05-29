@@ -647,7 +647,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatus.setAlignmentX(0.0F);
         PnlBarraDeEstatus.setAlignmentY(0.0F);
 
-        LblEstatus.setBackground(java.awt.SystemColor.activeCaptionBorder);
         LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
         LblEstatus.setText("Bem Vindo ao TMW-Maker!");
         LblEstatus.setBorder(null);
@@ -677,7 +676,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistema.setMnemonic('S');
         MnuSistema.setText("Sistema");
 
-        MnuSistemaAlteracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaAlteracoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
         MnuSistemaAlteracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_file_rss.gif"))); // NOI18N
         MnuSistemaAlteracoes.setMnemonic('T');
         MnuSistemaAlteracoes.setText("Alterações");
@@ -688,7 +687,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuSistema.add(MnuSistemaAlteracoes);
 
-        MnuSistemaAtualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
+        MnuSistemaAtualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.CTRL_MASK));
         MnuSistemaAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_update.gif"))); // NOI18N
         MnuSistemaAtualizar.setMnemonic('A');
         MnuSistemaAtualizar.setText("Atualizar");
@@ -740,19 +739,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditar.setMnemonic('E');
         MnuEditar.setText("Editar");
 
-        MnuEditarItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_presente.gif"))); // NOI18N
+        MnuEditarItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
         MnuEditarItens.setMnemonic('I');
         MnuEditarItens.setText("Itens");
-        MnuEditarItens.setEnabled(false);
 
         MnuEditarItensSprites.setMnemonic('S');
         MnuEditarItensSprites.setText("Sprites");
         MnuEditarItensSprites.setEnabled(false);
         MnuEditarItens.add(MnuEditarItensSprites);
 
+        MnuEditarItensDados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        MnuEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script_bloco.gif"))); // NOI18N
         MnuEditarItensDados.setMnemonic('D');
         MnuEditarItensDados.setText("Dados");
-        MnuEditarItensDados.setEnabled(false);
+        MnuEditarItensDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuEditarItensDadosActionPerformed(evt);
+            }
+        });
         MnuEditarItens.add(MnuEditarItensDados);
 
         MnuEditar.add(MnuEditarItens);
@@ -779,7 +783,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarCampos);
 
-        MnuEditarPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_char.png"))); // NOI18N
+        MnuEditarPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))); // NOI18N
         MnuEditarPersonagem.setMnemonic('P');
         MnuEditarPersonagem.setText("Personagem (NPC)");
 
@@ -902,6 +906,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuAjudaComponentes.setText("Componentes");
         MnuAjuda.add(MnuAjudaComponentes);
 
+        MnuAjudaIndicarDefeito.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         MnuAjudaIndicarDefeito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/fechar.png"))); // NOI18N
         MnuAjudaIndicarDefeito.setMnemonic('D');
         MnuAjudaIndicarDefeito.setText("Indicar Defeito");
@@ -1086,6 +1091,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_MnuSistemaAtualizarActionPerformed
+
+    private void MnuEditarItensDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarItensDadosActionPerformed
+        javax.swing.JDialog FrmItens = new FrmItens(this, rootPaneCheckingEnabled);
+        FrmItens.setLocation(
+            ((this.getWidth() - FrmItens.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmItens.getHeight()) / 2) + this.getY());
+        FrmItens.pack();
+        FrmItens.setModal(true);
+        FrmItens.setVisible(true);/**/
+    }//GEN-LAST:event_MnuEditarItensDadosActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
