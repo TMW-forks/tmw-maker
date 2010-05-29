@@ -14,7 +14,6 @@ package Formularios;
 import Classes.ConfigClass;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.Toolkit;
 
 /**
