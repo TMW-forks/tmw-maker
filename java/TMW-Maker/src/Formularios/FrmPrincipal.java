@@ -576,6 +576,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
             tThread.start();
         }
     }
+    public void VerificarMenus() {
+        if (Config.getOS().indexOf("win") >= 0 || Config.getOS().indexOf("mac") >= 0) {
+            MnuLocalhost.setEnabled(false);
+            MnuLocalhost.setEnabled(false);
+            MnuEditarContas.setEnabled(false);
+            MnuEditarItens.setEnabled(false);
+            //MnuEditarPersonagemScript.setEnabled(false);
+        } else {
+            if (Config.getSeDependenciaDeSVN()) {
+                MnuLocalhost.setEnabled(true);
+                //MnuSistemaEnviar.setEnabled(true);
+            } else {
+                MnuLocalhost.setEnabled(false);
+                MnuLocalhost.setEnabled(false);
+            }
+            //MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
+            MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuEditarItens.setEnabled(Config.getSeDependenciaDeMontagem());
+            //MnuEditarPersonagemScript.setEnabled(Config.getSeDependenciaDeMontagem());
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -993,26 +1014,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmScript.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        if (Config.getOS().indexOf("win") >= 0) {
-            MnuLocalhost.setEnabled(false);
-            MnuLocalhost.setEnabled(false);
-            MnuEditarContas.setEnabled(false);
-        } else if (Config.getOS().indexOf("mac") >= 0) {
-
-            MnuLocalhost.setEnabled(false);
-            MnuLocalhost.setEnabled(false);
-            MnuEditarContas.setEnabled(false);
-        } else {
-            if (Config.getSeDependenciaDeSVN()) {
-                MnuLocalhost.setEnabled(true);
-                //MnuSistemaEnviar.setEnabled(true);
-            } else {
-                MnuLocalhost.setEnabled(false);
-                MnuLocalhost.setEnabled(false);
-            }
-            //MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
-            MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
-        }
+        VerificarMenus();
         if(FrmPrincipal.Config.getOS().indexOf("linux") >= 0) {
             if(FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
                 if(FrmPrincipal.Config.getSeDependenciaDeSVN()){

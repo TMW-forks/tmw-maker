@@ -8,6 +8,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -23,53 +26,56 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jToolBar1" alignment="0" pref="626" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="1"/>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="LblMostruario" min="-2" max="-2" attributes="1"/>
+              <EmptySpace pref="306" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="482" max="-2" attributes="1"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" pref="602" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jToolBar1" alignment="0" pref="506" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="304" max="32767" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="LblMostruario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="306" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="LblMostruario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Bitstream Vera Sans" size="18" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/indigovox/localhost/tmwdata/graphics/items/espada-demoniaca.png"/>
+          <Image iconType="2" name="/home/indigovox/localhost/tmwdata/graphics/items/generic-4leafclover.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Espada Demoniaca"/>
+        <Property name="text" type="java.lang.String" value="Verdadeiro Trevo de 4 Folhas"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+      <Properties>
+        <Property name="tabPlacement" type="int" value="2"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Nomes">
-                <Property name="tabTitle" type="java.lang.String" value="Nomes"/>
+              <JTabbedPaneConstraints tabName="Informa&#xe7;&#xe3;o">
+                <Property name="tabTitle" type="java.lang.String" value="Informa&#xe7;&#xe3;o"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -79,22 +85,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" max="-2" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField3" alignment="0" pref="323" max="32767" attributes="0"/>
-                                  <Component id="jTextField4" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jTextField7" alignment="0" max="32767" attributes="1"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" max="-2" attributes="0">
-                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace pref="57" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -103,6 +95,18 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jTextField6" pref="322" max="32767" attributes="0"/>
                                   <Component id="jTextField5" alignment="0" pref="322" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="TxtNomeTitulo" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jTextField3" alignment="0" pref="323" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                       </Group>
@@ -115,18 +119,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TxtNomeTitulo" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField3" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField7" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -138,7 +137,7 @@
                           <Component id="jTextField6" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="102" max="32767" attributes="0"/>
+                      <EmptySpace pref="164" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -151,7 +150,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="EspadaDemoniaca"/>
+                <Property name="text" type="java.lang.String" value="trevoverdadeiro"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[76, 25]"/>
                 </Property>
@@ -159,13 +158,17 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nome Part&#xed;cula:"/>
+                <Property name="text" type="java.lang.String" value="Nome T&#xed;tulo:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="TxtNomeTitulo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Espada Demoniaca"/>
+                <Property name="text" type="java.lang.String" value="Verdadeiro Trevo de 4 Folhas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtNomeTituloActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtNomeTituloKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -174,7 +177,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Espada usada por Dem&#xf4;nios."/>
+                <Property name="text" type="java.lang.String" value="Aumenta o seu atraque cr&#xed;tico"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -184,21 +187,11 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="+175 Dano, 1 Alcance"/>
+                <Property name="text" type="java.lang.String" value="+10 Sorte"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nome Etiqueta:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField7">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Espada Demoniaca"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -225,7 +218,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jComboBox1" pref="311" max="32767" attributes="1"/>
+                                  <Component id="CmbIcone" pref="311" max="32767" attributes="1"/>
                                   <Component id="jComboBox3" alignment="0" pref="311" max="32767" attributes="1"/>
                               </Group>
                           </Group>
@@ -241,7 +234,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CmbIcone" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -250,9 +243,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="84" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="87" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="87" max="-2" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -263,16 +256,17 @@
                 <Property name="text" type="java.lang.String" value="&#xcd;cone do Invent&#xe1;rio:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="CmbIcone">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="espada-demoniaca.png"/>
-                    <StringItem index="1" value="espada-michael-arcanjo.png"/>
-                    <StringItem index="2" value="espada-lider.png"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="generic-4leafclover.png"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbIconeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
@@ -289,7 +283,7 @@
                     <StringItem index="3" value="11: weapon-scythe.xml"/>
                   </StringArray>
                 </Property>
-                <Property name="selectedIndex" type="int" value="1"/>
+                <Property name="selectedIndex" type="int" value="0"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -309,9 +303,9 @@
                           <Data value="Feminino"/>
                         </Column>
                         <Column editable="true" title="Arquivo do Sprite XML" type="java.lang.Object">
-                          <Data value="weapon-dagger.xml"/>
-                          <Data value="leg-shorts-male.xml|#A4B2B2,FFFFFF"/>
-                          <Data value="leg-shorts-female.xml|#A4B2B2,FFFFFF"/>
+                          <Data value=""/>
+                          <Data value=""/>
+                          <Data value=""/>
                         </Column>
                       </Table>
                     </Property>
@@ -336,9 +330,9 @@
                           <Data value="Lan&#xe7;ar (swing)"/>
                         </Column>
                         <Column editable="true" title="Arquivo de &#xc1;udio OGG" type="java.lang.Object">
-                          <Data value="short-sword-hit1.ogg"/>
-                          <Data value="short-sword-miss1.ogg"/>
-                          <Data value="bow_shoot_1.ogg"/>
+                          <Data value=""/>
+                          <Data value=""/>
+                          <Data value=""/>
                         </Column>
                       </Table>
                     </Property>
