@@ -3,7 +3,6 @@
 Se desejar baixar o código fonte digite o comando abaixo em seu terminal.
 
 || Versão || Comando SVN de Terminal Shell ||
-|| v0.2 || svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
-
+|| v0.2  || svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
 
 || *ATENÇÃO:* O comando *SVN* acima precisará ter um aplicativo de subversion. E caso você já possua um aplicativo(Tipo NetBeans), o SVN irá pedir "*username*" e "*password*". Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação para conseguir esse Username e Password.  ||
