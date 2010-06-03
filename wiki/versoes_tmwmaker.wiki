@@ -6,7 +6,6 @@ Mas *SOMENTE* funciona se tiver o *[OpenJDK OpenJDK Java 6 Runtime]* instalado e
 ----
 
 ==TMW-Maker v0.2==
- * [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar Download (2MB)] - Aplicativo desenvolvido em java, que por enquanto apenas recebe, monta, executa e envia o repositório do [http://code.google.com/p/themanaworld-br/ The Mana World Brasil] apenas para usuários do Ubuntu Linux i386. Ele também edita as contas dos localhost, dando e tirando poderes GMs dos usuários. Mas só faz isso se tiver todas as suas dependências pré-atendidas. Sempre existe a função de auto-update. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif
-([CodigoFonte Código Fonte])
+ * [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar Download (2MB)] - Aplicativo desenvolvido em java, que por enquanto apenas recebe, monta, executa e envia o repositório do [http://code.google.com/p/themanaworld-br/ The Mana World Brasil] apenas para usuários do Ubuntu Linux i386. Ele também edita as contas dos localhost, dando e tirando poderes GMs dos usuários. Mas só faz isso se tiver todas as suas dependências pré-atendidas. Sempre existe a função de auto-update. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ([CodigoFonte Código Fonte])
 
 https://tmw-maker.googlecode.com/svn/Imagens/Versoes/TMW-Maker_v0.2.png
