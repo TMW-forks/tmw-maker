@@ -11,11 +11,13 @@ public class ItemClass {
     private String Sprite=""; //item.xml
     private String AudiosTipos=""; //"sound event" em item.xml
     private String AudiosOGGs=""; //"sound" em item.xml
-    private String TipoNome=""; //"weapon-type" em item.xml
-    private int TipoAnimacao=0; //"weapon_type" em item.xml
-    //OBS: "weapon-type" é diferente de "weapon_type"
+    private String TipoNome=""; //"Type" em item.xml
     private int TipoObjeto=0; // 0:Healing, 2:Usable, 3:Misc, 4:Weapon, 5:Armor, 6:Card, 7:Pet egg, 8:petequip, 10:arrow,
     //11:Usable with delayed consumption (all items with script "pet" or "itemskill": Lures, Scrolls, Magnifier, Yggdrasil Leaf)
+    private String AnimacaoNome=""; //"weapon-type" em item.xml
+    private int AnimacaoNumero=0; //"weapon_type" em item.xml
+    //OBS: "weapon-type" é diferente de "weapon_type"
+    
     private int PrecoDeCompra=0; //Price/Buy
     private int PrecoDeVenda=0; //Sell
     private int Peso=0; //Width
@@ -61,8 +63,9 @@ public class ItemClass {
     public void setAudiosTipos(String NovoAudiosTipos){AudiosTipos=NovoAudiosTipos.toString();}
     public void setAudiosOGGs(String NovoAudiosOGGs){AudiosOGGs=NovoAudiosOGGs.toString();}
     public void setTipoNome(String NovoTipoNome){TipoNome=NovoTipoNome.toString();}
-    public void setTipoAnimacao(int NovoTipoAnimacao){TipoAnimacao=NovoTipoAnimacao;}
     public void setTipoObjeto(int NovoTipoObjeto){TipoObjeto=NovoTipoObjeto;}
+    public void setAnimacaoNumero(int NovoAnimacaoNumero){AnimacaoNumero=NovoAnimacaoNumero;}
+    public void setAnimacaoNome(String NovoAnimacaoNome){AnimacaoNome=NovoAnimacaoNome.toString();}
     public void setPrecoDeCompra(int NovoPrecoDeCompra){PrecoDeCompra=NovoPrecoDeCompra;}
     public void setPrecoDeVenda(int NovoPrecoDeVenda){PrecoDeVenda=NovoPrecoDeVenda;}
     public void setPeso(int NovoPeso){Peso=NovoPeso;}
@@ -91,8 +94,9 @@ public class ItemClass {
     public String getAudiosTipos(){return AudiosTipos.toString();}
     public String getAudiosOGGs(){return AudiosOGGs.toString();}
     public String getTipoNome(){return TipoNome.toString();}
-    public int getTipoAnimacao(){return TipoAnimacao;}
     public int getTipoObjeto(){return TipoObjeto;}
+    public String getAnimacaoNome(){return AnimacaoNome.toString();}
+    public int getAnimacaoNumero(){return AnimacaoNumero;}
     public int getPrecoDeCompra(){return PrecoDeCompra;}
     public int getPrecoDeVenda(){return PrecoDeVenda;}
     public int getPeso(){return Peso;}
