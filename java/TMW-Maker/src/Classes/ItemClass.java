@@ -4,8 +4,7 @@ public class ItemClass {
 
     private int ID=0;
     private String NomeSumonico="";
-    private String NomeParticula="";
-    private String NomeEtiqueta=""; //"name" em item.xml
+    private String NomeTitulo=""; //"name" em item.xml
     private String Descricao=""; //"description" em item.xml
     private String IconePNG=""; //"image" em item.xml
     private String Sprite=""; //item.xml
@@ -17,7 +16,6 @@ public class ItemClass {
     private String AnimacaoNome=""; //"weapon-type" em item.xml
     private int AnimacaoNumero=0; //"weapon_type" em item.xml
     //OBS: "weapon-type" é diferente de "weapon_type"
-    
     private int PrecoDeCompra=0; //Price/Buy
     private int PrecoDeVenda=0; //Sell
     private int Peso=0; //Width
@@ -55,8 +53,7 @@ public class ItemClass {
 
     public void setID(int NovoID){ID=NovoID;}
     public void setNomeSumonico(String NovoNomeSumonico){NomeSumonico=NovoNomeSumonico.toString();}
-    public void setNomeParticula(String NovoNomeParticula){NomeParticula=NovoNomeParticula.toString();}
-    public void setNomeEtiqueta(String NovoNomeEtiqueta){NomeEtiqueta=NovoNomeEtiqueta.toString();}
+    public void setNomeTitulo(String NovoNomeTitulo){NomeTitulo=NovoNomeTitulo.toString();}
     public void setDescricao(String NovoDescricao){Descricao=NovoDescricao.toString();}
     public void setIconePNG(String NovoIconePNG){IconePNG=NovoIconePNG.toString();}
     public void setSprite(String NovoSprite){Sprite=NovoSprite.toString();}
@@ -86,8 +83,7 @@ public class ItemClass {
 
     public int getID(){return ID;}
     public String getNomeSumonico(){return NomeSumonico.toString();}
-    public String getNomeParticula(){return NomeParticula.toString();}
-    public String getNomeEtiqueta(){return NomeEtiqueta.toString();}
+    public String getNomeTitulo(){return NomeTitulo.toString();}
     public String getDescricao(){return Descricao.toString();}
     public String getIconePNG(){return IconePNG.toString();}
     public String getSprite(){return Sprite.toString();}
