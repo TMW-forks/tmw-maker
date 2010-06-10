@@ -11,19 +11,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.charset.CharacterCodingException;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.swing.JOptionPane;
@@ -124,15 +117,9 @@ public class ConfigClass {
     }
     public static String UTF8toISO88591(String UTF8){
         try{
-            String busca = new String(UTF8.getBytes("ISO-8859-1"), "UTF-8");
-            if(busca.indexOf("?")>=0) {
-                return busca;
-            }else{
-                return UTF8;
-            }
+            return java.net.URLDecoder.decode(UTF8, "ISO-8859-1");
         } catch(UnsupportedEncodingException E){
             return UTF8;
-
         }
     }
     public static String ISO88591toUTF8(String ISO88591){
@@ -142,7 +129,7 @@ public class ConfigClass {
         } catch(UnsupportedEncodingException E){
             return ISO88591;
 
-        }
+        }/**/
     }
     public static boolean AbrirNavegador(String URL) {
         //minimizes the app

@@ -11,7 +11,6 @@
   </SyntheticProperties>
   <Events>
     <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
-    <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowActivated"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -31,7 +30,7 @@
           <Component id="jToolBar1" alignment="0" pref="607" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="LblTitulo" alignment="0" pref="583" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="PneVisualizacao" min="-2" max="-2" attributes="0"/>
@@ -48,13 +47,13 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="LblTitulo" min="-2" max="-2" attributes="0"/>
+              <Component id="LblTitulo" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="PneVisualizacao" min="-2" max="-2" attributes="1"/>
-                  <Component id="TpnPaleta" min="-2" pref="338" max="-2" attributes="1"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="TpnPaleta" min="0" pref="0" max="32767" attributes="1"/>
+                  <Component id="PneVisualizacao" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,11 +89,11 @@
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField5" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
+                          <Component id="jTextField5" alignment="0" pref="0" max="32767" attributes="1"/>
                           <Component id="jTextField6" alignment="0" pref="245" max="32767" attributes="1"/>
                           <Component id="TxtNomeSumonico" alignment="0" pref="245" max="32767" attributes="1"/>
                           <Component id="TxtNomeTitulo" alignment="0" pref="245" max="32767" attributes="1"/>
-                          <Component id="CmbTipo1" alignment="0" pref="245" max="32767" attributes="1"/>
+                          <Component id="CmbTipo" alignment="0" pref="245" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -106,13 +105,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="TxtNomeTitulo" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNomeTitulo" linkSize="1" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TxtNomeSumonico" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNomeSumonico" linkSize="1" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField5" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField5" linkSize="1" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField6" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField6" linkSize="1" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel5" linkSize="1" min="-2" max="-2" attributes="0"/>
@@ -126,10 +125,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="CmbTipo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CmbTipo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel11" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="136" max="32767" attributes="0"/>
+                      <EmptySpace pref="65" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -143,6 +142,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="TxtNomeSumonico">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="verdadeirotrevo"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[76, 25]"/>
@@ -157,6 +157,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="TxtNomeTitulo">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="Verdadeiro Trevo"/>
               </Properties>
               <Events>
@@ -172,6 +173,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField5">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="Trevo de 4 Folhas s&#xf3; encontrado na Cidade das Fadas."/>
               </Properties>
             </Component>
@@ -183,6 +185,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField6">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="+10 Sorte, +25 Def.M&#xe1;gica"/>
               </Properties>
             </Component>
@@ -192,23 +195,22 @@
                 <Property name="text" type="java.lang.String" value="Tipo de &#xcd;tem:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="CmbTipo1">
+            <Component class="javax.swing.JComboBox" name="CmbTipo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="10">
-                    <StringItem index="0" value="0: Cur&#xe1;vel"/>
+                    <StringItem index="0" value="0: Medicinal / Afetador"/>
                     <StringItem index="1" value="2: Consum&#xed;vel"/>
-                    <StringItem index="2" value="3: Cont&#xe1;vel (Gen&#xe9;rico)"/>
-                    <StringItem index="3" value="4: Para Ataques"/>
-                    <StringItem index="4" value="5: Para Defesas"/>
+                    <StringItem index="2" value="3: Const&#xe1;vel / Gen&#xe9;rico"/>
+                    <StringItem index="3" value="4: Arma"/>
+                    <StringItem index="4" value="5: Prote&#xe7;&#xe3;o / Vestimenta"/>
                     <StringItem index="5" value="6: Carta"/>
                     <StringItem index="6" value="7: Ovo de Mascote"/>
                     <StringItem index="7" value="8: Equipamento de Mascote,"/>
-                    <StringItem index="8" value="10: Part&#xed;cula"/>
+                    <StringItem index="8" value="10: Flecha / Muni&#xe7;&#xe3;o"/>
                     <StringItem index="9" value="11: Consum&#xed;vel lentamente"/>
                   </StringArray>
                 </Property>
-                <Property name="selectedIndex" type="int" value="4"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -262,8 +264,8 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="CmbLocal" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CmbLocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="81" max="-2" attributes="0"/>
@@ -309,6 +311,9 @@
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -324,13 +329,14 @@
                           <Data value="Masculino"/>
                           <Data value="Feminino"/>
                         </Column>
-                        <Column editable="true" title="Arquivo do Sprite XML" type="java.lang.Object">
+                        <Column editable="false" title="Arquivo do Sprite XML" type="java.lang.Object">
                           <Data value=""/>
                           <Data value=""/>
                           <Data value=""/>
                         </Column>
                       </Table>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -391,7 +397,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace pref="205" max="32767" attributes="0"/>
+                      <EmptySpace pref="134" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -413,13 +419,14 @@
                           <Data value="Falhar (strike)"/>
                           <Data value="Lan&#xe7;ar (swing)"/>
                         </Column>
-                        <Column editable="true" title="Arquivo de &#xc1;udio OGG" type="java.lang.Object">
+                        <Column editable="false" title="Arquivo de &#xc1;udio OGG" type="java.lang.Object">
                           <Data value=""/>
                           <Data value=""/>
                           <Data value=""/>
                         </Column>
                       </Table>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -439,7 +446,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -447,9 +454,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jSpinner1" alignment="1" min="0" pref="0" max="32767" attributes="1"/>
-                          <Component id="jSpinner2" alignment="1" pref="105" max="32767" attributes="1"/>
-                          <Component id="jSpinner3" alignment="1" min="-2" pref="105" max="-2" attributes="1"/>
+                          <Component id="SpnPeso" alignment="1" min="0" pref="0" max="32767" attributes="1"/>
+                          <Component id="SpnPrecoCompra" alignment="1" pref="105" max="32767" attributes="1"/>
+                          <Component id="SpnPrecoVenda" alignment="1" min="-2" pref="105" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -457,7 +464,7 @@
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="90" max="32767" attributes="0"/>
+                      <EmptySpace pref="99" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -468,48 +475,50 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jSpinner1" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="SpnPeso" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jSpinner2" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="SpnPrecoCompra" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jSpinner3" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="jLabel13" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" linkSize="1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="SpnPrecoVenda" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jLabel8" linkSize="1" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jLabel8" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="198" max="32767" attributes="0"/>
+                      <EmptySpace pref="127" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JSpinner" name="jSpinner2">
+            <Component class="javax.swing.JSpinner" name="SpnPrecoCompra">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="50000" maximum="10000000" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Pre&#xe7;o de Venda:"/>
+                <Property name="text" type="java.lang.String" value="Pre&#xe7;o de compra:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner3">
+            <Component class="javax.swing.JSpinner" name="SpnPrecoVenda">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="50000" maximum="10000000" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                  <SpinnerModel initial="25000" maximum="10000000" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
@@ -524,11 +533,12 @@
                 <Property name="text" type="java.lang.String" value="Peso:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner1">
+            <Component class="javax.swing.JSpinner" name="SpnPeso">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="10" maximum="100000" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -552,7 +562,7 @@
     </Container>
     <Container class="javax.swing.JToolBar" name="jToolBar1">
       <Properties>
-        <Property name="rollover" type="boolean" value="true"/>
+        <Property name="floatable" type="boolean" value="false"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
@@ -623,7 +633,7 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="BtnCarregar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagem/Botoes/sbl_pasta.gif"/>
@@ -634,6 +644,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCarregarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
@@ -1070,10 +1083,6 @@
           <Font name="Bitstream Vera Sans" size="24" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/indigovox/localhost/tmwdata/graphics/items/generic-4leafclover.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Verdadeiro Trevo"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
             <EtchetBorder/>
