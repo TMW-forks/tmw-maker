@@ -1,11 +1,19 @@
 #labels Versões,Download,TMW-Maker
 =DOWNLOAD DO TMW-MAKER=
-O TMW-Maker passa constantemente por várias evoluções. Aqui você pode baixar cada uma delas. Para usar essas versões é só baixar e clicar sobre o Arquivo JAR.
-Mas *SOMENTE* funciona se tiver o *[OpenJDK OpenJDK Java 6 Runtime]* instalado em seu computador.
+O TMW-Maker passa constantemente por várias evoluções. Aqui você pode baixar cada uma delas. 
 
 ----
 
 ==TMW-Maker v0.2==
- * [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar TMW-Maker.jar (~2MB)] - Aplicativo desenvolvido em java, que por enquanto apenas recebe, monta, executa e envia o repositório do [http://code.google.com/p/themanaworld-br/ The Mana World Brasil] apenas para usuários do Ubuntu Linux i386. Ele também edita as contas dos localhost, pondo e retirando poderes GMs dos usuários. Mas só faz isso se tiver todas as suas dependências pré-atendidas. Sempre existe a função de auto-update, que faz com que o TMW-Maker se atialize sozinho. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ([CodigoFonte Código Fonte])
+|| [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar TMW-Maker.jar (~2,1MB)] || Aplicativo desenvolvido em java apenas para usuários do Ubuntu Linux i386. Para usar essas versões é só baixar e clicar sobre o Arquivo JAR. Mas *SOMENTE* funciona se tiver o *[OpenJDK OpenJDK Java 6 Runtime]* instalado em seu computador. ||
+|| [CodigoFonte Código Fonte] || Necessita da IDE NetBeans para visualizar e editar o código fonte.  ||
+
+*Utilidades:*
+ * Faz auto-update via internet. Mantendo o TMW-Maker na versão mais recente, 
+ * Recebe, Monta, Executa e Devolve o localhost ao repositórios via internet;
+ * Edita poderes de GM nas contas dos localhost. 
+ * Edita Scripts de NPC nos localhost. (Função Incompleta)
+
+|| OBS.: As utilidades acima só funcionarão se tiver todas as suas dependências pré-atendidas. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ||
 
 https://tmw-maker.googlecode.com/svn/Imagens/Versoes/TMW-Maker_v0.2.png
