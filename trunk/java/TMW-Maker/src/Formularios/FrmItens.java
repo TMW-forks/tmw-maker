@@ -3,7 +3,14 @@ package Formularios;
 import Classes.ConfigClass;
 import Classes.ItemClass;
 import java.awt.Cursor;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 public class FrmItens extends javax.swing.JDialog {
@@ -34,7 +41,7 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        CmbTipo1 = new javax.swing.JComboBox();
+        CmbTipo = new javax.swing.JComboBox();
         PneEquipamento = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         CmbIcone = new javax.swing.JComboBox();
@@ -48,12 +55,12 @@ public class FrmItens extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         PneComercio = new javax.swing.JPanel();
-        jSpinner2 = new javax.swing.JSpinner();
+        SpnPrecoCompra = new javax.swing.JSpinner();
         jLabel12 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
+        SpnPrecoVenda = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        SpnPeso = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -63,7 +70,7 @@ public class FrmItens extends javax.swing.JDialog {
         BtnAvancar = new javax.swing.JButton();
         BtnLocalizar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton4 = new javax.swing.JButton();
+        BtnCarregar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -90,9 +97,6 @@ public class FrmItens extends javax.swing.JDialog {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
         });
 
         PneInformacao.setEnabled(false);
@@ -100,12 +104,14 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Nome Sumônico:");
 
+        TxtNomeSumonico.setEditable(false);
         TxtNomeSumonico.setText("verdadeirotrevo");
         TxtNomeSumonico.setMinimumSize(new java.awt.Dimension(76, 25));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Nome Título:");
 
+        TxtNomeTitulo.setEditable(false);
         TxtNomeTitulo.setText("Verdadeiro Trevo");
         TxtNomeTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,18 +127,19 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Descrição:");
 
+        jTextField5.setEditable(false);
         jTextField5.setText("Trevo de 4 Folhas só encontrado na Cidade das Fadas.");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Efeito:");
 
+        jTextField6.setEditable(false);
         jTextField6.setText("+10 Sorte, +25 Def.Mágica");
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Tipo de Ítem:");
 
-        CmbTipo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0: Curável", "2: Consumível", "3: Contável (Genérico)", "4: Para Ataques", "5: Para Defesas", "6: Carta", "7: Ovo de Mascote", "8: Equipamento de Mascote,", "10: Partícula", "11: Consumível lentamente" }));
-        CmbTipo1.setSelectedIndex(4);
+        CmbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0: Medicinal / Afetador", "2: Consumível", "3: Constável / Genérico", "4: Arma", "5: Proteção / Vestimenta", "6: Carta", "7: Ovo de Mascote", "8: Equipamento de Mascote,", "10: Flecha / Munição", "11: Consumível lentamente" }));
 
         javax.swing.GroupLayout PneInformacaoLayout = new javax.swing.GroupLayout(PneInformacao);
         PneInformacao.setLayout(PneInformacaoLayout);
@@ -148,11 +155,11 @@ public class FrmItens extends javax.swing.JDialog {
                     .addComponent(jLabel11))
                 .addGap(5, 5, 5)
                 .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(CmbTipo1, 0, 245, Short.MAX_VALUE))
+                    .addComponent(CmbTipo, 0, 245, Short.MAX_VALUE))
                 .addContainerGap())
         );
         PneInformacaoLayout.setVerticalGroup(
@@ -161,13 +168,13 @@ public class FrmItens extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PneInformacaoLayout.createSequentialGroup()
-                        .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PneInformacaoLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,9 +185,9 @@ public class FrmItens extends javax.swing.JDialog {
                         .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CmbTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         PneInformacaoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {TxtNomeSumonico, TxtNomeTitulo, jLabel11, jLabel4, jLabel5, jLabel6, jLabel7, jTextField5, jTextField6});
@@ -200,6 +207,8 @@ public class FrmItens extends javax.swing.JDialog {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<nenhum>", "1: weapon-dagger.xml", "10: weapon-bow.xml", "11: weapon-scythe.xml", "12: weapon-staff.xml" }));
 
+        jScrollPane2.setEnabled(false);
+
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Unisex", ""},
@@ -211,13 +220,14 @@ public class FrmItens extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setEnabled(false);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -272,8 +282,6 @@ public class FrmItens extends javax.swing.JDialog {
                 .addGap(115, 115, 115))
         );
 
-        PneEquipamentoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbLocal, jLabel10});
-
         TpnPaleta.addTab("Equipamento", PneEquipamento);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -287,13 +295,14 @@ public class FrmItens extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout PneAudioLayout = new javax.swing.GroupLayout(PneAudio);
@@ -310,17 +319,19 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(PneAudioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         TpnPaleta.addTab("Áudio", PneAudio);
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(50000, 0, 10000000, 1));
+        SpnPrecoCompra.setModel(new javax.swing.SpinnerNumberModel(50000, 0, 10000000, 1));
+        SpnPrecoCompra.setFocusable(false);
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel12.setText("Preço de Venda:");
+        jLabel12.setText("Preço de compra:");
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(50000, 0, 10000000, 1));
+        SpnPrecoVenda.setModel(new javax.swing.SpinnerNumberModel(25000, 0, 10000000, 1));
+        SpnPrecoVenda.setFocusable(false);
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Preço de Venda:");
@@ -328,7 +339,8 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Peso:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(10, 0, 100000, 1));
+        SpnPeso.setModel(new javax.swing.SpinnerNumberModel(10, 0, 100000, 1));
+        SpnPeso.setFocusable(false);
 
         jLabel1.setText("gramas");
 
@@ -341,22 +353,22 @@ public class FrmItens extends javax.swing.JDialog {
         PneComercioLayout.setHorizontalGroup(
             PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PneComercioLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(5, 5, 5)
                 .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jSpinner1, 0, 0, Short.MAX_VALUE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SpnPeso, 0, 0, Short.MAX_VALUE)
+                    .addComponent(SpnPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(SpnPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(jLabel14))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         PneComercioLayout.setVerticalGroup(
             PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,27 +377,25 @@ public class FrmItens extends javax.swing.JDialog {
                 .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PneComercioLayout.createSequentialGroup()
                         .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SpnPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SpnPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SpnPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
-
-        PneComercioLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel12, jLabel13, jLabel14, jLabel3, jLabel8, jSpinner1, jSpinner2, jSpinner3});
 
         TpnPaleta.addTab("Comércio", PneComercio);
 
-        jToolBar1.setRollover(true);
+        jToolBar1.setFloatable(false);
 
         BtnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_voltar.gif"))); // NOI18N
         BtnVoltar.setToolTipText("Anterior (Ctrl+Alt+?)");
@@ -437,13 +447,18 @@ public class FrmItens extends javax.swing.JDialog {
         jToolBar1.add(BtnLocalizar);
         jToolBar1.add(jSeparator1);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
-        jButton4.setToolTipText("Abrir (Ctrl+O)");
-        jButton4.setEnabled(false);
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
+        BtnCarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
+        BtnCarregar.setToolTipText("Abrir (Ctrl+O)");
+        BtnCarregar.setEnabled(false);
+        BtnCarregar.setFocusable(false);
+        BtnCarregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnCarregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnCarregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCarregarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BtnCarregar);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
         jButton5.setToolTipText("Salvar (Ctrl+S)");
@@ -502,7 +517,7 @@ public class FrmItens extends javax.swing.JDialog {
         LblMostruario3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         LblEquipCharm.setBackground(java.awt.Color.lightGray);
-        LblEquipCharm.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 18));
+        LblEquipCharm.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 18)); // NOI18N
         LblEquipCharm.setIcon(new javax.swing.ImageIcon("/home/indigovox/localhost/tmwdata/graphics/items/generic-4leafclover.png")); // NOI18N
         LblEquipCharm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         LblEquipCharm.setMaximumSize(new java.awt.Dimension(32, 32));
@@ -640,8 +655,6 @@ public class FrmItens extends javax.swing.JDialog {
         LblTitulo.setBackground(java.awt.Color.lightGray);
         LblTitulo.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 24)); // NOI18N
         LblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblTitulo.setIcon(new javax.swing.ImageIcon("/home/indigovox/localhost/tmwdata/graphics/items/generic-4leafclover.png")); // NOI18N
-        LblTitulo.setText("Verdadeiro Trevo");
         LblTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         LblTitulo.setOpaque(true);
 
@@ -652,9 +665,9 @@ public class FrmItens extends javax.swing.JDialog {
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LblTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TpnPaleta, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -665,19 +678,20 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(LblTitulo)
+                .addComponent(LblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TpnPaleta, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TpnPaleta, 0, 0, Short.MAX_VALUE)
+                    .addComponent(PneVisualizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        ListaIcone();
+        AbrirItens();
     }//GEN-LAST:event_formWindowOpened
     private void CmbIconeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIconeActionPerformed
         AtualizarImagem();
@@ -712,10 +726,9 @@ public class FrmItens extends javax.swing.JDialog {
         FrmItemLocalizar.setVisible(true);/**/
     }//GEN-LAST:event_BtnLocalizarActionPerformed
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        ListaIcone();
+    private void BtnCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCarregarActionPerformed
         AbrirItens();
-    }//GEN-LAST:event_formWindowActivated
+    }//GEN-LAST:event_BtnCarregarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -736,12 +749,13 @@ public class FrmItens extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAvancar;
+    private javax.swing.JButton BtnCarregar;
     private javax.swing.JButton BtnLocalizar;
     private javax.swing.JButton BtnVoltar;
     public static javax.swing.JComboBox CmbIDs;
     private javax.swing.JComboBox CmbIcone;
     private javax.swing.JComboBox CmbLocal;
-    private javax.swing.JComboBox CmbTipo1;
+    private javax.swing.JComboBox CmbTipo;
     private javax.swing.JLabel LblEquipAmmo;
     private javax.swing.JLabel LblEquipArms;
     private javax.swing.JLabel LblEquipCharm;
@@ -760,10 +774,12 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JPanel PneEquipamento;
     private javax.swing.JPanel PneInformacao;
     private javax.swing.JPanel PneVisualizacao;
+    private javax.swing.JSpinner SpnPeso;
+    private javax.swing.JSpinner SpnPrecoCompra;
+    private javax.swing.JSpinner SpnPrecoVenda;
     private javax.swing.JTabbedPane TpnPaleta;
     private javax.swing.JTextField TxtNomeSumonico;
     private javax.swing.JTextField TxtNomeTitulo;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -786,9 +802,6 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField5;
@@ -848,78 +861,86 @@ public class FrmItens extends javax.swing.JDialog {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
                 FrmPrincipal.PgbBarra.setString("Carregando...");
-                FrmPrincipal.setAvisoEmEstatus("Favor espera carregar o Banco de Dados de Itens...");
+                FrmPrincipal.setAvisoEmEstatus("Favor espere carregar o Banco de Dados de Itens...");
                 TpnPaleta.setVisible(false);
                 PneVisualizacao.setVisible(false);
-                String Conteudo="", Cabecalho="", Bloco="";
+                LblTitulo.setVisible(false);
+                CmbIDs.setEnabled(false);
+                BtnVoltar.setEnabled(false);
+                BtnAvancar.setEnabled(false);
+                BtnLocalizar.setEnabled(false);
+                BtnCarregar.setEnabled(false);
+
+                String Conteudo="", Linha="", PartesDaLinha[]=null;
                 try {
-                    FileReader CapsulaDeLer = new FileReader(EnderecoItensTXT);
-                    int Caracater = CapsulaDeLer.read();
-                    while (Caracater!=-1) {
-                        Conteudo = Conteudo + (char) Caracater;
-                        Caracater = CapsulaDeLer.read();
+                    FileInputStream stream = new FileInputStream(EnderecoItensTXT);
+                    InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
+                    BufferedReader reader = new BufferedReader(streamReader);
+                    while ((Linha = reader.readLine()) != null) {
+                        PartesDaLinha=Linha.split(",");
+                        if(
+                            PartesDaLinha.length>=19 &&
+                            !PartesDaLinha[0].equals("0") &&
+                            !Linha.substring(0, 1).trim().equals("#") &&
+                            !Linha.substring(0, 2).trim().equals("//")
+                        ){
+                            if(!Conteudo.equals("")){
+                                Conteudo=Conteudo+"\n"+Linha;
+                            }else{
+                                Conteudo=Linha;
+                            }
+
+                        }
                     }
-                    CapsulaDeLer.close();
-                }catch (java.io.IOException exc) {
+                    reader.close();
+                    streamReader.close();
+                    stream.close();
+                } catch (IOException ex) {
                     FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!");
                     ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!","AVISO");
                     return; // em caso de falha
                 }
+
+
                 FrmPrincipal.PgbBarra.setIndeterminate(false);
 
-                String Linhas[]=Conteudo.trim().split("\n"), Linha="";
-                int LinhasSemRelevancia=0;
-                String PartesDaLinha[]=null;
+                String Linhas[]=Conteudo.trim().split("\n");
                 FrmPrincipal.PgbBarra.setMinimum(0);
-                FrmPrincipal.PgbBarra.setMaximum((Linhas.length-1)*2);
-                for(int l=0;l<Linhas.length;l++){
-                    Linha=Linhas[l];
-                    System.out.println(Linha);
-                    FrmPrincipal.PgbBarra.setValue(l);
-                    FrmPrincipal.PgbBarra.setString(FrmPrincipal.PgbBarra.getValue()+"/"+FrmPrincipal.PgbBarra.getMaximum());
-                    PartesDaLinha=Linha.split(",");
-                    if(PartesDaLinha.length!=19){
-                        LinhasSemRelevancia++;
-                    }else if(PartesDaLinha[0].equals("0")){
-                        LinhasSemRelevancia++;
-                    }else if(Linha.substring(0, 1).trim().equals("#")){
-                        LinhasSemRelevancia++;
-                    }else if(Linha.substring(0, 2).trim().equals("//")){
-                        LinhasSemRelevancia++;
-                    }
-                }
+                FrmPrincipal.PgbBarra.setMaximum(Linhas.length);
                 FrmPrincipal.PgbBarra.setString("");
-                Itens = new ItemClass[Linhas.length-LinhasSemRelevancia];
-                Object[] ComboIDs= new java.lang.Object[Linhas.length-LinhasSemRelevancia];
-                int ContItens=0;
+                Itens = new ItemClass[Linhas.length];
+                Object[] ComboIDs= new java.lang.Object[Linhas.length];
                 for(int l=0;l<Linhas.length;l++){
                     FrmPrincipal.PgbBarra.setValue(Linhas.length+l);
                     FrmPrincipal.PgbBarra.setString(FrmPrincipal.PgbBarra.getValue()+"/"+FrmPrincipal.PgbBarra.getMaximum());
                     Linha=Linhas[l];
                     PartesDaLinha=Linha.split(",");
-                    if(
-                        PartesDaLinha.length==19 &&
-                        !PartesDaLinha[0].equals("0") &&
-                        !Linha.substring(0, 1).trim().equals("#") &&
-                        !Linha.substring(0, 2).trim().equals("//")
-                    ){
-                        ContItens++;
-                        ComboIDs[ContItens-1] = new Object();
-                        ComboIDs[ContItens-1] = PartesDaLinha[0];
-                        Itens[ContItens-1] = new ItemClass();
-                        Itens[ContItens-1].setID(Integer.parseInt(PartesDaLinha[0].toString()));
-                        Itens[ContItens-1].setNomeSumonico(PartesDaLinha[1].toString());
-                        Itens[ContItens-1].setNomeTitulo(PartesDaLinha[2].toString());
-                    }
+                    ComboIDs[l] = new Object();
+                    ComboIDs[l] = PartesDaLinha[0];
+                    Itens[l] = new ItemClass();
+                    Itens[l].setID(Integer.parseInt(PartesDaLinha[0].toString()));
+                    Itens[l].setNomeSumonico(PartesDaLinha[1].toString());
+                    Itens[l].setNomeTitulo(PartesDaLinha[2].toString());
+                    Itens[l].setTipoObjeto(Integer.parseInt(PartesDaLinha[3].toString()));
+                    Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[4].toString()));
+                    Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[5].toString()));
+                    Itens[l].setPeso(Integer.parseInt(PartesDaLinha[6].toString()));
+                    if(!PartesDaLinha[7].toString().equals("")) Itens[l].setPoderAtaque(Integer.parseInt(PartesDaLinha[7].toString()));
+                    if(!PartesDaLinha[8].toString().equals("")) Itens[l].setPoderDefesa(Integer.parseInt(PartesDaLinha[8].toString()));
+                    
                 }
                 FrmPrincipal.PgbBarra.setString("Caregado!");
                 FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
                 CmbIDs.setModel(new DefaultComboBoxModel(ComboIDs));
-                CmbIDs.setEnabled(true);
-                BtnAvancar.setEnabled(true);
                 TpnPaleta.setVisible(true);
                 PneVisualizacao.setVisible(true);
-                //BtnVoltar.setEnabled(true); //No início não existe volta
+                LblTitulo.setVisible(true);
+                CmbIDs.setEnabled(true);
+                //BtnVoltar.setEnabled(true);
+                BtnAvancar.setEnabled(true);
+                BtnLocalizar.setEnabled(true);
+                BtnCarregar.setEnabled(true);
+                
                 AbrirRegistro(CmbIDs.getSelectedIndex());
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
@@ -934,6 +955,20 @@ public class FrmItens extends javax.swing.JDialog {
         TxtNomeSumonico.setText(Itens[Registro].getNomeSumonico());
         TxtNomeTitulo.setText(Itens[Registro].getNomeTitulo());
         LblTitulo.setText(TxtNomeTitulo.getText());
+        if(Itens[Registro].getTipoObjeto()==0) CmbTipo.setSelectedIndex(0);
+        if(Itens[Registro].getTipoObjeto()==2) CmbTipo.setSelectedIndex(1);
+        if(Itens[Registro].getTipoObjeto()==3) CmbTipo.setSelectedIndex(2);
+        if(Itens[Registro].getTipoObjeto()==4) CmbTipo.setSelectedIndex(3);
+        if(Itens[Registro].getTipoObjeto()==5) CmbTipo.setSelectedIndex(4);
+        if(Itens[Registro].getTipoObjeto()==6) CmbTipo.setSelectedIndex(5);
+        if(Itens[Registro].getTipoObjeto()==7) CmbTipo.setSelectedIndex(6);
+        if(Itens[Registro].getTipoObjeto()==8) CmbTipo.setSelectedIndex(7);
+        if(Itens[Registro].getTipoObjeto()==10) CmbTipo.setSelectedIndex(8);
+        if(Itens[Registro].getTipoObjeto()==11) CmbTipo.setSelectedIndex(9);
+        SpnPeso.setValue(Itens[Registro].getPeso());
+        SpnPrecoCompra.setValue(Itens[Registro].getPrecoDeCompra());
+        SpnPrecoVenda.setValue(Itens[Registro].getPrecoDeVenda());
+
 
         BtnAvancar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()<(CmbIDs.getItemCount()-1)));
         BtnVoltar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()>0));

@@ -6,8 +6,14 @@ import Classes.BlocoDeScript;
 import Classes.ConfigClass;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,11 +59,10 @@ public class FrmPalco extends javax.swing.JDialog {
         try {
             int i = CmbScript.getSelectedIndex();
             Instancia[i].setScript(TxtScriptPalco.getText().toString());
-            FileWriter out = new FileWriter(Endereco);
-            String Capsula=InstanciasArray2String(Instancia);
-            //Capsula=ConfigClass.ISO88591toUTF8(Capsula);
-            out.write(Capsula);
-            out.close();
+            BufferedWriter Capsula = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Endereco),"UTF-8"));
+            Capsula.write(InstanciasArray2String(Instancia));
+            Capsula.flush();
+            Capsula.close();  
             
             CmbScript.setEnabled(true);
             TxtScriptPalco.setEnabled(true);
@@ -77,15 +82,20 @@ public class FrmPalco extends javax.swing.JDialog {
     }
     public void abrirInstancia(String Endereco){
         try {
-            String Conteudo="", Cabecalho="", Bloco="";
-            FileReader CapsulaDeLer = new FileReader(Endereco);
-            int Caracater = CapsulaDeLer.read();
-            while (Caracater!=-1) {
-                Conteudo = Conteudo + (char) Caracater;
-                Caracater = CapsulaDeLer.read();
+            String Conteudo="", Linha="", Cabecalho="", Bloco="";
+            FileInputStream stream = new FileInputStream(Endereco);
+            InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
+            BufferedReader reader = new BufferedReader(streamReader);
+            while ((Linha = reader.readLine()) != null) {
+                if(!Conteudo.equals("")){
+                    Conteudo=Conteudo+"\n"+Linha;
+                }else{
+                    Conteudo=Linha;
+                }
             }
-            CapsulaDeLer.close();
-            //Conteudo=ConfigClass.UTF8toISO88591(Conteudo);
+            reader.close();
+            streamReader.close();
+            stream.close();
 
             int blocos = 0, AbreBloco=0, PontaDeBloco=0, FechaBloco=0;
             do{
