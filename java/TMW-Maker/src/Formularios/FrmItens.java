@@ -5,12 +5,8 @@ import Classes.ItemClass;
 import java.awt.Cursor;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 public class FrmItens extends javax.swing.JDialog {
@@ -46,30 +42,31 @@ public class FrmItens extends javax.swing.JDialog {
         CmbGenero = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
+        ChkEquipavelCabeça = new javax.swing.JCheckBox();
+        ChkEquipavelPernas = new javax.swing.JCheckBox();
+        ChkEquipavelMaos = new javax.swing.JCheckBox();
+        ChkEquipavelPes = new javax.swing.JCheckBox();
+        ChkEquipavelTorco1 = new javax.swing.JCheckBox();
+        ChkEquipavelBraco2 = new javax.swing.JCheckBox();
+        ChkEquipavelBraco1 = new javax.swing.JCheckBox();
+        ChkEquipavelAcessorio = new javax.swing.JCheckBox();
+        ChkEquipavelTorco2 = new javax.swing.JCheckBox();
+        ChkEquipavelMunicao = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        SpnPeso1 = new javax.swing.JSpinner();
+        SpnPoderAtaque = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        SpnPeso2 = new javax.swing.JSpinner();
+        SpnPoderDefesa = new javax.swing.JSpinner();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        SpnPeso3 = new javax.swing.JSpinner();
+        SpnPoderAlcance = new javax.swing.JSpinner();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        SpnPeso4 = new javax.swing.JSpinner();
+        SpnPoderBonusMagico = new javax.swing.JSpinner();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        SpnPeso5 = new javax.swing.JSpinner();
+        SpnOculpacaoDeLote = new javax.swing.JSpinner();
         jLabel24 = new javax.swing.JLabel();
         PneComercio = new javax.swing.JPanel();
         SpnPrecoCompra = new javax.swing.JSpinner();
@@ -93,6 +90,11 @@ public class FrmItens extends javax.swing.JDialog {
         jTable2 = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         CmbLocal = new javax.swing.JComboBox();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        TxtScripAoConsulmir = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        TxtScripAoEquipar = new javax.swing.JTextField();
         jToolBar1 = new javax.swing.JToolBar();
         BtnVoltar = new javax.swing.JButton();
         CmbIDs = new javax.swing.JComboBox();
@@ -196,12 +198,12 @@ public class FrmItens extends javax.swing.JDialog {
                     .addComponent(jLabel25))
                 .addGap(5, 5, 5)
                 .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CmbGenero, 0, 249, Short.MAX_VALUE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(CmbUtilidade, 0, 249, Short.MAX_VALUE))
+                    .addComponent(CmbGenero, 0, 265, Short.MAX_VALUE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(CmbUtilidade, 0, 265, Short.MAX_VALUE))
                 .addContainerGap())
         );
         PneInformacaoLayout.setVerticalGroup(
@@ -242,23 +244,25 @@ public class FrmItens extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Local equipavel do corpo"));
 
-        jCheckBox1.setText("Cabeça (p/ Chapéus)");
+        ChkEquipavelCabeça.setText("Cabeça (p/ Chapéus)");
 
-        jCheckBox2.setText("Pernas (p/ Calças)");
+        ChkEquipavelPernas.setText("Pernas (p/ Calças)");
 
-        jCheckBox3.setText("Mãos (p/ Luvas)");
+        ChkEquipavelMaos.setText("Mãos (p/ Luvas)");
 
-        jCheckBox4.setText("Pés (p/ Sapatos)");
+        ChkEquipavelPes.setText("Pés (p/ Sapatos)");
 
-        jCheckBox5.setText("Torço1 (p/ Vestimentas)");
+        ChkEquipavelTorco1.setText("Torço1 (p/ Vestimentas)");
 
-        jCheckBox7.setText("Braço 2. (p/ Escudos)");
+        ChkEquipavelBraco2.setText("Braço 2 (p/ Escudos)");
 
-        jCheckBox8.setText("Braço 1 (p/ Armas)");
+        ChkEquipavelBraco1.setText("Braço 1 (p/ Armas)");
 
-        jCheckBox9.setText("Acessórios");
+        ChkEquipavelAcessorio.setText("Acessório");
 
-        jCheckBox10.setText("Torço2 (p/ Armaduras)");
+        ChkEquipavelTorco2.setText("Torço2 (p/ Armaduras)");
+
+        ChkEquipavelMunicao.setText("Munição (p/ Flechas)");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -267,42 +271,43 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox10)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox9)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox4)))
-                    .addComponent(jCheckBox7))
+                    .addComponent(ChkEquipavelTorco1)
+                    .addComponent(ChkEquipavelTorco2)
+                    .addComponent(ChkEquipavelCabeça)
+                    .addComponent(ChkEquipavelBraco1)
+                    .addComponent(ChkEquipavelBraco2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChkEquipavelMunicao)
+                    .addComponent(ChkEquipavelAcessorio)
+                    .addComponent(ChkEquipavelMaos)
+                    .addComponent(ChkEquipavelPernas)
+                    .addComponent(ChkEquipavelPes))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox3))
+                    .addComponent(ChkEquipavelCabeça)
+                    .addComponent(ChkEquipavelMaos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox4))
+                    .addComponent(ChkEquipavelTorco1)
+                    .addComponent(ChkEquipavelPes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox10)
-                    .addComponent(jCheckBox2))
+                    .addComponent(ChkEquipavelTorco2)
+                    .addComponent(ChkEquipavelPernas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jCheckBox9))
+                    .addComponent(ChkEquipavelBraco1)
+                    .addComponent(ChkEquipavelAcessorio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ChkEquipavelBraco2)
+                    .addComponent(ChkEquipavelMunicao))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -318,8 +323,8 @@ public class FrmItens extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         TpnPaleta.addTab("Equipamento", jPanel2);
@@ -327,40 +332,40 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Ataque:");
 
-        SpnPeso1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 5));
-        SpnPeso1.setFocusable(false);
+        SpnPoderAtaque.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 5));
+        SpnPoderAtaque.setFocusable(false);
 
         jLabel16.setText("hits");
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Defesa:");
 
-        SpnPeso2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 5));
-        SpnPeso2.setFocusable(false);
+        SpnPoderDefesa.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 5));
+        SpnPoderDefesa.setFocusable(false);
 
         jLabel18.setText("hits");
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("Alcance:");
 
-        SpnPeso3.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
-        SpnPeso3.setFocusable(false);
+        SpnPoderAlcance.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
+        SpnPoderAlcance.setFocusable(false);
 
         jLabel20.setText("metros (tiles)");
 
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("Bonus Mágico:");
 
-        SpnPeso4.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 5));
-        SpnPeso4.setFocusable(false);
+        SpnPoderBonusMagico.setModel(new javax.swing.SpinnerNumberModel(0, -1000, 1000, 5));
+        SpnPoderBonusMagico.setFocusable(false);
 
         jLabel22.setText("pontos");
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel23.setText("Espaço ocupado");
 
-        SpnPeso5.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
-        SpnPeso5.setFocusable(false);
+        SpnOculpacaoDeLote.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
+        SpnOculpacaoDeLote.setFocusable(false);
 
         jLabel24.setText("(extra no inventário)");
 
@@ -379,59 +384,59 @@ public class FrmItens extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpnPoderAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel16))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPeso2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpnPoderDefesa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPeso3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpnPoderAlcance, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPeso4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpnPoderBonusMagico, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel22))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPeso5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpnOculpacaoDeLote, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel24)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpnPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnPoderAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpnPeso2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnPoderDefesa, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpnPeso4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnPoderBonusMagico, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpnPeso3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnPoderAlcance, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpnPeso5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnOculpacaoDeLote, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {SpnPeso1, SpnPeso2, SpnPeso3, jLabel15, jLabel16});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {SpnPoderAlcance, SpnPoderAtaque, SpnPoderDefesa, jLabel15, jLabel16});
 
         TpnPaleta.addTab("Poder", jPanel1);
 
@@ -479,7 +484,7 @@ public class FrmItens extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(jLabel14))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         PneComercioLayout.setVerticalGroup(
             PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,7 +538,7 @@ public class FrmItens extends javax.swing.JDialog {
             PneAudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PneAudioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PneAudioLayout.setVerticalGroup(
@@ -607,13 +612,13 @@ public class FrmItens extends javax.swing.JDialog {
                             .addComponent(jLabel10))
                         .addGap(4, 4, 4)
                         .addGroup(PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CmbIcone, 0, 232, Short.MAX_VALUE)
-                            .addComponent(CmbLocal, 0, 232, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                            .addComponent(CmbIcone, 0, 248, Short.MAX_VALUE)
+                            .addComponent(CmbLocal, 0, 248, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                     .addGroup(PneEquipamentoLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(4, 4, 4)
-                        .addComponent(jComboBox3, 0, 232, Short.MAX_VALUE)))
+                        .addComponent(jComboBox3, 0, 248, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PneEquipamentoLayout.setVerticalGroup(
@@ -637,6 +642,43 @@ public class FrmItens extends javax.swing.JDialog {
         );
 
         TpnPaleta.addTab("Animação", PneEquipamento);
+
+        jLabel26.setText("Executar ao Consulmir:");
+
+        TxtScripAoConsulmir.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+
+        jLabel27.setText("Executar ao Equipar:");
+
+        TxtScripAoEquipar.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TxtScripAoConsulmir, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel27)
+                    .addComponent(TxtScripAoEquipar, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtScripAoConsulmir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtScripAoEquipar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
+        );
+
+        TpnPaleta.addTab("Script", jPanel4);
 
         jToolBar1.setFloatable(false);
 
@@ -905,15 +947,15 @@ public class FrmItens extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LblTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                    .addComponent(LblTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TpnPaleta, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TpnPaleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -923,9 +965,9 @@ public class FrmItens extends javax.swing.JDialog {
                 .addGap(12, 12, 12)
                 .addComponent(LblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TpnPaleta, 0, 0, Short.MAX_VALUE)
-                    .addComponent(PneVisualizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -968,11 +1010,9 @@ public class FrmItens extends javax.swing.JDialog {
         FrmItemLocalizar.setModal(true);
         FrmItemLocalizar.setVisible(true);/**/
     }//GEN-LAST:event_BtnLocalizarActionPerformed
-
     private void BtnCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCarregarActionPerformed
         AbrirItens();
     }//GEN-LAST:event_BtnCarregarActionPerformed
-
     private void CmbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbGeneroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CmbGeneroActionPerformed
@@ -999,6 +1039,16 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JButton BtnCarregar;
     private javax.swing.JButton BtnLocalizar;
     private javax.swing.JButton BtnVoltar;
+    private javax.swing.JCheckBox ChkEquipavelAcessorio;
+    private javax.swing.JCheckBox ChkEquipavelBraco1;
+    private javax.swing.JCheckBox ChkEquipavelBraco2;
+    private javax.swing.JCheckBox ChkEquipavelCabeça;
+    private javax.swing.JCheckBox ChkEquipavelMaos;
+    private javax.swing.JCheckBox ChkEquipavelMunicao;
+    private javax.swing.JCheckBox ChkEquipavelPernas;
+    private javax.swing.JCheckBox ChkEquipavelPes;
+    private javax.swing.JCheckBox ChkEquipavelTorco1;
+    private javax.swing.JCheckBox ChkEquipavelTorco2;
     private javax.swing.JComboBox CmbGenero;
     public static javax.swing.JComboBox CmbIDs;
     private javax.swing.JComboBox CmbIcone;
@@ -1022,29 +1072,22 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JPanel PneEquipamento;
     private javax.swing.JPanel PneInformacao;
     private javax.swing.JPanel PneVisualizacao;
+    private javax.swing.JSpinner SpnOculpacaoDeLote;
     private javax.swing.JSpinner SpnPeso;
-    private javax.swing.JSpinner SpnPeso1;
-    private javax.swing.JSpinner SpnPeso2;
-    private javax.swing.JSpinner SpnPeso3;
-    private javax.swing.JSpinner SpnPeso4;
-    private javax.swing.JSpinner SpnPeso5;
+    private javax.swing.JSpinner SpnPoderAlcance;
+    private javax.swing.JSpinner SpnPoderAtaque;
+    private javax.swing.JSpinner SpnPoderBonusMagico;
+    private javax.swing.JSpinner SpnPoderDefesa;
     private javax.swing.JSpinner SpnPrecoCompra;
     private javax.swing.JSpinner SpnPrecoVenda;
     private javax.swing.JTabbedPane TpnPaleta;
     private javax.swing.JTextField TxtNomeSumonico;
     private javax.swing.JTextField TxtNomeTitulo;
+    private javax.swing.JTextField TxtScripAoConsulmir;
+    private javax.swing.JTextField TxtScripAoEquipar;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1064,6 +1107,8 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1074,6 +1119,7 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
@@ -1186,6 +1232,8 @@ public class FrmItens extends javax.swing.JDialog {
                 FrmPrincipal.PgbBarra.setString("");
                 Itens = new ItemClass[Linhas.length];
                 Object[] ComboIDs= new java.lang.Object[Linhas.length];
+                int Tag1=-1, Tag2=-1; String Script="";
+                int Loc=0;
                 for(int l=0;l<Linhas.length;l++){
                     FrmPrincipal.PgbBarra.setValue(Linhas.length+l);
                     FrmPrincipal.PgbBarra.setString(FrmPrincipal.PgbBarra.getValue()+"/"+FrmPrincipal.PgbBarra.getMaximum());
@@ -1194,16 +1242,29 @@ public class FrmItens extends javax.swing.JDialog {
                     ComboIDs[l] = new Object();
                     ComboIDs[l] = PartesDaLinha[0];
                     Itens[l] = new ItemClass();
-                    Itens[l].setID(Integer.parseInt(PartesDaLinha[0].toString()));
-                    Itens[l].setNomeSumonico(PartesDaLinha[1].toString());
-                    Itens[l].setNomeTitulo(PartesDaLinha[2].toString());
-                    Itens[l].setTipoObjeto(Integer.parseInt(PartesDaLinha[3].toString()));
-                    Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[4].toString()));
-                    Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[5].toString()));
-                    Itens[l].setPeso(Integer.parseInt(PartesDaLinha[6].toString()));
-                    if(!PartesDaLinha[7].toString().equals("")) Itens[l].setPoderAtaque(Integer.parseInt(PartesDaLinha[7].toString()));
+                    Itens[l].setID(Integer.parseInt(PartesDaLinha[0].trim()));
+                    Itens[l].setNomeSumonico(PartesDaLinha[1].trim());
+                    Itens[l].setNomeTitulo(PartesDaLinha[2].trim());
+                    Itens[l].setTipoObjeto(Integer.parseInt(PartesDaLinha[3].trim()));
+                    Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[4].trim()));
+                    Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[5].trim()));
+                    Itens[l].setPeso(Integer.parseInt(PartesDaLinha[6].trim()));
+
+                    if(!PartesDaLinha[7].toString().equals("")) Itens[l].setPoderAtaque(Integer.parseInt(PartesDaLinha[7].trim()));
                     if(!PartesDaLinha[8].toString().equals("")) Itens[l].setPoderDefesa(Integer.parseInt(PartesDaLinha[8].toString()));
-                    
+                    if(!PartesDaLinha[9].toString().equals("")) Itens[l].setPoderAlcance(Integer.parseInt(PartesDaLinha[9].trim()));
+                    if(!PartesDaLinha[10].toString().equals("")) Itens[l].setPoderBonusMagico(Integer.parseInt(PartesDaLinha[10].trim()));
+                    if(!PartesDaLinha[11].toString().equals("")) Itens[l].setOcupacaoDeLote(Integer.parseInt(PartesDaLinha[11].trim()));
+                    if(!PartesDaLinha[12].toString().equals("")) Itens[l].setGenero(Integer.parseInt(PartesDaLinha[12].trim()));
+                    if(!PartesDaLinha[13].toString().equals("")) Itens[l].setLocalEquipavel(Integer.parseInt(PartesDaLinha[13].trim()));
+                    if(!PartesDaLinha[14].toString().equals("")) Itens[l].setPoderRefinavel(Integer.parseInt(PartesDaLinha[14].trim()));
+                    if(!PartesDaLinha[15].toString().equals("")) Itens[l].setPoderElemental(Integer.parseInt(PartesDaLinha[15].trim()));
+                    if(!PartesDaLinha[16].toString().equals("")) Itens[l].setAparencia(Integer.parseInt(PartesDaLinha[16].trim()));
+
+                    Tag1=Linha.indexOf("{",0); Tag2=Linha.indexOf("},{",Tag1+1);
+                    if(Tag1 >= 0 && Tag2 >= 0 && Tag2 >= Tag1) Itens[l].setScriptAoConsulmir(Linha.substring(Tag1+1, Tag2).trim());
+                    Tag1=Linha.indexOf("},{",0); Tag2=Linha.indexOf("}",Tag1+3); 
+                    if(Tag1>=0 && Tag2>=0 && Tag2>=Tag1) Itens[l].setScriptAoEquipar(Linha.substring(Tag1+3, Tag2).trim());
                 }
                 FrmPrincipal.PgbBarra.setString("Caregado!");
                 FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
@@ -1244,7 +1305,28 @@ public class FrmItens extends javax.swing.JDialog {
         SpnPeso.setValue(Itens[Registro].getPeso());
         SpnPrecoCompra.setValue(Itens[Registro].getPrecoDeCompra());
         SpnPrecoVenda.setValue(Itens[Registro].getPrecoDeVenda());
+        SpnPoderAtaque.setValue(Itens[Registro].getPoderAtaque());
+        SpnPoderDefesa.setValue(Itens[Registro].getPoderDefesa());
+        SpnPoderAlcance.setValue(Itens[Registro].getPoderAlcance());
+        SpnPoderBonusMagico.setValue(Itens[Registro].getPoderBonusMagico());
+        SpnOculpacaoDeLote.setValue(Itens[Registro].getOcupacaoDeLote());
+        CmbGenero.setSelectedIndex(Itens[Registro].getGenero());
 
+        int Loc=Itens[Registro].getLocalEquipavel();
+        boolean SeEquipamento = (CmbUtilidade.getSelectedIndex()>=3 && CmbUtilidade.getSelectedIndex()<=8);
+        ChkEquipavelMunicao.setSelected(Loc/32768>=1); if(Loc/32768>=1)Loc-=32768; ChkEquipavelMunicao.setEnabled(SeEquipamento);
+        ChkEquipavelTorco2.setSelected(Loc/512>=1);    if(Loc/512>=1)  Loc-=512;   ChkEquipavelTorco2.setEnabled(SeEquipamento);
+        ChkEquipavelCabeça.setSelected(Loc/256>=1);    if(Loc/256>=1)  Loc-=256;   ChkEquipavelCabeça.setEnabled(SeEquipamento);
+        ChkEquipavelAcessorio.setSelected(Loc/128>=1); if(Loc/128>=1)  Loc-=128;   ChkEquipavelAcessorio.setEnabled(SeEquipamento);
+        ChkEquipavelPes.setSelected(Loc/64>=1);        if(Loc/64>=1)   Loc-=64;    ChkEquipavelPes.setEnabled(SeEquipamento);
+        ChkEquipavelBraco2.setSelected(Loc/32>=1);     if(Loc/32>=1)   Loc-=32;    ChkEquipavelBraco2.setEnabled(SeEquipamento);
+        ChkEquipavelTorco1.setSelected(Loc/16>=1);     if(Loc/16>=1)   Loc-=16;    ChkEquipavelTorco1.setEnabled(SeEquipamento);
+        ChkEquipavelMaos.setSelected(Loc/4>=1);        if(Loc/4>=1)    Loc-=4;     ChkEquipavelMaos.setEnabled(SeEquipamento);
+        ChkEquipavelBraco1.setSelected(Loc/2>=1);      if(Loc/2>=1)    Loc-=2;     ChkEquipavelBraco1.setEnabled(SeEquipamento);
+        ChkEquipavelPernas.setSelected(Loc/1>=1);      if(Loc/1>=1)    Loc-=1;     ChkEquipavelPernas.setEnabled(SeEquipamento);
+
+        TxtScripAoConsulmir.setText(Itens[Registro].getScriptAoConsulmir().trim());
+        TxtScripAoEquipar.setText(Itens[Registro].getScriptAoEquipar().trim());
 
         BtnAvancar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()<(CmbIDs.getItemCount()-1)));
         BtnVoltar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()>0));
