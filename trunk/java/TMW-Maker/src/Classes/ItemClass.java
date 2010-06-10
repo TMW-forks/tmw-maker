@@ -22,16 +22,21 @@ public class ItemClass {
     private int PoderAtaque=0;
     private int PoderDefesa=0;
     private int PoderAlcance=0; //Range
+    private int PoderBonusMagico=0; //MBonus
     private int PoderHP=0; //"HP" em item.xml
     private String PoderEfeito=""; //"effect" em item.xml
     private int OcupacaoDeLote=0; //Slot (Quanto espaço ocupa em um único Lote que é espaço ocupado por de ícone)
     private int Trabalho=0; // Job
-    private int Sexo=0; //Gender
-    private int LocalEquipavel=0; //Location(Loc): 2:MãoDireita(Arma), 4:Pernas(Calça), 16:Peitoral(Armadura), 32:MãoEsquerda(Escudo), 64:Pés(Sapato), 128:Bolso(Acessório), 256:Cabeça(Chapeu)
-    //OBS: Se quise ocupar as 2 mãos(MãoDireita[2] + MãoEsquerda[32] ponha 2+32="34")
-    private int PoderFisico=0; //wLV
+    private int Genero=2; //Sexo
+    private int LocalEquipavel=0;
+        // 1: Pernas(Calças), 2: MãoDireita(Arma), 4: Mãos(Luvas), 16: Torso1(Limalhas),
+        // 32: MãoEsqueda(Escudo), 64: Pés(Sapatos), 128: Acessórios, 256: Cabeça(Chapeus),
+        // 512: Torso2(Armaduras)
+        //        OBS:  Se quise ocupar as 2 mãos(MãoDireita[2] + MãoEsqueda[32] ponha 2+32="34")
+        //        DÚVIDA: Pq o nº8 e o nº16 não estão sendo usados em nada?
+    private int PoderRefinavel=0; //Refinamento(wLV): O nível de refinamento da arma. Pode ser 0, 1, 2, 3 ou 4 por padrão.
     private int PoderElemental=0; //Elements(eLV): 0:Nada, 1:Água, 2:Terra, 3:Fogo, 4:Vento, 5:Veneno, 6:Sagrado, 7:Escuridão, 8:Percepção, 9:Imortalidade
-    private int PoderVisao=0; //Visão
+    private int Aparencia=0; //Aparencia(View): Número da imagem que irá aparecer no inventário. (Não é usado no TMW. Padrão é "")
     private String ScriptAoConsulmir="";
     private String ScriptAoEquipar="";
 
@@ -69,15 +74,16 @@ public class ItemClass {
     public void setPoderAtaque(int NovoPoderAtaque){PoderAtaque=NovoPoderAtaque;}
     public void setPoderDefesa(int NovoPoderDefesa){PoderDefesa=NovoPoderDefesa;}
     public void setPoderAlcance(int NovoPoderAlcance){PoderAlcance=NovoPoderAlcance;}
+    public void setPoderBonusMagico(int NovoBonusMagico){PoderBonusMagico=NovoBonusMagico;}
     public void setPoderHP(int NovoPoderHP){PoderHP=NovoPoderHP;}
     public void setPoderEfeito(String NovoPoderEfeito){PoderEfeito=NovoPoderEfeito.toString();}
     public void setOcupacaoDeLote(int NovoOcupacaoDeLote){OcupacaoDeLote=NovoOcupacaoDeLote;}
     public void setTrabalho(int NovoTrabalho){Trabalho=NovoTrabalho;}
-    public void setSexo(int NovoSexo){Sexo=NovoSexo;}
+    public void setGenero(int NovoGenero){Genero=NovoGenero;}
     public void setLocalEquipavel(int NovoLocalEquipavel){LocalEquipavel=NovoLocalEquipavel;}
-    public void setPoderFisico(int NovoPoderFisico){PoderFisico=NovoPoderFisico;}
+    public void setPoderRefinavel(int NovoPoderRefinavel){PoderRefinavel=NovoPoderRefinavel;}
     public void setPoderElemental(int NovoPoderElemental){PoderElemental=NovoPoderElemental;}
-    public void setPoderVisao(int NovoPoderVisao){PoderVisao=NovoPoderVisao;}
+    public void setAparencia(int NovoAparencia){Aparencia=NovoAparencia;}
     public void setScriptAoConsulmir(String NovoScriptAoConsulmir){ScriptAoConsulmir=NovoScriptAoConsulmir.toString();}
     public void setScriptAoEquipar(String NovoScriptAoEquipar){ScriptAoEquipar=NovoScriptAoEquipar.toString();}
 
@@ -99,15 +105,16 @@ public class ItemClass {
     public int getPoderAtaque(){return PoderAtaque;}
     public int getPoderDefesa(){return PoderDefesa;}
     public int getPoderAlcance(){return PoderAlcance;}
+    public int getPoderBonusMagico(){return PoderBonusMagico;}
     public int getPoderHP(){return PoderHP;}
     public String getPoderEfeito(){return PoderEfeito.toString();}
     public int getOcupacaoDeLote(){return OcupacaoDeLote;}
     public int getTrabalho(){return Trabalho;}
-    public int getSexo(){return Sexo;}
+    public int getGenero(){return Genero;}
     public int getLocalEquipavel(){return LocalEquipavel;}
-    public int getPoderFisico(){return PoderFisico;}
+    public int getPoderRefinavel(){return PoderRefinavel;}
     public int getPoderElemental(){return PoderElemental;}
-    public int getPoderVisao(){return PoderVisao;}
+    public int getAparencia(){return Aparencia;}
     public String getScriptAoConsulmir(){return ScriptAoConsulmir.toString();}
     public String getScriptAoEquipar(){return ScriptAoEquipar.toString();}
 

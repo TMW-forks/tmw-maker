@@ -27,15 +27,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" alignment="0" pref="611" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="627" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="LblTitulo" alignment="0" pref="587" max="32767" attributes="1"/>
+                  <Component id="LblTitulo" alignment="0" pref="603" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="PneVisualizacao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="TpnPaleta" min="-2" pref="401" max="-2" attributes="1"/>
+                      <Component id="TpnPaleta" min="-2" max="-2" attributes="1"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -49,9 +49,9 @@
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="LblTitulo" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="TpnPaleta" min="0" pref="0" max="32767" attributes="1"/>
-                  <Component id="PneVisualizacao" alignment="0" max="32767" attributes="1"/>
+                  <Component id="PneVisualizacao" alignment="0" min="-2" max="-2" attributes="1"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -90,12 +90,12 @@
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="CmbGenero" alignment="0" pref="249" max="32767" attributes="1"/>
-                          <Component id="jTextField5" alignment="0" pref="249" max="32767" attributes="1"/>
-                          <Component id="jTextField6" alignment="0" pref="249" max="32767" attributes="1"/>
-                          <Component id="TxtNomeSumonico" alignment="0" pref="249" max="32767" attributes="1"/>
-                          <Component id="TxtNomeTitulo" alignment="0" pref="249" max="32767" attributes="1"/>
-                          <Component id="CmbUtilidade" alignment="0" pref="249" max="32767" attributes="1"/>
+                          <Component id="CmbGenero" alignment="0" pref="265" max="32767" attributes="1"/>
+                          <Component id="jTextField5" alignment="0" pref="265" max="32767" attributes="1"/>
+                          <Component id="jTextField6" alignment="0" pref="265" max="32767" attributes="1"/>
+                          <Component id="TxtNomeSumonico" alignment="0" pref="265" max="32767" attributes="1"/>
+                          <Component id="TxtNomeTitulo" alignment="0" pref="265" max="32767" attributes="1"/>
+                          <Component id="CmbUtilidade" alignment="0" pref="265" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -266,8 +266,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <Component id="jPanel3" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -285,25 +285,22 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelTorco1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelTorco2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelCabeça" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelBraco1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelBraco2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ChkEquipavelMunicao" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelAcessorio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelMaos" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelPernas" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelPes" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -313,75 +310,83 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelCabeça" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelMaos" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelTorco1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelPes" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelTorco2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelPernas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelBraco1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelAcessorio" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ChkEquipavelBraco2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelMunicao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="14" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelCabe&#xe7;a">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cabe&#xe7;a (p/ Chap&#xe9;us)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelPernas">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pernas (p/ Cal&#xe7;as)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelMaos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="M&#xe3;os (p/ Luvas)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelPes">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="P&#xe9;s (p/ Sapatos)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox5">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelTorco1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Tor&#xe7;o1 (p/ Vestimentas)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox7">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelBraco2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bra&#xe7;o 2. (p/ Escudos)"/>
+                    <Property name="text" type="java.lang.String" value="Bra&#xe7;o 2 (p/ Escudos)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox8">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelBraco1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Bra&#xe7;o 1 (p/ Armas)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox9">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelAcessorio">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Acess&#xf3;rios"/>
+                    <Property name="text" type="java.lang.String" value="Acess&#xf3;rio"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox10">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelTorco2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Tor&#xe7;o2 (p/ Armaduras)"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelMunicao">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Muni&#xe7;&#xe3;o (p/ Flechas)"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -412,32 +417,32 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="SpnPeso1" min="-2" pref="66" max="-2" attributes="1"/>
+                              <Component id="SpnPoderAtaque" min="-2" pref="66" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="SpnPeso2" min="-2" pref="66" max="-2" attributes="1"/>
+                              <Component id="SpnPoderDefesa" min="-2" pref="66" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="SpnPeso3" min="-2" pref="66" max="-2" attributes="1"/>
+                              <Component id="SpnPoderAlcance" min="-2" pref="66" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="SpnPeso4" min="-2" pref="66" max="-2" attributes="1"/>
+                              <Component id="SpnPoderBonusMagico" min="-2" pref="66" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="SpnPeso5" min="-2" pref="66" max="-2" attributes="1"/>
+                              <Component id="SpnOculpacaoDeLote" min="-2" pref="66" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="50" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -446,31 +451,31 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SpnPeso1" linkSize="5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="SpnPoderAtaque" linkSize="5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           <Component id="jLabel15" linkSize="5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel16" linkSize="5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SpnPeso2" linkSize="5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="SpnPoderDefesa" linkSize="5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel18" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SpnPeso4" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="SpnPoderBonusMagico" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           <Component id="jLabel21" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel22" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SpnPeso3" linkSize="5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="SpnPoderAlcance" linkSize="5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           <Component id="jLabel19" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel20" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SpnPeso5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="SpnOculpacaoDeLote" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           <Component id="jLabel23" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel24" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
@@ -486,7 +491,7 @@
                 <Property name="text" type="java.lang.String" value="Ataque:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="SpnPeso1">
+            <Component class="javax.swing.JSpinner" name="SpnPoderAtaque">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="0" maximum="1000" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
@@ -505,7 +510,7 @@
                 <Property name="text" type="java.lang.String" value="Defesa:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="SpnPeso2">
+            <Component class="javax.swing.JSpinner" name="SpnPoderDefesa">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="0" maximum="1000" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
@@ -524,7 +529,7 @@
                 <Property name="text" type="java.lang.String" value="Alcance:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="SpnPeso3">
+            <Component class="javax.swing.JSpinner" name="SpnPoderAlcance">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="0" maximum="20" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -543,10 +548,10 @@
                 <Property name="text" type="java.lang.String" value="Bonus M&#xe1;gico:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="SpnPeso4">
+            <Component class="javax.swing.JSpinner" name="SpnPoderBonusMagico">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" maximum="1000" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
+                  <SpinnerModel initial="0" maximum="1000" minimum="-1000" numberType="java.lang.Integer" stepSize="5" type="number"/>
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -562,7 +567,7 @@
                 <Property name="text" type="java.lang.String" value="Espa&#xe7;o ocupado"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="SpnPeso5">
+            <Component class="javax.swing.JSpinner" name="SpnOculpacaoDeLote">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="0" maximum="20" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -608,7 +613,7 @@
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="103" max="32767" attributes="0"/>
+                      <EmptySpace pref="119" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -716,7 +721,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="365" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" pref="381" max="32767" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -785,15 +790,15 @@
                               </Group>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="CmbIcone" pref="232" max="32767" attributes="1"/>
-                                  <Component id="CmbLocal" alignment="0" pref="232" max="32767" attributes="1"/>
+                                  <Component id="CmbIcone" pref="248" max="32767" attributes="1"/>
+                                  <Component id="CmbLocal" alignment="0" pref="248" max="32767" attributes="1"/>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane2" alignment="1" pref="365" max="32767" attributes="1"/>
+                          <Component id="jScrollPane2" alignment="1" pref="381" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Component id="jComboBox3" pref="232" max="32767" attributes="1"/>
+                              <Component id="jComboBox3" pref="248" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -921,6 +926,73 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbLocalActionPerformed"/>
               </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel4">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Script">
+                <Property name="tabTitle" type="java.lang.String" value="Script"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="TxtScripAoConsulmir" alignment="0" pref="381" max="32767" attributes="0"/>
+                          <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtScripAoEquipar" alignment="0" pref="381" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="TxtScripAoConsulmir" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="TxtScripAoEquipar" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel26">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Executar ao Consulmir:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtScripAoConsulmir">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Monospaced" size="13" style="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel27">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Executar ao Equipar:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtScripAoEquipar">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Monospaced" size="13" style="0"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
