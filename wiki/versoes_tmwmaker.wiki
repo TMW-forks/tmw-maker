@@ -11,7 +11,7 @@ O TMW-Maker passa constantemente por várias evoluções. Aqui você pode baixar
 
 *Utilidades:*
  * Faz auto-update via internet. Mantendo o TMW-Maker na versão mais recente, 
- * Recebe, Monta, Executa e Devolve o localhost ao repositórios via internet;
+ * Recebe, Monta, Executa e Devolve o localhost ao repositórios editado via internet;
  * Edita poderes de GM nas contas dos localhost. 
  * Edita Scripts de NPC nos localhost. (Função Incompleta)
 
