@@ -7,6 +7,7 @@ public class ItemClass {
     private String NomeTitulo=""; //"name" em item.xml
     private String Descricao=""; //"description" em item.xml
     private String IconePNG=""; //"image" em item.xml
+    private String IconeCor=""; //"image" em item.xml
     private String Sprite=""; //item.xml
     private String AudiosTipos=""; //"sound event" em item.xml
     private String AudiosOGGs=""; //"sound" em item.xml
@@ -61,6 +62,7 @@ public class ItemClass {
     public void setNomeTitulo(String NovoNomeTitulo){NomeTitulo=NovoNomeTitulo.toString();}
     public void setDescricao(String NovoDescricao){Descricao=NovoDescricao.toString();}
     public void setIconePNG(String NovoIconePNG){IconePNG=NovoIconePNG.toString();}
+    public void setIconeCor(String NovoIconeCor){IconeCor=NovoIconeCor.toString();}
     public void setSprite(String NovoSprite){Sprite=NovoSprite.toString();}
     public void setAudiosTipos(String NovoAudiosTipos){AudiosTipos=NovoAudiosTipos.toString();}
     public void setAudiosOGGs(String NovoAudiosOGGs){AudiosOGGs=NovoAudiosOGGs.toString();}
@@ -92,6 +94,7 @@ public class ItemClass {
     public String getNomeTitulo(){return NomeTitulo.toString();}
     public String getDescricao(){return Descricao.toString();}
     public String getIconePNG(){return IconePNG.toString();}
+    public String getIconeCor(){return IconeCor.toString();}
     public String getSprite(){return Sprite.toString();}
     public String getAudiosTipos(){return AudiosTipos.toString();}
     public String getAudiosOGGs(){return AudiosOGGs.toString();}

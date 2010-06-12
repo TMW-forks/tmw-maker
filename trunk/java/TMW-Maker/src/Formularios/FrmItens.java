@@ -2,6 +2,7 @@ package Formularios;
 
 import Classes.ConfigClass;
 import Classes.ItemClass;
+import Classes.StringClass;
 import java.awt.Cursor;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -22,6 +23,242 @@ public class FrmItens extends javax.swing.JDialog {
 
     public static ItemClass Itens[];
 
+    private void ListaIcone() {
+        if(FrmPrincipal.Config.SeExiste(PastaDeItens)){
+            String[] Arquivos = FrmPrincipal.Config.ListarArquivos(PastaDeItens);
+            //setTitle(""+Arquivos.length);
+            if(Arquivos.length>=1){
+
+                String AgrupamentoDeArquivos[] = new String[Arquivos.length];
+                int ContArquivos=0;
+                for(int a=0;a<Arquivos.length;a++){
+                    if(Arquivos[a].substring(Arquivos[a].length()-4, Arquivos[a].length()).equals(".png")){
+                        ContArquivos++;
+                        AgrupamentoDeArquivos[ContArquivos-1]=Arquivos[a];
+                    }
+                }
+                Object[] CapsulaDeArquivos= new java.lang.Object[ContArquivos];
+                int Selecionado = -1;
+                for(int a=0; a<ContArquivos; a++){
+                    CapsulaDeArquivos[a]=AgrupamentoDeArquivos[a];
+                    if(CapsulaDeArquivos[a].equals("generic-4leafclover.png")) Selecionado=a;
+                }
+                if(ContArquivos>=1){
+                    CmbIconePNG.setModel(new DefaultComboBoxModel(CapsulaDeArquivos));
+                    if(Selecionado>=0) CmbIconePNG.setSelectedIndex(Selecionado);
+                }
+            }
+        }
+    }
+    private void AtualizarImagem() {
+        String ImagemSelecionada=CmbIconePNG.getItemAt(CmbIconePNG.getSelectedIndex()).toString();
+        String LocalSelecionado=CmbLocal.getItemAt(CmbLocal.getSelectedIndex()).toString();
+        String Endereco=PastaDeItens+Barra+ImagemSelecionada;
+        //setTitle("\""+LocalSelecionado+"\"");
+        LblTitulo.setIcon(new javax.swing.ImageIcon(Endereco));
+
+        if(LocalSelecionado.equals("equip-ammo"))  {LblEquipAmmo.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipAmmo.setIcon(null);}
+        if(LocalSelecionado.equals("equip-arms"))  {LblEquipArms.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipArms.setIcon(null);}
+        if(LocalSelecionado.equals("equip-charm")) {LblEquipCharm.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipCharm.setIcon(null);}
+        if(LocalSelecionado.equals("equip-1hand")) {LblEquipHand1.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipHand1.setIcon(null);}
+        if(LocalSelecionado.equals("equip-2hand")) {LblEquipHand2.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipHand2.setIcon(null);}
+        if(LocalSelecionado.equals("equip-feet"))  {LblEquipFeet.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipFeet.setIcon(null);}
+        if(LocalSelecionado.equals("equip-head"))  {LblEquipHead.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipHead.setIcon(null);}
+        if(LocalSelecionado.equals("equip-legs"))  {LblEquipLegs.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipLegs.setIcon(null);}
+        if(LocalSelecionado.equals("equip-ring"))  {LblEquipRing.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipRing.setIcon(null);}
+        if(LocalSelecionado.equals("equip-shield")){LblEquipShield.setIcon(new javax.swing.ImageIcon(Endereco));}else{LblEquipShield.setIcon(null);}
+        if(LocalSelecionado.equals("equip-torso")) {LblEquipTorso.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipTorso.setIcon(null);}
+    }
+    private void AbrirItens() {
+        Thread tThread = new Thread(new Runnable() {
+            public void run() {
+                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                FrmPrincipal.PgbBarra.setIndeterminate(true);
+                FrmPrincipal.PgbBarra.setString("Carregando...");
+                FrmPrincipal.setAvisoEmEstatus("Favor espere carregar o Banco de Dados de Itens...");
+                TpnPaleta.setVisible(false);
+                PneVisualizacao.setVisible(false);
+                LblTitulo.setVisible(false);
+                CmbIDs.setEnabled(false);
+                BtnVoltar.setEnabled(false);
+                BtnAvancar.setEnabled(false);
+                BtnLocalizar.setEnabled(false);
+                BtnCarregar.setEnabled(false);
+
+                String ConteudoTXT="", Linha="", PartesDaLinha[]=null;
+                try {
+                    FileInputStream stream = new FileInputStream(EnderecoItensTXT);
+                    InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
+                    BufferedReader reader = new BufferedReader(streamReader);
+                    while ((Linha = reader.readLine()) != null) {
+                        PartesDaLinha=Linha.split(",");
+                        if(
+                            PartesDaLinha.length>=19 &&
+                            !PartesDaLinha[0].equals("0") &&
+                            !Linha.substring(0, 1).trim().equals("#") &&
+                            !Linha.substring(0, 2).trim().equals("//")
+                        ){
+                            if(!ConteudoTXT.equals("")){
+                                ConteudoTXT=ConteudoTXT+"\n"+Linha;
+                            }else{
+                                ConteudoTXT=Linha;
+                            }
+
+                        }
+                    }
+                    reader.close();
+                    streamReader.close();
+                    stream.close();
+                } catch (IOException ex) {
+                    FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+EnderecoItensTXT+"\"!");
+                    ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoItensTXT+"\"!","AVISO");
+                    dispose();
+                    return; // em caso de falha
+                }
+
+                StringClass ConteudoXML = new StringClass();
+                try {
+                    FileInputStream stream = new FileInputStream(EnderecoItensXML);
+                    InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
+                    BufferedReader reader = new BufferedReader(streamReader);
+                    while ((Linha = reader.readLine()) != null) {
+                        ConteudoXML.setTesto(ConteudoXML.getTesto()+"\n"+Linha);
+                    }
+                    reader.close();
+                    streamReader.close();
+                    stream.close();
+                } catch (IOException ex) {
+                    FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+EnderecoItensXML+"\"!");
+                    ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoItensXML+"\"!","AVISO");
+                    dispose();
+                    return; // em caso de falha
+                }
+
+                FrmPrincipal.PgbBarra.setIndeterminate(false);
+
+                String Linhas[]=ConteudoTXT.trim().split("\n");
+                FrmPrincipal.PgbBarra.setMinimum(0);
+                FrmPrincipal.PgbBarra.setMaximum(Linhas.length);
+                FrmPrincipal.PgbBarra.setString("");
+                Itens = new ItemClass[Linhas.length];
+                Object[] ComboIDs= new java.lang.Object[Linhas.length];
+                int Tag1=-1, Tag2=-1; String Script="";
+                int Loc=0;
+                String Propriedades="",ParteDoIcone[]=null;
+                for(int l=0;l<Linhas.length;l++){
+                    FrmPrincipal.PgbBarra.setValue(Linhas.length+l);
+                    FrmPrincipal.PgbBarra.setString(FrmPrincipal.PgbBarra.getValue()+"/"+FrmPrincipal.PgbBarra.getMaximum());
+                    Linha=Linhas[l];
+                    PartesDaLinha=Linha.split(",");
+                    ComboIDs[l] = new Object();
+                    ComboIDs[l] = PartesDaLinha[0];
+                    Itens[l] = new ItemClass();
+                    Itens[l].setID(Integer.parseInt(PartesDaLinha[0].trim()));
+                    Itens[l].setNomeSumonico(PartesDaLinha[1].trim());
+                    Itens[l].setNomeTitulo(PartesDaLinha[2].trim());
+                    Itens[l].setTipoObjeto(Integer.parseInt(PartesDaLinha[3].trim()));
+                    Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[4].trim()));
+                    Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[5].trim()));
+                    Itens[l].setPeso(Integer.parseInt(PartesDaLinha[6].trim()));
+
+                    if(!PartesDaLinha[7].toString().equals("")) Itens[l].setPoderAtaque(Integer.parseInt(PartesDaLinha[7].trim()));
+                    if(!PartesDaLinha[8].toString().equals("")) Itens[l].setPoderDefesa(Integer.parseInt(PartesDaLinha[8].toString()));
+                    if(!PartesDaLinha[9].toString().equals("")) Itens[l].setPoderAlcance(Integer.parseInt(PartesDaLinha[9].trim()));
+                    if(!PartesDaLinha[10].toString().equals("")) Itens[l].setPoderBonusMagico(Integer.parseInt(PartesDaLinha[10].trim()));
+                    if(!PartesDaLinha[11].toString().equals("")) Itens[l].setOcupacaoDeLote(Integer.parseInt(PartesDaLinha[11].trim()));
+                    if(!PartesDaLinha[12].toString().equals("")) Itens[l].setGenero(Integer.parseInt(PartesDaLinha[12].trim()));
+                    if(!PartesDaLinha[13].toString().equals("")) Itens[l].setLocalEquipavel(Integer.parseInt(PartesDaLinha[13].trim()));
+                    if(!PartesDaLinha[14].toString().equals("")) Itens[l].setPoderRefinavel(Integer.parseInt(PartesDaLinha[14].trim()));
+                    if(!PartesDaLinha[15].toString().equals("")) Itens[l].setPoderElemental(Integer.parseInt(PartesDaLinha[15].trim()));
+                    if(!PartesDaLinha[16].toString().equals("")) Itens[l].setAparencia(Integer.parseInt(PartesDaLinha[16].trim()));
+
+                    Tag1=Linha.indexOf("{",0); Tag2=Linha.indexOf("},{",Tag1+1);
+                    if(Tag1 >= 0 && Tag2 >= 0 && Tag2 >= Tag1) Itens[l].setScriptAoConsulmir(Linha.substring(Tag1+1, Tag2).trim());
+                    Tag1=Linha.indexOf("},{",0); Tag2=Linha.indexOf("}",Tag1+3);
+                    if(Tag1>=0 && Tag2>=0 && Tag2>=Tag1) Itens[l].setScriptAoEquipar(Linha.substring(Tag1+3, Tag2).trim());
+
+                    Propriedades=ConteudoXML.ExtrairEntre("<item id=\""+PartesDaLinha[0].trim()+"\"", ">");
+                    Itens[l].setDescricao(ConteudoXML.ExtrairEntre(Propriedades,"description=\"","\""));
+                    Itens[l].setPoderEfeito(ConteudoXML.ExtrairEntre(Propriedades,"effect=\"","\""));
+                    ParteDoIcone=ConteudoXML.ExtrairEntre(Propriedades,"image=\"","\"").split("\\|"); // Não é só "|" nem "\|", tem q ser "\\|"
+                    Itens[l].setIconePNG(ParteDoIcone[0]);
+                    if(ParteDoIcone.length==2) Itens[l].setIconeCor(ParteDoIcone[1]);
+                    Itens[l].setTipoNome(ConteudoXML.ExtrairEntre(Propriedades,"type=\"","\""));
+                }
+
+                FrmPrincipal.PgbBarra.setString("Caregado!");
+                FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
+                CmbIDs.setModel(new DefaultComboBoxModel(ComboIDs));
+                TpnPaleta.setVisible(true);
+                PneVisualizacao.setVisible(true);
+                LblTitulo.setVisible(true);
+                CmbIDs.setEnabled(true);
+                //BtnVoltar.setEnabled(true);
+                BtnAvancar.setEnabled(true);
+                BtnLocalizar.setEnabled(true);
+                BtnCarregar.setEnabled(true);
+
+                AbrirRegistro(CmbIDs.getSelectedIndex());
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+            }
+        });
+        tThread.start();
+    }
+    private void AbrirRegistro() {
+        AbrirRegistro(CmbIDs.getSelectedIndex());
+    }
+    private void AbrirRegistro(int Registro) {
+        TxtNomeSumonico.setText(Itens[Registro].getNomeSumonico());
+        TxtNomeTitulo.setText(Itens[Registro].getNomeTitulo());
+        LblTitulo.setText(TxtNomeTitulo.getText());
+        if(Itens[Registro].getTipoObjeto()==0) CmbUtilidade.setSelectedIndex(0);
+        if(Itens[Registro].getTipoObjeto()==2) CmbUtilidade.setSelectedIndex(1);
+        if(Itens[Registro].getTipoObjeto()==3) CmbUtilidade.setSelectedIndex(2);
+        if(Itens[Registro].getTipoObjeto()==4) CmbUtilidade.setSelectedIndex(3);
+        if(Itens[Registro].getTipoObjeto()==5) CmbUtilidade.setSelectedIndex(4);
+        if(Itens[Registro].getTipoObjeto()==6) CmbUtilidade.setSelectedIndex(5);
+        if(Itens[Registro].getTipoObjeto()==7) CmbUtilidade.setSelectedIndex(6);
+        if(Itens[Registro].getTipoObjeto()==8) CmbUtilidade.setSelectedIndex(7);
+        if(Itens[Registro].getTipoObjeto()==10) CmbUtilidade.setSelectedIndex(8);
+        if(Itens[Registro].getTipoObjeto()==11) CmbUtilidade.setSelectedIndex(9);
+        SpnPeso.setValue(Itens[Registro].getPeso());
+        SpnPrecoCompra.setValue(Itens[Registro].getPrecoDeCompra());
+        SpnPrecoVenda.setValue(Itens[Registro].getPrecoDeVenda());
+        SpnPoderAtaque.setValue(Itens[Registro].getPoderAtaque());
+        SpnPoderDefesa.setValue(Itens[Registro].getPoderDefesa());
+        SpnPoderAlcance.setValue(Itens[Registro].getPoderAlcance());
+        SpnPoderBonusMagico.setValue(Itens[Registro].getPoderBonusMagico());
+        SpnOculpacaoDeLote.setValue(Itens[Registro].getOcupacaoDeLote());
+        CmbGenero.setSelectedIndex(Itens[Registro].getGenero());
+
+        int Loc=Itens[Registro].getLocalEquipavel();
+        boolean SeEquipamento = (CmbUtilidade.getSelectedIndex()>=3 && CmbUtilidade.getSelectedIndex()<=8);
+        ChkEquipavelMunicao.setSelected(Loc/32768>=1); if(Loc/32768>=1)Loc-=32768; ChkEquipavelMunicao.setEnabled(SeEquipamento);
+        ChkEquipavelTorco2.setSelected(Loc/512>=1);    if(Loc/512>=1)  Loc-=512;   ChkEquipavelTorco2.setEnabled(SeEquipamento);
+        ChkEquipavelCabeça.setSelected(Loc/256>=1);    if(Loc/256>=1)  Loc-=256;   ChkEquipavelCabeça.setEnabled(SeEquipamento);
+        ChkEquipavelAcessorio.setSelected(Loc/128>=1); if(Loc/128>=1)  Loc-=128;   ChkEquipavelAcessorio.setEnabled(SeEquipamento);
+        ChkEquipavelPes.setSelected(Loc/64>=1);        if(Loc/64>=1)   Loc-=64;    ChkEquipavelPes.setEnabled(SeEquipamento);
+        ChkEquipavelBraco2.setSelected(Loc/32>=1);     if(Loc/32>=1)   Loc-=32;    ChkEquipavelBraco2.setEnabled(SeEquipamento);
+        ChkEquipavelTorco1.setSelected(Loc/16>=1);     if(Loc/16>=1)   Loc-=16;    ChkEquipavelTorco1.setEnabled(SeEquipamento);
+        ChkEquipavelMaos.setSelected(Loc/4>=1);        if(Loc/4>=1)    Loc-=4;     ChkEquipavelMaos.setEnabled(SeEquipamento);
+        ChkEquipavelBraco1.setSelected(Loc/2>=1);      if(Loc/2>=1)    Loc-=2;     ChkEquipavelBraco1.setEnabled(SeEquipamento);
+        ChkEquipavelPernas.setSelected(Loc/1>=1);      if(Loc/1>=1)    Loc-=1;     ChkEquipavelPernas.setEnabled(SeEquipamento);
+
+        TxtScripAoConsulmir.setText(Itens[Registro].getScriptAoConsulmir().trim());
+        TxtScripAoEquipar.setText(Itens[Registro].getScriptAoEquipar().trim());
+
+        TxtDescricao.setText(Itens[Registro].getDescricao().trim());
+        TxtEfeito.setText(Itens[Registro].getPoderEfeito().trim());
+        CmbIconePNG.setSelectedItem((Object)Itens[Registro].getIconePNG().trim());
+        TxtIconeCor.setText(Itens[Registro].getIconeCor().trim());
+        CmbLocal.setSelectedItem((Object)Itens[Registro].getTipoNome().trim());
+
+        BtnAvancar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()<(CmbIDs.getItemCount()-1)));
+        BtnVoltar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()>0));
+        BtnLocalizar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getItemCount()>=2));
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,13 +270,15 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         TxtNomeTitulo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        TxtDescricao = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        CmbUtilidade = new javax.swing.JComboBox();
-        jLabel25 = new javax.swing.JLabel();
-        CmbGenero = new javax.swing.JComboBox();
+        TxtEfeito = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        CmbIconePNG = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        CmbLocal = new javax.swing.JComboBox();
+        jLabel28 = new javax.swing.JLabel();
+        TxtIconeCor = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         ChkEquipavelCabeça = new javax.swing.JCheckBox();
@@ -68,6 +307,8 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel23 = new javax.swing.JLabel();
         SpnOculpacaoDeLote = new javax.swing.JSpinner();
         jLabel24 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        CmbUtilidade = new javax.swing.JComboBox();
         PneComercio = new javax.swing.JPanel();
         SpnPrecoCompra = new javax.swing.JSpinner();
         jLabel12 = new javax.swing.JLabel();
@@ -82,14 +323,12 @@ public class FrmItens extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         PneEquipamento = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        CmbIcone = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
-        CmbLocal = new javax.swing.JComboBox();
+        jLabel25 = new javax.swing.JLabel();
+        CmbGenero = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         TxtScripAoConsulmir = new javax.swing.JTextField();
@@ -122,7 +361,7 @@ public class FrmItens extends javax.swing.JDialog {
         LblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editor de Itens");
+        setTitle("Editor de Itens (Modo: Somente-leitura)");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -158,30 +397,37 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Descrição:");
 
-        jTextField5.setEditable(false);
-        jTextField5.setText("Trevo de 4 Folhas só encontrado na Cidade das Fadas.");
+        TxtDescricao.setEditable(false);
+        TxtDescricao.setText("Trevo de 4 Folhas só encontrado na Cidade das Fadas.");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Efeito:");
 
-        jTextField6.setEditable(false);
-        jTextField6.setText("+10 Sorte, +25 Def.Mágica");
+        TxtEfeito.setEditable(false);
+        TxtEfeito.setText("+10 Sorte, +25 Def.Mágica");
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("Utilidade:");
+        jLabel2.setText("Ícone do Inventário:");
 
-        CmbUtilidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0: Medicinal / Afetador", "2: Consumível", "3: Constável / Genérico", "4: Arma", "5: Proteção / Vestimenta", "6: Carta", "7: Ovo de Mascote", "8: Equipamento de Mascote,", "10: Flecha / Munição", "11: Consumível lentamente" }));
-
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel25.setText("Gênero:");
-
-        CmbGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0: Feminino", "1: Masculino", "2: Ambos" }));
-        CmbGenero.setSelectedIndex(2);
-        CmbGenero.addActionListener(new java.awt.event.ActionListener() {
+        CmbIconePNG.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "generic-4leafclover.png" }));
+        CmbIconePNG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbGeneroActionPerformed(evt);
+                CmbIconePNGActionPerformed(evt);
             }
         });
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Local da Janela:");
+
+        CmbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "usable", "generic", "equip-1hand", "equip-2hand", "equip-ammo", "equip-arms", "equip-charm", "equip-feet", "equip-head", "equip-legs", "equip-ring", "equip-shield", "equip-torso" }));
+        CmbLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbLocalActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setText("Variante de Cor:");
+
+        TxtIconeCor.setEditable(false);
 
         javax.swing.GroupLayout PneInformacaoLayout = new javax.swing.GroupLayout(PneInformacao);
         PneInformacao.setLayout(PneInformacaoLayout);
@@ -189,36 +435,50 @@ public class FrmItens extends javax.swing.JDialog {
             PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PneInformacaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel25))
+                .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(5, 5, 5)
                 .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CmbGenero, 0, 265, Short.MAX_VALUE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(CmbUtilidade, 0, 265, Short.MAX_VALUE))
+                    .addComponent(TxtIconeCor, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(CmbIconePNG, 0, 255, Short.MAX_VALUE)
+                    .addComponent(TxtEfeito, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(CmbLocal, 0, 255, Short.MAX_VALUE)
+                    .addComponent(TxtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
                 .addContainerGap())
         );
         PneInformacaoLayout.setVerticalGroup(
             PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PneInformacaoLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CmbIconePNG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtIconeCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(CmbLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(PneInformacaoLayout.createSequentialGroup()
                         .addComponent(TxtNomeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TxtNomeSumonico, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TxtEfeito, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PneInformacaoLayout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,18 +487,10 @@ public class FrmItens extends javax.swing.JDialog {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(CmbUtilidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PneInformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(CmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(44, 44, 44))
         );
 
-        PneInformacaoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbGenero, CmbUtilidade, TxtNomeSumonico, TxtNomeTitulo, jLabel11, jLabel25, jLabel4, jLabel5, jLabel6, jLabel7, jTextField5, jTextField6});
+        PneInformacaoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbIconePNG, CmbLocal, TxtDescricao, TxtEfeito, TxtIconeCor, TxtNomeSumonico, TxtNomeTitulo, jLabel10, jLabel2, jLabel28, jLabel4, jLabel5, jLabel6, jLabel7});
 
         TpnPaleta.addTab("Informação", PneInformacao);
 
@@ -306,8 +558,7 @@ public class FrmItens extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ChkEquipavelBraco2)
-                    .addComponent(ChkEquipavelMunicao))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(ChkEquipavelMunicao)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -317,14 +568,14 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         TpnPaleta.addTab("Equipamento", jPanel2);
@@ -369,46 +620,62 @@ public class FrmItens extends javax.swing.JDialog {
 
         jLabel24.setText("(extra no inventário)");
 
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("Utilidade:");
+
+        CmbUtilidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0: Medicinal / Afetador", "2: Consumível", "3: Constável / Genérico", "4: Arma", "5: Proteção / Vestimenta", "6: Carta", "7: Ovo de Mascote", "8: Equipamento de Mascote,", "10: Flecha / Munição", "11: Consumível lentamente" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPoderAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel16))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPoderDefesa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPoderAlcance, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel20))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnPoderBonusMagico, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel22))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SpnOculpacaoDeLote, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel24)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel23))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(SpnPoderAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel16))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(SpnPoderDefesa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(SpnPoderAlcance, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel20))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(SpnPoderBonusMagico, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel22))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(SpnOculpacaoDeLote, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel24))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CmbUtilidade, 0, 268, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CmbUtilidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SpnPoderAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,10 +700,12 @@ public class FrmItens extends javax.swing.JDialog {
                     .addComponent(SpnOculpacaoDeLote, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {SpnPoderAlcance, SpnPoderAtaque, SpnPoderDefesa, jLabel15, jLabel16});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbUtilidade, jLabel11});
 
         TpnPaleta.addTab("Poder", jPanel1);
 
@@ -484,7 +753,7 @@ public class FrmItens extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(jLabel14))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         PneComercioLayout.setVerticalGroup(
             PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,7 +775,7 @@ public class FrmItens extends javax.swing.JDialog {
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         TpnPaleta.addTab("Comércio", PneComercio);
@@ -538,7 +807,7 @@ public class FrmItens extends javax.swing.JDialog {
             PneAudioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PneAudioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PneAudioLayout.setVerticalGroup(
@@ -546,19 +815,10 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(PneAudioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         TpnPaleta.addTab("Áudio", PneAudio);
-
-        jLabel2.setText("Ícone do Inventário:");
-
-        CmbIcone.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "generic-4leafclover.png" }));
-        CmbIcone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbIconeActionPerformed(evt);
-            }
-        });
 
         jLabel9.setText("Movimento de Char:");
 
@@ -587,14 +847,14 @@ public class FrmItens extends javax.swing.JDialog {
         jTable2.setEnabled(false);
         jScrollPane2.setViewportView(jTable2);
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Local da Janela:");
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel25.setText("Gênero:");
 
-        CmbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "usable", "equip-1hand", "equip-2hand", "equip-ammo", "equip-arms", "equip-charm", "equip-feet", "equip-head", "equip-legs", "equip-ring", "equip-shield", "equip-torso" }));
-        CmbLocal.setSelectedIndex(5);
-        CmbLocal.addActionListener(new java.awt.event.ActionListener() {
+        CmbGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0: Feminino", "1: Masculino", "2: Ambos" }));
+        CmbGenero.setSelectedIndex(2);
+        CmbGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbLocalActionPerformed(evt);
+                CmbGeneroActionPerformed(evt);
             }
         });
 
@@ -605,50 +865,45 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(PneEquipamentoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                     .addGroup(PneEquipamentoLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
                         .addGroup(PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel9))
                         .addGap(4, 4, 4)
                         .addGroup(PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CmbIcone, 0, 248, Short.MAX_VALUE)
-                            .addComponent(CmbLocal, 0, 248, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                    .addGroup(PneEquipamentoLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(4, 4, 4)
-                        .addComponent(jComboBox3, 0, 248, Short.MAX_VALUE)))
+                            .addComponent(CmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox3, 0, 252, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         PneEquipamentoLayout.setVerticalGroup(
             PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PneEquipamentoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PneEquipamentoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(CmbIcone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CmbLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(CmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PneEquipamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addGap(41, 41, 41))
         );
+
+        PneEquipamentoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbGenero, jLabel25});
 
         TpnPaleta.addTab("Animação", PneEquipamento);
 
         jLabel26.setText("Executar ao Consulmir:");
 
-        TxtScripAoConsulmir.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        TxtScripAoConsulmir.setEditable(false);
+        TxtScripAoConsulmir.setFont(new java.awt.Font("Monospaced", 0, 13));
 
         jLabel27.setText("Executar ao Equipar:");
 
+        TxtScripAoEquipar.setEditable(false);
         TxtScripAoEquipar.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -658,10 +913,10 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtScripAoConsulmir, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                    .addComponent(TxtScripAoConsulmir, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                     .addComponent(jLabel26)
                     .addComponent(jLabel27)
-                    .addComponent(TxtScripAoEquipar, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                    .addComponent(TxtScripAoEquipar, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -675,7 +930,7 @@ public class FrmItens extends javax.swing.JDialog {
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtScripAoEquipar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         TpnPaleta.addTab("Script", jPanel4);
@@ -802,8 +1057,7 @@ public class FrmItens extends javax.swing.JDialog {
         LblMostruario3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         LblEquipCharm.setBackground(java.awt.Color.lightGray);
-        LblEquipCharm.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 18));
-        LblEquipCharm.setIcon(new javax.swing.ImageIcon("/home/indigovox/localhost/tmwdata/graphics/items/generic-4leafclover.png")); // NOI18N
+        LblEquipCharm.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 18)); // NOI18N
         LblEquipCharm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         LblEquipCharm.setMaximumSize(new java.awt.Dimension(32, 32));
         LblEquipCharm.setMinimumSize(new java.awt.Dimension(32, 32));
@@ -947,15 +1201,15 @@ public class FrmItens extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LblTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+                    .addComponent(LblTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TpnPaleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TpnPaleta, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -966,8 +1220,8 @@ public class FrmItens extends javax.swing.JDialog {
                 .addComponent(LblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TpnPaleta, 0, 0, Short.MAX_VALUE)
-                    .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TpnPaleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -978,9 +1232,9 @@ public class FrmItens extends javax.swing.JDialog {
         ListaIcone();
         AbrirItens();
     }//GEN-LAST:event_formWindowOpened
-    private void CmbIconeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIconeActionPerformed
+    private void CmbIconePNGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIconePNGActionPerformed
         AtualizarImagem();
-    }//GEN-LAST:event_CmbIconeActionPerformed
+    }//GEN-LAST:event_CmbIconePNGActionPerformed
     private void TxtNomeTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeTituloActionPerformed
         LblTitulo.setText(TxtNomeTitulo.getText());
     }//GEN-LAST:event_TxtNomeTituloActionPerformed
@@ -1051,7 +1305,7 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JCheckBox ChkEquipavelTorco2;
     private javax.swing.JComboBox CmbGenero;
     public static javax.swing.JComboBox CmbIDs;
-    private javax.swing.JComboBox CmbIcone;
+    private javax.swing.JComboBox CmbIconePNG;
     private javax.swing.JComboBox CmbLocal;
     private javax.swing.JComboBox CmbUtilidade;
     private javax.swing.JLabel LblEquipAmmo;
@@ -1081,6 +1335,9 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JSpinner SpnPrecoCompra;
     private javax.swing.JSpinner SpnPrecoVenda;
     private javax.swing.JTabbedPane TpnPaleta;
+    private javax.swing.JTextField TxtDescricao;
+    private javax.swing.JTextField TxtEfeito;
+    private javax.swing.JTextField TxtIconeCor;
     private javax.swing.JTextField TxtNomeSumonico;
     private javax.swing.JTextField TxtNomeTitulo;
     private javax.swing.JTextField TxtScripAoConsulmir;
@@ -1109,6 +1366,7 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1126,211 +1384,7 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
-
-    private void ListaIcone() {
-        if(FrmPrincipal.Config.SeExiste(PastaDeItens)){
-            String[] Arquivos = FrmPrincipal.Config.ListarArquivos(PastaDeItens);
-            //setTitle(""+Arquivos.length);
-            if(Arquivos.length>=1){
-
-                String AgrupamentoDeArquivos[] = new String[Arquivos.length];
-                int ContArquivos=0;
-                for(int a=0;a<Arquivos.length;a++){
-                    if(Arquivos[a].substring(Arquivos[a].length()-4, Arquivos[a].length()).equals(".png")){
-                        ContArquivos++;
-                        AgrupamentoDeArquivos[ContArquivos-1]=Arquivos[a];
-                    }
-                }
-                Object[] CapsulaDeArquivos= new java.lang.Object[ContArquivos];
-                int Selecionado = -1;
-                for(int a=0; a<ContArquivos; a++){
-                    CapsulaDeArquivos[a]=AgrupamentoDeArquivos[a];
-                    if(CapsulaDeArquivos[a].equals("generic-4leafclover.png")) Selecionado=a;
-                }
-                if(ContArquivos>=1){
-                    CmbIcone.setModel(new DefaultComboBoxModel(CapsulaDeArquivos));
-                    if(Selecionado>=0) CmbIcone.setSelectedIndex(Selecionado);
-                }
-            }
-        }
-    }
-    private void AtualizarImagem() {
-        String ImagemSelecionada=CmbIcone.getItemAt(CmbIcone.getSelectedIndex()).toString();
-        String LocalSelecionado=CmbLocal.getItemAt(CmbLocal.getSelectedIndex()).toString();
-        String Endereco=PastaDeItens+Barra+ImagemSelecionada;
-        //setTitle("\""+LocalSelecionado+"\"");
-        LblTitulo.setIcon(new javax.swing.ImageIcon(Endereco));
-        
-        if(LocalSelecionado.equals("equip-ammo"))  {LblEquipAmmo.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipAmmo.setIcon(null);}
-        if(LocalSelecionado.equals("equip-arms"))  {LblEquipArms.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipArms.setIcon(null);}
-        if(LocalSelecionado.equals("equip-charm")) {LblEquipCharm.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipCharm.setIcon(null);}
-        if(LocalSelecionado.equals("equip-1hand")) {LblEquipHand1.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipHand1.setIcon(null);}
-        if(LocalSelecionado.equals("equip-2hand")) {LblEquipHand2.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipHand2.setIcon(null);}
-        if(LocalSelecionado.equals("equip-feet"))  {LblEquipFeet.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipFeet.setIcon(null);}
-        if(LocalSelecionado.equals("equip-head"))  {LblEquipHead.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipHead.setIcon(null);}
-        if(LocalSelecionado.equals("equip-legs"))  {LblEquipLegs.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipLegs.setIcon(null);}
-        if(LocalSelecionado.equals("equip-ring"))  {LblEquipRing.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipRing.setIcon(null);}
-        if(LocalSelecionado.equals("equip-shield")){LblEquipShield.setIcon(new javax.swing.ImageIcon(Endereco));}else{LblEquipShield.setIcon(null);}
-        if(LocalSelecionado.equals("equip-torso")) {LblEquipTorso.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipTorso.setIcon(null);}
-    }
-    private void AbrirItens() {
-        Thread tThread = new Thread(new Runnable() {
-            public void run() {
-                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                FrmPrincipal.PgbBarra.setIndeterminate(true);
-                FrmPrincipal.PgbBarra.setString("Carregando...");
-                FrmPrincipal.setAvisoEmEstatus("Favor espere carregar o Banco de Dados de Itens...");
-                TpnPaleta.setVisible(false);
-                PneVisualizacao.setVisible(false);
-                LblTitulo.setVisible(false);
-                CmbIDs.setEnabled(false);
-                BtnVoltar.setEnabled(false);
-                BtnAvancar.setEnabled(false);
-                BtnLocalizar.setEnabled(false);
-                BtnCarregar.setEnabled(false);
-
-                String Conteudo="", Linha="", PartesDaLinha[]=null;
-                try {
-                    FileInputStream stream = new FileInputStream(EnderecoItensTXT);
-                    InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
-                    BufferedReader reader = new BufferedReader(streamReader);
-                    while ((Linha = reader.readLine()) != null) {
-                        PartesDaLinha=Linha.split(",");
-                        if(
-                            PartesDaLinha.length>=19 &&
-                            !PartesDaLinha[0].equals("0") &&
-                            !Linha.substring(0, 1).trim().equals("#") &&
-                            !Linha.substring(0, 2).trim().equals("//")
-                        ){
-                            if(!Conteudo.equals("")){
-                                Conteudo=Conteudo+"\n"+Linha;
-                            }else{
-                                Conteudo=Linha;
-                            }
-
-                        }
-                    }
-                    reader.close();
-                    streamReader.close();
-                    stream.close();
-                } catch (IOException ex) {
-                    FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!");
-                    ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!","AVISO");
-                    return; // em caso de falha
-                }
-
-
-                FrmPrincipal.PgbBarra.setIndeterminate(false);
-
-                String Linhas[]=Conteudo.trim().split("\n");
-                FrmPrincipal.PgbBarra.setMinimum(0);
-                FrmPrincipal.PgbBarra.setMaximum(Linhas.length);
-                FrmPrincipal.PgbBarra.setString("");
-                Itens = new ItemClass[Linhas.length];
-                Object[] ComboIDs= new java.lang.Object[Linhas.length];
-                int Tag1=-1, Tag2=-1; String Script="";
-                int Loc=0;
-                for(int l=0;l<Linhas.length;l++){
-                    FrmPrincipal.PgbBarra.setValue(Linhas.length+l);
-                    FrmPrincipal.PgbBarra.setString(FrmPrincipal.PgbBarra.getValue()+"/"+FrmPrincipal.PgbBarra.getMaximum());
-                    Linha=Linhas[l];
-                    PartesDaLinha=Linha.split(",");
-                    ComboIDs[l] = new Object();
-                    ComboIDs[l] = PartesDaLinha[0];
-                    Itens[l] = new ItemClass();
-                    Itens[l].setID(Integer.parseInt(PartesDaLinha[0].trim()));
-                    Itens[l].setNomeSumonico(PartesDaLinha[1].trim());
-                    Itens[l].setNomeTitulo(PartesDaLinha[2].trim());
-                    Itens[l].setTipoObjeto(Integer.parseInt(PartesDaLinha[3].trim()));
-                    Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[4].trim()));
-                    Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[5].trim()));
-                    Itens[l].setPeso(Integer.parseInt(PartesDaLinha[6].trim()));
-
-                    if(!PartesDaLinha[7].toString().equals("")) Itens[l].setPoderAtaque(Integer.parseInt(PartesDaLinha[7].trim()));
-                    if(!PartesDaLinha[8].toString().equals("")) Itens[l].setPoderDefesa(Integer.parseInt(PartesDaLinha[8].toString()));
-                    if(!PartesDaLinha[9].toString().equals("")) Itens[l].setPoderAlcance(Integer.parseInt(PartesDaLinha[9].trim()));
-                    if(!PartesDaLinha[10].toString().equals("")) Itens[l].setPoderBonusMagico(Integer.parseInt(PartesDaLinha[10].trim()));
-                    if(!PartesDaLinha[11].toString().equals("")) Itens[l].setOcupacaoDeLote(Integer.parseInt(PartesDaLinha[11].trim()));
-                    if(!PartesDaLinha[12].toString().equals("")) Itens[l].setGenero(Integer.parseInt(PartesDaLinha[12].trim()));
-                    if(!PartesDaLinha[13].toString().equals("")) Itens[l].setLocalEquipavel(Integer.parseInt(PartesDaLinha[13].trim()));
-                    if(!PartesDaLinha[14].toString().equals("")) Itens[l].setPoderRefinavel(Integer.parseInt(PartesDaLinha[14].trim()));
-                    if(!PartesDaLinha[15].toString().equals("")) Itens[l].setPoderElemental(Integer.parseInt(PartesDaLinha[15].trim()));
-                    if(!PartesDaLinha[16].toString().equals("")) Itens[l].setAparencia(Integer.parseInt(PartesDaLinha[16].trim()));
-
-                    Tag1=Linha.indexOf("{",0); Tag2=Linha.indexOf("},{",Tag1+1);
-                    if(Tag1 >= 0 && Tag2 >= 0 && Tag2 >= Tag1) Itens[l].setScriptAoConsulmir(Linha.substring(Tag1+1, Tag2).trim());
-                    Tag1=Linha.indexOf("},{",0); Tag2=Linha.indexOf("}",Tag1+3); 
-                    if(Tag1>=0 && Tag2>=0 && Tag2>=Tag1) Itens[l].setScriptAoEquipar(Linha.substring(Tag1+3, Tag2).trim());
-                }
-                FrmPrincipal.PgbBarra.setString("Caregado!");
-                FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
-                CmbIDs.setModel(new DefaultComboBoxModel(ComboIDs));
-                TpnPaleta.setVisible(true);
-                PneVisualizacao.setVisible(true);
-                LblTitulo.setVisible(true);
-                CmbIDs.setEnabled(true);
-                //BtnVoltar.setEnabled(true);
-                BtnAvancar.setEnabled(true);
-                BtnLocalizar.setEnabled(true);
-                BtnCarregar.setEnabled(true);
-                
-                AbrirRegistro(CmbIDs.getSelectedIndex());
-                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-            }
-        });
-        tThread.start();
-    }
-    private void AbrirRegistro() {
-        AbrirRegistro(CmbIDs.getSelectedIndex());
-    }
-    private void AbrirRegistro(int Registro) {
-        TxtNomeSumonico.setText(Itens[Registro].getNomeSumonico());
-        TxtNomeTitulo.setText(Itens[Registro].getNomeTitulo());
-        LblTitulo.setText(TxtNomeTitulo.getText());
-        if(Itens[Registro].getTipoObjeto()==0) CmbUtilidade.setSelectedIndex(0);
-        if(Itens[Registro].getTipoObjeto()==2) CmbUtilidade.setSelectedIndex(1);
-        if(Itens[Registro].getTipoObjeto()==3) CmbUtilidade.setSelectedIndex(2);
-        if(Itens[Registro].getTipoObjeto()==4) CmbUtilidade.setSelectedIndex(3);
-        if(Itens[Registro].getTipoObjeto()==5) CmbUtilidade.setSelectedIndex(4);
-        if(Itens[Registro].getTipoObjeto()==6) CmbUtilidade.setSelectedIndex(5);
-        if(Itens[Registro].getTipoObjeto()==7) CmbUtilidade.setSelectedIndex(6);
-        if(Itens[Registro].getTipoObjeto()==8) CmbUtilidade.setSelectedIndex(7);
-        if(Itens[Registro].getTipoObjeto()==10) CmbUtilidade.setSelectedIndex(8);
-        if(Itens[Registro].getTipoObjeto()==11) CmbUtilidade.setSelectedIndex(9);
-        SpnPeso.setValue(Itens[Registro].getPeso());
-        SpnPrecoCompra.setValue(Itens[Registro].getPrecoDeCompra());
-        SpnPrecoVenda.setValue(Itens[Registro].getPrecoDeVenda());
-        SpnPoderAtaque.setValue(Itens[Registro].getPoderAtaque());
-        SpnPoderDefesa.setValue(Itens[Registro].getPoderDefesa());
-        SpnPoderAlcance.setValue(Itens[Registro].getPoderAlcance());
-        SpnPoderBonusMagico.setValue(Itens[Registro].getPoderBonusMagico());
-        SpnOculpacaoDeLote.setValue(Itens[Registro].getOcupacaoDeLote());
-        CmbGenero.setSelectedIndex(Itens[Registro].getGenero());
-
-        int Loc=Itens[Registro].getLocalEquipavel();
-        boolean SeEquipamento = (CmbUtilidade.getSelectedIndex()>=3 && CmbUtilidade.getSelectedIndex()<=8);
-        ChkEquipavelMunicao.setSelected(Loc/32768>=1); if(Loc/32768>=1)Loc-=32768; ChkEquipavelMunicao.setEnabled(SeEquipamento);
-        ChkEquipavelTorco2.setSelected(Loc/512>=1);    if(Loc/512>=1)  Loc-=512;   ChkEquipavelTorco2.setEnabled(SeEquipamento);
-        ChkEquipavelCabeça.setSelected(Loc/256>=1);    if(Loc/256>=1)  Loc-=256;   ChkEquipavelCabeça.setEnabled(SeEquipamento);
-        ChkEquipavelAcessorio.setSelected(Loc/128>=1); if(Loc/128>=1)  Loc-=128;   ChkEquipavelAcessorio.setEnabled(SeEquipamento);
-        ChkEquipavelPes.setSelected(Loc/64>=1);        if(Loc/64>=1)   Loc-=64;    ChkEquipavelPes.setEnabled(SeEquipamento);
-        ChkEquipavelBraco2.setSelected(Loc/32>=1);     if(Loc/32>=1)   Loc-=32;    ChkEquipavelBraco2.setEnabled(SeEquipamento);
-        ChkEquipavelTorco1.setSelected(Loc/16>=1);     if(Loc/16>=1)   Loc-=16;    ChkEquipavelTorco1.setEnabled(SeEquipamento);
-        ChkEquipavelMaos.setSelected(Loc/4>=1);        if(Loc/4>=1)    Loc-=4;     ChkEquipavelMaos.setEnabled(SeEquipamento);
-        ChkEquipavelBraco1.setSelected(Loc/2>=1);      if(Loc/2>=1)    Loc-=2;     ChkEquipavelBraco1.setEnabled(SeEquipamento);
-        ChkEquipavelPernas.setSelected(Loc/1>=1);      if(Loc/1>=1)    Loc-=1;     ChkEquipavelPernas.setEnabled(SeEquipamento);
-
-        TxtScripAoConsulmir.setText(Itens[Registro].getScriptAoConsulmir().trim());
-        TxtScripAoEquipar.setText(Itens[Registro].getScriptAoEquipar().trim());
-
-        BtnAvancar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()<(CmbIDs.getItemCount()-1)));
-        BtnVoltar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()>0));
-        BtnLocalizar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getItemCount()>=2));
-    }
 
 }
