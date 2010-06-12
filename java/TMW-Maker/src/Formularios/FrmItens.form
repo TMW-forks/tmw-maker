@@ -479,8 +479,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="CmbUtilidade" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" linkSize="7" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="CmbUtilidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -861,8 +861,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="CmbGenero" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel25" linkSize="7" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="CmbGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel25" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">

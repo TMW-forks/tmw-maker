@@ -177,7 +177,9 @@ public class FrmItens extends javax.swing.JDialog {
                     Tag1=Linha.indexOf("},{",0); Tag2=Linha.indexOf("}",Tag1+3);
                     if(Tag1>=0 && Tag2>=0 && Tag2>=Tag1) Itens[l].setScriptAoEquipar(Linha.substring(Tag1+3, Tag2).trim());
 
+                    
                     Propriedades=ConteudoXML.ExtrairEntre("<item id=\""+PartesDaLinha[0].trim()+"\"", ">");
+                    Itens[l].setNomeTitulo(ConteudoXML.ExtrairEntre(Propriedades,"name=\"","\""));
                     Itens[l].setDescricao(ConteudoXML.ExtrairEntre(Propriedades,"description=\"","\""));
                     Itens[l].setPoderEfeito(ConteudoXML.ExtrairEntre(Propriedades,"effect=\"","\""));
                     ParteDoIcone=ConteudoXML.ExtrairEntre(Propriedades,"image=\"","\"").split("\\|"); // Não é só "|" nem "\|", tem q ser "\\|"
