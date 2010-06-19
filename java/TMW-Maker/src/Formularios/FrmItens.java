@@ -1,13 +1,6 @@
 package Formularios;
 
-import Classes.ConfigClass;
-import Classes.ItemClass;
-import Classes.StringClass;
 import java.awt.Cursor;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import javax.swing.DefaultComboBoxModel;
 
 public class FrmItens extends javax.swing.JDialog {
@@ -16,16 +9,11 @@ public class FrmItens extends javax.swing.JDialog {
         initComponents();
     }
 
-    static String Barra = System.getProperty("file.separator");
-    static String PastaDeItens = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"items";
-    static String EnderecoItensXML = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"items.xml";
-    static String EnderecoItensTXT = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"db"+Barra+"item_db.txt";
+    static Classes.ItensModulo Modulo; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
 
-    public static ItemClass Itens[];
-
-    private void ListaIcone() {
-        if(FrmPrincipal.Config.SeExiste(PastaDeItens)){
-            String[] Arquivos = FrmPrincipal.Config.ListarArquivos(PastaDeItens);
+    private void CarregarCmbIconePNG() {
+        if(FrmPrincipal.Config.SeExiste(Modulo.PastaDeItens)){
+            String[] Arquivos = FrmPrincipal.Config.ListarArquivos(Modulo.PastaDeItens);
             //setTitle(""+Arquivos.length);
             if(Arquivos.length>=1){
 
@@ -50,10 +38,63 @@ public class FrmItens extends javax.swing.JDialog {
             }
         }
     }
-    private void AtualizarImagem() {
+    private void CarregarCmbIDs() {
+        Thread tThread = new Thread(new Runnable() {
+            public void run() {
+                if(Modulo.getContItens()>=1){
+                    FrmPrincipal.PgbBarra.setString("Carregando...");
+                    FrmPrincipal.setAvisoEmEstatus("Favor espere carregar o Banco de Dados de Itens...");
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    TpnPaleta.setVisible(false);
+                    PneVisualizacao.setVisible(false);
+                    LblTitulo.setVisible(false);
+                    CmbIDs.setEnabled(false);
+                    BtnVoltar.setEnabled(false);
+                    BtnAvancar.setEnabled(false);
+                    BtnLocalizar.setEnabled(false);
+                    BtnCarregar.setEnabled(false);
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    FrmPrincipal.PgbBarra.setMinimum(1);
+                    FrmPrincipal.PgbBarra.setMaximum(Modulo.getContItens());
+
+                    Object[] CapsulaDeIDs= new java.lang.Object[Modulo.getContItens()];
+                    for(int i=0;i<Modulo.getContItens();i++){
+                        FrmPrincipal.PgbBarra.setValue(i+1);
+                        FrmPrincipal.setAvisoEmEstatus((i+1)+"/"+Modulo.getContItens());
+                        CapsulaDeIDs[i]=Integer.toString(Modulo.getItem(i).getID());
+                    }
+                    CmbIDs.setModel(new DefaultComboBoxModel(CapsulaDeIDs));
+
+                    FrmPrincipal.PgbBarra.setString("Caregado!");
+                    FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    TpnPaleta.setVisible(true);
+                    PneVisualizacao.setVisible(true);
+                    LblTitulo.setVisible(true);
+                    CmbIDs.setEnabled(true);
+                    //BtnVoltar.setEnabled(true);
+                    BtnAvancar.setEnabled(true);
+                    BtnLocalizar.setEnabled(true);
+                    BtnCarregar.setEnabled(true);/**/
+                }else{
+                    TpnPaleta.setVisible(false);
+                    PneVisualizacao.setVisible(false);
+                    LblTitulo.setVisible(false);
+                    CmbIDs.setEnabled(false);
+                    BtnVoltar.setEnabled(false);
+                    BtnAvancar.setEnabled(false);
+                    BtnLocalizar.setEnabled(false);
+                    BtnCarregar.setEnabled(false);
+                    dispose();
+                }
+            }
+        });
+        tThread.start();/**/
+    }
+    private void PosicionarImagem() {
         String ImagemSelecionada=CmbIconePNG.getItemAt(CmbIconePNG.getSelectedIndex()).toString();
         String LocalSelecionado=CmbLocal.getItemAt(CmbLocal.getSelectedIndex()).toString();
-        String Endereco=PastaDeItens+Barra+ImagemSelecionada;
+        String Endereco=Modulo.PastaDeItens+Modulo.Barra+ImagemSelecionada;
         //setTitle("\""+LocalSelecionado+"\"");
         LblTitulo.setIcon(new javax.swing.ImageIcon(Endereco));
 
@@ -69,196 +110,60 @@ public class FrmItens extends javax.swing.JDialog {
         if(LocalSelecionado.equals("equip-shield")){LblEquipShield.setIcon(new javax.swing.ImageIcon(Endereco));}else{LblEquipShield.setIcon(null);}
         if(LocalSelecionado.equals("equip-torso")) {LblEquipTorso.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipTorso.setIcon(null);}
     }
-    private void AbrirItens() {
-        Thread tThread = new Thread(new Runnable() {
-            public void run() {
-                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                FrmPrincipal.PgbBarra.setIndeterminate(true);
-                FrmPrincipal.PgbBarra.setString("Carregando...");
-                FrmPrincipal.setAvisoEmEstatus("Favor espere carregar o Banco de Dados de Itens...");
-                TpnPaleta.setVisible(false);
-                PneVisualizacao.setVisible(false);
-                LblTitulo.setVisible(false);
-                CmbIDs.setEnabled(false);
-                BtnVoltar.setEnabled(false);
-                BtnAvancar.setEnabled(false);
-                BtnLocalizar.setEnabled(false);
-                BtnCarregar.setEnabled(false);
-
-                String ConteudoTXT="", Linha="", PartesDaLinha[]=null;
-                try {
-                    FileInputStream stream = new FileInputStream(EnderecoItensTXT);
-                    InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
-                    BufferedReader reader = new BufferedReader(streamReader);
-                    while ((Linha = reader.readLine()) != null) {
-                        PartesDaLinha=Linha.split(",");
-                        if(
-                            PartesDaLinha.length>=19 &&
-                            !PartesDaLinha[0].equals("0") &&
-                            !Linha.substring(0, 1).trim().equals("#") &&
-                            !Linha.substring(0, 2).trim().equals("//")
-                        ){
-                            if(!ConteudoTXT.equals("")){
-                                ConteudoTXT=ConteudoTXT+"\n"+Linha;
-                            }else{
-                                ConteudoTXT=Linha;
-                            }
-
-                        }
-                    }
-                    reader.close();
-                    streamReader.close();
-                    stream.close();
-                } catch (IOException ex) {
-                    FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+EnderecoItensTXT+"\"!");
-                    ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoItensTXT+"\"!","AVISO");
-                    dispose();
-                    return; // em caso de falha
-                }
-
-                StringClass ConteudoXML = new StringClass();
-                try {
-                    FileInputStream stream = new FileInputStream(EnderecoItensXML);
-                    InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
-                    BufferedReader reader = new BufferedReader(streamReader);
-                    while ((Linha = reader.readLine()) != null) {
-                        ConteudoXML.setTesto(ConteudoXML.getTesto()+"\n"+Linha);
-                    }
-                    reader.close();
-                    streamReader.close();
-                    stream.close();
-                } catch (IOException ex) {
-                    FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+EnderecoItensXML+"\"!");
-                    ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoItensXML+"\"!","AVISO");
-                    dispose();
-                    return; // em caso de falha
-                }
-
-                FrmPrincipal.PgbBarra.setIndeterminate(false);
-
-                String Linhas[]=ConteudoTXT.trim().split("\n");
-                FrmPrincipal.PgbBarra.setMinimum(0);
-                FrmPrincipal.PgbBarra.setMaximum(Linhas.length);
-                FrmPrincipal.PgbBarra.setString("");
-                Itens = new ItemClass[Linhas.length];
-                Object[] ComboIDs= new java.lang.Object[Linhas.length];
-                int Tag1=-1, Tag2=-1; String Script="";
-                int Loc=0;
-                String Propriedades="",ParteDoIcone[]=null;
-                for(int l=0;l<Linhas.length;l++){
-                    FrmPrincipal.PgbBarra.setValue(Linhas.length+l);
-                    FrmPrincipal.PgbBarra.setString(FrmPrincipal.PgbBarra.getValue()+"/"+FrmPrincipal.PgbBarra.getMaximum());
-                    Linha=Linhas[l];
-                    PartesDaLinha=Linha.split(",");
-                    ComboIDs[l] = new Object();
-                    ComboIDs[l] = PartesDaLinha[0];
-                    Itens[l] = new ItemClass();
-                    Itens[l].setID(Integer.parseInt(PartesDaLinha[0].trim()));
-                    Itens[l].setNomeSumonico(PartesDaLinha[1].trim());
-                    Itens[l].setNomeTitulo(PartesDaLinha[2].trim());
-                    Itens[l].setTipoObjeto(Integer.parseInt(PartesDaLinha[3].trim()));
-                    Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[4].trim()));
-                    Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[5].trim()));
-                    Itens[l].setPeso(Integer.parseInt(PartesDaLinha[6].trim()));
-
-                    if(!PartesDaLinha[7].toString().equals("")) Itens[l].setPoderAtaque(Integer.parseInt(PartesDaLinha[7].trim()));
-                    if(!PartesDaLinha[8].toString().equals("")) Itens[l].setPoderDefesa(Integer.parseInt(PartesDaLinha[8].toString()));
-                    if(!PartesDaLinha[9].toString().equals("")) Itens[l].setPoderAlcance(Integer.parseInt(PartesDaLinha[9].trim()));
-                    if(!PartesDaLinha[10].toString().equals("")) Itens[l].setPoderBonusMagico(Integer.parseInt(PartesDaLinha[10].trim()));
-                    if(!PartesDaLinha[11].toString().equals("")) Itens[l].setOcupacaoDeLote(Integer.parseInt(PartesDaLinha[11].trim()));
-                    if(!PartesDaLinha[12].toString().equals("")) Itens[l].setGenero(Integer.parseInt(PartesDaLinha[12].trim()));
-                    if(!PartesDaLinha[13].toString().equals("")) Itens[l].setLocalEquipavel(Integer.parseInt(PartesDaLinha[13].trim()));
-                    if(!PartesDaLinha[14].toString().equals("")) Itens[l].setPoderRefinavel(Integer.parseInt(PartesDaLinha[14].trim()));
-                    if(!PartesDaLinha[15].toString().equals("")) Itens[l].setPoderElemental(Integer.parseInt(PartesDaLinha[15].trim()));
-                    if(!PartesDaLinha[16].toString().equals("")) Itens[l].setAparencia(Integer.parseInt(PartesDaLinha[16].trim()));
-
-                    Tag1=Linha.indexOf("{",0); Tag2=Linha.indexOf("},{",Tag1+1);
-                    if(Tag1 >= 0 && Tag2 >= 0 && Tag2 >= Tag1) Itens[l].setScriptAoConsulmir(Linha.substring(Tag1+1, Tag2).trim());
-                    Tag1=Linha.indexOf("},{",0); Tag2=Linha.indexOf("}",Tag1+3);
-                    if(Tag1>=0 && Tag2>=0 && Tag2>=Tag1) Itens[l].setScriptAoEquipar(Linha.substring(Tag1+3, Tag2).trim());
-
-                    
-                    Propriedades=ConteudoXML.ExtrairEntre("<item id=\""+PartesDaLinha[0].trim()+"\"", ">");
-                    Itens[l].setNomeTitulo(ConteudoXML.ExtrairEntre(Propriedades,"name=\"","\""));
-                    Itens[l].setDescricao(ConteudoXML.ExtrairEntre(Propriedades,"description=\"","\""));
-                    Itens[l].setPoderEfeito(ConteudoXML.ExtrairEntre(Propriedades,"effect=\"","\""));
-                    ParteDoIcone=ConteudoXML.ExtrairEntre(Propriedades,"image=\"","\"").split("\\|"); // Não é só "|" nem "\|", tem q ser "\\|"
-                    Itens[l].setIconePNG(ParteDoIcone[0]);
-                    if(ParteDoIcone.length==2) Itens[l].setIconeCor(ParteDoIcone[1]);
-                    Itens[l].setTipoNome(ConteudoXML.ExtrairEntre(Propriedades,"type=\"","\""));
-                }
-
-                FrmPrincipal.PgbBarra.setString("Caregado!");
-                FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
-                CmbIDs.setModel(new DefaultComboBoxModel(ComboIDs));
-                TpnPaleta.setVisible(true);
-                PneVisualizacao.setVisible(true);
-                LblTitulo.setVisible(true);
-                CmbIDs.setEnabled(true);
-                //BtnVoltar.setEnabled(true);
-                BtnAvancar.setEnabled(true);
-                BtnLocalizar.setEnabled(true);
-                BtnCarregar.setEnabled(true);
-
-                AbrirRegistro(CmbIDs.getSelectedIndex());
-                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-            }
-        });
-        tThread.start();
-    }
-    private void AbrirRegistro() {
-        AbrirRegistro(CmbIDs.getSelectedIndex());
-    }
     private void AbrirRegistro(int Registro) {
-        TxtNomeSumonico.setText(Itens[Registro].getNomeSumonico());
-        TxtNomeTitulo.setText(Itens[Registro].getNomeTitulo());
-        LblTitulo.setText(TxtNomeTitulo.getText());
-        if(Itens[Registro].getTipoObjeto()==0) CmbUtilidade.setSelectedIndex(0);
-        if(Itens[Registro].getTipoObjeto()==2) CmbUtilidade.setSelectedIndex(1);
-        if(Itens[Registro].getTipoObjeto()==3) CmbUtilidade.setSelectedIndex(2);
-        if(Itens[Registro].getTipoObjeto()==4) CmbUtilidade.setSelectedIndex(3);
-        if(Itens[Registro].getTipoObjeto()==5) CmbUtilidade.setSelectedIndex(4);
-        if(Itens[Registro].getTipoObjeto()==6) CmbUtilidade.setSelectedIndex(5);
-        if(Itens[Registro].getTipoObjeto()==7) CmbUtilidade.setSelectedIndex(6);
-        if(Itens[Registro].getTipoObjeto()==8) CmbUtilidade.setSelectedIndex(7);
-        if(Itens[Registro].getTipoObjeto()==10) CmbUtilidade.setSelectedIndex(8);
-        if(Itens[Registro].getTipoObjeto()==11) CmbUtilidade.setSelectedIndex(9);
-        SpnPeso.setValue(Itens[Registro].getPeso());
-        SpnPrecoCompra.setValue(Itens[Registro].getPrecoDeCompra());
-        SpnPrecoVenda.setValue(Itens[Registro].getPrecoDeVenda());
-        SpnPoderAtaque.setValue(Itens[Registro].getPoderAtaque());
-        SpnPoderDefesa.setValue(Itens[Registro].getPoderDefesa());
-        SpnPoderAlcance.setValue(Itens[Registro].getPoderAlcance());
-        SpnPoderBonusMagico.setValue(Itens[Registro].getPoderBonusMagico());
-        SpnOculpacaoDeLote.setValue(Itens[Registro].getOcupacaoDeLote());
-        CmbGenero.setSelectedIndex(Itens[Registro].getGenero());
+        if(Modulo.getContItens()>=1){
+        //if(ItensModulo.getContItens()>=1){
+            TxtNomeSumonico.setText(Modulo.getItem(Registro).getNomeSumonico());
+            TxtNomeTitulo.setText(Modulo.getItem(Registro).getNomeTitulo());
+            LblTitulo.setText(TxtNomeTitulo.getText());
+            if(Modulo.getItem(Registro).getTipoObjeto()==0) CmbUtilidade.setSelectedIndex(0);
+            if(Modulo.getItem(Registro).getTipoObjeto()==2) CmbUtilidade.setSelectedIndex(1);
+            if(Modulo.getItem(Registro).getTipoObjeto()==3) CmbUtilidade.setSelectedIndex(2);
+            if(Modulo.getItem(Registro).getTipoObjeto()==4) CmbUtilidade.setSelectedIndex(3);
+            if(Modulo.getItem(Registro).getTipoObjeto()==5) CmbUtilidade.setSelectedIndex(4);
+            if(Modulo.getItem(Registro).getTipoObjeto()==6) CmbUtilidade.setSelectedIndex(5);
+            if(Modulo.getItem(Registro).getTipoObjeto()==7) CmbUtilidade.setSelectedIndex(6);
+            if(Modulo.getItem(Registro).getTipoObjeto()==8) CmbUtilidade.setSelectedIndex(7);
+            if(Modulo.getItem(Registro).getTipoObjeto()==10) CmbUtilidade.setSelectedIndex(8);
+            if(Modulo.getItem(Registro).getTipoObjeto()==11) CmbUtilidade.setSelectedIndex(9);
+            SpnPeso.setValue(Modulo.getItem(Registro).getPeso());
+            SpnPrecoCompra.setValue(Modulo.getItem(Registro).getPrecoDeCompra());
+            SpnPrecoVenda.setValue(Modulo.getItem(Registro).getPrecoDeVenda());
+            SpnPoderAtaque.setValue(Modulo.getItem(Registro).getPoderAtaque());
+            SpnPoderDefesa.setValue(Modulo.getItem(Registro).getPoderDefesa());
+            SpnPoderAlcance.setValue(Modulo.getItem(Registro).getPoderAlcance());
+            SpnPoderBonusMagico.setValue(Modulo.getItem(Registro).getPoderBonusMagico());
+            SpnOculpacaoDeLote.setValue(Modulo.getItem(Registro).getOcupacaoDeLote());
+            CmbGenero.setSelectedIndex(Modulo.getItem(Registro).getGenero());
 
-        int Loc=Itens[Registro].getLocalEquipavel();
-        boolean SeEquipamento = (CmbUtilidade.getSelectedIndex()>=3 && CmbUtilidade.getSelectedIndex()<=8);
-        ChkEquipavelMunicao.setSelected(Loc/32768>=1); if(Loc/32768>=1)Loc-=32768; ChkEquipavelMunicao.setEnabled(SeEquipamento);
-        ChkEquipavelTorco2.setSelected(Loc/512>=1);    if(Loc/512>=1)  Loc-=512;   ChkEquipavelTorco2.setEnabled(SeEquipamento);
-        ChkEquipavelCabeça.setSelected(Loc/256>=1);    if(Loc/256>=1)  Loc-=256;   ChkEquipavelCabeça.setEnabled(SeEquipamento);
-        ChkEquipavelAcessorio.setSelected(Loc/128>=1); if(Loc/128>=1)  Loc-=128;   ChkEquipavelAcessorio.setEnabled(SeEquipamento);
-        ChkEquipavelPes.setSelected(Loc/64>=1);        if(Loc/64>=1)   Loc-=64;    ChkEquipavelPes.setEnabled(SeEquipamento);
-        ChkEquipavelBraco2.setSelected(Loc/32>=1);     if(Loc/32>=1)   Loc-=32;    ChkEquipavelBraco2.setEnabled(SeEquipamento);
-        ChkEquipavelTorco1.setSelected(Loc/16>=1);     if(Loc/16>=1)   Loc-=16;    ChkEquipavelTorco1.setEnabled(SeEquipamento);
-        ChkEquipavelMaos.setSelected(Loc/4>=1);        if(Loc/4>=1)    Loc-=4;     ChkEquipavelMaos.setEnabled(SeEquipamento);
-        ChkEquipavelBraco1.setSelected(Loc/2>=1);      if(Loc/2>=1)    Loc-=2;     ChkEquipavelBraco1.setEnabled(SeEquipamento);
-        ChkEquipavelPernas.setSelected(Loc/1>=1);      if(Loc/1>=1)    Loc-=1;     ChkEquipavelPernas.setEnabled(SeEquipamento);
+            int Loc=Modulo.getItem(Registro).getLocalEquipavel();
+            boolean SeEquipamento = (CmbUtilidade.getSelectedIndex()>=3 && CmbUtilidade.getSelectedIndex()<=8);
+            ChkEquipavelMunicao.setSelected(Loc/32768>=1); if(Loc/32768>=1)Loc-=32768; ChkEquipavelMunicao.setEnabled(SeEquipamento);
+            ChkEquipavelTorco2.setSelected(Loc/512>=1);    if(Loc/512>=1)  Loc-=512;   ChkEquipavelTorco2.setEnabled(SeEquipamento);
+            ChkEquipavelCabeça.setSelected(Loc/256>=1);    if(Loc/256>=1)  Loc-=256;   ChkEquipavelCabeça.setEnabled(SeEquipamento);
+            ChkEquipavelAcessorio.setSelected(Loc/128>=1); if(Loc/128>=1)  Loc-=128;   ChkEquipavelAcessorio.setEnabled(SeEquipamento);
+            ChkEquipavelPes.setSelected(Loc/64>=1);        if(Loc/64>=1)   Loc-=64;    ChkEquipavelPes.setEnabled(SeEquipamento);
+            ChkEquipavelBraco2.setSelected(Loc/32>=1);     if(Loc/32>=1)   Loc-=32;    ChkEquipavelBraco2.setEnabled(SeEquipamento);
+            ChkEquipavelTorco1.setSelected(Loc/16>=1);     if(Loc/16>=1)   Loc-=16;    ChkEquipavelTorco1.setEnabled(SeEquipamento);
+            ChkEquipavelMaos.setSelected(Loc/4>=1);        if(Loc/4>=1)    Loc-=4;     ChkEquipavelMaos.setEnabled(SeEquipamento);
+            ChkEquipavelBraco1.setSelected(Loc/2>=1);      if(Loc/2>=1)    Loc-=2;     ChkEquipavelBraco1.setEnabled(SeEquipamento);
+            ChkEquipavelPernas.setSelected(Loc/1>=1);      if(Loc/1>=1)    Loc-=1;     ChkEquipavelPernas.setEnabled(SeEquipamento);
 
-        TxtScripAoConsulmir.setText(Itens[Registro].getScriptAoConsulmir().trim());
-        TxtScripAoEquipar.setText(Itens[Registro].getScriptAoEquipar().trim());
+            TxtScripAoConsulmir.setText(Modulo.getItem(Registro).getScriptAoConsulmir().trim());
+            TxtScripAoEquipar.setText(Modulo.getItem(Registro).getScriptAoEquipar().trim());
 
-        TxtDescricao.setText(Itens[Registro].getDescricao().trim());
-        TxtEfeito.setText(Itens[Registro].getPoderEfeito().trim());
-        CmbIconePNG.setSelectedItem((Object)Itens[Registro].getIconePNG().trim());
-        TxtIconeCor.setText(Itens[Registro].getIconeCor().trim());
-        CmbLocal.setSelectedItem((Object)Itens[Registro].getTipoNome().trim());
+            TxtDescricao.setText(Modulo.getItem(Registro).getDescricao().trim());
+            TxtEfeito.setText(Modulo.getItem(Registro).getPoderEfeito().trim());
+            CmbIconePNG.setSelectedItem((Object)Modulo.getItem(Registro).getIconePNG().trim());
+            TxtIconeCor.setText(Modulo.getItem(Registro).getIconeCor().trim());
+            CmbLocal.setSelectedItem((Object)Modulo.getItem(Registro).getTipoNome().trim());
 
-        BtnAvancar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()<(CmbIDs.getItemCount()-1)));
-        BtnVoltar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()>0));
-        BtnLocalizar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getItemCount()>=2));
+            BtnAvancar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()<(CmbIDs.getItemCount()-1)));
+            BtnVoltar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()>0));
+            BtnLocalizar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getItemCount()>=2));
+        }else{
+            dispose();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -707,8 +612,6 @@ public class FrmItens extends javax.swing.JDialog {
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {SpnPoderAlcance, SpnPoderAtaque, SpnPoderDefesa, jLabel15, jLabel16});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbUtilidade, jLabel11});
-
         TpnPaleta.addTab("Poder", jPanel1);
 
         SpnPrecoCompra.setModel(new javax.swing.SpinnerNumberModel(50000, 0, 10000000, 1));
@@ -894,8 +797,6 @@ public class FrmItens extends javax.swing.JDialog {
                 .addGap(41, 41, 41))
         );
 
-        PneEquipamentoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbGenero, jLabel25});
-
         TpnPaleta.addTab("Animação", PneEquipamento);
 
         jLabel26.setText("Executar ao Consulmir:");
@@ -906,7 +807,7 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel27.setText("Executar ao Equipar:");
 
         TxtScripAoEquipar.setEditable(false);
-        TxtScripAoEquipar.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        TxtScripAoEquipar.setFont(new java.awt.Font("Monospaced", 0, 13));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -941,7 +842,6 @@ public class FrmItens extends javax.swing.JDialog {
 
         BtnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_voltar.gif"))); // NOI18N
         BtnVoltar.setToolTipText("Anterior (Ctrl+Alt+?)");
-        BtnVoltar.setEnabled(false);
         BtnVoltar.setFocusable(false);
         BtnVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnVoltar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -954,7 +854,6 @@ public class FrmItens extends javax.swing.JDialog {
 
         CmbIDs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3046" }));
         CmbIDs.setToolTipText("Número ID");
-        CmbIDs.setEnabled(false);
         CmbIDs.setMaximumSize(new java.awt.Dimension(67, 25));
         CmbIDs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -965,7 +864,6 @@ public class FrmItens extends javax.swing.JDialog {
 
         BtnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_avancar.gif"))); // NOI18N
         BtnAvancar.setToolTipText("Próxima (Ctrl+Alt+?)");
-        BtnAvancar.setEnabled(false);
         BtnAvancar.setFocusable(false);
         BtnAvancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnAvancar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -977,7 +875,6 @@ public class FrmItens extends javax.swing.JDialog {
         jToolBar1.add(BtnAvancar);
 
         BtnLocalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lupa.gif"))); // NOI18N
-        BtnLocalizar.setEnabled(false);
         BtnLocalizar.setFocusable(false);
         BtnLocalizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnLocalizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -991,7 +888,6 @@ public class FrmItens extends javax.swing.JDialog {
 
         BtnCarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
         BtnCarregar.setToolTipText("Abrir (Ctrl+O)");
-        BtnCarregar.setEnabled(false);
         BtnCarregar.setFocusable(false);
         BtnCarregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnCarregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1059,7 +955,7 @@ public class FrmItens extends javax.swing.JDialog {
         LblMostruario3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         LblEquipCharm.setBackground(java.awt.Color.lightGray);
-        LblEquipCharm.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 18)); // NOI18N
+        LblEquipCharm.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 18));
         LblEquipCharm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         LblEquipCharm.setMaximumSize(new java.awt.Dimension(32, 32));
         LblEquipCharm.setMinimumSize(new java.awt.Dimension(32, 32));
@@ -1231,11 +1127,43 @@ public class FrmItens extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ListaIcone();
-        AbrirItens();
+        Thread tThread = new Thread(new Runnable() {
+            public void run() {
+                FrmPrincipal.PgbBarra.setString("Carregando...");
+                FrmPrincipal.setAvisoEmEstatus("Favor espere carregar o Banco de Dados de Itens...");
+                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                TpnPaleta.setVisible(false);
+                PneVisualizacao.setVisible(false);
+                LblTitulo.setVisible(false);
+                CmbIDs.setEnabled(false);
+                BtnVoltar.setEnabled(false);
+                BtnAvancar.setEnabled(false);
+                BtnLocalizar.setEnabled(false);
+                BtnCarregar.setEnabled(false);
+                FrmPrincipal.PgbBarra.setIndeterminate(true);
+
+                Modulo = new Classes.ItensModulo(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
+                CarregarCmbIconePNG();
+                CarregarCmbIDs();
+                AbrirRegistro(CmbIDs.getSelectedIndex());
+
+                FrmPrincipal.PgbBarra.setString("Caregado!");
+                FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                TpnPaleta.setVisible(true);
+                PneVisualizacao.setVisible(true);
+                LblTitulo.setVisible(true);
+                CmbIDs.setEnabled(true);
+                //BtnVoltar.setEnabled(true);
+                BtnAvancar.setEnabled(true);
+                BtnLocalizar.setEnabled(true);
+                BtnCarregar.setEnabled(true);/**/
+            }
+        });
+        tThread.start();/**/
     }//GEN-LAST:event_formWindowOpened
     private void CmbIconePNGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIconePNGActionPerformed
-        AtualizarImagem();
+        PosicionarImagem();
     }//GEN-LAST:event_CmbIconePNGActionPerformed
     private void TxtNomeTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeTituloActionPerformed
         LblTitulo.setText(TxtNomeTitulo.getText());
@@ -1244,7 +1172,7 @@ public class FrmItens extends javax.swing.JDialog {
         LblTitulo.setText(TxtNomeTitulo.getText());
     }//GEN-LAST:event_TxtNomeTituloKeyReleased
     private void CmbLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbLocalActionPerformed
-        AtualizarImagem();
+        PosicionarImagem();
     }//GEN-LAST:event_CmbLocalActionPerformed
     private void CmbIDsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIDsActionPerformed
         AbrirRegistro(CmbIDs.getSelectedIndex());
@@ -1267,7 +1195,7 @@ public class FrmItens extends javax.swing.JDialog {
         FrmItemLocalizar.setVisible(true);/**/
     }//GEN-LAST:event_BtnLocalizarActionPerformed
     private void BtnCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCarregarActionPerformed
-        AbrirItens();
+        //AbrirItens();
     }//GEN-LAST:event_BtnCarregarActionPerformed
     private void CmbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbGeneroActionPerformed
         // TODO add your handling code here:

@@ -1,6 +1,6 @@
 package Classes;
 
-public class ItemClass {
+public class ItemDados {
 
     private int ID=0;
     private String NomeSumonico="";
