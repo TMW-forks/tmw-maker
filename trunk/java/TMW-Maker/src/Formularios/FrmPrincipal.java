@@ -613,6 +613,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuSistemaConfiguracoes = new javax.swing.JMenuItem();
         MnuSistemaDependencias = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
+        MnuSistemaAreaDeTeste = new javax.swing.JMenuItem();
         MnuSistemaFechar = new javax.swing.JMenuItem();
         MnuEditar = new javax.swing.JMenu();
         MnuEditarItens = new javax.swing.JMenu();
@@ -742,6 +743,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuSistema.add(MnuSistemaDependencias);
         MnuSistema.add(jSeparator2);
+
+        MnuSistemaAreaDeTeste.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MnuSistemaAreaDeTeste.setMnemonic('T');
+        MnuSistemaAreaDeTeste.setText("Área de Testes");
+        MnuSistemaAreaDeTeste.setEnabled(false);
+        MnuSistemaAreaDeTeste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuSistemaAreaDeTesteActionPerformed(evt);
+            }
+        });
+        MnuSistema.add(MnuSistemaAreaDeTeste);
 
         MnuSistemaFechar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         MnuSistemaFechar.setMnemonic('F');
@@ -1103,6 +1115,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmItens.setModal(true);
         FrmItens.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarItensDadosActionPerformed
+    private void MnuSistemaAreaDeTesteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAreaDeTesteActionPerformed
+        javax.swing.JDialog FrmTestesDeCodigo = new FrmTestesDeCodigo(this, rootPaneCheckingEnabled);
+        FrmTestesDeCodigo.setLocation(
+                ((this.getWidth() - FrmTestesDeCodigo.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmTestesDeCodigo.getHeight()) / 2) + this.getY());
+        FrmTestesDeCodigo.pack();
+        FrmTestesDeCodigo.setModal(true);
+        FrmTestesDeCodigo.setVisible(true);/**/
+    }//GEN-LAST:event_MnuSistemaAreaDeTesteActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1142,6 +1163,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuLocalhost;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
+    private javax.swing.JMenuItem MnuSistemaAreaDeTeste;
     private javax.swing.JMenuItem MnuSistemaAtualizar;
     private javax.swing.JMenuItem MnuSistemaConfiguracoes;
     private javax.swing.JMenuItem MnuSistemaDependencias;

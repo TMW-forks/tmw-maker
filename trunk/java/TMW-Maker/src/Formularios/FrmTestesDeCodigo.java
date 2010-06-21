@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * FrmTestesDeCodigo.java
- *
- * Created on 19/06/2010, 23:49:26
- */
 
 package Formularios;
 
+import Classes.SpriteDados;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -96,7 +87,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
     public void Teste_A03(){
         try {
-            BufferedImage image = ImageIO.read(new File("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png"));
+            BufferedImage image = ImageIO.read(new File("/home/indigovox/Imagens/Papeis de Parede/Paisagens/Grama Verde.jpg"));
 
             int width = image.getWidth();
             int height = image.getHeight();
@@ -121,8 +112,9 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             }
 
             image.setRGB(0, 0, width, height, pontos_img, 0, width);
-            jLabel1.setIcon(new ImageIcon(image.getSubimage(0, 0, 64, 64)));
-            //ImageIO.write(image, "png", new File("/home/indigovox/Desktop/teste.png"));
+            //jLabel1.setIcon(new ImageIcon(image.getSubimage(0, 0, 64, 64)));
+            jLabel1.setIcon(new ImageIcon(image));
+            //ImageIO.write(image, "png", new File("/home/indigovox/Desktop/Teste_A03.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,6 +125,16 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             BufferedImage image = ImageIO.read(new File("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png"));
             jLabel1.setIcon(new ImageIcon(image.getSubimage(0, 0, 64, 64)));
             ImageIO.write(image.getSubimage(0, 0, 64, 64), "png", new File("/home/indigovox/Desktop/corte.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void Teste_A05(){
+        try {
+            SpriteDados Sprite = new SpriteDados("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+            int Bloco=8;
+            jLabel1.setIcon(new ImageIcon(Sprite.getBloco(Bloco)));
+            Sprite.EsportarBloco(Bloco,"/home/indigovox/Desktop/corte.jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -243,6 +245,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Área em Desenvolvimento");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -253,6 +256,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
+        jTextArea2.setOpaque(false);
         jScrollPane2.setViewportView(jTextArea2);
 
         jTextArea1.setColumns(20);
@@ -261,37 +265,36 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
         jLabel2.setText("Testo de Rápida leitura: (Falha)");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/indigovox/Desktop/corte.png")); // NOI18N
         jLabel1.setText("Imagem Cortada (Semi-resolvido)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                     .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -299,7 +302,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       Teste_A04();
+       Teste_A05();
        //Teste_B03();
        Teste_C02();
     }//GEN-LAST:event_formWindowOpened
