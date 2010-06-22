@@ -4,8 +4,6 @@ package Formularios;
 import Classes.ConfigClass;
 import java.io.FileReader;
 import java.io.FileWriter;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
 
 public class FrmContas extends javax.swing.JDialog {
     public FrmContas(java.awt.Frame parent, boolean modal) {
