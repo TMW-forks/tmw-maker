@@ -35,7 +35,16 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         }
     }
     private void FunMudaTesto() {
-        String Repositorio = TxtConfiguracaoConexaoRepositorio.getText();
+        String Repositorio;
+        /*try {
+            String Editado=CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString();
+            String Selecionado=CmbConfiguracaoConexaoRepositorio.getItemAt(CmbConfiguracaoConexaoRepositorio.getSelectedIndex()).toString();
+            if(!Editado.equals(Selecionado)){Repositorio = Selecionado;}else{Repositorio = Editado;}
+        } catch (Exception e) {
+            Repositorio = CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString();
+        }/**/
+        Repositorio = CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString();
+
         String Partes[] = null;
         Partes = Repositorio.split(":");
         if(Partes.length>1 && Partes[0].toLowerCase().equals("https")){
@@ -59,12 +68,14 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     }
     public boolean SalvarConfiguracao(String filename) {
         try {
-            FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
+            //FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
+            FrmPrincipal.Config.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
             FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
             FrmPrincipal.Config.setConexaoUsuario (TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
             FrmPrincipal.Config.setConexaoSenha (TxtConfiguracaoConexaoIdentificacaoSenha.getText());
 
-            FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
+            //FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
+            FrmPrincipal.Config.setExecucaoComando(CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString());
             //FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
             FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
             FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
@@ -133,19 +144,24 @@ public class FrmConfiguracao extends javax.swing.JDialog {
 
     }
     public void ImportarConfiguracao() {
-        TxtConfiguracaoConexaoRepositorio.setText(FrmPrincipal.Config.getConexaoRepositorio().toString());
+        //TxtConfiguracaoConexaoRepositorio.setText(FrmPrincipal.Config.getConexaoRepositorio().toString());
+        CmbConfiguracaoConexaoRepositorio.setSelectedItem((Object)FrmPrincipal.Config.getConexaoRepositorio().toString());
+        FrmPrincipal.Config.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
         TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.Config.getConexaoLocalhost());
         TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.Config.getConexaoUsuario());
         TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.Config.getConexaoSenha());
 
-        TxtConfiguracaoExecucaoSoftwareCliente.setText(FrmPrincipal.Config.getExecucaoComando());
+        CmbConfiguracaoExecucaoSoftwareCliente.setSelectedItem((Object)FrmPrincipal.Config.getExecucaoComando());
+        //TxtConfiguracaoExecucaoSoftwareCliente.setText(FrmPrincipal.Config.getExecucaoComando());
         if(!FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help")){
-            TxtConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
+            //TxtConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
+            CmbConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:</font> Aplicativo \"<font color=\"#FF0000\">"+FrmPrincipal.Config.getExecucaoComando()+"</font>\" não existe ou não está funcionando!");
             AbaConfiguracoes.setSelectedIndex(1);
-            TxtConfiguracaoExecucaoSoftwareCliente.setSelectionStart(0);
-            TxtConfiguracaoExecucaoSoftwareCliente.setSelectionEnd(FrmPrincipal.Config.getExecucaoComando().length()-1);
-            TxtConfiguracaoExecucaoSoftwareCliente.gotFocus(null, TxtConfiguracaoExecucaoSoftwareCliente);
+            //TxtConfiguracaoExecucaoSoftwareCliente.setSelectionStart(0);
+            //TxtConfiguracaoExecucaoSoftwareCliente.setSelectionEnd(FrmPrincipal.Config.getExecucaoComando().length()-1);
+            //TxtConfiguracaoExecucaoSoftwareCliente.gotFocus(null, TxtConfiguracaoExecucaoSoftwareCliente);
+            CmbConfiguracaoExecucaoSoftwareCliente.gotFocus(null, CmbConfiguracaoExecucaoSoftwareCliente);
         }
         //TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
         TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.Config.getExecucaoParametroServidor());
@@ -168,7 +184,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         AbaConfiguracoes = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TxtConfiguracaoConexaoRepositorio = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         TxtConfiguracaoConexaoLocalhost = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -177,9 +192,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         TxtConfiguracaoConexaoIdentificacaoSenha = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
+        CmbConfiguracaoConexaoRepositorio = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        TxtConfiguracaoExecucaoSoftwareCliente = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         TxtConfiguracaoExecucaoParamentroServidor = new javax.swing.JTextField();
@@ -190,6 +205,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoExecucaoParamentroPersonagem = new javax.swing.JTextField();
         ChkConfiguracaoExecucaoParamentroSemopengl = new javax.swing.JCheckBox();
         TxtConfiguracaoExecucaoParamentroSenha = new javax.swing.JPasswordField();
+        CmbConfiguracaoExecucaoSoftwareCliente = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         TxtConfiguracaoDocumentacaoAlteracoes = new javax.swing.JTextField();
@@ -218,17 +234,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Repositório:");
 
-        TxtConfiguracaoConexaoRepositorio.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TxtConfiguracaoConexaoRepositorioFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoConexaoRepositorio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TxtConfiguracaoConexaoRepositorioKeyReleased(evt);
-            }
-        });
-
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Localhost:");
 
@@ -244,12 +249,13 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Identificação"));
-        jPanel3.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
+        jPanel3.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13)); // NOI18N
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Usuário:");
 
         TxtConfiguracaoConexaoIdentificacaoUsuario.setEnabled(false);
+        TxtConfiguracaoConexaoIdentificacaoUsuario.setMinimumSize(new java.awt.Dimension(25, 25));
         TxtConfiguracaoConexaoIdentificacaoUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained(evt);
@@ -265,6 +271,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jLabel4.setText("Senha:");
 
         TxtConfiguracaoConexaoIdentificacaoSenha.setEnabled(false);
+        TxtConfiguracaoConexaoIdentificacaoSenha.setMinimumSize(new java.awt.Dimension(25, 25));
         TxtConfiguracaoConexaoIdentificacaoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained(evt);
@@ -284,7 +291,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                    .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -296,12 +303,12 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtConfiguracaoConexaoIdentificacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel4))
+                            .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtConfiguracaoConexaoIdentificacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -309,27 +316,41 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel15.setText("<html><b>OBS.:</b> Inicie com <font color=\"#0000FF\"><b>https://</b></font> para ativar a identificação.");
 
+        CmbConfiguracaoConexaoRepositorio.setEditable(true);
+        CmbConfiguracaoConexaoRepositorio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "http://themanaworld-br.googlecode.com/svn/trunk" }));
+        CmbConfiguracaoConexaoRepositorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbConfiguracaoConexaoRepositorioActionPerformed(evt);
+            }
+        });
+        CmbConfiguracaoConexaoRepositorio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CmbConfiguracaoConexaoRepositorioFocusGained(evt);
+            }
+        });
+        CmbConfiguracaoConexaoRepositorio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CmbConfiguracaoConexaoRepositorioKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                            .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))))
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                            .addComponent(CmbConfiguracaoConexaoRepositorio, 0, 379, Short.MAX_VALUE)
+                            .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -338,32 +359,23 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TxtConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CmbConfiguracaoConexaoRepositorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(69, 69, 69))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbConfiguracaoConexaoRepositorio, TxtConfiguracaoConexaoLocalhost, jLabel1, jLabel2});
 
         AbaConfiguracoes.addTab("Conexão", jPanel1);
 
         jLabel5.setText("Software Cliente:");
-
-        TxtConfiguracaoExecucaoSoftwareCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TxtConfiguracaoExecucaoSoftwareClienteFocusGained(evt);
-            }
-        });
-        TxtConfiguracaoExecucaoSoftwareCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TxtConfiguracaoExecucaoSoftwareClienteKeyReleased(evt);
-            }
-        });
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Parâmetros"));
 
@@ -454,8 +466,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(jLabel10))
                 .addGap(4, 4, 4)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChkConfiguracaoExecucaoParamentroSemopengl)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                    .addComponent(ChkConfiguracaoExecucaoParamentroSemopengl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroPersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -465,24 +477,44 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(TxtConfiguracaoExecucaoParamentroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtConfiguracaoExecucaoParamentroSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroPersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(TxtConfiguracaoExecucaoParamentroPersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChkConfiguracaoExecucaoParamentroSemopengl)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ChkConfiguracaoExecucaoParamentroSemopengl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {TxtConfiguracaoExecucaoParamentroConta, TxtConfiguracaoExecucaoParamentroPersonagem, TxtConfiguracaoExecucaoParamentroSenha, TxtConfiguracaoExecucaoParamentroServidor, jLabel10, jLabel7, jLabel8, jLabel9});
+
+        CmbConfiguracaoExecucaoSoftwareCliente.setEditable(true);
+        CmbConfiguracaoExecucaoSoftwareCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "tmw", "manaplus" }));
+        CmbConfiguracaoExecucaoSoftwareCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbConfiguracaoExecucaoSoftwareClienteActionPerformed(evt);
+            }
+        });
+        CmbConfiguracaoExecucaoSoftwareCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CmbConfiguracaoExecucaoSoftwareClienteFocusGained(evt);
+            }
+        });
+        CmbConfiguracaoExecucaoSoftwareCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CmbConfiguracaoExecucaoSoftwareClienteKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -494,8 +526,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(4, 4, 4)
-                        .addComponent(TxtConfiguracaoExecucaoSoftwareCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CmbConfiguracaoExecucaoSoftwareCliente, 0, 338, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -503,12 +535,14 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(TxtConfiguracaoExecucaoSoftwareCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbConfiguracaoExecucaoSoftwareCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbConfiguracaoExecucaoSoftwareCliente, jLabel5});
 
         AbaConfiguracoes.addTab("Execução", jPanel2);
 
@@ -583,31 +617,31 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
+                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         AbaConfiguracoes.addTab("Documentação", jPanel4);
@@ -644,20 +678,23 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                        .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                         .addComponent(BtnConfiguracaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnConfiguracaoCancelar)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnConfiguracaoCancelar, BtnConfiguracaoOk});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnConfiguracaoOk)
@@ -665,6 +702,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(BtnConfiguracaoAjuda))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnConfiguracaoCancelar, BtnConfiguracaoOk});
 
         getAccessibleContext().setAccessibleParent(this);
 
@@ -675,16 +714,14 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        this.dispose();
        //System.exit(0);
     }//GEN-LAST:event_BtnConfiguracaoCancelarActionPerformed
-    private void TxtConfiguracaoConexaoRepositorioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
-       FunMudaTesto();
-       showAjuda(evt);
-    }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioKeyReleased
     private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
-        FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
+        FrmPrincipal.Config.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
+        //FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
         FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
         FrmPrincipal.Config.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
         FrmPrincipal.Config.setConexaoSenha(TxtConfiguracaoConexaoIdentificacaoSenha.getText());
-        FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
+        //FrmPrincipal.Config.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
+        FrmPrincipal.Config.setExecucaoComando(CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString());
         //FrmPrincipal.Config.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
         FrmPrincipal.Config.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
         FrmPrincipal.Config.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
@@ -702,9 +739,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void BtnConfiguracaoAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoAjudaActionPerformed
         showAjuda();
     }//GEN-LAST:event_BtnConfiguracaoAjudaActionPerformed
-    private void TxtConfiguracaoConexaoRepositorioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoRepositorioFocusGained
-       setMarcarComponente("TxtConfiguracaoConexaoRepositorio");
-    }//GEN-LAST:event_TxtConfiguracaoConexaoRepositorioFocusGained
     private void TxtConfiguracaoConexaoLocalhostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoLocalhostFocusGained
        setMarcarComponente("TxtConfiguracaoConexaoLocalhost");
     }//GEN-LAST:event_TxtConfiguracaoConexaoLocalhostFocusGained
@@ -714,9 +748,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained
        setMarcarComponente("TxtConfiguracaoConexaoIdentificacaoSenha");
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained
-    private void TxtConfiguracaoExecucaoSoftwareClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoSoftwareClienteFocusGained
-       setMarcarComponente("TxtConfiguracaoExecucaoComando");
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoSoftwareClienteFocusGained
     private void TxtConfiguracaoExecucaoParamentroServidorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroServidorFocusGained
        setMarcarComponente("TxtConfiguracaoExecucaoParamentroServidor");
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroServidorFocusGained
@@ -753,21 +784,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoConexaoIdentificacaoSenhaKeyReleased
-    private void TxtConfiguracaoExecucaoSoftwareClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoSoftwareClienteKeyReleased
-        if(!TxtConfiguracaoExecucaoSoftwareCliente.getText().isEmpty()){
-            boolean SeProcede=FrmPrincipal.Config.SeComandoProcede(TxtConfiguracaoExecucaoSoftwareCliente.getText()+" --help");
-            if(SeProcede){
-                TxtConfiguracaoExecucaoSoftwareCliente.setForeground(java.awt.SystemColor.textText);
-                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoSoftwareCliente.getText()+"\" Ok!");
-            }else{
-                TxtConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
-                FrmPrincipal.LblEstatus.setText("Comando \""+TxtConfiguracaoExecucaoSoftwareCliente.getText()+"\" não procede!");
-            }
-        }else{
-            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:<font> Digite o comando que abrirá o jogo The Mana World!");
-        }
-        showAjuda(evt);
-    }//GEN-LAST:event_TxtConfiguracaoExecucaoSoftwareClienteKeyReleased
     private void TxtConfiguracaoExecucaoParamentroServidorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoExecucaoParamentroServidorKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoExecucaoParamentroServidorKeyReleased
@@ -795,18 +811,35 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private void TxtConfiguracaoDocumentacaoTraducoesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
         showAjuda(evt);
     }//GEN-LAST:event_TxtConfiguracaoDocumentacaoTraducoesKeyReleased
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ImportarConfiguracao();
     }//GEN-LAST:event_formWindowOpened
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmPrincipal.LblEstatus.setText("Janela de configurações fechada!");
     }//GEN-LAST:event_formWindowClosed
-
     private void ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ChkConfiguracaoExecucaoParamentroSemopenglActionPerformed
+    private void CmbConfiguracaoConexaoRepositorioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CmbConfiguracaoConexaoRepositorioFocusGained
+        setMarcarComponente("CmbConfiguracaoConexaoRepositorio");
+    }//GEN-LAST:event_CmbConfiguracaoConexaoRepositorioFocusGained
+    private void CmbConfiguracaoConexaoRepositorioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbConfiguracaoConexaoRepositorioKeyReleased
+        FunMudaTesto();
+        showAjuda(evt);
+    }//GEN-LAST:event_CmbConfiguracaoConexaoRepositorioKeyReleased
+    private void CmbConfiguracaoConexaoRepositorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbConfiguracaoConexaoRepositorioActionPerformed
+        FunMudaTesto();
+    }//GEN-LAST:event_CmbConfiguracaoConexaoRepositorioActionPerformed
+    private void CmbConfiguracaoExecucaoSoftwareClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbConfiguracaoExecucaoSoftwareClienteKeyReleased
+        Alterado_SoftwareCliente();
+        showAjuda(evt);
+    }//GEN-LAST:event_CmbConfiguracaoExecucaoSoftwareClienteKeyReleased
+    private void CmbConfiguracaoExecucaoSoftwareClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CmbConfiguracaoExecucaoSoftwareClienteFocusGained
+        setMarcarComponente("CmbConfiguracaoExecucaoSoftwareCliente");
+    }//GEN-LAST:event_CmbConfiguracaoExecucaoSoftwareClienteFocusGained
+    private void CmbConfiguracaoExecucaoSoftwareClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbConfiguracaoExecucaoSoftwareClienteActionPerformed
+        Alterado_SoftwareCliente();
+    }//GEN-LAST:event_CmbConfiguracaoExecucaoSoftwareClienteActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -829,10 +862,11 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JButton BtnConfiguracaoCancelar;
     private javax.swing.JButton BtnConfiguracaoOk;
     private javax.swing.JCheckBox ChkConfiguracaoExecucaoParamentroSemopengl;
+    private javax.swing.JComboBox CmbConfiguracaoConexaoRepositorio;
+    private javax.swing.JComboBox CmbConfiguracaoExecucaoSoftwareCliente;
     private javax.swing.JPasswordField TxtConfiguracaoConexaoIdentificacaoSenha;
     private javax.swing.JTextField TxtConfiguracaoConexaoIdentificacaoUsuario;
     private javax.swing.JTextField TxtConfiguracaoConexaoLocalhost;
-    private javax.swing.JTextField TxtConfiguracaoConexaoRepositorio;
     private javax.swing.JTextField TxtConfiguracaoDocumentacaoAlteracoes;
     private javax.swing.JTextField TxtConfiguracaoDocumentacaoComentarios;
     private javax.swing.JTextField TxtConfiguracaoDocumentacaoComponentes;
@@ -841,7 +875,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroPersonagem;
     private javax.swing.JPasswordField TxtConfiguracaoExecucaoParamentroSenha;
     private javax.swing.JTextField TxtConfiguracaoExecucaoParamentroServidor;
-    private javax.swing.JTextField TxtConfiguracaoExecucaoSoftwareCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -862,5 +895,21 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
+
+    private void Alterado_SoftwareCliente() {
+        if(!CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString().isEmpty()){
+            boolean SeProcede=FrmPrincipal.Config.SeComandoProcede(CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+" --help");
+            if(SeProcede){
+                CmbConfiguracaoExecucaoSoftwareCliente.setForeground(java.awt.SystemColor.textText);
+                FrmPrincipal.LblEstatus.setText("Comando \""+CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+"\" Ok!");
+
+            }else{
+                CmbConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
+                FrmPrincipal.LblEstatus.setText("Comando \""+CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+"\" não procede!");
+            }
+        }else{
+            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:<font> Digite o comando que abrirá o jogo The Mana World!");
+        }
+    }
 
 }

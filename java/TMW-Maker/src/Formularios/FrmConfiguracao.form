@@ -36,13 +36,13 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="AbaConfiguracoes" alignment="0" pref="482" max="32767" attributes="0"/>
+                  <Component id="AbaConfiguracoes" alignment="0" pref="494" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BtnConfiguracaoAjuda" pref="108" max="32767" attributes="1"/>
-                      <EmptySpace pref="226" max="32767" attributes="0"/>
-                      <Component id="BtnConfiguracaoOk" min="-2" pref="74" max="-2" attributes="1"/>
+                      <Component id="BtnConfiguracaoAjuda" pref="111" max="32767" attributes="1"/>
+                      <EmptySpace pref="229" max="32767" attributes="0"/>
+                      <Component id="BtnConfiguracaoOk" linkSize="4" min="-2" pref="74" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BtnConfiguracaoCancelar" min="-2" max="-2" attributes="1"/>
+                      <Component id="BtnConfiguracaoCancelar" linkSize="4" min="-2" max="-2" attributes="1"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -53,11 +53,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="AbaConfiguracoes" pref="283" max="32767" attributes="0"/>
+              <Component id="AbaConfiguracoes" pref="289" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BtnConfiguracaoOk" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnConfiguracaoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnConfiguracaoOk" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnConfiguracaoCancelar" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnConfiguracaoAjuda" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -83,26 +83,21 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoConexaoRepositorio" pref="359" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel3" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel15" alignment="0" pref="359" max="32767" attributes="0"/>
-                                  <Component id="TxtConfiguracaoConexaoLocalhost" alignment="0" pref="359" max="32767" attributes="0"/>
+                                  <Component id="jLabel15" alignment="0" pref="379" max="32767" attributes="0"/>
+                                  <Component id="CmbConfiguracaoConexaoRepositorio" alignment="0" pref="379" max="32767" attributes="0"/>
+                                  <Component id="TxtConfiguracaoConexaoLocalhost" alignment="0" pref="379" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -113,19 +108,19 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoConexaoRepositorio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CmbConfiguracaoConexaoRepositorio" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TxtConfiguracaoConexaoLocalhost" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoConexaoLocalhost" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -136,12 +131,6 @@
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Reposit&#xf3;rio:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TxtConfiguracaoConexaoRepositorio">
-              <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoRepositorioFocusGained"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoConexaoRepositorioKeyReleased"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -174,7 +163,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" pref="263" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" pref="275" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -190,14 +179,14 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" pref="22" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="TxtConfiguracaoConexaoIdentificacaoSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="TxtConfiguracaoConexaoIdentificacaoSenha" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -214,6 +203,9 @@
                 <Component class="javax.swing.JTextField" name="TxtConfiguracaoConexaoIdentificacaoUsuario">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[25, 25]"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoUsuarioFocusGained"/>
@@ -229,6 +221,9 @@
                 <Component class="javax.swing.JPasswordField" name="TxtConfiguracaoConexaoIdentificacaoSenha">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[25, 25]"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoConexaoIdentificacaoSenhaFocusGained"/>
@@ -245,6 +240,21 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;OBS.:&lt;/b&gt; Inicie com &lt;font color=&quot;#0000FF&quot;&gt;&lt;b&gt;https://&lt;/b&gt;&lt;/font&gt; para ativar a identifica&#xe7;&#xe3;o."/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="CmbConfiguracaoConexaoRepositorio">
+              <Properties>
+                <Property name="editable" type="boolean" value="true"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="http://themanaworld-br.googlecode.com/svn/trunk"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbConfiguracaoConexaoRepositorioActionPerformed"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CmbConfiguracaoConexaoRepositorioFocusGained"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CmbConfiguracaoConexaoRepositorioKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -266,8 +276,8 @@
                           <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoSoftwareCliente" pref="334" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="CmbConfiguracaoExecucaoSoftwareCliente" pref="338" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -279,8 +289,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoExecucaoSoftwareCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" linkSize="3" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="CmbConfiguracaoExecucaoSoftwareCliente" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel5" max="32767" attributes="0"/>
@@ -294,12 +304,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Software Cliente:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TxtConfiguracaoExecucaoSoftwareCliente">
-              <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxtConfiguracaoExecucaoSoftwareClienteFocusGained"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtConfiguracaoExecucaoSoftwareClienteKeyReleased"/>
-              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>
@@ -324,7 +328,7 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="321" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="333" max="32767" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroConta" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
@@ -337,27 +341,27 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="jLabel7" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtConfiguracaoExecucaoParamentroConta" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroConta" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="jLabel8" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel9" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="jLabel10" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="32" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -424,6 +428,22 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JComboBox" name="CmbConfiguracaoExecucaoSoftwareCliente">
+              <Properties>
+                <Property name="editable" type="boolean" value="true"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="tmw"/>
+                    <StringItem index="1" value="manaplus"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbConfiguracaoExecucaoSoftwareClienteActionPerformed"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CmbConfiguracaoExecucaoSoftwareClienteFocusGained"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CmbConfiguracaoExecucaoSoftwareClienteKeyReleased"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel4">
@@ -455,10 +475,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" pref="328" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="0" pref="328" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="0" pref="328" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="0" pref="328" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" pref="340" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="0" pref="340" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="0" pref="340" max="32767" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="0" pref="340" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -468,25 +488,25 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jLabel11" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel12" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="95" max="32767" attributes="0"/>
+                      <EmptySpace pref="115" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
