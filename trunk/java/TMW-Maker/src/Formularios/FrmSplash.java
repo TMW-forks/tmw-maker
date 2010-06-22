@@ -94,7 +94,7 @@ public class FrmSplash extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
         jLabel6.setText("CONTATOS:");
 
-        LblLunovox.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
+        LblLunovox.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13)); // NOI18N
         LblLunovox.setForeground(java.awt.Color.blue);
         LblLunovox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LblLunovox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Animacoes/lunovox.gif"))); // NOI18N
@@ -120,10 +120,10 @@ public class FrmSplash extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5)
@@ -132,13 +132,11 @@ public class FrmSplash extends javax.swing.JDialog {
                                 .addComponent(LblDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addContainerGap(30, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(LblLunovox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap()))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BtnSplashOk, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(110, 110, 110))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,8 +154,9 @@ public class FrmSplash extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LblLunovox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnSplashOk))
-            .addComponent(jLabel1)
+                .addComponent(BtnSplashOk)
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

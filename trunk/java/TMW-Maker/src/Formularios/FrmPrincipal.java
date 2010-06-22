@@ -90,6 +90,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         return;
                     }
                     FrmPrincipal.setAvisoEmEstatus("<html>Atualização do recebida com sucesso! (<font color=\"#0000FF\"><b>Favor reiniciar pelo link em Área de Trabalho</b></font>)");
+                    VisualizarNovidades();
                 }else{
                     FrmPrincipal.setAvisoEmEstatus("<html>Este \"<font color=\"#0000FF\"><b>TMW-Maker</b></font>\" já é a versão mais atualizada!");
                 }
@@ -109,6 +110,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         tThread.start();
+    }
+    public void VisualizarNovidades(){
+        javax.swing.JDialog FrmNovidade = new FrmNovidade(this, rootPaneCheckingEnabled);
+        FrmNovidade.setLocation(
+                ((this.getWidth() - FrmNovidade.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmNovidade.getHeight()) / 2) + this.getY());
+        FrmNovidade.pack();
+        FrmNovidade.setModal(true);
+        FrmNovidade.setVisible(true);/**/
     }
     public void MostrarDePendencias() {
         javax.swing.JDialog FrmDependencias = new FrmDependencias(this, rootPaneCheckingEnabled);
