@@ -49,54 +49,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel2">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Grupo 02">
-                <Property name="tabTitle" type="java.lang.String" value="Grupo 02"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="360" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="291" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;A1&quot;, &quot;B1&quot;, &quot;C1&quot;},&#xa;        {&quot;A2&quot;, &quot;B2&quot;, &quot;C2&quot;},&#xa;        {&quot;A3&quot;, &quot;B3&quot;, &quot;C3&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Coluna 1&quot;, &quot;Coluna 2&quot;, &quot;Coluna 3&quot;&#xa;    }&#xa;) {&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false&#xa;    };&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;&#xa;    public void setImgemColuna(int Coluna, ImageIcon Imagem) {&#xa;        //return canEdit [columnIndex];&#xa;        SpriteDados MeuSprite = new SpriteDados(&quot;/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png&quot;,8,9);&#xa;        ImageIcon Icone = new ImageIcon(MeuSprite.getBloco(0));&#xa;        jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setCellRenderer(new Classes.jTtableImagemDeColuna());&#xa;        jTable1.setRowHeight(0, Icone.getIconHeight());&#xa;        jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setMinWidth(Icone.getIconHeight());&#xa;        jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setMaxWidth(Icone.getIconHeight());&#xa;    }&#xa;}" type="code"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-          </SubComponents>
-        </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -134,7 +86,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="115" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="113" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -189,8 +141,61 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_char.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Imagem Cortada (Semi-resolvido)"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
               </Properties>
             </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Grupo 02">
+                <Property name="tabTitle" type="java.lang.String" value="Grupo 02"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" pref="360" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" pref="291" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTable1">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;A1&quot;, &quot;B1&quot;, &quot;C1&quot;},&#xa;        {&quot;A2&quot;, &quot;B2&quot;, &quot;C2&quot;},&#xa;        {&quot;A3&quot;, &quot;B3&quot;, &quot;C3&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Coluna 1&quot;, &quot;Coluna 2&quot;, &quot;Coluna 3&quot;&#xa;    }&#xa;) {&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false&#xa;    };&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;&#xa;    public void setImgemColuna(int Coluna, ImageIcon Imagem) {&#xa;        //return canEdit [columnIndex];&#xa;        SpriteDados MeuSprite = new SpriteDados(&quot;/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png&quot;,8,9);&#xa;        ImageIcon Icone = new ImageIcon(MeuSprite.getBloco(0));&#xa;        jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setCellRenderer(new Classes.jTtableImagemDeColuna());&#xa;        jTable1.setRowHeight(0, Icone.getIconHeight());&#xa;        jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setMinWidth(Icone.getIconHeight());&#xa;        jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setMaxWidth(Icone.getIconHeight());&#xa;    }&#xa;}" type="code"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>
