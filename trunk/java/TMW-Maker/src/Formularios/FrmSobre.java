@@ -4,7 +4,7 @@
  */
 
 /*
- * FrmSplash.java
+ * FrmSobre.java
  *
  * Created on Apr 9, 2010, 1:19:42 PM
  */
@@ -20,10 +20,10 @@ import java.awt.Toolkit;
  *
  * @author indigovox
  */
-public class FrmSplash extends javax.swing.JDialog {
+public class FrmSobre extends javax.swing.JDialog {
 
-    /** Creates new form FrmSplash */
-    public FrmSplash(java.awt.Frame parent, boolean modal) {
+    /** Creates new form FrmSobre */
+    public FrmSobre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -94,7 +94,7 @@ public class FrmSplash extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
         jLabel6.setText("CONTATOS:");
 
-        LblLunovox.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13)); // NOI18N
+        LblLunovox.setFont(new java.awt.Font("Bitstream Vera Sans", 1, 13));
         LblLunovox.setForeground(java.awt.Color.blue);
         LblLunovox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LblLunovox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Animacoes/lunovox.gif"))); // NOI18N
@@ -215,7 +215,7 @@ public class FrmSplash extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmSplash dialog = new FrmSplash(new javax.swing.JFrame(), true);
+                FrmSobre dialog = new FrmSobre(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
