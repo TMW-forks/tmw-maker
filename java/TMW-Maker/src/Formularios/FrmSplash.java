@@ -5,9 +5,16 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 public class FrmSplash extends javax.swing.JDialog {
+    public static String TipoDePai = "";
     public FrmSplash(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        TipoDePai="jFrame";
+    }
+    public FrmSplash(java.awt.Dialog parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        TipoDePai="jDialog";
     }
 
     @SuppressWarnings("unchecked")
@@ -17,7 +24,6 @@ public class FrmSplash extends javax.swing.JDialog {
         LblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
         setResizable(false);
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -58,10 +64,11 @@ public class FrmSplash extends javax.swing.JDialog {
 
                 FrmPrincipal.PgbBarra.setString("Carregando...");
                 FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
-                if(!(FrmPrincipal.Modulo instanceof Classes.ItensModulo)) FrmPrincipal.Modulo = new Classes.ItensModulo(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
+                //Abre Forçosamente
+                FrmPrincipal.Modulo = new Classes.ItensModulo(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
 
-                FrmPrincipal.PgbBarra.setString("Caregado");
-                FrmPrincipal.setAvisoEmEstatus("Bem vindo ao TMW-Maker!");
+                FrmPrincipal.PgbBarra.setString("Carregado");
+                FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(false);
 
@@ -74,7 +81,9 @@ public class FrmSplash extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmSplash dialog = new FrmSplash(new javax.swing.JFrame(), true);
+                FrmSplash dialog=null;
+                if(TipoDePai.equals("JFrame")) dialog = new FrmSplash(new javax.swing.JFrame(), true);
+                if(TipoDePai.equals("JDialog")) dialog = new FrmSplash(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

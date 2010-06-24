@@ -3,16 +3,6 @@ package Formularios;
 
 import Classes.ConfigClass;
 import java.awt.Color;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.dom.DOMSource;
-
-import java.io.*;
-import org.w3c.dom.*;
 import java.awt.Toolkit;
 
 public class FrmConfiguracao extends javax.swing.JDialog {
@@ -66,7 +56,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     public static void showAjuda(java.awt.event.KeyEvent evt){
         if(evt.getKeyCode() == evt.VK_F1){showAjuda();}
     }
-    public boolean SalvarConfiguracao(String filename) {
+    /*public boolean SalvarConfiguracao(String filename) {
         try {
             //FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
             FrmPrincipal.Config.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
@@ -128,39 +118,25 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             Result result = new StreamResult(file);
             TransformerFactory facxformer = TransformerFactory.newInstance();
             Transformer xformer = facxformer.newTransformer();
-            xformer.transform(source, result);/**/
+            xformer.transform(source, result);
 
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(rootPane, "Não foi possivel salvar!");
-            /*JOptionPane.showMessageDialog(
-                null,
-                "Não foi possivel salvar!",
-                "Erro de Gravação",
-                JOptionPane.ERROR_MESSAGE
-            );/**/
             return false;
         }
         return true;
 
-    }
+    }/**/
     public void ImportarConfiguracao() {
-        //TxtConfiguracaoConexaoRepositorio.setText(FrmPrincipal.Config.getConexaoRepositorio().toString());
         CmbConfiguracaoConexaoRepositorio.setSelectedItem((Object)FrmPrincipal.Config.getConexaoRepositorio().toString());
         FrmPrincipal.Config.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
         TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.Config.getConexaoLocalhost());
         TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.Config.getConexaoUsuario());
         TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.Config.getConexaoSenha());
-
         CmbConfiguracaoExecucaoSoftwareCliente.setSelectedItem((Object)FrmPrincipal.Config.getExecucaoComando());
-        //TxtConfiguracaoExecucaoSoftwareCliente.setText(FrmPrincipal.Config.getExecucaoComando());
         if(!FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help")){
-            //TxtConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
             CmbConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:</font> Aplicativo \"<font color=\"#FF0000\">"+FrmPrincipal.Config.getExecucaoComando()+"</font>\" não existe ou não está funcionando!");
             AbaConfiguracoes.setSelectedIndex(1);
-            //TxtConfiguracaoExecucaoSoftwareCliente.setSelectionStart(0);
-            //TxtConfiguracaoExecucaoSoftwareCliente.setSelectionEnd(FrmPrincipal.Config.getExecucaoComando().length()-1);
-            //TxtConfiguracaoExecucaoSoftwareCliente.gotFocus(null, TxtConfiguracaoExecucaoSoftwareCliente);
             CmbConfiguracaoExecucaoSoftwareCliente.gotFocus(null, CmbConfiguracaoExecucaoSoftwareCliente);
         }
         //TxtConfiguracaoExecucaoParamentroTMWData.setText(FrmPrincipal.Config.getExecucaoParametroTMWData());
@@ -169,7 +145,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.Config.getExecucaoParametroSenha());
         TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmPrincipal.Config.getExecucaoParametroPersonagem());
         ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmPrincipal.Config.getExecucaoParametroSemopengl());
-
         TxtConfiguracaoDocumentacaoAlteracoes.setText(FrmPrincipal.Config.getDocumentacaoAlteracoes());
         TxtConfiguracaoDocumentacaoComponentes.setText(FrmPrincipal.Config.getDocumentacaoComponentes());
         TxtConfiguracaoDocumentacaoComentarios.setText(FrmPrincipal.Config.getDocumentacaoComentarios());
@@ -715,6 +690,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        //System.exit(0);
     }//GEN-LAST:event_BtnConfiguracaoCancelarActionPerformed
     private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
+        boolean RecarregaBD=!TxtConfiguracaoConexaoLocalhost.getText().equals(FrmPrincipal.Config.getConexaoLocalhost());
+
         FrmPrincipal.Config.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
         //FrmPrincipal.Config.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
         FrmPrincipal.Config.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
@@ -734,7 +711,18 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         FrmPrincipal.Config.setDocumentacaoTraducoes(TxtConfiguracaoDocumentacaoTraducoes.getText());
 
         FrmPrincipal.Config.ConfiguracoesGravar();
+
         this.dispose();
+        
+        if(RecarregaBD && FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+            javax.swing.JDialog FrmSplash = new FrmSplash(this, rootPaneCheckingEnabled);
+            FrmSplash.setLocation(
+                    ((this.getWidth() - FrmSplash.getWidth()) / 2) + this.getX(),
+                    ((this.getHeight() - FrmSplash.getHeight()) / 2) + this.getY());
+            FrmSplash.pack();
+            FrmSplash.setModal(true);
+            FrmSplash.setVisible(true);/**/
+        }
     }//GEN-LAST:event_BtnConfiguracaoOkActionPerformed
     private void BtnConfiguracaoAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoAjudaActionPerformed
         showAjuda();
@@ -846,7 +834,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             public void run() {
                 FrmConfiguracao dialog = new FrmConfiguracao(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }

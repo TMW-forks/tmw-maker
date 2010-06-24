@@ -1039,6 +1039,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         if(ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacao()+FrmPrincipal.Config.getAtualizacaoIntervalo()){
                             Atualizar();
                         }
+                        if(!(FrmPrincipal.Modulo instanceof Classes.ItensModulo)){
+                            MostrarDeSplash();
+                        }
                     }
                 }
             }
@@ -1091,10 +1094,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.getHeight());
         this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
         Config.ConfiguracoesAbrir();
-        if (Config.getDependenciaEmFalta() >= 1) {
-            MostrarDePendencias();
-        }
-        MostrarDeSplash();
+        if(Config.getDependenciaEmFalta() >= 1) MostrarDePendencias();
     }//GEN-LAST:event_formWindowOpened
     private void MnuSistemaAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAtualizarActionPerformed
         if (FrmPrincipal.Config.getOS().indexOf("win") >= 0) {
