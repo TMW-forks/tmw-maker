@@ -1129,8 +1129,6 @@ public class FrmItens extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Thread tThread = new Thread(new Runnable() {
             public void run() {
-                FrmPrincipal.PgbBarra.setString("Carregando...");
-                FrmPrincipal.setAvisoEmEstatus("<html>Organizando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 TpnPaleta.setVisible(false);
                 PneVisualizacao.setVisible(false);
@@ -1142,12 +1140,19 @@ public class FrmItens extends javax.swing.JDialog {
                 BtnCarregar.setEnabled(false);
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
 
-                //if(!(FrmPrincipal.Modulo instanceof Classes.ItensModulo)) FrmPrincipal.Modulo = new Classes.ItensModulo(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
+                if(FrmPrincipal.Config.getSeDependenciaDeLocalhost() && !(FrmPrincipal.Modulo instanceof Classes.ItensModulo)){ // Só carrega se não tiver carregado antes
+                    FrmPrincipal.PgbBarra.setString("Carregando...");
+                    FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
+                    FrmPrincipal.Modulo = new Classes.ItensModulo(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
+                } 
+
+                FrmPrincipal.PgbBarra.setString("Organizando...");
+                FrmPrincipal.setAvisoEmEstatus("<html>Organizando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
                 CarregarCmbIconePNG();
                 CarregarCmbIDs();
                 AbrirRegistro(CmbIDs.getSelectedIndex());
 
-                FrmPrincipal.PgbBarra.setString("Organizando!");
+                FrmPrincipal.PgbBarra.setString("Organizado!");
                 FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens organizando com sucesso!");
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 TpnPaleta.setVisible(true);

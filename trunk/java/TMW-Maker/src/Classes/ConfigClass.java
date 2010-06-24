@@ -2,14 +2,16 @@ package Classes;
 
 import java.awt.Toolkit;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
@@ -209,9 +211,8 @@ public class ConfigClass {
         CapsulaDestino.setReadable(CapsulaOrigem.canRead());
         CapsulaDestino.setWritable(CapsulaOrigem.canWrite());
         try {
-            FileChannel Origem = null, Destino = null;
-            Origem = new FileInputStream(CapsulaOrigem).getChannel();
-            Destino = new FileOutputStream(CapsulaDestino).getChannel();
+            FileChannel Origem = new FileInputStream(CapsulaOrigem).getChannel();
+            FileChannel Destino = new FileOutputStream(CapsulaDestino).getChannel();
             Origem.transferTo(0, Origem.size(),Destino);
             if (Origem != null && Origem.isOpen()) {
                 Origem.close();
@@ -222,29 +223,6 @@ public class ConfigClass {
         } catch(IOException Exc){
             //
         }/**/
-
-        /*InputStream entrada=null;
-        OutputStream saida=null;
-        try {
-            entrada = new FileInputStream(CapsulaOrigem);
-            saida = new FileOutputStream(CapsulaDestino);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            byte[] buffer= new byte[1024];
-            int maximo = buffer.length;
-            int lidos = -1;
-            while ((lidos = entrada.read(buffer, 0, maximo)) != -1) {
-                saida.write(buffer, 0, lidos);
-            }
-            saida.flush();
-            entrada.close();
-            saida.close(); 
-        } catch(IOException Exc){
-            //
-        }/**/
-
     }
     public void MoverArquivo(String De, String Para) {
         File Origem = new File(De);
@@ -366,9 +344,13 @@ public class ConfigClass {
         "\n"+
         "//Fim de Configuração";
         try {
-            FileWriter out = new FileWriter(Endereco);
+            /*FileWriter out = new FileWriter(Endereco);
             out.write(Corpo);
-            out.close();
+            out.close();/**/
+            BufferedWriter Capsula = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Endereco),"UTF-8"));
+            Capsula.write(Corpo);
+            Capsula.flush();
+            Capsula.close();
         } catch (java.io.IOException exc) {
             Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
         }
@@ -378,13 +360,28 @@ public class ConfigClass {
         //Rotina de Abrir Configuracões
         String Conteudo="";
         try {
-            FileReader CapsulaDeLer = new FileReader(Endereco);
+            /*FileReader CapsulaDeLer = new FileReader(Endereco);
             int Caracater = CapsulaDeLer.read();
             while (Caracater!=-1) {
                 Conteudo = Conteudo + (char) Caracater;
                 Caracater = CapsulaDeLer.read();
             }
-            CapsulaDeLer.close();
+            CapsulaDeLer.close();/**/
+            String Linha="";
+            FileInputStream stream = new FileInputStream(Endereco);
+            InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
+            BufferedReader reader = new BufferedReader(streamReader);
+            while ((Linha = reader.readLine()) != null) {
+                if(!Conteudo.equals("")){
+                    Conteudo=Conteudo+"\n"+Linha;
+                }else{
+                    Conteudo=Linha;
+                }
+            }
+            reader.close();
+            streamReader.close();
+            stream.close();
+
             setAtualizacao(Long.parseLong(getPropriedade(Conteudo,"Atualizacao")));
             setConexaoRepositorio(getPropriedade(Conteudo,"ConexaoRepositorio"));
             setConexaoLocalhost(getPropriedade(Conteudo,"ConexaoLocalhost"));

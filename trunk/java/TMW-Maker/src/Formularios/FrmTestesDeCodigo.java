@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,10 +29,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 public class FrmTestesDeCodigo extends javax.swing.JDialog {
-
-    /** Creates new form FrmTestesDeCodigo */
     public FrmTestesDeCodigo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -173,7 +179,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     //TESTE-B FALHOU
     public void Teste_B01(){
                 //Como abrir um arquivo de testo rapido do computador?
-        String Endereco = "/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.xml";
+        String Endereco = "/home/indigovox/localhost/tmwdata/items.xml";
         try {
             BufferedReader br = new BufferedReader(new FileReader(new File(Endereco)));
             jTextArea1.setText(br.toString());
@@ -183,7 +189,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
     public void Teste_B02(){
         //Como abrir um arquivo de testo rapido do computador?
-        String Endereco = "/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.xml";
+        String Endereco = "/home/indigovox/localhost/tmwdata/items.xml";
         FileInputStream stream = null;
         try {
             stream = new FileInputStream(Endereco);
@@ -195,7 +201,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         jTextArea1.setText(reader.toString());
     }
     public void Teste_B03(){
-        String Endereco = "/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.xml";
+        String Endereco = "/home/indigovox/localhost/tmwdata/items.xml";
         File f = new File(Endereco);
 
         // Cria um arquivo mapeado no memória (somente leitura)
@@ -215,6 +221,119 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         }
 
     }
+    public void Teste_B04(){
+        String Endereco = "/home/indigovox/localhost/tmwdata/items.xml";
+        File Capsula;
+        try {
+            Capsula=new File(Endereco);
+            Capsula.setExecutable(true);
+            Capsula.setReadable(true);
+            Capsula.setWritable(true);
+            FileChannel Canal = new FileOutputStream(Capsula).getChannel();
+            jTextArea1.setText(Canal.toString());
+            /*FileChannel Origem = new FileInputStream(Capsula).getChannel();
+            FileChannel Destino = new FileOutputStream(Capsula).getChannel();
+            Origem.transferTo(0, Origem.size(),Destino);
+            if (Origem != null && Origem.isOpen()) {
+                Origem.close();
+            }
+            if (Destino != null && Destino.isOpen()) {
+                Destino.close();
+            }/**/
+        } catch(IOException Exc){
+            //
+        }/**/
+    }
+    public void Teste_B05(){
+        File Arquivo = new File("/home/indigovox/localhost/tmwdata/items.xml");
+        String Conteudo="",Linha="";
+        if (Arquivo.exists()) {
+            try {
+                BufferedReader Capsula = new BufferedReader(new FileReader(Arquivo));
+                while ((Linha = Capsula.readLine()) != null) {
+                    Conteudo+="\n"+Linha;
+                }
+
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+        jTextArea1.setText(Conteudo);
+    } // Chegou Proximo
+    public void Teste_B06(){
+        try {
+            File Arquivo = new File("/home/indigovox/localhost/tmwdata/items.xml");
+            DocumentBuilderFactory DBF = DocumentBuilderFactory.newInstance();
+            DocumentBuilder DB = DBF.newDocumentBuilder();
+            org.w3c.dom.Document scenarioDoc = DB.parse(Arquivo);
+            jTextArea1.setText("'"+scenarioDoc.getTextContent()+"'");
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (SAXException se) {
+            se.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        
+        
+    }
+    public void Teste_B07(){
+        String src="/home/indigovox/Desktop/aaaaaa2.xml";
+        boolean validate=true;
+        File xmlFile = new File(src);
+        String err = "";
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            dbf.setValidating(validate);
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            org.w3c.dom.Document doc = db.newDocument();
+            doc = db.parse(xmlFile);
+            err=doc.getTextContent().toString();
+        } catch (ParserConfigurationException pce) {
+            err = pce.toString();
+        } catch (SAXParseException spe) {
+            StringBuffer sb = new StringBuffer(spe.toString());
+            sb.append("\n  Line number: " + spe.getLineNumber());
+            sb.append("\n Column number: " + spe.getColumnNumber());
+            sb.append("\n Public ID: " + spe.getPublicId());
+            sb.append("\n System ID: " + spe.getSystemId() + "\n");
+            err = sb.toString();
+        } catch (SAXException se) {
+            err = se.toString();
+            if (se.getException() != null) {
+                err += " caused by: " + se.getException().toString();
+            }
+        } catch (IOException ie) {
+            err = ie.toString();
+        } catch (NullPointerException spe) {
+            StringBuffer sb = new StringBuffer(spe.toString());
+            sb.append("\n Class: " + spe.getClass() + "\n");
+            sb.append("\n Cause: " + spe.getCause() + "\n");
+            sb.append("\n Message: " + spe.getMessage() + "\n");
+            sb.append("\n LocalizedMessage(): " + spe.getLocalizedMessage() + "\n");
+            err = sb.toString();
+        }
+        //return err;
+        jTextArea1.setText(err.toString());
+
+    }
+    public void Teste_B08(){
+        try {
+            FileReader in = new FileReader("/home/indigovox/localhost/tmwdata/items.xml");
+            String S = "";
+            int i = in.read();
+            while (i != -1) {
+                S = S + (char) i;
+                i = in.read();
+            }
+            jTextArea1.setText(S);
+            in.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrmTestesDeCodigo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FrmTestesDeCodigo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } // Mais demorado que o normal
 
     //TESTE-C RESOLVIDO
     public void Teste_C01(){
@@ -432,7 +551,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -481,7 +600,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -500,7 +619,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -509,7 +628,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        Teste_A06(); //Corta Sprite
-       //Teste_B03(); //Carrega testo de computador rapidamente
+       //Teste_B08(); //Carrega testo de computador rapidamente
        Teste_C02(); //Carrega testo de internet
        Teste_D02(); //Poe um jLabel dentro de um JTable
     }//GEN-LAST:event_formWindowOpened
