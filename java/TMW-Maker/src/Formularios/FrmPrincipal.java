@@ -2,6 +2,7 @@
 package Formularios;
 
 import Classes.ConfigClass;
+import Classes.ItensModulo;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -18,6 +19,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static String ComponenteSelecionado = "";
     public static ConfigClass Config = new ConfigClass();
     static String Barra = System.getProperty("file.separator");
+    static ItensModulo Modulo; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
 
     public static void setAvisoEmEstatus(String Aviso) {
         System.out.println(Aviso.toString());
@@ -669,11 +671,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 formWindowActivated(evt);
             }
         });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
         PnlBarraDeEstatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PnlBarraDeEstatus.setAlignmentX(0.0F);
@@ -1000,7 +997,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void MnuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaSobreActionPerformed
         // TODO add your handling code here:
-        javax.swing.JDialog FrmSplash = new FrmSplash(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmSplash = new FrmSobre(this, rootPaneCheckingEnabled);
         FrmSplash.setLocation(
                 ((this.getWidth() - FrmSplash.getWidth()) / 2) + this.getX(),
                 ((this.getHeight() - FrmSplash.getHeight()) / 2) + this.getY());
@@ -1008,17 +1005,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmSplash.setModal(true);
         FrmSplash.setVisible(true);/**/
     }//GEN-LAST:event_MnuAjudaSobreActionPerformed
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
-        Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setBounds(
-                (Tela.width - this.getWidth()) / 2,
-                (Tela.height - this.getHeight()) / 2,
-                this.getWidth(),
-                this.getHeight());
-        this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
-        Config.ConfiguracoesAbrir();
-    }//GEN-LAST:event_formComponentShown
     private void MnuAjudaIndicarDefeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAjudaIndicarDefeitoActionPerformed
         // TODO add your handling code here:
         Config.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComentarios());
@@ -1088,6 +1074,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MostrarDePendencias();
     }//GEN-LAST:event_MnuSistemaDependenciasActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setBounds(
+                (Tela.width - this.getWidth()) / 2,
+                (Tela.height - this.getHeight()) / 2,
+                this.getWidth(),
+                this.getHeight());
+        this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
+        Config.ConfiguracoesAbrir();
         if (Config.getDependenciaEmFalta() >= 1) {
             MostrarDePendencias();
         }
