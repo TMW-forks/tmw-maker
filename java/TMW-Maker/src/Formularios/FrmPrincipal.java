@@ -131,6 +131,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmDependencias.setModal(true);
         FrmDependencias.setVisible(true);/**/
     }
+    public void MostrarDeSplash() {
+        javax.swing.JDialog FrmSplash = new FrmSplash(this, rootPaneCheckingEnabled);
+        FrmSplash.setLocation(
+                ((this.getWidth() - FrmSplash.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmSplash.getHeight()) / 2) + this.getY());
+        FrmSplash.pack();
+        FrmSplash.setModal(true);
+        FrmSplash.setVisible(true);/**/
+    }
     public void MontarLocalhost() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
@@ -1085,6 +1094,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         if (Config.getDependenciaEmFalta() >= 1) {
             MostrarDePendencias();
         }
+        MostrarDeSplash();
     }//GEN-LAST:event_formWindowOpened
     private void MnuSistemaAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAtualizarActionPerformed
         if (FrmPrincipal.Config.getOS().indexOf("win") >= 0) {
