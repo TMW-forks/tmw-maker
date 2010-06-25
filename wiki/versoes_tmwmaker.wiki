@@ -6,7 +6,7 @@ O TMW-Maker passa constantemente por várias evoluções. Aqui você pode baixar
 
 ==TMW-Maker v0.2==
 ||  *Download* || *Descrição* ||
-|| [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar TMW-Maker.jar (~2,1MB)] || Para usar essa versão necessita do emulador *[OpenJDK OpenJDK Java 6 Runtime]* instalado em seu computador. ||
+|| [https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar TMW-Maker.jar (~2,2MB)] || Para usar essa versão necessita do emulador *[OpenJDK OpenJDK Java 6 Runtime]* instalado em seu computador. ||
 || [CodigoFonte Código Fonte Java] || Necessita da IDE NetBeans para visualizar e editar o código fonte.  ||
 
 *Utilidades:*
