@@ -1047,7 +1047,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             Atualizar();
                         }
                         if(!(FrmPrincipal.Modulo instanceof Classes.ItensModulo)){
-                            //MostrarDeSplash();
+                            MostrarDeSplash();
                         }
                     }
                 }

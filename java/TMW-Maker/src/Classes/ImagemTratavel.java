@@ -98,10 +98,14 @@ public class ImagemTratavel {
     }
     public BufferedImage getEsticar(BufferedImage SuaImagem, int Largura, int Altura) {
         if(Largura>=1 && Altura>=1){
-            BufferedImage ImagemDestino = new BufferedImage(Largura,Altura,SuaImagem.getType());
-            Graphics2D g = ImagemDestino.createGraphics();
-            g.drawImage(SuaImagem,AffineTransform.getScaleInstance((double)Largura/SuaImagem.getWidth(),(double)Altura/SuaImagem.getHeight()) , null);
-            return ImagemDestino;
+            try{//Esse try Catch é necessário pq imagens indexadas não são esticáveis.
+                BufferedImage ImagemDestino = new BufferedImage(Largura,Altura,SuaImagem.getType());
+                Graphics2D g = ImagemDestino.createGraphics();
+                g.drawImage(SuaImagem,AffineTransform.getScaleInstance((double)Largura/SuaImagem.getWidth(),(double)Altura/SuaImagem.getHeight()) , null);
+                return ImagemDestino;
+            }catch(IllegalArgumentException MeuErro){
+                return SuaImagem;
+            }
         }else{
             return SuaImagem;
         }
