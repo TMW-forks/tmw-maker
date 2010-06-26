@@ -490,12 +490,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     //TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
                     setAvisoEmEstatus("Abrindo aplicativo \"" + FrmPrincipal.Config.getExecucaoComando() + "\"...");
                     Comando = FrmPrincipal.Config.getExecucaoComando() + " " +
-                            ((!FrmPrincipal.Config.getTMWData().isEmpty() && (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("127.0.0.1")))?("-ud " + FrmPrincipal.Config.getTMWData() + " "):"") +
+                            ((!FrmPrincipal.Config.getTMWData().isEmpty() && (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("127.0.0.1")))?("--skip-update --data " + FrmPrincipal.Config.getTMWData() + " "):"") +
                             (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + FrmPrincipal.Config.getExecucaoParametroServidor() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + FrmPrincipal.Config.getExecucaoParametroConta() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + FrmPrincipal.Config.getExecucaoParametroSenha() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + FrmPrincipal.Config.getExecucaoParametroPersonagem() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroSemopengl() == true ? "--no-opengl" : "");
+                    //ConfigClass.Mensagem_Erro("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
                     try {
                         Process Retorno = Executador.exec(Comando);
                         BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
