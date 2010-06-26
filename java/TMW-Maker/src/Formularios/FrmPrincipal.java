@@ -792,9 +792,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarItens.setMnemonic('I');
         MnuEditarItens.setText("Itens");
 
+        MnuEditarItensSprites.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MnuEditarItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_xml.gif"))); // NOI18N
         MnuEditarItensSprites.setMnemonic('S');
-        MnuEditarItensSprites.setText("Sprites");
-        MnuEditarItensSprites.setEnabled(false);
+        MnuEditarItensSprites.setText("Sprites e XML");
+        MnuEditarItensSprites.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuEditarItensSpritesActionPerformed(evt);
+            }
+        });
         MnuEditarItens.add(MnuEditarItensSprites);
 
         MnuEditarItensDados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
@@ -1040,7 +1046,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             Atualizar();
                         }
                         if(!(FrmPrincipal.Modulo instanceof Classes.ItensModulo)){
-                            MostrarDeSplash();
+                            //MostrarDeSplash();
                         }
                     }
                 }
@@ -1138,6 +1144,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmTestesDeCodigo.setModal(true);
         FrmTestesDeCodigo.setVisible(true);/**/
     }//GEN-LAST:event_MnuSistemaAreaDeTesteActionPerformed
+
+    private void MnuEditarItensSpritesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarItensSpritesActionPerformed
+        javax.swing.JDialog FrmNovoEquipamento = new FrmNovoEquipamento(this, rootPaneCheckingEnabled);
+        FrmNovoEquipamento.setLocation(
+            ((this.getWidth() - FrmNovoEquipamento.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmNovoEquipamento.getHeight()) / 2) + this.getY());
+        FrmNovoEquipamento.pack();
+        FrmNovoEquipamento.setModal(true);
+        FrmNovoEquipamento.setVisible(true);/**/
+    }//GEN-LAST:event_MnuEditarItensSpritesActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 

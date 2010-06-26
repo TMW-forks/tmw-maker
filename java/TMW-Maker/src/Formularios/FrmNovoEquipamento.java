@@ -45,25 +45,45 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
         }
     }
     public void AbrirSprite(){
-        Endereco="/home/indigovox/localhost/tmwdata/graphics/sprites/"+CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
+        String Arquivo=CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
+        Endereco="/home/indigovox/localhost/tmwdata/graphics/sprites/"+Arquivo;
         if(FrmPrincipal.Config.SeExiste(Endereco)){
-            if(Endereco.substring(0, 6).equals("chest-")) setDimencao(8,9);
-            else if(Endereco.substring(0,11).equals("feet-boots-")) setDimencao(8,9);
-            else if(Endereco.substring(0,9).equals("hairstyle")) {
-                setDimencao(1,5);
-            }else if(Endereco.substring(0,6).equals("hands-")) setDimencao(8,9);
-            else if(Endereco.substring(0,5).equals("head-")) setDimencao(1,5);
-            else if(Endereco.substring(0,9).equals("resource-")) setDimencao(1,2);
-            else if(Endereco.substring(0,4).equals("leg-")) setDimencao(8,9);
-            else if(Endereco.substring(0,7).equals("weapon-")) setDimencao(8,9);
-            else if(Endereco.substring(0,8).equals("monster-")) setDimencao(4,10);
-            else if(Endereco.substring(0,8).equals("monstro-")) setDimencao(4,10);
-            else if(Endereco.substring(0,3).equals("npc")) setDimencao(6,15);
-            else if(Endereco.substring(0,4).equals("pet-")) setDimencao(5,9);
-            else if(Endereco.substring(0,7).equals("player_")) setDimencao(8,9);
-            else {
-                setDimencao(8,9);
-            }
+            
+            String Tipo[]=new String[]{
+                "chest-",
+                "feet-boots-",
+                "hands-",
+                "head-",
+                "resource-",
+                "leg-",
+                "weapon",
+                "monster-",
+                "monstro-",
+                "npc",
+                "pet-",
+                "player_",
+                "hairstyle"
+            };
+
+            try{
+                int T=-1;
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(1,5);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(1,2);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(4,10);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(4,10);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(6,14);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(5,9);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
+                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(1,9);
+            }catch(StringIndexOutOfBoundsException E){
+
+            }/**/
+
             Sprite = new SpriteDados(
                 Endereco,
                 Integer.parseInt(SpnLinhas.getValue().toString()),
@@ -84,7 +104,10 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
                 TxtAltura.setText(Sprite.getBlocoAltura()+"/"+Sprite.getSpriteAltura()+"px");
                 LblLinha.setText("Linha: "+SldLinha.getValue());
                 LblColuna.setText("Coluna: "+SldColuna.getValue());
-                LblBloco.setIcon(new ImageIcon(Sprite.getBloco((Sprite.getSpriteColunas()*SldLinha.getValue())+SldColuna.getValue())));
+                ImagemTratavel ImgBloco = new ImagemTratavel(Sprite.getBloco((Sprite.getSpriteColunas()*SldLinha.getValue())+SldColuna.getValue()));
+                //if(ImgBloco.getAltura()<90)
+                ImgBloco.setZoom(128/(double)ImgBloco.getAltura());
+                LblBloco.setIcon(new ImageIcon(ImgBloco.getImage()));
                 LblBloco.setToolTipText(
                     "<html><center>"
                     +"<img src=\"file://"+Endereco+"\"><br/>"
@@ -98,7 +121,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
         SpnColunas.setModel(new javax.swing.SpinnerNumberModel(Colunas, 1, 30, 1));
         SldLinha.setValue(0);
         SldLinha.setValue(0);
-        setTitle("Linhas:"+Linhas+" Colunas:"+Colunas);
+        //setTitle("Linhas:"+Linhas+" Colunas:"+Colunas);
         ExibirBloco();
     }
 
@@ -149,7 +172,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
 
         jLabel3.setText("Colunas:");
 
-        SpnColunas.setModel(new javax.swing.SpinnerNumberModel(9, 1, 30, 1));
+        SpnColunas.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
         SpnColunas.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 SpnColunasStateChanged(evt);
@@ -163,7 +186,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
 
         jLabel5.setText("Linhas:");
 
-        SpnLinhas.setModel(new javax.swing.SpinnerNumberModel(8, 1, 30, 1));
+        SpnLinhas.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
         SpnLinhas.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 SpnLinhasStateChanged(evt);
@@ -208,21 +231,18 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TxtAltura)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(SpnLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SldLinha, 0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SpnColunas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SldColuna, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SpnLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnColunas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SldLinha, 0, 0, Short.MAX_VALUE)
+                    .addComponent(SldColuna, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LblColuna)
@@ -244,9 +264,9 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SpnLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SldLinha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblLinha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LblLinha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -275,11 +295,11 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addComponent(jLabel1)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(CmbEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbEndereco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jButton1))
                 .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -295,9 +315,9 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jButton1)
                     .addComponent(jLabel1)
-                    .addComponent(CmbEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(CmbEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -310,6 +330,11 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
 
         LblBloco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/BlocoDoSprite.png"))); // NOI18N
         LblBloco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LblBloco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LblBlocoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -329,7 +354,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
                 .addComponent(LblBloco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -361,6 +386,11 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
         AbrirSprite();
         ExibirBloco();
 }//GEN-LAST:event_CmbEnderecoActionPerformed
+
+    private void LblBlocoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblBlocoMouseClicked
+        AbrirSprite();
+        ExibirBloco();
+    }//GEN-LAST:event_LblBlocoMouseClicked
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
