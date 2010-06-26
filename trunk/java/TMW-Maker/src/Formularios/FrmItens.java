@@ -1,5 +1,7 @@
 package Formularios;
 
+import Classes.ImagemTratavel;
+import Classes.ItensModulo;
 import java.awt.Cursor;
 import javax.swing.DefaultComboBoxModel;
 
@@ -94,9 +96,12 @@ public class FrmItens extends javax.swing.JDialog {
     private void PosicionarImagem() {
         String ImagemSelecionada=CmbIconePNG.getItemAt(CmbIconePNG.getSelectedIndex()).toString();
         String LocalSelecionado=CmbLocal.getItemAt(CmbLocal.getSelectedIndex()).toString();
-        String Endereco=FrmPrincipal.Modulo.PastaDeItens+FrmPrincipal.Modulo.Barra+ImagemSelecionada;
+        String Endereco=ItensModulo.PastaDeItens+ItensModulo.Barra+ImagemSelecionada;
         //setTitle("\""+LocalSelecionado+"\"");
-        LblTitulo.setIcon(new javax.swing.ImageIcon(Endereco));
+        ImagemTratavel Icone = new ImagemTratavel(Endereco);
+        Icone.setZoom(3.0);
+        LblTitulo.setIcon(new javax.swing.ImageIcon(Icone.getImage()));
+        LblTitulo.setSize(LblTitulo.getWidth(), Icone.getAltura()+15);
 
         if(LocalSelecionado.equals("equip-ammo"))  {LblEquipAmmo.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipAmmo.setIcon(null);}
         if(LocalSelecionado.equals("equip-arms"))  {LblEquipArms.setIcon(new javax.swing.ImageIcon(Endereco));  }else{LblEquipArms.setIcon(null);}
@@ -1090,8 +1095,9 @@ public class FrmItens extends javax.swing.JDialog {
         PneVisualizacaoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {LblEquipAmmo, LblEquipArms, LblEquipCharm, LblEquipFeet, LblEquipHand1, LblEquipHand2, LblEquipHead, LblEquipLegs, LblEquipRing, LblEquipShield, LblEquipTorso});
 
         LblTitulo.setBackground(java.awt.Color.lightGray);
-        LblTitulo.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 24));
+        LblTitulo.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 24)); // NOI18N
         LblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png"))); // NOI18N
         LblTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         LblTitulo.setOpaque(true);
 
@@ -1115,7 +1121,7 @@ public class FrmItens extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(LblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PneVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
