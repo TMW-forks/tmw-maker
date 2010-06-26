@@ -20,7 +20,6 @@ public class ImagemTratavel {
     BufferedImage Imagem;
     String ImagemEndereco="";
 
-
     public void setImage(BufferedImage NovaImagem) {
         ImagemEndereco="";
         Imagem = NovaImagem;
@@ -98,10 +97,14 @@ public class ImagemTratavel {
         Imagem=getEsticar(Imagem, Largura, Altura);
     }
     public BufferedImage getEsticar(BufferedImage SuaImagem, int Largura, int Altura) {
-        BufferedImage ImagemDestino = new BufferedImage(Largura,Altura,SuaImagem.getType());
-        Graphics2D g = ImagemDestino.createGraphics();
-        g.drawImage(SuaImagem,AffineTransform.getScaleInstance((double)Largura/SuaImagem.getWidth(),(double)Altura/SuaImagem.getHeight()) , null);
-        return ImagemDestino;
+        if(Largura>=1 && Altura>=1){
+            BufferedImage ImagemDestino = new BufferedImage(Largura,Altura,SuaImagem.getType());
+            Graphics2D g = ImagemDestino.createGraphics();
+            g.drawImage(SuaImagem,AffineTransform.getScaleInstance((double)Largura/SuaImagem.getWidth(),(double)Altura/SuaImagem.getHeight()) , null);
+            return ImagemDestino;
+        }else{
+            return SuaImagem;
+        }
     }
     public void setMesclagem(BufferedImage NovaCamada){
         Imagem=getMesclagem(Imagem, NovaCamada,0,0);
