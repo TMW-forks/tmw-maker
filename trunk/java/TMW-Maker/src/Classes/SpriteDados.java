@@ -48,6 +48,20 @@ public class SpriteDados {
     public int getSpriteColunas(){
         return SpriteColunas;
     }
+    public void setSpriteLinhas(int Linhas){
+        SpriteLinhas=Linhas;
+        BlocoAltura=Sprite.getHeight()/SpriteLinhas;
+    }
+    public void setSpriteColunas(int Colunas){
+        SpriteColunas=Colunas;
+        BlocoLargura=Sprite.getWidth()/SpriteColunas;
+    }
+    public int getSpriteLargura(){
+        return Sprite.getWidth();
+    }
+    public int getSpriteAltura(){
+        return Sprite.getHeight();
+    }
     public BufferedImage getBloco(int Numero){
         if(Numero<0) Numero=0;
         if(Numero>(SpriteLinhas*SpriteColunas)-1) Numero=(SpriteLinhas*SpriteColunas)-1;
