@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -481,6 +482,40 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         //Coluna3.setMaxWidth(Icone.getIconHeight());
     }
 
+    //TESTE-E FALHOU
+    public void Teste_E01(){
+        String Testo = jEditorPane1.getText();
+        Testo=Testo.replaceAll("script", "<font color=\"#0000FF\">script</font>");      
+        jEditorPane1.setText(Testo);
+    }
+    public void Teste_E02(){
+        //int Cursor = jEditorPane1.getCaretPosition();
+        int Cursor = jEditorPane1.getSelectionStart();
+        String Testo="script", Tag1="<font color=\"#0000FF\"><b>", Tag2="</b></font>";
+        String Parte1="", Parte2="";
+        String Procurado1 = Testo;
+        String Procurado2 = Tag1+Testo;
+        int ProcuradoTamanho1 = Procurado1.length();
+        int ProcuradoTamanho2 = Procurado2.length();
+        String Corpo=jEditorPane1.getText();
+        if(Cursor>=ProcuradoTamanho1 && Cursor>=ProcuradoTamanho2 && Cursor-ProcuradoTamanho1<=Corpo.length() && Cursor-ProcuradoTamanho2<=Corpo.length()){
+            String Achado1=Corpo.substring(Cursor-ProcuradoTamanho1, Cursor);
+            String Achado2=Corpo.substring(Cursor-ProcuradoTamanho2, Cursor);
+            if(Achado1.equals(Procurado1) && !Achado2.equals(Procurado2)){
+                jEditorPane1.setSelectionStart(Cursor);
+                jEditorPane1.setSelectionEnd(Cursor+ProcuradoTamanho1);
+                jEditorPane1.setSelectionColor(Color.red);
+                /*try {
+                    Parte1 = jEditorPane1.getText(0, Cursor + 1);
+                    Parte2=jEditorPane1.getText(Cursor+Testo.length(), jEditorPane1.getText().length());
+                    jEditorPane1.setText(Parte1+Tag1+Testo+Tag2+Parte2);
+                } catch (BadLocationException ex) {
+                    Logger.getLogger(FrmTestesDeCodigo.class.getName()).log(Level.SEVERE, null, ex);
+                }/**/
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -497,6 +532,9 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Área em Desenvolvimento");
@@ -532,10 +570,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -593,7 +631,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -606,13 +644,56 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Grupo 02", jPanel2);
 
+        jEditorPane1.setContentType("text/html"); // NOI18N
+        jEditorPane1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jEditorPane1.setText("<nobr>_inicio:<br/>\n&nbsp;&nbsp;&nbsp;mes <font color=\"#FF44FF\">\"[Bardo do Deserto]\"</font>;<br/>\n&nbsp;&nbsp;&nbsp;mes <font color=\"#FF44FF\">\"\\\"Teste de script colorido!\\\"\"</font>;<br/>\nclose;<br/>");
+        jEditorPane1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jEditorPane1CaretUpdate(evt);
+            }
+        });
+        jEditorPane1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jEditorPane1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jEditorPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jEditorPane1KeyReleased(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jEditorPane1);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Editor de Codigos", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -633,6 +714,18 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
        Teste_D02(); //Poe um jLabel dentro de um JTable
     }//GEN-LAST:event_formWindowOpened
 
+    private void jEditorPane1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jEditorPane1CaretUpdate
+        Teste_E02();
+    }//GEN-LAST:event_jEditorPane1CaretUpdate
+
+    private void jEditorPane1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jEditorPane1AncestorAdded
+        //Teste_E01();
+    }//GEN-LAST:event_jEditorPane1AncestorAdded
+
+    private void jEditorPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane1KeyReleased
+
+    }//GEN-LAST:event_jEditorPane1KeyReleased
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -648,14 +741,17 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
