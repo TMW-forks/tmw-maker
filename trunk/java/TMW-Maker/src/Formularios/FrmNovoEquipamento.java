@@ -2,8 +2,13 @@ package Formularios;
 
 import Classes.ImagemTratavel;
 import Classes.SpriteDados;
+import java.awt.image.ImageFilter;
+import java.io.File;
+import java.io.FileFilter;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FrmNovoEquipamento extends javax.swing.JDialog {
     public FrmNovoEquipamento(java.awt.Frame parent, boolean modal) {
@@ -131,7 +136,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
 
         GrpTipoDeEquipamento = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        BtnImportar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         TxtLargura = new javax.swing.JTextField();
@@ -160,8 +165,12 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Importar");
-        jButton1.setEnabled(false);
+        BtnImportar.setText("Importar");
+        BtnImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnImportarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Bloco"));
 
@@ -301,7 +310,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(CmbEndereco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton1))
+                    .addComponent(BtnImportar))
                 .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addComponent(BtnCriar)
@@ -315,7 +324,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton1)
+                    .addComponent(BtnImportar)
                     .addComponent(jLabel1)
                     .addComponent(CmbEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -386,11 +395,40 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
         AbrirSprite();
         ExibirBloco();
 }//GEN-LAST:event_CmbEnderecoActionPerformed
-
     private void LblBlocoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblBlocoMouseClicked
         AbrirSprite();
         ExibirBloco();
     }//GEN-LAST:event_LblBlocoMouseClicked
+    private void BtnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImportarActionPerformed
+        /**
+         * Material Pesquisado em:
+         * http://java.sun.com/docs/books/tutorial/uiswing/components/filechooser.html
+         * http://www.koders.com/java/fid3C76E6EFEBC0827517FB14397E0D8E9E5126DD92.aspx
+         */
+
+        //Handle open button action.
+        //evt.getSource() == openButton
+        //Create a file chooser
+        final JFileChooser Dialogo = new JFileChooser();
+        Dialogo.setFileFilter(new FileNameExtensionFilter("Arquivo PNG", "png"));
+        Dialogo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo JPG", "jpg"));
+        
+        Dialogo.setAcceptAllFileFilterUsed(false);
+
+        //In response to a button click:
+        int returnVal = Dialogo.showOpenDialog(this);
+
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            //File file = Dialogo.getSelectedFile();
+            //This is where a real application would open the file.
+            //log.append("Opening: " + file.getName() + "." + newline);
+        } else {
+            //log.append("Open command cancelled by user." + newline);
+        }
+
+
+    }//GEN-LAST:event_BtnImportarActionPerformed
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -409,6 +447,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCriar;
     private javax.swing.JButton BtnFechar;
+    private javax.swing.JButton BtnImportar;
     private javax.swing.JComboBox CmbEndereco;
     private javax.swing.ButtonGroup GrpTipoDeEquipamento;
     private javax.swing.JLabel LblBloco;
@@ -420,7 +459,6 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
     private javax.swing.JSpinner SpnLinhas;
     private javax.swing.JTextField TxtAltura;
     private javax.swing.JTextField TxtLargura;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
