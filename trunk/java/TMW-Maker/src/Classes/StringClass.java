@@ -2,8 +2,6 @@
 package Classes;
 
 public class StringClass {
-    String TestoEmTratamento="";
-
     public String StringClass(String Testo) {
         TestoEmTratamento = Testo;
         return TestoEmTratamento;
@@ -11,11 +9,21 @@ public class StringClass {
     public String StringClass() {
         return TestoEmTratamento;
     }
+    String TestoEmTratamento="";
+
     public void setTesto(String Testo) {
         TestoEmTratamento=Testo;
     }
     public String getTesto() {
         return TestoEmTratamento;
+    }
+    public int getContLinhas() {
+        String Partes[] = TestoEmTratamento.split("\n");
+        return Partes.length;
+    }
+    public String getLinha(int Linha) {
+        String Partes[] = TestoEmTratamento.split("\n");
+        return Partes[Linha];
     }
 
     public void Substituir(String De, String Por){
@@ -34,8 +42,7 @@ public class StringClass {
         return Entrada;
     }
     public String ExtrairEntre(String Parte1, String Parte2){
-        String Entrada=TestoEmTratamento;
-        return ExtrairEntre(Entrada, Parte1, Parte2);
+        return ExtrairEntre(TestoEmTratamento, Parte1, Parte2);
     }
     public String ExtrairEntre(String Entrada, String Parte1, String Parte2){
         int Loc1=-1, Loc2=-1;
