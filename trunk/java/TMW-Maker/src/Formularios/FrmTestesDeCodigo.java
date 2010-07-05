@@ -26,11 +26,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import javax.swing.text.StyledDocument;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -484,12 +488,12 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
     //TESTE-E FALHOU
     public void Teste_E01(){
-        String Testo = jEditorPane1.getText();
+        /*String Testo = jEditorPane1.getText();
         Testo=Testo.replaceAll("script", "<font color=\"#0000FF\">script</font>");      
-        jEditorPane1.setText(Testo);
+        jEditorPane1.setText(Testo);/**/
     }
     public void Teste_E02(){
-        //int Cursor = jEditorPane1.getCaretPosition();
+        /*//int Cursor = jEditorPane1.getCaretPosition();
         int Cursor = jEditorPane1.getSelectionStart();
         String Testo="script", Tag1="<font color=\"#0000FF\"><b>", Tag2="</b></font>";
         String Parte1="", Parte2="";
@@ -511,9 +515,98 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                     jEditorPane1.setText(Parte1+Tag1+Testo+Tag2+Parte2);
                 } catch (BadLocationException ex) {
                     Logger.getLogger(FrmTestesDeCodigo.class.getName()).log(Level.SEVERE, null, ex);
-                }/**/
+                }
             }
+        }/**/
+    }
+    public void Teste_E03(){
+        if(TxpCodificador.getText().equals("")){
+            TxpCodificador.setText(
+                "_inicio:\n"+
+                "\tmes \"[Bardo do Deserto]\";\n"+
+                "\tmes \"\\\"Teste de script colorido!\\\"\";\n"+
+                "close;\n"
+            );
         }
+
+        String Testo =TxpCodificador.getText();
+        Testo=Testo.replaceAll("script", "<font color=\"#0000FF\"><b>script</b></font>");
+        //Testo=Testo.replaceAll("\n", "<br>");
+        //Testo=Testo.replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+        
+        try{
+            //TxpCodificador.setContentType("text/html");
+            //TxpCodificador.setText(Testo);
+        }catch(IllegalStateException Err){
+            
+        }
+        //TxaCodigo.setText(Testo);
+        //jEditorPane1.setContentType("text/plain");
+
+    }
+
+    public void AddCodigo(){
+        String Testo =
+            "_inicio:\n"+
+            "\tmes \"[Bardo do Deserto]\";\n"+
+            "\tmes \"\\\"Teste de script colorido!\\\"\";\n"+
+            "close;\n";
+        Testo=Testo.replaceAll("\n", "<br>");
+        Testo=Testo.replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+        TxpCodificador.setText(Testo);
+    }
+    public void Autoformatar(){
+        int Cursor = TxpCodificador.getCaretPosition();
+        String Testo =TxpCodificador.getText();
+        Testo=Testo.replaceAll("script", "<font color=\"#0000FF\"><b>script</b></font>");
+        TxpCodificador.setText(Testo);
+        TxpCodificador.setCaretPosition(Cursor);
+    }
+    public void Autoformatar2(){
+        String[] initString =
+            { "script" };
+
+        String[] initStyles =
+                { "bold" };
+
+        //JTextPane textPane = new JTextPane();
+        //StyledDocument doc = textPane.getStyledDocument();
+        StyledDocument doc = TxpCodificador.getStyledDocument();
+        //addStylesToDocument(doc);
+
+        //Load the text pane with styled text.
+        try {
+            for (int i=0; i < initString.length; i++) {
+                doc.insertString(doc.getLength(), initString[i], doc.getStyle(initStyles[i]));
+            }
+        } catch (BadLocationException ble) {
+            System.err.println("Couldn't insert initial text into text pane.");
+        }
+    }
+    public String Desformatar(String Testo){
+        Testo=Testo.replaceAll("<html>\n", "");
+        Testo=Testo.replaceAll("  <head>\n    \n  </head>\n", "");
+        Testo=Testo.replaceAll("  <body>\n", "");
+        Testo=Testo.replaceAll("  </body>\n", "");
+        Testo=Testo.replaceAll("</html>\n", "");
+        Testo=Testo.replaceAll("<font color=\"#0000FF\">", "");
+        Testo=Testo.replaceAll("</font>", "");
+        Testo=Testo.replaceAll("<b>", "");
+        Testo=Testo.replaceAll("</b>", "");
+        Testo=Testo.replaceAll("&quot;", "\"");
+        Testo=Testo.replaceAll("&#160;", " ");
+        Testo=Testo.replaceAll("<br>", "\n");
+        Testo=Testo.replaceAll("&nbsp;", " ");
+        return Testo;
+    }
+    public String Desformatar2(String Testo){
+        JEditorPane ep1 = new JEditorPane("text/plain", Testo);
+        //return ep1.getEditorKitForContentType("text/html").;
+        //ep1.getEditorKitForContentType("text/plain").deinstall(ep1);
+        //ep1.setSelectionStart(0);
+        //ep1.setSelectionEnd();
+        //ep1.registerEditorKitForContentType("text/html", ep1);
+        return ep1.getText();
     }
 
     @SuppressWarnings("unchecked")
@@ -521,6 +614,11 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TxpCodificador = new javax.swing.JTextPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TxaCodigo = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -532,9 +630,6 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Área em Desenvolvimento");
@@ -544,6 +639,47 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                 formWindowOpened(evt);
             }
         });
+
+        TxpCodificador.setContentType("text/html");
+        TxpCodificador.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        TxpCodificador.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                TxpCodificadorCaretUpdate(evt);
+            }
+        });
+        TxpCodificador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxpCodificadorKeyReleased(evt);
+            }
+        });
+        jScrollPane5.setViewportView(TxpCodificador);
+
+        TxaCodigo.setColumns(20);
+        TxaCodigo.setRows(5);
+        jScrollPane4.setViewportView(TxaCodigo);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Editor de Codigos", jPanel3);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -570,10 +706,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -589,7 +725,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -631,61 +767,18 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Grupo 02", jPanel2);
-
-        jEditorPane1.setContentType("text/html"); // NOI18N
-        jEditorPane1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jEditorPane1.setText("<nobr>_inicio:<br/>\n&nbsp;&nbsp;&nbsp;mes <font color=\"#FF44FF\">\"[Bardo do Deserto]\"</font>;<br/>\n&nbsp;&nbsp;&nbsp;mes <font color=\"#FF44FF\">\"\\\"Teste de script colorido!\\\"\"</font>;<br/>\nclose;<br/>");
-        jEditorPane1.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jEditorPane1CaretUpdate(evt);
-            }
-        });
-        jEditorPane1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jEditorPane1AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jEditorPane1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jEditorPane1KeyReleased(evt);
-            }
-        });
-        jScrollPane4.setViewportView(jEditorPane1);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Editor de Codigos", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -693,14 +786,14 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -708,23 +801,24 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       Teste_A06(); //Corta Sprite
+       //Teste_A06(); //Corta Sprite
        //Teste_B08(); //Carrega testo de computador rapidamente
-       Teste_C02(); //Carrega testo de internet
-       Teste_D02(); //Poe um jLabel dentro de um JTable
+       //Teste_C02(); //Carrega testo de internet
+       //Teste_D02(); //Poe um jLabel dentro de um JTable
+
+       AddCodigo(); Autoformatar();
+       TxaCodigo.setText(Desformatar(TxpCodificador.getText()));
+       //TxaCodigo.setText(TxpCodificador.getText().intern());
+
     }//GEN-LAST:event_formWindowOpened
 
-    private void jEditorPane1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jEditorPane1CaretUpdate
-        Teste_E02();
-    }//GEN-LAST:event_jEditorPane1CaretUpdate
+    private void TxpCodificadorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TxpCodificadorCaretUpdate
+        
+    }//GEN-LAST:event_TxpCodificadorCaretUpdate
 
-    private void jEditorPane1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jEditorPane1AncestorAdded
-        //Teste_E01();
-    }//GEN-LAST:event_jEditorPane1AncestorAdded
-
-    private void jEditorPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane1KeyReleased
-
-    }//GEN-LAST:event_jEditorPane1KeyReleased
+    private void TxpCodificadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxpCodificadorKeyReleased
+        Autoformatar();
+    }//GEN-LAST:event_TxpCodificadorKeyReleased
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -741,7 +835,8 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JTextArea TxaCodigo;
+    private javax.swing.JTextPane TxpCodificador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -752,6 +847,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
