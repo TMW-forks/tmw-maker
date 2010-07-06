@@ -3,6 +3,6 @@
 
 <p align="center"><a href="http://www.dynamicart.hu/dynamicart/images/stories/cikkekhez/netbeans_02.png"><img width="50%" src="http://www.dynamicart.hu/dynamicart/images/stories/cikkekhez/netbeans_02.png"><a>
 
-É um programa [opensource Open Source] que permite desenvolver Aplicativos Gráficos em Java. Embora ele edite programas Java, o NetBeans só poderá copilar (testar a execução dos programas) se tiver uma [OpenJDK Máquina Virtual Java(JVM)] instalada em seu computador.
+É um programa [opensource Open Source] que permite desenvolver Aplicativos Gráficos em Java. Embora ele edite programas Java, o NetBeans só poderá copilar (criar programas) se tiver uma [OpenJDK Máquina Virtual Java(JVM)] instalada em seu computador.
 
 || *NOTA:* Agora que você ja sabe o que é o NetBeans, aprenda [ComoInstalarNetBeans como instalar]! ||
