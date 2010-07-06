@@ -269,7 +269,7 @@ public class FrmPalco extends javax.swing.JDialog {
         });
 
         TxtScriptPalco.setColumns(20);
-        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14));
         TxtScriptPalco.setRows(5);
         TxtScriptPalco.setSelectedTextColor(java.awt.Color.black);
         TxtScriptPalco.setSelectionColor(new java.awt.Color(145, 254, 124));
@@ -376,7 +376,7 @@ public class FrmPalco extends javax.swing.JDialog {
         jPanel1.add(BtnScriptComandoMes, java.awt.BorderLayout.CENTER);
 
         LblAparencia.setBackground(java.awt.Color.lightGray);
-        LblAparencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png"))); // NOI18N
+        LblAparencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png"))); // NOI18N
         LblAparencia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         LblAparencia.setOpaque(true);
 

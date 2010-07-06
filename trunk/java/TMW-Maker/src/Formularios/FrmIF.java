@@ -489,7 +489,7 @@ public class FrmIF extends javax.swing.JDialog {
                 "<b>Descrição:</b> " + Item.getDescricao()+"<br/>"
             );
         }else{
-            LblItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png")));
+            LblItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")));
             LblItem.setToolTipText(null);
         }/**/
         Dados_Item Item = FrmPrincipal.Itens.getItemPorOrdem(CmbCondicaoDeItemID.getSelectedIndex());

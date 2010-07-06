@@ -1097,7 +1097,7 @@ public class FrmItens extends javax.swing.JDialog {
         LblTitulo.setBackground(java.awt.Color.lightGray);
         LblTitulo.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 24)); // NOI18N
         LblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png"))); // NOI18N
+        LblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png"))); // NOI18N
         LblTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         LblTitulo.setOpaque(true);
 

@@ -78,7 +78,7 @@
                       <Component id="LblImagem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="108" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -99,7 +99,7 @@
             <Component class="javax.swing.JLabel" name="LblImagem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Fundos/icone4.png"/>
+                  <Image iconType="3" name="/Imagem/Fundos/icon-tmwmaker-96x96px.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -341,11 +341,11 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="501" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="597" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TxtNovoBlocoFuncaoNome" pref="423" max="32767" attributes="0"/>
+                              <Component id="TxtNovoBlocoFuncaoNome" pref="519" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
