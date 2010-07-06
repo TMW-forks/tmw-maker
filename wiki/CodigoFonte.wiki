@@ -1,13 +1,14 @@
+#labels SourceCode,CódigoFonte,Java,TMW-Maker,Netbeans
 ==Código Fonte Java==
 
-Se desejar baixar o código fonte digite o comando abaixo em seu terminal.
+Existem dois modos de adquirir o código fonte do TMW-Maker. Esse dois modos variam conforme os planos que oprogramador Java. Se desejar baixar o código fonte, escolha um os modos de digite o respectivo comando abaixo em seu terminal.
 
 ===Modo Observador===
 
 || *Versão* || *Modo* || *Comando SVN de Terminal Shell* ||
 || v0.2 || Observador || svn checkout http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
 
-*Descrição* -  é possível baixar, modificar o jogo usando o engine TMW-Maker. Esse modo é recomendado para qualquer que deseje saber como é construído esse programa. Para usar o modo Observador você *NÃO PRECISARÁ* se identificar, nem pedir permissão. É só digitar esse comando acima em seu terminal.
+*Descrição* -  é possível baixar, modificar o engine TMW-Maker. Esse modo é recomendado para qualquer que deseje saber como é construído esse programa. Para usar o modo Observador você *NÃO PRECISARÁ* se identificar, nem pedir permissão. É só digitar esse comando acima em seu terminal.
 
 
 ===Modo Colaborativo===
