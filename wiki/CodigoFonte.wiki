@@ -3,6 +3,8 @@
 
 Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os planos de quem baixar. Se desejar baixar o código fonte, escolha um os modos de digite o respectivo comando abaixo em seu terminal.
 
+----
+
 ===Modo Observador===
 
 || *Versão* || *Modo* || *Comando SVN de Terminal Shell* ||
@@ -10,6 +12,9 @@ Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois mo
 
 *Descrição* -  é possível baixar, modificar o engine TMW-Maker. Esse modo é recomendado para qualquer que deseje saber como é construído esse programa. Para usar o modo Observador você *NÃO PRECISARÁ* se identificar, nem pedir permissão. É só digitar esse comando acima em seu terminal.
 
+http://www.noulakaz.net/weblog/images/20071128-geek.jpg
+
+----
 
 ===Modo Colaborativo===
 
@@ -17,3 +22,5 @@ Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois mo
 || v0.2 || Colaborativo || svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
 
 *Descrição* - é possível baixar, modificar, e devolver para este site as modificações que você fez no engine TMW-Maker. Esse modo é recomendado apenas para aqueles que querem ajudar no desenvolvimento desta ferramenta. Para usar o modo Colaborativo você precisará ter um "*username*" e "*password*" autorizados. Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação para conseguir esse Username e Password.
+
+http://www.ecourban.org/blog/wp-content/uploads/2008/05/edicion_colectiva.jpg
