@@ -1,6 +1,11 @@
 package Classes;
 
-public class ItemDados {
+import Formularios.FrmPrincipal;
+import java.awt.image.BufferedImage;
+
+public class Dados_Item {
+    private static String Barra = System.getProperty("file.separator");
+    private static String PastaDeItens = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"items";
 
     private int ID=0;
     private String NomeSumonico="";
@@ -94,6 +99,13 @@ public class ItemDados {
     public String getNomeTitulo(){return NomeTitulo.toString();}
     public String getDescricao(){return Descricao.toString();}
     public String getIconePNG(){return IconePNG.toString();}
+    public BufferedImage getIconeImagem(){
+        if(FrmPrincipal.Config.SeExiste(PastaDeItens+Barra+IconePNG)){
+            ImagemTratavel Imagem = new ImagemTratavel(PastaDeItens+Barra+IconePNG);
+            return Imagem.getImage();
+        }
+        return null;
+    }
     public String getIconeCor(){return IconeCor.toString();}
     public String getSprite(){return Sprite.toString();}
     public String getAudiosTipos(){return AudiosTipos.toString();}

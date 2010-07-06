@@ -11,6 +11,9 @@
 
 package Formularios;
 
+import Classes.Dados_Item;
+import Classes.ImagemTratavel;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
@@ -42,10 +45,12 @@ public class FrmIF extends javax.swing.JDialog {
 
         if(OptCondicaoDeItem.isSelected()){
             CmbCondicaoDeItemID.setEnabled(true);
+            LblItem.setEnabled(true);
             CmbCondicaoDeItemComparador.setEnabled(true);
             SpnCondicaoDeItemValor.setEnabled(true);
         }else{
             CmbCondicaoDeItemID.setEnabled(false);
+            LblItem.setEnabled(false);
             CmbCondicaoDeItemComparador.setEnabled(false);
             SpnCondicaoDeItemValor.setEnabled(false);
         }
@@ -129,31 +134,34 @@ public class FrmIF extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         CmbCondicaoDeVariavelValor1 = new javax.swing.JComboBox();
         OptCondicaoDeVariavel = new javax.swing.JRadioButton();
-        CmbCondicaoDeItemComparador = new javax.swing.JComboBox();
         ChkCondicaoDeVariavelSeTextual2 = new javax.swing.JCheckBox();
         CmbCondicaoDeVariavelValor2 = new javax.swing.JComboBox();
         CmbCondicaoDeVariavelComparador = new javax.swing.JComboBox();
         ChkCondicaoDeVariavelSeTextual1 = new javax.swing.JCheckBox();
-        CmbCondicaoDeItemID = new javax.swing.JComboBox();
-        OptCondicaoDeItem = new javax.swing.JRadioButton();
-        SpnCondicaoDeItemValor = new javax.swing.JSpinner();
+        BtnFechar = new javax.swing.JButton();
+        BtnAdicionar = new javax.swing.JButton();
+        TxtResultado = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         OptCondicaoPersonalizada = new javax.swing.JRadioButton();
         TxtCondicaoPersonalizada = new javax.swing.JTextField();
         BtnAddE = new javax.swing.JButton();
         BtnAddOU = new javax.swing.JButton();
-        BtnFechar = new javax.swing.JButton();
-        BtnAdicionar = new javax.swing.JButton();
-        TxtResultado = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        OptCondicaoDeItem = new javax.swing.JRadioButton();
+        LblItem = new javax.swing.JLabel();
+        CmbCondicaoDeItemID = new javax.swing.JComboBox();
+        CmbCondicaoDeItemComparador = new javax.swing.JComboBox();
+        SpnCondicaoDeItemValor = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Comando [IF]");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Comando de Condição:"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         CmbCondicaoDeVariavelValor1.setEditable(true);
         CmbCondicaoDeVariavelValor1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "StatusPoint", "BaseLevel", "SkillPoint", "Class", "Upper", "Zeny", "Sex", "Weight", "MaxWeight", "JobLevel", "BaseExp", "NextBaseExp", "NextJobExp", "Hp", "MaxHp", "Sp", "MaxSp", "BaseJob" }));
@@ -173,16 +181,6 @@ public class FrmIF extends javax.swing.JDialog {
             }
         });
 
-        CmbCondicaoDeItemComparador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "==", "!=", ">=", "<=", ">", "<" }));
-        CmbCondicaoDeItemComparador.setSelectedIndex(2);
-        CmbCondicaoDeItemComparador.setEnabled(false);
-        CmbCondicaoDeItemComparador.setOpaque(false);
-        CmbCondicaoDeItemComparador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbCondicaoDeItemComparadorActionPerformed(evt);
-            }
-        });
-
         ChkCondicaoDeVariavelSeTextual2.setText("Dado Textual");
         ChkCondicaoDeVariavelSeTextual2.setEnabled(false);
         ChkCondicaoDeVariavelSeTextual2.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +189,6 @@ public class FrmIF extends javax.swing.JDialog {
             }
         });
 
-        CmbCondicaoDeVariavelValor2.setBackground(java.awt.SystemColor.window);
         CmbCondicaoDeVariavelValor2.setEditable(true);
         CmbCondicaoDeVariavelValor2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "StatusPoint", "BaseLevel", "SkillPoint", "Class", "Upper", "Zeny", "Sex", "Weight", "MaxWeight", "JobLevel", "BaseExp", "NextBaseExp", "NextJobExp", "Hp", "MaxHp", "Sp", "MaxSp", "BaseJob" }));
         CmbCondicaoDeVariavelValor2.setSelectedIndex(14);
@@ -216,138 +213,42 @@ public class FrmIF extends javax.swing.JDialog {
             }
         });
 
-        CmbCondicaoDeItemID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3064: Gema de Diamante", "3024: Veneno de Ninfas", "3017: Colar Horcrux (Alma de Fada)" }));
-        CmbCondicaoDeItemID.setSelectedIndex(2);
-        CmbCondicaoDeItemID.setEnabled(false);
-        CmbCondicaoDeItemID.setOpaque(false);
-        CmbCondicaoDeItemID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbCondicaoDeItemIDActionPerformed(evt);
-            }
-        });
-
-        GrupoTipoDeCondicao.add(OptCondicaoDeItem);
-        OptCondicaoDeItem.setText("De Item:");
-        OptCondicaoDeItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OptCondicaoDeItemActionPerformed(evt);
-            }
-        });
-
-        SpnCondicaoDeItemValor.setBackground(java.awt.SystemColor.window);
-        SpnCondicaoDeItemValor.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(0), null, Integer.valueOf(1)));
-        SpnCondicaoDeItemValor.setEnabled(false);
-        SpnCondicaoDeItemValor.setOpaque(false);
-        SpnCondicaoDeItemValor.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                SpnCondicaoDeItemValorStateChanged(evt);
-            }
-        });
-
-        GrupoTipoDeCondicao.add(OptCondicaoPersonalizada);
-        OptCondicaoPersonalizada.setText("Personalizada:");
-        OptCondicaoPersonalizada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OptCondicaoPersonalizadaActionPerformed(evt);
-            }
-        });
-
-        TxtCondicaoPersonalizada.setBackground(java.awt.SystemColor.window);
-        TxtCondicaoPersonalizada.setText("countitem(3017)>=10 && Zeny>=100000");
-        TxtCondicaoPersonalizada.setEnabled(false);
-
-        BtnAddE.setText("&&");
-        BtnAddE.setEnabled(false);
-        BtnAddE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAddEActionPerformed(evt);
-            }
-        });
-
-        BtnAddOU.setText("||");
-        BtnAddOU.setEnabled(false);
-        BtnAddOU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAddOUActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(OptCondicaoDeVariavel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(OptCondicaoDeVariavel)
+                        .addComponent(CmbCondicaoDeVariavelValor1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CmbCondicaoDeVariavelValor1, 0, 0, Short.MAX_VALUE)
-                            .addComponent(ChkCondicaoDeVariavelSeTextual1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CmbCondicaoDeVariavelComparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ChkCondicaoDeVariavelSeTextual2)
-                                .addGap(123, 123, 123))
-                            .addComponent(CmbCondicaoDeVariavelValor2, 0, 259, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(OptCondicaoDeItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CmbCondicaoDeItemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CmbCondicaoDeItemComparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SpnCondicaoDeItemValor, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(OptCondicaoPersonalizada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtCondicaoPersonalizada, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnAddE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnAddOU, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CmbCondicaoDeVariavelComparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ChkCondicaoDeVariavelSeTextual1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChkCondicaoDeVariavelSeTextual2)
+                    .addComponent(CmbCondicaoDeVariavelValor2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 229, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnAddE, BtnAddOU});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(OptCondicaoDeVariavel)
-                            .addComponent(CmbCondicaoDeVariavelValor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CmbCondicaoDeVariavelComparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChkCondicaoDeVariavelSeTextual1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CmbCondicaoDeVariavelValor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChkCondicaoDeVariavelSeTextual2)))
-                .addGap(6, 6, 6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(OptCondicaoDeItem)
-                    .addComponent(CmbCondicaoDeItemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmbCondicaoDeItemComparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SpnCondicaoDeItemValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(OptCondicaoDeVariavel)
+                    .addComponent(CmbCondicaoDeVariavelValor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbCondicaoDeVariavelValor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbCondicaoDeVariavelComparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(OptCondicaoPersonalizada)
-                    .addComponent(TxtCondicaoPersonalizada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnAddE)
-                    .addComponent(BtnAddOU))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ChkCondicaoDeVariavelSeTextual2)
+                    .addComponent(ChkCondicaoDeVariavelSeTextual1)))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnAddE, BtnAddOU, TxtCondicaoPersonalizada});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbCondicaoDeItemComparador, CmbCondicaoDeItemID, SpnCondicaoDeItemValor});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbCondicaoDeVariavelValor1, CmbCondicaoDeVariavelValor2});
 
         BtnFechar.setMnemonic('F');
         BtnFechar.setText("Fechar");
@@ -367,41 +268,182 @@ public class FrmIF extends javax.swing.JDialog {
         });
 
         TxtResultado.setEditable(false);
-        TxtResultado.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        TxtResultado.setFont(new java.awt.Font("Monospaced", 0, 13));
         TxtResultado.setForeground(java.awt.Color.blue);
         TxtResultado.setText("if(\"\"==\"\")");
         TxtResultado.setOpaque(false);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        GrupoTipoDeCondicao.add(OptCondicaoPersonalizada);
+        OptCondicaoPersonalizada.setText("Personalizada:");
+        OptCondicaoPersonalizada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OptCondicaoPersonalizadaActionPerformed(evt);
+            }
+        });
+
+        TxtCondicaoPersonalizada.setText("countitem(3017)>=10 && Zeny>=100000");
+        TxtCondicaoPersonalizada.setEnabled(false);
+
+        BtnAddE.setText("&&");
+        BtnAddE.setEnabled(false);
+        BtnAddE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddEActionPerformed(evt);
+            }
+        });
+
+        BtnAddOU.setText("||");
+        BtnAddOU.setEnabled(false);
+        BtnAddOU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddOUActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(OptCondicaoPersonalizada)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtCondicaoPersonalizada, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnAddE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnAddOU, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnAddE, BtnAddOU});
+
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OptCondicaoPersonalizada)
+                    .addComponent(TxtCondicaoPersonalizada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnAddOU)
+                    .addComponent(BtnAddE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnAddE, BtnAddOU, TxtCondicaoPersonalizada});
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        GrupoTipoDeCondicao.add(OptCondicaoDeItem);
+        OptCondicaoDeItem.setText("De Item:");
+        OptCondicaoDeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OptCondicaoDeItemActionPerformed(evt);
+            }
+        });
+
+        LblItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))); // NOI18N
+        LblItem.setEnabled(false);
+
+        CmbCondicaoDeItemID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3064: Gema de Diamante", "3024: Veneno de Ninfas", "3017: Colar Horcrux (Alma de Fada)" }));
+        CmbCondicaoDeItemID.setSelectedIndex(2);
+        CmbCondicaoDeItemID.setEnabled(false);
+        CmbCondicaoDeItemID.setOpaque(false);
+        CmbCondicaoDeItemID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbCondicaoDeItemIDActionPerformed(evt);
+            }
+        });
+
+        CmbCondicaoDeItemComparador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "==", "!=", ">=", "<=", ">", "<" }));
+        CmbCondicaoDeItemComparador.setSelectedIndex(2);
+        CmbCondicaoDeItemComparador.setEnabled(false);
+        CmbCondicaoDeItemComparador.setOpaque(false);
+        CmbCondicaoDeItemComparador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbCondicaoDeItemComparadorActionPerformed(evt);
+            }
+        });
+
+        SpnCondicaoDeItemValor.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(0), null, Integer.valueOf(1)));
+        SpnCondicaoDeItemValor.setEnabled(false);
+        SpnCondicaoDeItemValor.setOpaque(false);
+        SpnCondicaoDeItemValor.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SpnCondicaoDeItemValorStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(OptCondicaoDeItem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LblItem)
+                .addGap(18, 18, 18)
+                .addComponent(CmbCondicaoDeItemID, 0, 260, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CmbCondicaoDeItemComparador, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SpnCondicaoDeItemValor, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(OptCondicaoDeItem)
+                    .addComponent(LblItem)
+                    .addComponent(CmbCondicaoDeItemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbCondicaoDeItemComparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpnCondicaoDeItemValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbCondicaoDeItemComparador, CmbCondicaoDeItemID, SpnCondicaoDeItemValor});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TxtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(TxtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(BtnFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnAdicionar, BtnFechar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnFechar)
-                    .addComponent(BtnAdicionar)
-                    .addComponent(TxtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(BtnAdicionar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnAdicionar, BtnFechar, TxtResultado});
@@ -436,6 +478,29 @@ public class FrmIF extends javax.swing.JDialog {
         MudarTipo();
     }//GEN-LAST:event_OptCondicaoPersonalizadaActionPerformed
     private void CmbCondicaoDeItemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbCondicaoDeItemIDActionPerformed
+        /*String Selecionado=CmbCondicaoDeItemID.getItemAt(CmbCondicaoDeItemID.getSelectedIndex()).toString();
+        String Partes[] = Selecionado.split(":");
+        if(Partes.length>=2){
+            Dados_Item Item = FrmPrincipal.Itens.getItemPorID(Integer.parseInt(Partes[0]));
+            LblItem.setIcon(new javax.swing.ImageIcon(Item.getIconeImagem()));
+            LblItem.setToolTipText("<html><font size=\"+1\">"+
+                "<b>Nome(ID:"+Item.getID()+"):</b> " + Item.getNomeTitulo()+"<br/>"+
+                "<b>Imagem:</b> " + Item.getIconePNG()+"?cor="+Item.getIconeCor()+" ("+Item.getIconeImagem().getWidth()+"x"+Item.getIconeImagem().getHeight()+"px)"+"<br/>"+
+                "<b>Descrição:</b> " + Item.getDescricao()+"<br/>"
+            );
+        }else{
+            LblItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png")));
+            LblItem.setToolTipText(null);
+        }/**/
+        Dados_Item Item = FrmPrincipal.Itens.getItemPorOrdem(CmbCondicaoDeItemID.getSelectedIndex());
+        LblItem.setIcon(new javax.swing.ImageIcon(Item.getIconeImagem()));
+        LblItem.setToolTipText("<html><font size=\"+1\">"+
+            "<b>Nome(ID:"+Item.getID()+"):</b> " + Item.getNomeTitulo()+"<br/>"+
+            "<b>Imagem:</b> " + Item.getIconePNG()+"?cor="+Item.getIconeCor()+" ("+Item.getIconeImagem().getWidth()+"x"+Item.getIconeImagem().getHeight()+"px)"+"<br/>"+
+            "<b>Descrição:</b> " + Item.getDescricao()+"<br/>"
+        );
+
+
         AtualizarCodigo();
     }//GEN-LAST:event_CmbCondicaoDeItemIDActionPerformed
     private void CmbCondicaoDeItemComparadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbCondicaoDeItemComparadorActionPerformed
@@ -450,10 +515,6 @@ public class FrmIF extends javax.swing.JDialog {
     private void BtnAddOUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddOUActionPerformed
         TxtCondicaoPersonalizada.setText(TxtCondicaoPersonalizada.getText()+" || ");
     }//GEN-LAST:event_BtnAddOUActionPerformed
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        AtualizarCodigo();
-    }//GEN-LAST:event_formWindowActivated
-
     private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
         String Conteudo=FrmPalco.TxtScriptPalco.getText();
         String TxtInicio=Conteudo.substring(0,FrmPalco.TxtScriptPalco.getSelectionStart());
@@ -461,6 +522,24 @@ public class FrmIF extends javax.swing.JDialog {
         FrmPalco.TxtScriptPalco.setText(TxtInicio+TxtResultado.getText()+TxtFinal+" ");
         dispose();
     }//GEN-LAST:event_BtnAdicionarActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Vector Itens = new Vector();
+        for(int i=0;i<FrmPrincipal.Itens.getContItens();i++){
+            if(i==0){
+                Dados_Item Item = FrmPrincipal.Itens.getItemPorOrdem(i);
+                LblItem.setIcon(new javax.swing.ImageIcon(Item.getIconeImagem()));
+                LblItem.setToolTipText("<html><font size=\"+1\">"+
+                    "<b>Nome(ID:"+Item.getID()+"):</b> " + Item.getNomeTitulo()+"<br/>"+
+                    "<b>Imagem:</b> " + Item.getIconePNG()+"?cor="+Item.getIconeCor()+" ("+Item.getIconeImagem().getWidth()+"x"+Item.getIconeImagem().getHeight()+"px)"+"<br/>"+
+                    "<b>Descrição:</b> " + Item.getDescricao()+"<br/>"
+                );
+            }
+            Itens.add(FrmPrincipal.Itens.getItemPorOrdem(i).getID()+": "+FrmPrincipal.Itens.getItemPorOrdem(i).getNomeTitulo());
+        }
+        //if(Itens.capacity()>=1)
+        CmbCondicaoDeItemID.setModel(new javax.swing.DefaultComboBoxModel(Itens));
+        AtualizarCodigo();
+    }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -489,6 +568,7 @@ public class FrmIF extends javax.swing.JDialog {
     private javax.swing.JComboBox CmbCondicaoDeVariavelValor1;
     private javax.swing.JComboBox CmbCondicaoDeVariavelValor2;
     private javax.swing.ButtonGroup GrupoTipoDeCondicao;
+    private javax.swing.JLabel LblItem;
     private javax.swing.JRadioButton OptCondicaoDeItem;
     private javax.swing.JRadioButton OptCondicaoDeVariavel;
     private javax.swing.JRadioButton OptCondicaoPersonalizada;
@@ -496,6 +576,8 @@ public class FrmIF extends javax.swing.JDialog {
     private javax.swing.JTextField TxtCondicaoPersonalizada;
     private javax.swing.JTextField TxtResultado;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
 }

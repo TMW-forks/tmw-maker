@@ -61,14 +61,15 @@ public class FrmSplash extends javax.swing.JDialog {
             public void run() {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
-
                 FrmPrincipal.PgbBarra.setString("Carregando...");
-                FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
-                //Abre Forçosamente
-                FrmPrincipal.Modulo = new Classes.ItensModulo(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
 
-                FrmPrincipal.PgbBarra.setString("Carregado");
-                FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
+                FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de NPCs (<font color=#FF0000>Por favor espere!</font>)");
+                FrmPrincipal.NPCs = new Classes.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
+                FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
+                FrmPrincipal.Itens = new Classes.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+
+                FrmPrincipal.PgbBarra.setString("Concluído");
+                FrmPrincipal.setAvisoEmEstatus("Banco de Dados Eathena carregado com sucesso!");
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(false);
 

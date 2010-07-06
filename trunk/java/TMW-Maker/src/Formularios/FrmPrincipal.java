@@ -1,8 +1,9 @@
 
 package Formularios;
 
+import Classes.Banco_NPCs;
 import Classes.ConfigClass;
-import Classes.ItensModulo;
+import Classes.Banco_Itens;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -19,7 +20,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static String ComponenteSelecionado = "";
     public static ConfigClass Config = new ConfigClass();
     static String Barra = System.getProperty("file.separator");
-    static ItensModulo Modulo; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
+    static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
+    static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
 
     public static void setAvisoEmEstatus(String Aviso) {
         System.out.println(Aviso.toString());
@@ -1046,7 +1048,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         if(ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacao()+FrmPrincipal.Config.getAtualizacaoIntervalo()){
                             Atualizar();
                         }
-                        if(!(FrmPrincipal.Modulo instanceof Classes.ItensModulo)){
+                        if(!(FrmPrincipal.Itens instanceof Classes.Banco_Itens)){
                             MostrarDeSplash();
                         }
                     }
