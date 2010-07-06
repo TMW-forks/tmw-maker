@@ -6,18 +6,24 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ItensModulo {
-    public ItensModulo() {AbrirItens();} // Só executa de for instaciado como objeto
-
+public class Banco_Itens {
+//####################### COSTRUTORES #########################################
+    public Banco_Itens() {AbrirItens();} // Só executa de for instaciado como objeto
+//####################### PRIVADOS #########################################
+    private static Dados_Item Itens[]; //Não deve ser instaciado agora!!!!
+//####################### PUBLICOS #########################################
     public static String Barra = System.getProperty("file.separator");
     public static String PastaDeItens = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"items";
     public static String EnderecoItensXML = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"items.xml";
     public static String EnderecoItensTXT = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"db"+Barra+"item_db.txt";
-
-    public static ItemDados Itens[]; //Não deve ser instaciado agora!!!!
-
-    public ItemDados[] getItens() {return Itens;}
-    public ItemDados getItem(int Ordem) {return Itens[Ordem];}
+    public Dados_Item[] getItens() {return Itens;}
+    public Dados_Item getItemPorOrdem(int Ordem) {return Itens[Ordem];}
+    public Dados_Item getItemPorID(int ID) {
+        for(int i=0;i<Itens.length;i++){
+            if(Itens[i].getID()==ID) return Itens[i];
+        }
+        return null;
+    }
     public int getContItens() {
         try{
             return Itens.length;
@@ -72,7 +78,7 @@ public class ItensModulo {
         }
 
         String Linhas[]=ConteudoTXT.trim().split("\n");
-        Itens = new ItemDados[Linhas.length];
+        Itens = new Dados_Item[Linhas.length];
         Object[] ComboIDs=new java.lang.Object[Linhas.length];
         int Tag1=-1, Tag2=-1; String Script="";
         int Loc=0;
@@ -82,7 +88,7 @@ public class ItensModulo {
             PartesDaLinha=Linha.split(",");
             ComboIDs[l] = new Object();
             ComboIDs[l] = PartesDaLinha[0];
-            Itens[l] = new ItemDados();
+            Itens[l] = new Dados_Item();
             Itens[l].setID(Integer.parseInt(PartesDaLinha[0].trim()));
             Itens[l].setNomeSumonico(PartesDaLinha[1].trim());
             Itens[l].setNomeTitulo(PartesDaLinha[2].trim());
@@ -118,4 +124,5 @@ public class ItensModulo {
             Itens[l].setTipoNome(ConteudoXML.ExtrairEntre(Propriedades,"type=\"","\""));
         }
     }
+//##########################################################################
 }

@@ -4,6 +4,8 @@ package Formularios;
 
 import Classes.BlocoDeScript;
 import Classes.ConfigClass;
+import Classes.Dados_NPC;
+import Classes.ImagemTratavel;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -108,7 +110,7 @@ public class FrmPalco extends javax.swing.JDialog {
                 String[] ParteDoMapa= null;
                 String[] ParteDaPosicao= null;
                 String[] ParteFacutativa= null;
-                int BlocoSelecionado=-1;
+                int Sel=-1;
                 
                 for(int i=0;i<blocos;i++){
                     AbreBloco=FechaBloco;
@@ -157,13 +159,13 @@ public class FrmPalco extends javax.swing.JDialog {
                             Instancia[i].setImagem(Integer.parseInt(ParteFacutativa[0].toString()));
                             if(ParteFacutativa.length>=2) {
                                 if(!ParteFacutativa[1].equals("")) {
-                                    //Mensagem_Erro("ParteFacutativa[1]=\""+ParteFacutativa[1]+"\"", "Nota de Programador");
-                                    Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[1].toString()));
+                                    Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[1].equals("")?"0":ParteFacutativa[1]));
                                 }
                             }
                             if(ParteFacutativa.length>=3) {
                                 if(!ParteFacutativa[2].equals("")) {
-                                    Instancia[i].setAlturaDeGatilho(Integer.parseInt(ParteFacutativa[2].toString()));
+                                    //Instancia[i].setAlturaDeGatilho(Integer.parseInt(ParteFacutativa[2].toString()));
+                                    Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[2].equals("")?"0":ParteFacutativa[2]));
                                 }
                             }
                             TituloDeBloco[i] = new Object();
@@ -178,11 +180,23 @@ public class FrmPalco extends javax.swing.JDialog {
                         Instancia[i].setScript(Bloco);
 
                         if(i==blocos-1){
-                            BlocoSelecionado=CmbScript.getSelectedIndex();
+                            Sel=CmbScript.getSelectedIndex();
                             CmbScript.setModel(new DefaultComboBoxModel(TituloDeBloco));
-                            if(BlocoSelecionado<0 || BlocoSelecionado>CmbScript.getItemCount()-1) BlocoSelecionado=CmbScript.getItemCount()-1;
-                            CmbScript.setSelectedIndex(BlocoSelecionado);
-                            TxtScriptPalco.setText(Instancia[BlocoSelecionado].getScript());
+
+                            if(Sel<0 || Sel>CmbScript.getItemCount()-1)  Sel=CmbScript.getItemCount()-1;
+
+                            CmbScript.setSelectedIndex(Sel);
+                            TxtScriptPalco.setText(Instancia[Sel].getScript());
+
+                            /*Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[Sel].getImagem());
+                            ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+                            Imagem.setZoom(24/Imagem.getAltura());
+                            LblAparencia.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
+                            LblAparencia.setToolTipText("<html><font size=\"+1\">"+
+                                "<b>Aparência(ID:"+NPC.getID()+"):</b> " + NPC.getNome()+"<br/>"+
+                                "<b>Imagem:</b> " + NPC.getXML()+"?img="+NPC.getVariante()+" ("+NPC.getImagem().getWidth()+"x"+NPC.getImagem().getHeight()+"px)"+"<br/>"+
+                                "<b>Comentário:</b> " + NPC.getComentario()+"<br/>"
+                            );/**/
                         }
                     }else{
                         FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Cabeçalho de Bloco com formato inválido!");
@@ -236,9 +250,10 @@ public class FrmPalco extends javax.swing.JDialog {
         BtnExcluirBloco = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         CmbScript = new javax.swing.JComboBox();
-        TbrComandos = new javax.swing.JToolBar();
-        BtnScriptComandoMes = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         BtnScriptComandoIF = new javax.swing.JButton();
+        BtnScriptComandoMes = new javax.swing.JButton();
+        LblAparencia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editor de Scripts");
@@ -254,9 +269,10 @@ public class FrmPalco extends javax.swing.JDialog {
         });
 
         TxtScriptPalco.setColumns(20);
-        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14));
+        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         TxtScriptPalco.setRows(5);
-        TxtScriptPalco.setEnabled(false);
+        TxtScriptPalco.setSelectedTextColor(java.awt.Color.black);
+        TxtScriptPalco.setSelectionColor(new java.awt.Color(145, 254, 124));
         TxtScriptPalco.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 TxtScriptPalcoCaretUpdate(evt);
@@ -328,47 +344,59 @@ public class FrmPalco extends javax.swing.JDialog {
         });
         jToolBar1.add(CmbScript);
 
-        TbrComandos.setFloatable(false);
-        TbrComandos.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        TbrComandos.setRollover(true);
-
-        BtnScriptComandoMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
-        BtnScriptComandoMes.setToolTipText("<html><b>MES:</b> Fala de pesonagem");
-        BtnScriptComandoMes.setEnabled(false);
-        BtnScriptComandoMes.setFocusable(false);
-        BtnScriptComandoMes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnScriptComandoMes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnScriptComandoMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnScriptComandoMesActionPerformed(evt);
-            }
-        });
-        TbrComandos.add(BtnScriptComandoMes);
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         BtnScriptComandoIF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/losangulo.gif"))); // NOI18N
+        BtnScriptComandoIF.setText("IF");
         BtnScriptComandoIF.setToolTipText("<html><b>IF:</b> Teste de Condição");
         BtnScriptComandoIF.setEnabled(false);
         BtnScriptComandoIF.setFocusable(false);
-        BtnScriptComandoIF.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnScriptComandoIF.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnScriptComandoIF.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnScriptComandoIF.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnScriptComandoIF.setPreferredSize(new java.awt.Dimension(60, 28));
         BtnScriptComandoIF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnScriptComandoIFActionPerformed(evt);
             }
         });
-        TbrComandos.add(BtnScriptComandoIF);
+        jPanel1.add(BtnScriptComandoIF, java.awt.BorderLayout.PAGE_END);
+
+        BtnScriptComandoMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_comentario.gif"))); // NOI18N
+        BtnScriptComandoMes.setText("MES");
+        BtnScriptComandoMes.setToolTipText("<html><b>MES:</b> Fala de pesonagem");
+        BtnScriptComandoMes.setEnabled(false);
+        BtnScriptComandoMes.setFocusable(false);
+        BtnScriptComandoMes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnScriptComandoMes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnScriptComandoMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScriptComandoMesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnScriptComandoMes, java.awt.BorderLayout.CENTER);
+
+        LblAparencia.setBackground(java.awt.Color.lightGray);
+        LblAparencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png"))); // NOI18N
+        LblAparencia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        LblAparencia.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(TbrComandos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblAparencia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {LblAparencia, jPanel1});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -376,9 +404,11 @@ public class FrmPalco extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(TbrComandos, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)))
+                        .addComponent(LblAparencia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -387,9 +417,20 @@ public class FrmPalco extends javax.swing.JDialog {
     private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbScriptActionPerformed
         //abrirInstancia(FrmScript.EnderecoDoScript);
         //this.setTitle(Integer.toString(i));
-        int i = CmbScript.getSelectedIndex();
-        String Cod= Instancia[i].getScript().toString();
+        String Cod= Instancia[CmbScript.getSelectedIndex()].getScript().toString();
         TxtScriptPalco.setText(Cod.toString());/**/
+
+        Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[CmbScript.getSelectedIndex()].getImagem());
+        ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+        double Escala = 96.0/(double)Imagem.getLargura();
+        //double Escala = 1.0;
+        Imagem.setZoom(Escala);
+        LblAparencia.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
+        LblAparencia.setToolTipText("<html><font size=\"+1\">"+
+            "<b>Aparência(ID:"+NPC.getID()+"):</b> " + NPC.getNome()+"<br/>"+
+            "<b>Imagem:</b> " + NPC.getXML()+"?img="+NPC.getVariante()+" ("+NPC.getImagem().getWidth()+"x"+NPC.getImagem().getHeight()+"px)"+"<br/>"+
+            "<b>Comentário:</b> " + NPC.getComentario()+"<br/>"
+        );
     }//GEN-LAST:event_CmbScriptActionPerformed
     private void TxtScriptPalcoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtScriptPalcoKeyPressed
         if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_F1 && evt.isControlDown()){
@@ -514,8 +555,9 @@ public class FrmPalco extends javax.swing.JDialog {
     public static javax.swing.JButton BtnScriptComandoIF;
     public static javax.swing.JButton BtnScriptComandoMes;
     public static javax.swing.JComboBox CmbScript;
-    private javax.swing.JToolBar TbrComandos;
+    private javax.swing.JLabel LblAparencia;
     public static javax.swing.JTextArea TxtScriptPalco;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar1;

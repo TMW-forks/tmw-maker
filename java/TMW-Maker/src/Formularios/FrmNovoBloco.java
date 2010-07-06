@@ -3,7 +3,10 @@ package Formularios;
 
 import Classes.BlocoDeScript;
 import Classes.ConfigClass;
+import Classes.Dados_NPC;
+import Classes.ImagemTratavel;
 import java.lang.Object;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -21,24 +24,26 @@ public class FrmNovoBloco extends javax.swing.JDialog {
 
         TbpTipoDeBloco = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        TxtNovoBlocoScriptNome = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        TxtNovoBlocoScriptMapa = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        SpnNovoBlocoScriptCoordX = new javax.swing.JSpinner();
-        jLabel5 = new javax.swing.JLabel();
-        SpnNovoBlocoScriptCoordY = new javax.swing.JSpinner();
-        CmbNovoBlocoScriptImagem = new javax.swing.JComboBox();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        LblImagem = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         SpnNovoBlocoScriptGatilhoLargura = new javax.swing.JSpinner();
+        TxtNovoBlocoScriptMapa = new javax.swing.JTextField();
         SpnNovoBlocoScriptGatilhoAltura = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        TxtNovoBlocoScriptNome = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtNovoBlocoScriptUtilidade = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        SpnNovoBlocoScriptCoordY = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        SpnNovoBlocoScriptCoordX = new javax.swing.JSpinner();
+        CmbNovoBlocoScriptImagem = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         TxtNovoBlocoFuncaoNome = new javax.swing.JTextField();
@@ -51,126 +56,160 @@ public class FrmNovoBloco extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Bloco de Script");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jLabel1.setText("Nome:");
+        LblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png"))); // NOI18N
 
-        TxtNovoBlocoScriptNome.setText("Fulano");
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Cabeçalho"));
+
+        jLabel8.setText("Altu. Gatilho:");
 
         jLabel2.setText("Mapa:");
 
+        SpnNovoBlocoScriptGatilhoLargura.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(-1), null, Integer.valueOf(1)));
+
         TxtNovoBlocoScriptMapa.setText("001");
 
-        jLabel4.setText("Coord. X:");
+        SpnNovoBlocoScriptGatilhoAltura.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(-1), null, Integer.valueOf(1)));
 
-        SpnNovoBlocoScriptCoordX.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(100), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jLabel1.setText("Nome:");
+
+        jLabel9.setText(".gat");
+
+        TxtNovoBlocoScriptNome.setText("Fulano");
+
+        TxtNovoBlocoScriptUtilidade.setColumns(20);
+        TxtNovoBlocoScriptUtilidade.setRows(3);
+        TxtNovoBlocoScriptUtilidade.setText("Pegará XXX itens e YYYY de GP (dinheiro).\nDará um item Z.");
+        jScrollPane2.setViewportView(TxtNovoBlocoScriptUtilidade);
 
         jLabel5.setText("Coord. Y:");
 
         SpnNovoBlocoScriptCoordY.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(100), Integer.valueOf(0), null, Integer.valueOf(1)));
 
+        jLabel13.setText("Descrição da Utilidade:");
+
+        jLabel4.setText("Coord. X:");
+
+        SpnNovoBlocoScriptCoordX.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(100), Integer.valueOf(0), null, Integer.valueOf(1)));
+
         CmbNovoBlocoScriptImagem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Não (Script Intangível)", "048 (npc.xml?img=61)", "049 (npc.xml?img=49)", "100 (npc.xml?img=0)", "101 (npc.xml?img=1)", "102 (npc.xml?img=2)", "103 (npc.xml?img=3)", " " }));
         CmbNovoBlocoScriptImagem.setSelectedIndex(1);
-
-        jLabel6.setText("Imagem:");
+        CmbNovoBlocoScriptImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbNovoBlocoScriptImagemActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Larg. Gatilho:");
 
-        jLabel8.setText("Altu. Gatilho:");
+        jLabel6.setText("Imagem:");
 
-        SpnNovoBlocoScriptGatilhoLargura.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(-1), null, Integer.valueOf(1)));
-
-        SpnNovoBlocoScriptGatilhoAltura.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(-1), null, Integer.valueOf(1)));
-
-        jLabel9.setText(".gat");
-
-        TxtNovoBlocoScriptUtilidade.setColumns(20);
-        TxtNovoBlocoScriptUtilidade.setRows(5);
-        TxtNovoBlocoScriptUtilidade.setText("Pegará XXX itens e YYYY de GP (dinheiro).\nDará um item Z.");
-        jScrollPane2.setViewportView(TxtNovoBlocoScriptUtilidade);
-
-        jLabel13.setText("Descrição da Utilidade:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CmbNovoBlocoScriptImagem, 0, 218, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(SpnNovoBlocoScriptGatilhoLargura, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                                     .addComponent(SpnNovoBlocoScriptCoordX, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                                     .addComponent(TxtNovoBlocoScriptMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel5)
                                             .addComponent(jLabel8))
                                         .addGap(4, 4, 4)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(SpnNovoBlocoScriptGatilhoAltura, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                                             .addComponent(SpnNovoBlocoScriptCoordY, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))))
-                            .addComponent(TxtNovoBlocoScriptNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(CmbNovoBlocoScriptImagem, javax.swing.GroupLayout.Alignment.LEADING, 0, 260, Short.MAX_VALUE)
+                            .addComponent(TxtNovoBlocoScriptNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {SpnNovoBlocoScriptCoordX, SpnNovoBlocoScriptCoordY, SpnNovoBlocoScriptGatilhoAltura, SpnNovoBlocoScriptGatilhoLargura, TxtNovoBlocoScriptMapa});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {SpnNovoBlocoScriptCoordX, SpnNovoBlocoScriptCoordY, SpnNovoBlocoScriptGatilhoAltura, SpnNovoBlocoScriptGatilhoLargura, TxtNovoBlocoScriptMapa});
 
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtNovoBlocoScriptNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(TxtNovoBlocoScriptMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(SpnNovoBlocoScriptCoordX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SpnNovoBlocoScriptCoordY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SpnNovoBlocoScriptGatilhoLargura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(SpnNovoBlocoScriptGatilhoAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CmbNovoBlocoScriptImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {SpnNovoBlocoScriptCoordX, SpnNovoBlocoScriptCoordY, SpnNovoBlocoScriptGatilhoAltura, SpnNovoBlocoScriptGatilhoLargura, TxtNovoBlocoScriptMapa, jLabel2, jLabel4, jLabel5, jLabel7, jLabel8, jLabel9});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {SpnNovoBlocoScriptCoordX, SpnNovoBlocoScriptCoordY, SpnNovoBlocoScriptGatilhoAltura, SpnNovoBlocoScriptGatilhoLargura, TxtNovoBlocoScriptMapa, jLabel2, jLabel4, jLabel5, jLabel7, jLabel8, jLabel9});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbNovoBlocoScriptImagem, jLabel6});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbNovoBlocoScriptImagem, jLabel6});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {TxtNovoBlocoScriptNome, jLabel1});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {TxtNovoBlocoScriptNome, jLabel1});
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LblImagem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblImagem))
+                .addContainerGap())
+        );
 
         TbpTipoDeBloco.addTab("Script", jPanel1);
 
@@ -192,11 +231,11 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtNovoBlocoFuncaoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                        .addComponent(TxtNovoBlocoFuncaoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
@@ -211,7 +250,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         TbpTipoDeBloco.addTab("Função", jPanel2);
@@ -238,27 +277,27 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnFechar))
-                    .addComponent(TbpTipoDeBloco, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(TbpTipoDeBloco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnAdicionar, BtnFechar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TbpTipoDeBloco, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                .addComponent(TbpTipoDeBloco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnFechar)
                     .addComponent(BtnAdicionar))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BtnAdicionar, BtnFechar});
@@ -271,8 +310,10 @@ public class FrmNovoBloco extends javax.swing.JDialog {
     private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
         if(TbpTipoDeBloco.getSelectedIndex()==0){
             String ImagemTXT = CmbNovoBlocoScriptImagem.getItemAt(CmbNovoBlocoScriptImagem.getSelectedIndex()).toString();
-            String Partes[] = ImagemTXT.split(" ");
-            int ImagemInt = (int)Integer.parseInt(Partes[0]);
+            String Partes[] = ImagemTXT.split(":");
+            int ImagemInt=-1;
+            if(Partes.length>=2) ImagemInt = Integer.parseInt(Partes[0]);
+            
 
             int newSize=0;
             try{
@@ -439,6 +480,43 @@ public class FrmNovoBloco extends javax.swing.JDialog {
         //FrmPalco.BtnExcluirBloco.setEnabled(true);
         dispose();
     }//GEN-LAST:event_BtnAdicionarActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Dados_NPC NPC = null;
+        Vector Lista = new Vector();
+        Lista.add("Não (Script Intangível)");
+        for(int n=0;n<FrmPrincipal.NPCs.getContNPCs();n++){
+            NPC = FrmPrincipal.NPCs.getNPCporOrdem(n);
+            if(NPC!=null){
+                if(NPC.getSprite()!=null){
+                    if(NPC.getID()>0) Lista.add(NPC.getID()+": "+(NPC.getNome().equals("")?"\""+NPC.getComentario().trim()+"\"":NPC.getNome()));
+                }
+            }
+        }
+        CmbNovoBlocoScriptImagem.setModel(new javax.swing.DefaultComboBoxModel(Lista));
+    }//GEN-LAST:event_formWindowOpened
+    private void CmbNovoBlocoScriptImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbNovoBlocoScriptImagemActionPerformed
+        if(CmbNovoBlocoScriptImagem.getSelectedIndex()>=1){
+            String Selecionado=CmbNovoBlocoScriptImagem.getItemAt(CmbNovoBlocoScriptImagem.getSelectedIndex()).toString();
+            String Partes[] = Selecionado.split(":");
+            if(Partes.length>=2){
+                Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Integer.parseInt(Partes[0]));
+                ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+                Imagem.setZoom(2.0);
+                LblImagem.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
+                LblImagem.setToolTipText("<html><font size=\"+1\">"+
+                    "<b>Nome(ID:"+NPC.getID()+"):</b> " + NPC.getNome()+"<br/>"+
+                    "<b>Imagem:</b> " + NPC.getXML()+"?img="+NPC.getVariante()+" ("+NPC.getImagem().getWidth()+"x"+NPC.getImagem().getHeight()+"px)"+"<br/>"+
+                    "<b>Comentário:</b> " + NPC.getComentario()+"<br/>"
+                );
+            }else{
+                LblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png")));
+                LblImagem.setToolTipText(null);
+            }
+        }else{
+            LblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icone4.png")));
+            LblImagem.setToolTipText(null);
+        }
+    }//GEN-LAST:event_CmbNovoBlocoScriptImagemActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -458,6 +536,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
     private javax.swing.JButton BtnAdicionar;
     private javax.swing.JButton BtnFechar;
     private javax.swing.JComboBox CmbNovoBlocoScriptImagem;
+    private javax.swing.JLabel LblImagem;
     private javax.swing.JSpinner SpnNovoBlocoScriptCoordX;
     private javax.swing.JSpinner SpnNovoBlocoScriptCoordY;
     private javax.swing.JSpinner SpnNovoBlocoScriptGatilhoAltura;
@@ -481,6 +560,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

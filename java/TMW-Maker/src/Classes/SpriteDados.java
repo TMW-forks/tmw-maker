@@ -24,6 +24,37 @@ public class SpriteDados {
             e.printStackTrace();
         }
     } // Só executa de for instaciado como objeto
+    public SpriteDados(String Endereco) {
+        try {
+            File Arquivo = new File(Endereco);
+            if(Arquivo.exists()){
+                SpriteEndereco=Endereco;
+                SpriteLinhas=1;
+                SpriteColunas=1;
+                Sprite = ImageIO.read(Arquivo);
+                BlocoLargura=Sprite.getWidth();
+                BlocoAltura=Sprite.getHeight();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } // Só executa de for instaciado como objeto
+    public SpriteDados(BufferedImage Imagem, int Linhas, int Colunas) {
+        SpriteEndereco="";
+        SpriteLinhas=Linhas;
+        SpriteColunas=Colunas;
+        Sprite = Imagem;
+        BlocoLargura=Sprite.getWidth()/Colunas;
+        BlocoAltura=Sprite.getHeight()/Linhas;
+    } // Só executa de for instaciado como objeto
+    public SpriteDados(BufferedImage Imagem) {
+        SpriteEndereco="";
+        SpriteLinhas=1;
+        SpriteColunas=1;
+        Sprite = Imagem;
+        BlocoLargura=Sprite.getWidth();
+        BlocoAltura=Sprite.getHeight();
+    } // Só executa de for instaciado como objeto
     
     BufferedImage Sprite;
     String SpriteEndereco="";

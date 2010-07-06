@@ -9,6 +9,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -24,31 +27,31 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="BtnAdicionar" linkSize="7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="BtnFechar" linkSize="7" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="TbpTipoDeBloco" alignment="0" pref="351" max="32767" attributes="0"/>
+                  <Component id="TbpTipoDeBloco" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TbpTipoDeBloco" pref="337" max="32767" attributes="0"/>
+              <Component id="TbpTipoDeBloco" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtnFechar" linkSize="8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnAdicionar" linkSize="8" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,49 +73,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" pref="315" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="CmbNovoBlocoScriptImagem" pref="218" max="32767" attributes="1"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="SpnNovoBlocoScriptGatilhoLargura" linkSize="4" alignment="0" pref="60" max="32767" attributes="1"/>
-                                          <Component id="SpnNovoBlocoScriptCoordX" linkSize="4" pref="60" max="32767" attributes="1"/>
-                                          <Component id="TxtNovoBlocoScriptMapa" linkSize="4" min="-2" pref="60" max="-2" attributes="1"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="SpnNovoBlocoScriptGatilhoAltura" linkSize="4" alignment="0" pref="60" max="32767" attributes="1"/>
-                                                  <Component id="SpnNovoBlocoScriptCoordY" linkSize="4" alignment="0" pref="60" max="32767" attributes="1"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Component id="TxtNovoBlocoScriptNome" alignment="0" pref="218" max="32767" attributes="1"/>
-                              </Group>
-                          </Group>
-                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="LblImagem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -120,161 +86,244 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TxtNovoBlocoScriptNome" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="LblImagem" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtNovoBlocoScriptMapa" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="SpnNovoBlocoScriptCoordX" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="SpnNovoBlocoScriptCoordY" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SpnNovoBlocoScriptGatilhoLargura" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="SpnNovoBlocoScriptGatilhoAltura" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="CmbNovoBlocoScriptImagem" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="78" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="LblImagem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nome:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TxtNovoBlocoScriptNome">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Fulano"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Mapa:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TxtNovoBlocoScriptMapa">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="001"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Coord. X:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptCoordX">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagem/Fundos/icone4.png"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Container class="javax.swing.JPanel" name="jPanel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Coord. Y:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptCoordY">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Cabe&#xe7;alho"/>
+                  </Border>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="CmbNovoBlocoScriptImagem">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="8">
-                    <StringItem index="0" value="N&#xe3;o (Script Intang&#xed;vel)"/>
-                    <StringItem index="1" value="048 (npc.xml?img=61)"/>
-                    <StringItem index="2" value="049 (npc.xml?img=49)"/>
-                    <StringItem index="3" value="100 (npc.xml?img=0)"/>
-                    <StringItem index="4" value="101 (npc.xml?img=1)"/>
-                    <StringItem index="5" value="102 (npc.xml?img=2)"/>
-                    <StringItem index="6" value="103 (npc.xml?img=3)"/>
-                    <StringItem index="7" value=" "/>
-                  </StringArray>
-                </Property>
-                <Property name="selectedIndex" type="int" value="1"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Imagem:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Larg. Gatilho:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Altu. Gatilho:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptGatilhoLargura">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" minimum="-1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptGatilhoAltura">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" minimum="-1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value=".gat"/>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
 
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" pref="357" max="32767" attributes="0"/>
+                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="SpnNovoBlocoScriptGatilhoLargura" linkSize="4" alignment="0" pref="60" max="32767" attributes="1"/>
+                                              <Component id="SpnNovoBlocoScriptCoordX" linkSize="4" pref="60" max="32767" attributes="1"/>
+                                              <Component id="TxtNovoBlocoScriptMapa" linkSize="4" min="-2" pref="60" max="-2" attributes="1"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="SpnNovoBlocoScriptGatilhoAltura" linkSize="4" alignment="0" pref="60" max="32767" attributes="1"/>
+                                                      <Component id="SpnNovoBlocoScriptCoordY" linkSize="4" alignment="0" pref="60" max="32767" attributes="1"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Component id="CmbNovoBlocoScriptImagem" alignment="0" pref="260" max="32767" attributes="1"/>
+                                      <Component id="TxtNovoBlocoScriptNome" alignment="0" pref="260" max="32767" attributes="1"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TxtNovoBlocoScriptNome" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNovoBlocoScriptMapa" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel9" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SpnNovoBlocoScriptCoordX" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SpnNovoBlocoScriptCoordY" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="SpnNovoBlocoScriptGatilhoLargura" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SpnNovoBlocoScriptGatilhoAltura" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="CmbNovoBlocoScriptImagem" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" pref="64" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="TxtNovoBlocoScriptUtilidade">
+                <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="columns" type="int" value="20"/>
-                    <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Pegar&#xe1; XXX itens e YYYY de GP (dinheiro).&#xa;Dar&#xe1; um item Z."/>
+                    <Property name="text" type="java.lang.String" value="Altu. Gatilho:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Mapa:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptGatilhoLargura">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" minimum="-1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNovoBlocoScriptMapa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="001"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptGatilhoAltura">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" minimum="-1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nome:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel9">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value=".gat"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNovoBlocoScriptNome">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Fulano"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="TxtNovoBlocoScriptUtilidade">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="rows" type="int" value="3"/>
+                        <Property name="text" type="java.lang.String" value="Pegar&#xe1; XXX itens e YYYY de GP (dinheiro).&#xa;Dar&#xe1; um item Z."/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="jLabel5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Coord. Y:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptCoordY">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel13">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o da Utilidade:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Coord. X:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="SpnNovoBlocoScriptCoordX">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CmbNovoBlocoScriptImagem">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="8">
+                        <StringItem index="0" value="N&#xe3;o (Script Intang&#xed;vel)"/>
+                        <StringItem index="1" value="048 (npc.xml?img=61)"/>
+                        <StringItem index="2" value="049 (npc.xml?img=49)"/>
+                        <StringItem index="3" value="100 (npc.xml?img=0)"/>
+                        <StringItem index="4" value="101 (npc.xml?img=1)"/>
+                        <StringItem index="5" value="102 (npc.xml?img=2)"/>
+                        <StringItem index="6" value="103 (npc.xml?img=3)"/>
+                        <StringItem index="7" value=" "/>
+                      </StringArray>
+                    </Property>
+                    <Property name="selectedIndex" type="int" value="1"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbNovoBlocoScriptImagemActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Larg. Gatilho:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Imagem:"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel13">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o da Utilidade:"/>
-              </Properties>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -292,11 +341,11 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="315" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="501" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TxtNovoBlocoFuncaoNome" pref="237" max="32767" attributes="0"/>
+                              <Component id="TxtNovoBlocoFuncaoNome" pref="423" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -316,7 +365,7 @@
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="88" max="-2" attributes="0"/>
-                      <EmptySpace pref="132" max="32767" attributes="0"/>
+                      <EmptySpace pref="157" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
