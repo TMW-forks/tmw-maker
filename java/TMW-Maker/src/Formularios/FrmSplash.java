@@ -23,9 +23,9 @@ public class FrmSplash extends javax.swing.JDialog {
 
         LblFundo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Carregando TMW-Maker ...");
         setResizable(false);
-        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -33,7 +33,7 @@ public class FrmSplash extends javax.swing.JDialog {
         });
 
         LblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/login_wallpaper 640x480.png"))); // NOI18N
-        LblFundo.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        LblFundo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
