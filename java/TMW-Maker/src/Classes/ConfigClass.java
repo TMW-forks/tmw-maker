@@ -34,7 +34,7 @@ public class ConfigClass {
     private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"localhost";
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
-    private String  ExecucaoComando =               "tmw";
+    private String  ExecucaoComando =               "manaplus";
     private String  ExecucaoParametroTMWData =      ConexaoLocalhost+Barra+"tmwdata";
     private String  ExecucaoParametroServidor =     "localhost";
     private String  ExecucaoParametroConta =        ""; //Inicia sem valor
