@@ -18,7 +18,7 @@ Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois mo
 
 =Modo Colaborativo=
 
-<p align="justify">É possível baixar, modificar, e devolver para este site as modificações que você fez no engine TMW-Maker. Esse modo é recomendado apenas para aqueles que querem ajudar no desenvolvimento desta ferramenta. Para usar o modo Colaborativo você precisará ter um "*username*" e "*password*" autorizados. Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação para conseguir esse Username e Password.
+<p align="justify">É possível baixar, modificar, e devolver as modificações que você fez no engine TMW-Make para este siter. Esse modo é recomendado apenas para aqueles que querem ajudar no desenvolvimento desta ferramenta. Para usar o modo Colaborativo você precisará ter um "*username*" e "*password*" autorizados. Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação para conseguir esse Username e Password.
 
 || *Versão* || *Modo* || *Comando SVN de Terminal Shell* ||
 || v0.2 || Colaborativo || svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
