@@ -21,6 +21,9 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
     SpriteDados Sprite=null;
 
     private void CarregarSpritesPNG(){
+        CarregarSpritesPNG("player_male_base.png");
+    }
+    private void CarregarSpritesPNG(String Focar){
         if(FrmPrincipal.Config.SeExiste(PastaDeSprites)){
             String[] Arquivos = FrmPrincipal.Config.ListarArquivos(PastaDeSprites);
             //setTitle(""+Arquivos.length);
@@ -40,7 +43,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
                 int Selecionado = -1;
                 for(int a=0; a<ContArquivos; a++){
                     CapsulaDeArquivos[a]=AgrupamentoDeArquivos[a];
-                    if(CapsulaDeArquivos[a].equals("player_male_base.png")) Selecionado=a;
+                    if(CapsulaDeArquivos[a].equals(Focar)) Selecionado=a;
                 }
                 if(ContArquivos>=1){
                     CmbEndereco.setModel(new DefaultComboBoxModel(CapsulaDeArquivos));
@@ -411,18 +414,20 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
         //Create a file chooser
         final JFileChooser Dialogo = new JFileChooser();
         Dialogo.setFileFilter(new FileNameExtensionFilter("Arquivo PNG", "png"));
-        Dialogo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo JPG", "jpg"));
-        
+        //Dialogo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo JPG", "jpg"));
         Dialogo.setAcceptAllFileFilterUsed(false);
 
-        //In response to a button click:
-        int returnVal = Dialogo.showOpenDialog(this);
-
-
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            //File file = Dialogo.getSelectedFile();
-            //This is where a real application would open the file.
-            //log.append("Opening: " + file.getName() + "." + newline);
+        int Teste = Dialogo.showOpenDialog(this);
+        if (Teste == JFileChooser.APPROVE_OPTION) {
+            //File Arquivo = Dialogo.getSelectedFile();
+            /*This is where a real application would open the file.
+            log.append("Opening: " + file.getName() + "." + newline);/**/
+            FrmPrincipal.Config.CopiarArquivo(
+                Dialogo.getSelectedFile(),
+                PastaDeSprites+FrmPrincipal.Barra+Dialogo.getSelectedFile().getName()
+            );
+            CarregarSpritesPNG(Dialogo.getSelectedFile().getName());
+            FrmPrincipal.setAvisoEmEstatus("Imagem \""+Dialogo.getSelectedFile().getName()+"\" copiado para banco de Sprites!");
         } else {
             //log.append("Open command cancelled by user." + newline);
         }

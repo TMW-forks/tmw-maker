@@ -492,7 +492,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     //TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+FrmPrincipal.Config.getExecucaoComando()+"\"...");
                     setAvisoEmEstatus("Abrindo aplicativo \"" + FrmPrincipal.Config.getExecucaoComando() + "\"...");
                     Comando = FrmPrincipal.Config.getExecucaoComando() + " " +
-                            "--update-host --default "+
+                            "--update-host --default "+ //<-- O Manaplus só roda corretamente com essa linha...
                             ((!FrmPrincipal.Config.getTMWData().isEmpty() && (FrmPrincipal.Config.getExecucaoParametroServidor().equals("localhost") || FrmPrincipal.Config.getExecucaoParametroServidor().equals("127.0.0.1")))?("--skip-update --data " + FrmPrincipal.Config.getTMWData() + " "):"") +
                             (FrmPrincipal.Config.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + FrmPrincipal.Config.getExecucaoParametroServidor() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + FrmPrincipal.Config.getExecucaoParametroConta() + " ")) +
