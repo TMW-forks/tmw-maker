@@ -28,17 +28,13 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 import javax.swing.text.StyledDocument;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
@@ -179,7 +175,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } //Corta Sprite (OK!)
 
     //TESTE-B FALHOU
     public void Teste_B01(){
@@ -385,7 +381,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             jTextArea2.setText(Conteudo);
         } catch (IOException e) {
         }
-    }
+    } //Carrega testo de internet (OK!)
 
     //TESTE-D RESOLVIDO
     public void Teste_D01(){
@@ -484,7 +480,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         Coluna3.setCellRenderer(new jTtableImagemDeColuna());
         Coluna3.setMinWidth(Icone.getIconHeight());
         //Coluna3.setMaxWidth(Icone.getIconHeight());
-    }
+    } // Colocar Imagem em jTable editada por Vetores (OK!)
 
     //TESTE-E FALHOU
     public void Teste_E01(){
@@ -544,7 +540,6 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         //jEditorPane1.setContentType("text/plain");
 
     }
-
     public void AddCodigo(){
         String Testo =
             "_inicio:\n"+
@@ -614,11 +609,6 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        TxpCodificador = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        TxaCodigo = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -630,6 +620,11 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TxpCodificador = new javax.swing.JTextPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TxaCodigo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Área em Desenvolvimento");
@@ -639,47 +634,6 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                 formWindowOpened(evt);
             }
         });
-
-        TxpCodificador.setContentType("text/html");
-        TxpCodificador.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
-        TxpCodificador.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                TxpCodificadorCaretUpdate(evt);
-            }
-        });
-        TxpCodificador.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TxpCodificadorKeyReleased(evt);
-            }
-        });
-        jScrollPane5.setViewportView(TxpCodificador);
-
-        TxaCodigo.setColumns(20);
-        TxaCodigo.setRows(5);
-        jScrollPane4.setViewportView(TxaCodigo);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Editor de Codigos", jPanel3);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -706,10 +660,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -725,7 +679,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -767,18 +721,59 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Grupo 02", jPanel2);
+
+        TxpCodificador.setContentType("text/html");
+        TxpCodificador.setFont(new java.awt.Font("Monospaced", 0, 13));
+        TxpCodificador.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                TxpCodificadorCaretUpdate(evt);
+            }
+        });
+        TxpCodificador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxpCodificadorKeyReleased(evt);
+            }
+        });
+        jScrollPane5.setViewportView(TxpCodificador);
+
+        TxaCodigo.setColumns(20);
+        TxaCodigo.setRows(5);
+        jScrollPane4.setViewportView(TxaCodigo);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Editor de Codigos", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -804,7 +799,8 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
        //Teste_A06(); //Corta Sprite
        //Teste_B08(); //Carrega testo de computador rapidamente
        //Teste_C02(); //Carrega testo de internet
-       //Teste_D02(); //Poe um jLabel dentro de um JTable
+       //Teste_D02(); //Colocar Imagem em jTable editada por Vetores
+       //Teste_E03(); //Colorir corretamente um jTextPane
 
        AddCodigo(); Autoformatar();
        TxaCodigo.setText(Desformatar(TxpCodificador.getText()));

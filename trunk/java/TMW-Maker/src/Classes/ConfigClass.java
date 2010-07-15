@@ -206,7 +206,11 @@ public class ConfigClass {
         Objeto.delete();
     }
     public void CopiarArquivo(String De, String Para) {
-        File CapsulaOrigem=new File(De), CapsulaDestino=new File(Para);
+        File CapsulaOrigem=new File(De);
+        CopiarArquivo(CapsulaOrigem, Para);
+    }
+    public void CopiarArquivo(File CapsulaOrigem, String Para) {
+        File CapsulaDestino=new File(Para);
         CapsulaDestino.setExecutable(CapsulaOrigem.canExecute(),true);
         CapsulaDestino.setReadable(CapsulaOrigem.canRead());
         CapsulaDestino.setWritable(CapsulaOrigem.canWrite());
