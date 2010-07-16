@@ -10,8 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class FrmNovoEquipamento extends javax.swing.JDialog {
-    public FrmNovoEquipamento(java.awt.Frame parent, boolean modal) {
+public class FrmEquipXmlNovo extends javax.swing.JDialog {
+    public FrmEquipXmlNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -122,6 +122,8 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
                     +"<big><b>Sprite:</b> "+Sprite.getSpriteLargura()+"x"+Sprite.getSpriteAltura()+"px"
                 );/**/
             }
+            SldLinha.setEnabled(Sprite.getSpriteLinhas()>=2);
+            SldColuna.setEnabled(Sprite.getSpriteColunas()>=2);
         }
     }
     public void setDimencao(int Linhas, int Colunas){
@@ -179,8 +181,10 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
 
         jLabel2.setText("Largura:");
 
+        TxtLargura.setEditable(false);
         TxtLargura.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         TxtLargura.setText("999/999px");
+        TxtLargura.setOpaque(false);
 
         jLabel3.setText("Colunas:");
 
@@ -193,8 +197,10 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
 
         jLabel4.setText("Altura:");
 
+        TxtAltura.setEditable(false);
         TxtAltura.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         TxtAltura.setText("999/999px");
+        TxtAltura.setOpaque(false);
 
         jLabel5.setText("Linhas:");
 
@@ -438,7 +444,7 @@ public class FrmNovoEquipamento extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmNovoEquipamento dialog = new FrmNovoEquipamento(new javax.swing.JFrame(), true);
+                FrmEquipXmlNovo dialog = new FrmEquipXmlNovo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

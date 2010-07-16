@@ -22,6 +22,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static String Barra = System.getProperty("file.separator");
     static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
+    public static String SpritePNG=""; // É esado em FrmEquipXML***
 
     public static void setAvisoEmEstatus(String Aviso) {
         System.out.println(Aviso.toString());
@@ -1151,7 +1152,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MnuSistemaAreaDeTesteActionPerformed
 
     private void MnuEditarItensSpritesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarItensSpritesActionPerformed
-        javax.swing.JDialog FrmNovoEquipamento = new FrmNovoEquipamento(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmNovoEquipamento = new FrmEquipXmlNovo(this, rootPaneCheckingEnabled);
         FrmNovoEquipamento.setLocation(
             ((this.getWidth() - FrmNovoEquipamento.getWidth()) / 2) + this.getX(),
             ((this.getHeight() - FrmNovoEquipamento.getHeight()) / 2) + this.getY());
