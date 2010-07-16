@@ -1,9 +1,9 @@
 
 package Formularios;
 
-public class FrmNovoXMLEquip extends javax.swing.JDialog {
+public class FrmEquipXmlEditar extends javax.swing.JDialog {
 
-    public FrmNovoXMLEquip(java.awt.Frame parent, boolean modal) {
+    public FrmEquipXmlEditar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -136,7 +136,7 @@ public class FrmNovoXMLEquip extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmNovoXMLEquip dialog = new FrmNovoXMLEquip(new javax.swing.JFrame(), true);
+                FrmEquipXmlEditar dialog = new FrmEquipXmlEditar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
