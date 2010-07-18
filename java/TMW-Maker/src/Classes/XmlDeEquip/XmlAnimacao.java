@@ -1,4 +1,4 @@
-package Classes;
+package Classes.XmlDeEquip;
 
 public class XmlAnimacao {
     public XmlAnimacao(String Nome){Banco_Nome=Nome;}

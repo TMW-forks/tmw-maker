@@ -1,4 +1,4 @@
-package Classes;
+package Classes.XmlDeEquip;
 
 public class XmlFrame {
     public XmlFrame(int NovoIndex){
