@@ -4,6 +4,7 @@ package Formularios;
 import Classes.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.Banco_Itens;
+import Classes.XMLdeEquip;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -22,7 +23,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static String Barra = System.getProperty("file.separator");
     static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
-    public static String SpritePNG=""; // É esado em FrmEquipXML***
+    //public static String SpritePNG=""; // É esado em FrmEquipXML***
+    static XMLdeEquip xmlEditada; // É usado em FrmEquipXML***
 
     public static void setAvisoEmEstatus(String Aviso) {
         System.out.println(Aviso.toString());
