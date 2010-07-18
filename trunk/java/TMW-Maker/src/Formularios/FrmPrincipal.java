@@ -1,9 +1,9 @@
 
 package Formularios;
 
-import Classes.Banco_NPCs;
+import Classes.BancoDeDados.Banco_NPCs;
 import Classes.ConfigClass;
-import Classes.Banco_Itens;
+import Classes.BancoDeDados.Banco_Itens;
 import Classes.XmlDeEquip.XMLdeEquip;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -1053,7 +1053,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         if(ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacao()+FrmPrincipal.Config.getAtualizacaoIntervalo()){
                             Atualizar();
                         }
-                        if(!(FrmPrincipal.Itens instanceof Classes.Banco_Itens)){
+                        if(!(FrmPrincipal.Itens instanceof Classes.BancoDeDados.Banco_Itens)){
                             MostrarDeSplash();
                         }
                     }

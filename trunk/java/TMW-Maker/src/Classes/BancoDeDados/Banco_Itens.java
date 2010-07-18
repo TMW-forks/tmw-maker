@@ -1,5 +1,7 @@
-package Classes;
+package Classes.BancoDeDados;
 
+import Classes.ConfigClass;
+import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.io.BufferedReader;
 import java.io.FileInputStream;

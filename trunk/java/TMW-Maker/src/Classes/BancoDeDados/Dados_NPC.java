@@ -1,6 +1,7 @@
 
-package Classes;
+package Classes.BancoDeDados;
 
+import Classes.SpriteDados;
 import java.awt.image.BufferedImage;
 
 public class Dados_NPC {

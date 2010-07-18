@@ -1,5 +1,6 @@
-package Classes;
+package Classes.BancoDeDados;
 
+import Classes.ImagemTratavel;
 import Formularios.FrmPrincipal;
 import java.awt.image.BufferedImage;
 

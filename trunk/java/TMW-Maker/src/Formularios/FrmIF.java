@@ -11,7 +11,7 @@
 
 package Formularios;
 
-import Classes.Dados_Item;
+import Classes.BancoDeDados.Dados_Item;
 import Classes.ImagemTratavel;
 import java.util.Vector;
 import java.util.logging.Level;
