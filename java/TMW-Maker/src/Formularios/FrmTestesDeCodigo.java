@@ -2,8 +2,8 @@
 package Formularios;
 
 import Classes.ImagemTratavel;
-import Classes.jTtableImagemDeColuna;
-import Classes.jTtableImagemDeCabecalho;
+import Classes.Modificadoras.jTtableImagemDeColuna;
+import Classes.Modificadoras.jTtableImagemDeCabecalho;
 import Classes.SpriteDados;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -707,7 +707,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                 //return canEdit [columnIndex];
                 SpriteDados MeuSprite = new SpriteDados("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
                 ImageIcon Icone = new ImageIcon(MeuSprite.getBloco(0));
-                jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setCellRenderer(new Classes.jTtableImagemDeColuna());
+                jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setCellRenderer(new Classes.Modificadoras.jTtableImagemDeColuna());
                 jTable1.setRowHeight(0, Icone.getIconHeight());
                 jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setMinWidth(Icone.getIconHeight());
                 jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setMaxWidth(Icone.getIconHeight());

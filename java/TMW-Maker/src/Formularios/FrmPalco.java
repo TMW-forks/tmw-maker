@@ -4,7 +4,7 @@ package Formularios;
 
 import Classes.BlocoDeScript;
 import Classes.ConfigClass;
-import Classes.Dados_NPC;
+import Classes.BancoDeDados.Dados_NPC;
 import Classes.ImagemTratavel;
 import java.awt.Dimension;
 import java.awt.Toolkit;

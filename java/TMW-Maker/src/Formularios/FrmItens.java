@@ -1,7 +1,7 @@
 package Formularios;
 
 import Classes.ImagemTratavel;
-import Classes.Banco_Itens;
+import Classes.BancoDeDados.Banco_Itens;
 import java.awt.Cursor;
 import javax.swing.DefaultComboBoxModel;
 
@@ -1146,10 +1146,10 @@ public class FrmItens extends javax.swing.JDialog {
                 BtnCarregar.setEnabled(false);
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
 
-                if(FrmPrincipal.Config.getSeDependenciaDeLocalhost() && !(FrmPrincipal.Itens instanceof Classes.Banco_Itens)){ // Só carrega se não tiver carregado antes
+                if(FrmPrincipal.Config.getSeDependenciaDeLocalhost() && !(FrmPrincipal.Itens instanceof Classes.BancoDeDados.Banco_Itens)){ // Só carrega se não tiver carregado antes
                     FrmPrincipal.PgbBarra.setString("Carregando...");
                     FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
-                    FrmPrincipal.Itens = new Classes.Banco_Itens(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
+                    FrmPrincipal.Itens = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
                 } 
 
                 FrmPrincipal.PgbBarra.setString("Organizando...");

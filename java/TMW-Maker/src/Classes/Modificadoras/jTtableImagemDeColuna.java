@@ -1,4 +1,4 @@
-package Classes;
+package Classes.Modificadoras;
 
 import java.awt.Color;
 import java.awt.Component;

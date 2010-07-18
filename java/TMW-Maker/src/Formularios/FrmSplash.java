@@ -66,11 +66,11 @@ public class FrmSplash extends javax.swing.JDialog {
                 //FrmPrincipal.LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif")));
                 FrmPrincipal.LblEstatus.setIcon(FrmPrincipal.MnuEditarPersonagem.getIcon());
                 FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de NPCs (<font color=#FF0000>Por favor espere!</font>)");
-                FrmPrincipal.NPCs = new Classes.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
+                FrmPrincipal.NPCs = new Classes.BancoDeDados.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
                 //FrmPrincipal.LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif")));
                 FrmPrincipal.LblEstatus.setIcon(FrmPrincipal.MnuEditarItens.getIcon());
                 FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
-                FrmPrincipal.Itens = new Classes.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                FrmPrincipal.Itens = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
 
                 FrmPrincipal.PgbBarra.setString("Concluído");
                 FrmPrincipal.setAvisoEmEstatus("Banco de Dados Eathena carregado com sucesso!");

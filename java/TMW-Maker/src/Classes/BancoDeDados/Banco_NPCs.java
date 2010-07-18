@@ -1,6 +1,9 @@
 
-package Classes;
+package Classes.BancoDeDados;
 
+import Classes.ConfigClass;
+import Classes.SpriteDados;
+import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
