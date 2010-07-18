@@ -2,9 +2,7 @@ package Formularios;
 
 import Classes.ImagemTratavel;
 import Classes.SpriteDados;
-import java.awt.image.ImageFilter;
-import java.io.File;
-import java.io.FileFilter;
+import Classes.XMLdeEquip;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -16,10 +14,115 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
         initComponents();
     }
 
-    String PastaDeSprites="/home/indigovox/localhost/tmwdata/graphics/sprites/";
+    String Barra = System.getProperty("file.separator");
+    //String PastaDeSprites="/home/indigovox/localhost/tmwdata/graphics/sprites/";
+    String PastaDeSprites=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"sprites"+Barra;
     String Endereco="";
     SpriteDados Sprite=null;
 
+    private void setComoGeral(){
+        FrmPrincipal.xmlEditada.setNovaAcao("stand");
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("down").setNovoFrame(0,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("left").setNovoFrame(18,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("up").setNovoFrame(36,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("right").setNovoFrame(64,0,0,0);
+
+        FrmPrincipal.xmlEditada.setNovaAcao("walk");
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("down").setNovaSequencia(1, 6, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("left").setNovaSequencia(19, 24, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("up").setNovaSequencia(37, 42, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("right").setNovaSequencia(55, 60, 0, 0, 75);
+
+        FrmPrincipal.xmlEditada.setNovaAcao("sit");
+        FrmPrincipal.xmlEditada.getAcao("sit").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("sit").getAnimacao("down").setNovoFrame(7,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("sit").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("sit").getAnimacao("left").setNovoFrame(25,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("sit").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("sit").getAnimacao("up").setNovoFrame(43,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("sit").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("sit").getAnimacao("right").setNovoFrame(61,0,0,0);
+
+        FrmPrincipal.xmlEditada.setNovaAcao("dead");
+        FrmPrincipal.xmlEditada.getAcao("dead").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("dead").getAnimacao("down").setNovoFrame(8,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("dead").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("dead").getAnimacao("left").setNovoFrame(26,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("dead").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("dead").getAnimacao("up").setNovoFrame(44,0,0,0);
+        FrmPrincipal.xmlEditada.getAcao("dead").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("dead").getAnimacao("right").setNovoFrame(62,0,0,0);
+
+        FrmPrincipal.xmlEditada.setNovaAcao("attack");
+        FrmPrincipal.xmlEditada.getAcao("attack").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("attack").getAnimacao("down").setNovaSequencia(9, 12, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("attack").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("attack").getAnimacao("left").setNovaSequencia(27, 30, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("attack").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("attack").getAnimacao("up").setNovaSequencia(45, 48, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("attack").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("attack").getAnimacao("right").setNovaSequencia(63, 66, 0, 0, 75);
+
+        FrmPrincipal.xmlEditada.setNovaAcao("attack_bow");
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").getAnimacao("down").setNovaSequencia(13, 17, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").getAnimacao("left").setNovaSequencia(31, 35, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").getAnimacao("up").setNovaSequencia(49, 53, 0, 0, 75);
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("attack_bow").getAnimacao("right").setNovaSequencia(67, 71, 0, 0, 75);
+
+    }
+    private void setComoHead(){
+        FrmPrincipal.xmlEditada.setNovaAcao("stand");
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("down").setNovoFrame(0,0,-45,0);
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("left").setNovoFrame(1,-2,-45,0);
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("up").setNovoFrame(2,-2,-45,0);
+        FrmPrincipal.xmlEditada.getAcao("stand").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("stand").getAnimacao("right").setNovoFrame(3,2,-45,0);
+
+        FrmPrincipal.xmlEditada.setNovaAcao("walk");
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("down");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("down").setNovoFrame(0,0,-44,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("down").setNovoFrame(0,0,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("down").setNovoFrame(0,0,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("down").setNovoFrame(0,0,-44,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("down").setNovoFrame(0,0,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("down").setNovoFrame(0,0,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("left");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("left").setNovoFrame(1,-2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("left").setNovoFrame(1,-2,-44,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("left").setNovoFrame(1,-2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("left").setNovoFrame(1,-2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("left").setNovoFrame(1,-2,-44,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("left").setNovoFrame(1,-2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("up");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("up").setNovoFrame(2,-2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("up").setNovoFrame(2,-2,-46,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("up").setNovoFrame(2,-2,-46,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("up").setNovoFrame(2,-2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("up").setNovoFrame(2,-2,-46,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("up").setNovoFrame(2,-2,-46,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").setNovaAnimacao("right");
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("right").setNovoFrame(3,2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("right").setNovoFrame(3,2,-44,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("right").setNovoFrame(3,2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("right").setNovoFrame(3,2,-45,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("right").setNovoFrame(3,2,-44,75);
+        FrmPrincipal.xmlEditada.getAcao("walk").getAnimacao("right").setNovoFrame(3,2,-45,75);
+    }
     private void CarregarSpritesPNG(){
         CarregarSpritesPNG("player_male_base.png");
     }
@@ -54,7 +157,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
     }
     public void AbrirSprite(){
         String Arquivo=CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
-        Endereco="/home/indigovox/localhost/tmwdata/graphics/sprites/"+Arquivo;
+        Endereco=PastaDeSprites+Arquivo;
         if(FrmPrincipal.Config.SeExiste(Endereco)){
             
             String Tipo[]=new String[]{
@@ -296,7 +399,11 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
 
         BtnCriar.setMnemonic('C');
         BtnCriar.setText("Criar");
-        BtnCriar.setEnabled(false);
+        BtnCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCriarActionPerformed(evt);
+            }
+        });
 
         BtnFechar.setMnemonic('F');
         BtnFechar.setText("Fechar");
@@ -444,6 +551,15 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_BtnImportarActionPerformed
+    private void BtnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCriarActionPerformed
+        String Arquivo=CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
+
+        FrmPrincipal.xmlEditada = new XMLdeEquip("base", Sprite);
+        if(Arquivo.indexOf("head-")==0) setComoHead();
+        else setComoGeral();
+
+        setTitle("Ações = "+FrmPrincipal.xmlEditada.getContAcoes());
+    }//GEN-LAST:event_BtnCriarActionPerformed
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
