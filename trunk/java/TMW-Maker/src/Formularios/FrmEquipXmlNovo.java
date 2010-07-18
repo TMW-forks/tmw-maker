@@ -2,7 +2,7 @@ package Formularios;
 
 import Classes.ImagemTratavel;
 import Classes.SpriteDados;
-import Classes.XMLdeEquip;
+import Classes.XmlDeEquip.XMLdeEquip;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -399,6 +399,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
 
         BtnCriar.setMnemonic('C');
         BtnCriar.setText("Criar");
+        BtnCriar.setEnabled(false);
         BtnCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCriarActionPerformed(evt);

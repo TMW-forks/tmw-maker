@@ -4,7 +4,7 @@ package Formularios;
 import Classes.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.Banco_Itens;
-import Classes.XMLdeEquip;
+import Classes.XmlDeEquip.XMLdeEquip;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;

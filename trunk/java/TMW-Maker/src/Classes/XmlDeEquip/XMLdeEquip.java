@@ -1,4 +1,6 @@
-package Classes;
+package Classes.XmlDeEquip;
+
+import Classes.SpriteDados;
 
 public class XMLdeEquip {
     public XMLdeEquip(String Nome, String Endereco, int Linhas, int Colunas){

@@ -1,4 +1,4 @@
-package Classes;
+package Classes.XmlDeEquip;
 
 public class XmlAcao {
     public XmlAcao(String Nome){Banco_Nome=Nome;}
