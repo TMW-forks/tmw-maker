@@ -26,9 +26,8 @@ import javax.swing.JOptionPane;
 
 public class ConfigClass {
     private String Versao = "0.2";
-    private long Atualizacao = 0;
-    private String Barra = System.getProperty("file.separator");
-    private String ConfiguracaoURL = System.getProperty("user.home")+Barra+".tmw-maker.ini";
+    private String  Barra = System.getProperty("file.separator");
+    private String  ConfiguracaoURL = System.getProperty("user.home")+Barra+".tmw-maker.ini";
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
     private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"localhost";
@@ -46,16 +45,35 @@ public class ConfigClass {
     private String  DocumentacaoComentarios =       "http://code.google.com/p/tmw-maker/issues/entry";
     private String  DocumentacaoTraducoes =         "";
 
+    private long    ComportAtualizacaoUltima =      0;
+    private int     ComportAtualizacaoIntervalo =   1; // Diariamente (Cada 1 Dia)
+
+
     public String getVersao(){return Versao;}
-    public long getAtualizacao(){return Atualizacao;}
-    public long getAtualizacaoIntervalo(){
+    public long getAtualizacaoUltima(){return ComportAtualizacaoUltima;}
+    public long getAtualizacaoIntervaloReal(){
         /**
           * 1000 = Milisegundos
           * 60 = Segundos
           * 60 = Minutos
           * 24 = horas
           **/
-        return 1000*60*60*24; //Intervalo de 1 dias
+        return 1000*60*60*24*ComportAtualizacaoIntervalo; //Intervalo de 1 dias
+    }
+    public int getAtualizacaoIntervalo(){
+        return ComportAtualizacaoIntervalo; //Intervalo de 1 dias
+    }
+    public long getAtualizacaoFutura(){
+        /**
+         * Se ComportAtualizacaoIntervalo for <= -1 ? Nunca
+         * Se ComportAtualizacaoIntervalo for ==  0 ? Sempre ao Iniciar
+         * Se ComportAtualizacaoIntervalo for >= +1 ? Espera
+         */
+        if(ComportAtualizacaoIntervalo>=0){
+            return ComportAtualizacaoUltima+getAtualizacaoIntervaloReal(); //Intervalo de 1 dias
+        }else{
+            return -1;
+        }
     }
     public static long getAgora(){
         // um calendar também é criado com a data atual
@@ -85,8 +103,9 @@ public class ConfigClass {
     public String  getDocumentacaoComentarios(){return DocumentacaoComentarios;}
     public String  getDocumentacaoTraducoes(){return DocumentacaoTraducoes;}
 
-    public void setAtualizacao(long Quando){Atualizacao=Quando;}
-    public void setAtualizacaoAgora(){Atualizacao=getAgora();}
+    public void setAtualizacaoIntervalo(int Dias){ComportAtualizacaoIntervalo=Dias;}
+    public void setAtualizacaoUltima(long Quando){ComportAtualizacaoUltima=Quando;}
+    public void setAtualizacaoUltimaAgora(){ComportAtualizacaoUltima=getAgora();}
     public void setConexaoRepositorio(String URL){ConexaoRepositorio=URL ;}
     public void setConexaoLocalhost(String EnderecoDaPasta){ConexaoLocalhost=EnderecoDaPasta ;}
     public void setConexaoUsuario(String Usuario){ConexaoUsuario=Usuario ;}
@@ -326,7 +345,6 @@ public class ConfigClass {
         "////////////////////////////////\n"+
         "\n"+
         "Versao: "+getVersao()+"\n"+
-        "Atualizacao: "+getAtualizacao()+"\n"+
 
         "ConexaoRepositorio: "+getConexaoRepositorio()+"\n"+
         "ConexaoLocalhost: "+getConexaoLocalhost()+"\n"+
@@ -345,6 +363,9 @@ public class ConfigClass {
         "DocumentacaoComponentes: "+getDocumentacaoComponentes()+"\n"+
         "DocumentacaoComentarios: "+getDocumentacaoComentarios()+"\n"+
         "DocumentacaoTraducoes: "+getDocumentacaoTraducoes()+"\n"+
+
+        "AtualizacaoUltima: "+getAtualizacaoUltima()+"\n"+
+        "AtualizacaoIntervalo: "+getAtualizacaoIntervalo()+"\n"+
         "\n"+
         "//Fim de Configuração";
         try {
@@ -386,7 +407,6 @@ public class ConfigClass {
             streamReader.close();
             stream.close();
 
-            setAtualizacao(Long.parseLong(getPropriedade(Conteudo,"Atualizacao")));
             setConexaoRepositorio(getPropriedade(Conteudo,"ConexaoRepositorio"));
             setConexaoLocalhost(getPropriedade(Conteudo,"ConexaoLocalhost"));
             setConexaoUsuario(getPropriedade(Conteudo,"ConexaoUsuario"));
@@ -402,7 +422,10 @@ public class ConfigClass {
             setDocumentacaoComentarios(getPropriedade(Conteudo,"DocumentacaoComentarios"));
             setDocumentacaoComponentes(getPropriedade(Conteudo,"DocumentacaoComponentes"));
             setDocumentacaoTraducoes(getPropriedade(Conteudo,"DocumentacaoTraducoes"));
-        } catch (java.io.IOException exc) {
+
+            setAtualizacaoUltima(Long.parseLong(getPropriedade(Conteudo,"AtualizacaoUltima").equals("")?"0":getPropriedade(Conteudo,"AtualizacaoUltima")));
+            setAtualizacaoIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoIntervalo")));
+} catch (java.io.IOException exc) {
             //Mensagem_Erro("Não foi possivel abrir o arquivo!","AVISO");
             //ExemploDeConteudo();
             //TxtScript.setEnabled(true);

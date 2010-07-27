@@ -101,7 +101,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }else{
                     FrmPrincipal.setAvisoEmEstatus("<html>Este \"<font color=\"#0000FF\"><b>TMW-Maker</b></font>\" já é a versão mais atualizada!");
                 }
-                FrmPrincipal.Config.setAtualizacaoAgora();
+                FrmPrincipal.Config.setAtualizacaoUltimaAgora();
                 FrmPrincipal.Config.ConfiguracoesGravar();
                 FrmPrincipal.PgbBarra.setString("Concluido!");
 
@@ -144,6 +144,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmSplash.pack();
         FrmSplash.setModal(true);
         FrmSplash.setVisible(true);/**/
+        if(ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacaoUltima()+FrmPrincipal.Config.getAtualizacaoIntervaloReal()){
+            int R = JOptionPane.YES_OPTION;
+            Object[] options = {"Atualizar", "Depois"};
+            R = JOptionPane.showOptionDialog(
+                null, "<html>" +
+                "Seu TMW-Maker pode estar desatualizado.<br/>" +
+                "Deseja procurar uma versão atualizada?",
+                "ATUALIZAÇÃO DO TMW-MAKER v"+FrmPrincipal.Config.getVersao()+"",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                options[0]
+            );
+            if (R == JOptionPane.YES_OPTION) {
+                Atualizar();
+            }
+        }
     }
     public void MontarLocalhost() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
@@ -682,9 +700,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
         });
 
         PnlBarraDeEstatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1044,23 +1059,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmScript.setModal(true);
         FrmScript.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarPersonagemScriptActionPerformed
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        VerificarMenus();
-        if(FrmPrincipal.Config.getOS().indexOf("linux") >= 0) {
-            if(FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
-                if(FrmPrincipal.Config.getSeDependenciaDeSVN()){
-                    if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
-                        if(ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacao()+FrmPrincipal.Config.getAtualizacaoIntervalo()){
-                            Atualizar();
-                        }
-                        if(!(FrmPrincipal.Itens instanceof Classes.BancoDeDados.Banco_Itens)){
-                            MostrarDeSplash();
-                        }
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_formWindowActivated
     private void MnuSistemaFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaFecharActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -1109,6 +1107,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
         Config.ConfiguracoesAbrir();
         if(Config.getDependenciaEmFalta() >= 1) MostrarDePendencias();
+        VerificarMenus();
+        if(FrmPrincipal.Config.getOS().indexOf("linux") >= 0) {
+            if(FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
+                if(FrmPrincipal.Config.getSeDependenciaDeSVN()){
+                    if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+                        if(!(FrmPrincipal.Itens instanceof Classes.BancoDeDados.Banco_Itens)){
+                            MostrarDeSplash();
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_formWindowOpened
     private void MnuSistemaAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAtualizarActionPerformed
         if (FrmPrincipal.Config.getOS().indexOf("win") >= 0) {
@@ -1133,7 +1143,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_MnuSistemaAtualizarActionPerformed
-
     private void MnuEditarItensDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarItensDadosActionPerformed
         javax.swing.JDialog FrmItens = new FrmItens(this, rootPaneCheckingEnabled);
         FrmItens.setLocation(

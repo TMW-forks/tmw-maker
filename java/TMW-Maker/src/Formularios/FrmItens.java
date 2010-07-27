@@ -67,7 +67,7 @@ public class FrmItens extends javax.swing.JDialog {
                     }
                     CmbIDs.setModel(new DefaultComboBoxModel(CapsulaDeIDs));
 
-                    FrmPrincipal.PgbBarra.setString("Caregado!");
+                    FrmPrincipal.PgbBarra.setString("Carregado!");
                     FrmPrincipal.setAvisoEmEstatus("Banco de Dados de Itens carregado com sucesso!");
                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                     TpnPaleta.setVisible(true);
