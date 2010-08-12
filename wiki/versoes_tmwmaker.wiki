@@ -9,10 +9,13 @@ O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por e
 || *[CodigoFonte Código Fonte]* || Variante || Para programadores Java que desejam modificar o TMW-Maker ao seu proprio modo. Necessita da *[NetBeans IDE NetBeans 6.7]* (ou superior) para visualizar e editar este código fonte.  ||
 
 ==Utilidades Atuais do TMW-Maker==
- * Faz auto-update via internet. Mantendo o TMW-Maker na versão mais recente, 
+ * Listar quais as dependencias do Localhost precisam ser atendidas previamente; 
+ * Mostrar botão de Ajudar que explica como resolver as dependências (A maioria delas se resolve com apenas o clique de um botão);
+ * Faz auto-update via internet. Mantendo o TMW-Maker sempre na versão mais recente;
  * Recebe, Monta, Executa e Devolve o localhost ao repositórios editado via internet;
- * Edita poderes de GM nas contas dos localhost. 
- * Edita Scripts de NPC nos localhost. (Função Incompleta)
- * Exibe Banco de Dados de Itens do Eathena. (Modo somente-leitura)
+ * Edita poderes de GM nas contas dos localhost;
+ * Edita Scripts de NPCs Com Foto nos localhost (Funcionando Incompletamente);
+ * Exibe Banco de Dados de Itens do Eathena (Modo somente-leitura);
+ * Publicar automaticamente as alterações que vc fizer no Localhos, para os outros usuários deste engine;
 
 || *OBSERVAÇÃO:* As utilidades acima só funcionarão no linux e se tiver todas as suas *[Dependencias Dependências]* pré-atendidas. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ||
