@@ -150,16 +150,27 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         TxtConfiguracaoDocumentacaoComentarios.setText(FrmPrincipal.Config.getDocumentacaoComentarios());
         TxtConfiguracaoDocumentacaoTraducoes.setText(FrmPrincipal.Config.getDocumentacaoTraducoes());
 
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()== -1) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(0);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()==  0) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(1);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()==  1) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(2);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()==  7) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(3);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()== 15) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(4);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()== 30) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(5);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()== 60) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(6);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()== 90) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(7);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()==182) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(8);
-        if(FrmPrincipal.Config.getAtualizacaoIntervalo()==365) CmbConfiguracaoComportamentoAutoatualizar.setSelectedIndex(9);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()== -1) CmbConfiguracaoComportamentoEngine.setSelectedIndex(0);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()==  0) CmbConfiguracaoComportamentoEngine.setSelectedIndex(1);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()==  1) CmbConfiguracaoComportamentoEngine.setSelectedIndex(2);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()==  7) CmbConfiguracaoComportamentoEngine.setSelectedIndex(3);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()== 15) CmbConfiguracaoComportamentoEngine.setSelectedIndex(4);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()== 30) CmbConfiguracaoComportamentoEngine.setSelectedIndex(5);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()== 60) CmbConfiguracaoComportamentoEngine.setSelectedIndex(6);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()== 90) CmbConfiguracaoComportamentoEngine.setSelectedIndex(7);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()==182) CmbConfiguracaoComportamentoEngine.setSelectedIndex(8);
+        if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()==365) CmbConfiguracaoComportamentoEngine.setSelectedIndex(9);
+
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()== -1) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(0);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()==  0) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(1);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()==  1) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(2);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()==  7) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(3);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()== 15) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(4);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()== 30) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(5);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()== 60) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(6);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()== 90) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(7);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()==182) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(8);
+        if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()==365) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(9);
 
         FunMudaTesto();
     }
@@ -203,8 +214,12 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jLabel14 = new javax.swing.JLabel();
         TxtConfiguracaoDocumentacaoTraducoes = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        CmbConfiguracaoComportamentoAutoatualizar = new javax.swing.JComboBox();
+        jLabel16 = new javax.swing.JLabel();
+        CmbConfiguracaoComportamentoEngine = new javax.swing.JComboBox();
+        CmbConfiguracaoComportamentoLocalhost = new javax.swing.JComboBox();
+        ChkPedirCompartilhamentoAofechar = new javax.swing.JCheckBox();
         BtnConfiguracaoCancelar = new javax.swing.JButton();
         BtnConfiguracaoOk = new javax.swing.JButton();
         BtnConfiguracaoAjuda = new javax.swing.JButton();
@@ -282,7 +297,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                    .addComponent(TxtConfiguracaoConexaoIdentificacaoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -338,9 +353,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                             .addComponent(jLabel1))
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                            .addComponent(CmbConfiguracaoConexaoRepositorio, 0, 387, Short.MAX_VALUE)
-                            .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)))
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                            .addComponent(CmbConfiguracaoConexaoRepositorio, 0, 353, Short.MAX_VALUE)
+                            .addComponent(TxtConfiguracaoConexaoLocalhost, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -458,7 +473,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChkConfiguracaoExecucaoParamentroSemopengl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                    .addComponent(TxtConfiguracaoExecucaoParamentroServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroPersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoExecucaoParamentroSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -484,7 +499,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ChkConfiguracaoExecucaoParamentroSemopengl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {TxtConfiguracaoExecucaoParamentroConta, TxtConfiguracaoExecucaoParamentroPersonagem, TxtConfiguracaoExecucaoParamentroSenha, TxtConfiguracaoExecucaoParamentroServidor, jLabel10, jLabel7, jLabel8, jLabel9});
@@ -511,14 +526,14 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CmbConfiguracaoExecucaoSoftwareCliente, 0, 346, Short.MAX_VALUE)))
+                        .addComponent(CmbConfiguracaoExecucaoSoftwareCliente, 0, 312, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -529,8 +544,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CmbConfiguracaoExecucaoSoftwareCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CmbConfiguracaoExecucaoSoftwareCliente, jLabel5});
@@ -600,61 +615,91 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(34, 34, 34)
+                .addComponent(jLabel11)
+                .addGap(12, 12, 12)
+                .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel12)
+                .addGap(12, 12, 12)
+                .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel13)
+                .addGap(12, 12, 12)
+                .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel14)
+                .addGap(12, 12, 12)
+                .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtConfiguracaoDocumentacaoAlteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoDocumentacaoComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtConfiguracaoDocumentacaoComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                    .addComponent(TxtConfiguracaoDocumentacaoTraducoes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         AbaConfiguracoes.addTab("Documentação", jPanel4);
 
-        jLabel6.setText("Perguntar se deseja atualizar:");
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Perdir permissão para atualização:"));
 
-        CmbConfiguracaoComportamentoAutoatualizar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nunca Perguntar", "Semple ao Iniciar", "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente", "Bimestralmente", "Trimestralmente", "Semestralmente", "Anualmente" }));
-        CmbConfiguracaoComportamentoAutoatualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbConfiguracaoComportamentoAutoatualizarActionPerformed(evt);
-            }
-        });
-        CmbConfiguracaoComportamentoAutoatualizar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                CmbConfiguracaoComportamentoAutoatualizarFocusGained(evt);
-            }
-        });
-        CmbConfiguracaoComportamentoAutoatualizar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                CmbConfiguracaoComportamentoAutoatualizarKeyReleased(evt);
-            }
-        });
+        jLabel6.setText("Engine:");
+
+        jLabel16.setText("Localhost:");
+
+        CmbConfiguracaoComportamentoEngine.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nunca Perguntar", "Sempre ao Iniciar", "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente", "Bimestralmente", "Trimestralmente", "Semestralmente", "Anualmente" }));
+        CmbConfiguracaoComportamentoEngine.setSelectedIndex(2);
+
+        CmbConfiguracaoComportamentoLocalhost.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nunca Perguntar", "Sempre ao Iniciar", "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente", "Bimestralmente", "Trimestralmente", "Semestralmente", "Anualmente" }));
+        CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(2);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CmbConfiguracaoComportamentoLocalhost, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CmbConfiguracaoComportamentoEngine, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbConfiguracaoComportamentoEngine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CmbConfiguracaoComportamentoLocalhost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        ChkPedirCompartilhamentoAofechar.setSelected(true);
+        ChkPedirCompartilhamentoAofechar.setText("Pedir Compartilhamento de Localhost sempre ao felchar");
+        ChkPedirCompartilhamentoAofechar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -662,19 +707,19 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CmbConfiguracaoComportamentoAutoatualizar, 0, 263, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ChkPedirCompartilhamentoAofechar))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmbConfiguracaoComportamentoAutoatualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChkPedirCompartilhamentoAofechar)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         AbaConfiguracoes.addTab("Comportamento", jPanel6);
@@ -711,10 +756,10 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                    .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                        .addComponent(BtnConfiguracaoAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                         .addComponent(BtnConfiguracaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnConfiguracaoCancelar)))
@@ -727,8 +772,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AbaConfiguracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnConfiguracaoOk)
                     .addComponent(BtnConfiguracaoCancelar)
@@ -768,16 +813,28 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         FrmPrincipal.Config.setDocumentacaoComentarios(TxtConfiguracaoDocumentacaoComentarios.getText());
         FrmPrincipal.Config.setDocumentacaoTraducoes(TxtConfiguracaoDocumentacaoTraducoes.getText());
 
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==0) FrmPrincipal.Config.setAtualizacaoIntervalo(-1);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==1) FrmPrincipal.Config.setAtualizacaoIntervalo(0);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==2) FrmPrincipal.Config.setAtualizacaoIntervalo(1);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==3) FrmPrincipal.Config.setAtualizacaoIntervalo(7);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==4) FrmPrincipal.Config.setAtualizacaoIntervalo(15);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==5) FrmPrincipal.Config.setAtualizacaoIntervalo(30);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==6) FrmPrincipal.Config.setAtualizacaoIntervalo(60);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==7) FrmPrincipal.Config.setAtualizacaoIntervalo(90);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==8) FrmPrincipal.Config.setAtualizacaoIntervalo(182);
-        if(CmbConfiguracaoComportamentoAutoatualizar.getSelectedIndex()==9) FrmPrincipal.Config.setAtualizacaoIntervalo(365);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==0) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(-1);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==1) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(0);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==2) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(1);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==3) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(7);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==4) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(15);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==5) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(30);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==6) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(60);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==7) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(90);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==8) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(182);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==9) FrmPrincipal.Config.setAtualizacaoEngineIntervalo(365);
+
+
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==0) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(-1);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==1) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(0);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==2) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(1);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==3) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(7);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==4) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(15);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==5) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(30);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==6) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(60);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==7) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(90);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==8) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(182);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==9) FrmPrincipal.Config.setAtualizacaoLocalhostIntervalo(365);
 
         FrmPrincipal.Config.ConfiguracoesGravar();
 
@@ -898,18 +955,6 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         Alterado_SoftwareCliente();
     }//GEN-LAST:event_CmbConfiguracaoExecucaoSoftwareClienteActionPerformed
 
-    private void CmbConfiguracaoComportamentoAutoatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbConfiguracaoComportamentoAutoatualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbConfiguracaoComportamentoAutoatualizarActionPerformed
-
-    private void CmbConfiguracaoComportamentoAutoatualizarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CmbConfiguracaoComportamentoAutoatualizarFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbConfiguracaoComportamentoAutoatualizarFocusGained
-
-    private void CmbConfiguracaoComportamentoAutoatualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbConfiguracaoComportamentoAutoatualizarKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbConfiguracaoComportamentoAutoatualizarKeyReleased
-
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -930,7 +975,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JButton BtnConfiguracaoCancelar;
     private javax.swing.JButton BtnConfiguracaoOk;
     private javax.swing.JCheckBox ChkConfiguracaoExecucaoParamentroSemopengl;
-    private javax.swing.JComboBox CmbConfiguracaoComportamentoAutoatualizar;
+    private javax.swing.JCheckBox ChkPedirCompartilhamentoAofechar;
+    private javax.swing.JComboBox CmbConfiguracaoComportamentoEngine;
+    private javax.swing.JComboBox CmbConfiguracaoComportamentoLocalhost;
     private javax.swing.JComboBox CmbConfiguracaoConexaoRepositorio;
     private javax.swing.JComboBox CmbConfiguracaoExecucaoSoftwareCliente;
     private javax.swing.JPasswordField TxtConfiguracaoConexaoIdentificacaoSenha;
@@ -951,6 +998,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -965,6 +1013,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     // End of variables declaration//GEN-END:variables
 
     private void Alterado_SoftwareCliente() {

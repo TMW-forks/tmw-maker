@@ -45,36 +45,64 @@ public class ConfigClass {
     private String  DocumentacaoComentarios =       "http://code.google.com/p/tmw-maker/issues/entry";
     private String  DocumentacaoTraducoes =         "";
 
-    private long    ComportAtualizacaoUltima =      0;
-    private int     ComportAtualizacaoIntervalo =   1; // Diariamente (Cada 1 Dia)
+    private long    ComportAtualizacaoEngineUltima =        0;
+    private int     ComportAtualizacaoEngineIntervalo =     1; // Diariamente (Cada 1 Dia)
+    private long    ComportAtualizacaoLocalhostUltima =     0;
+    private int     ComportAtualizacaoLocalhostIntervalo =  1; // Diariamente (Cada 1 Dia)
 
 
     public String getVersao(){return Versao;}
-    public long getAtualizacaoUltima(){return ComportAtualizacaoUltima;}
-    public long getAtualizacaoIntervaloReal(){
+    public long getAtualizacaoEngineUltima(){return ComportAtualizacaoEngineUltima;}
+    public long getAtualizacaoEngineIntervaloReal(){
         /**
           * 1000 = Milisegundos
           * 60 = Segundos
           * 60 = Minutos
           * 24 = horas
           **/
-        return 1000*60*60*24*ComportAtualizacaoIntervalo; //Intervalo de 1 dias
+        return 1000*60*60*24*ComportAtualizacaoEngineIntervalo; //Intervalo de 1 dias
     }
-    public int getAtualizacaoIntervalo(){
-        return ComportAtualizacaoIntervalo; //Intervalo de 1 dias
+    public int  getAtualizacaoEngineIntervalo(){
+        return ComportAtualizacaoEngineIntervalo; //Intervalo de 1 dias
     }
-    public long getAtualizacaoFutura(){
+    public long getAtualizacaoEngineFutura(){
         /**
-         * Se ComportAtualizacaoIntervalo for <= -1 ? Nunca
-         * Se ComportAtualizacaoIntervalo for ==  0 ? Sempre ao Iniciar
-         * Se ComportAtualizacaoIntervalo for >= +1 ? Espera
+         * Se ComportAtualizacaoEngineIntervalo for <= -1 ? Nunca
+         * Se ComportAtualizacaoEngineIntervalo for ==  0 ? Sempre ao Iniciar
+         * Se ComportAtualizacaoEngineIntervalo for >= +1 ? Espera
          */
-        if(ComportAtualizacaoIntervalo>=0){
-            return ComportAtualizacaoUltima+getAtualizacaoIntervaloReal(); //Intervalo de 1 dias
+        if(ComportAtualizacaoEngineIntervalo>=0){
+            return ComportAtualizacaoEngineUltima+getAtualizacaoEngineIntervaloReal(); //Intervalo de 1 dias
         }else{
             return -1;
         }
     }
+    public long getAtualizacaoLocalhostUltima(){return ComportAtualizacaoLocalhostUltima;}
+    public long getAtualizacaoLocalhostIntervaloReal(){
+        /**
+          * 1000 = Milisegundos
+          * 60 = Segundos
+          * 60 = Minutos
+          * 24 = horas
+          **/
+        return 1000*60*60*24*ComportAtualizacaoLocalhostIntervalo; //Intervalo de 1 dias
+    }
+    public int  getAtualizacaoLocalhostIntervalo(){
+        return ComportAtualizacaoLocalhostIntervalo; //Intervalo de 1 dias
+    }
+    public long getAtualizacaoLocalhostFutura(){
+        /**
+         * Se ComportAtualizacaoLocalhostIntervalo for <= -1 ? Nunca
+         * Se ComportAtualizacaoLocalhostIntervalo for ==  0 ? Sempre ao Iniciar
+         * Se ComportAtualizacaoLocalhostIntervalo for >= +1 ? Espera
+         */
+        if(ComportAtualizacaoLocalhostIntervalo>=0){
+            return ComportAtualizacaoLocalhostUltima+getAtualizacaoLocalhostIntervaloReal(); //Intervalo de 1 dias
+        }else{
+            return -1;
+        }
+    }
+
     public static long getAgora(){
         // um calendar também é criado com a data atual
         GregorianCalendar calendar = new GregorianCalendar();
@@ -103,9 +131,13 @@ public class ConfigClass {
     public String  getDocumentacaoComentarios(){return DocumentacaoComentarios;}
     public String  getDocumentacaoTraducoes(){return DocumentacaoTraducoes;}
 
-    public void setAtualizacaoIntervalo(int Dias){ComportAtualizacaoIntervalo=Dias;}
-    public void setAtualizacaoUltima(long Quando){ComportAtualizacaoUltima=Quando;}
-    public void setAtualizacaoUltimaAgora(){ComportAtualizacaoUltima=getAgora();}
+    public void setAtualizacaoEngineIntervalo(int Dias){ComportAtualizacaoEngineIntervalo=Dias;}
+    public void setAtualizacaoEngineUltima(long Quando){ComportAtualizacaoEngineUltima=Quando;}
+    public void setAtualizacaoEngineUltimaAgora(){ComportAtualizacaoEngineUltima=getAgora();}
+    public void setAtualizacaoLocalhostIntervalo(int Dias){ComportAtualizacaoLocalhostIntervalo=Dias;}
+    public void setAtualizacaoLocalhostUltima(long Quando){ComportAtualizacaoLocalhostUltima=Quando;}
+    public void setAtualizacaoLocalhostUltimaAgora(){ComportAtualizacaoLocalhostUltima=getAgora();}
+
     public void setConexaoRepositorio(String URL){ConexaoRepositorio=URL ;}
     public void setConexaoLocalhost(String EnderecoDaPasta){ConexaoLocalhost=EnderecoDaPasta ;}
     public void setConexaoUsuario(String Usuario){ConexaoUsuario=Usuario ;}
@@ -364,10 +396,12 @@ public class ConfigClass {
         "DocumentacaoComentarios: "+getDocumentacaoComentarios()+"\n"+
         "DocumentacaoTraducoes: "+getDocumentacaoTraducoes()+"\n"+
 
-        "AtualizacaoUltima: "+getAtualizacaoUltima()+"\n"+
-        "AtualizacaoIntervalo: "+getAtualizacaoIntervalo()+"\n"+
-        "\n"+
-        "//Fim de Configuração";
+        "AtualizacaoEngineUltima: "         +getAtualizacaoEngineUltima()+"\n"+
+        "AtualizacaoEngineIntervalo: "      +getAtualizacaoEngineIntervalo()+"\n"+
+        "AtualizacaoLocalhostUltima: "      +getAtualizacaoLocalhostUltima()+"\n"+
+        "AtualizacaoLocalhostIntervalo: "   +getAtualizacaoLocalhostIntervalo()+"\n"+
+
+        "\n//Fim de Configuração";
         try {
             /*FileWriter out = new FileWriter(Endereco);
             out.write(Corpo);
@@ -423,8 +457,12 @@ public class ConfigClass {
             setDocumentacaoComponentes(getPropriedade(Conteudo,"DocumentacaoComponentes"));
             setDocumentacaoTraducoes(getPropriedade(Conteudo,"DocumentacaoTraducoes"));
 
-            setAtualizacaoUltima(Long.parseLong(getPropriedade(Conteudo,"AtualizacaoUltima").equals("")?"0":getPropriedade(Conteudo,"AtualizacaoUltima")));
-            setAtualizacaoIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoIntervalo")));
+            setAtualizacaoEngineUltima(Long.parseLong(getPropriedade(Conteudo,"AtualizacaoEngineUltima").equals("")?"0":getPropriedade(Conteudo,"AtualizacaoEngineUltima")));
+            setAtualizacaoEngineIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoEngineIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoEngineIntervalo")));
+
+            setAtualizacaoLocalhostUltima(Long.parseLong(getPropriedade(Conteudo,"AtualizacaoLocalhostUltima").equals("")?"0":getPropriedade(Conteudo,"AtualizacaoLocalhostUltima")));
+            setAtualizacaoLocalhostIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo")));
+
 } catch (java.io.IOException exc) {
             //Mensagem_Erro("Não foi possivel abrir o arquivo!","AVISO");
             //ExemploDeConteudo();

@@ -78,7 +78,6 @@
                 <Column editable="false" title="Acessos" type="java.lang.Object"/>
               </Table>
             </Property>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

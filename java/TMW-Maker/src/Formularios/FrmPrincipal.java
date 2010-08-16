@@ -101,7 +101,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }else{
                     FrmPrincipal.setAvisoEmEstatus("<html>Este \"<font color=\"#0000FF\"><b>TMW-Maker</b></font>\" já é a versão mais atualizada!");
                 }
-                FrmPrincipal.Config.setAtualizacaoUltimaAgora();
+                FrmPrincipal.Config.setAtualizacaoEngineUltimaAgora();
                 FrmPrincipal.Config.ConfiguracoesGravar();
                 FrmPrincipal.PgbBarra.setString("Concluido!");
 
@@ -144,26 +144,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmSplash.pack();
         FrmSplash.setModal(true);
         FrmSplash.setVisible(true);/**/
-        if(ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacaoUltima()+FrmPrincipal.Config.getAtualizacaoIntervaloReal()){
-            int R = JOptionPane.YES_OPTION;
-            Object[] options = {"Atualizar", "Depois"};
-            R = JOptionPane.showOptionDialog(
-                null, "<html>" +
-                "Seu TMW-Maker pode estar desatualizado.<br/>" +
-                "Deseja procurar uma versão atualizada?",
-                "ATUALIZAÇÃO DO TMW-MAKER v"+FrmPrincipal.Config.getVersao()+"",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
-                options,
-                options[0]
-            );
-            if (R == JOptionPane.YES_OPTION) {
-                Atualizar();
-            }
-        }
     }
-    public void MontarLocalhost() {
+    public void  LocalhostMontar() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
         } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
@@ -436,6 +418,179 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         }
     }
+    public void  LocalhostReceber() {
+        //int R = JOptionPane.NO_OPTION;
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+                    int R = JOptionPane.YES_OPTION;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+                    MnuSistema.setEnabled(false);
+                    MnuEditar.setEnabled(false);
+                    MnuJogo.setEnabled(false);
+                    MnuAjuda.setEnabled(false);
+
+                    FrmPrincipal.PgbBarra.setIndeterminate(true);
+                    FrmPrincipal.PgbBarra.setString("Preparando...");
+                    //TxtEstatus.setText("Preparando para baixar...");
+                    FrmPrincipal.setAvisoEmEstatus("Preparando para baixar...");
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    // operacao demorada
+
+                    Comando ="svn checkout "+FrmPrincipal.Config.getConexaoRepositorio()+" "+FrmPrincipal.Config.getConexaoLocalhost();
+
+                    Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
+                    if(Partes.length>1 && Partes[0].toLowerCase().equals("https") && !FrmPrincipal.Config.getConexaoUsuario().equals("") && !FrmPrincipal.Config.getConexaoSenha().equals("")){
+                        Comando+=" --username "+FrmPrincipal.Config.getConexaoUsuario()+" --password "+FrmPrincipal.Config.getConexaoSenha();
+                    }
+
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.setAvisoEmEstatus("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                            Arquivos++;
+                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                        }
+                        FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
+                        FrmPrincipal.PgbBarra.setString("Concluido!");
+                        FrmPrincipal.Config.setAtualizacaoLocalhostUltimaAgora();
+                        FrmPrincipal.Config.ConfiguracoesGravar();
+
+                    } catch (IOException e) {
+                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
+                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                    }/**/
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    MnuSistema.setEnabled(true);
+                    MnuEditar.setEnabled(true);
+                    MnuJogo.setEnabled(true);
+                    MnuAjuda.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                    MostrarDeSplash();
+                }
+            });
+            tThread.start();
+        }
+    }
+    private void LocalhostCompartilhar() {
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    //String[] Comando = new String[2];
+                    int Arquivos=0;
+                    int R = JOptionPane.YES_OPTION;
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+                    MnuSistema.setEnabled(false);
+                    MnuEditar.setEnabled(false);
+                    MnuJogo.setEnabled(false);
+                    MnuAjuda.setEnabled(false);
+
+                    Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
+                    if(Partes.length>1 && Partes[0].toLowerCase().equals("https") && !FrmPrincipal.Config.getConexaoUsuario().equals("") && !FrmPrincipal.Config.getConexaoSenha().equals("")){
+                        Object[] options = {"Sim, Compartilhar!", "Não, Cancelar!"};
+                        R = JOptionPane.showOptionDialog(
+                            null, "<html>" +
+                            "Se enviar algum <font color=\"#FF0000\">Script com Defeito</font> de seu Localhost para o Repositório, você <br/>" +
+                            "poderá danificar o repositório, prejudicando trabalho de outros colaboradores.<br/>" +
+                            "Tem certeza que seu localhost está funcionando corretamente?",
+                            "COMPARTILHAMENTO DE LOCALHOST",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                            options,
+                            options[1]
+                        );
+                        if (R == JOptionPane.YES_OPTION) {
+                            FrmPrincipal.PgbBarra.setIndeterminate(true);
+                            FrmPrincipal.PgbBarra.setString("Preparando...");
+                            FrmPrincipal.setAvisoEmEstatus("Preparando para compartilhar...");
+                            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                            // operacao demorada
+
+
+                            try {
+                                Comando=
+                                    "svn commit "+FrmPrincipal.Config.getConexaoLocalhost()+" --message " +
+                                    "Autosincronizar_TMW-Maker_"+FrmPrincipal.Config.getVersao()+"_" +
+                                    "("+FrmPrincipal.Config.getOS()+"-"+FrmPrincipal.Config.getArquiteturaOS()+")...";/**/
+
+                                Process Retorno=Executador.exec(Comando);
+                                BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                while ((line = in.readLine()) != null) {
+                                    System.out.println(line);
+                                    FrmPrincipal.setAvisoEmEstatus("<html>ENVIADO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                                    Arquivos++;
+                                    FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                                }
+                                if(Arquivos>=2){
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" compartilhado com sucesso!");
+                                    FrmPrincipal.PgbBarra.setString("Concluido!");
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" já está compartilhado!");
+                                    FrmPrincipal.PgbBarra.setString("Concluido!");
+                                }
+                            } catch (IOException e) {
+                                FrmPrincipal.setAvisoEmEstatus("Falha ao compartilhar o localhost \""+FrmPrincipal.Config.getConexaoLocalhost()+"\"!");
+                                ConfigClass.Mensagem_Erro("<html>" +
+                                    "Falha ao compartilhar o localhost:<br/> " +
+                                    "<font color=\"#FF0000\"> <b>"+Comando+"</b>!"
+                                    , "ERRO"
+                                );
+                                FrmPrincipal.PgbBarra.setString("ERRO!");
+                            }
+                        }else{
+                            FrmPrincipal.setAvisoEmEstatus("Compartilhamento concelado pelo usuário...!");
+                            FrmPrincipal.PgbBarra.setString("Cancelado!");
+                        }
+                    }else{
+                        FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">PARADA CRÍTICA:</font> Você não identificação \"HTTPS\" em suas configurações!!");
+                        FrmPrincipal.PgbBarra.setString("PARADA CRÍTICA");
+                        ConfigClass.Mensagem_Erro("<html>" +
+                            "<font color=\"#FF0000\">AVISO:</font>  Você não possui identificação \"HTTPS\" em suas configurações.<br/><br/>"+
+                            "Antes de continuar configure a Conexão do Repositório como <br/>" +
+                            "\"HTTPS\" e preencha a identificação com o \"Usuário\" e a \"Senha\"!"
+                            , "PARADA CRÍTICA"
+                        );
+                    }
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    MnuSistema.setEnabled(true);
+                    MnuEditar.setEnabled(true);
+                    MnuJogo.setEnabled(true);
+                    MnuAjuda.setEnabled(true);
+
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+            tThread.start();
+        }
+    }
+
     public void ExecutarJogo(){
         if (Config.getOS().indexOf("win") >= 0) {
             /*String[] cmd = new String[4];
@@ -630,17 +785,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuEditarItens.setEnabled(false);
             //MnuEditarPersonagemScript.setEnabled(false);
         } else {
-            if (Config.getSeDependenciaDeSVN()) {
-                MnuLocalhost.setEnabled(true);
-                //MnuSistemaEnviar.setEnabled(true);
-            } else {
-                MnuLocalhost.setEnabled(false);
-                MnuLocalhost.setEnabled(false);
-            }
-            //MnuJogoMontar.setEnabled(Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data"));
+            MnuLocalhost.setEnabled(Config.getSeDependenciaDeSVN());
+            MnuLocalhostAtualizar.setEnabled(Config.getSeDependenciaDeSVN() && Config.getSeDependenciaDeMontagem());
+            MnuLocalhostCompartilhar.setEnabled(Config.getSeDependenciaDeSVN() && Config.getSeDependenciaDeMontagem());
             MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuEditarPersonagem.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarItens.setEnabled(Config.getSeDependenciaDeMontagem());
-            //MnuEditarPersonagemScript.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuJogoExecutar.setEnabled(Config.getSeDependenciaDeMontagem());
         }
     }
     @SuppressWarnings("unchecked")
@@ -686,7 +837,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogo = new javax.swing.JMenu();
         MnuJogoExecutar = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JSeparator();
-        MnuLocalhost = new javax.swing.JMenuItem();
+        MnuLocalhost = new javax.swing.JMenu();
+        MnuLocalhostSupervisionado = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        MnuLocalhostAtualizar = new javax.swing.JMenuItem();
+        MnuLocalhostCompartilhar = new javax.swing.JMenuItem();
         MnuAjuda = new javax.swing.JMenu();
         MnuAjudaComponentes = new javax.swing.JMenuItem();
         MnuAjudaIndicarDefeito = new javax.swing.JMenuItem();
@@ -699,6 +854,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
             }
         });
 
@@ -961,16 +1119,45 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogo.add(MnuJogoExecutar);
         MnuJogo.add(jSeparator5);
 
-        MnuLocalhost.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         MnuLocalhost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))); // NOI18N
         MnuLocalhost.setMnemonic('L');
         MnuLocalhost.setText("Localhost");
-        MnuLocalhost.setEnabled(false);
-        MnuLocalhost.addActionListener(new java.awt.event.ActionListener() {
+
+        MnuLocalhostSupervisionado.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        MnuLocalhostSupervisionado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_load.gif"))); // NOI18N
+        MnuLocalhostSupervisionado.setMnemonic('S');
+        MnuLocalhostSupervisionado.setText("Supervisionado...");
+        MnuLocalhostSupervisionado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuLocalhostActionPerformed(evt);
+                MnuLocalhostSupervisionadoActionPerformed(evt);
             }
         });
+        MnuLocalhost.add(MnuLocalhostSupervisionado);
+        MnuLocalhost.add(jSeparator6);
+
+        MnuLocalhostAtualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
+        MnuLocalhostAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_download.gif"))); // NOI18N
+        MnuLocalhostAtualizar.setMnemonic('A');
+        MnuLocalhostAtualizar.setText("Atualizar");
+        MnuLocalhostAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLocalhostAtualizarActionPerformed(evt);
+            }
+        });
+        MnuLocalhost.add(MnuLocalhostAtualizar);
+
+        MnuLocalhostCompartilhar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
+        MnuLocalhostCompartilhar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
+        MnuLocalhostCompartilhar.setMnemonic('C');
+        MnuLocalhostCompartilhar.setText("Compartilhar");
+        MnuLocalhostCompartilhar.setEnabled(false);
+        MnuLocalhostCompartilhar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLocalhostCompartilharActionPerformed(evt);
+            }
+        });
+        MnuLocalhost.add(MnuLocalhostCompartilhar);
+
         MnuJogo.add(MnuLocalhost);
 
         jMenuBar1.add(MnuJogo);
@@ -1076,7 +1263,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmConfiguracao.setModal(true);
         FrmConfiguracao.setVisible(true);/**/
 }//GEN-LAST:event_MnuSistemaConfiguracoesActionPerformed
-    private void MnuLocalhostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLocalhostActionPerformed
+    private void MnuLocalhostSupervisionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLocalhostSupervisionadoActionPerformed
         javax.swing.JDialog FrmCheckout = new FrmLocalhost(this, rootPaneCheckingEnabled);
         FrmCheckout.setLocation(
                 ((this.getWidth() - FrmCheckout.getWidth()) / 2) + this.getX(),
@@ -1084,7 +1271,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmCheckout.pack();
         FrmCheckout.setModal(true);
         FrmCheckout.setVisible(true);/**/
-}//GEN-LAST:event_MnuLocalhostActionPerformed
+}//GEN-LAST:event_MnuLocalhostSupervisionadoActionPerformed
     private void MnuEditarContasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarContasActionPerformed
         javax.swing.JDialog FrmContas = new FrmContas(this, rootPaneCheckingEnabled);
         FrmContas.setLocation(
@@ -1107,13 +1294,52 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
         Config.ConfiguracoesAbrir();
         if(Config.getDependenciaEmFalta() >= 1) MostrarDePendencias();
-        VerificarMenus();
         if(FrmPrincipal.Config.getOS().indexOf("linux") >= 0) {
             if(FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
                 if(FrmPrincipal.Config.getSeDependenciaDeSVN()){
                     if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
                         if(!(FrmPrincipal.Itens instanceof Classes.BancoDeDados.Banco_Itens)){
-                            MostrarDeSplash();
+                            if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()>=0 && ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacaoLocalhostFutura()){
+                                int R = JOptionPane.YES_OPTION;
+                                Object[] options = {"Procurar", "Depois"};
+                                R = JOptionPane.showOptionDialog(
+                                    null, "<html>" +
+                                    "O TMW-Maker é uma ferramenta de desenvolvimento colaborativa.<br/>" +
+                                    "Por esta razão, seu Localhost pode estar desatualizado.<br/>" +
+                                    "Deseja procurar atualização criada por outros DEVs via internet?",
+                                    "ATUALIZAÇÃO DO LOCALHOST",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png")),
+                                    options,
+                                    options[0]
+                                );
+                                if (R == JOptionPane.YES_OPTION) {
+                                    LocalhostReceber();
+                                }else{
+                                    MostrarDeSplash();
+                                }
+                            }else{
+                                MostrarDeSplash();
+                            }
+                            if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()>=0 && ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacaoEngineFutura()){
+                                int R = JOptionPane.YES_OPTION;
+                                Object[] options = {"Atualizar", "Depois"};
+                                R = JOptionPane.showOptionDialog(
+                                    null, "<html>" +
+                                    "Seu TMW-Maker pode estar desatualizado.<br/>" +
+                                    "Deseja procurar uma versão atualizada?",
+                                    "ATUALIZAÇÃO DO TMW-MAKER v"+FrmPrincipal.Config.getVersao()+"",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                                    options,
+                                    options[0]
+                                );
+                                if (R == JOptionPane.YES_OPTION) {
+                                    Atualizar();
+                                }
+                            }
                         }
                     }
                 }
@@ -1161,7 +1387,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmTestesDeCodigo.setModal(true);
         FrmTestesDeCodigo.setVisible(true);/**/
     }//GEN-LAST:event_MnuSistemaAreaDeTesteActionPerformed
-
     private void MnuEditarItensSpritesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarItensSpritesActionPerformed
         javax.swing.JDialog FrmNovoEquipamento = new FrmEquipXmlNovo(this, rootPaneCheckingEnabled);
         FrmNovoEquipamento.setLocation(
@@ -1171,6 +1396,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmNovoEquipamento.setModal(true);
         FrmNovoEquipamento.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarItensSpritesActionPerformed
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        VerificarMenus();
+    }//GEN-LAST:event_formWindowActivated
+    private void MnuLocalhostAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLocalhostAtualizarActionPerformed
+        LocalhostReceber();
+    }//GEN-LAST:event_MnuLocalhostAtualizarActionPerformed
+    private void MnuLocalhostCompartilharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLocalhostCompartilharActionPerformed
+        LocalhostCompartilhar();
+    }//GEN-LAST:event_MnuLocalhostCompartilharActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1207,7 +1442,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenu MnuJogo;
     public static javax.swing.JMenuItem MnuJogoExecutar;
-    private javax.swing.JMenuItem MnuLocalhost;
+    private javax.swing.JMenu MnuLocalhost;
+    private javax.swing.JMenuItem MnuLocalhostAtualizar;
+    private javax.swing.JMenuItem MnuLocalhostCompartilhar;
+    private javax.swing.JMenuItem MnuLocalhostSupervisionado;
     private javax.swing.JMenu MnuSistema;
     private javax.swing.JMenuItem MnuSistemaAlteracoes;
     private javax.swing.JMenuItem MnuSistemaAreaDeTeste;
@@ -1226,5 +1464,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,10 +37,10 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="AbaConfiguracoes" alignment="0" pref="494" max="32767" attributes="0"/>
+                  <Component id="AbaConfiguracoes" alignment="0" pref="460" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BtnConfiguracaoAjuda" pref="111" max="32767" attributes="1"/>
-                      <EmptySpace pref="229" max="32767" attributes="0"/>
+                      <Component id="BtnConfiguracaoAjuda" pref="94" max="32767" attributes="1"/>
+                      <EmptySpace pref="212" max="32767" attributes="0"/>
                       <Component id="BtnConfiguracaoOk" linkSize="4" min="-2" pref="74" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="BtnConfiguracaoCancelar" linkSize="4" min="-2" max="-2" attributes="1"/>
@@ -54,8 +54,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="AbaConfiguracoes" pref="289" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="AbaConfiguracoes" min="-2" pref="260" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtnConfiguracaoOk" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnConfiguracaoCancelar" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -93,9 +93,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel15" alignment="0" pref="387" max="32767" attributes="0"/>
-                                  <Component id="CmbConfiguracaoConexaoRepositorio" alignment="0" pref="387" max="32767" attributes="0"/>
-                                  <Component id="TxtConfiguracaoConexaoLocalhost" alignment="0" pref="387" max="32767" attributes="0"/>
+                                  <Component id="jLabel15" alignment="0" pref="353" max="32767" attributes="0"/>
+                                  <Component id="CmbConfiguracaoConexaoRepositorio" alignment="0" pref="353" max="32767" attributes="0"/>
+                                  <Component id="TxtConfiguracaoConexaoLocalhost" alignment="0" pref="353" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
@@ -164,7 +164,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" pref="283" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" pref="249" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -271,14 +271,14 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CmbConfiguracaoExecucaoSoftwareCliente" pref="346" max="32767" attributes="0"/>
+                              <Component id="CmbConfiguracaoExecucaoSoftwareCliente" pref="312" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -294,8 +294,8 @@
                           <Component id="CmbConfiguracaoExecucaoSoftwareCliente" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -329,7 +329,7 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="341" max="32767" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" pref="307" max="32767" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroConta" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                               <Component id="TxtConfiguracaoExecucaoParamentroSenha" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
@@ -362,7 +362,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="44" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -467,47 +467,53 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" pref="348" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="0" pref="348" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="0" pref="348" max="32767" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="0" pref="348" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="34" pref="34" max="34" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                      <Component id="TxtConfiguracaoDocumentacaoAlteracoes" min="-2" pref="314" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                      <Component id="TxtConfiguracaoDocumentacaoComponentes" min="-2" pref="314" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                      <Component id="TxtConfiguracaoDocumentacaoComentarios" min="-2" pref="314" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="36" pref="36" max="36" attributes="0"/>
+                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                      <Component id="TxtConfiguracaoDocumentacaoTraducoes" min="-2" pref="314" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel11" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoAlteracoes" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel12" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComponentes" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel12" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComponentes" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel13" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoComentarios" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel13" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoComentarios" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel14" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel14" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="TxtConfiguracaoDocumentacaoTraducoes" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="127" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -575,11 +581,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="CmbConfiguracaoComportamentoAutoatualizar" pref="263" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ChkPedirCompartilhamentoAofechar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -588,43 +595,116 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel6" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="CmbConfiguracaoComportamentoAutoatualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="223" max="32767" attributes="0"/>
+                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ChkPedirCompartilhamentoAofechar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="96" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Container class="javax.swing.JPanel" name="jPanel7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Perguntar se deseja atualizar:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="CmbConfiguracaoComportamentoAutoatualizar">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="10">
-                    <StringItem index="0" value="Nunca Perguntar"/>
-                    <StringItem index="1" value="Semple ao Iniciar"/>
-                    <StringItem index="2" value="Diariamente"/>
-                    <StringItem index="3" value="Semanalmente"/>
-                    <StringItem index="4" value="Quinzenalmente"/>
-                    <StringItem index="5" value="Mensalmente"/>
-                    <StringItem index="6" value="Bimestralmente"/>
-                    <StringItem index="7" value="Trimestralmente"/>
-                    <StringItem index="8" value="Semestralmente"/>
-                    <StringItem index="9" value="Anualmente"/>
-                  </StringArray>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Perdir permiss&#xe3;o para atualiza&#xe7;&#xe3;o:"/>
+                  </Border>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbConfiguracaoComportamentoAutoatualizarActionPerformed"/>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CmbConfiguracaoComportamentoAutoatualizarFocusGained"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CmbConfiguracaoComportamentoAutoatualizarKeyReleased"/>
-              </Events>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel16" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="CmbConfiguracaoComportamentoLocalhost" max="32767" attributes="1"/>
+                              <Component id="CmbConfiguracaoComportamentoEngine" alignment="0" min="-2" pref="158" max="-2" attributes="1"/>
+                          </Group>
+                          <EmptySpace pref="173" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel6" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="CmbConfiguracaoComportamentoEngine" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel16" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="CmbConfiguracaoComportamentoLocalhost" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Engine:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel16">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Localhost:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CmbConfiguracaoComportamentoEngine">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="10">
+                        <StringItem index="0" value="Nunca Perguntar"/>
+                        <StringItem index="1" value="Sempre ao Iniciar"/>
+                        <StringItem index="2" value="Diariamente"/>
+                        <StringItem index="3" value="Semanalmente"/>
+                        <StringItem index="4" value="Quinzenalmente"/>
+                        <StringItem index="5" value="Mensalmente"/>
+                        <StringItem index="6" value="Bimestralmente"/>
+                        <StringItem index="7" value="Trimestralmente"/>
+                        <StringItem index="8" value="Semestralmente"/>
+                        <StringItem index="9" value="Anualmente"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="selectedIndex" type="int" value="2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CmbConfiguracaoComportamentoLocalhost">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="10">
+                        <StringItem index="0" value="Nunca Perguntar"/>
+                        <StringItem index="1" value="Sempre ao Iniciar"/>
+                        <StringItem index="2" value="Diariamente"/>
+                        <StringItem index="3" value="Semanalmente"/>
+                        <StringItem index="4" value="Quinzenalmente"/>
+                        <StringItem index="5" value="Mensalmente"/>
+                        <StringItem index="6" value="Bimestralmente"/>
+                        <StringItem index="7" value="Trimestralmente"/>
+                        <StringItem index="8" value="Semestralmente"/>
+                        <StringItem index="9" value="Anualmente"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="selectedIndex" type="int" value="2"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JCheckBox" name="ChkPedirCompartilhamentoAofechar">
+              <Properties>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Pedir Compartilhamento de Localhost sempre ao felchar"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

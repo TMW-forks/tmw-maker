@@ -54,7 +54,6 @@ public class FrmContas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        TblContas.setOpaque(false);
         jScrollPane1.setViewportView(TblContas);
 
         BtnFechar.setMnemonic('F');
