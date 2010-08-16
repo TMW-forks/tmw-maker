@@ -40,10 +40,10 @@ public class FrmDependencias extends javax.swing.JDialog {
         TblDependencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Configuração", "Pendente", "Configurações do TMW-Maker"},
-                {"SVN", "Pendente", "Baixa repositório tipo Subversion"},
-                {"Localhost", "Pendente", "Cópia de um servidor TMW"},
+                {"SVN", "Pendente", "Compatilha Repositórios Subversion de TMW via Internet"},
+                {"Localhost", "Pendente", "Cópia de um servidor offline de TMW"},
                 {"GCC", "Pendente", "Executa aplicativos C++"},
-                {"Montagem", "Pendente", "Localhost pronto para uso"},
+                {"Montagem", "Pendente", "Transforma um Repositório em um Localhost"},
                 {"Cliente", "Pendente", "Aplicativo do Jogo \"The Mana World\""}
             },
             new String [] {
@@ -78,7 +78,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(TblDependencias);
 
-        BtnResolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
+        BtnResolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_dependencias.gif"))); // NOI18N
         BtnResolver.setMnemonic('R');
         BtnResolver.setText("Resolver");
         BtnResolver.setEnabled(false);
@@ -123,10 +123,10 @@ public class FrmDependencias extends javax.swing.JDialog {
             }
         });
 
-        TxtEstatus.setBackground(java.awt.Color.darkGray);
+        TxtEstatus.setBackground(new java.awt.Color(0, 104, 14));
         TxtEstatus.setColumns(20);
         TxtEstatus.setEditable(false);
-        TxtEstatus.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        TxtEstatus.setFont(new java.awt.Font("Monospaced", 0, 13));
         TxtEstatus.setForeground(java.awt.Color.white);
         TxtEstatus.setRows(5);
         jScrollPane2.setViewportView(TxtEstatus);
@@ -380,10 +380,10 @@ public class FrmDependencias extends javax.swing.JDialog {
         String Cabecalho[] = new String [] { "Dependencias", "Estatus", "Descrição"};
         Object CorpoDePendencias= new Object [][] {
             {"Configuração", (FrmPrincipal.Config.getSeDependenciaDeConfiguracao()?"Configurado":"<html><font color=\"#FF0000\">Pendente"), "Configurações do TMW-Maker"},
-            {"SVN", (FrmPrincipal.Config.getSeDependenciaDeSVN()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Baixa repositório tipo Subversion"},
-            {"Localhost", (FrmPrincipal.Config.getSeDependenciaDeLocalhost()?"Baixado":"<html><font color=\"#FF0000\">Pendente"), "Cópia de um servidor TMW"},
-            {"GCC", (FrmPrincipal.Config.getSeDependenciaDeGCC()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Executa aplicativos C++"},
-            {"Montagem", (FrmPrincipal.Config.getSeDependenciaDeMontagem()?"Montado":"<html><font color=\"#FF0000\">Pendente"), "Localhost pronto para uso"},
+            {"SVN", (FrmPrincipal.Config.getSeDependenciaDeSVN()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Recebe e Envia Repositórios de TMW via Internet"},
+            {"Localhost", (FrmPrincipal.Config.getSeDependenciaDeLocalhost()?"Recebido":"<html><font color=\"#FF0000\">Pendente"), "Se foi recebido Repositório de TMW"},
+            {"GCC", (FrmPrincipal.Config.getSeDependenciaDeGCC()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Executa aplicativos em C++ excenciais ao Localhost"},
+            {"Montagem", (FrmPrincipal.Config.getSeDependenciaDeMontagem()?"Montado":"<html><font color=\"#FF0000\">Pendente"), "Monta um Localhost através de um Repositório"},
             {"Cliente",((FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help"))?(FrmPrincipal.Config.getExecucaoComando().toUpperCase()):"<html><font color=\"#FF0000\">Pendente"), "Aplicativo do Jogo \"The Mana World\""}
         };
         TblDependencias.setModel(new javax.swing.table.DefaultTableModel((Object[][]) CorpoDePendencias,Cabecalho) {

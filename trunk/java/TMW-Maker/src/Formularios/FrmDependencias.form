@@ -91,11 +91,11 @@
                 </Column>
                 <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.String">
                   <Data value="Configura&#xe7;&#xf5;es do TMW-Maker"/>
-                  <Data value="Baixa reposit&#xf3;rio tipo Subversion"/>
-                  <Data value="C&#xf3;pia de um servidor TMW"/>
+                  <Data value="Compatilha Reposit&#xf3;rios Subversion de TMW via Internet"/>
+                  <Data value="C&#xf3;pia de um servidor offline de TMW"/>
                   <Data value="Executa aplicativos C++"/>
-                  <Data value="Localhost pronto para uso"/>
-                  <Data value="Aplicativo do Jogo \&quot;The Mana World\&quot;"/>
+                  <Data value="Transforma um Reposit&#xf3;rio em um Localhost"/>
+                  <Data value="Aplicativo do Jogo &quot;The Mana World&quot;"/>
                 </Column>
               </Table>
             </Property>
@@ -133,7 +133,7 @@
     <Component class="javax.swing.JButton" name="BtnResolver">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagem/Botoes/sbl_tmw.png"/>
+          <Image iconType="3" name="/Imagem/Botoes/sbl_dependencias.gif"/>
         </Property>
         <Property name="mnemonic" type="int" value="82"/>
         <Property name="text" type="java.lang.String" value="Resolver"/>
@@ -180,7 +180,7 @@
         <Component class="javax.swing.JTextArea" name="TxtEstatus">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="40" green="40" id="darkGray" palette="1" red="40" type="palette"/>
+              <Color blue="e" green="68" red="0" type="rgb"/>
             </Property>
             <Property name="columns" type="int" value="20"/>
             <Property name="editable" type="boolean" value="false"/>

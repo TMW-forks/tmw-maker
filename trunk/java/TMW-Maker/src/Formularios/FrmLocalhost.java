@@ -25,17 +25,17 @@ public class FrmLocalhost extends javax.swing.JDialog {
         BtnFechar = new javax.swing.JButton();
         BtnBaixar = new javax.swing.JButton();
         BtnMontar = new javax.swing.JButton();
-        BtnEnviar = new javax.swing.JButton();
+        BtnCompartilhar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Localhost");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Localhost Supervisionado");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
 
-        TxtEstatus.setBackground(java.awt.Color.darkGray);
+        TxtEstatus.setBackground(new java.awt.Color(0, 104, 14));
         TxtEstatus.setColumns(20);
         TxtEstatus.setEditable(false);
         TxtEstatus.setFont(new java.awt.Font("Bitstream Vera Sans", 0, 14));
@@ -47,7 +47,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
         jScrollPane1.setViewportView(TxtEstatus);
 
         ChkForcar.setMnemonic('F');
-        ChkForcar.setText("Baixar forçado");
+        ChkForcar.setText("Forçar");
 
         BtnFechar.setMnemonic('F');
         BtnFechar.setText("Fechar");
@@ -66,17 +66,17 @@ public class FrmLocalhost extends javax.swing.JDialog {
             }
         });
 
-        BtnMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
+        BtnMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))); // NOI18N
         BtnMontar.setMnemonic('M');
         BtnMontar.setText("Montar");
         BtnMontar.setEnabled(false);
 
-        BtnEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
-        BtnEnviar.setMnemonic('E');
-        BtnEnviar.setText("Enviar");
-        BtnEnviar.addActionListener(new java.awt.event.ActionListener() {
+        BtnCompartilhar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_upload.gif"))); // NOI18N
+        BtnCompartilhar.setMnemonic('C');
+        BtnCompartilhar.setText("Compartilhar");
+        BtnCompartilhar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEnviarActionPerformed(evt);
+                BtnCompartilharActionPerformed(evt);
             }
         });
 
@@ -90,10 +90,10 @@ public class FrmLocalhost extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(ChkForcar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                         .addComponent(BtnBaixar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnEnviar)
+                        .addComponent(BtnCompartilhar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnMontar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,7 +113,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                     .addComponent(BtnFechar)
                     .addComponent(ChkForcar)
                     .addComponent(BtnMontar)
-                    .addComponent(BtnEnviar)
+                    .addComponent(BtnCompartilhar)
                     .addComponent(BtnBaixar))
                 .addContainerGap())
         );
@@ -124,17 +124,25 @@ public class FrmLocalhost extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnBaixarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaixarActionPerformed
-        BaixarLocalhost();
+        LocalhostReceber();
     }//GEN-LAST:event_BtnBaixarActionPerformed
     private void BtnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFecharActionPerformed
         dispose();
     }//GEN-LAST:event_BtnFecharActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         //setTitle("svn checkout "+FrmPrincipal.Config.getConexaoRepositorio());
+        //BtnCompartilhar.setEnabled(FrmPrincipal.Config.getSeDependenciaDeMontagem());
+        if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+            BtnBaixar.setMnemonic('A');
+            BtnBaixar.setText("Atualizar");
+        }else{
+            BtnBaixar.setMnemonic('B');
+            BtnBaixar.setText("Baixar");
+        }
     }//GEN-LAST:event_formWindowActivated
-    private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        EnviarLocalhost();
-    }//GEN-LAST:event_BtnEnviarActionPerformed
+    private void BtnCompartilharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCompartilharActionPerformed
+        LocalhostCompartilhar();
+    }//GEN-LAST:event_BtnCompartilharActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -153,7 +161,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBaixar;
-    private javax.swing.JButton BtnEnviar;
+    private javax.swing.JButton BtnCompartilhar;
     private javax.swing.JButton BtnFechar;
     private javax.swing.JButton BtnMontar;
     private javax.swing.JCheckBox ChkForcar;
@@ -168,7 +176,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
         TxtEstatus.setSelectionStart(TxtEstatus.getText().length()-1);
         TxtEstatus.setSelectionEnd(TxtEstatus.getText().length()-1);
     }
-    private void BaixarLocalhost() {
+    private void LocalhostReceber() {
         int R = JOptionPane.NO_OPTION;
         if(ChkForcar.isSelected()){
             Object[] options = {"Sobrescrever", "Cancelar"};
@@ -203,7 +211,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
 
                         FrmPrincipal.PgbBarra.setEnabled(true);
                         BtnBaixar.setEnabled(false);
-                        BtnEnviar.setEnabled(false);
+                        BtnCompartilhar.setEnabled(false);
                         BtnMontar.setEnabled(false);
                         BtnFechar.setEnabled(false);
                         ChkForcar.setEnabled(false);
@@ -258,6 +266,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
                                 TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
                                 FrmPrincipal.PgbBarra.setString("Concluido!");
+                                FrmPrincipal.Config.setAtualizacaoLocalhostUltimaAgora();
+                                FrmPrincipal.Config.ConfiguracoesGravar();
 
                                 if(!FrmPrincipal.Config.getSeDependenciaDeMontagem()){
                                     R = JOptionPane.YES_OPTION;
@@ -273,7 +283,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                         options,
                                         options[1]
                                     );
-                                    if(R == JOptionPane.YES_OPTION) MontarLocalhost();
+                                    if(R == JOptionPane.YES_OPTION) LocalhostMontar();
                                 }
                             } catch (IOException e) {
                                 TxtEstatus.setText(TxtEstatus.getText()+"\nFalha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
@@ -283,7 +293,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             }/**/
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
                             BtnBaixar.setEnabled(true);
-                            BtnEnviar.setEnabled(true);
+                            BtnCompartilhar.setEnabled(true);
                             if(FrmPrincipal.Config.getSeDependenciaDeLocalhost() && !FrmPrincipal.Config.getSeDependenciaDeMontagem()) BtnMontar.setEnabled(true);
                             BtnFechar.setEnabled(true);
                             ChkForcar.setEnabled(true);
@@ -295,7 +305,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
             }
         }
     }
-    public void MontarLocalhost() {
+    private void LocalhostMontar() {
     if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
         ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
     } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
@@ -325,7 +335,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                     public void run() {
                         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         BtnBaixar.setEnabled(false);
-                        BtnEnviar.setEnabled(false);
+                        BtnCompartilhar.setEnabled(false);
                         BtnMontar.setEnabled(false);
                         BtnFechar.setEnabled(false);
                         ChkForcar.setEnabled(false);
@@ -391,7 +401,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             );
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
                             BtnBaixar.setEnabled(true);
-                            BtnEnviar.setEnabled(true);
+                            BtnCompartilhar.setEnabled(true);
                             BtnMontar.setEnabled(true);
                             BtnFechar.setEnabled(true);
                             ChkForcar.setEnabled(true);
@@ -411,7 +421,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 addLinhaDeEstatus("ERRO: Falha ao deslocar \"char-server\"!");
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
                                 BtnBaixar.setEnabled(true);
-                                BtnEnviar.setEnabled(true);
+                                BtnCompartilhar.setEnabled(true);
                                 BtnMontar.setEnabled(true);
                                 BtnFechar.setEnabled(true);
                                 ChkForcar.setEnabled(true);
@@ -429,7 +439,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 addLinhaDeEstatus("ERRO: Falha ao deslocar \"login-server\"!");
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
                                 BtnBaixar.setEnabled(true);
-                                BtnEnviar.setEnabled(true);
+                                BtnCompartilhar.setEnabled(true);
                                 BtnMontar.setEnabled(true);
                                 BtnFechar.setEnabled(true);
                                 ChkForcar.setEnabled(true);
@@ -447,7 +457,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 addLinhaDeEstatus("ERRO: Falha ao deslocar \"map-server\"!");
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
                                 BtnBaixar.setEnabled(true);
-                                BtnEnviar.setEnabled(true);
+                                BtnCompartilhar.setEnabled(true);
                                 BtnMontar.setEnabled(true);
                                 BtnFechar.setEnabled(true);
                                 ChkForcar.setEnabled(true);
@@ -477,7 +487,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 addLinhaDeEstatus("ERRO: Falha ao deslocar \"char-server\"!");
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
                                 BtnBaixar.setEnabled(true);
-                                BtnEnviar.setEnabled(true);
+                                BtnCompartilhar.setEnabled(true);
                                 BtnMontar.setEnabled(true);
                                 BtnFechar.setEnabled(true);
                                 ChkForcar.setEnabled(true);
@@ -495,7 +505,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 addLinhaDeEstatus("ERRO: Falha ao deslocar \"login-server\"!");
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
                                 BtnBaixar.setEnabled(true);
-                                BtnEnviar.setEnabled(true);
+                                BtnCompartilhar.setEnabled(true);
                                 BtnMontar.setEnabled(true);
                                 BtnFechar.setEnabled(true);
                                 ChkForcar.setEnabled(true);
@@ -513,7 +523,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 addLinhaDeEstatus("ERRO: Falha ao deslocar \"map-server\"!");
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
                                 BtnBaixar.setEnabled(true);
-                                BtnEnviar.setEnabled(true);
+                                BtnCompartilhar.setEnabled(true);
                                 BtnMontar.setEnabled(true);
                                 BtnFechar.setEnabled(true);
                                 ChkForcar.setEnabled(true);
@@ -527,7 +537,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("BLOQUEIO!!!");
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
                             BtnBaixar.setEnabled(true);
-                            BtnEnviar.setEnabled(true);
+                            BtnCompartilhar.setEnabled(true);
                             BtnMontar.setEnabled(true);
                             BtnFechar.setEnabled(true);
                             ChkForcar.setEnabled(true);
@@ -626,7 +636,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 );
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
                                 BtnBaixar.setEnabled(true);
-                                BtnEnviar.setEnabled(true);
+                                BtnCompartilhar.setEnabled(true);
                                 BtnMontar.setEnabled(true);
                                 BtnFechar.setEnabled(true);
                                 ChkForcar.setEnabled(true);
@@ -667,7 +677,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             );
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
                             BtnBaixar.setEnabled(true);
-                            BtnEnviar.setEnabled(true);
+                            BtnCompartilhar.setEnabled(true);
                             BtnMontar.setEnabled(true);
                             BtnFechar.setEnabled(true);
                             ChkForcar.setEnabled(true);
@@ -680,7 +690,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
 
                         FrmPrincipal.PgbBarra.setIndeterminate(false);
                         BtnBaixar.setEnabled(true);
-                        BtnEnviar.setEnabled(true);
+                        BtnCompartilhar.setEnabled(true);
                         BtnMontar.setEnabled(true);
                         BtnFechar.setEnabled(true);
                         ChkForcar.setEnabled(true);
@@ -695,7 +705,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             );
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
                             BtnBaixar.setEnabled(true);
-                            BtnEnviar.setEnabled(true);
+                            BtnCompartilhar.setEnabled(true);
                             BtnMontar.setEnabled(true);
                             BtnFechar.setEnabled(true);
                             ChkForcar.setEnabled(true);
@@ -721,7 +731,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
         }
     }
     }
-    private void EnviarLocalhost() {
+    private void LocalhostCompartilhar() {
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
@@ -742,16 +752,29 @@ public class FrmLocalhost extends javax.swing.JDialog {
                     FrmPrincipal.PgbBarra.setEnabled(true);
                     BtnFechar.setEnabled(false);
                     BtnBaixar.setEnabled(false);
-                    BtnEnviar.setEnabled(false);
+                    BtnCompartilhar.setEnabled(false);
                     ChkForcar.setEnabled(false);
 
                     Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
                     if(Partes.length>1 && Partes[0].toLowerCase().equals("https") && !FrmPrincipal.Config.getConexaoUsuario().equals("") && !FrmPrincipal.Config.getConexaoSenha().equals("")){
+                        Object[] options = {"Sim, Compartilhar!", "Não, Cancelar!"};
+                        R = JOptionPane.showOptionDialog(
+                            null, "<html>" +
+                            "Se enviar algum <font color=\"#FF0000\">Script com Defeito</font> de seu Localhost para o Repositório, você <br/>" +
+                            "poderá danificar o repositório, prejudicando trabalho de outros colaboradores.<br/>" +
+                            "Tem certeza que seu localhost está funcionando corretamente?",
+                            "COMPARTILHAMENTO DE LOCALHOST",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                            options,
+                            options[1]
+                        );
                         if (R == JOptionPane.YES_OPTION) {
                             FrmPrincipal.PgbBarra.setIndeterminate(true);
                             FrmPrincipal.PgbBarra.setString("Preparando...");
-                            TxtEstatus.setText("Preparando para enviar...");
-                            FrmPrincipal.setAvisoEmEstatus("Preparando para enviar...");
+                            TxtEstatus.setText("Preparando para compartilhar...");
+                            FrmPrincipal.setAvisoEmEstatus("Preparando para compartilhar...");
                             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             // operacao demorada
 
@@ -773,28 +796,28 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                     TxtEstatus.setText(TxtEstatus.getText()+"\n     "+Arquivos+": "+line);
                                 }
                                 if(Arquivos>=2){
-                                    FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" enviado com sucesso!");
-                                    TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" enviado com sucesso!");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" compartilhado com sucesso!");
+                                    TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" compartilhado com sucesso!");
                                     FrmPrincipal.PgbBarra.setString("Concluido!");
                                 }else{
-                                    FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" já está sincronizado!");
-                                    TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" já está sincronizado!");
+                                    FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" já está compartilhado!");
+                                    TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" já está compartilhado!");
                                     FrmPrincipal.PgbBarra.setString("Concluido!");
                                 }
                             } catch (IOException e) {
-                                FrmPrincipal.setAvisoEmEstatus("Falha ao enviar o repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\"!");
+                                FrmPrincipal.setAvisoEmEstatus("Falha ao compartilhar o localhost \""+FrmPrincipal.Config.getConexaoLocalhost()+"\"!");
                                 ConfigClass.Mensagem_Erro("<html>" +
-                                    "Falha ao enviar o repositório:<br/> " +
+                                    "Falha ao compartilhar o localhost:<br/> " +
                                     "<font color=\"#FF0000\"> <b>"+Comando+"</b>!"
                                     , "ERRO"
                                 );
                                 FrmPrincipal.PgbBarra.setString("ERRO!");
                             }
                         }else{
-                            TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: Somente enviar trabalhos através de conexões \"HTTPS\"!");
-                            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font>  Somente enviar trabalhos através de conexões \"HTTPS\"!");
-                            FrmPrincipal.PgbBarra.setString("ERRO!");
-                            ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">ERRO:</font>  Falha ao enviar trabalhos através de conexões \"HTTPS\"!", "ERRO");
+                            TxtEstatus.setText(TxtEstatus.getText()+"\n * Compartilhamento cancelado pelo Usuário!");
+                            FrmPrincipal.setAvisoEmEstatus("Compartilhamento cancelado pelo usuário!");
+                            FrmPrincipal.PgbBarra.setString("Cancelado!");
+                            //ConfigClass.Mensagem_Erro("Compartilhamento cancelado pelo usuários!", "ERRO");
                         }
                     }else{
                         TxtEstatus.setText(TxtEstatus.getText()+
@@ -808,12 +831,13 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             "<font color=\"#FF0000\">AVISO:</font>  Você não possui identificação \"HTTPS\" em suas configurações.<br/><br/>"+
                             "Antes de continuar configure a Conexão do Repositório como <br/>" +
                             "\"HTTPS\" e preencha a identificação com o \"Usuário\" e a \"Senha\"!"
-                            , "ERRO"
+                            , "PARADA CRÍTICA"
                         );
                     }
                     FrmPrincipal.PgbBarra.setIndeterminate(false);
                     BtnFechar.setEnabled(true);
                     BtnBaixar.setEnabled(true);
+                    BtnCompartilhar.setEnabled(true);
                     ChkForcar.setEnabled(true);
                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
