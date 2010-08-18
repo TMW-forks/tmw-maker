@@ -732,6 +732,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
             }
         });
 
+        BtnConfiguracaoOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.png"))); // NOI18N
         BtnConfiguracaoOk.setMnemonic('O');
         BtnConfiguracaoOk.setText("Ok");
         BtnConfiguracaoOk.addActionListener(new java.awt.event.ActionListener() {
