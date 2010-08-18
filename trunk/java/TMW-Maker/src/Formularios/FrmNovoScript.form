@@ -36,7 +36,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator1" alignment="0" pref="323" max="32767" attributes="0"/>
+                  <Component id="jSeparator1" alignment="0" pref="329" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="BtnCriar" linkSize="2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -55,7 +55,7 @@
                           <Component id="TxtNomeSimplesPasta" linkSize="4" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
                           <Component id="CmbPastaDeScript" linkSize="4" alignment="0" pref="248" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="ChkSeLigarAoMapa" min="-2" max="-2" attributes="0"/>
+                              <Component id="LblLigadoAoMapa" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="CmbMapa" pref="109" max="32767" attributes="1"/>
                           </Group>
@@ -68,7 +68,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="OptTipoScript" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="TxtNomeSimplesArquivo" alignment="1" pref="279" max="32767" attributes="0"/>
+                          <Component id="TxtNomeSimplesArquivo" alignment="1" pref="285" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -109,9 +109,9 @@
                   <Component id="OptPastaNova" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="ChkSeLigarAoMapa" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="CmbMapa" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LblLigadoAoMapa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CmbMapa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="69" max="32767" attributes="0"/>
               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
@@ -277,15 +277,6 @@
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;    MskNomeSimples = new javax.swing.text.MaskFormatter(&quot;*****************************&quot;);&#xa;    MskNomeSimples.setValidCharacters(&quot; _-()0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;);&#xa;}catch(java.text.ParseException Erro){}"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="ChkSeLigarAoMapa">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ligar ao Mapa:"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="ChkSeLigarAoMapaStateChanged"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JComboBox" name="CmbMapa">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -296,6 +287,12 @@
             <StringItem index="3" value="Item 4"/>
           </StringArray>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LblLigadoAoMapa">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ligado ao Mapa:"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>

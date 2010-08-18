@@ -44,8 +44,8 @@ public class FrmNovoScript extends javax.swing.JDialog {
             MskNomeSimples.setValidCharacters(" _-()0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
         }catch(java.text.ParseException Erro){}
         TxtNomeSimplesPasta = new javax.swing.JFormattedTextField(MskNomeSimples);
-        ChkSeLigarAoMapa = new javax.swing.JCheckBox();
         CmbMapa = new javax.swing.JComboBox();
+        LblLigadoAoMapa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Script");
@@ -147,16 +147,11 @@ public class FrmNovoScript extends javax.swing.JDialog {
             }
         });
 
-        ChkSeLigarAoMapa.setText("Ligar ao Mapa:");
-        ChkSeLigarAoMapa.setEnabled(false);
-        ChkSeLigarAoMapa.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ChkSeLigarAoMapaStateChanged(evt);
-            }
-        });
-
         CmbMapa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         CmbMapa.setEnabled(false);
+
+        LblLigadoAoMapa.setText("Ligado ao Mapa:");
+        LblLigadoAoMapa.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +160,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BtnCriar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,7 +177,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
                             .addComponent(TxtNomeSimplesPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CmbPastaDeScript, 0, 248, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ChkSeLigarAoMapa)
+                                .addComponent(LblLigadoAoMapa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CmbMapa, 0, 109, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -191,7 +186,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
                                 .addComponent(OptTipoFuncao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(OptTipoScript))
-                            .addComponent(TxtNomeSimplesArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                            .addComponent(TxtNomeSimplesArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
                         .addGap(5, 5, 5)
                         .addComponent(jLabel2)
                         .addGap(8, 8, 8)))
@@ -228,8 +223,8 @@ public class FrmNovoScript extends javax.swing.JDialog {
                     .addComponent(TxtNomeSimplesPasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OptPastaNova))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(ChkSeLigarAoMapa)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblLigadoAoMapa)
                     .addComponent(CmbMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,14 +307,12 @@ public class FrmNovoScript extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtNomeSimplesPastaKeyReleased
     private void OptPastaAntigaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_OptPastaAntigaStateChanged
         AtivarComponente();
+        ValidarNomeDeScript();
     }//GEN-LAST:event_OptPastaAntigaStateChanged
     private void OptPastaNovaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_OptPastaNovaStateChanged
         AtivarComponente();
         ValidarNomeDeScript();
     }//GEN-LAST:event_OptPastaNovaStateChanged
-    private void ChkSeLigarAoMapaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ChkSeLigarAoMapaStateChanged
-        AtivarComponente();
-    }//GEN-LAST:event_ChkSeLigarAoMapaStateChanged
 
     private void CmbPastaDeScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbPastaDeScriptActionPerformed
         String Item=CmbPastaDeScript.getItemAt(CmbPastaDeScript.getSelectedIndex()).toString().trim();
@@ -344,11 +337,11 @@ public class FrmNovoScript extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCriar;
     private javax.swing.JButton BtnFechar;
-    private javax.swing.JCheckBox ChkSeLigarAoMapa;
     private javax.swing.JComboBox CmbMapa;
     private javax.swing.JComboBox CmbPastaDeScript;
     private javax.swing.ButtonGroup GrpTipoDeArquivo;
     private javax.swing.ButtonGroup GrpTipoDePasta;
+    private javax.swing.JLabel LblLigadoAoMapa;
     private javax.swing.JRadioButton OptPastaAntiga;
     private javax.swing.JRadioButton OptPastaNova;
     private javax.swing.JRadioButton OptTipoFuncao;
@@ -369,21 +362,24 @@ public class FrmNovoScript extends javax.swing.JDialog {
         CmbPastaDeScript.setBackground(CmbPastaDeScript.isEnabled()?java.awt.SystemColor.text:java.awt.SystemColor.window);
         TxtNomeSimplesPasta.setEnabled((OptTipoScript.isSelected() && OptPastaNova.isSelected()));
         TxtNomeSimplesPasta.setBackground(TxtNomeSimplesPasta.isEnabled()?java.awt.SystemColor.text:java.awt.SystemColor.window);
-        ChkSeLigarAoMapa.setEnabled(OptPastaNova.isSelected() && OptPastaNova.isEnabled());
-        CmbMapa.setEnabled(ChkSeLigarAoMapa.isSelected() && ChkSeLigarAoMapa.isEnabled());
-        CmbMapa.setBackground(CmbMapa.isEnabled()?java.awt.SystemColor.text:java.awt.SystemColor.window);
+        LblLigadoAoMapa.setEnabled(OptPastaNova.isSelected() && OptPastaNova.isEnabled());
+        CmbMapa.setEnabled(OptPastaNova.isSelected() && OptPastaNova.isEnabled());
     }
     private void ValidarNomeDeScript() {
+        boolean Teste1=false, Teste2=false;
+
         if(!TxtNomeSimplesArquivo.getText().equals("")){
             //String Editado=CmbPastaDeScript.getEditor().getItem().toString();
             String PastaDeTeste="";
             if(OptTipoScript.isSelected()){
                 if(OptPastaAntiga.isSelected()){
                     PastaDeTeste=PastaDeScripts+Barra+CmbPastaDeScript.getItemAt(CmbPastaDeScript.getSelectedIndex()).toString();
+                    Teste1=true;
                 }else{
                     PastaDeTeste=PastaDeScripts+Barra+TxtNomeSimplesPasta.getText().trim();
                     if(!FrmPrincipal.Config.SeExiste(PastaDeTeste)){
                         TxtNomeSimplesPasta.setForeground(java.awt.SystemColor.textText);
+                        Teste1=true;
                     }else{
                         TxtNomeSimplesPasta.setForeground(Color.red);
                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Não é possivel criar uma pasta nova com o mesmo nome de uma pasta antiga!");
@@ -391,6 +387,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
                 }
             }else{
                 PastaDeTeste=PastaDeScripts+Barra+"functions";
+                Teste1=true;
             }
             if(FrmPrincipal.Config.SeExiste(PastaDeTeste)){
                 String EndereçoDeArquivo=PastaDeTeste+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf";
@@ -406,11 +403,16 @@ public class FrmNovoScript extends javax.swing.JDialog {
                                 if(!OptPastaAntiga.isSelected()){
                                    if(!FrmPrincipal.Config.SeExiste(PastaDeTeste)){
                                         TxtNomeSimplesPasta.setForeground(java.awt.SystemColor.textText);
+                                        Teste2=true;
                                     }else{
                                         TxtNomeSimplesPasta.setForeground(Color.red);
                                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Não é possivel criar uma pasta nova com o mesmo nome de uma pasta antiga!");
                                     }
+                                }else{
+                                    Teste2=true;
                                 }
+                            }else{
+                                Teste2=true;
                             }
                         }else{
                             TxtNomeSimplesArquivo.setForeground(Color.red);
@@ -428,7 +430,14 @@ public class FrmNovoScript extends javax.swing.JDialog {
                 TxtNomeSimplesPasta.setForeground(java.awt.SystemColor.textText);
                 TxtNomeSimplesArquivo.setForeground(java.awt.SystemColor.textText);
                 FrmPrincipal.setAvisoEmEstatus("");
+                Teste2=true;
             }
+        }
+        if(Teste1 && Teste2){
+            //Essa linha foi desabilitada enquanto o código acima não for otimizado!
+            //BtnCriar.setEnabled(true);
+        }else{
+            BtnCriar.setEnabled(false);
         }
     }
 
