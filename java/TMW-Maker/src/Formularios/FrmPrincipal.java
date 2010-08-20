@@ -147,7 +147,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmSplash.setModal(true);
         FrmSplash.setVisible(true);/**/
     }
-    public void  LocalhostMontar() {
+    public void LocalhostMontar() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
         } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
@@ -209,14 +209,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
                                 BinariosEspecificos = true;
                                 System.out.println(Comando);
-                                //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                                //ConfigClass.Mensagem_Alerta(Comando,"Nota de Programador");
                             } else {
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/compiler " +
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
                                 BinariosEspecificos = false;
                                 System.out.println(Comando);
-                                //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                                //ConfigClass.Mensagem_Alerta(Comando,"Nota de Programador");
                             }
                             try {
                                 Process Retorno = Executador.exec(Comando);
@@ -421,7 +421,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         }
     }
-    public void  LocalhostReceber() {
+    public void LocalhostReceber() {
         //int R = JOptionPane.NO_OPTION;
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
@@ -475,7 +475,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         FrmPrincipal.Config.ConfiguracoesGravar();
 
                     } catch (IOException e) {
-                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //ConfigClass.Mensagem_Alerta("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
                         FrmPrincipal.PgbBarra.setString("ERRO!");
                     }/**/
@@ -520,17 +520,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
                     if(Partes.length>1 && Partes[0].toLowerCase().equals("https") && !FrmPrincipal.Config.getConexaoUsuario().equals("") && !FrmPrincipal.Config.getConexaoSenha().equals("")){
                         Object[] options = {"Sim, Compartilhar!", "Não, Cancelar!"};
-                        R = JOptionPane.showOptionDialog(
-                            null, "<html>" +
+                        R = ConfigClass.Mensagem_Opcoes("<html>" +
                             "Se enviar algum <font color=\"#FF0000\">Script com Defeito</font> de seu Localhost para o Repositório, você <br/>" +
                             "poderá danificar o repositório, prejudicando trabalho de outros colaboradores.<br/>" +
                             "Tem certeza que seu localhost está funcionando corretamente?",
                             "COMPARTILHAMENTO DE LOCALHOST",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
-                            options,
-                            options[1]
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png")),
+                            options, 1
                         );
                         if (R == JOptionPane.YES_OPTION) {
                             FrmPrincipal.PgbBarra.setIndeterminate(true);
@@ -577,11 +573,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     }else{
                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">PARADA CRÍTICA:</font> Você não identificação \"HTTPS\" em suas configurações!!");
                         FrmPrincipal.PgbBarra.setString("PARADA CRÍTICA");
-                        ConfigClass.Mensagem_Erro("<html>" +
-                            "<font color=\"#FF0000\">AVISO:</font>  Você não possui identificação \"HTTPS\" em suas configurações.<br/><br/>"+
-                            "Antes de continuar configure a Conexão do Repositório como <br/>" +
-                            "\"HTTPS\" e preencha a identificação com o \"Usuário\" e a \"Senha\"!"
-                            , "PARADA CRÍTICA"
+                        ConfigClass.Mensagem_Alerta("<html>" +
+                            "Você não tem permissão para compartilhar arquivos pelo TMW-Maker.<br/><br/>"+
+                            "Para compatilhar configure a Conexão do Repositório como \"<font color=\"#0000FF\">HTTP<b><u>S</u></b></font>\" e <br/>" +
+                            "preencha o \"<font color=\"#0000FF\">Usuário</font>\" e a \"<font color=\"#0000FF\">Senha</font>\" do repositório corretamente!"
+                            , "COMPARTILHAMENTO NEGADO",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png"))
                         );
                     }
                     FrmPrincipal.PgbBarra.setIndeterminate(false);
@@ -683,7 +680,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + FrmPrincipal.Config.getExecucaoParametroSenha() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + FrmPrincipal.Config.getExecucaoParametroPersonagem() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroSemopengl() == true ? "--no-opengl" : "");
-                    //ConfigClass.Mensagem_Erro("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
+                    //ConfigClass.Mensagem_Alerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
                     try {
                         Process Retorno = Executador.exec(Comando);
                         BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
@@ -1560,7 +1557,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                     "ATUALIZAÇÃO DO TMW-MAKER v"+FrmPrincipal.Config.getVersao()+"",
                                     JOptionPane.YES_NO_OPTION,
                                     JOptionPane.QUESTION_MESSAGE,
-                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png")),
                                     options,
                                     options[0]
                                 );

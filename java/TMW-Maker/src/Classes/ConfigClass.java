@@ -21,6 +21,7 @@ import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -168,6 +169,38 @@ public class ConfigClass {
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
     }
+    public static void Mensagem_Alerta(String Aviso, String Titulo, ImageIcon Icone) {
+        System.out.println(Aviso);
+        Toolkit.getDefaultToolkit().beep();
+        //JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
+        Object[] options = {"Ok!"};
+        JOptionPane.showOptionDialog(
+            null, 
+            Aviso,
+            Titulo,
+            JOptionPane.OK_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            Icone,
+            options,
+            options[0]
+        );
+    }
+    public static int Mensagem_Opcoes(String Aviso, String Titulo, ImageIcon Icone, Object Opcoes[], int FocarOpcao) {
+        System.out.println(Aviso);
+        Toolkit.getDefaultToolkit().beep();
+        //Object[] Opcoes = {"Ok!","Cancel"};
+        return JOptionPane.showOptionDialog(
+            null,
+            Aviso,
+            Titulo,
+            Opcoes.length, //JOptionPane.OK_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            Icone,
+            Opcoes,
+            Opcoes[FocarOpcao]
+        );
+    }
+
     public static String UTF8toISO88591(String UTF8){
         try{
             return java.net.URLDecoder.decode(UTF8, "ISO-8859-1");
@@ -229,7 +262,7 @@ public class ConfigClass {
             return false;
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            //Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            //Mensagem_Alerta("Este comando ainda não foi implementado para o MAC!","Descupe!");
             return false;
         } else {
             try {
@@ -359,7 +392,7 @@ public class ConfigClass {
         int FinalDeLinha= Conteudo.indexOf("\n",OndeEncontrado+Propriedade.length()+1);
         if(OndeEncontrado>=1){
             String Resultado=Conteudo.substring(OndeEncontrado+Propriedade.length()+3, FinalDeLinha).toString();
-            //Mensagem_Erro("\""+Resultado+"\"","Aviso de Programador");
+            //Mensagem_Alerta("\""+Resultado+"\"","Aviso de Programador");
             return Resultado;
         }else{
             return "";
@@ -464,7 +497,7 @@ public class ConfigClass {
             setAtualizacaoLocalhostIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo")));
 
 } catch (java.io.IOException exc) {
-            //Mensagem_Erro("Não foi possivel abrir o arquivo!","AVISO");
+            //Mensagem_Alerta("Não foi possivel abrir o arquivo!","AVISO");
             //ExemploDeConteudo();
             //TxtScript.setEnabled(true);
             //CmbScript.setEnabled(true);
