@@ -10,15 +10,10 @@ import Classes.ImagemTratavel;
 import Classes.XmlDeEquip.XMLdeEquip;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -826,7 +821,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     private void EsticarFundo() {
         ImagemTratavel Fundo = new ImagemTratavel("/Imagem/Fundos/tela_1492x1024.png");
-        Fundo.setEsticar(LblFundo.getWidth(),LblFundo.getHeight());
+        //Fundo.setEsticar(LblFundo.getWidth(),LblFundo.getHeight());
+        Fundo.setZoom(
+            ((double)LblFundo.getWidth())/((double)Fundo.getLargura())
+        );
         LblFundo.setIcon(Fundo.getIcone());
     }
     @SuppressWarnings("unchecked")
