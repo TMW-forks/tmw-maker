@@ -48,7 +48,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 MnuEditar.setEnabled(false);
                 MnuJogo.setEnabled(false);
                 MnuAjuda.setEnabled(false);
-
+                VerificarBarraDeFerramentas();
 
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
                 FrmPrincipal.PgbBarra.setString("Baixando...");
@@ -115,6 +115,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 MnuEditar.setEnabled(true);
                 MnuJogo.setEnabled(true);
                 MnuAjuda.setEnabled(true);
+                VerificarBarraDeFerramentas();
 
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             }
