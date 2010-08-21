@@ -7,6 +7,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class ImagemTratavel {
@@ -15,6 +16,9 @@ public class ImagemTratavel {
     }
     public ImagemTratavel(BufferedImage NovaImagem) {
         setImage(NovaImagem);
+    }
+    public ImagemTratavel(URL Resource) {
+        setEndereço(Resource.getFile());
     }
 
     BufferedImage Imagem;

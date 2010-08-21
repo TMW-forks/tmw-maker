@@ -6,6 +6,7 @@ package Formularios;
 import Classes.BancoDeDados.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_Itens;
+import Classes.ImagemTratavel;
 import Classes.XmlDeEquip.XMLdeEquip;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -13,6 +14,7 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -818,6 +820,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnAjudaIndicarDefeito.setEnabled(MnuAjuda.isEnabled() && MnuAjudaIndicarDefeito.isEnabled());
         BtnAjudaSobre.setEnabled(MnuAjuda.isEnabled() && MnuAjudaSobre.isEnabled());
     }
+    private void EsticarFundo() {
+        ImagemTratavel Fundo = new ImagemTratavel(getClass().getResource("/Imagem/Fundos/tela_1492x1024.png"));
+        //Fundo.setEsticar(LblFundo.getWidth(),LblFundo.getHeight());
+        Fundo.setZoom(((double)this.getWidth())/1492.0);
+        jLabel1.setIcon(new ImageIcon(Fundo.getImage()));
+        //this.setTitle(LblFundo.getWidth()+","+LblFundo.getHeight());
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -903,8 +912,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 formWindowActivated(evt);
             }
         });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
-        PnlBarraDeEstatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PnlBarraDeEstatus.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         PnlBarraDeEstatus.setAlignmentX(0.0F);
         PnlBarraDeEstatus.setAlignmentY(0.0F);
 
@@ -922,7 +936,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatusLayout.setHorizontalGroup(
             PnlBarraDeEstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlBarraDeEstatusLayout.createSequentialGroup()
-                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(PgbBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -933,7 +947,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/tela_1028x1024.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/tela_1492x1024.png"))); // NOI18N
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         jToolBar1.setFloatable(false);
@@ -1429,15 +1443,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 716, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1624,6 +1638,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         VerificarMenus();
         VerificarBarraDeFerramentas();
+        EsticarFundo();
     }//GEN-LAST:event_formWindowActivated
     private void MnuJogoLocalhostAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoLocalhostAtualizarActionPerformed
         LocalhostReceber();
@@ -1674,6 +1689,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void BtnAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAjudaSobreActionPerformed
         if(MnuAjuda.isEnabled() && MnuAjudaSobre.isEnabled()) MnuAjudaSobreActionPerformed(evt);
     }//GEN-LAST:event_BtnAjudaSobreActionPerformed
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        EsticarFundo();
+    }//GEN-LAST:event_formComponentResized
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1755,4 +1774,5 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+
 }
