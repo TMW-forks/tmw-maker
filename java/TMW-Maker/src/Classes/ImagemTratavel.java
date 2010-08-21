@@ -3,22 +3,36 @@ package Classes;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class ImagemTratavel {
-    public ImagemTratavel(String Endereco) {
-        setEndereço(Endereco);
+    public ImagemTratavel(String EnderecoOuResource) {
+        try{
+            ImageIcon Icone = new ImageIcon(getClass().getResource(EnderecoOuResource));
+            setImage(Icone.getImage());
+        }catch(NullPointerException E){
+            setEndereço(EnderecoOuResource);
+        }
     }
     public ImagemTratavel(BufferedImage NovaImagem) {
         setImage(NovaImagem);
     }
-    public ImagemTratavel(URL Resource) {
-        setEndereço(Resource.getFile());
+    public ImagemTratavel(Image NovaImagem) {
+        setImage(NovaImagem);
+    }
+    public ImagemTratavel(URL Endereco) {
+        ImageIcon Icone = new ImageIcon(Endereco);
+        setImage(Icone.getImage());
+    }
+    public ImagemTratavel(ImageIcon Icone) {
+        setImage(Icone.getImage());
     }
 
     BufferedImage Imagem;
@@ -28,8 +42,21 @@ public class ImagemTratavel {
         ImagemEndereco="";
         Imagem = NovaImagem;
     }
+    public void setImage(ImageIcon NovaImagem){
+        setImage(NovaImagem.getImage());
+    }
+    public void setImage(Image NovaImagem) {
+        BufferedImage Buff = new BufferedImage(NovaImagem.getWidth(null), NovaImagem.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = Buff.createGraphics();
+        g.drawImage(NovaImagem, 0, 0, null);
+        ImagemEndereco="";
+        Imagem = Buff;
+    }
     public BufferedImage getImage() {
         return Imagem;
+    }
+    public ImageIcon getIcone() {
+        return new ImageIcon(Imagem);
     }
     public String getTipo(){
         String ParteDoEndereco[]=ImagemEndereco.split("\\.");
