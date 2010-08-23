@@ -1043,7 +1043,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jToolBar1.add(jSeparator11);
 
         BtnJogoExecular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_play.png"))); // NOI18N
-        BtnJogoExecular.setToolTipText("Executar Localhost (Ctrl+F9)");
+        BtnJogoExecular.setToolTipText("Executar Localhost (F9)");
         BtnJogoExecular.setFocusable(false);
         BtnJogoExecular.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnJogoExecular.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
