@@ -1,0 +1,13 @@
+#labels GNU,GPL,Licença,TMW-Maker
+*GNU General Public License version 3* (Licença Pública Geral versão 3), GNU GPL v3 ou simplesmente GPL v3, é a designação da licença para software livre idealizada por Richard Stallman no final da década de 1980, no âmbito do projecto GNU da Free Software Foundation (FSF).
+
+A GPL é a licença com maior utilização por parte de projectos de software livre, em grande parte devido à sua adoção para o projeto GNU e o sistema operacional GNU/Linux. O software utilizado para administrar o conteúdo da Wikipédia é coberto por esta licença, na sua versão 2.0 ou superiores.
+
+Em termos gerais, a GPL baseia-se em 4 liberdades:
+
+ * *Liberdade nº0* - A liberdade de executar o programa, para qualquer propósito.
+ * *Liberdade nº1* - A liberdade de estudar como o programa funciona e adaptá-lo para as suas necessidades. O acesso ao código-fonte é um pré-requisito para esta liberdade.
+ * *Liberdade nº2* - A liberdade de redistribuir cópias de modo que você possa ajudar ao seu próximo.
+ * *Liberdade nº3* - A liberdade de aperfeiçoar o programa, e liberar os seus aperfeiçoamentos, de modo que toda a comunidade se beneficie deles. O acesso ao código-fonte é um pré-requisito para esta liberdade.
+
+*FONTE DE INFORMAÇÃO:* [http://pt.wikipedia.org/wiki/GNU_GPL]
