@@ -1,9 +1,13 @@
-#labels Wiki
+#labels Wiki,Abas,projeto,engine,tmw,maker
 =WIKI TMW-Maker=
 
 ==Como ajudar ao projeto TMW-Maker?==
-Você pode participar conhecendo o projeto e dando sua opinião. Ou se você tem experiencia com o [EathenaScript Eathena Script] do TMW-BR e em Aplicações Gráfica, pode contribuir dando sugestões de aprendizado.
+Você pode colaborar como o projeto e dando sugestões. Se você tem experiência, também poderá ajudar com o [EathenaScript Eathena Script] do TMW-BR e com Aplicações Gráfica em Java pode participar editando partes do projeto.
 
-Sou eu, [mailto:rui.gravata@gotmail.com Lunovox], quem está responsável por criar esta ferramenta, Mas confesso que seu completamente leigo no desenvolvimento de Aplicações Gráficas em [Java] no Ubuntu Linux. Comprei um livro de desenvolvimento de [Java] no [NetBeans]. Embora não tenha experiencia em Aplicações Gráficas no Ubuntu Linux, tenho conhecimento no desenvolvimento de Aplicações Gráficas no Windows em Visual Basic e PHP. Faz mais de 15 anos que não mexo em C++.
+|| *DICA:* Se vc está enteressado em ajudar, comece entendendo a utilidade cada Aba deste site, que está inglês acima, clicando [abaswiki AQUI]. ||
 
-|| *DICA:* Comece entendendo a utilidade cada Aba, que está inglês acima, clicando [abaswiki AQUI]. ||
+<p align="center"><wiki:video url="http://www.youtube.com/watch?v=kAKlXVji62A" width="640" height="505"/>
+
+==Membros do Projeto==
+ * *Lunovox* - Fundador e Administrador autoditada para Java.
+ * *Ablankzin* - DEV baixarelando em Ciência da Computação, habilitado em Java.
