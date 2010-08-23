@@ -705,7 +705,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagem/Botoes/sbl_play.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Executar Localhost (Ctrl+F9)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Executar Localhost (F9)"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
