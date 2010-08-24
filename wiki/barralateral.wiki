@@ -13,8 +13,8 @@
  * [versoes_tmwmaker Download do TMW-Maker]
  * Menu
   * Sistema
-   * [Alteracoes Alterações (Ctrl+F12)]
-   * [Atualizar Atualizar (F12)]
+   * [Alteracoes Alterações (F12)]
+   * [Atualizar Atualizar (Ctrl+F12)]
    * [Configuracao Configurações (Ctrl+G)]
     * Conexão
      * [TxtConfiguracaoConexaoRepositorio Repositório]
