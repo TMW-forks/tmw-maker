@@ -35,7 +35,7 @@
     * [EditarPersonagemScript Script (Ctrl+N)]
   * Jogo
    * [JogoExecutar Executar (F9)]
-   * Localhost]
+   * Localhost
     * [JogoLocalhost Supervisionar (Ctrl+L)]
     * [JogoLocalhostAtualizar Atualizar (Ctrl+PageDown)]
     * [JogoLocalhostCompartilhar Compartilhar (Ctrl+PageUp)]
