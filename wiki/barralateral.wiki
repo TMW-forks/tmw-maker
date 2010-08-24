@@ -35,7 +35,10 @@
     * [EditarPersonagemScript Script (Ctrl+N)]
   * Jogo
    * [JogoExecutar Executar (F9)]
-   * [JogoLocalhost Localhost (Ctrl+L)]
+   * Localhost]
+    * [JogoLocalhost Supervisionar (Ctrl+L)]
+    * [JogoLocalhostAtualizar Atualizar (Ctrl+PageDown)]
+    * [JogoLocalhostCompartilhar Compartilhar (Ctrl+PageUp)]
  * [Ferramentas Ferramentas de DEVs]
   * [OpenJDK OpenJDK Java 6 Runtime]
   * [NetBeans NetBeans IDE 6.7.1]
