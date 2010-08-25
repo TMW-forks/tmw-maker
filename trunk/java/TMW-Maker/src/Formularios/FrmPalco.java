@@ -97,124 +97,130 @@ public class FrmPalco extends javax.swing.JDialog {
             streamReader.close();
             stream.close();
 
-            int blocos = 0, AbreBloco=0, PontaDeBloco=0, FechaBloco=0;
-            do{
-                AbreBloco= Conteudo.indexOf("{",AbreBloco+1);
-                if(AbreBloco>=1) blocos++;
-            }while(AbreBloco>=1);
-            if(blocos>=1){
-                Instancia= new BlocoDeScript[blocos]; // Diz que são 2 Instancias
-                Object[] TituloDeBloco= new java.lang.Object[blocos];
-                StringBuffer Manipulador = null;
-                String[] ParteDeSessao= null;
-                String[] ParteDoMapa= null;
-                String[] ParteDaPosicao= null;
-                String[] ParteFacutativa= null;
-                int Sel=-1;
-                
-                for(int i=0;i<blocos;i++){
-                    AbreBloco=FechaBloco;
-                    Manipulador = new StringBuffer(Conteudo);
-                    Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
+            if(!Conteudo.isEmpty() && !Conteudo.trim().equals("")){
+                int blocos = 0, AbreBloco=0, PontaDeBloco=0, FechaBloco=0;
+                do{
+                    AbreBloco= Conteudo.indexOf("{",AbreBloco+1);
+                    if(AbreBloco>=1) blocos++;
+                }while(AbreBloco>=1);
+                if(blocos>=1){
+                    Instancia= new BlocoDeScript[blocos]; // Diz que são 2 Instancias
+                    Object[] TituloDeBloco= new java.lang.Object[blocos];
+                    StringBuffer Manipulador = null;
+                    String[] ParteDeSessao= null;
+                    String[] ParteDoMapa= null;
+                    String[] ParteDaPosicao= null;
+                    String[] ParteFacutativa= null;
+                    int Sel=-1;
 
-                    AbreBloco= Conteudo.indexOf("{",AbreBloco)+1;//Só adiciona +1 pq foi feito o teste de existencia de blocos;
-                    Manipulador.reverse();
-                    PontaDeBloco=0;
-                    PontaDeBloco= Manipulador.indexOf("\n",Conteudo.length()-AbreBloco);
-                    if(PontaDeBloco>=1){
+                    for(int i=0;i<blocos;i++){
+                        AbreBloco=FechaBloco;
+                        Manipulador = new StringBuffer(Conteudo);
+                        Instancia[i] = new BlocoDeScript();// Cria o Instancia nº0
+
+                        AbreBloco= Conteudo.indexOf("{",AbreBloco)+1;//Só adiciona +1 pq foi feito o teste de existencia de blocos;
                         Manipulador.reverse();
-                        PontaDeBloco= Conteudo.length()-PontaDeBloco;//Recolaliza ponta de Bloco ao Inverter String
-                    }else{
-                        PontaDeBloco=0;//Põe a Ponta de Bloco no inicio do código
-                    }
-                    
-                    Cabecalho=Conteudo.substring(PontaDeBloco,AbreBloco-1);
-                    FechaBloco= Conteudo.indexOf("}",AbreBloco);//Só adiciona +1 pq foi feito o teste de existencia de blocos;
-                    Bloco=Conteudo.substring(AbreBloco+1,FechaBloco-1);
-
-                    ParteDeSessao = Cabecalho.split("\t");
-                    if(ParteDeSessao.length>=2){
-                        if(ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
-                            Instancia[i].setTipo("function");
-                            Instancia[i].setNome(ParteDeSessao[2].toString());
-                            Instancia[i].setMapa("");
-                            Instancia[i].setX(0);
-                            Instancia[i].setY(0);
-                            Instancia[i].setLarguraDeGatilho(0);
-                            Instancia[i].setAlturaDeGatilho(0);
-                            TituloDeBloco[i] = new Object();
-                            TituloDeBloco[i] = "<html><font color=\"#888888\">"+(i+1) + "º function</font> " +Instancia[i].getNome()+"<font color=\"#888888\">( )</font>";
-                        }else if(!ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
-                            Instancia[i].setTipo("script");
-                            Instancia[i].setNome(ParteDeSessao[2].toString());
-
-                            ParteDaPosicao = ParteDeSessao[0].split(",");
-                            ParteDoMapa = ParteDaPosicao[0].split("\\.");
-                            //Mensagem_Erro("ParteDoMapa=\""+ParteDoMapa[0].toString()+"\"", "Nota de Programador");
-                            Instancia[i].setMapa(ParteDoMapa[0].toString());
-                            Instancia[i].setX(Integer.parseInt(ParteDaPosicao[1].toString()));
-                            Instancia[i].setY(Integer.parseInt(ParteDaPosicao[2].toString()));
-
-                            ParteFacutativa = ParteDeSessao[3].split(",");
-                            Instancia[i].setImagem(Integer.parseInt(ParteFacutativa[0].toString()));
-                            if(ParteFacutativa.length>=2) {
-                                if(!ParteFacutativa[1].equals("")) {
-                                    Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[1].equals("")?"0":ParteFacutativa[1]));
-                                }
-                            }
-                            if(ParteFacutativa.length>=3) {
-                                if(!ParteFacutativa[2].equals("")) {
-                                    //Instancia[i].setAlturaDeGatilho(Integer.parseInt(ParteFacutativa[2].toString()));
-                                    Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[2].equals("")?"0":ParteFacutativa[2]));
-                                }
-                            }
-                            TituloDeBloco[i] = new Object();
-                            TituloDeBloco[i] = "<html>" +
-                                "<font color=\"#888888\">"+(i+1) + "º script</font> " +
-                                Instancia[i].getNome()+
-                                " <font color=\"#888888\">"+
-                                    "("+Instancia[i].getMapa()+":"+Instancia[i].getX()+","+Instancia[i].getY()+")"+
-                                    " [img "+Instancia[i].getImagem()+":"+Instancia[i].getLarguraDeGatilho()+","+Instancia[i].getAlturaDeGatilho()+"]"+
-                                "</font>";
+                        PontaDeBloco=0;
+                        PontaDeBloco= Manipulador.indexOf("\n",Conteudo.length()-AbreBloco);
+                        if(PontaDeBloco>=1){
+                            Manipulador.reverse();
+                            PontaDeBloco= Conteudo.length()-PontaDeBloco;//Recolaliza ponta de Bloco ao Inverter String
+                        }else{
+                            PontaDeBloco=0;//Põe a Ponta de Bloco no inicio do código
                         }
-                        Instancia[i].setScript(Bloco);
 
-                        if(i==blocos-1){
-                            Sel=CmbScript.getSelectedIndex();
-                            CmbScript.setModel(new DefaultComboBoxModel(TituloDeBloco));
+                        Cabecalho=Conteudo.substring(PontaDeBloco,AbreBloco-1);
+                        FechaBloco= Conteudo.indexOf("}",AbreBloco);//Só adiciona +1 pq foi feito o teste de existencia de blocos;
+                        Bloco=Conteudo.substring(AbreBloco+1,FechaBloco-1);
 
-                            if(Sel<0 || Sel>CmbScript.getItemCount()-1)  Sel=CmbScript.getItemCount()-1;
+                        ParteDeSessao = Cabecalho.split("\t");
+                        if(ParteDeSessao.length>=2){
+                            if(ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
+                                Instancia[i].setTipo("function");
+                                Instancia[i].setNome(ParteDeSessao[2].toString());
+                                Instancia[i].setMapa("");
+                                Instancia[i].setX(0);
+                                Instancia[i].setY(0);
+                                Instancia[i].setLarguraDeGatilho(0);
+                                Instancia[i].setAlturaDeGatilho(0);
+                                TituloDeBloco[i] = new Object();
+                                TituloDeBloco[i] = "<html><font color=\"#888888\">"+(i+1) + "º function</font> " +Instancia[i].getNome()+"<font color=\"#888888\">( )</font>";
+                            }else if(!ParteDeSessao[0].equals("function") && ParteDeSessao[1].equals("script")){
+                                Instancia[i].setTipo("script");
+                                Instancia[i].setNome(ParteDeSessao[2].toString());
 
-                            CmbScript.setSelectedIndex(Sel);
-                            TxtScriptPalco.setText(Instancia[Sel].getScript());
+                                ParteDaPosicao = ParteDeSessao[0].split(",");
+                                ParteDoMapa = ParteDaPosicao[0].split("\\.");
+                                //Mensagem_Erro("ParteDoMapa=\""+ParteDoMapa[0].toString()+"\"", "Nota de Programador");
+                                Instancia[i].setMapa(ParteDoMapa[0].toString());
+                                Instancia[i].setX(Integer.parseInt(ParteDaPosicao[1].toString()));
+                                Instancia[i].setY(Integer.parseInt(ParteDaPosicao[2].toString()));
 
-                            /*Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[Sel].getImagem());
-                            ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
-                            Imagem.setZoom(24/Imagem.getAltura());
-                            LblAparencia.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
-                            LblAparencia.setToolTipText("<html><font size=\"+1\">"+
-                                "<b>Aparência(ID:"+NPC.getID()+"):</b> " + NPC.getNome()+"<br/>"+
-                                "<b>Imagem:</b> " + NPC.getXML()+"?img="+NPC.getVariante()+" ("+NPC.getImagem().getWidth()+"x"+NPC.getImagem().getHeight()+"px)"+"<br/>"+
-                                "<b>Comentário:</b> " + NPC.getComentario()+"<br/>"
-                            );/**/
+                                ParteFacutativa = ParteDeSessao[3].split(",");
+                                Instancia[i].setImagem(Integer.parseInt(ParteFacutativa[0].toString()));
+                                if(ParteFacutativa.length>=2) {
+                                    if(!ParteFacutativa[1].equals("")) {
+                                        Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[1].equals("")?"0":ParteFacutativa[1]));
+                                    }
+                                }
+                                if(ParteFacutativa.length>=3) {
+                                    if(!ParteFacutativa[2].equals("")) {
+                                        //Instancia[i].setAlturaDeGatilho(Integer.parseInt(ParteFacutativa[2].toString()));
+                                        Instancia[i].setLarguraDeGatilho(Integer.parseInt(ParteFacutativa[2].equals("")?"0":ParteFacutativa[2]));
+                                    }
+                                }
+                                TituloDeBloco[i] = new Object();
+                                TituloDeBloco[i] = "<html>" +
+                                    "<font color=\"#888888\">"+(i+1) + "º script</font> " +
+                                    Instancia[i].getNome()+
+                                    " <font color=\"#888888\">"+
+                                        "("+Instancia[i].getMapa()+":"+Instancia[i].getX()+","+Instancia[i].getY()+")"+
+                                        " [img "+Instancia[i].getImagem()+":"+Instancia[i].getLarguraDeGatilho()+","+Instancia[i].getAlturaDeGatilho()+"]"+
+                                    "</font>";
+                            }
+                            Instancia[i].setScript(Bloco);
+
+                            if(i==blocos-1){
+                                Sel=CmbScript.getSelectedIndex();
+                                CmbScript.setModel(new DefaultComboBoxModel(TituloDeBloco));
+
+                                if(Sel<0 || Sel>CmbScript.getItemCount()-1)  Sel=CmbScript.getItemCount()-1;
+
+                                CmbScript.setSelectedIndex(Sel);
+                                TxtScriptPalco.setText(Instancia[Sel].getScript());
+
+                                /*Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[Sel].getImagem());
+                                ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+                                Imagem.setZoom(24/Imagem.getAltura());
+                                LblAparencia.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
+                                LblAparencia.setToolTipText("<html><font size=\"+1\">"+
+                                    "<b>Aparência(ID:"+NPC.getID()+"):</b> " + NPC.getNome()+"<br/>"+
+                                    "<b>Imagem:</b> " + NPC.getXML()+"?img="+NPC.getVariante()+" ("+NPC.getImagem().getWidth()+"x"+NPC.getImagem().getHeight()+"px)"+"<br/>"+
+                                    "<b>Comentário:</b> " + NPC.getComentario()+"<br/>"
+                                );/**/
+                            }
+                            
+                        }else{
+                            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Cabeçalho de Bloco com formato inválido!");
+                            Mensagem_Erro(
+                                "Cabeçalho de Bloco com formato inválido!\n"+
+                                "<html><font color=\"#FF0000\">"+Cabecalho,
+                                "ERRO"
+                            );
                         }
-                    }else{
-                        FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Cabeçalho de Bloco com formato inválido!");
-                        Mensagem_Erro(
-                            "Cabeçalho de Bloco com formato inválido!\n"+
-                            "<html><font color=\"#FF0000\">"+Cabecalho,
-                            "ERRO"
-                        );
+                        TxtScriptPalco.setEnabled(true);
+                        BarraDeCodigos(true);
+                        CmbScript.setEnabled(true);
+                        BtnSalvarBloco.setEnabled(false);
                     }
+                    this.setTitle("Editor de Scripts ["+Endereco+"]");
+                }else{
+                    FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> O arquivo possui conteúdo incompatível com o Eathena Script!");
+                    Mensagem_Erro("O arquivo possui conteúdo incompatível com o Eathena Script!", "ERRO");
                 }
-                TxtScriptPalco.setEnabled(true);
-                BarraDeCodigos(true);
-                CmbScript.setEnabled(true);
-                BtnSalvarBloco.setEnabled(false);
-                this.setTitle("Editor de Scripts ["+Endereco+"]");
             }else{
-                FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> O arquivo possui conteúdo incompatível com o Eathena Script!");
-                Mensagem_Erro("O arquivo possui conteúdo incompatível com o Eathena Script!", "ERRO");
+                FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:</font> O arquivo está vazio!");
+                Mensagem_Erro("O arquivo está vazio!", "AVISO");
             }
         } catch (java.io.IOException exc) {
             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">ERRO:</font> Não foi possivel abrir \""+FrmScript.EnderecoDoScript+"\"!");
@@ -269,8 +275,9 @@ public class FrmPalco extends javax.swing.JDialog {
         });
 
         TxtScriptPalco.setColumns(20);
-        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14));
+        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         TxtScriptPalco.setRows(5);
+        TxtScriptPalco.setEnabled(false);
         TxtScriptPalco.setSelectedTextColor(java.awt.Color.black);
         TxtScriptPalco.setSelectionColor(new java.awt.Color(145, 254, 124));
         TxtScriptPalco.addCaretListener(new javax.swing.event.CaretListener() {
