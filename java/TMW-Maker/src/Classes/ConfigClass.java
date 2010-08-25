@@ -285,6 +285,36 @@ public class ConfigClass {
             return false;
         }
     }
+    public boolean ScriptSalvar(String Endereco, String Conteudo){
+        try {
+            BufferedWriter Capsula = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Endereco),"UTF-8"));
+            String Cabecalho="";
+            Capsula.write(Conteudo);
+            Capsula.flush();
+            Capsula.close();
+            return true;
+        } catch (java.io.IOException exc) {
+            return false;
+        }
+    }
+    public String ScriptAbrir(String Endereco){
+        try {
+            String Conteudo="", Linha="";
+            BufferedReader Capsula = new BufferedReader(new InputStreamReader(new FileInputStream(Endereco),"UTF-8"));
+            while ((Linha = Capsula.readLine()) != null) {
+                if(!Conteudo.equals("")){
+                    Conteudo=Conteudo+"\n"+Linha;
+                }else{
+                    Conteudo=Linha;
+                }
+            }
+            Capsula.close();
+            return Conteudo;
+        } catch (java.io.IOException exc) {
+            return null;
+        }
+    }
+
     public void Apagar(String PastaOuArquivo){
         File Objeto = new File(PastaOuArquivo);
         Objeto.delete();

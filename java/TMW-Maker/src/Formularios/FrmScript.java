@@ -11,8 +11,73 @@ public class FrmScript extends javax.swing.JDialog {
     }
 
     static String Barra = System.getProperty("file.separator");
+    public static String Base=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc";
     public static String EnderecoDoScript="";
+    public static String PatasDoScript="";
+    public static String TipoDeCodigo = "";
 
+    public static void ListarArquivos(){
+        javax.swing.tree.DefaultMutableTreeNode No1 = new javax.swing.tree.DefaultMutableTreeNode("localhost");
+        javax.swing.tree.DefaultMutableTreeNode No2 = null;
+
+        if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+            javax.swing.tree.DefaultMutableTreeNode No3 = null;
+            javax.swing.tree.DefaultMutableTreeNode No4 = null;
+            String Pasta[] = FrmPrincipal.Config.ListarPastas(Base);
+            String Arquivo[] = null;
+            int ContArquivos=0;
+            No2 = new javax.swing.tree.DefaultMutableTreeNode("Scripts");
+            for(int p=0; p<Pasta.length; p++){
+                if(!Pasta[p].equals(".svn") && !Pasta[p].equals("functions")){
+                    //TxtScript.setText(TxtScript.getText()+Pasta[p]+"\n");
+                    No3 = new javax.swing.tree.DefaultMutableTreeNode(Pasta[p]);
+                    No2.add(No3);
+
+                    ContArquivos=0;
+                    Arquivo = FrmPrincipal.Config.ListarArquivos(Base+Barra+Pasta[p]);
+                    for(int a=0; a<Arquivo.length; a++){
+                        if(
+                            !Arquivo[a].substring(Arquivo[a].toString().length()-1, Arquivo[a].toString().length()).equals("~") &&
+                            !Arquivo[a].equals("_import.txt") &&
+                            !Arquivo[a].equals("_mobs.txt") &&
+                            !Arquivo[a].equals("_warps.txt")
+                        ){
+                            ContArquivos++;
+                            //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");
+                            No4 = new javax.swing.tree.DefaultMutableTreeNode(Arquivo[a]);
+                            No3.add(No4);
+                        }
+                    }
+                    if(ContArquivos==0){
+                        No4 = new javax.swing.tree.DefaultMutableTreeNode("<vazio>");
+                        No3.add(No4);
+                    }
+                }
+            }
+            No1.add(No2);
+
+            ContArquivos=0;
+            No2 = new javax.swing.tree.DefaultMutableTreeNode("Funções");
+            Arquivo = FrmPrincipal.Config.ListarArquivos(Base+Barra+"functions");
+            for(int a=0; a<Arquivo.length; a++){
+                ContArquivos++;
+                //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");
+                No3 = new javax.swing.tree.DefaultMutableTreeNode(Arquivo[a]);
+                No2.add(No3);
+            }
+            if(ContArquivos==0){
+                No3 = new javax.swing.tree.DefaultMutableTreeNode("<vazio>");
+                No2.add(No3);
+            }
+            No1.add(No2);
+
+        }else{
+            No2 = new javax.swing.tree.DefaultMutableTreeNode("<localhost-pendente>");
+            No1.add(No2);
+        }
+
+        TreScripts.setModel(new javax.swing.tree.DefaultTreeModel(No1));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -136,29 +201,40 @@ public class FrmScript extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TreScriptsValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_TreScriptsValueChanged
-        if(evt.getPath().getPathCount()==2 && !evt.getPath().getPathComponent(1).toString().equals("<localhost-pendente>")){
+        if(evt.getPath().getPathCount()==3 && evt.getPath().getPathComponent(1).toString().equals("Scripts")){
+            PatasDoScript=evt.getPath().getPathComponent(2).toString();
+            //EnderecoDoScript=PatasDoScript+Barra+evt.getPath().getLastPathComponent().toString();
             BtnNovo.setEnabled(true);
+            TipoDeCodigo="Scripts";
+        }else if(evt.getPath().getPathCount()==2 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
+            PatasDoScript="functions";
+            //EnderecoDoScript=PatasDoScript+Barra+evt.getPath().getLastPathComponent().toString();
+            BtnNovo.setEnabled(true);
+            TipoDeCodigo="Funções";
         }else{
             BtnNovo.setEnabled(false);
+            TipoDeCodigo="";
         }
-
-        EnderecoDoScript=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc";
+        
         if(evt.getPath().getPathCount()==4){
+            TipoDeCodigo="Scripts";
             BtnAbrir.setEnabled(true);
             BtnExcluir.setEnabled(true);
             String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
             String PartesDoEndereco[]=Endereco.split(", ");
+            EnderecoDoScript=Base;
             for(int t=2;t<PartesDoEndereco.length;t++){
                 EnderecoDoScript+=Barra+evt.getPath().getPathComponent(t).toString();
             }
             //setTitle("EnderecoDoScript = \""+EnderecoDoScript+"\"");
             setTitle("Script - "+evt.getPath().getLastPathComponent().toString());
         }else if(evt.getPath().getPathCount()==3 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
+            TipoDeCodigo="Funções";
             BtnAbrir.setEnabled(true);
             BtnExcluir.setEnabled(true);
             String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
             String PartesDoEndereco[]=Endereco.split(", ");
-            EnderecoDoScript+=Barra+"functions";
+            EnderecoDoScript=Base+Barra+"functions";
             for(int t=2;t<PartesDoEndereco.length;t++){
                 EnderecoDoScript+=Barra+evt.getPath().getPathComponent(t).toString();
             }
@@ -168,7 +244,7 @@ public class FrmScript extends javax.swing.JDialog {
             BtnAbrir.setEnabled(false);
             BtnExcluir.setEnabled(false);
             setTitle("Árvore de Scripts");
-        }
+        }/**/
         
         //setTitle("getPathCount() = \""+evt.getPath().getPathCount()+"\" getPathComponent(1) = \""+evt.getPath().getPathComponent(1).toString()+"\"");
 
@@ -180,66 +256,7 @@ public class FrmScript extends javax.swing.JDialog {
         //setTitle("lenght - "+evt.getPaths().length);
     }//GEN-LAST:event_TreScriptsValueChanged
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        javax.swing.tree.DefaultMutableTreeNode No1 = new javax.swing.tree.DefaultMutableTreeNode("localhost");
-        javax.swing.tree.DefaultMutableTreeNode No2 = null;
-
-        if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
-            javax.swing.tree.DefaultMutableTreeNode No3 = null;
-            javax.swing.tree.DefaultMutableTreeNode No4 = null;
-            String Pasta[] = FrmPrincipal.Config.ListarPastas(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc");
-            String Arquivo[] = null;
-            int ContArquivos=0;
-            No2 = new javax.swing.tree.DefaultMutableTreeNode("Scripts");
-            for(int p=0; p<Pasta.length; p++){
-                if(!Pasta[p].equals(".svn") && !Pasta[p].equals("functions")){
-                    //TxtScript.setText(TxtScript.getText()+Pasta[p]+"\n");
-                    No3 = new javax.swing.tree.DefaultMutableTreeNode(Pasta[p]);
-                    No2.add(No3);
-
-                    ContArquivos=0;
-                    Arquivo = FrmPrincipal.Config.ListarArquivos(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc"+Barra+Pasta[p]);
-                    for(int a=0; a<Arquivo.length; a++){
-                        if(
-                            !Arquivo[a].substring(Arquivo[a].toString().length()-1, Arquivo[a].toString().length()).equals("~") &&
-                            !Arquivo[a].equals("_import.txt") &&
-                            !Arquivo[a].equals("_mobs.txt") &&
-                            !Arquivo[a].equals("_warps.txt")
-                        ){
-                            ContArquivos++;
-                            //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");
-                            No4 = new javax.swing.tree.DefaultMutableTreeNode(Arquivo[a]);
-                            No3.add(No4);
-                        }
-                    }
-                    if(ContArquivos==0){
-                        No4 = new javax.swing.tree.DefaultMutableTreeNode("<vazio>");
-                        No3.add(No4);
-                    }
-                }
-            }
-            No1.add(No2);
-
-            ContArquivos=0;
-            No2 = new javax.swing.tree.DefaultMutableTreeNode("Funções");
-            Arquivo = FrmPrincipal.Config.ListarArquivos(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc"+Barra+"functions");
-            for(int a=0; a<Arquivo.length; a++){
-                ContArquivos++;
-                //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");
-                No3 = new javax.swing.tree.DefaultMutableTreeNode(Arquivo[a]);
-                No2.add(No3);
-            }
-            if(ContArquivos==0){
-                No3 = new javax.swing.tree.DefaultMutableTreeNode("<vazio>");
-                No2.add(No3);
-            }
-            No1.add(No2);
-
-        }else{
-            No2 = new javax.swing.tree.DefaultMutableTreeNode("<localhost-pendente>");
-            No1.add(No2);
-        }
-        
-        TreScripts.setModel(new javax.swing.tree.DefaultTreeModel(No1));
+        ListarArquivos();
     }//GEN-LAST:event_formWindowOpened
     private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
         javax.swing.JDialog FrmPalco = new FrmPalco(this, rootPaneCheckingEnabled);
@@ -251,7 +268,7 @@ public class FrmScript extends javax.swing.JDialog {
         FrmPalco.setVisible(true);
     }//GEN-LAST:event_BtnAbrirActionPerformed
     private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
-        javax.swing.JDialog FrmNovoScript = new FrmNovoScript(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmNovoScript = new FrmNovoScript2(this, rootPaneCheckingEnabled);
         FrmNovoScript.setLocation(
             ((this.getWidth() - FrmNovoScript.getWidth()) / 2) + this.getX(),
             ((this.getHeight() - FrmNovoScript.getHeight()) / 2) + this.getY());
