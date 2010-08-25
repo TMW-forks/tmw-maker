@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class FrmNovoScript2 extends javax.swing.JDialog {
+public class FrmNovoScript extends javax.swing.JDialog {
     static String Barra = System.getProperty("file.separator");
-    public FrmNovoScript2(java.awt.Dialog parent, boolean modal) {
+    public FrmNovoScript(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -234,7 +234,7 @@ public class FrmNovoScript2 extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmNovoScript2 dialog = new FrmNovoScript2(new javax.swing.JDialog(), true);
+                FrmNovoScript dialog = new FrmNovoScript(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

@@ -268,7 +268,7 @@ public class FrmScript extends javax.swing.JDialog {
         FrmPalco.setVisible(true);
     }//GEN-LAST:event_BtnAbrirActionPerformed
     private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
-        javax.swing.JDialog FrmNovoScript = new FrmNovoScript2(this, rootPaneCheckingEnabled);
+        javax.swing.JDialog FrmNovoScript = new FrmNovoScript(this, rootPaneCheckingEnabled);
         FrmNovoScript.setLocation(
             ((this.getWidth() - FrmNovoScript.getWidth()) / 2) + this.getX(),
             ((this.getHeight() - FrmNovoScript.getHeight()) / 2) + this.getY());
