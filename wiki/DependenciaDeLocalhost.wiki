@@ -1,0 +1,21 @@
+#labels Dependência,Localhost,TMW-Maker
+==Sistema → Dependências → Localhost==
+
+Localhost é o nome do servidor de TMW-Maker que funciona 100% sem o uso de internet. Ele é muito usado por pessoas que desejam colabora com o desenvolvimento do jogo The Mana World Brasil. Quando um repositório(armazem na internet) de TMW é baixado e montado corretamente então somente assim o usuário obterá uma cópia de localhost. 
+
+===Pré-Requisitos para Baixar===
+ * Dependência de Configurações Resolvidas
+ * Dependência de SVN atendida.
+
+===Resolvendo a Dependência de SVN no Ubuntu===
+ # Verifique se as dependências de *Configuração* e de *SVN* estão resolvidas;
+ # Selecione a linha da depenência e Localhost;
+ # Precione o botão *Resolver*;
+
+Se a dependência de GCC já estiver previamente resolvida, então próprio TMW-Maker irá lhe perguntar se *você desejá montar seu localhost*. Caso a dependência de GCC não esteja previamente resolvida, ele nem ao menor fará esta pergunta.
+
+https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
+
+Mais simples que isso não existe! XD
+
+|| *NOTA:* Clique [TxtConfiguracaoConexaoRepositorio AQUI] e veja os tipos de configurações de "Conexão SVN" do TMW-Maker mais conveniente para você baixar seu localhost! ||
