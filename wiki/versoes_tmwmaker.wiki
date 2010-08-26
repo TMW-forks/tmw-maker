@@ -2,10 +2,14 @@
 =DOWNLOAD DO TMW-MAKER=
 O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por enquanto funciona apenas no sistemap operaciona Ubuntu Linux i386. Ou seja, se você possui windows nem adiante tentar usa-lo. Existe planos de de adapta-lo para o windows também, mas isso só ocorrerá após o final de sua construção.
 
-<p align="center"><wiki:video url="http://www.youtube.com/watch?v=FQQegzGHStk" width="640" height="505"/>
-
 || <img align="abscenter" src="http://www.dpsg-weil-der-stadt.de/forum/wcf/icon/fileTypeIconJavaM.png">*Download* || *Tamanho* || *Descrição* ||
 || *[https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar TMW-Maker.jar]* || ~4,1MB || Arquivos JAR são ROMs que precisão ser emuladas para funcionarem. Para emular essa versão necessita do emulador *[OpenJDK OpenJDK Java 6 Runtime]* instalado em seu computador. ||
 || *[CodigoFonte Código Fonte]* || Variante || Para programadores Java que desejam modificar o TMW-Maker ao seu proprio modo, respeitando os termos da licença *[GNU_GPL_v3 GNU GPL v3]*. Vão necessitar apenas do *[NetBeans IDE NetBeans 6.7]* (ou superior) para visualizar e editar este código fonte. ||
 
 || *OBSERVAÇÃO:* As utilidades acima só funcionarão no linux e se tiver todas as suas *[Dependencias Dependências]* pré-atendidas. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ||
+
+----
+
+==VÍDEO DEMONSTRATIVO==
+===Crie e Compartilher um NPC em 3 minutos sem usar programação===
+<p align="center"><wiki:video url="http://www.youtube.com/watch?v=FQQegzGHStk" width="640" height="505"/>
