@@ -8,7 +8,7 @@ O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por e
 
 || *OBSERVAÇÃO:* As utilidades acima só funcionarão no linux e se tiver todas as suas *[Dependencias Dependências]* pré-atendidas. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ||
 
-----
+
 
 ==VÍDEO DEMONSTRATIVO==
 ===Crie e Compartilher um NPC em 3 minutos sem usar programação===
