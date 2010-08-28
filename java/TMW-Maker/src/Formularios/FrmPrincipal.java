@@ -991,7 +991,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jToolBar1.add(BtnSistemaDependencias);
         jToolBar1.add(jSeparator7);
 
-        BtnEditorItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_xml.gif"))); // NOI18N
+        BtnEditorItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_armadura.png"))); // NOI18N
         BtnEditorItensSprites.setToolTipText("Novo Equipamento (Ctrl+Shift+I)");
         BtnEditorItensSprites.setFocusable(false);
         BtnEditorItensSprites.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1003,7 +1003,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(BtnEditorItensSprites);
 
-        BtnEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script_bloco.gif"))); // NOI18N
+        BtnEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
         BtnEditarItensDados.setToolTipText("Editor de Ítens (Ctrl+I)");
         BtnEditarItensDados.setFocusable(false);
         BtnEditarItensDados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1016,8 +1016,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jToolBar1.add(BtnEditarItensDados);
         jToolBar1.add(jSeparator8);
 
-        BtnEditarPersonagemScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script.png"))); // NOI18N
-        BtnEditarPersonagemScript.setToolTipText("Script de NPC (Ctrl+N");
+        BtnEditarPersonagemScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_arvore.png"))); // NOI18N
+        BtnEditarPersonagemScript.setToolTipText("Arvore de Scripts de NPC (Ctrl+N)");
         BtnEditarPersonagemScript.setFocusable(false);
         BtnEditarPersonagemScript.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnEditarPersonagemScript.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1205,12 +1205,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditar.setMnemonic('E');
         MnuEditar.setText("Editar");
 
-        MnuEditarItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
         MnuEditarItens.setMnemonic('I');
         MnuEditarItens.setText("Itens");
 
         MnuEditarItensSprites.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        MnuEditarItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_xml.gif"))); // NOI18N
+        MnuEditarItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_armadura.png"))); // NOI18N
         MnuEditarItensSprites.setMnemonic('S');
         MnuEditarItensSprites.setText("Novo Equipamento");
         MnuEditarItensSprites.addActionListener(new java.awt.event.ActionListener() {
@@ -1221,7 +1220,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarItens.add(MnuEditarItensSprites);
 
         MnuEditarItensDados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        MnuEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script_bloco.gif"))); // NOI18N
+        MnuEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
         MnuEditarItensDados.setMnemonic('D');
         MnuEditarItensDados.setText("Editor de Ítens");
         MnuEditarItensDados.addActionListener(new java.awt.event.ActionListener() {
@@ -1255,10 +1254,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarCampos);
 
-        MnuEditarPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))); // NOI18N
         MnuEditarPersonagem.setMnemonic('P');
         MnuEditarPersonagem.setText("Personagem (NPC)");
 
+        MnuEditarPersonagemAparencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))); // NOI18N
         MnuEditarPersonagemAparencia.setMnemonic('A');
         MnuEditarPersonagemAparencia.setText("Aparencia");
         MnuEditarPersonagemAparencia.setEnabled(false);
@@ -1270,9 +1269,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarPersonagem.add(MnuEditarPersonagemLoja);
 
         MnuEditarPersonagemScript.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        MnuEditarPersonagemScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script.png"))); // NOI18N
+        MnuEditarPersonagemScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_arvore.png"))); // NOI18N
         MnuEditarPersonagemScript.setMnemonic('S');
-        MnuEditarPersonagemScript.setText("Script");
+        MnuEditarPersonagemScript.setText("Árvore de Script de NPC");
         MnuEditarPersonagemScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnuEditarPersonagemScriptActionPerformed(evt);
@@ -1304,7 +1303,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarInimigos);
 
-        MnuEditarMagias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_arvore.gif"))); // NOI18N
+        MnuEditarMagias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_magica.png"))); // NOI18N
         MnuEditarMagias.setMnemonic('M');
         MnuEditarMagias.setText("Magias");
         MnuEditarMagias.setEnabled(false);

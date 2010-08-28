@@ -116,9 +116,6 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="MnuEditarItens">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_espada.gif"/>
-                </Property>
                 <Property name="mnemonic" type="int" value="73"/>
                 <Property name="text" type="java.lang.String" value="Itens"/>
               </Properties>
@@ -132,7 +129,7 @@
                       <KeyStroke key="Shift+Ctrl+I"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagem/Botoes/sbl_xml.gif"/>
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_armadura.png"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="83"/>
                     <Property name="text" type="java.lang.String" value="Novo Equipamento"/>
@@ -147,7 +144,7 @@
                       <KeyStroke key="Ctrl+I"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagem/Botoes/sbl_script_bloco.gif"/>
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_espada.gif"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="68"/>
                     <Property name="text" type="java.lang.String" value="Editor de &#xcd;tens"/>
@@ -193,9 +190,6 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="MnuEditarPersonagem">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_pessoa.gif"/>
-                </Property>
                 <Property name="mnemonic" type="int" value="80"/>
                 <Property name="text" type="java.lang.String" value="Personagem (NPC)"/>
               </Properties>
@@ -205,6 +199,9 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarPersonagemAparencia">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_pessoa.gif"/>
+                    </Property>
                     <Property name="mnemonic" type="int" value="65"/>
                     <Property name="text" type="java.lang.String" value="Aparencia"/>
                     <Property name="enabled" type="boolean" value="false"/>
@@ -223,10 +220,10 @@
                       <KeyStroke key="Ctrl+N"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagem/Botoes/sbl_script.png"/>
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_arvore.png"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="83"/>
-                    <Property name="text" type="java.lang.String" value="Script"/>
+                    <Property name="text" type="java.lang.String" value="&#xc1;rvore de Script de NPC"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuEditarPersonagemScriptActionPerformed"/>
@@ -270,7 +267,7 @@
             <Menu class="javax.swing.JMenu" name="MnuEditarMagias">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_arvore.gif"/>
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_magica.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="77"/>
                 <Property name="text" type="java.lang.String" value="Magias"/>
@@ -641,7 +638,7 @@
         <Component class="javax.swing.JButton" name="BtnEditorItensSprites">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_xml.gif"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_armadura.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Novo Equipamento (Ctrl+Shift+I)"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -655,7 +652,7 @@
         <Component class="javax.swing.JButton" name="BtnEditarItensDados">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_script_bloco.gif"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_espada.gif"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Editor de &#xcd;tens (Ctrl+I)"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -671,9 +668,9 @@
         <Component class="javax.swing.JButton" name="BtnEditarPersonagemScript">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_script.png"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_arvore.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Script de NPC (Ctrl+N"/>
+            <Property name="toolTipText" type="java.lang.String" value="Arvore de Scripts de NPC (Ctrl+N)"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
