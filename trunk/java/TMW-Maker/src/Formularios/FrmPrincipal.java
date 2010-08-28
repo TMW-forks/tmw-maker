@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -30,8 +31,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static XMLdeEquip xmlEditada; // É usado em FrmEquipXML***
 
     public static void setAvisoEmEstatus(String Aviso) {
+        setAvisoEmEstatus(Aviso.toString(), null);
+    }
+    public static void setAvisoEmEstatus(String Aviso, Icon Icone) {
         System.out.println(Aviso.toString());
         LblEstatus.setText(Aviso.toString());
+        LblEstatus.setIcon(Icone);
     }
 
     public void Atualizar(){
@@ -923,7 +928,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatus.setAlignmentX(0.0F);
         PnlBarraDeEstatus.setAlignmentY(0.0F);
 
-        LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
+        LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))); // NOI18N
         LblEstatus.setText("Bem Vindo ao TMW-Maker!");
         LblEstatus.setBorder(null);
 

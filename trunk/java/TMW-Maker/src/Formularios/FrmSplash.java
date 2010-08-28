@@ -62,20 +62,24 @@ public class FrmSplash extends javax.swing.JDialog {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
                 FrmPrincipal.PgbBarra.setString("Carregando...");
-                
-                //FrmPrincipal.LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif")));
-                FrmPrincipal.LblEstatus.setIcon(FrmPrincipal.MnuEditarPersonagem.getIcon());
-                FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de NPCs (<font color=#FF0000>Por favor espere!</font>)");
+                //--------------------------------------------------------------------------------
+                FrmPrincipal.setAvisoEmEstatus(
+                    "<html>Carregando Banco de Dados de NPCs (<font color=#FF0000>Por favor espere!</font>)",
+                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))
+                );
                 FrmPrincipal.NPCs = new Classes.BancoDeDados.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
-                //FrmPrincipal.LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif")));
-                FrmPrincipal.LblEstatus.setIcon(FrmPrincipal.MnuEditarItens.getIcon());
-                FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
+                //--------------------------------------------------------------------------------
+                FrmPrincipal.setAvisoEmEstatus(
+                    "<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)",
+                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))
+                );
                 FrmPrincipal.Itens = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
-
+                //--------------------------------------------------------------------------------
                 FrmPrincipal.PgbBarra.setString("Concluído");
-                FrmPrincipal.setAvisoEmEstatus("Banco de Dados Eathena carregado com sucesso!");
-                //FrmPrincipal.LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png")));
-                FrmPrincipal.LblEstatus.setIcon(FrmPrincipal.MnuJogoExecutar.getIcon());
+                FrmPrincipal.setAvisoEmEstatus(
+                    "Banco de Dados Eathena carregado com sucesso!",
+                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                );
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(false);
 

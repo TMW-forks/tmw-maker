@@ -44,9 +44,15 @@ public class StringClass {
     public String ExtrairEntre(String Parte1, String Parte2){
         return ExtrairEntre(TestoEmTratamento, Parte1, Parte2);
     }
+    public String ExtrairEntre(String Parte1, String Parte2, int Apartir){
+        return ExtrairEntre(TestoEmTratamento, Parte1, Parte2, Apartir);
+    }
     public String ExtrairEntre(String Entrada, String Parte1, String Parte2){
+        return ExtrairEntre(Entrada, Parte1, Parte2, 0);
+    }
+    public String ExtrairEntre(String Entrada, String Parte1, String Parte2, int Apartir){
         int Loc1=-1, Loc2=-1;
-        Loc1=Entrada.indexOf(Parte1);
+        Loc1=Entrada.indexOf(Parte1,Apartir);
         if(Loc1>=0){
             Loc2=Entrada.indexOf(Parte2,Loc1+Parte1.length());
             if(Loc2>=0 && Loc2>=Loc1){

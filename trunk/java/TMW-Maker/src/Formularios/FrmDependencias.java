@@ -25,11 +25,11 @@ public class FrmDependencias extends javax.swing.JDialog {
         TblDependencias = new javax.swing.JTable();
         BtnResolver = new javax.swing.JButton();
         BtnAjuda = new javax.swing.JButton();
-        BtnCancelar = new javax.swing.JButton();
+        BtnFechar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtEstatus = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Dependencias de Funcionamento");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -110,16 +110,16 @@ public class FrmDependencias extends javax.swing.JDialog {
             }
         });
 
-        BtnCancelar.setMnemonic('C');
-        BtnCancelar.setText("Cancelar");
-        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        BtnFechar.setMnemonic('F');
+        BtnFechar.setText("Fechar");
+        BtnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancelarActionPerformed(evt);
+                BtnFecharActionPerformed(evt);
             }
         });
-        BtnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+        BtnFechar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnCancelarKeyPressed(evt);
+                BtnFecharKeyPressed(evt);
             }
         });
 
@@ -145,11 +145,11 @@ public class FrmDependencias extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
                         .addComponent(BtnResolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnCancelar)))
+                        .addComponent(BtnFechar)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnCancelar, BtnResolver});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnFechar, BtnResolver});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +161,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnAjuda)
-                    .addComponent(BtnCancelar)
+                    .addComponent(BtnFechar)
                     .addComponent(BtnResolver))
                 .addContainerGap())
         );
@@ -197,7 +197,15 @@ public class FrmDependencias extends javax.swing.JDialog {
                 BtnAjuda.setText("Ajuda sobre SVN (F1)");
                 BtnResolver.setText("Resolver");
                 BtnResolver.setMnemonic('R');
-                BtnResolver.setEnabled(false);
+                 if(
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    !FrmPrincipal.Config.getSeDependenciaDeSVN()
+                ){
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
+                
             }else if(TblDependencias.getSelectedRow()==2) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
@@ -206,14 +214,27 @@ public class FrmDependencias extends javax.swing.JDialog {
                     "\"<font color=\"#0000FF\">Dependencia de Localhost</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre Localhost (F1)");
-                BtnResolver.setText("Baixar");
-                BtnResolver.setMnemonic('B');
                 if(
                     FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-                    FrmPrincipal.Config.getSeDependenciaDeSVN()
+                    FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+                    FrmPrincipal.Config.getSeDependenciaDeGCC() &&
+                    !FrmPrincipal.Config.getSeDependenciaDeLocalhost()
                 ){
+                    BtnResolver.setText("Baixar");
+                    BtnResolver.setMnemonic('B');
+                    BtnResolver.setEnabled(true);
+                }else if(
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+                    FrmPrincipal.Config.getSeDependenciaDeGCC() &&
+                    FrmPrincipal.Config.getSeDependenciaDeLocalhost()
+                ){
+                    BtnResolver.setText("Atualizar");
+                    BtnResolver.setMnemonic('T');
                     BtnResolver.setEnabled(true);
                 }else{
+                    BtnResolver.setText("Resolver");
+                    BtnResolver.setMnemonic('R');
                     BtnResolver.setEnabled(false);
                 }
             }else if(TblDependencias.getSelectedRow()==3) {
@@ -226,7 +247,14 @@ public class FrmDependencias extends javax.swing.JDialog {
                 BtnAjuda.setText("Ajuda sobre GCC (F1)");
                 BtnResolver.setText("Resolver");
                 BtnResolver.setMnemonic('R');
-                BtnResolver.setEnabled(false);
+                if(
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    !FrmPrincipal.Config.getSeDependenciaDeGCC()
+                ){
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
             }else if(TblDependencias.getSelectedRow()==4) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
@@ -322,17 +350,21 @@ public class FrmDependencias extends javax.swing.JDialog {
                 //Logger.getLogger(FrmDependencias.class.getName()).log(Level.SEVERE, null, ex);
                 ConfigClass.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
             }/**/
+        }else if(TblDependencias.getSelectedRow()==1){
+            InstalarSVN();
         }else if(TblDependencias.getSelectedRow()==2){
             BaixarLocalhost();
+        }else if(TblDependencias.getSelectedRow()==3){
+            InstalarGCC();
         }else if(TblDependencias.getSelectedRow()==4){
             MontarLocalhost();
         }else if(TblDependencias.getSelectedRow()==5){
             ProcurarCliente();
         }
     }//GEN-LAST:event_BtnResolverActionPerformed
-    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+    private void BtnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFecharActionPerformed
         dispose();
-    }//GEN-LAST:event_BtnCancelarActionPerformed
+    }//GEN-LAST:event_BtnFecharActionPerformed
     private void BtnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAjudaActionPerformed
         showAjuda();
     }//GEN-LAST:event_BtnAjudaActionPerformed
@@ -342,9 +374,9 @@ public class FrmDependencias extends javax.swing.JDialog {
     private void BtnAjudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAjudaKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
     }//GEN-LAST:event_BtnAjudaKeyPressed
-    private void BtnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCancelarKeyPressed
+    private void BtnFecharKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnFecharKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
-    }//GEN-LAST:event_BtnCancelarKeyPressed
+    }//GEN-LAST:event_BtnFecharKeyPressed
     private void BtnResolverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnResolverKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
     }//GEN-LAST:event_BtnResolverKeyPressed
@@ -366,7 +398,7 @@ public class FrmDependencias extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAjuda;
-    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnFechar;
     private javax.swing.JButton BtnResolver;
     private javax.swing.JTable TblDependencias;
     private javax.swing.JTextArea TxtEstatus;
@@ -417,7 +449,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     FrmPrincipal.PgbBarra.setEnabled(true);
 
                     BtnResolver.setEnabled(false);
-                    BtnCancelar.setEnabled(false);
+                    BtnFechar.setEnabled(false);
                     TblDependencias.setEnabled(false);
 
                     Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
@@ -477,7 +509,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("ERRO!");
                         }/**/
                         FrmPrincipal.PgbBarra.setIndeterminate(false);
-                        BtnCancelar.setEnabled(true);
+                        BtnFechar.setEnabled(true);
                         TblDependencias.setEnabled(true);
                         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
@@ -499,6 +531,198 @@ public class FrmDependencias extends javax.swing.JDialog {
                             if(R == JOptionPane.YES_OPTION) MontarLocalhost();
                         }
                     }
+                }
+            });
+            tThread.start();
+        }
+    }
+    public void InstalarSVN(){
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+
+                    BtnResolver.setEnabled(false);
+                    BtnFechar.setEnabled(false);
+                    TblDependencias.setEnabled(false);
+
+                    FrmPrincipal.PgbBarra.setIndeterminate(true);
+                    FrmPrincipal.PgbBarra.setString("Preparando...");
+                    addLinhaDeEstatus("Preparando para instalar o SVN...");
+                    FrmPrincipal.setAvisoEmEstatus(
+                        "Preparando para instalar o SVN...",
+                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                    );
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    // operacao demorada
+
+
+                    Comando ="gksudo apt-get install subversion";
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.setAvisoEmEstatus(
+                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
+                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                            );
+                            Arquivos++;
+                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                            addLinhaDeEstatus("     "+Arquivos+": "+line);
+                            //Partes=line.split("/");
+                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                        }
+                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "Subversion instalado com sucesso com sucesso!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                        );
+                        addLinhaDeEstatus("Subversion instalado com sucesso com sucesso!");
+                        FrmPrincipal.PgbBarra.setString("Concluido!");
+                    } catch (IOException e) {
+                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
+                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                        );
+                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                        return;
+                    }/**/
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    BtnFechar.setEnabled(true);
+                    TblDependencias.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                    VerificarPendencias();
+
+                    if(
+                        FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                        FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+                        !FrmPrincipal.Config.getSeDependenciaDeGCC()
+                    ){
+                        Object[] options = {"Instalar", "Cancelar"};
+                        if(FrmPrincipal.Config.Mensagem_Opcoes(
+                            "Seu computador ainda não tem o GCC.<br/>" +
+                            "Deseja o instala agora?",
+                            "INSTALAR GCC",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                            options,
+                            1
+                        ) == JOptionPane.YES_OPTION) InstalarGCC();
+                    }
+
+                }
+            });
+            tThread.start();
+        }
+    }
+    public void InstalarGCC(){
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+
+                    BtnResolver.setEnabled(false);
+                    BtnFechar.setEnabled(false);
+                    TblDependencias.setEnabled(false);
+
+                    FrmPrincipal.PgbBarra.setIndeterminate(true);
+                    FrmPrincipal.PgbBarra.setString("Preparando...");
+                    addLinhaDeEstatus("Preparando para instalar o GCC...");
+                    FrmPrincipal.setAvisoEmEstatus(
+                        "Preparando para instalar o GCC...",
+                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                    );
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    // operacao demorada
+
+
+                    Comando ="gksudo apt-get install gcc";
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.setAvisoEmEstatus(
+                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
+                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                            );
+                            Arquivos++;
+                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                            addLinhaDeEstatus("     "+Arquivos+": "+line);
+                            //Partes=line.split("/");
+                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                        }
+                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "GCC instalado com sucesso com sucesso!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                        );
+                        addLinhaDeEstatus("GCC instalado com sucesso com sucesso!");
+                        FrmPrincipal.PgbBarra.setString("Concluido!");
+                    } catch (IOException e) {
+                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
+                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                        );
+                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                        return;
+                    }/**/
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    BtnFechar.setEnabled(true);
+                    TblDependencias.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                    VerificarPendencias();
+
+                    if(
+                        FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                        FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+                        FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
+                        FrmPrincipal.Config.getSeDependenciaDeGCC() &&
+                        !FrmPrincipal.Config.getSeDependenciaDeMontagem()
+                    ){
+                        Object[] options = {"Baixar", "Cancelar"};
+                        if(FrmPrincipal.Config.Mensagem_Opcoes(
+                            "Você ainda não baixou o repositório.<br/>" +
+                            "Deseja baixa-lo para transforma-lo num localhost?",
+                            "BAIXAR REPOSITÓRIO",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                            options,
+                            1
+                        ) == JOptionPane.YES_OPTION) BaixarLocalhost();
+                    }
+
                 }
             });
             tThread.start();
@@ -534,7 +758,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                         public void run() {
                             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             BtnResolver.setEnabled(false);
-                            BtnCancelar.setEnabled(false);
+                            BtnFechar.setEnabled(false);
                             TblDependencias.setEnabled(false);
                             FrmPrincipal.PgbBarra.setEnabled(true);
                             FrmPrincipal.PgbBarra.setValue(0);
@@ -598,7 +822,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     "ERRO DE EXECUÇÃO"
                                 );
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                BtnCancelar.setEnabled(true);
+                                BtnFechar.setEnabled(true);
                                 TblDependencias.setEnabled(true);
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
@@ -615,7 +839,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">char-server</font>\"!");
                                     addLinhaDeEstatus("ERRO: Falha ao deslocar \"char-server\"!");
                                     FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                    BtnCancelar.setEnabled(true);
+                                    BtnFechar.setEnabled(true);
                                     TblDependencias.setEnabled(true);
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
@@ -630,7 +854,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">login-server</font>\"!");
                                     addLinhaDeEstatus("ERRO: Falha ao deslocar \"login-server\"!");
                                     FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                    BtnCancelar.setEnabled(true);
+                                    BtnFechar.setEnabled(true);
                                     TblDependencias.setEnabled(true);
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
@@ -645,7 +869,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">map-server</font>\"!");
                                     addLinhaDeEstatus("ERRO: Falha ao deslocar \"map-server\"!");
                                     FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                    BtnCancelar.setEnabled(true);
+                                    BtnFechar.setEnabled(true);
                                     TblDependencias.setEnabled(true);
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
@@ -672,7 +896,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">char-server</font>\"!");
                                     addLinhaDeEstatus("ERRO: Falha ao deslocar \"char-server\"!");
                                     FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                    BtnCancelar.setEnabled(true);
+                                    BtnFechar.setEnabled(true);
                                     TblDependencias.setEnabled(true);
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
@@ -687,7 +911,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">login-server</font>\"!");
                                     addLinhaDeEstatus("ERRO: Falha ao deslocar \"login-server\"!");
                                     FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                    BtnCancelar.setEnabled(true);
+                                    BtnFechar.setEnabled(true);
                                     TblDependencias.setEnabled(true);
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
@@ -702,7 +926,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">ERRO:</font> Falha ao deslocar \"<font color=\"#0000FF\">map-server</font>\"!");
                                     addLinhaDeEstatus("ERRO: Falha ao deslocar \"map-server\"!");
                                     FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                    BtnCancelar.setEnabled(true);
+                                    BtnFechar.setEnabled(true);
                                     TblDependencias.setEnabled(true);
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
@@ -713,7 +937,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 addLinhaDeEstatus("PARADA FORÇADA...");
                                 FrmPrincipal.PgbBarra.setString("BLOQUEIO!!!");
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                BtnCancelar.setEnabled(true);
+                                BtnFechar.setEnabled(true);
                                 TblDependencias.setEnabled(true);
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
@@ -809,7 +1033,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                         "ERRO DE EXECUÇÃO"
                                     );
                                     FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                    BtnCancelar.setEnabled(true);
+                                    BtnFechar.setEnabled(true);
                                     TblDependencias.setEnabled(true);
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
@@ -847,7 +1071,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     "ERRO DE EXECUÇÃO"
                                 );
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                BtnCancelar.setEnabled(true);
+                                BtnFechar.setEnabled(true);
                                 TblDependencias.setEnabled(true);
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
@@ -857,7 +1081,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("Concluido!");
 
                             FrmPrincipal.PgbBarra.setIndeterminate(false);
-                            BtnCancelar.setEnabled(true);
+                            BtnFechar.setEnabled(true);
                             TblDependencias.setEnabled(true);
                             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
@@ -870,7 +1094,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     , "AVISO"
                                 );
                                 FrmPrincipal.PgbBarra.setIndeterminate(false);
-                                BtnCancelar.setEnabled(true);
+                                BtnFechar.setEnabled(true);
                                 TblDependencias.setEnabled(true);
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;

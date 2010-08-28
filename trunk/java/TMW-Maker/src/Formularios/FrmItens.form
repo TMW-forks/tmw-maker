@@ -91,13 +91,13 @@
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TxtIconeCor" alignment="0" pref="255" max="32767" attributes="0"/>
-                          <Component id="CmbIconePNG" alignment="0" pref="255" max="32767" attributes="1"/>
-                          <Component id="TxtEfeito" alignment="0" pref="255" max="32767" attributes="1"/>
-                          <Component id="TxtNomeTitulo" alignment="0" pref="255" max="32767" attributes="1"/>
-                          <Component id="TxtNomeSumonico" alignment="0" pref="255" max="32767" attributes="1"/>
-                          <Component id="CmbLocal" alignment="0" pref="255" max="32767" attributes="1"/>
-                          <Component id="TxtDescricao" alignment="0" pref="255" max="32767" attributes="1"/>
+                          <Component id="TxtIconeCor" alignment="0" pref="263" max="32767" attributes="0"/>
+                          <Component id="CmbIconePNG" alignment="0" pref="263" max="32767" attributes="1"/>
+                          <Component id="TxtEfeito" alignment="0" pref="263" max="32767" attributes="1"/>
+                          <Component id="TxtNomeTitulo" alignment="0" pref="263" max="32767" attributes="1"/>
+                          <Component id="TxtNomeSumonico" alignment="0" pref="263" max="32767" attributes="1"/>
+                          <Component id="CmbLocal" alignment="0" pref="263" max="32767" attributes="1"/>
+                          <Component id="TxtDescricao" alignment="0" pref="263" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -277,7 +277,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -467,7 +467,7 @@
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CmbUtilidade" pref="268" max="32767" attributes="1"/>
+                              <Component id="CmbUtilidade" pref="276" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -670,7 +670,7 @@
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="123" max="32767" attributes="0"/>
+                      <EmptySpace pref="131" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -778,7 +778,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="385" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" pref="393" max="32767" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -839,7 +839,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" pref="385" max="32767" attributes="1"/>
+                          <Component id="jScrollPane2" alignment="0" pref="393" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
@@ -848,7 +848,7 @@
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="CmbGenero" alignment="0" min="-2" pref="147" max="-2" attributes="1"/>
-                                  <Component id="jComboBox3" alignment="0" pref="252" max="32767" attributes="1"/>
+                                  <Component id="jComboBox3" alignment="0" pref="260" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                       </Group>
@@ -943,9 +943,6 @@
                 </Property>
                 <Property name="selectedIndex" type="int" value="2"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbGeneroActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -964,10 +961,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TxtScripAoConsulmir" alignment="0" pref="385" max="32767" attributes="0"/>
+                          <Component id="TxtScripAoConsulmir" alignment="0" pref="393" max="32767" attributes="0"/>
                           <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtScripAoEquipar" alignment="0" pref="385" max="32767" attributes="0"/>
+                          <Component id="TxtScripAoEquipar" alignment="0" pref="393" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1033,7 +1030,6 @@
               <Image iconType="3" name="/Imagem/Botoes/sbl_voltar.gif"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Anterior (Ctrl+Alt+&#x2190;)"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
@@ -1066,7 +1062,6 @@
               <Image iconType="3" name="/Imagem/Botoes/sbl_avancar.gif"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Pr&#xf3;xima (Ctrl+Alt+&#x2192;)"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
@@ -1095,13 +1090,11 @@
               <Image iconType="3" name="/Imagem/Botoes/sbl_pasta.gif"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Abrir (Ctrl+O)"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCarregarActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
