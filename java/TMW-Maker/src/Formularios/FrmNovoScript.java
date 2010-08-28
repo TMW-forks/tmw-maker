@@ -154,8 +154,8 @@ public class FrmNovoScript extends javax.swing.JDialog {
     private void BtnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCriarActionPerformed
         if(!TxtNomeSimplesArquivo.getText().trim().equals("")){
             if(!FrmPrincipal.Config.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
-                if(FrmPrincipal.Config.ScriptSalvar(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf","")){
-                    String Conteudo = FrmPrincipal.Config.ScriptAbrir(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt");
+                if(FrmPrincipal.Config.ArquivoSalvar(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf","")){
+                    String Conteudo = FrmPrincipal.Config.ArquivoAbrir(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt");
                     if(!Conteudo.isEmpty() && !Conteudo.trim().equals("")){
                         int loc1 = Conteudo.indexOf("map: ");
                         if(loc1>=0){
@@ -164,7 +164,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
                                 String Parte1= Conteudo.substring(0, loc2+1);
                                 String Parte2= Conteudo.substring(loc2+1, Conteudo.length());
                                 if(
-                                    FrmPrincipal.Config.ScriptSalvar(
+                                    FrmPrincipal.Config.ArquivoSalvar(
                                         FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt",
                                         Parte1+
                                         "npc: npc/"+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf\n"+

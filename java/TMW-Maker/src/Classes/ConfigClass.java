@@ -12,7 +12,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -285,7 +287,7 @@ public class ConfigClass {
             return false;
         }
     }
-    public boolean ScriptSalvar(String Endereco, String Conteudo){
+    public static boolean ArquivoSalvar(String Endereco, String Conteudo){
         try {
             BufferedWriter Capsula = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Endereco),"UTF-8"));
             String Cabecalho="";
@@ -297,7 +299,7 @@ public class ConfigClass {
             return false;
         }
     }
-    public String ScriptAbrir(String Endereco){
+    public static String ArquivoAbrir_deprecado(String Endereco){
         try {
             String Conteudo="", Linha="";
             BufferedReader Capsula = new BufferedReader(new InputStreamReader(new FileInputStream(Endereco),"UTF-8"));
@@ -312,6 +314,31 @@ public class ConfigClass {
             return Conteudo;
         } catch (java.io.IOException exc) {
             return null;
+        }
+    }
+    public static String ArquivoAbrir(String Endereco){
+        String Conteudo="";
+        int Tamanho = 1024*1024*32;
+        ByteBuffer buf = ByteBuffer.allocate(Tamanho); //create buffer with capacity of 48 bytes
+        try {
+            RandomAccessFile aFile = new RandomAccessFile(Endereco, "rw");
+            FileChannel inChannel = aFile.getChannel();
+            int bytesRead = inChannel.read(buf);
+            char Letra=0;
+            byte[] bytearray = null;
+            while (bytesRead != -1) {
+                buf.flip();
+                bytearray = new byte[buf.remaining()];
+                while (buf.hasRemaining()) {
+                    buf.get(bytearray);
+                }
+                Conteudo += new String(bytearray);
+                buf.clear();
+                bytesRead = inChannel.read(buf);
+            }
+            return Conteudo;
+        } catch (IOException e) {
+            return Conteudo;
         }
     }
 

@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 
 public class Banco_Itens {
 //####################### COSTRUTORES #########################################
@@ -34,7 +35,10 @@ public class Banco_Itens {
         }
     }
     public void AbrirItens() {
-        String ConteudoTXT="", Linha="", PartesDaLinha[]=null;
+
+        //String ConteudoTotal=ConfigClass.ArquivoAbrir(EnderecoItensTXT);
+        String ConteudoTXT="";
+        String Linha="", PartesDaLinha[]=null;
         try {
             FileInputStream stream = new FileInputStream(EnderecoItensTXT);
             InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
@@ -61,7 +65,7 @@ public class Banco_Itens {
         } catch (IOException ex) {
             ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoItensTXT+"\"!","AVISO");
             return; // em caso de falha
-        }
+        }/**/
 
         StringClass ConteudoXML = new StringClass();
         try {
@@ -125,6 +129,40 @@ public class Banco_Itens {
             if(ParteDoIcone.length==2) Itens[l].setIconeCor(ParteDoIcone[1]);
             Itens[l].setTipoNome(ConteudoXML.ExtrairEntre(Propriedades,"type=\"","\""));
         }
+    }
+    public void AbrirItens_deprecado() {
+        //String ConteudoTotal=ConfigClass.ArquivoAbrir(EnderecoItensTXT);
+        StringClass ConteudoTotal = new StringClass();
+        ConteudoTotal.setTesto(ConfigClass.ArquivoAbrir(EnderecoItensXML));
+        int Part01=0;
+        StringClass ItemXML = new StringClass();
+        Dados_Item ItensA[] = new Dados_Item[0];
+        Dados_Item ItensB[] = null;
+        String ID="",TipoNome="";
+        do{
+            Part01=ConteudoTotal.getTesto().indexOf("<item ", Part01+ItemXML.getTesto().length());
+            if(Part01>=0){
+                ItemXML.setTesto(ConteudoTotal.ExtrairEntre("<item ", "</item>",Part01));
+                ItensB = new Dados_Item[ItensA.length+1];
+                ID=ItemXML.ExtrairEntre("id=\"", "\"");
+                TipoNome=ItemXML.ExtrairEntre("type=\"", "\"");
+                if(!ID.equals("")){
+                    ItensB[ItensA.length] = new Dados_Item();
+                    ItensB[ItensA.length].setID(Integer.parseInt(ID));
+                    ItensB[ItensA.length].setTipoNome(TipoNome);
+                }
+                ItensA = new Dados_Item[ItensB.length];
+                ItensA = ItensB;
+            }
+        }while(Part01>=0);
+        Itens = new Dados_Item[ItensA.length];
+        Itens=ItensA;
+
+        
+
+        
+
+        
     }
 //##########################################################################
 }

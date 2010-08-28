@@ -171,7 +171,6 @@ public class FrmContas extends javax.swing.JDialog {
             CapsulaDeUsuarios.close();
             Inicio=ConteudoDeContasUsuarios.indexOf("\n2000000");
             ConteudoDeContasUsuarios = ConteudoDeContasUsuarios.substring(Inicio+1, ConteudoDeContasUsuarios.length());
-            //ConfigClass.Mensagem_Erro(ConteudoDeContasUsuarios, "Nota de Programador");
             ContasUsuarios = ConteudoDeContasUsuarios.split("\n");
             SeArq1=true;
         } catch (java.io.IOException exc) {
@@ -196,18 +195,9 @@ public class FrmContas extends javax.swing.JDialog {
         }
 
         if(SeArq1==true && SeArq2==true){
-            //ConfigClass.Mensagem_Erro("Contagem(Contas)="+Contas.length, "Nota de Programador");
             String Cabecalho[] = new String [] { "ID", "Login", "GM*", "IP", "Ultimo Acesso", "Acessos"};
             Object CorpoDeContasUsuarios[][] = new Object [ContasUsuarios.length-1][Cabecalho.length];
-            //Object CorpoDeContasGMs[] = new Object [ContasUsuarios.length-1];
             String NovaLinha="",PartesDaLinha[];
-
-            /*for(int c=0;c<ContasGMs.length-1;c++){
-                PartesDaLinha=ContasGMs[c].split(" ");
-                CorpoDeContasGMs[PartesDaLinha[0]] = new String();
-                CorpoDeContasGMs[PartesDaLinha[0]] = PartesDaLinha[1];
-            }/**/
-
             String LvlGM;
             for(int c=0;c<ContasUsuarios.length-1;c++){
                 LvlGM="0";
@@ -215,9 +205,7 @@ public class FrmContas extends javax.swing.JDialog {
                 Inicio=ConteudoDeContasGMs.indexOf(PartesDaLinha[0]);
                 if(Inicio>=0){
                     Inicio+=PartesDaLinha[0].length()+1;
-                    //Fim=ConteudoDeContasGMs.indexOf("\n", Inicio);
                     Fim=Inicio+2;
-                    //if(Fim<=Inicio)Fim=ConteudoDeContasGMs.length();
                     if(Fim>Inicio) LvlGM=ConteudoDeContasGMs.substring(Inicio, Fim).trim();
                 }
 
@@ -237,9 +225,6 @@ public class FrmContas extends javax.swing.JDialog {
             });
             TblContas.getTableHeader().getColumnModel().getColumn(0).setMinWidth(75);
             TblContas.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(75);
-
-            //TblContas.getTableHeader().getColumnModel().getColumn(1).setMinWidth(150);
-            //TblContas.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(150);
 
             TblContas.getTableHeader().getColumnModel().getColumn(2).setMinWidth(40);
             TblContas.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(40);

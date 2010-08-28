@@ -546,7 +546,7 @@
               <Color blue="c0" green="c0" id="Active Caption Border" palette="2" red="c0" type="palette"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_tmw.png"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_localhost-tmw.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Bem Vindo ao TMW-Maker!"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
