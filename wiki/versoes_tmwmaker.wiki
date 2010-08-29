@@ -1,6 +1,6 @@
 #labels Versões,Download,TMW-Maker
 =DOWNLOAD DO TMW-MAKER=
-O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por enquanto funciona apenas no sistemap operaciona Ubuntu Linux i386. Ou seja, se você possui windows nem adiante tentar usa-lo. Existe planos de de adapta-lo para o windows também, mas isso só ocorrerá após o final de sua construção.
+O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por enquanto funciona apenas no sistemap operaciona Ubuntu Linux i386. Ou seja, se você possui windows nem adianta tentar usa-lo. Existe planos de adaptar o TMW-Maker para o windows também, mas isso só ocorrerá após o final de sua construção.
 
 || <img align="abscenter" src="http://www.dpsg-weil-der-stadt.de/forum/wcf/icon/fileTypeIconJavaM.png">*Download* || *Tamanho* || *Descrição* ||
 || *[https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar TMW-Maker.jar]* || ~4,1MB || Arquivos JAR são ROMs que precisão ser emuladas para funcionarem. Para emular essa versão necessita do emulador *[OpenJDK OpenJDK Java 6 Runtime]* instalado em seu computador. ||
