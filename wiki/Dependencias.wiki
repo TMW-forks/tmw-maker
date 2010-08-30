@@ -13,6 +13,4 @@ Ao abrir o TMW-Maker pela primeira vez, será exibido todas as dependencias de f
 ===Como instalar o TMW-Maker no UBUNTU LINUX===
 <p align="center"><wiki:video url="http://www.youtube.com/watch?v=N-GSjRDVK2A" width="640" height="505"/>
 
-Pode acontecer do TMW-Maker não conseguir resolver automaticamente alguma dependencia. Neste caso será necessário resolver manualmente cada dependência.
-
-|| Para obter ajudar de como resolver manualmente uma dependencia, selecione a dependência pendente (Marcada de Vermelho) e pressione o botão "*Ajuda*". Ou se preferir, clicando diretamente no *nome da dependencia mostrada no menu a esquerda* deste site que você está lendo. ||
+|| Pode acontecer do TMW-Maker não conseguir resolver automaticamente alguma dependencia. Neste caso será necessário resolver manualmente cada dependência. Para obter ajudar de como resolver manualmente uma dependencia, selecione a dependência pendente (Marcada de Vermelho) e pressione o botão "*Ajuda*". Ou se preferir, clicando diretamente no *nome da dependencia mostrada no menu a esquerda* deste site que você está lendo. ||
