@@ -1,11 +1,15 @@
 #labels TMW-Maker,Dependências
 ==Sistema → Dependências (Ctrl+D)==
 
-TMW-Maker possui várias funções que trabalham em conjunto com outros programas. Para que todas as funções do TMW-Maker funcionem completamente é necessario atender todas as dependencias que o TMW-Maker tem deste programas.
+TMW-Maker possui várias funções que trabalham em conjunto com outros programas. Para que todas as funções do TMW-Maker funcionem completamente é necessario Resolver todas as dependencias que o TMW-Maker tem deste programas.
 
 Ao abrir o TMW-Maker pela primeira vez, será exibido todas as dependencias de funcionamento. A maioria desta dependencias são resolvidas automaticamente, bastando apenas selecionar as linhas da dependência pendente(veja foto abaixo) que está marcadas de vermelho, clicar no botão "Resolver".
 
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmDependencias.png
+
+==VÍDEO TUTORIAL==
+===Como instalar o TMW-Maker no UBUNTU LINUX===
+<p align="center"><wiki:video url="http://www.youtube.com/watch?v=N-GSjRDVK2A" width="640" height="505"/>
 
 Pode acontecer do TMW-Maker não conseguir resolver automaticamente alguma dependencia. Neste caso será necessário resolver manualmente cada dependência.
 
