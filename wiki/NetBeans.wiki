@@ -1,8 +1,8 @@
 #labels NetBeans,IDE,Copilador,Java,Desenvolvimento,Livre,Grátis
 = NetBeans IDE 6.8 =
 
-<p align="center"><a href="http://www.dynamicart.hu/dynamicart/images/stories/cikkekhez/netbeans_02.png"><img width="50%" src="http://www.dynamicart.hu/dynamicart/images/stories/cikkekhez/netbeans_02.png"><a>
-
 É um programa [opensource Open Source] que permite desenvolver Aplicativos Gráficos em Java. Embora ele edite programas Java, o NetBeans só poderá copilar (criar programas) se tiver uma [OpenJDK Máquina Virtual Java(JVM)] instalada em seu computador.
+
+<p align="center"><a href="http://www.semanticmetadata.net/wp-content/uploads/2007/05/netbeans6preview.png"><img width="70%" src="http://www.semanticmetadata.net/wp-content/uploads/2007/05/netbeans6preview.png"><a>
 
 || *NOTA:* Agora que você ja sabe o que é o NetBeans, aprenda [ComoInstalarNetBeans como instalar]! ||
