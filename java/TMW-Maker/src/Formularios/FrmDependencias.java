@@ -7,8 +7,6 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmDependencias extends javax.swing.JDialog {
@@ -138,11 +136,11 @@ public class FrmDependencias extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BtnAjuda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
                         .addComponent(BtnResolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnFechar)))
@@ -157,7 +155,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnAjuda)
@@ -207,6 +205,45 @@ public class FrmDependencias extends javax.swing.JDialog {
                 }
                 
             }else if(TblDependencias.getSelectedRow()==2) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeGCC");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de GCC</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre GCC (F1)");
+                BtnResolver.setText("Resolver");
+                BtnResolver.setMnemonic('R');
+                if(
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    !FrmPrincipal.Config.getSeDependenciaDeGCC()
+                ){
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
+            }else if(TblDependencias.getSelectedRow()==3) {
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
+                FrmPrincipal.setAvisoEmEstatus("<html>" +
+                    "<font color=\"#0000FF\">NOTA:</font> " +
+                    "Clique no botão ajudar para saber como resolver a " +
+                    "\"<font color=\"#0000FF\">Dependencia de Cliente</font>\"!"
+                );
+                BtnAjuda.setText("Ajuda sobre Cliente (F1)");
+                BtnResolver.setText("Resolver");
+                BtnResolver.setMnemonic('R');
+                if(
+                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+                    FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+                    FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
+                    FrmPrincipal.Config.getSeDependenciaDeMontagem() &&
+                    FrmPrincipal.Config.getDependenciaEmFalta()==6
+                ){
+                    BtnResolver.setEnabled(true);
+                }else{
+                    BtnResolver.setEnabled(false);
+                }
+            }else if(TblDependencias.getSelectedRow()==4) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
@@ -237,25 +274,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     BtnResolver.setMnemonic('R');
                     BtnResolver.setEnabled(false);
                 }
-            }else if(TblDependencias.getSelectedRow()==3) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeGCC");
-                FrmPrincipal.setAvisoEmEstatus("<html>" +
-                    "<font color=\"#0000FF\">NOTA:</font> " +
-                    "Clique no botão ajudar para saber como resolver a " +
-                    "\"<font color=\"#0000FF\">Dependencia de GCC</font>\"!"
-                );
-                BtnAjuda.setText("Ajuda sobre GCC (F1)");
-                BtnResolver.setText("Resolver");
-                BtnResolver.setMnemonic('R');
-                if(
-                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-                    !FrmPrincipal.Config.getSeDependenciaDeGCC()
-                ){
-                    BtnResolver.setEnabled(true);
-                }else{
-                    BtnResolver.setEnabled(false);
-                }
-            }else if(TblDependencias.getSelectedRow()==4) {
+            }else if(TblDependencias.getSelectedRow()==5) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
@@ -279,88 +298,41 @@ public class FrmDependencias extends javax.swing.JDialog {
                 }else{
                     BtnResolver.setEnabled(false);
                 }
-            }else if(TblDependencias.getSelectedRow()==5) {
+            }else if(TblDependencias.getSelectedRow()==6) {
                 //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
-                    "\"<font color=\"#0000FF\">Dependencia de Cliente</font>\"!"
+                    "\"<font color=\"#0000FF\">Dependencia de Mapeador</font>\"!"
                 );
                 BtnAjuda.setText("Ajuda sobre Cliente (F1)");
                 BtnResolver.setText("Resolver");
                 BtnResolver.setMnemonic('R');
-                if(
-                    TblDependencias.getSelectedRow()==5 &&
-                    FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-                    FrmPrincipal.Config.getSeDependenciaDeSVN() &&
-                    FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
-                    FrmPrincipal.Config.getSeDependenciaDeMontagem() &&
-                    FrmPrincipal.Config.getDependenciaEmFalta()==6
-                ){
+                if(!FrmPrincipal.Config.getSeDependenciaDeTiled()){
                     BtnResolver.setEnabled(true);
                 }else{
                     BtnResolver.setEnabled(false);
                 }
             }
         }
-        
-
-        /*{
-            
-        }elseelse if(
-            TblDependencias.getSelectedRow()==4 &&
-            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
-            FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
-            !FrmPrincipal.Config.getSeDependenciaDeMontagem()
-        ){
-            BtnResolver.setEnabled(true);
-        }else else{
-            BtnResolver.setEnabled(false);
-        }/**/
-
-
     }//GEN-LAST:event_TblDependenciasMouseClicked
     private void BtnResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResolverActionPerformed
         // TODO add your handling code here:
         if(TblDependencias.getSelectedRow()==0) {
-
-                FrmPrincipal.Config.ConfiguracoesGravar();
-                BtnResolver.setEnabled(false);
-                FrmPrincipal.setAvisoEmEstatus("Definida configuração padrão com sucesso!");
-                VerificarPendencias();
-                if(!FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
-                    int R = JOptionPane.YES_OPTION;
-                    Object[] options = {"Baixar", "Cancelar"};
-                    R = JOptionPane.showOptionDialog(
-                        null, "<html>" +
-                        "Você ainda não possuir um localhost para editar.<br/>" +
-                        "Deseja que o tmw-maker baixe o seu localhost?",
-                        "BAIXAR LOCALHOST",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        options,
-                        options[1]
-                    );
-                    if(R == JOptionPane.YES_OPTION) BaixarLocalhost();
-
-                }
-            /*} catch (IOException ex) {
-                //Logger.getLogger(FrmDependencias.class.getName()).log(Level.SEVERE, null, ex);
-                ConfigClass.Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
-            }/**/
+            ConfiguracaoAplicarPadrao();
         }else if(TblDependencias.getSelectedRow()==1){
             InstalarSVN();
         }else if(TblDependencias.getSelectedRow()==2){
-            BaixarLocalhost();
-        }else if(TblDependencias.getSelectedRow()==3){
             InstalarGCC();
+        }else if(TblDependencias.getSelectedRow()==3){
+            ClienteProcurar();
         }else if(TblDependencias.getSelectedRow()==4){
-            MontarLocalhost();
+            LocalhostBaixar();
         }else if(TblDependencias.getSelectedRow()==5){
-            ProcurarCliente();
-        }
+            LocalhostMontar();
+        }/*else if(TblDependencias.getSelectedRow()==6){
+            InstalarTiledQt();
+        }/**/
     }//GEN-LAST:event_BtnResolverActionPerformed
     private void BtnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFecharActionPerformed
         dispose();
@@ -381,7 +353,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_F1) showAjuda();
     }//GEN-LAST:event_BtnResolverKeyPressed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        VerificarPendencias();
+        Pendencias_Verificar();
     }//GEN-LAST:event_formWindowOpened
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -408,15 +380,16 @@ public class FrmDependencias extends javax.swing.JDialog {
 
     static String Barra = System.getProperty("file.separator");
 
-    public void VerificarPendencias(){
+    public void Pendencias_Verificar(){
         String Cabecalho[] = new String [] { "Dependencias", "Estatus", "Descrição"};
         Object CorpoDePendencias= new Object [][] {
             {"Configuração", (FrmPrincipal.Config.getSeDependenciaDeConfiguracao()?"Configurado":"<html><font color=\"#FF0000\">Pendente"), "Configurações do TMW-Maker"},
             {"SVN", (FrmPrincipal.Config.getSeDependenciaDeSVN()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Recebe e Envia Repositórios de TMW via Internet"},
-            {"Localhost", (FrmPrincipal.Config.getSeDependenciaDeLocalhost()?"Recebido":"<html><font color=\"#FF0000\">Pendente"), "Se foi recebido Repositório de TMW"},
             {"GCC", (FrmPrincipal.Config.getSeDependenciaDeGCC()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Executa aplicativos em C++ excenciais ao Localhost"},
-            {"Montagem", (FrmPrincipal.Config.getSeDependenciaDeMontagem()?"Montado":"<html><font color=\"#FF0000\">Pendente"), "Monta um Localhost através de um Repositório"},
-            {"Cliente",((FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help"))?(FrmPrincipal.Config.getExecucaoComando().toUpperCase()):"<html><font color=\"#FF0000\">Pendente"), "Aplicativo do Jogo \"The Mana World\""}
+            {"Cliente",((FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help"))?(FrmPrincipal.Config.getExecucaoComando().toUpperCase()):"<html><font color=\"#FF0000\">Pendente"), "Aplicativo do Jogo \"The Mana World\""},
+            {"Localhost", (FrmPrincipal.Config.getSeDependenciaDeLocalhost()?"Recebido":"<html><font color=\"#FF0000\">Pendente"), "Se foi recebido Repositório de TMW"},
+            {"Montagem", (FrmPrincipal.Config.getSeDependenciaDeMontagem()?"Montado":"<html><font color=\"#FF0000\">Pendente"), "Monta um Localhost através de um Repositório"}/*,
+            {"Tiled Qt", (FrmPrincipal.Config.getSeDependenciaDeTiled()?"Instalado":"<html><font color=\"#FF0000\">Pendente"), "Edita de mapas em 2D"}/**/
         };
         TblDependencias.setModel(new javax.swing.table.DefaultTableModel((Object[][]) CorpoDePendencias,Cabecalho) {
             boolean[] canEdit = new boolean [] {false, false, false};
@@ -429,7 +402,422 @@ public class FrmDependencias extends javax.swing.JDialog {
         TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMinWidth(100);
         TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(100);
     }
-    public void BaixarLocalhost(){
+    public void Pendencias_SugerirSolução(){
+        Pendencias_Verificar();
+        if(!FrmPrincipal.Config.getSeDependenciaDeConfiguracao()) {
+            Object[] options = {"Instalar", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "O TMW-Maker não está configurado.<br/>" +
+                "Deseja obter a configuração padrão?",
+                "INSTALAR GCC",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) ConfiguracaoAplicarPadrao();;
+        }else if(
+            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+            !FrmPrincipal.Config.getSeDependenciaDeSVN()
+        ) {
+            Object[] options = {"Instalar", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "<html>" +
+                "Você ainda não possuir um administrador de atualizações SVN.<br/>" +
+                "Deseja que o tmw-maker instale o SVN?",
+                "INSTALAR SVN",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) InstalarSVN();
+        }else if(
+            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+            !FrmPrincipal.Config.getSeDependenciaDeGCC()
+        ) {
+            Object[] options = {"Instalar", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "<html>" +
+                "Você ainda não possuir um copilador c++.<br/>" +
+                "Deseja que o tmw-maker instale o GCC?",
+                "INSTALAR GCC",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) InstalarGCC();
+        }else if(
+            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+            FrmPrincipal.Config.getSeDependenciaDeGCC() &&
+            !FrmPrincipal.Config.getSeDependenciaDeLocalhost()
+        ) {
+            Object[] options = {"Baixar", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "<html>" +
+                "Você ainda não possuir um localhost para editar.<br/>" +
+                "Deseja que o tmw-maker baixe o seu localhost?",
+                "BAIXAR LOCALHOST",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) LocalhostBaixar();
+        }else if(
+            FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
+            FrmPrincipal.Config.getSeDependenciaDeSVN() &&
+            FrmPrincipal.Config.getSeDependenciaDeGCC() &&
+            FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
+            !FrmPrincipal.Config.getSeDependenciaDeMontagem()
+        ) {
+            Object[] options = {"Montar", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "<html>" +
+                "O seu localhost não funcionará enquanto não for montado.<br/>" +
+                "Deseja que o tmw-maker monte o seu localhost?",
+                "MONTAR LOCALHOST",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) LocalhostMontar();
+        }else if(FrmPrincipal.Config.getDependenciaEmFalta()==6) {
+            Object[] options = {"Resolver", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "<html>" +
+                "O Cliente TMW configurado como padrão não existe em seu computador.<br/>" +
+                "Deseja que o tmw-maker procure um Cliente TMW um por você?",
+                "PROCURAR CLIENTE",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) ClienteProcurar();
+
+        }else if(!FrmPrincipal.Config.getSeDependenciaDeTiled()) {
+            Object[] options = {"Instalar", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "<html>" +
+                "Você ainda não possuir um editor de mapas.<br/>" +
+                "Deseja que o tmw-maker instale o Tiled Qt?",
+                "INSTALAR TILED QT",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) InstalarTiledQt();
+        }
+
+    }
+    public void ConfiguracaoAplicarPadrao() {
+        FrmPrincipal.Config.ConfiguracoesGravar();
+        BtnResolver.setEnabled(false);
+        FrmPrincipal.setAvisoEmEstatus("Definida configuração padrão com sucesso!");
+        Pendencias_SugerirSolução();
+    }
+    public void InstalarSVN(){
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+
+                    BtnResolver.setEnabled(false);
+                    BtnFechar.setEnabled(false);
+                    TblDependencias.setEnabled(false);
+
+                    FrmPrincipal.PgbBarra.setIndeterminate(true);
+                    FrmPrincipal.PgbBarra.setString("Preparando...");
+                    addLinhaDeEstatus("Preparando para instalar o SVN...");
+                    FrmPrincipal.setAvisoEmEstatus(
+                        "Preparando para instalar o SVN...",
+                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                    );
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    // operacao demorada
+
+
+                    Comando ="gksudo apt-get install subversion";
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.setAvisoEmEstatus(
+                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
+                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                            );
+                            Arquivos++;
+                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                            addLinhaDeEstatus("     "+Arquivos+": "+line);
+                            //Partes=line.split("/");
+                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                        }
+                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "Subversion instalado com sucesso com sucesso!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                        );
+                        addLinhaDeEstatus("Subversion instalado com sucesso com sucesso!");
+                        FrmPrincipal.PgbBarra.setString("Concluido!");
+                    } catch (IOException e) {
+                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
+                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                        );
+                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                        return;
+                    }/**/
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    BtnFechar.setEnabled(true);
+                    TblDependencias.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                    Pendencias_SugerirSolução();
+                }
+            });
+            tThread.start();
+        }
+    }
+    public void InstalarGCC(){
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+
+                    BtnResolver.setEnabled(false);
+                    BtnFechar.setEnabled(false);
+                    TblDependencias.setEnabled(false);
+
+                    FrmPrincipal.PgbBarra.setIndeterminate(true);
+                    FrmPrincipal.PgbBarra.setString("Preparando...");
+                    addLinhaDeEstatus("Preparando para instalar o GCC...");
+                    FrmPrincipal.setAvisoEmEstatus(
+                        "Preparando para instalar o GCC...",
+                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                    );
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    // operacao demorada
+
+
+                    Comando ="gksudo apt-get install gcc";
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.setAvisoEmEstatus(
+                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
+                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                            );
+                            Arquivos++;
+                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                            addLinhaDeEstatus("     "+Arquivos+": "+line);
+                            //Partes=line.split("/");
+                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                        }
+                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "GCC instalado com sucesso com sucesso!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                        );
+                        addLinhaDeEstatus("GCC instalado com sucesso com sucesso!");
+                        FrmPrincipal.PgbBarra.setString("Concluido!");
+                    } catch (IOException e) {
+                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
+                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                        );
+                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                        return;
+                    }/**/
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    BtnFechar.setEnabled(true);
+                    TblDependencias.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                    Pendencias_SugerirSolução();
+
+                }
+            });
+            tThread.start();
+        }
+    }
+    public void InstalarClienteTMW() {
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+
+                    BtnResolver.setEnabled(false);
+                    BtnFechar.setEnabled(false);
+                    TblDependencias.setEnabled(false);
+
+                    FrmPrincipal.PgbBarra.setIndeterminate(true);
+                    FrmPrincipal.PgbBarra.setString("Preparando...");
+                    addLinhaDeEstatus("Preparando para instalar o Cliente TMW...");
+                    FrmPrincipal.setAvisoEmEstatus(
+                        "Preparando para instalar o Cliente TMW...",
+                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                    );
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    // operacao demorada
+
+
+                    Comando ="gksudo apt-get install tmw";
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.setAvisoEmEstatus(
+                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
+                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                            );
+                            Arquivos++;
+                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                            addLinhaDeEstatus("     "+Arquivos+": "+line);
+                            //Partes=line.split("/");
+                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                        }
+                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "GCC instalado com sucesso com sucesso!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                        );
+                        addLinhaDeEstatus("Cliente TMW instalado com sucesso com sucesso!");
+                        FrmPrincipal.PgbBarra.setString("Concluido!");
+                    } catch (IOException e) {
+                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                        );
+                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                        return;
+                    }/**/
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    BtnFechar.setEnabled(true);
+                    TblDependencias.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                    Pendencias_SugerirSolução();
+                }
+            });
+            tThread.start();
+        }
+    }
+    public void InstalarTiledQt(){
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+        } else {
+            Thread tThread = new Thread(new Runnable() {
+                public void run() {
+                    boolean SeConclui=false;
+                    Runtime Executador = Runtime.getRuntime();
+                    String line="", Partes[];
+                    String Comando ="";
+                    int Arquivos=0;
+
+                    FrmPrincipal.PgbBarra.setEnabled(true);
+
+                    BtnResolver.setEnabled(false);
+                    BtnFechar.setEnabled(false);
+                    TblDependencias.setEnabled(false);
+
+                    FrmPrincipal.PgbBarra.setIndeterminate(true);
+                    FrmPrincipal.PgbBarra.setString("Preparando...");
+                    addLinhaDeEstatus("Preparando para instalar o Tiled Qt...");
+                    FrmPrincipal.setAvisoEmEstatus(
+                        "Preparando para instalar o Tiled Qt...",
+                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                    );
+                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    // operacao demorada
+
+
+                    Comando ="gksudo apt-get install tiled";
+                    try {
+                        Process Retorno=Executador.exec(Comando);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                        while ((line = in.readLine()) != null) {
+                            System.out.println(line);
+                            FrmPrincipal.setAvisoEmEstatus(
+                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
+                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
+                            );
+                            Arquivos++;
+                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
+                            addLinhaDeEstatus("     "+Arquivos+": "+line);
+                            //Partes=line.split("/");
+                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
+                        }
+                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "Tiled Qt instalado com sucesso com sucesso!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                        );
+                        addLinhaDeEstatus("Tiled Qt instalado com sucesso com sucesso!");
+                        FrmPrincipal.PgbBarra.setString("Concluido!");
+                    } catch (IOException e) {
+                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
+                        FrmPrincipal.setAvisoEmEstatus(
+                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
+                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                        );
+                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                        return;
+                    }/**/
+                    FrmPrincipal.PgbBarra.setIndeterminate(false);
+                    BtnFechar.setEnabled(true);
+                    TblDependencias.setEnabled(true);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+                    Pendencias_Verificar();
+
+                }
+            });
+            tThread.start();
+        }
+    }
+    public void LocalhostBaixar(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
@@ -513,222 +901,14 @@ public class FrmDependencias extends javax.swing.JDialog {
                         TblDependencias.setEnabled(true);
                         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                        VerificarPendencias();
-                        if(!FrmPrincipal.Config.getSeDependenciaDeMontagem()){
-                            R = JOptionPane.YES_OPTION;
-                            Object[] options = {"Montar", "Cancelar"};
-                            R = JOptionPane.showOptionDialog(
-                                null, "<html>" +
-                                "O seu localhost não funcionará enquanto não for montado.<br/>" +
-                                "Deseja que o tmw-maker monte o seu localhost?",
-                                "MONTAR LOCALHOST",
-                                JOptionPane.YES_NO_OPTION,
-                                JOptionPane.QUESTION_MESSAGE,
-                                null,
-                                options,
-                                options[1]
-                            );
-                            if(R == JOptionPane.YES_OPTION) MontarLocalhost();
-                        }
+                        Pendencias_SugerirSolução();
                     }
                 }
             });
             tThread.start();
         }
     }
-    public void InstalarSVN(){
-        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
-        if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
-        } else if (SistemaOperacional.indexOf("mac") >= 0) {
-            /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
-        } else {
-            Thread tThread = new Thread(new Runnable() {
-                public void run() {
-                    boolean SeConclui=false;
-                    Runtime Executador = Runtime.getRuntime();
-                    String line="", Partes[];
-                    String Comando ="";
-                    int Arquivos=0;
-
-                    FrmPrincipal.PgbBarra.setEnabled(true);
-
-                    BtnResolver.setEnabled(false);
-                    BtnFechar.setEnabled(false);
-                    TblDependencias.setEnabled(false);
-
-                    FrmPrincipal.PgbBarra.setIndeterminate(true);
-                    FrmPrincipal.PgbBarra.setString("Preparando...");
-                    addLinhaDeEstatus("Preparando para instalar o SVN...");
-                    FrmPrincipal.setAvisoEmEstatus(
-                        "Preparando para instalar o SVN...",
-                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
-                    );
-                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    // operacao demorada
-
-
-                    Comando ="gksudo apt-get install subversion";
-                    try {
-                        Process Retorno=Executador.exec(Comando);
-                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                        while ((line = in.readLine()) != null) {
-                            System.out.println(line);
-                            FrmPrincipal.setAvisoEmEstatus(
-                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
-                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
-                            );
-                            Arquivos++;
-                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
-                            addLinhaDeEstatus("     "+Arquivos+": "+line);
-                            //Partes=line.split("/");
-                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
-                        }
-                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
-                        FrmPrincipal.setAvisoEmEstatus(
-                            "Subversion instalado com sucesso com sucesso!",
-                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
-                        );
-                        addLinhaDeEstatus("Subversion instalado com sucesso com sucesso!");
-                        FrmPrincipal.PgbBarra.setString("Concluido!");
-                    } catch (IOException e) {
-                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
-                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
-                        //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
-                        FrmPrincipal.setAvisoEmEstatus(
-                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
-                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
-                        );
-                        FrmPrincipal.PgbBarra.setString("ERRO!");
-                        return;
-                    }/**/
-                    FrmPrincipal.PgbBarra.setIndeterminate(false);
-                    BtnFechar.setEnabled(true);
-                    TblDependencias.setEnabled(true);
-                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-                    VerificarPendencias();
-
-                    if(
-                        FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-                        FrmPrincipal.Config.getSeDependenciaDeSVN() &&
-                        !FrmPrincipal.Config.getSeDependenciaDeGCC()
-                    ){
-                        Object[] options = {"Instalar", "Cancelar"};
-                        if(FrmPrincipal.Config.Mensagem_Opcoes(
-                            "Seu computador ainda não tem o GCC.<br/>" +
-                            "Deseja o instala agora?",
-                            "INSTALAR GCC",
-                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
-                            options,
-                            1
-                        ) == JOptionPane.YES_OPTION) InstalarGCC();
-                    }
-
-                }
-            });
-            tThread.start();
-        }
-    }
-    public void InstalarGCC(){
-        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
-        if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
-        } else if (SistemaOperacional.indexOf("mac") >= 0) {
-            /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
-        } else {
-            Thread tThread = new Thread(new Runnable() {
-                public void run() {
-                    boolean SeConclui=false;
-                    Runtime Executador = Runtime.getRuntime();
-                    String line="", Partes[];
-                    String Comando ="";
-                    int Arquivos=0;
-
-                    FrmPrincipal.PgbBarra.setEnabled(true);
-
-                    BtnResolver.setEnabled(false);
-                    BtnFechar.setEnabled(false);
-                    TblDependencias.setEnabled(false);
-
-                    FrmPrincipal.PgbBarra.setIndeterminate(true);
-                    FrmPrincipal.PgbBarra.setString("Preparando...");
-                    addLinhaDeEstatus("Preparando para instalar o GCC...");
-                    FrmPrincipal.setAvisoEmEstatus(
-                        "Preparando para instalar o GCC...",
-                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
-                    );
-                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    // operacao demorada
-
-
-                    Comando ="gksudo apt-get install gcc";
-                    try {
-                        Process Retorno=Executador.exec(Comando);
-                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                        while ((line = in.readLine()) != null) {
-                            System.out.println(line);
-                            FrmPrincipal.setAvisoEmEstatus(
-                                "<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)",
-                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/puzzle.png"))
-                            );
-                            Arquivos++;
-                            FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
-                            addLinhaDeEstatus("     "+Arquivos+": "+line);
-                            //Partes=line.split("/");
-                            //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
-                        }
-                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
-                        FrmPrincipal.setAvisoEmEstatus(
-                            "GCC instalado com sucesso com sucesso!",
-                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
-                        );
-                        addLinhaDeEstatus("GCC instalado com sucesso com sucesso!");
-                        FrmPrincipal.PgbBarra.setString("Concluido!");
-                    } catch (IOException e) {
-                        addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
-                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
-                        //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
-                        FrmPrincipal.setAvisoEmEstatus(
-                            "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
-                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
-                        );
-                        FrmPrincipal.PgbBarra.setString("ERRO!");
-                        return;
-                    }/**/
-                    FrmPrincipal.PgbBarra.setIndeterminate(false);
-                    BtnFechar.setEnabled(true);
-                    TblDependencias.setEnabled(true);
-                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-                    VerificarPendencias();
-
-                    if(
-                        FrmPrincipal.Config.getSeDependenciaDeConfiguracao() &&
-                        FrmPrincipal.Config.getSeDependenciaDeSVN() &&
-                        FrmPrincipal.Config.getSeDependenciaDeLocalhost() &&
-                        FrmPrincipal.Config.getSeDependenciaDeGCC() &&
-                        !FrmPrincipal.Config.getSeDependenciaDeMontagem()
-                    ){
-                        Object[] options = {"Baixar", "Cancelar"};
-                        if(FrmPrincipal.Config.Mensagem_Opcoes(
-                            "Você ainda não baixou o repositório.<br/>" +
-                            "Deseja baixa-lo para transforma-lo num localhost?",
-                            "BAIXAR REPOSITÓRIO",
-                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
-                            options,
-                            1
-                        ) == JOptionPane.YES_OPTION) BaixarLocalhost();
-                    }
-
-                }
-            });
-            tThread.start();
-        }
-    }
-    public void MontarLocalhost() {
+    public void LocalhostMontar() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
             ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
         } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
@@ -1085,8 +1265,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                             TblDependencias.setEnabled(true);
                             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                            if(FrmPrincipal.Config.getSeDependenciaDeManaplus() || FrmPrincipal.Config.getSeDependenciaDeTMW()){
-                                VerificarPendencias();
+                            if(FrmPrincipal.Config.getDependenciaEmFalta()==0){
+                                Pendencias_Verificar();
                                 ConfigClass.Mensagem_Erro("<html>"+
                                     "Locahost <font color=\"#0000FF\">montado com sucesso</font>!<br/>"+
                                     "Para executar o tmw-maker <b>pressione tecla F9</b>.<br/>"+
@@ -1098,6 +1278,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 TblDependencias.setEnabled(true);
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
+                            }else{
+                                Pendencias_SugerirSolução();
                             }
                             
                         }
@@ -1118,59 +1300,63 @@ public class FrmDependencias extends javax.swing.JDialog {
             }
         }
     }
-    private void ProcurarCliente() {
-        if(FrmPrincipal.Config.getExecucaoComando().equals("manaplus") && !FrmPrincipal.Config.getSeDependenciaDeManaplus() && FrmPrincipal.Config.getSeDependenciaDeTMW()){
-            FrmPrincipal.Config.setExecucaoComando("tmw");
-            FrmPrincipal.Config.ConfiguracoesGravar();
-            VerificarPendencias();
-            BtnResolver.setEnabled(false);
-            addLinhaDeEstatus("Auto-selecionando cliente\"TMW\"!");
-        }else if(FrmPrincipal.Config.getExecucaoComando().equals("tmw") && FrmPrincipal.Config.getSeDependenciaDeManaplus() && !FrmPrincipal.Config.getSeDependenciaDeTMW()){
-            FrmPrincipal.Config.setExecucaoComando("manaplus");
-            FrmPrincipal.Config.ConfiguracoesGravar();
-            VerificarPendencias();
-            BtnResolver.setEnabled(false);
-            addLinhaDeEstatus("Auto-selecionando cliente\"MANAPLUS\"!");
-        }else if(
-            (!FrmPrincipal.Config.getExecucaoComando().equals("manaplus") && !FrmPrincipal.Config.getExecucaoComando().equals("tmw")) &&
-            (FrmPrincipal.Config.getSeDependenciaDeManaplus() || FrmPrincipal.Config.getSeDependenciaDeTMW())
+    public void ClienteProcurar() {
+        if(
+            FrmPrincipal.Config.getExecucaoComando().equals("manaplus") &&
+            !FrmPrincipal.Config.getSeDependenciaDeManaplus()
         ){
-            if(FrmPrincipal.Config.getSeDependenciaDeManaplus()){
-                FrmPrincipal.Config.setExecucaoComando("manaplus");
-                FrmPrincipal.Config.ConfiguracoesGravar();
-                VerificarPendencias();
-                BtnResolver.setEnabled(false);
-                addLinhaDeEstatus("Auto-selecionando cliente\"TMW\"!");
-            }else if(FrmPrincipal.Config.getSeDependenciaDeTMW()){
+            if(FrmPrincipal.Config.getSeDependenciaDeTMW()){
                 FrmPrincipal.Config.setExecucaoComando("tmw");
                 FrmPrincipal.Config.ConfiguracoesGravar();
-                VerificarPendencias();
+                Pendencias_Verificar();
                 BtnResolver.setEnabled(false);
-                addLinhaDeEstatus("Auto-selecionando cliente\"MANAPLUS\"!");
+                addLinhaDeEstatus("Auto-selecionando cliente\"TMW\"!");
+            }else{
+                InstalarClienteTMW();
             }
-        }else{
-            addLinhaDeEstatus("ERRO: Programa "+FrmPrincipal.Config.getExecucaoComando()+" não encontrado!");
-            ConfigClass.Mensagem_Erro(
-                "<html>O TMW-Maker não conseguiu encontrar o programa <font color=\"#FF0000\">"+FrmPrincipal.Config.getExecucaoComando()+"</font>!"
-                , "Dependencia não resolvida!"
-            );
-            VerificarPendencias();
+            Pendencias_Verificar();
+        }else if(
+            FrmPrincipal.Config.getExecucaoComando().equals("tmw") &&
+            FrmPrincipal.Config.getSeDependenciaDeManaplus() &&
+            !FrmPrincipal.Config.getSeDependenciaDeTMW()
+        ){
+            FrmPrincipal.Config.setExecucaoComando("manaplus");
+            FrmPrincipal.Config.ConfiguracoesGravar();
+            Pendencias_Verificar();
+            BtnResolver.setEnabled(false);
+            addLinhaDeEstatus("Auto-selecionando cliente\"MANAPLUS\"!");
+            Pendencias_Verificar();
+        }else if(
+            !FrmPrincipal.Config.getExecucaoComando().equals("manaplus") &&
+            !FrmPrincipal.Config.getExecucaoComando().equals("tmw") &&
+            !FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help")
+        ){
+            Object[] options = {"Resolver", "Cancelar"};
+            if(ConfigClass.Mensagem_Opcoes(
+                "<html>" +
+                "Nenhum cliente TMW existe em seu computador.<br/>" +
+                "Deseja que o tmw-maker instale o Cliente TMW um por você?",
+                "INSTALAR CLIENTE TMW",
+                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")),
+                options,
+                1
+            ) == JOptionPane.YES_OPTION) InstalarClienteTMW();
+            Pendencias_Verificar();
         }
     }
-
-    private void showAjuda() {
+    public void showAjuda() {
         if(TblDependencias.getSelectedRow()==0) {
             ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeConfiguracao");
         }else if(TblDependencias.getSelectedRow()==1) {
             ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeSVN");
         }else if(TblDependencias.getSelectedRow()==2) {
-            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
-        }else if(TblDependencias.getSelectedRow()==3) {
             ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeGCC");
-        }else if(TblDependencias.getSelectedRow()==4) {
-            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
-        }else if(TblDependencias.getSelectedRow()==5) {
+        }else if(TblDependencias.getSelectedRow()==3) {
             ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
+        }else if(TblDependencias.getSelectedRow()==4) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
+        }else if(TblDependencias.getSelectedRow()==5) {
+            ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
         }
     }
 
@@ -1179,4 +1365,6 @@ public class FrmDependencias extends javax.swing.JDialog {
         TxtEstatus.setSelectionStart(TxtEstatus.getText().length()-1);
         TxtEstatus.setSelectionEnd(TxtEstatus.getText().length()-1);
     }
+
+
 }

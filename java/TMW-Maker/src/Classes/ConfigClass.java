@@ -622,6 +622,9 @@ public class ConfigClass {
     public boolean getSeDependenciaDeTMW(){
         return SeComandoProcede("tmw --help");
     }
+    public boolean getSeDependenciaDeTiled(){
+        return SeComandoProcede("tiled --help");
+    }
     public int getDependenciaEmFalta(){
         if(!getSeDependenciaDeConfiguracao()){
             return 1;
@@ -639,6 +642,8 @@ public class ConfigClass {
             (!getExecucaoComando().equals("manaplus") && !getExecucaoComando().equals("tmw") && !SeComandoProcede(ExecucaoComando+" --help"))
         ){
             return 6;
+        /*}else if(!getSeDependenciaDeTiled()){
+            return 7;/**/
         }else{
             return 0;
         }
