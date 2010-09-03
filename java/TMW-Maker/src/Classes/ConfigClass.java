@@ -43,7 +43,7 @@ public class ConfigClass {
     private String  ExecucaoParametroSenha =        ""; //Inicia sem valor
     private String  ExecucaoParametroPersonagem =   ""; //Inicia sem valor
     private boolean ExecucaoParametroSemopengl =    true; //Inicia Sem OpenGL
-    private String  DocumentacaoAlteracoes =        "http://code.google.com/p/tmw-maker/source/list";
+    private String  DocumentacaoAlteracoes =        "http://code.google.com/p/themanaworld-br/source/list";
     private String  DocumentacaoComponentes =       "http://code.google.com/p/tmw-maker/wiki";
     private String  DocumentacaoComentarios =       "http://code.google.com/p/tmw-maker/issues/entry";
     private String  DocumentacaoTraducoes =         "";

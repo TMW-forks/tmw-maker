@@ -85,10 +85,16 @@ public class FrmScript extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TreScripts = new javax.swing.JTree();
-        jToolBar1 = new javax.swing.JToolBar();
-        BtnNovo = new javax.swing.JButton();
-        BtnAbrir = new javax.swing.JButton();
-        BtnExcluir = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        MnuNovo = new javax.swing.JMenu();
+        MnuNovoPersonagem = new javax.swing.JMenuItem();
+        MnuNovaLoja = new javax.swing.JMenuItem();
+        MnuScript = new javax.swing.JMenu();
+        MnuScriptAbrir = new javax.swing.JMenuItem();
+        MnuScriptExcluir = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        MnuScriptDesabilitar = new javax.swing.JMenuItem();
+        MnuScriptHabilitar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Árvore de Scripts");
@@ -122,10 +128,6 @@ public class FrmScript extends javax.swing.JDialog {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         TreScripts.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        TreScripts.setFocusCycleRoot(true);
-        TreScripts.setInheritsPopupMenu(true);
-        TreScripts.setLargeModel(true);
-        TreScripts.setScrollsOnExpand(true);
         TreScripts.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
                 TreScriptsValueChanged(evt);
@@ -133,56 +135,82 @@ public class FrmScript extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(TreScripts);
 
-        jToolBar1.setFloatable(false);
-        jToolBar1.setRollover(true);
+        MnuNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_arvore.png"))); // NOI18N
+        MnuNovo.setMnemonic('N');
+        MnuNovo.setText("Novo");
 
-        BtnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script.png"))); // NOI18N
-        BtnNovo.setMnemonic('N');
-        BtnNovo.setText("Novo");
-        BtnNovo.setEnabled(false);
-        BtnNovo.setFocusable(false);
-        BtnNovo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        BtnNovo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnNovo.addActionListener(new java.awt.event.ActionListener() {
+        MnuNovoPersonagem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        MnuNovoPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))); // NOI18N
+        MnuNovoPersonagem.setMnemonic('P');
+        MnuNovoPersonagem.setText("Personagem");
+        MnuNovoPersonagem.setEnabled(false);
+        MnuNovoPersonagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnNovoActionPerformed(evt);
+                MnuNovoPersonagemActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnNovo);
+        MnuNovo.add(MnuNovoPersonagem);
 
-        BtnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
-        BtnAbrir.setMnemonic('A');
-        BtnAbrir.setText("Abrir");
-        BtnAbrir.setEnabled(false);
-        BtnAbrir.setFocusable(false);
-        BtnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        BtnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnAbrir.addActionListener(new java.awt.event.ActionListener() {
+        MnuNovaLoja.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        MnuNovaLoja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_presente.gif"))); // NOI18N
+        MnuNovaLoja.setMnemonic('L');
+        MnuNovaLoja.setText("Loja");
+        MnuNovaLoja.setEnabled(false);
+        MnuNovo.add(MnuNovaLoja);
+
+        jMenuBar1.add(MnuNovo);
+
+        MnuScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_script.png"))); // NOI18N
+        MnuScript.setMnemonic('S');
+        MnuScript.setText("Scrips");
+
+        MnuScriptAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        MnuScriptAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
+        MnuScriptAbrir.setText("Abrir");
+        MnuScriptAbrir.setToolTipText("A");
+        MnuScriptAbrir.setEnabled(false);
+        MnuScriptAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAbrirActionPerformed(evt);
+                MnuScriptAbrirActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnAbrir);
+        MnuScript.add(MnuScriptAbrir);
 
-        BtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lixeira.png"))); // NOI18N
-        BtnExcluir.setMnemonic('E');
-        BtnExcluir.setText("Excluir");
-        BtnExcluir.setEnabled(false);
-        BtnExcluir.setFocusable(false);
-        BtnExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        BtnExcluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+        MnuScriptExcluir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MnuScriptExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lixeira.png"))); // NOI18N
+        MnuScriptExcluir.setMnemonic('E');
+        MnuScriptExcluir.setText("Exckuir");
+        MnuScriptExcluir.setEnabled(false);
+        MnuScriptExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnExcluirActionPerformed(evt);
+                MnuScriptExcluirActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnExcluir);
+        MnuScript.add(MnuScriptExcluir);
+        MnuScript.add(jSeparator1);
+
+        MnuScriptDesabilitar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.CTRL_MASK));
+        MnuScriptDesabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/pausa.png"))); // NOI18N
+        MnuScriptDesabilitar.setMnemonic('D');
+        MnuScriptDesabilitar.setText("Desabilitar");
+        MnuScriptDesabilitar.setEnabled(false);
+        MnuScript.add(MnuScriptDesabilitar);
+
+        MnuScriptHabilitar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_INSERT, java.awt.event.InputEvent.CTRL_MASK));
+        MnuScriptHabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/cetas.png"))); // NOI18N
+        MnuScriptHabilitar.setMnemonic('H');
+        MnuScriptHabilitar.setText("Habilitar");
+        MnuScriptHabilitar.setEnabled(false);
+        MnuScript.add(MnuScriptHabilitar);
+
+        jMenuBar1.add(MnuScript);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
@@ -191,9 +219,8 @@ public class FrmScript extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -204,22 +231,22 @@ public class FrmScript extends javax.swing.JDialog {
         if(evt.getPath().getPathCount()==3 && evt.getPath().getPathComponent(1).toString().equals("Scripts")){
             PatasDoScript=evt.getPath().getPathComponent(2).toString();
             //EnderecoDoScript=PatasDoScript+Barra+evt.getPath().getLastPathComponent().toString();
-            BtnNovo.setEnabled(true);
+            MnuNovoPersonagem.setEnabled(true);
             TipoDeCodigo="Scripts";
         }else if(evt.getPath().getPathCount()==2 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
             PatasDoScript="functions";
             //EnderecoDoScript=PatasDoScript+Barra+evt.getPath().getLastPathComponent().toString();
-            BtnNovo.setEnabled(true);
+            MnuNovoPersonagem.setEnabled(true);
             TipoDeCodigo="Funções";
         }else{
-            BtnNovo.setEnabled(false);
+            MnuNovoPersonagem.setEnabled(false);
             TipoDeCodigo="";
         }
         
         if(evt.getPath().getPathCount()==4){
             TipoDeCodigo="Scripts";
-            BtnAbrir.setEnabled(true);
-            BtnExcluir.setEnabled(true);
+            MnuScriptAbrir.setEnabled(true);
+            MnuScriptExcluir.setEnabled(true);
             String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
             String PartesDoEndereco[]=Endereco.split(", ");
             EnderecoDoScript=Base;
@@ -230,8 +257,8 @@ public class FrmScript extends javax.swing.JDialog {
             setTitle("Script - "+evt.getPath().getLastPathComponent().toString());
         }else if(evt.getPath().getPathCount()==3 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
             TipoDeCodigo="Funções";
-            BtnAbrir.setEnabled(true);
-            BtnExcluir.setEnabled(true);
+            MnuScriptAbrir.setEnabled(true);
+            MnuScriptExcluir.setEnabled(true);
             String Endereco = evt.getPath().toString().substring(1, evt.getPath().toString().length()-1);
             String PartesDoEndereco[]=Endereco.split(", ");
             EnderecoDoScript=Base+Barra+"functions";
@@ -241,8 +268,8 @@ public class FrmScript extends javax.swing.JDialog {
             //setTitle("EnderecoDoScript = \""+EnderecoDoScript+"\"");
             setTitle("Script - "+evt.getPath().getLastPathComponent().toString());
         }else{
-            BtnAbrir.setEnabled(false);
-            BtnExcluir.setEnabled(false);
+            MnuScriptAbrir.setEnabled(false);
+            MnuScriptExcluir.setEnabled(false);
             setTitle("Árvore de Scripts");
         }/**/
         
@@ -258,16 +285,7 @@ public class FrmScript extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ListarArquivos();
     }//GEN-LAST:event_formWindowOpened
-    private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
-        javax.swing.JDialog FrmPalco = new FrmPalco(this, rootPaneCheckingEnabled);
-        FrmPalco.setLocation(
-            ((this.getWidth() - FrmPalco.getWidth()) / 2) + this.getX(),
-            ((this.getHeight() - FrmPalco.getHeight()) / 2) + this.getY());
-        FrmPalco.pack();
-        FrmPalco.setModal(true);
-        FrmPalco.setVisible(true);
-    }//GEN-LAST:event_BtnAbrirActionPerformed
-    private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
+    private void MnuNovoPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuNovoPersonagemActionPerformed
         javax.swing.JDialog FrmNovoScript = new FrmNovoScript(this, rootPaneCheckingEnabled);
         FrmNovoScript.setLocation(
             ((this.getWidth() - FrmNovoScript.getWidth()) / 2) + this.getX(),
@@ -275,10 +293,21 @@ public class FrmScript extends javax.swing.JDialog {
         FrmNovoScript.pack();
         FrmNovoScript.setModal(true);
         FrmNovoScript.setVisible(true);
-    }//GEN-LAST:event_BtnNovoActionPerformed
-    private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
+
+    }//GEN-LAST:event_MnuNovoPersonagemActionPerformed
+    private void MnuScriptExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptExcluirActionPerformed
         ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");
-    }//GEN-LAST:event_BtnExcluirActionPerformed
+    }//GEN-LAST:event_MnuScriptExcluirActionPerformed
+
+    private void MnuScriptAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptAbrirActionPerformed
+        javax.swing.JDialog FrmPalco = new FrmPalco(this, rootPaneCheckingEnabled);
+        FrmPalco.setLocation(
+            ((this.getWidth() - FrmPalco.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmPalco.getHeight()) / 2) + this.getY());
+        FrmPalco.pack();
+        FrmPalco.setModal(true);
+        FrmPalco.setVisible(true);
+    }//GEN-LAST:event_MnuScriptAbrirActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -294,12 +323,18 @@ public class FrmScript extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAbrir;
-    private javax.swing.JButton BtnExcluir;
-    private javax.swing.JButton BtnNovo;
+    private javax.swing.JMenuItem MnuNovaLoja;
+    private javax.swing.JMenu MnuNovo;
+    private javax.swing.JMenuItem MnuNovoPersonagem;
+    private javax.swing.JMenu MnuScript;
+    private javax.swing.JMenuItem MnuScriptAbrir;
+    private javax.swing.JMenuItem MnuScriptDesabilitar;
+    private javax.swing.JMenuItem MnuScriptExcluir;
+    private javax.swing.JMenuItem MnuScriptHabilitar;
     public static javax.swing.JTree TreScripts;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
 }
