@@ -26,10 +26,10 @@
    * [Dependencias Dependências (Ctrl+D)]
     * [DependenciaDeConfiguracao De Configuração]
     * [DependenciaDeSVN De SVN]
-    * [DependenciaDeLocalhost De Localhost]
     * [DependenciaDeGCC De GCC]
-    * [DependenciaDeMontagem De Montagem]
     * [DependenciaDeCliente De Cliente]
+    * [DependenciaDeLocalhost De Localhost]
+    * [DependenciaDeMontagem De Montagem]
   * Editar
    * Personagem (NPC)
     * [EditarPersonagemScript Script (Ctrl+N)]
