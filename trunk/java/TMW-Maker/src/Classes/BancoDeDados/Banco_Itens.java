@@ -1,5 +1,6 @@
 package Classes.BancoDeDados;
 
+import Classes.Arquivamento;
 import Classes.ConfigClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
@@ -141,7 +142,7 @@ public class Banco_Itens {
     public void AbrirItens_deprecado() {
         //String ConteudoTotal=ConfigClass.ArquivoAbrir(EnderecoItensTXT);
         StringClass ConteudoTotal = new StringClass();
-        ConteudoTotal.setTesto(ConfigClass.ArquivoAbrir(EnderecoItensXML));
+        ConteudoTotal.setTesto(Arquivamento.ArquivoAbrir(EnderecoItensXML));
         int Part01=0;
         StringClass ItemXML = new StringClass();
         Dados_Item ItensA[] = new Dados_Item[0];

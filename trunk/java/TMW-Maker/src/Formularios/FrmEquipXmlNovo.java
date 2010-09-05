@@ -1,5 +1,6 @@
 package Formularios;
 
+import Classes.Arquivamento;
 import Classes.ImagemTratavel;
 import Classes.SpriteDados;
 import Classes.XmlDeEquip.XMLdeEquip;
@@ -127,8 +128,8 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
         CarregarSpritesPNG("player_male_base.png");
     }
     private void CarregarSpritesPNG(String Focar){
-        if(FrmPrincipal.Config.SeExiste(PastaDeSprites)){
-            String[] Arquivos = FrmPrincipal.Config.ListarArquivos(PastaDeSprites);
+        if(Arquivamento.SeExiste(PastaDeSprites)){
+            String[] Arquivos = Arquivamento.ListarArquivos(PastaDeSprites);
             //setTitle(""+Arquivos.length);
             if(Arquivos.length>=1){
 
@@ -158,7 +159,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
     public void AbrirSprite(){
         String Arquivo=CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
         Endereco=PastaDeSprites+Arquivo;
-        if(FrmPrincipal.Config.SeExiste(Endereco)){
+        if(Arquivamento.SeExiste(Endereco)){
             
             String Tipo[]=new String[]{
                 "chest-",
@@ -540,7 +541,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
             //File Arquivo = Dialogo.getSelectedFile();
             /*This is where a real application would open the file.
             log.append("Opening: " + file.getName() + "." + newline);/**/
-            FrmPrincipal.Config.CopiarArquivo(
+            Arquivamento.CopiarArquivo(
                 Dialogo.getSelectedFile(),
                 PastaDeSprites+FrmPrincipal.Barra+Dialogo.getSelectedFile().getName()
             );

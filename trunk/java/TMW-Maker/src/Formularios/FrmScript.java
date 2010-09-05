@@ -1,6 +1,7 @@
 
 package Formularios;
 
+import Classes.Arquivamento;
 import Classes.ConfigClass;
 
 
@@ -23,7 +24,7 @@ public class FrmScript extends javax.swing.JDialog {
         if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
             javax.swing.tree.DefaultMutableTreeNode No3 = null;
             javax.swing.tree.DefaultMutableTreeNode No4 = null;
-            String Pasta[] = FrmPrincipal.Config.ListarPastas(Base);
+            String Pasta[] = Arquivamento.ListarPastas(Base);
             String Arquivo[] = null;
             int ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Scripts");
@@ -34,7 +35,7 @@ public class FrmScript extends javax.swing.JDialog {
                     No2.add(No3);
 
                     ContArquivos=0;
-                    Arquivo = FrmPrincipal.Config.ListarArquivos(Base+Barra+Pasta[p]);
+                    Arquivo = Arquivamento.ListarArquivos(Base+Barra+Pasta[p]);
                     for(int a=0; a<Arquivo.length; a++){
                         if(
                             !Arquivo[a].substring(Arquivo[a].toString().length()-1, Arquivo[a].toString().length()).equals("~") &&
@@ -58,7 +59,7 @@ public class FrmScript extends javax.swing.JDialog {
 
             ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Funções");
-            Arquivo = FrmPrincipal.Config.ListarArquivos(Base+Barra+"functions");
+            Arquivo = Arquivamento.ListarArquivos(Base+Barra+"functions");
             for(int a=0; a<Arquivo.length; a++){
                 ContArquivos++;
                 //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");

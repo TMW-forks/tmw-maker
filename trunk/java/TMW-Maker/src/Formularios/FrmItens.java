@@ -1,5 +1,6 @@
 package Formularios;
 
+import Classes.Arquivamento;
 import Classes.ImagemTratavel;
 import Classes.BancoDeDados.Banco_Itens;
 import java.awt.Cursor;
@@ -14,8 +15,8 @@ public class FrmItens extends javax.swing.JDialog {
     
 
     private void CarregarCmbIconePNG() {
-        if(FrmPrincipal.Config.SeExiste(FrmPrincipal.Itens.PastaDeItens)){
-            String[] Arquivos = FrmPrincipal.Config.ListarArquivos(FrmPrincipal.Itens.PastaDeItens);
+        if(Arquivamento.SeExiste(FrmPrincipal.Itens.PastaDeItens)){
+            String[] Arquivos = Arquivamento.ListarArquivos(FrmPrincipal.Itens.PastaDeItens);
             //setTitle(""+Arquivos.length);
             if(Arquivos.length>=1){
 

@@ -3,6 +3,7 @@ package Formularios;
 
 
 
+import Classes.Arquivamento;
 import Classes.BancoDeDados.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_Itens;
@@ -82,7 +83,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     //ln -t /home/indigovox/Desktop -s /home/indigovox/localhost/tmw-maker/TMW-Maker_0.2.jar
                     Link=Config.getConexaoLocalhost()+Barra+ "tmw-maker"+Barra+ "TMW-Maker.jar";
                     Simbolo=System.getProperty("user.home")+Barra+"Desktop";
-                    if(Config.SeExiste(Simbolo)) Config.Apagar(Simbolo+Barra+"TMW-Maker.jar");
+                    if(Arquivamento.SeExiste(Simbolo)) Arquivamento.Apagar(Simbolo+Barra+"TMW-Maker.jar");
                     PgbBarra.setString("Coligando...");
                     setAvisoEmEstatus("Criando link \""+Link+"\"...");
                     Comando="ln -t "+Simbolo+" -s "+Link;
@@ -162,9 +163,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         } else if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
             int R = JOptionPane.YES_OPTION;
             if(Config.getSeDependenciaDeGCC()){
-                if (Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server") ||
-                        Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server") ||
-                        Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                if (Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server") ||
+                        Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server") ||
+                        Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
                     Object[] options = {"Remontar", "Cancelar"};
                     R = JOptionPane.showOptionDialog(
                             null, "<html>" +
@@ -201,12 +202,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             PgbBarra.setIndeterminate(true);
                             PgbBarra.setString("Apagando...");
                             setAvisoEmEstatus("Apagando binários...");
-                            if (Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "bins")) {
-                                Config.Apagar(Config.getConexaoLocalhost() +Barra+ "bins");
+                            if (Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "bins")) {
+                                Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "bins");
                             }
-                            Config.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
-                            Config.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
-                            Config.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
+                            Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
+                            Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
+                            Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
 
                             PgbBarra.setString("Preparando...");
                             setAvisoEmEstatus("Preparando para baixar binários novos...");
@@ -247,20 +248,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             }
                             if (BinariosEspecificos == true) {
                                 PgbBarra.setString("Deslocando...");
-                                if (!Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server")) {
-                                    Config.MoverArquivo(
+                                if (!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server")) {
+                                    Arquivamento.MoverArquivo(
                                             Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "char-server",
                                             Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
                                     setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
                                 }
-                                if (!Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server")) {
-                                    Config.MoverArquivo(
+                                if (!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server")) {
+                                    Arquivamento.MoverArquivo(
                                             Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "login-server",
                                             Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
                                     setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
                                 }
-                                if (!Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
-                                    Config.MoverArquivo(
+                                if (!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                                    Arquivamento.MoverArquivo(
                                             Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "map-server",
                                             Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
                                     setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
@@ -326,26 +327,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             };
 
                             for (int r = 0; r < De.length; r++) {
-                                if (Config.SeExiste(Pasta[r] +Barra+ De[r])) {
-                                    if (Config.SeExiste(Pasta[r] +Barra+ Para[r])) {
-                                        Config.Apagar(Pasta[r] +Barra+ Para[r]);
+                                if (Arquivamento.SeExiste(Pasta[r] +Barra+ De[r])) {
+                                    if (Arquivamento.SeExiste(Pasta[r] +Barra+ Para[r])) {
+                                        Arquivamento.Apagar(Pasta[r] +Barra+ Para[r]);
                                         setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + Para[r] + "\"!");
                                     }
                                     setAvisoEmEstatus("<html><b>Renomeando:</b> \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
-                                    Config.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
+                                    Arquivamento.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
                                 }
                             }
 
-                            if(!Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log")) {
+                            if(!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log")) {
                                 setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log\"...");
-                                Config.CriarPasta(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log");
+                                Arquivamento.CriarPasta(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log");
                             }
 
                             /*
                             Criar pasta de ~/localhost/eathena-data/log
                             gcc -o eathena-monitor eathena-monitor.c
                             /**/
-                            if(!Config.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor")) {
+                            if(!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor")) {
                                 PgbBarra.setString("Copilando...");
                                 setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
                                 Comando="gcc -o "+
@@ -375,8 +376,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             rm $HOME/tmwserver // Apaga Link
                             ln -s $PWD $HOME/tmwserver //Recria Link
                             /**/
-                            if(Config.SeExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
-                                Config.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
+                            if(Arquivamento.SeExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
+                                Arquivamento.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
                             }
                             PgbBarra.setString("Coligando...");
                             setAvisoEmEstatus("Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");

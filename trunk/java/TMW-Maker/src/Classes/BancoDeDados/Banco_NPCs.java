@@ -1,6 +1,7 @@
 
 package Classes.BancoDeDados;
 
+import Classes.Arquivamento;
 import Classes.ConfigClass;
 import Classes.SpriteDados;
 import Classes.StringClass;
@@ -79,7 +80,7 @@ public class Banco_NPCs {
                 NPCs[l-1].setParticulaXML(NPC.ExtrairEntre("<particlefx>", "</particlefx>"));
                 NPCs[l-1].setComentario(NPC.ExtrairEntre("<!--", "-->"));
 
-                if(!NPCs[l-1].getXML().equals("") && FrmPrincipal.Config.SeExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
+                if(!NPCs[l-1].getXML().equals("") && Arquivamento.SeExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
                     NPCs[l-1].setSprite(getSpriteDeXML(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML()));
                 }
             }
