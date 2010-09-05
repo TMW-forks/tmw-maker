@@ -254,6 +254,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 Process Retorno=Executador.exec(Comando);
                                 BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                                 while ((line = in.readLine()) != null) {
+                                    line=line.replaceAll(FrmPrincipal.Config.getConexaoLocalhost()+Barra, "");
                                     System.out.println(line);
                                     FrmPrincipal.setAvisoEmEstatus("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
                                     Arquivos++;
@@ -789,6 +790,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 Process Retorno=Executador.exec(Comando);
                                 BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                                 while ((line = in.readLine()) != null) {
+                                    line=line.replaceAll(FrmPrincipal.Config.getConexaoLocalhost()+Barra, "");
                                     System.out.println(line);
                                     FrmPrincipal.setAvisoEmEstatus("<html>ENVIADO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
                                     Arquivos++;
