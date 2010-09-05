@@ -33,10 +33,10 @@ public class frmLojas extends javax.swing.JDialog {
         }
         CmbNovoBlocoScriptImagem.setModel(new javax.swing.DefaultComboBoxModel(Lista));
     }
-    public Vector addItem(int IDTem){
-        return addItem(IDTem, FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda());
+    public Vector addItemVector(int IDTem){
+        return addItemVector(IDTem, FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda());
     }
-    public Vector addItem(int IDTem, int PrecoDeVenda){
+    public Vector addItemVector(int IDTem, int PrecoDeVenda){
         Vector Linha = new Vector();
         Linha.addElement(new ImageIcon(FrmPrincipal.Itens.getItemPorID(IDTem).getIconeImagem()));
         Linha.addElement(IDTem);
@@ -63,7 +63,7 @@ public class frmLojas extends javax.swing.JDialog {
         tblShop.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(32);
         
         //TableCellRenderer Tipo2 = CmbIDItens;
-        tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.Itens.getIDs()));
+        //tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.Itens.getIDs()));
         tblShop.getTableHeader().getColumnModel().getColumn(1).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getIDs()));
         tblShop.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
         tblShop.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(64);
@@ -71,10 +71,10 @@ public class frmLojas extends javax.swing.JDialog {
         tblShop.getTableHeader().getColumnModel().getColumn(3).setMinWidth(64);
         tblShop.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(256);
     }
-    public void Teste_D02(){
+    public void SetExemploDeTabela(){
         Vector Carrinho = new Vector();
-        Carrinho.addElement(addItem(3017));
-        Carrinho.addElement(addItem(3093));
+        Carrinho.addElement(addItemVector(3017));
+        Carrinho.addElement(addItemVector(3093));
         setCorpo(Carrinho);
     }
 
@@ -278,7 +278,7 @@ public class frmLojas extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ListarAparencias();
-        Teste_D02();
+        SetExemploDeTabela();
     }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
