@@ -1,6 +1,7 @@
 
 package Formularios;
 
+import Classes.Arquivamento;
 import Classes.ConfigClass;
 import java.awt.Cursor;
 import java.io.BufferedReader;
@@ -314,9 +315,9 @@ public class FrmLocalhost extends javax.swing.JDialog {
     } else if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
         int R = JOptionPane.YES_OPTION;
         if(FrmPrincipal.Config.getSeDependenciaDeGCC()){
-            if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server") ||
-                FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server") ||
-                FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
+            if (Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server") ||
+                Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server") ||
+                Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
                 Object[] options = {"Remontar", "Cancelar"};
                 R = JOptionPane.showOptionDialog(
                     null, "<html>" +
@@ -354,12 +355,12 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         FrmPrincipal.PgbBarra.setString("Apagando...");
                         FrmPrincipal.setAvisoEmEstatus("Apagando binários...");
                         addLinhaDeEstatus("Apagando binários...");
-                        if (FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
-                            FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
+                        if (Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
+                            Arquivamento.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
                         }
-                        FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server");
-                        FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
-                        FrmPrincipal.Config.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
+                        Arquivamento.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server");
+                        Arquivamento.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
+                        Arquivamento.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
 
                         FrmPrincipal.PgbBarra.setString("Abaixando...");
                         FrmPrincipal.setAvisoEmEstatus("Baixando binários novos...");
@@ -411,8 +412,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         }
                         if (BinariosEspecificos == true) {
                             FrmPrincipal.PgbBarra.setString("Deslocando...");
-                            if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"char-server")) {
-                                FrmPrincipal.Config.MoverArquivo(
+                            if (!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"char-server")) {
+                                Arquivamento.MoverArquivo(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"char-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
@@ -429,8 +430,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"login-server")) {
-                                FrmPrincipal.Config.MoverArquivo(
+                            if (!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"login-server")) {
+                                Arquivamento.MoverArquivo(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"login-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
@@ -447,8 +448,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"map-server")) {
-                                FrmPrincipal.Config.MoverArquivo(
+                            if (!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"map-server")) {
+                                Arquivamento.MoverArquivo(
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins"+Barra+"map-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
@@ -477,8 +478,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
 
                             FrmPrincipal.PgbBarra.setString("Deslocando...");
 
-                            if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server")) {
-                                FrmPrincipal.Config.MoverArquivo(
+                            if (!Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server")) {
+                                Arquivamento.MoverArquivo(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
@@ -495,8 +496,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server")) {
-                                FrmPrincipal.Config.MoverArquivo(
+                            if (!Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server")) {
+                                Arquivamento.MoverArquivo(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
@@ -513,8 +514,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server")) {
-                                FrmPrincipal.Config.MoverArquivo(
+                            if (!Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server")) {
+                                Arquivamento.MoverArquivo(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
@@ -589,29 +590,29 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         };
 
                         for (int r = 0; r < De.length; r++) {
-                            if (FrmPrincipal.Config.SeExiste(Pasta[r] +Barra+ De[r])) {
-                                if (FrmPrincipal.Config.SeExiste(Pasta[r] +Barra+ Para[r])) {
-                                    FrmPrincipal.Config.Apagar(Pasta[r] +Barra+ Para[r]);
+                            if (Arquivamento.SeExiste(Pasta[r] +Barra+ De[r])) {
+                                if (Arquivamento.SeExiste(Pasta[r] +Barra+ Para[r])) {
+                                    Arquivamento.Apagar(Pasta[r] +Barra+ Para[r]);
                                     addLinhaDeEstatus("     Apagando: \"" + Para[r] + "\"!");
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + Para[r] + "\"!");
                                 }
                                 addLinhaDeEstatus("     Renomeando: \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
                                 FrmPrincipal.setAvisoEmEstatus("<html><b>Renomeando:</b> \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
-                                FrmPrincipal.Config.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
+                                Arquivamento.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
                             }
                         }
 
-                        if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
+                        if(!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
                             addLinhaDeEstatus("     Criando Pasta: \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
                             FrmPrincipal.setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
-                            FrmPrincipal.Config.CriarPasta(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
+                            Arquivamento.CriarPasta(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
                         }
 
                         /*
                         Criar pasta de ~/localhost/eathena-data/log
                         gcc -o eathena-monitor eathena-monitor.c
                         /**/
-                        if(!FrmPrincipal.Config.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
+                        if(!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
                             FrmPrincipal.PgbBarra.setString("Copilando...");
                             addLinhaDeEstatus("     Copilando binário \"eathena-monitor\"...");
                             FrmPrincipal.setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
@@ -650,8 +651,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         rm $HOME/tmwserver // Apaga Link
                         ln -s $PWD $HOME/tmwserver //Recria Link
                         /**/
-                        if(FrmPrincipal.Config.SeExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
-                            FrmPrincipal.Config.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
+                        if(Arquivamento.SeExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
+                            Arquivamento.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
                         }
                         FrmPrincipal.PgbBarra.setString("Coligando...");
                         addLinhaDeEstatus("     Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");

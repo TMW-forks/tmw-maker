@@ -1,6 +1,7 @@
 
 package Formularios;
 
+import Classes.Arquivamento;
 import Classes.ConfigClass;
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -129,10 +130,10 @@ public class FrmNovoScript extends javax.swing.JDialog {
     private void TxtNomeSimplesArquivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtNomeSimplesArquivoKeyReleased
         BtnCriar.setEnabled(
             !TxtNomeSimplesArquivo.getText().trim().equals("") &&
-            !FrmPrincipal.Config.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")
+            !Arquivamento.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")
         );
         if(!TxtNomeSimplesArquivo.getText().trim().equals("")){
-            if(!FrmPrincipal.Config.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
+            if(!Arquivamento.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
                 TxtNomeSimplesArquivo.setForeground(java.awt.SystemColor.textText);
                 FrmPrincipal.setAvisoEmEstatus("<html>Pressione o botão \"<font color=\"#0000FF\">Criar</font>\" para gerar o arquivo no novo Scripr existente!");
             }else{
@@ -153,9 +154,9 @@ public class FrmNovoScript extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtNomeSimplesArquivoFocusLost
     private void BtnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCriarActionPerformed
         if(!TxtNomeSimplesArquivo.getText().trim().equals("")){
-            if(!FrmPrincipal.Config.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
-                if(FrmPrincipal.Config.ArquivoSalvar(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf","")){
-                    String Conteudo = FrmPrincipal.Config.ArquivoAbrir(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt");
+            if(!Arquivamento.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
+                if(Arquivamento.ArquivoSalvar(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf","")){
+                    String Conteudo = Arquivamento.ArquivoAbrir(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt");
                     if(!Conteudo.isEmpty() && !Conteudo.trim().equals("")){
                         int loc1 = Conteudo.indexOf("map: ");
                         if(loc1>=0){
@@ -164,7 +165,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
                                 String Parte1= Conteudo.substring(0, loc2+1);
                                 String Parte2= Conteudo.substring(loc2+1, Conteudo.length());
                                 if(
-                                    FrmPrincipal.Config.ArquivoSalvar(
+                                    Arquivamento.ArquivoSalvar(
                                         FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt",
                                         Parte1+
                                         "npc: npc/"+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf\n"+
