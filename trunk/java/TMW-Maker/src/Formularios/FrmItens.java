@@ -132,8 +132,8 @@ public class FrmItens extends javax.swing.JDialog {
             if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==10) CmbUtilidade.setSelectedIndex(8);
             if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==11) CmbUtilidade.setSelectedIndex(9);
             SpnPeso.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPeso());
-            SpnPrecoCompra.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPrecoDeCompra());
             SpnPrecoVenda.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPrecoDeVenda());
+            SpnPrecoCompra.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPrecoDeCompra());
             SpnPoderAtaque.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderAtaque());
             SpnPoderDefesa.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderDefesa());
             SpnPoderAlcance.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderAlcance());
@@ -222,9 +222,9 @@ public class FrmItens extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         CmbUtilidade = new javax.swing.JComboBox();
         PneComercio = new javax.swing.JPanel();
-        SpnPrecoCompra = new javax.swing.JSpinner();
-        jLabel12 = new javax.swing.JLabel();
         SpnPrecoVenda = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
+        SpnPrecoCompra = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         SpnPeso = new javax.swing.JSpinner();
@@ -619,17 +619,17 @@ public class FrmItens extends javax.swing.JDialog {
 
         TpnPaleta.addTab("Poder", jPanel1);
 
-        SpnPrecoCompra.setModel(new javax.swing.SpinnerNumberModel(50000, 0, 10000000, 1));
-        SpnPrecoCompra.setFocusable(false);
-
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel12.setText("Preço de compra:");
-
-        SpnPrecoVenda.setModel(new javax.swing.SpinnerNumberModel(25000, 0, 10000000, 1));
+        SpnPrecoVenda.setModel(new javax.swing.SpinnerNumberModel(50000, 0, 10000000, 1));
         SpnPrecoVenda.setFocusable(false);
 
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Preço de venda:");
+
+        SpnPrecoCompra.setModel(new javax.swing.SpinnerNumberModel(25000, 0, 10000000, 1));
+        SpnPrecoCompra.setFocusable(false);
+
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel13.setText("Preço de Venda:");
+        jLabel13.setText("Preço de compra:");
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Peso:");
@@ -656,8 +656,8 @@ public class FrmItens extends javax.swing.JDialog {
                 .addGap(5, 5, 5)
                 .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(SpnPeso, 0, 0, Short.MAX_VALUE)
-                    .addComponent(SpnPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(SpnPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SpnPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(SpnPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -676,12 +676,12 @@ public class FrmItens extends javax.swing.JDialog {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SpnPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SpnPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PneComercioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SpnPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SpnPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))

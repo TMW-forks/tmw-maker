@@ -661,8 +661,8 @@
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="SpnPeso" alignment="1" min="0" pref="0" max="32767" attributes="1"/>
-                          <Component id="SpnPrecoCompra" alignment="1" pref="105" max="32767" attributes="1"/>
-                          <Component id="SpnPrecoVenda" alignment="1" min="-2" pref="105" max="-2" attributes="1"/>
+                          <Component id="SpnPrecoVenda" alignment="1" pref="105" max="32767" attributes="1"/>
+                          <Component id="SpnPrecoCompra" alignment="1" min="-2" pref="105" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -686,13 +686,13 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="SpnPrecoCompra" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="SpnPrecoVenda" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="SpnPrecoVenda" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="SpnPrecoCompra" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                                   <Component id="jLabel13" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="jLabel14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
@@ -705,7 +705,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JSpinner" name="SpnPrecoCompra">
+            <Component class="javax.swing.JSpinner" name="SpnPrecoVenda">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="50000" maximum="10000000" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -716,10 +716,10 @@
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Pre&#xe7;o de compra:"/>
+                <Property name="text" type="java.lang.String" value="Pre&#xe7;o de venda:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="SpnPrecoVenda">
+            <Component class="javax.swing.JSpinner" name="SpnPrecoCompra">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="25000" maximum="10000000" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -730,7 +730,7 @@
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Pre&#xe7;o de Venda:"/>
+                <Property name="text" type="java.lang.String" value="Pre&#xe7;o de compra:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">

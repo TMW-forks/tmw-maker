@@ -164,7 +164,7 @@ public class FrmScript extends javax.swing.JDialog {
         MnuScript.setMnemonic('S');
         MnuScript.setText("Scrips");
 
-        MnuScriptAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        MnuScriptAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         MnuScriptAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
         MnuScriptAbrir.setText("Abrir");
         MnuScriptAbrir.setToolTipText("A");
@@ -300,13 +300,21 @@ public class FrmScript extends javax.swing.JDialog {
     }//GEN-LAST:event_MnuScriptExcluirActionPerformed
 
     private void MnuScriptAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptAbrirActionPerformed
-        javax.swing.JDialog FrmPalco = new FrmPalco(this, rootPaneCheckingEnabled);
-        FrmPalco.setLocation(
-            ((this.getWidth() - FrmPalco.getWidth()) / 2) + this.getX(),
-            ((this.getHeight() - FrmPalco.getHeight()) / 2) + this.getY());
-        FrmPalco.pack();
-        FrmPalco.setModal(true);
-        FrmPalco.setVisible(true);
+        javax.swing.JDialog frmJanela = null;
+        if(
+            TreScripts.getLeadSelectionPath().getPathCount()==4 && 
+            TreScripts.getLeadSelectionPath().getPathComponent(3).toString().equals("_shops.txt")
+        ){
+            frmJanela = new frmLojas(this, rootPaneCheckingEnabled);
+        }else{
+            frmJanela = new FrmPalco(this, rootPaneCheckingEnabled);
+        }
+        frmJanela.setLocation(
+            ((this.getWidth() - frmJanela.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - frmJanela.getHeight()) / 2) + this.getY());
+        frmJanela.pack();
+        frmJanela.setModal(true);
+        frmJanela.setVisible(true);
     }//GEN-LAST:event_MnuScriptAbrirActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -323,7 +331,7 @@ public class FrmScript extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem MnuNovaLoja;
+    private static javax.swing.JMenuItem MnuNovaLoja;
     private javax.swing.JMenu MnuNovo;
     private javax.swing.JMenuItem MnuNovoPersonagem;
     private javax.swing.JMenu MnuScript;

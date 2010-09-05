@@ -9,7 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 public class jTtableImagemDeCabecalho implements TableCellRenderer{
-    private JLabel rot = null;
+    private JLabel Etiqueta = null;
 
     public Component getTableCellRendererComponent(
         JTable Tabela,
@@ -19,18 +19,18 @@ public class jTtableImagemDeCabecalho implements TableCellRenderer{
         int Linha,
         int Coluna
     ) {
-        rot = new JLabel(Valor.toString());
+        Etiqueta = new JLabel(Valor.toString());
         TableCellRenderer tcr = Tabela.getTableHeader().getDefaultRenderer();
 
         Component Componente = tcr.getTableCellRendererComponent(Tabela, Valor, SeSelecionada, SeFocalizada, Linha, Coluna);
 
-        rot.setFont(Componente.getFont());
-        rot.setForeground(Color.RED);
-        rot.setBorder(((JComponent) Componente).getBorder());
-        rot.setText((String) Valor);
-        rot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_char.png"))); // NOI18N
+        Etiqueta.setFont(Componente.getFont());
+        Etiqueta.setForeground(Color.RED);
+        Etiqueta.setBorder(((JComponent) Componente).getBorder());
+        Etiqueta.setText((String) Valor);
+        Etiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_char.png"))); // NOI18N
 
-        return rot;
+        return Etiqueta;
     }
 
     public void setTableCellRendererComponent(
@@ -41,16 +41,16 @@ public class jTtableImagemDeCabecalho implements TableCellRenderer{
         int Linha,
         int Coluna
     ){
-        rot = new JLabel(Valor.toString());
+        Etiqueta = new JLabel(Valor.toString());
         TableCellRenderer tcr = Tabela.getTableHeader().getDefaultRenderer();
 
         Component Componente = tcr.getTableCellRendererComponent(Tabela, Valor, SeSelecionada, SeFocalizada, Linha, Coluna);
 
-        rot.setFont(Componente.getFont());
-        rot.setForeground(Color.RED);
-        rot.setBorder(((JComponent) Componente).getBorder());
-        rot.setText((String) Valor);
-        rot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_char.png"))); // NOI18N
+        Etiqueta.setFont(Componente.getFont());
+        Etiqueta.setForeground(Color.RED);
+        Etiqueta.setBorder(((JComponent) Componente).getBorder());
+        Etiqueta.setText((String) Valor);
+        Etiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_char.png"))); // NOI18N
 
     }
 }

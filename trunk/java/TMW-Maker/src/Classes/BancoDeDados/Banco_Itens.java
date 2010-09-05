@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.Vector;
 
 public class Banco_Itens {
 //####################### COSTRUTORES #########################################
@@ -20,6 +21,13 @@ public class Banco_Itens {
     public static String EnderecoItensXML = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"items.xml";
     public static String EnderecoItensTXT = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"db"+Barra+"item_db.txt";
     public Dados_Item[] getItens() {return Itens;}
+    public Vector getIDs() {
+        Vector Lista = new Vector();
+        for(int I=0;I<getContItens();I++){
+            Lista.addElement(Itens[I].getID());
+        }
+        return Lista;
+    }
     public Dados_Item getItemPorOrdem(int Ordem) {return Itens[Ordem];}
     public Dados_Item getItemPorID(int ID) {
         for(int i=0;i<Itens.length;i++){
@@ -99,8 +107,8 @@ public class Banco_Itens {
             Itens[l].setNomeSumonico(PartesDaLinha[1].trim());
             Itens[l].setNomeTitulo(PartesDaLinha[2].trim());
             Itens[l].setTipoObjeto(Integer.parseInt(PartesDaLinha[3].trim()));
-            Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[4].trim()));
-            Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[5].trim()));
+            Itens[l].setPrecoDeVenda(Integer.parseInt(PartesDaLinha[4].trim()));
+            Itens[l].setPrecoDeCompra(Integer.parseInt(PartesDaLinha[5].trim()));
             Itens[l].setPeso(Integer.parseInt(PartesDaLinha[6].trim()));
 
             if(!PartesDaLinha[7].toString().equals("")) Itens[l].setPoderAtaque(Integer.parseInt(PartesDaLinha[7].trim()));
