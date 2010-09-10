@@ -3,14 +3,11 @@ package Formularios;
 
 import Classes.Arquivamento;
 import Classes.ConfigClass;
+import Classes.Mensagem;
 import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 public class FrmNovoScript extends javax.swing.JDialog {
     static String Barra = System.getProperty("file.separator");
@@ -130,10 +127,10 @@ public class FrmNovoScript extends javax.swing.JDialog {
     private void TxtNomeSimplesArquivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtNomeSimplesArquivoKeyReleased
         BtnCriar.setEnabled(
             !TxtNomeSimplesArquivo.getText().trim().equals("") &&
-            !Arquivamento.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")
+            !Arquivamento.seExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")
         );
         if(!TxtNomeSimplesArquivo.getText().trim().equals("")){
-            if(!Arquivamento.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
+            if(!Arquivamento.seExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
                 TxtNomeSimplesArquivo.setForeground(java.awt.SystemColor.textText);
                 FrmPrincipal.setAvisoEmEstatus("<html>Pressione o botão \"<font color=\"#0000FF\">Criar</font>\" para gerar o arquivo no novo Scripr existente!");
             }else{
@@ -154,9 +151,9 @@ public class FrmNovoScript extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtNomeSimplesArquivoFocusLost
     private void BtnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCriarActionPerformed
         if(!TxtNomeSimplesArquivo.getText().trim().equals("")){
-            if(!Arquivamento.SeExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
-                if(Arquivamento.ArquivoSalvar(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf","")){
-                    String Conteudo = Arquivamento.ArquivoAbrir(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt");
+            if(!Arquivamento.seExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
+                if(Arquivamento.arquivoSalvar(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf","")){
+                    String Conteudo = Arquivamento.arquivoAbrir(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt");
                     if(!Conteudo.isEmpty() && !Conteudo.trim().equals("")){
                         int loc1 = Conteudo.indexOf("map: ");
                         if(loc1>=0){
@@ -165,7 +162,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
                                 String Parte1= Conteudo.substring(0, loc2+1);
                                 String Parte2= Conteudo.substring(loc2+1, Conteudo.length());
                                 if(
-                                    Arquivamento.ArquivoSalvar(
+                                    Arquivamento.arquivoSalvar(
                                         FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt",
                                         Parte1+
                                         "npc: npc/"+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf\n"+
@@ -191,7 +188,7 @@ public class FrmNovoScript extends javax.swing.JDialog {
                                         FrmPrincipal.setAvisoEmEstatus("Arquivo Criado e Preparado para Compartilhar som Sucesso!");
                                     } catch (IOException e) {
                                         FrmPrincipal.setAvisoEmEstatus("<html>Falha ao preparar o compartilhamento de \"<font color=\"#FF0000\">"+TxtNomeSimplesArquivo.getText().trim()+".conf</font>\"!");
-                                        ConfigClass.Mensagem_Erro("<html>" +
+                                        Mensagem.showErro("<html>" +
                                             "Falha ao preparar o compartilhamento de \"<font color=\"#FF0000\">"+TxtNomeSimplesArquivo.getText().trim()+".conf</font>\"!<br/>"+
                                             " * Erro de execução de comando:<br/> " +
                                             " * <font color=\"#FF0000\"><b>"+Comando+"</b></font>!"

@@ -2,6 +2,7 @@ package Classes.BancoDeDados;
 
 import Classes.Arquivamento;
 import Classes.ConfigClass;
+import Classes.Mensagem;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.io.BufferedReader;
@@ -45,7 +46,7 @@ public class Banco_Itens {
     }
     public void AbrirItens() {
 
-        //String ConteudoTotal=ConfigClass.ArquivoAbrir(EnderecoItensTXT);
+        //String ConteudoTotal=ConfigClass.arquivoAbrir(EnderecoItensTXT);
         String ConteudoTXT="";
         String Linha="", PartesDaLinha[]=null;
         try {
@@ -72,7 +73,7 @@ public class Banco_Itens {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoItensTXT+"\"!","AVISO");
+            Mensagem.showErro("Não foi possivel abrir \""+EnderecoItensTXT+"\"!","AVISO");
             return; // em caso de falha
         }/**/
 
@@ -88,7 +89,7 @@ public class Banco_Itens {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoItensXML+"\"!","AVISO");
+            Mensagem.showErro("Não foi possivel abrir \""+EnderecoItensXML+"\"!","AVISO");
             return; // em caso de falha
         }
 
@@ -129,20 +130,20 @@ public class Banco_Itens {
             if(Tag1>=0 && Tag2>=0 && Tag2>=Tag1) Itens[l].setScriptAoEquipar(Linha.substring(Tag1+3, Tag2).trim());
 
 
-            Propriedades=ConteudoXML.ExtrairEntre("<item id=\""+PartesDaLinha[0].trim()+"\"", ">");
-            Itens[l].setNomeTitulo(ConteudoXML.ExtrairEntre(Propriedades,"name=\"","\""));
-            Itens[l].setDescricao(ConteudoXML.ExtrairEntre(Propriedades,"description=\"","\""));
-            Itens[l].setPoderEfeito(ConteudoXML.ExtrairEntre(Propriedades,"effect=\"","\""));
-            ParteDoIcone=ConteudoXML.ExtrairEntre(Propriedades,"image=\"","\"").split("\\|"); // Não é só "|" nem "\|", tem q ser "\\|"
+            Propriedades=ConteudoXML.extrairEntre("<item id=\""+PartesDaLinha[0].trim()+"\"", ">");
+            Itens[l].setNomeTitulo(ConteudoXML.extrairEntre(Propriedades,"name=\"","\""));
+            Itens[l].setDescricao(ConteudoXML.extrairEntre(Propriedades,"description=\"","\""));
+            Itens[l].setPoderEfeito(ConteudoXML.extrairEntre(Propriedades,"effect=\"","\""));
+            ParteDoIcone=ConteudoXML.extrairEntre(Propriedades,"image=\"","\"").split("\\|"); // Não é só "|" nem "\|", tem q ser "\\|"
             Itens[l].setIconePNG(ParteDoIcone[0]);
             if(ParteDoIcone.length==2) Itens[l].setIconeCor(ParteDoIcone[1]);
-            Itens[l].setTipoNome(ConteudoXML.ExtrairEntre(Propriedades,"type=\"","\""));
+            Itens[l].setTipoNome(ConteudoXML.extrairEntre(Propriedades,"type=\"","\""));
         }
     }
     public void AbrirItens_deprecado() {
-        //String ConteudoTotal=ConfigClass.ArquivoAbrir(EnderecoItensTXT);
+        //String ConteudoTotal=ConfigClass.arquivoAbrir(EnderecoItensTXT);
         StringClass ConteudoTotal = new StringClass();
-        ConteudoTotal.setTesto(Arquivamento.ArquivoAbrir(EnderecoItensXML));
+        ConteudoTotal.setTesto(Arquivamento.arquivoAbrir(EnderecoItensXML));
         int Part01=0;
         StringClass ItemXML = new StringClass();
         Dados_Item ItensA[] = new Dados_Item[0];
@@ -151,10 +152,10 @@ public class Banco_Itens {
         do{
             Part01=ConteudoTotal.getTesto().indexOf("<item ", Part01+ItemXML.getTesto().length());
             if(Part01>=0){
-                ItemXML.setTesto(ConteudoTotal.ExtrairEntre("<item ", "</item>",Part01));
+                ItemXML.setTesto(ConteudoTotal.extrairEntre("<item ", "</item>",Part01));
                 ItensB = new Dados_Item[ItensA.length+1];
-                ID=ItemXML.ExtrairEntre("id=\"", "\"");
-                TipoNome=ItemXML.ExtrairEntre("type=\"", "\"");
+                ID=ItemXML.extrairEntre("id=\"", "\"");
+                TipoNome=ItemXML.extrairEntre("type=\"", "\"");
                 if(!ID.equals("")){
                     ItensB[ItensA.length] = new Dados_Item();
                     ItensB[ItensA.length].setID(Integer.parseInt(ID));

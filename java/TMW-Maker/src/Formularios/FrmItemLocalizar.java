@@ -12,6 +12,7 @@
 package Formularios;
 
 import Classes.ConfigClass;
+import Classes.Mensagem;
 import javax.swing.JOptionPane;
 
 public class FrmItemLocalizar extends javax.swing.JDialog {
@@ -221,7 +222,7 @@ public class FrmItemLocalizar extends javax.swing.JDialog {
                 }
             }else if(Ponteiro==FrmItens.CmbIDs.getItemCount()-1 && SeSair==false && Redirecionado==true){
                 SeSair=true;
-                ConfigClass.Mensagem_Erro("Item não encontrado!","LOCALIZADOR DE ITENS");
+                Mensagem.showErro("Item não encontrado!","LOCALIZADOR DE ITENS");
             }
         }while(!SeSair);
         TxtLocalizar.setEnabled(true);

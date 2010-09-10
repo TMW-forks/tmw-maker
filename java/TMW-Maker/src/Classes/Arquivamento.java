@@ -14,15 +14,15 @@ import java.nio.channels.FileChannel;
 import java.util.Arrays;
 
 public class Arquivamento {
-    public static void Apagar(String PastaOuArquivo){
+    public static void apagar(String PastaOuArquivo){
         File Objeto = new File(PastaOuArquivo);
         Objeto.delete();
     }
-    public static void CopiarArquivo(String De, String Para) {
+    public static void arquivoCopiar(String De, String Para) {
         File CapsulaOrigem=new File(De);
-        CopiarArquivo(CapsulaOrigem, Para);
+        arquivoCopiar(CapsulaOrigem, Para);
     }
-    public static void CopiarArquivo(File CapsulaOrigem, String Para) {
+    public static void arquivoCopiar(File CapsulaOrigem, String Para) {
         File CapsulaDestino=new File(Para);
         CapsulaDestino.setExecutable(CapsulaOrigem.canExecute(),true);
         CapsulaDestino.setReadable(CapsulaOrigem.canRead());
@@ -41,16 +41,16 @@ public class Arquivamento {
             //
         }/**/
     }
-    public static void MoverArquivo(String De, String Para) {
+    public static void arquivoMover(String De, String Para) {
         File Origem = new File(De);
         File Destino = new File(Para);
         Origem.renameTo(Destino);
     }
-    public static void CriarPasta(String EnderecoDaNovaPasta){
+    public static void pastaCriar(String EnderecoDaNovaPasta){
         File dir = new File(EnderecoDaNovaPasta);
         dir.mkdirs();
     }
-    public static String[] ListarPastas(String Endereco){
+    public static String[] listarPasta(String Endereco){
         ///home/indigovox/localhost/eathena-data/npc
         File Capsula = new File(Endereco);
         File[] Conteudo = Capsula.listFiles();
@@ -72,7 +72,7 @@ public class Arquivamento {
         Arrays.sort(Pasta);
         return Pasta;
     }
-    public static String[] ListarArquivos(String Endereco){
+    public static String[] listarArquivos(String Endereco){
         ///home/indigovox/localhost/eathena-data/npc
         File Capsula = new File(Endereco);
         File[] Conteudo = Capsula.listFiles();
@@ -93,7 +93,7 @@ public class Arquivamento {
         Arrays.sort(Arquivos);
         return Arquivos;
     }
-    public static boolean SeSimpleNomeDeArquivo(File PastaPai, String NomDeArquivo) {
+    public static boolean arquivoSeSimpleNome(File PastaPai, String NomDeArquivo) {
         /**
          * Função Copiada de Site "http://forums.sun.com/thread.jspa?threadID=629458"
          * Eu não entendo essa Função, mas tentei implementa-la para ver se serve.
@@ -104,7 +104,7 @@ public class Arquivamento {
         if(!Arquivo.exists()){ //se o arquivo já existe, pode ser o nome do arquivo está correto
             try {
                 boolean SeNomeValido = Arquivo.createNewFile();
-                //Apagar o arquivo porque é criado para a verificação de validação
+                //apagar o arquivo porque é criado para a verificação de validação
                 if(SeNomeValido) Arquivo.delete();
                 //Se o pai do novo arquivo e o pai dado é diferente, então o nome do arquivo está errado
                 if(!Arquivo.getParent().equals(PastaPai.getPath())) return false;
@@ -117,7 +117,7 @@ public class Arquivamento {
         return Arquivo.getParent().equals(PastaPai.getPath());
     }
 
-    public static boolean SeExiste(String PastaOuArquivo){
+    public static boolean seExiste(String PastaOuArquivo){
         File Capsula;
         Capsula = new File(PastaOuArquivo);
         if (Capsula.exists()){
@@ -126,7 +126,7 @@ public class Arquivamento {
             return false;
         }
     }
-    public static boolean ArquivoSalvar(String Endereco, String Conteudo){
+    public static boolean arquivoSalvar(String Endereco, String Conteudo){
         try {
             BufferedWriter Capsula = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Endereco),"UTF-8"));
             String Cabecalho="";
@@ -138,7 +138,7 @@ public class Arquivamento {
             return false;
         }
     }
-    public static String ArquivoAbrir_deprecado(String Endereco){
+    public static String arquivoAbrir_deprecado(String Endereco){
         try {
             String Conteudo="", Linha="";
             BufferedReader Capsula = new BufferedReader(new InputStreamReader(new FileInputStream(Endereco),"UTF-8"));
@@ -155,7 +155,7 @@ public class Arquivamento {
             return null;
         }
     }
-    public static String ArquivoAbrir(String Endereco){
+    public static String arquivoAbrir(String Endereco){
         String Conteudo="";
         int Tamanho = 1024*1024*32;
         ByteBuffer buf = ByteBuffer.allocate(Tamanho); //create buffer with capacity of 48 bytes

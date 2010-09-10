@@ -2,7 +2,7 @@
 package Formularios;
 
 import Classes.Arquivamento;
-import Classes.ConfigClass;
+import Classes.Mensagem;
 
 
 public class FrmScript extends javax.swing.JDialog {
@@ -24,7 +24,7 @@ public class FrmScript extends javax.swing.JDialog {
         if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
             javax.swing.tree.DefaultMutableTreeNode No3 = null;
             javax.swing.tree.DefaultMutableTreeNode No4 = null;
-            String Pasta[] = Arquivamento.ListarPastas(Base);
+            String Pasta[] = Arquivamento.listarPasta(Base);
             String Arquivo[] = null;
             int ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Scripts");
@@ -35,7 +35,7 @@ public class FrmScript extends javax.swing.JDialog {
                     No2.add(No3);
 
                     ContArquivos=0;
-                    Arquivo = Arquivamento.ListarArquivos(Base+Barra+Pasta[p]);
+                    Arquivo = Arquivamento.listarArquivos(Base+Barra+Pasta[p]);
                     for(int a=0; a<Arquivo.length; a++){
                         if(
                             !Arquivo[a].substring(Arquivo[a].toString().length()-1, Arquivo[a].toString().length()).equals("~") &&
@@ -59,7 +59,7 @@ public class FrmScript extends javax.swing.JDialog {
 
             ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Funções");
-            Arquivo = Arquivamento.ListarArquivos(Base+Barra+"functions");
+            Arquivo = Arquivamento.listarArquivos(Base+Barra+"functions");
             for(int a=0; a<Arquivo.length; a++){
                 ContArquivos++;
                 //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");
@@ -231,12 +231,12 @@ public class FrmScript extends javax.swing.JDialog {
     private void TreScriptsValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_TreScriptsValueChanged
         if(evt.getPath().getPathCount()==3 && evt.getPath().getPathComponent(1).toString().equals("Scripts")){
             PatasDoScript=evt.getPath().getPathComponent(2).toString();
-            //EnderecoDoScript=PatasDoScript+Barra+evt.getPath().getLastPathComponent().toString();
+            //EnderecoDoScript=PatasDoScript+barra+evt.getPath().getLastPathComponent().toString();
             MnuNovoPersonagem.setEnabled(true);
             TipoDeCodigo="Scripts";
         }else if(evt.getPath().getPathCount()==2 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
             PatasDoScript="functions";
-            //EnderecoDoScript=PatasDoScript+Barra+evt.getPath().getLastPathComponent().toString();
+            //EnderecoDoScript=PatasDoScript+barra+evt.getPath().getLastPathComponent().toString();
             MnuNovoPersonagem.setEnabled(true);
             TipoDeCodigo="Funções";
         }else{
@@ -297,7 +297,7 @@ public class FrmScript extends javax.swing.JDialog {
 
     }//GEN-LAST:event_MnuNovoPersonagemActionPerformed
     private void MnuScriptExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptExcluirActionPerformed
-        ConfigClass.Mensagem_Erro("Esse função ainda não foi implementada!", "Desculpe");
+        Mensagem.showErro("Esse função ainda não foi implementada!", "Desculpe");
     }//GEN-LAST:event_MnuScriptExcluirActionPerformed
 
     private void MnuScriptAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptAbrirActionPerformed

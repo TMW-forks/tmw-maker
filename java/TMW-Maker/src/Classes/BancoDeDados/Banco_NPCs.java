@@ -3,6 +3,7 @@ package Classes.BancoDeDados;
 
 import Classes.Arquivamento;
 import Classes.ConfigClass;
+import Classes.Mensagem;
 import Classes.SpriteDados;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
@@ -33,12 +34,12 @@ public class Banco_NPCs {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+Endereco+"\"!","AVISO");
+            Mensagem.showErro("Não foi possivel abrir \""+Endereco+"\"!","AVISO");
         }
 
-        SpriteDados Sprite = new SpriteDados(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+XML_Geral.ExtrairEntre("src=\"", "\""));
-        Sprite.setSpriteColunas(Sprite.getSpriteLargura()/Integer.parseInt(XML_Geral.ExtrairEntre("width=\"", "\"")));
-        Sprite.setSpriteLinhas(Sprite.getSpriteAltura()/Integer.parseInt(XML_Geral.ExtrairEntre("height=\"", "\"")));
+        SpriteDados Sprite = new SpriteDados(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+XML_Geral.extrairEntre("src=\"", "\""));
+        Sprite.setSpriteColunas(Sprite.getSpriteLargura()/Integer.parseInt(XML_Geral.extrairEntre("width=\"", "\"")));
+        Sprite.setSpriteLinhas(Sprite.getSpriteAltura()/Integer.parseInt(XML_Geral.extrairEntre("height=\"", "\"")));
         return Sprite;
     }
 //####################### PUBLICOS #########################################
@@ -61,7 +62,7 @@ public class Banco_NPCs {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            ConfigClass.Mensagem_Erro("Não foi possivel abrir \""+EnderecoXMLdeNPCs+"\"!","AVISO");
+            Mensagem.showErro("Não foi possivel abrir \""+EnderecoXMLdeNPCs+"\"!","AVISO");
             return; // em caso de falha
         }
 
@@ -73,14 +74,14 @@ public class Banco_NPCs {
             if(!NPC.getTesto().equals("")){
                 ContNPCs++;
                 NPCs[l-1] = new Dados_NPC();
-                NPCs[l-1].setID(Integer.parseInt(NPC.ExtrairEntre("id=\"", "\"").equals("")?"0":NPC.ExtrairEntre("id=\"", "\"")));
-                NPCs[l-1].setNome(NPC.ExtrairEntre("name=\"", "\""));
-                NPCs[l-1].setVariante(Integer.parseInt(NPC.ExtrairEntre("variant=\"", "\"").equals("")?"0":NPC.ExtrairEntre("variant=\"", "\"")));
-                NPCs[l-1].setXML(NPC.ExtrairEntre("<sprite variant=\""+NPCs[l-1].getVariante()+"\">", "</sprite>"));
-                NPCs[l-1].setParticulaXML(NPC.ExtrairEntre("<particlefx>", "</particlefx>"));
-                NPCs[l-1].setComentario(NPC.ExtrairEntre("<!--", "-->"));
+                NPCs[l-1].setID(Integer.parseInt(NPC.extrairEntre("id=\"", "\"").equals("")?"0":NPC.extrairEntre("id=\"", "\"")));
+                NPCs[l-1].setNome(NPC.extrairEntre("name=\"", "\""));
+                NPCs[l-1].setVariante(Integer.parseInt(NPC.extrairEntre("variant=\"", "\"").equals("")?"0":NPC.extrairEntre("variant=\"", "\"")));
+                NPCs[l-1].setXML(NPC.extrairEntre("<sprite variant=\""+NPCs[l-1].getVariante()+"\">", "</sprite>"));
+                NPCs[l-1].setParticulaXML(NPC.extrairEntre("<particlefx>", "</particlefx>"));
+                NPCs[l-1].setComentario(NPC.extrairEntre("<!--", "-->"));
 
-                if(!NPCs[l-1].getXML().equals("") && Arquivamento.SeExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
+                if(!NPCs[l-1].getXML().equals("") && Arquivamento.seExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
                     NPCs[l-1].setSprite(getSpriteDeXML(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML()));
                 }
             }

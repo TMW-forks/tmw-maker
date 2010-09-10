@@ -3,34 +3,34 @@ package Classes;
 
 public class StringClass {
     public String StringClass(String Testo) {
-        TestoEmTratamento = Testo;
-        return TestoEmTratamento;
+        testoEmTratamento = Testo;
+        return testoEmTratamento;
     }
     public String StringClass() {
-        return TestoEmTratamento;
+        return testoEmTratamento;
     }
-    String TestoEmTratamento="";
+    String testoEmTratamento="";
 
     public void setTesto(String Testo) {
-        TestoEmTratamento=Testo;
+        testoEmTratamento=Testo;
     }
     public String getTesto() {
-        return TestoEmTratamento;
+        return testoEmTratamento;
     }
     public int getContLinhas() {
-        String Partes[] = TestoEmTratamento.split("\n");
+        String Partes[] = testoEmTratamento.split("\n");
         return Partes.length;
     }
     public String getLinha(int Linha) {
-        String Partes[] = TestoEmTratamento.split("\n");
+        String Partes[] = testoEmTratamento.split("\n");
         return Partes[Linha];
     }
 
-    public void Substituir(String De, String Por){
-        String Entrada=TestoEmTratamento;
-        Substituir(Entrada, De, Por);
+    public void substituir(String De, String Por){
+        String Entrada=testoEmTratamento;
+        substituir(Entrada, De, Por);
     }
-    public String Substituir(String Entrada, String De, String Por){
+    public String substituir(String Entrada, String De, String Por){
        int Loc1=-1;
         Loc1=Entrada.indexOf(De);
         if(Loc1>=0){
@@ -41,16 +41,16 @@ public class StringClass {
         }
         return Entrada;
     }
-    public String ExtrairEntre(String Parte1, String Parte2){
-        return ExtrairEntre(TestoEmTratamento, Parte1, Parte2);
+    public String extrairEntre(String Parte1, String Parte2){
+        return extrairEntre(testoEmTratamento, Parte1, Parte2);
     }
-    public String ExtrairEntre(String Parte1, String Parte2, int Apartir){
-        return ExtrairEntre(TestoEmTratamento, Parte1, Parte2, Apartir);
+    public String extrairEntre(String Parte1, String Parte2, int Apartir){
+        return extrairEntre(testoEmTratamento, Parte1, Parte2, Apartir);
     }
-    public String ExtrairEntre(String Entrada, String Parte1, String Parte2){
-        return ExtrairEntre(Entrada, Parte1, Parte2, 0);
+    public String extrairEntre(String Entrada, String Parte1, String Parte2){
+        return extrairEntre(Entrada, Parte1, Parte2, 0);
     }
-    public String ExtrairEntre(String Entrada, String Parte1, String Parte2, int Apartir){
+    public String extrairEntre(String Entrada, String Parte1, String Parte2, int Apartir){
         int Loc1=-1, Loc2=-1;
         Loc1=Entrada.indexOf(Parte1,Apartir);
         if(Loc1>=0){

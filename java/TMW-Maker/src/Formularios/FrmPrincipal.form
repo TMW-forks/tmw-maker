@@ -116,6 +116,9 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="MnuEditarItens">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_armadura.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="73"/>
                 <Property name="text" type="java.lang.String" value="Itens"/>
               </Properties>
@@ -129,7 +132,7 @@
                       <KeyStroke key="Shift+Ctrl+I"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagem/Botoes/sbl_armadura.png"/>
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_espada.gif"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="83"/>
                     <Property name="text" type="java.lang.String" value="Novo Equipamento"/>
@@ -144,7 +147,7 @@
                       <KeyStroke key="Ctrl+I"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagem/Botoes/sbl_espada.gif"/>
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_presente.gif"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="68"/>
                     <Property name="text" type="java.lang.String" value="Editor de &#xcd;tens"/>
@@ -158,7 +161,7 @@
             <Menu class="javax.swing.JMenu" name="MnuEditarCampos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_terreno.gif"/>
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_casa.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="67"/>
                 <Property name="text" type="java.lang.String" value="Campos"/>
@@ -167,29 +170,29 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarCamposTilesets">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_terreno.gif"/>
+                    </Property>
                     <Property name="mnemonic" type="int" value="84"/>
                     <Property name="text" type="java.lang.String" value="Tilesets"/>
-                    <Property name="enabled" type="boolean" value="false"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnuEditarCamposPortais">
-                  <Properties>
-                    <Property name="mnemonic" type="int" value="80"/>
-                    <Property name="text" type="java.lang.String" value="Portais"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarCamposMapas">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_globo.gif"/>
+                    </Property>
                     <Property name="mnemonic" type="int" value="77"/>
-                    <Property name="text" type="java.lang.String" value="Mini-mapas"/>
-                    <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="Mapas"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="MnuEditarPersonagem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_pessoa.gif"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="80"/>
                 <Property name="text" type="java.lang.String" value="Personagem (NPC)"/>
               </Properties>
@@ -322,26 +325,6 @@
             <Property name="text" type="java.lang.String" value="Jogo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoExecutar">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="F9"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagem/Botoes/sbl_play.png"/>
-                </Property>
-                <Property name="mnemonic" type="int" value="69"/>
-                <Property name="text" type="java.lang.String" value="Executar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoExecutarActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
-            </MenuItem>
-            <MenuItem class="javax.swing.JSeparator" name="jSeparator5">
-            </MenuItem>
             <Menu class="javax.swing.JMenu" name="MnuJogoLocalhost">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -401,6 +384,41 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JSeparator" name="jSeparator5">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoCopilar">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+F9"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_atomico.gif"/>
+                </Property>
+                <Property name="mnemonic" type="int" value="67"/>
+                <Property name="text" type="java.lang.String" value="Copilar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoCopilarActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoExecutar">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F9"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagem/Botoes/sbl_play.png"/>
+                </Property>
+                <Property name="mnemonic" type="int" value="69"/>
+                <Property name="text" type="java.lang.String" value="Executar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoExecutarActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MnuAjuda">
@@ -503,7 +521,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-              <Component id="LblFundo" pref="409" max="32767" attributes="0"/>
+              <Component id="LblFundo" pref="428" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="PnlBarraDeEstatus" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -638,7 +656,7 @@
         <Component class="javax.swing.JButton" name="BtnEditorItensSprites">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_armadura.png"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_espada.gif"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Novo Equipamento (Ctrl+Shift+I)"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -652,7 +670,7 @@
         <Component class="javax.swing.JButton" name="BtnEditarItensDados">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_espada.gif"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_presente.gif"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Editor de &#xcd;tens (Ctrl+I)"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -709,6 +727,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnJogoExecularActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BtnJogoCopilar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/sbl_atomico.gif"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Copilar (Ctrl+F9)"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnJogoCopilarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnJogoLocalhostSupervisonar">
