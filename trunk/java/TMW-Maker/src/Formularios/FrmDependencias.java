@@ -3,6 +3,7 @@ package Formularios;
 
 import Classes.Arquivamento;
 import Classes.ConfigClass;
+import Classes.Mensagem;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
@@ -172,7 +173,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         if(TblDependencias.getSelectedRow()>=0) {
             BtnAjuda.setEnabled(true);
             if(TblDependencias.getSelectedRow()==0) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeConfiguracao");
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+barra+"DependenciaDeConfiguracao");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
@@ -187,7 +188,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     BtnResolver.setEnabled(false);
                 }
             }else if(TblDependencias.getSelectedRow()==1) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeSVN");
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+barra+"DependenciaDeSVN");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
@@ -206,7 +207,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                 }
                 
             }else if(TblDependencias.getSelectedRow()==2) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeGCC");
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+barra+"DependenciaDeGCC");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
@@ -224,7 +225,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     BtnResolver.setEnabled(false);
                 }
             }else if(TblDependencias.getSelectedRow()==3) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+barra+"DependenciaDeCliente");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
@@ -245,7 +246,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     BtnResolver.setEnabled(false);
                 }
             }else if(TblDependencias.getSelectedRow()==4) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeLocalhost");
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+barra+"DependenciaDeLocalhost");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
@@ -276,7 +277,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     BtnResolver.setEnabled(false);
                 }
             }else if(TblDependencias.getSelectedRow()==5) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeMontagem");
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+barra+"DependenciaDeMontagem");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
@@ -300,7 +301,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     BtnResolver.setEnabled(false);
                 }
             }else if(TblDependencias.getSelectedRow()==6) {
-                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+"DependenciaDeCliente");
+                //ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+barra+"DependenciaDeCliente");
                 FrmPrincipal.setAvisoEmEstatus("<html>" +
                     "<font color=\"#0000FF\">NOTA:</font> " +
                     "Clique no botão ajudar para saber como resolver a " +
@@ -407,7 +408,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         Pendencias_Verificar();
         if(!FrmPrincipal.Config.getSeDependenciaDeConfiguracao()) {
             Object[] options = {"Instalar", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "O TMW-Maker não está configurado.<br/>" +
                 "Deseja obter a configuração padrão?",
                 "INSTALAR GCC",
@@ -420,7 +421,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             !FrmPrincipal.Config.getSeDependenciaDeSVN()
         ) {
             Object[] options = {"Instalar", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "<html>" +
                 "Você ainda não possuir um administrador de atualizações SVN.<br/>" +
                 "Deseja que o tmw-maker instale o SVN?",
@@ -434,7 +435,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             !FrmPrincipal.Config.getSeDependenciaDeGCC()
         ) {
             Object[] options = {"Instalar", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "<html>" +
                 "Você ainda não possuir um copilador c++.<br/>" +
                 "Deseja que o tmw-maker instale o GCC?",
@@ -450,7 +451,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             !FrmPrincipal.Config.getSeDependenciaDeLocalhost()
         ) {
             Object[] options = {"Baixar", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "<html>" +
                 "Você ainda não possuir um localhost para editar.<br/>" +
                 "Deseja que o tmw-maker baixe o seu localhost?",
@@ -467,7 +468,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             !FrmPrincipal.Config.getSeDependenciaDeMontagem()
         ) {
             Object[] options = {"Montar", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "<html>" +
                 "O seu localhost não funcionará enquanto não for montado.<br/>" +
                 "Deseja que o tmw-maker monte o seu localhost?",
@@ -478,7 +479,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             ) == JOptionPane.YES_OPTION) LocalhostMontar();
         }else if(FrmPrincipal.Config.getDependenciaEmFalta()==6) {
             Object[] options = {"Resolver", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "<html>" +
                 "O Cliente TMW configurado como padrão não existe em seu computador.<br/>" +
                 "Deseja que o tmw-maker procure um Cliente TMW um por você?",
@@ -490,7 +491,7 @@ public class FrmDependencias extends javax.swing.JDialog {
 
         }else if(!FrmPrincipal.Config.getSeDependenciaDeTiled()) {
             Object[] options = {"Instalar", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "<html>" +
                 "Você ainda não possuir um editor de mapas.<br/>" +
                 "Deseja que o tmw-maker instale o Tiled Qt?",
@@ -511,10 +512,10 @@ public class FrmDependencias extends javax.swing.JDialog {
     public void InstalarSVN(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -557,7 +558,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             //Partes=line.split("/");
                             //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                         }
-                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        //Mensagem.showErro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
                         FrmPrincipal.setAvisoEmEstatus(
                             "Subversion instalado com sucesso com sucesso!",
                             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
@@ -566,7 +567,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                         FrmPrincipal.PgbBarra.setString("Concluido!");
                     } catch (IOException e) {
                         addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
-                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //Mensagem.showErro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
                         //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
                         FrmPrincipal.setAvisoEmEstatus(
                             "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
@@ -589,10 +590,10 @@ public class FrmDependencias extends javax.swing.JDialog {
     public void InstalarGCC(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -635,7 +636,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             //Partes=line.split("/");
                             //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                         }
-                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        //Mensagem.showErro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
                         FrmPrincipal.setAvisoEmEstatus(
                             "GCC instalado com sucesso com sucesso!",
                             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
@@ -644,7 +645,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                         FrmPrincipal.PgbBarra.setString("Concluido!");
                     } catch (IOException e) {
                         addLinhaDeEstatus("Falha ao baixar os pacote de instalação!");
-                        //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //Mensagem.showErro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
                         //FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!");
                         FrmPrincipal.setAvisoEmEstatus(
                             "<html><font color=\"#FF0000\">Falha ao baixar os pacote de instalação!!",
@@ -668,10 +669,10 @@ public class FrmDependencias extends javax.swing.JDialog {
     public void InstalarClienteTMW() {
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -714,7 +715,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             //Partes=line.split("/");
                             //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                         }
-                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        //Mensagem.showErro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
                         FrmPrincipal.setAvisoEmEstatus(
                             "GCC instalado com sucesso com sucesso!",
                             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
@@ -744,10 +745,10 @@ public class FrmDependencias extends javax.swing.JDialog {
     public void InstalarTiledQt(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -790,7 +791,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             //Partes=line.split("/");
                             //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                         }
-                        //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                        //Mensagem.showErro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
                         FrmPrincipal.setAvisoEmEstatus(
                             "Tiled Qt instalado com sucesso com sucesso!",
                             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
@@ -821,10 +822,10 @@ public class FrmDependencias extends javax.swing.JDialog {
     public void LocalhostBaixar(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -888,13 +889,13 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 //Partes=line.split("/");
                                 //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                             }
-                            //ConfigClass.Mensagem_Erro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                            //Mensagem.showErro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
                             FrmPrincipal.LblEstatus.setText("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
                             addLinhaDeEstatus("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
                             FrmPrincipal.PgbBarra.setString("Concluido!");
                         } catch (IOException e) {
                             addLinhaDeEstatus("Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
-                            //ConfigClass.Mensagem_Erro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                            //Mensagem.showErro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
                             FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
                             FrmPrincipal.PgbBarra.setString("ERRO!");
                         }/**/
@@ -912,15 +913,15 @@ public class FrmDependencias extends javax.swing.JDialog {
     }
     public void LocalhostMontar() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
         } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
         } else if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
             int R = JOptionPane.YES_OPTION;
             if(FrmPrincipal.Config.getSeDependenciaDeGCC()){
-                if (Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server") ||
-                    Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server") ||
-                    Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
+                if (Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server") ||
+                    Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server") ||
+                    Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
                     Object[] options = {"Remontar", "Cancelar"};
                     R = JOptionPane.showOptionDialog(
                         null, "<html>" +
@@ -957,12 +958,12 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("Apagando...");
                             FrmPrincipal.setAvisoEmEstatus("Apagando binários...");
                             addLinhaDeEstatus("Apagando binários...");
-                            if (Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
-                                Arquivamento.Apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
+                            if (Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
+                                Arquivamento.apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
                             }
-                            Arquivamento.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server");
-                            Arquivamento.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
-                            Arquivamento.Apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
+                            Arquivamento.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server");
+                            Arquivamento.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
+                            Arquivamento.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
 
                             FrmPrincipal.PgbBarra.setString("Abaixando...");
                             FrmPrincipal.setAvisoEmEstatus("Baixando binários novos...");
@@ -973,7 +974,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
                                 BinariosEspecificos = true;
                                 System.out.println(Comando);
-                                //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                                //Mensagem.showErro(Comando,"Nota de Programador");
                             } else {
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/compiler " +
@@ -981,7 +982,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 addLinhaDeEstatus("svn checkout http://tmw-maker.googlecode.com/svn/bins/compiler ");
                                 BinariosEspecificos = false;
                                 System.out.println(Comando);
-                                //ConfigClass.Mensagem_Erro(Comando,"Nota de Programador");
+                                //Mensagem.showErro(Comando,"Nota de Programador");
                             }
                             try {
                                 Process Retorno = Executador.exec(Comando);
@@ -997,7 +998,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 e.printStackTrace();
                                 addLinhaDeEstatus("ERRO: "+Comando);
                                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                                ConfigClass.Mensagem_Erro(
+                                Mensagem.showErro(
                                     "<html><b>O TMW-Maker não conseguiu baixar os binários:</b><br/><br/>" +
                                     "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                     "</html>",
@@ -1011,8 +1012,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                             }
                             if (BinariosEspecificos == true) {
                                 FrmPrincipal.PgbBarra.setString("Deslocando...");
-                                if (!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"char-server")) {
-                                    Arquivamento.MoverArquivo(
+                                if (!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"char-server")) {
+                                    Arquivamento.arquivoMover(
                                             FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"char-server",
                                             FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
@@ -1026,8 +1027,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
                                 }
-                                if (!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"login-server")) {
-                                    Arquivamento.MoverArquivo(
+                                if (!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"login-server")) {
+                                    Arquivamento.arquivoMover(
                                             FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"login-server",
                                             FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
@@ -1041,8 +1042,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
                                 }
-                                if (!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()+Barra+"map-server")) {
-                                    Arquivamento.MoverArquivo(
+                                if (!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"map-server")) {
+                                    Arquivamento.arquivoMover(
                                             FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins"+Barra+"map-server",
                                             FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
@@ -1068,8 +1069,8 @@ public class FrmDependencias extends javax.swing.JDialog {
 
                                 FrmPrincipal.PgbBarra.setString("Deslocando...");
 
-                                if (!Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server")) {
-                                    Arquivamento.MoverArquivo(
+                                if (!Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server")) {
+                                    Arquivamento.arquivoMover(
                                             FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server",
                                             FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
@@ -1083,8 +1084,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
                                 }
-                                if (!Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server")) {
-                                    Arquivamento.MoverArquivo(
+                                if (!Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server")) {
+                                    Arquivamento.arquivoMover(
                                             FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server",
                                             FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
@@ -1098,8 +1099,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                     return;
                                 }
-                                if (!Arquivamento.SeExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server")) {
-                                    Arquivamento.MoverArquivo(
+                                if (!Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server")) {
+                                    Arquivamento.arquivoMover(
                                             FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server",
                                             FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
                                     FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
@@ -1168,29 +1169,29 @@ public class FrmDependencias extends javax.swing.JDialog {
                             };
 
                             for (int r = 0; r < De.length; r++) {
-                                if (Arquivamento.SeExiste(Pasta[r] +Barra+ De[r])) {
-                                    if (Arquivamento.SeExiste(Pasta[r] +Barra+ Para[r])) {
-                                        Arquivamento.Apagar(Pasta[r] +Barra+ Para[r]);
+                                if (Arquivamento.seExiste(Pasta[r] +Barra+ De[r])) {
+                                    if (Arquivamento.seExiste(Pasta[r] +Barra+ Para[r])) {
+                                        Arquivamento.apagar(Pasta[r] +Barra+ Para[r]);
                                         addLinhaDeEstatus("     Apagando: \"" + Para[r] + "\"!");
                                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + Para[r] + "\"!");
                                     }
                                     addLinhaDeEstatus("     Renomeando: \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
                                     FrmPrincipal.setAvisoEmEstatus("<html><b>Renomeando:</b> \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
-                                    Arquivamento.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
+                                    Arquivamento.arquivoMover(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
                                 }
                             }
 
-                            if(!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
+                            if(!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
                                 addLinhaDeEstatus("     Criando Pasta: \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
                                 FrmPrincipal.setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
-                                Arquivamento.CriarPasta(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
+                                Arquivamento.pastaCriar(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
                             }
 
                             /*
                             Criar pasta de ~/localhost/eathena-data/log
                             gcc -o eathena-monitor eathena-monitor.c
                             /**/
-                            if(!Arquivamento.SeExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
+                            if(!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
                                 FrmPrincipal.PgbBarra.setString("Copilando...");
                                 addLinhaDeEstatus("     Copilando binário \"eathena-monitor\"...");
                                 FrmPrincipal.setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
@@ -1208,7 +1209,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                     e.printStackTrace();
                                     addLinhaDeEstatus("ERRO: "+Comando);
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                                    ConfigClass.Mensagem_Erro(
+                                    Mensagem.showErro(
                                         "<html><b>O TMW-Maker não conseguiu copilar o binário de monitor:</b><br/><br/>" +
                                         "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                         "</html>",
@@ -1226,8 +1227,8 @@ public class FrmDependencias extends javax.swing.JDialog {
                             rm $HOME/tmwserver // Apaga Link
                             ln -s $PWD $HOME/tmwserver //Recria Link
                             /**/
-                            if(Arquivamento.SeExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
-                                Arquivamento.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
+                            if(Arquivamento.seExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
+                                Arquivamento.apagar(System.getProperty("user.home")+Barra+"tmwserver");
                             }
                             FrmPrincipal.PgbBarra.setString("Coligando...");
                             addLinhaDeEstatus("     Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");
@@ -1246,7 +1247,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 e.printStackTrace();
                                 addLinhaDeEstatus("ERRO: "+Comando);
                                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                                ConfigClass.Mensagem_Erro(
+                                Mensagem.showErro(
                                     "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
                                     "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                     "</html>",
@@ -1269,7 +1270,7 @@ public class FrmDependencias extends javax.swing.JDialog {
 
                             if(FrmPrincipal.Config.getDependenciaEmFalta()==0){
                                 Pendencias_Verificar();
-                                ConfigClass.Mensagem_Erro("<html>"+
+                                Mensagem.showErro("<html>"+
                                     "Locahost <font color=\"#0000FF\">montado com sucesso</font>!<br/>"+
                                     "Para executar o tmw-maker <b>pressione tecla F9</b>.<br/>"+
                                     "Crie uma nova conta de jogador no servidor \"localhost\"!"
@@ -1295,7 +1296,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             }else{
                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#0000FF\">CANCELADO:</font> Existe uma dependencia de GCC para você resolver!");
                 addLinhaDeEstatus("CANCELADO: Existe uma dependencia de GCC para você resolver!");
-                ConfigClass.Mensagem_Erro("<html>"+
+                Mensagem.showErro("<html>"+
                     "Esta função possui a <font face=\"monospace\" color=\"#FF0000\">dependencia</font> do comando GCC!",
                     "ERRO DE EXECUÇÃO"
                 );
@@ -1334,7 +1335,7 @@ public class FrmDependencias extends javax.swing.JDialog {
             !FrmPrincipal.Config.SeComandoProcede(FrmPrincipal.Config.getExecucaoComando()+" --help")
         ){
             Object[] options = {"Resolver", "Cancelar"};
-            if(ConfigClass.Mensagem_Opcoes(
+            if(Mensagem.showOpcoes(
                 "<html>" +
                 "Nenhum cliente TMW existe em seu computador.<br/>" +
                 "Deseja que o tmw-maker instale o Cliente TMW um por você?",

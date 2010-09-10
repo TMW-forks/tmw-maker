@@ -102,7 +102,7 @@ public class Dados_Item {
     public String getDescricao(){return Descricao.toString();}
     public String getIconePNG(){return IconePNG.toString();}
     public BufferedImage getIconeImagem(){
-        if(Arquivamento.SeExiste(PastaDeItens+Barra+IconePNG)){
+        if(Arquivamento.seExiste(PastaDeItens+Barra+IconePNG)){
             ImagemTratavel Imagem = new ImagemTratavel(PastaDeItens+Barra+IconePNG);
             return Imagem.getImage();
         }

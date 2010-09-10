@@ -1,6 +1,5 @@
 package Classes;
 
-import java.awt.Toolkit;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,19 +11,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 
 public class ConfigClass {
@@ -166,42 +159,6 @@ public class ConfigClass {
         }
         while (TempoAtual-TempoInicio<Milisegundos);
     }
-    public static void Mensagem_Erro(String Aviso, String Titulo) {
-        System.out.println(Aviso);
-        Toolkit.getDefaultToolkit().beep();
-        JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
-    }
-    public static void Mensagem_Alerta(String Aviso, String Titulo, ImageIcon Icone) {
-        System.out.println(Aviso);
-        Toolkit.getDefaultToolkit().beep();
-        //JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
-        Object[] options = {"Ok!"};
-        JOptionPane.showOptionDialog(
-            null, 
-            Aviso,
-            Titulo,
-            JOptionPane.OK_OPTION,
-            JOptionPane.INFORMATION_MESSAGE,
-            Icone,
-            options,
-            options[0]
-        );
-    }
-    public static int Mensagem_Opcoes(String Aviso, String Titulo, ImageIcon Icone, Object Opcoes[], int FocarOpcao) {
-        System.out.println(Aviso);
-        Toolkit.getDefaultToolkit().beep();
-        //Object[] Opcoes = {"Ok!","Cancel"};
-        return JOptionPane.showOptionDialog(
-            null,
-            Aviso,
-            Titulo,
-            Opcoes.length, //JOptionPane.OK_OPTION,
-            JOptionPane.INFORMATION_MESSAGE,
-            Icone,
-            Opcoes,
-            Opcoes[FocarOpcao]
-        );
-    }
 
     public static String UTF8toISO88591(String UTF8){
         try{
@@ -248,7 +205,7 @@ public class ConfigClass {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            ConfigClass.Mensagem_Erro(
+            Mensagem.showErro(
                 "\n\n O TMW-Maker não conseguiu abrir o seu navegador padrão ao tentar acessar: \n\n " + URL + "\n\n",
                 "Erro de acesso ao Navegado"
             );
@@ -264,7 +221,7 @@ public class ConfigClass {
             return false;
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            //Mensagem_Alerta("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            //showAlerta("Este comando ainda não foi implementado para o MAC!","Descupe!");
             return false;
         } else {
             try {
@@ -284,7 +241,7 @@ public class ConfigClass {
         int FinalDeLinha= Conteudo.indexOf("\n",OndeEncontrado+Propriedade.length()+1);
         if(OndeEncontrado>=1){
             String Resultado=Conteudo.substring(OndeEncontrado+Propriedade.length()+3, FinalDeLinha).toString();
-            //Mensagem_Alerta("\""+Resultado+"\"","Aviso de Programador");
+            //showAlerta("\""+Resultado+"\"","Aviso de Programador");
             return Resultado;
         }else{
             return "";
@@ -336,7 +293,7 @@ public class ConfigClass {
             Capsula.flush();
             Capsula.close();
         } catch (java.io.IOException exc) {
-            Mensagem_Erro("Não foi possível salvar as configurações!", "ERRO");
+            Mensagem.showErro("Não foi possível salvar as configurações!", "ERRO");
         }
     }
     public void ConfiguracoesAbrir(){ConfiguracoesAbrir(ConfiguracaoURL);}
@@ -389,7 +346,7 @@ public class ConfigClass {
             setAtualizacaoLocalhostIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo")));
 
 } catch (java.io.IOException exc) {
-            //Mensagem_Alerta("Não foi possivel abrir o arquivo!","AVISO");
+            //showAlerta("Não foi possivel abrir o arquivo!","AVISO");
             //ExemploDeConteudo();
             //TxtScript.setEnabled(true);
             //CmbScript.setEnabled(true);
@@ -397,7 +354,7 @@ public class ConfigClass {
     }
 
     public boolean getSeDependenciaDeConfiguracao() {
-        if(Arquivamento.SeExiste(ConfiguracaoURL)){
+        if(Arquivamento.seExiste(ConfiguracaoURL)){
             return true;
         }else{
             return false;
@@ -407,39 +364,39 @@ public class ConfigClass {
         return SeComandoProcede("svn --help");
     }
     public boolean getSeDependenciaDeLocalhost(){
-        return Arquivamento.SeExiste(getConexaoLocalhost());
+        return Arquivamento.seExiste(getConexaoLocalhost());
     }
     public boolean getSeDependenciaDeGCC(){
         return SeComandoProcede("gcc --help");
     }
     public boolean getSeDependenciaDeMontagem(){
         if(
-            Arquivamento.SeExiste(
+            Arquivamento.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"char-server"
             )
             &&
-            Arquivamento.SeExiste(
+            Arquivamento.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"login-server"
             )
             &&
-            Arquivamento.SeExiste(
+            Arquivamento.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"map-server"
             )
             &&
-            Arquivamento.SeExiste(
+            Arquivamento.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"save"+
                 System.getProperty("file.separator")+"account.txt"
             )
             &&
-            Arquivamento.SeExiste(
+            Arquivamento.seExiste(
                 ConexaoLocalhost+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"conf"+

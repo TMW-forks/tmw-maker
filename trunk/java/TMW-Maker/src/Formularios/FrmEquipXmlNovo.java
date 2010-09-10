@@ -128,8 +128,8 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
         CarregarSpritesPNG("player_male_base.png");
     }
     private void CarregarSpritesPNG(String Focar){
-        if(Arquivamento.SeExiste(PastaDeSprites)){
-            String[] Arquivos = Arquivamento.ListarArquivos(PastaDeSprites);
+        if(Arquivamento.seExiste(PastaDeSprites)){
+            String[] Arquivos = Arquivamento.listarArquivos(PastaDeSprites);
             //setTitle(""+Arquivos.length);
             if(Arquivos.length>=1){
 
@@ -159,7 +159,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
     public void AbrirSprite(){
         String Arquivo=CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
         Endereco=PastaDeSprites+Arquivo;
-        if(Arquivamento.SeExiste(Endereco)){
+        if(Arquivamento.seExiste(Endereco)){
             
             String Tipo[]=new String[]{
                 "chest-",
@@ -541,9 +541,9 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
             //File Arquivo = Dialogo.getSelectedFile();
             /*This is where a real application would open the file.
             log.append("Opening: " + file.getName() + "." + newline);/**/
-            Arquivamento.CopiarArquivo(
+            Arquivamento.arquivoCopiar(
                 Dialogo.getSelectedFile(),
-                PastaDeSprites+FrmPrincipal.Barra+Dialogo.getSelectedFile().getName()
+                PastaDeSprites+FrmPrincipal.barra+Dialogo.getSelectedFile().getName()
             );
             CarregarSpritesPNG(Dialogo.getSelectedFile().getName());
             FrmPrincipal.setAvisoEmEstatus("Imagem \""+Dialogo.getSelectedFile().getName()+"\" copiado para banco de Sprites!");

@@ -2,6 +2,7 @@
 package Formularios;
 
 import Classes.ConfigClass;
+import Classes.Mensagem;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -139,13 +140,13 @@ public class FrmContas extends javax.swing.JDialog {
             out.close();
             dispose();
         } catch (java.io.IOException exc) {
-            ConfigClass.Mensagem_Erro(
+            Mensagem.showErro(
                 "<html>Não foi possivel gravar os poderes de GM!<br/>"+
                 "<font face=\"monospace\">"+EnderecoDeContasGMs+"</font> (<font color=\"#FF0000\">Falhou</font>)"
                 ,"ERRO"
             );
         } catch (Exception exc) {
-            ConfigClass.Mensagem_Erro(
+            Mensagem.showErro(
                 "<html>Não foi possivel gravar os poderes de GM por motivo de valor inválido!<br/><br/>"+
                 "<font color=\"#FF0000\">LOCAL DO ERRO:</font><br/>"+
                     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: <font face=\"monospace\">"+ID+"</font><br/>"+
@@ -187,7 +188,7 @@ public class FrmContas extends javax.swing.JDialog {
             CapsulaDeGMs.close();
             Inicio=ConteudoDeContasGMs.indexOf("\n2000000");
             ConteudoDeContasGMs = ConteudoDeContasGMs.substring(Inicio+1, ConteudoDeContasGMs.length());
-            //ConfigClass.Mensagem_Erro(ConteudoDeContasUsuarios, "Nota de Programador");
+            //Mensagem.showErro(ConteudoDeContasUsuarios, "Nota de Programador");
             //ContasGMs = ConteudoDeContasGMs.split("\n");
             SeArq2=true;
         } catch (java.io.IOException exc) {
@@ -238,7 +239,7 @@ public class FrmContas extends javax.swing.JDialog {
             TblContas.getTableHeader().getColumnModel().getColumn(5).setMinWidth(70);
             TblContas.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(70);
         }else{
-            ConfigClass.Mensagem_Erro(
+            Mensagem.showErro(
                 "<html>Não foi possivel abrir os arquivos de contas!<br/>"+
                 "<font face=\"monospace\">"+EnderecoDeContasUsuarios+"</font> "+(SeArq1==false?"(<font color=\"#FF0000\">Falhou</font>)":"(<font color=\"#0000FF\">OK</font>)")+"<br/>"+
                 "<font face=\"monospace\">"+EnderecoDeContasGMs+"</font> "+(SeArq2==false?"(<font color=\"#FF0000\">Falhou</font>)":"(<font color=\"#0000FF\">OK</font>)")

@@ -8,6 +8,8 @@ import Classes.BancoDeDados.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_Itens;
 import Classes.ImagemTratavel;
+import Classes.Mensagem;
+import Classes.StringClass;
 import Classes.XmlDeEquip.XMLdeEquip;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -25,7 +27,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     static String ComponenteSelecionado = "";
     public static ConfigClass Config = new ConfigClass();
-    static String Barra = System.getProperty("file.separator");
+    static String barra = System.getProperty("file.separator");
     static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     //public static String SpritePNG=""; // É esado em FrmEquipXML***
@@ -61,7 +63,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 FrmPrincipal.setAvisoEmEstatus("Baixando atualização...");
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-                String Destino=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmw-maker";
+                String Destino=FrmPrincipal.Config.getConexaoLocalhost()+barra+"tmw-maker";
                 Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Destino;
 
                 try {
@@ -81,9 +83,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
                 if(Arquivos>=2){
                     //ln -t /home/indigovox/Desktop -s /home/indigovox/localhost/tmw-maker/TMW-Maker_0.2.jar
-                    Link=Config.getConexaoLocalhost()+Barra+ "tmw-maker"+Barra+ "TMW-Maker.jar";
-                    Simbolo=System.getProperty("user.home")+Barra+"Desktop";
-                    if(Arquivamento.SeExiste(Simbolo)) Arquivamento.Apagar(Simbolo+Barra+"TMW-Maker.jar");
+                    Link=Config.getConexaoLocalhost()+barra+ "tmw-maker"+barra+ "TMW-Maker.jar";
+                    Simbolo=System.getProperty("user.home")+barra+"Desktop";
+                    if(Arquivamento.seExiste(Simbolo)) Arquivamento.apagar(Simbolo+barra+"TMW-Maker.jar");
                     PgbBarra.setString("Coligando...");
                     setAvisoEmEstatus("Criando link \""+Link+"\"...");
                     Comando="ln -t "+Simbolo+" -s "+Link;
@@ -97,7 +99,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     } catch (IOException e) {
                         e.printStackTrace();
                         setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                        ConfigClass.Mensagem_Erro(
+                        Mensagem.showErro(
                             "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
                             "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                             "</html>",
@@ -157,15 +159,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     public void LocalhostMontar() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
         } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
         } else if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
             int R = JOptionPane.YES_OPTION;
             if(Config.getSeDependenciaDeGCC()){
-                if (Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server") ||
-                        Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server") ||
-                        Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
+                if (Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "char-server") ||
+                        Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "login-server") ||
+                        Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "map-server")) {
                     Object[] options = {"Remontar", "Cancelar"};
                     R = JOptionPane.showOptionDialog(
                             null, "<html>" +
@@ -202,29 +204,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             PgbBarra.setIndeterminate(true);
                             PgbBarra.setString("Apagando...");
                             setAvisoEmEstatus("Apagando binários...");
-                            if (Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "bins")) {
-                                Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "bins");
+                            if (Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "bins")) {
+                                Arquivamento.apagar(Config.getConexaoLocalhost() +barra+ "bins");
                             }
-                            Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
-                            Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
-                            Arquivamento.Apagar(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
+                            Arquivamento.apagar(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "char-server");
+                            Arquivamento.apagar(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "login-server");
+                            Arquivamento.apagar(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "map-server");
 
                             PgbBarra.setString("Preparando...");
                             setAvisoEmEstatus("Preparando para baixar binários novos...");
                             if (OS.indexOf("linux") >= 0 && Arch.indexOf("i386") >= 0) {
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
-                                        FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
+                                        FrmPrincipal.Config.getConexaoLocalhost() +barra+ "bins";
                                 BinariosEspecificos = true;
                                 System.out.println(Comando);
-                                //ConfigClass.Mensagem_Alerta(Comando,"Nota de Programador");
+                                //Mensagem.showAlerta(Comando,"Nota de Programador");
                             } else {
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/compiler " +
-                                        FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
+                                        FrmPrincipal.Config.getConexaoLocalhost() +barra+ "bins";
                                 BinariosEspecificos = false;
                                 System.out.println(Comando);
-                                //ConfigClass.Mensagem_Alerta(Comando,"Nota de Programador");
+                                //Mensagem.showAlerta(Comando,"Nota de Programador");
                             }
                             try {
                                 Process Retorno = Executador.exec(Comando);
@@ -239,7 +241,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 e.printStackTrace();
                                 //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
                                 setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                                ConfigClass.Mensagem_Erro(
+                                Mensagem.showErro(
                                     "<html><b>O TMW-Maker não conseguiu baixar os binários:</b><br/><br/>" +
                                     "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                     "</html>",
@@ -248,22 +250,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             }
                             if (BinariosEspecificos == true) {
                                 PgbBarra.setString("Deslocando...");
-                                if (!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server")) {
-                                    Arquivamento.MoverArquivo(
-                                            Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "char-server",
-                                            Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "char-server");
+                                if (!Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "char-server")) {
+                                    Arquivamento.arquivoMover(
+                                            Config.getConexaoLocalhost() +barra+ "bins" +barra+ "char-server",
+                                            Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "char-server");
                                     setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
                                 }
-                                if (!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server")) {
-                                    Arquivamento.MoverArquivo(
-                                            Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "login-server",
-                                            Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "login-server");
+                                if (!Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "login-server")) {
+                                    Arquivamento.arquivoMover(
+                                            Config.getConexaoLocalhost() +barra+ "bins" +barra+ "login-server",
+                                            Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "login-server");
                                     setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
                                 }
-                                if (!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server")) {
-                                    Arquivamento.MoverArquivo(
-                                            Config.getConexaoLocalhost() +Barra+ "bins" +Barra+ "map-server",
-                                            Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "map-server");
+                                if (!Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "map-server")) {
+                                    Arquivamento.arquivoMover(
+                                            Config.getConexaoLocalhost() +barra+ "bins" +barra+ "map-server",
+                                            Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "map-server");
                                     setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
                                 }
                             } else {
@@ -287,17 +289,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             setAvisoEmEstatus("Renomeando banco de dados...");
                             PgbBarra.setString("Renomeando...");
                             String Pasta[] = new String[]{
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "conf",
-                                Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "save"
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "conf",
+                                Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "save"
                             };
                             String De[] = new String[]{
                                 "atcommand_local.conf.example",
@@ -327,31 +329,31 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             };
 
                             for (int r = 0; r < De.length; r++) {
-                                if (Arquivamento.SeExiste(Pasta[r] +Barra+ De[r])) {
-                                    if (Arquivamento.SeExiste(Pasta[r] +Barra+ Para[r])) {
-                                        Arquivamento.Apagar(Pasta[r] +Barra+ Para[r]);
+                                if (Arquivamento.seExiste(Pasta[r] +barra+ De[r])) {
+                                    if (Arquivamento.seExiste(Pasta[r] +barra+ Para[r])) {
+                                        Arquivamento.apagar(Pasta[r] +barra+ Para[r]);
                                         setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + Para[r] + "\"!");
                                     }
                                     setAvisoEmEstatus("<html><b>Renomeando:</b> \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
-                                    Arquivamento.MoverArquivo(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
+                                    Arquivamento.arquivoMover(Pasta[r] +barra+ De[r], Pasta[r] +barra+ Para[r]);
                                 }
                             }
 
-                            if(!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log")) {
-                                setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log\"...");
-                                Arquivamento.CriarPasta(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "log");
+                            if(!Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "log")) {
+                                setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "log\"...");
+                                Arquivamento.pastaCriar(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "log");
                             }
 
                             /*
                             Criar pasta de ~/localhost/eathena-data/log
                             gcc -o eathena-monitor eathena-monitor.c
                             /**/
-                            if(!Arquivamento.SeExiste(Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor")) {
+                            if(!Arquivamento.seExiste(Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "eathena-monitor")) {
                                 PgbBarra.setString("Copilando...");
                                 setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
                                 Comando="gcc -o "+
-                                    Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor "+
-                                    Config.getConexaoLocalhost() +Barra+ "eathena-data" +Barra+ "eathena-monitor.c";
+                                    Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "eathena-monitor "+
+                                    Config.getConexaoLocalhost() +barra+ "eathena-data" +barra+ "eathena-monitor.c";
                                 System.out.println(Comando);
                                 try {
                                     Process Retorno = Executador.exec(Comando);
@@ -363,7 +365,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                     e.printStackTrace();
                                     //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
                                     setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                                    ConfigClass.Mensagem_Erro(
+                                    Mensagem.showErro(
                                         "<html><b>O TMW-Maker não conseguiu copilar o binário de monitor:</b><br/><br/>" +
                                         "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                         "</html>",
@@ -376,14 +378,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             rm $HOME/tmwserver // Apaga Link
                             ln -s $PWD $HOME/tmwserver //Recria Link
                             /**/
-                            if(Arquivamento.SeExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
-                                Arquivamento.Apagar(System.getProperty("user.home")+Barra+"tmwserver");
+                            if(Arquivamento.seExiste(System.getProperty("user.home")+barra+"tmwserver")) {
+                                Arquivamento.apagar(System.getProperty("user.home")+barra+"tmwserver");
                             }
                             PgbBarra.setString("Coligando...");
-                            setAvisoEmEstatus("Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");
+                            setAvisoEmEstatus("Criando link \""+System.getProperty("user.home")+barra+"tmwserver\"...");
                             Comando="ln -s "+
-                                Config.getConexaoLocalhost()+Barra+ "eathena-data"+" "+
-                                System.getProperty("user.home")+Barra+"tmwserver";
+                                Config.getConexaoLocalhost()+barra+ "eathena-data"+" "+
+                                System.getProperty("user.home")+barra+"tmwserver";
                             System.out.println(Comando);
                             try {
                                 Process Retorno = Executador.exec(Comando);
@@ -395,7 +397,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 e.printStackTrace();
                                 //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
                                 setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                                ConfigClass.Mensagem_Erro(
+                                Mensagem.showErro(
                                     "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
                                     "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                     "</html>",
@@ -422,7 +424,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }
             }else{
                 setAvisoEmEstatus("<html><font color=\"#0000FF\">CANCELADO:</font> Existe uma dependencia de GCC para você resolver!");
-                ConfigClass.Mensagem_Erro("<html>"+
+                Mensagem.showErro("<html>"+
                     "Esta função possui a <font face=\"monospace\" color=\"#FF0000\">dependencia</font> do comando GCC!",
                     "ERRO DE EXECUÇÃO"
                 );
@@ -433,10 +435,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         //int R = JOptionPane.NO_OPTION;
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -472,7 +474,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         Process Retorno=Executador.exec(Comando);
                         BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                         while ((line = in.readLine()) != null) {
-                            line=line.replaceAll(FrmPrincipal.Config.getConexaoLocalhost()+Barra, "");
+                            line=line.replaceAll(FrmPrincipal.Config.getConexaoLocalhost()+barra, "");
                             System.out.println(line);
                             FrmPrincipal.setAvisoEmEstatus("<html>BAIXANDO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
                             Arquivos++;
@@ -484,7 +486,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         FrmPrincipal.Config.ConfiguracoesGravar();
 
                     } catch (IOException e) {
-                        //ConfigClass.Mensagem_Alerta("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                        //Mensagem.showAlerta("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
                         FrmPrincipal.PgbBarra.setString("ERRO!");
                     }/**/
@@ -505,10 +507,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void LocalhostCompartilhar() {
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -529,7 +531,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     Partes = FrmPrincipal.Config.getConexaoRepositorio().split(":");
                     if(Partes.length>1 && Partes[0].toLowerCase().equals("https") && !FrmPrincipal.Config.getConexaoUsuario().equals("") && !FrmPrincipal.Config.getConexaoSenha().equals("")){
                         Object[] options = {"Sim, Compartilhar!", "Não, Cancelar!"};
-                        R = ConfigClass.Mensagem_Opcoes("<html>" +
+                        R = Mensagem.showOpcoes("<html>" +
                             "Se enviar algum <font color=\"#FF0000\">Script com Defeito</font> de seu Localhost para o Repositório, você <br/>" +
                             "poderá danificar o repositório, prejudicando trabalho de outros colaboradores.<br/>" +
                             "Tem certeza que seu localhost está funcionando corretamente?",
@@ -554,7 +556,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 Process Retorno=Executador.exec(Comando);
                                 BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                                 while ((line = in.readLine()) != null) {
-                                    line=line.replaceAll(FrmPrincipal.Config.getConexaoLocalhost()+Barra, "");
+                                    line=line.replaceAll(FrmPrincipal.Config.getConexaoLocalhost()+barra, "");
                                     System.out.println(line);
                                     FrmPrincipal.setAvisoEmEstatus("<html>ENVIADO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
                                     Arquivos++;
@@ -569,7 +571,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 }
                             } catch (IOException e) {
                                 FrmPrincipal.setAvisoEmEstatus("Falha ao compartilhar o localhost \""+FrmPrincipal.Config.getConexaoLocalhost()+"\"!");
-                                ConfigClass.Mensagem_Erro("<html>" +
+                                Mensagem.showErro("<html>" +
                                     "Falha ao compartilhar o localhost:<br/> " +
                                     "<font color=\"#FF0000\"> <b>"+Comando+"</b>!"
                                     , "ERRO"
@@ -583,7 +585,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     }else{
                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">PARADA CRÍTICA:</font> Você não identificação \"HTTPS\" em suas configurações!!");
                         FrmPrincipal.PgbBarra.setString("PARADA CRÍTICA");
-                        ConfigClass.Mensagem_Alerta("<html>" +
+                        Mensagem.showAlerta("<html>" +
                             "Você não tem permissão para compartilhar arquivos pelo TMW-Maker.<br/><br/>"+
                             "Para compatilhar configure a Conexão do Repositório como \"<font color=\"#0000FF\">HTTP<b><u>S</u></b></font>\" e <br/>" +
                             "preencha o \"<font color=\"#0000FF\">Usuário</font>\" e a \"<font color=\"#0000FF\">Senha</font>\" do repositório corretamente!"
@@ -603,6 +605,131 @@ public class FrmPrincipal extends javax.swing.JFrame {
             tThread.start();
         }
     }
+    public void LocalhostCopilar(){
+        Thread tThread = new Thread(new Runnable() {
+            public void run() {
+                //Mensagem.showAlerta("Esse comando ainda não foi implementado!", "Copilador", null);
+                String baseScripts=FrmPrincipal.Config.getConexaoLocalhost()+barra+"eathena-data"+barra+"npc";
+                String baseMapas=FrmPrincipal.Config.getConexaoLocalhost()+barra+"tmwdata"+barra+"maps";
+
+                FrmPrincipal.PgbBarra.setIndeterminate(false);
+                FrmPrincipal.PgbBarra.setEnabled(true);
+                FrmPrincipal.PgbBarra.setMinimum(0);
+                MnuSistema.setEnabled(false);
+                MnuEditar.setEnabled(false);
+                MnuJogo.setEnabled(false);
+                MnuAjuda.setEnabled(false);
+                VerificarBarraDeFerramentas();
+
+                FrmPrincipal.setAvisoEmEstatus(
+                    "Preparando para copilar...",
+                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                );
+                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
+                    String pasta[] = Arquivamento.listarPasta(baseScripts);
+                    String arquivo[] = null;
+                    String importador="", warps="", mobs="", mapaNome="", mapaTMX="";
+                    StringClass importacao = new StringClass();
+                    StringClass mapaConteudo = new StringClass();
+                    StringClass warpConteudo = new StringClass();
+                    StringClass mobConteudo = new StringClass();
+                    FrmPrincipal.PgbBarra.setMaximum(pasta.length);
+                    for(int p=0; p<pasta.length; p++){
+                        FrmPrincipal.PgbBarra.setValue(p);
+                        FrmPrincipal.PgbBarra.setString((((p+1)*100)/pasta.length)+"%");
+                        if(
+                            !pasta[p].equals(".svn") &&
+                            !pasta[p].equals("functions")
+                        ){
+                            importador=baseScripts+barra+pasta[p]+barra+"_import.txt";
+                            warps=baseScripts+barra+pasta[p]+barra+"_warps.txt";
+                            mobs=baseScripts+barra+pasta[p]+barra+"_mobs.txt";
+                            if(Arquivamento.seExiste(importador)){
+                                if(Arquivamento.seExiste(warps)){
+                                    if(Arquivamento.seExiste(mobs)){
+                                        importacao.setTesto("\n"+Arquivamento.arquivoAbrir(importador));// esse \n tem que ser add pq a linha q tem "map:" pode está comentada!
+                                        mapaNome=importacao.extrairEntre("\nmap: ", ".gat").trim();
+                                        if(!mapaNome.equals("")){
+                                            mapaTMX=baseMapas+barra+mapaNome+".tmx";
+                                            if(Arquivamento.seExiste(mapaTMX)){
+                                                FrmPrincipal.setAvisoEmEstatus("<html>"+
+                                                    "Copilando: <font color=\"#0000FF\">"+mapaNome+".tmx</font>",
+                                                    MnuJogoCopilar.getIcon()
+                                                );
+                                                mapaConteudo.setTesto(Arquivamento.arquivoAbrir(mapaTMX));
+                                                warpConteudo.setTesto(Arquivamento.arquivoAbrir(warps));
+                                                mobConteudo.setTesto(Arquivamento.arquivoAbrir(mobs));
+
+                                            }else{
+                                                FrmPrincipal.setAvisoEmEstatus("<html>"+
+                                                    "<font color=\"#FF0000\">ERRO:</font> Não foi possivel encontrar o mapa\"<font color=\"#FF0000\">"+mapaNome+".tmx</font>\"!",
+                                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                                                );
+                                                Mensagem.showErro("<html>Não foi possivel encontrar o mapa \"<font color=\"#FF0000\">"+mapaNome+".tmx</font>\"!", "Copilador");
+                                                MnuSistema.setEnabled(true);
+                                                MnuEditar.setEnabled(true);
+                                                MnuJogo.setEnabled(true);
+                                                MnuAjuda.setEnabled(true);
+                                                FrmPrincipal.PgbBarra.setString("ERRO!");
+                                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                                VerificarBarraDeFerramentas();
+                                                return;
+                                            }
+                                        }//else{Mensagem.showErro("Arquivo\""+importador+"\" bloqueado!", "Copilador");}
+                                    }else{
+                                        FrmPrincipal.setAvisoEmEstatus("<html>"+
+                                            "<font color=\"#FF0000\">ERRO:</font> Não foi possivel encontrar os spawns:<br/>"+
+                                            "\"<font color=\"#FF0000\">"+mobs+".tmx</font>\"",
+                                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                                        );
+                                        Mensagem.showErro("<html>Não foi possivel encontrar o mapa \"<font color=\"#FF0000\">"+warps+".tmx</font>\"!", "Copilador");
+                                        MnuSistema.setEnabled(true);
+                                        MnuEditar.setEnabled(true);
+                                        MnuJogo.setEnabled(true);
+                                        MnuAjuda.setEnabled(true);
+                                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                                        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                        VerificarBarraDeFerramentas();
+                                        return;
+                                    }
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html>"+
+                                        "<font color=\"#FF0000\">ERRO:</font> Não foi possivel encontrar os portais:<br/>"+
+                                        "\"<font color=\"#FF0000\">"+warps+".tmx</font>\"!",
+                                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                                    );
+                                    Mensagem.showErro("<html>Não foi possivel encontrar o mapa \"<font color=\"#FF0000\">"+warps+".tmx</font>\"!", "Copilador");
+                                    MnuSistema.setEnabled(true);
+                                    MnuEditar.setEnabled(true);
+                                    MnuJogo.setEnabled(true);
+                                    MnuAjuda.setEnabled(true);
+                                    FrmPrincipal.PgbBarra.setString("ERRO!");
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                    VerificarBarraDeFerramentas();
+                                    return;
+                                }
+                            }//else{Mensagem.showErro("Não foi possivel encontrar o arquivo\""+importador+"\"!", "Copilador");}
+                        }
+                    }
+                }
+                MnuSistema.setEnabled(true);
+                MnuEditar.setEnabled(true);
+                MnuJogo.setEnabled(true);
+                MnuAjuda.setEnabled(true);
+                FrmPrincipal.PgbBarra.setString("Concluido!");
+                FrmPrincipal.setAvisoEmEstatus("<html>"+
+                    "Copilação semi-concluida! (<font color=\"#FF0000\">Função Deprecada</font>)",
+                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
+                );
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                VerificarBarraDeFerramentas();
+
+            }
+        });
+        tThread.start();
+    }
 
     public void ExecutarJogo(){
         if (Config.getOS().indexOf("win") >= 0) {
@@ -612,12 +739,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
             cmd[2] = "start";
             cmd[3] = URL;
             Executador.exec(cmd);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
             //C:\cygwin\cygwin.exe
             //C:\Arquivos de programas\Mana\mana.exe
         } else if (Config.getOS().indexOf("mac") >= 0) {
             //Executador.exec("open " + URL);
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -664,7 +791,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             e.printStackTrace();
                             //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
                             setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>" +
+                            Mensagem.showErro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>" +
                                 "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                 "</html>",
                                 "ERRO DE EXECUÇÃO"
@@ -690,7 +817,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             (FrmPrincipal.Config.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + FrmPrincipal.Config.getExecucaoParametroSenha() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + FrmPrincipal.Config.getExecucaoParametroPersonagem() + " ")) +
                             (FrmPrincipal.Config.getExecucaoParametroSemopengl() == true ? "--no-opengl" : "");
-                    //ConfigClass.Mensagem_Alerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
+                    //Mensagem.showAlerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
                     try {
                         Process Retorno = Executador.exec(Comando);
                         BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
@@ -709,7 +836,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         if(Config.getExecucaoComando().equals("manaplus") && !Config.getSeDependenciaDeManaplus() && Config.getSeDependenciaDeTMW()){
                             Config.setExecucaoComando("tmw");
                             Config.ConfiguracoesGravar();
-                            ConfigClass.Mensagem_Erro("<html>"+
+                            Mensagem.showErro("<html>"+
                                 "O TMW-Maker <b>não encotrou o aplicativo</b> \"<font face=\"monospace\" color=\"#FF0000\"><b>MANA</b></font>\".<br/>" +
                                 "Substituindo por aplicativo \"<font face=\"monospace\" color=\"#0000FF\"><b>TMW</b></font>\"..." +
                                 "</html>",
@@ -719,7 +846,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         }else if(Config.getExecucaoComando().equals("tmw") && !Config.getSeDependenciaDeTMW() && Config.getSeDependenciaDeManaplus()){
                             Config.setExecucaoComando("manaplus");
                             Config.ConfiguracoesGravar();
-                            ConfigClass.Mensagem_Erro("<html>"+
+                            Mensagem.showErro("<html>"+
                                 "O TMW-Maker <b>não encotrou o aplicativo</b> \"<font face=\"monospace\" color=\"#FF0000\"><b>TMW</b></font>\".<br/>" +
                                 "Substituindo por aplicativo \"<font face=\"monospace\" color=\"#0000FF\"><b>MANA</b></font>\"..." +
                                 "</html>",
@@ -730,7 +857,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             PgbBarra.setString("ERRO...");
                             //TxtEstatus.setText(TxtEstatus.getText()+"ERRO DE EXECUÇÃO: "+Comando);
                             setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> " + Comando);
-                            ConfigClass.Mensagem_Erro(
+                            Mensagem.showErro(
                                 "<html>O TMW-Maker <font color=\"#FF0000\">não conseguiu abrir</font> nenhum <br/>" +
                                 "aplicativo cliente(jogo) de THE MANA WORLD!<br/>"+
                                 "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font>"
@@ -767,7 +894,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             //TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
 
                             setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                            ConfigClass.Mensagem_Erro("<html><b>O TMW-Maker não conseguiu desligar o eathena:</b><br/><br/>" +
+                            Mensagem.showErro("<html><b>O TMW-Maker não conseguiu desligar o eathena:</b><br/><br/>" +
                                 "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                 "</html>",
                                 "ERRO DE EXECUÇÃO"
@@ -810,6 +937,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuEditarPersonagem.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarItens.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuJogoExecutar.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuJogoCopilar.setEnabled(Config.getSeDependenciaDeMontagem());
         }
     }
     public void VerificarBarraDeFerramentas() {
@@ -821,6 +949,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnEditarPersonagemScript.setEnabled(MnuEditar.isEnabled() && MnuEditarPersonagem.isEnabled() && MnuEditarPersonagemScript.isEnabled());
         BtnEditarContas.setEnabled(MnuEditar.isEnabled() && MnuEditarContas.isEnabled());
         BtnJogoExecular.setEnabled(MnuJogo.isEnabled() && MnuJogoExecutar.isEnabled());
+        BtnJogoCopilar.setEnabled(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled());
         BtnJogoLocalhostSupervisonar.setEnabled(MnuJogo.isEnabled() && MnuJogoLocalhost.isEnabled() && MnuJogoLocalhostSupervisionado.isEnabled());
         BtnJogoLocalhostAtualizar.setEnabled(MnuJogo.isEnabled() && MnuJogoLocalhost.isEnabled() && MnuJogoLocalhostAtualizar.isEnabled());
         BtnJogoLocalhostCompartilhar.setEnabled(MnuJogo.isEnabled() && MnuJogoLocalhost.isEnabled() && MnuJogoLocalhostCompartilhar.isEnabled());
@@ -857,6 +986,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnEditarContas = new javax.swing.JButton();
         jSeparator11 = new javax.swing.JToolBar.Separator();
         BtnJogoExecular = new javax.swing.JButton();
+        BtnJogoCopilar = new javax.swing.JButton();
         BtnJogoLocalhostSupervisonar = new javax.swing.JButton();
         BtnJogoLocalhostAtualizar = new javax.swing.JButton();
         BtnJogoLocalhostCompartilhar = new javax.swing.JButton();
@@ -880,7 +1010,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarItensDados = new javax.swing.JMenuItem();
         MnuEditarCampos = new javax.swing.JMenu();
         MnuEditarCamposTilesets = new javax.swing.JMenuItem();
-        MnuEditarCamposPortais = new javax.swing.JMenuItem();
         MnuEditarCamposMapas = new javax.swing.JMenuItem();
         MnuEditarPersonagem = new javax.swing.JMenu();
         MnuEditarPersonagemAparencia = new javax.swing.JMenuItem();
@@ -897,13 +1026,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarContas = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         MnuJogo = new javax.swing.JMenu();
-        MnuJogoExecutar = new javax.swing.JMenuItem();
-        jSeparator5 = new javax.swing.JSeparator();
         MnuJogoLocalhost = new javax.swing.JMenu();
         MnuJogoLocalhostSupervisionado = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         MnuJogoLocalhostAtualizar = new javax.swing.JMenuItem();
         MnuJogoLocalhostCompartilhar = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JSeparator();
+        MnuJogoCopilar = new javax.swing.JMenuItem();
+        MnuJogoExecutar = new javax.swing.JMenuItem();
         MnuAjuda = new javax.swing.JMenu();
         MnuAjudaComponentes = new javax.swing.JMenuItem();
         MnuAjudaIndicarDefeito = new javax.swing.JMenuItem();
@@ -999,7 +1129,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jToolBar1.add(BtnSistemaDependencias);
         jToolBar1.add(jSeparator7);
 
-        BtnEditorItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_armadura.png"))); // NOI18N
+        BtnEditorItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
         BtnEditorItensSprites.setToolTipText("Novo Equipamento (Ctrl+Shift+I)");
         BtnEditorItensSprites.setFocusable(false);
         BtnEditorItensSprites.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1011,7 +1141,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(BtnEditorItensSprites);
 
-        BtnEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
+        BtnEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_presente.gif"))); // NOI18N
         BtnEditarItensDados.setToolTipText("Editor de Ítens (Ctrl+I)");
         BtnEditarItensDados.setFocusable(false);
         BtnEditarItensDados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1061,6 +1191,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(BtnJogoExecular);
+
+        BtnJogoCopilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_atomico.gif"))); // NOI18N
+        BtnJogoCopilar.setToolTipText("Copilar (Ctrl+F9)");
+        BtnJogoCopilar.setFocusable(false);
+        BtnJogoCopilar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnJogoCopilar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnJogoCopilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnJogoCopilarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BtnJogoCopilar);
 
         BtnJogoLocalhostSupervisonar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_load.gif"))); // NOI18N
         BtnJogoLocalhostSupervisonar.setToolTipText("Supervisionar Localhost... (Ctrl+L)");
@@ -1213,11 +1355,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditar.setMnemonic('E');
         MnuEditar.setText("Editar");
 
+        MnuEditarItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_armadura.png"))); // NOI18N
         MnuEditarItens.setMnemonic('I');
         MnuEditarItens.setText("Itens");
 
         MnuEditarItensSprites.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        MnuEditarItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_armadura.png"))); // NOI18N
+        MnuEditarItensSprites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
         MnuEditarItensSprites.setMnemonic('S');
         MnuEditarItensSprites.setText("Novo Equipamento");
         MnuEditarItensSprites.addActionListener(new java.awt.event.ActionListener() {
@@ -1228,7 +1371,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarItens.add(MnuEditarItensSprites);
 
         MnuEditarItensDados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        MnuEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))); // NOI18N
+        MnuEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_presente.gif"))); // NOI18N
         MnuEditarItensDados.setMnemonic('D');
         MnuEditarItensDados.setText("Editor de Ítens");
         MnuEditarItensDados.addActionListener(new java.awt.event.ActionListener() {
@@ -1240,28 +1383,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarItens);
 
-        MnuEditarCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_terreno.gif"))); // NOI18N
+        MnuEditarCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_casa.png"))); // NOI18N
         MnuEditarCampos.setMnemonic('C');
         MnuEditarCampos.setText("Campos");
         MnuEditarCampos.setEnabled(false);
 
+        MnuEditarCamposTilesets.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_terreno.gif"))); // NOI18N
         MnuEditarCamposTilesets.setMnemonic('T');
         MnuEditarCamposTilesets.setText("Tilesets");
-        MnuEditarCamposTilesets.setEnabled(false);
         MnuEditarCampos.add(MnuEditarCamposTilesets);
 
-        MnuEditarCamposPortais.setMnemonic('P');
-        MnuEditarCamposPortais.setText("Portais");
-        MnuEditarCamposPortais.setEnabled(false);
-        MnuEditarCampos.add(MnuEditarCamposPortais);
-
+        MnuEditarCamposMapas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))); // NOI18N
         MnuEditarCamposMapas.setMnemonic('M');
-        MnuEditarCamposMapas.setText("Mini-mapas");
-        MnuEditarCamposMapas.setEnabled(false);
+        MnuEditarCamposMapas.setText("Mapas");
         MnuEditarCampos.add(MnuEditarCamposMapas);
 
         MnuEditar.add(MnuEditarCampos);
 
+        MnuEditarPersonagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))); // NOI18N
         MnuEditarPersonagem.setMnemonic('P');
         MnuEditarPersonagem.setText("Personagem (NPC)");
 
@@ -1350,18 +1489,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogo.setMnemonic('J');
         MnuJogo.setText("Jogo");
 
-        MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
-        MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_play.png"))); // NOI18N
-        MnuJogoExecutar.setMnemonic('E');
-        MnuJogoExecutar.setText("Executar");
-        MnuJogoExecutar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnuJogoExecutarActionPerformed(evt);
-            }
-        });
-        MnuJogo.add(MnuJogoExecutar);
-        MnuJogo.add(jSeparator5);
-
         MnuJogoLocalhost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_tmw.png"))); // NOI18N
         MnuJogoLocalhost.setMnemonic('L');
         MnuJogoLocalhost.setText("Localhost");
@@ -1402,6 +1529,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogoLocalhost.add(MnuJogoLocalhostCompartilhar);
 
         MnuJogo.add(MnuJogoLocalhost);
+        MnuJogo.add(jSeparator5);
+
+        MnuJogoCopilar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.CTRL_MASK));
+        MnuJogoCopilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_atomico.gif"))); // NOI18N
+        MnuJogoCopilar.setMnemonic('C');
+        MnuJogoCopilar.setText("Copilar");
+        MnuJogoCopilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuJogoCopilarActionPerformed(evt);
+            }
+        });
+        MnuJogo.add(MnuJogoCopilar);
+
+        MnuJogoExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        MnuJogoExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_play.png"))); // NOI18N
+        MnuJogoExecutar.setMnemonic('E');
+        MnuJogoExecutar.setText("Executar");
+        MnuJogoExecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuJogoExecutarActionPerformed(evt);
+            }
+        });
+        MnuJogo.add(MnuJogoExecutar);
 
         jMenuBar1.add(MnuJogo);
 
@@ -1459,7 +1609,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 409, Short.MAX_VALUE)
+                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 428, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1595,23 +1745,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
     private void MnuSistemaAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuSistemaAtualizarActionPerformed
         if (FrmPrincipal.Config.getOS().indexOf("win") >= 0) {
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (FrmPrincipal.Config.getOS().indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            ConfigClass.Mensagem_Erro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             if(FrmPrincipal.Config.getSeDependenciaDeConfiguracao()){
                 if(FrmPrincipal.Config.getSeDependenciaDeSVN()){
                     if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
                         Atualizar();
                     }else{
-                        ConfigClass.Mensagem_Erro("Para atualizar é necessário atender a dependência de Localhost!","ERRO");
+                        Mensagem.showErro("Para atualizar é necessário atender a dependência de Localhost!","ERRO");
                     }
                 }else{
-                    ConfigClass.Mensagem_Erro("Para atualizar é necessário atender a dependência de SNV!","ERRO");
+                    Mensagem.showErro("Para atualizar é necessário atender a dependência de SNV!","ERRO");
                 }
             }else{
-                ConfigClass.Mensagem_Erro("Para atualizar é necessário atender a dependência de Configuração!","ERRO");
+                Mensagem.showErro("Para atualizar é necessário atender a dependência de Configuração!","ERRO");
             }
         }
 
@@ -1688,7 +1838,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         if(MnuJogo.isEnabled() && MnuJogoLocalhostCompartilhar.isEnabled()) MnuJogoLocalhostCompartilharActionPerformed(evt);
     }//GEN-LAST:event_BtnJogoLocalhostCompartilharActionPerformed
     private void BtnAjudaComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAjudaComponentesActionPerformed
-        ConfigClass.Mensagem_Erro("Este atalho ainda não foi implementado!", "Descupe!");
+        Mensagem.showErro("Este atalho ainda não foi implementado!", "Descupe!");
     }//GEN-LAST:event_BtnAjudaComponentesActionPerformed
     private void BtnAjudaIndicarDefeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAjudaIndicarDefeitoActionPerformed
         if(MnuAjuda.isEnabled() && MnuAjudaIndicarDefeito.isEnabled()) MnuAjudaIndicarDefeitoActionPerformed(evt);
@@ -1699,6 +1849,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         EsticarFundo();
     }//GEN-LAST:event_formComponentResized
+    private void MnuJogoCopilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuJogoCopilarActionPerformed
+        LocalhostCopilar();
+    }//GEN-LAST:event_MnuJogoCopilarActionPerformed
+    private void BtnJogoCopilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJogoCopilarActionPerformed
+        if(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled()) MnuJogoCopilarActionPerformed(evt);
+    }//GEN-LAST:event_BtnJogoCopilarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1716,6 +1872,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BtnEditarItensDados;
     private javax.swing.JButton BtnEditarPersonagemScript;
     private javax.swing.JButton BtnEditorItensSprites;
+    private javax.swing.JButton BtnJogoCopilar;
     private javax.swing.JButton BtnJogoExecular;
     private javax.swing.JButton BtnJogoLocalhostAtualizar;
     private javax.swing.JButton BtnJogoLocalhostCompartilhar;
@@ -1732,7 +1889,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MnuEditar;
     private javax.swing.JMenu MnuEditarCampos;
     private javax.swing.JMenuItem MnuEditarCamposMapas;
-    private javax.swing.JMenuItem MnuEditarCamposPortais;
     private javax.swing.JMenuItem MnuEditarCamposTilesets;
     private javax.swing.JMenuItem MnuEditarContas;
     private javax.swing.JMenu MnuEditarInimigos;
@@ -1750,6 +1906,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
     private javax.swing.JMenuItem MnuEditarPersonagemScript;
     private javax.swing.JMenu MnuJogo;
+    private javax.swing.JMenuItem MnuJogoCopilar;
     public static javax.swing.JMenuItem MnuJogoExecutar;
     private javax.swing.JMenu MnuJogoLocalhost;
     private javax.swing.JMenuItem MnuJogoLocalhostAtualizar;
@@ -1782,3 +1939,4 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 }
+
