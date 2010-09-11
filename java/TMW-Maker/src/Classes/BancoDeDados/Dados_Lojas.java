@@ -7,6 +7,21 @@ public class Dados_Lojas {
     private int coordX=0;
     private int coordY=0;
     private static Dados_LojaProduto Produtos[];
+    public Dados_Lojas(String novoNomeLoja, int novaImagemILoja, String novoMapa, int novaCoordX, int novaCoordY, Dados_LojaProduto NovosProdutos[]) {
+        nomeLoja=novoNomeLoja;
+        imagemILoja=novaImagemILoja;
+        mapa=novoMapa;
+        coordX=novaCoordX;
+        coordY=novaCoordY;
+        Produtos=NovosProdutos;
+    }
+    public Dados_Lojas(String novoNomeLoja, int novaImagemILoja, String novoMapa, int novaCoordX, int novaCoordY) {
+        nomeLoja=novoNomeLoja;
+        imagemILoja=novaImagemILoja;
+        mapa=novoMapa;
+        coordX=novaCoordX;
+        coordY=novaCoordY;
+    }
 
     public void setNomeLoja(String novoNomeLoja){nomeLoja=novoNomeLoja;}
     public void setImagemLoja(int novaImagemILoja){imagemILoja=novaImagemILoja;}
@@ -32,6 +47,7 @@ public class Dados_Lojas {
     public String getMapa(){return mapa;}
     public int    getCoordX(){return coordX;}
     public int    getCoordY(){return coordY;}
+    public Dados_LojaProduto[] getProdutos(){return Produtos;}
     public Dados_LojaProduto getProdutoPorID(int antigoProdutoID){
         for(int b=0;b<Produtos.length;b++){
             if(Produtos[b].getID()==antigoProdutoID){

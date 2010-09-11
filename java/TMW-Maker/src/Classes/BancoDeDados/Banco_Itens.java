@@ -1,7 +1,6 @@
 package Classes.BancoDeDados;
 
 import Classes.Arquivamento;
-import Classes.ConfigClass;
 import Classes.Mensagem;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
@@ -9,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.Vector;
 
 public class Banco_Itens {
