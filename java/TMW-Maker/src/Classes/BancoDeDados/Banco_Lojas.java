@@ -1,93 +1,101 @@
 package Classes.BancoDeDados;
 
 public class Banco_Lojas {
-    private static Dados_Lojas Lojas[]; //Não deve ser instaciado agora!!!!
+    private static Dados_Lojas galeria[]; //Não deve ser instaciado agora!!!!
     public Banco_Lojas(String Arquivo){
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     public void addLoja(String nomeLoja, int imagemILoja, String mapa, int coordX, int coordY){
-        if(Lojas != null){
-            Dados_Lojas NovaGaleria[] = new Dados_Lojas[Lojas.length+1];
-            for(int b=0;b<Lojas.length;b++){
-                NovaGaleria[b] = new Dados_Lojas(
-                    Lojas[b].getNomeLoja(),
-                    Lojas[b].getImagemLoja(),
-                    Lojas[b].getMapa(),
-                    Lojas[b].getCoordX(),
-                    Lojas[b].getCoordY()
+        if(galeria != null){
+            Dados_Lojas novaGaleria[] = new Dados_Lojas[galeria.length+1];
+            for(int b=0;b<galeria.length;b++){
+                novaGaleria[b] = new Dados_Lojas(
+                    galeria[b].getNomeLoja(),
+                    galeria[b].getImagemLoja(),
+                    galeria[b].getMapa(),
+                    galeria[b].getCoordX(),
+                    galeria[b].getCoordY()
                 );
             }
-            NovaGaleria[Lojas.length] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
-            Lojas = NovaGaleria;
+            novaGaleria[galeria.length] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
+            galeria = novaGaleria;
         }else{
-            Dados_Lojas NovaGaleria[] = new Dados_Lojas[1];
-            NovaGaleria[0] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
-            Lojas = NovaGaleria;
+            Dados_Lojas novaGaleria[] = new Dados_Lojas[1];
+            novaGaleria[0] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
+            galeria = novaGaleria;
         }
     }
     public void addLoja(String nomeLoja, int imagemILoja, String mapa, int coordX, int coordY, Dados_LojaProduto NovosProdutos[]){
-        if(Lojas != null){
-            Dados_Lojas NovaGaleria[] = new Dados_Lojas[Lojas.length+1];
-            for(int b=0;b<Lojas.length;b++){
-                NovaGaleria[b] = new Dados_Lojas(
-                    Lojas[b].getNomeLoja(),
-                    Lojas[b].getImagemLoja(),
-                    Lojas[b].getMapa(),
-                    Lojas[b].getCoordX(),
-                    Lojas[b].getCoordY(),
-                    Lojas[b].getProdutos()
+        if(galeria != null){
+            Dados_Lojas novaGaleria[] = new Dados_Lojas[galeria.length+1];
+            for(int b=0;b<galeria.length;b++){
+                novaGaleria[b] = new Dados_Lojas(
+                    galeria[b].getNomeLoja(),
+                    galeria[b].getImagemLoja(),
+                    galeria[b].getMapa(),
+                    galeria[b].getCoordX(),
+                    galeria[b].getCoordY(),
+                    galeria[b].getProdutos()
                 );
             }
-            NovaGaleria[Lojas.length] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
-            Lojas = NovaGaleria;
+            novaGaleria[galeria.length] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
+            galeria = novaGaleria;
         }else{
-            Dados_Lojas NovaGaleria[] = new Dados_Lojas[1];
-            NovaGaleria[0] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
-            Lojas = NovaGaleria;
+            Dados_Lojas novaGaleria[] = new Dados_Lojas[1];
+            novaGaleria[0] = new Dados_Lojas(nomeLoja, imagemILoja, mapa, coordX, coordY);
+            galeria = novaGaleria;
         }
     }
     public void delLojaPorNome(String nomeLoja){
-        if(Lojas != null){
-            Dados_Lojas NovaGaleria[] = new Dados_Lojas[Lojas.length-1];
+        if(galeria != null){
+            Dados_Lojas novaGaleria[] = new Dados_Lojas[galeria.length-1];
             int contLojas=0;
-            for(int b=0;b<Lojas.length;b++){
-                if(Lojas[b].getNomeLoja().equals(nomeLoja)){
+            for(int b=0;b<galeria.length;b++){
+                if(galeria[b].getNomeLoja().equals(nomeLoja)){
                     contLojas++;
-                    NovaGaleria[contLojas-1] = new Dados_Lojas(
-                        Lojas[b].getNomeLoja(),
-                        Lojas[b].getImagemLoja(),
-                        Lojas[b].getMapa(),
-                        Lojas[b].getCoordX(),
-                        Lojas[b].getCoordY(),
-                        Lojas[b].getProdutos()
+                    novaGaleria[contLojas-1] = new Dados_Lojas(
+                        galeria[b].getNomeLoja(),
+                        galeria[b].getImagemLoja(),
+                        galeria[b].getMapa(),
+                        galeria[b].getCoordX(),
+                        galeria[b].getCoordY(),
+                        galeria[b].getProdutos()
                     );
                 }
             }
-            Lojas = NovaGaleria;
+            galeria = novaGaleria;
         }
     }
     public void delLojaPorOrdem(int ordem){
-        if(Lojas != null){
-            Dados_Lojas NovaGaleria[] = new Dados_Lojas[Lojas.length-1];
+        if(galeria != null){
+            Dados_Lojas novaGaleria[] = new Dados_Lojas[galeria.length-1];
             int contLojas=0;
-            for(int b=0;b<Lojas.length;b++){
+            for(int b=0;b<galeria.length;b++){
                 if(b!=ordem){
                     contLojas++;
-                    NovaGaleria[contLojas-1] = new Dados_Lojas(
-                        Lojas[b].getNomeLoja(),
-                        Lojas[b].getImagemLoja(),
-                        Lojas[b].getMapa(),
-                        Lojas[b].getCoordX(),
-                        Lojas[b].getCoordY(),
-                        Lojas[b].getProdutos()
+                    novaGaleria[contLojas-1] = new Dados_Lojas(
+                        galeria[b].getNomeLoja(),
+                        galeria[b].getImagemLoja(),
+                        galeria[b].getMapa(),
+                        galeria[b].getCoordX(),
+                        galeria[b].getCoordY(),
+                        galeria[b].getProdutos()
                     );
                 }
             }
-            Lojas = NovaGaleria;
+            galeria = novaGaleria;
         }
     }
+    public void delGaleria(){galeria=null;}
 
-    public Dados_Lojas[] getLojas(){return Lojas;}
-    public void setLojas(Dados_Lojas NovasLojas[]){Lojas=NovasLojas;}
+    public Dados_Lojas[] getLojas(){return galeria;}
+    public int getContLojas(){
+         if(galeria != null){
+             return galeria.length;
+         }else{
+             return 0;
+         }
+    }
+    public void setLojas(Dados_Lojas NovasLojas[]){galeria=NovasLojas;}
 }

@@ -6,14 +6,14 @@ public class Dados_Lojas {
     private String mapa="";
     private int coordX=0;
     private int coordY=0;
-    private static Dados_LojaProduto Produtos[];
+    private static Dados_LojaProduto estoque[];
     public Dados_Lojas(String novoNomeLoja, int novaImagemILoja, String novoMapa, int novaCoordX, int novaCoordY, Dados_LojaProduto NovosProdutos[]) {
         nomeLoja=novoNomeLoja;
         imagemILoja=novaImagemILoja;
         mapa=novoMapa;
         coordX=novaCoordX;
         coordY=novaCoordY;
-        Produtos=NovosProdutos;
+        estoque=NovosProdutos;
     }
     public Dados_Lojas(String novoNomeLoja, int novaImagemILoja, String novoMapa, int novaCoordX, int novaCoordY) {
         nomeLoja=novoNomeLoja;
@@ -29,17 +29,17 @@ public class Dados_Lojas {
     public void setCoordX(int novaCoordX){coordX=novaCoordX;}
     public void setCoordY(int novaCoordY){coordY=novaCoordY;}
     public void setProdutoPorID(int antigoProdutoID, int novoProdutoID, int novoProdutoPrecoDeVenda){
-        for(int b=0;b<Produtos.length;b++){
-            if(Produtos[b].getID()==antigoProdutoID){
-               Produtos[b].setID(novoProdutoID);
-               Produtos[b].setPrecoDeVenda(novoProdutoPrecoDeVenda);
+        for(int b=0;b<estoque.length;b++){
+            if(estoque[b].getID()==antigoProdutoID){
+               estoque[b].setID(novoProdutoID);
+               estoque[b].setPrecoDeVenda(novoProdutoPrecoDeVenda);
                return;//Termina o método!
             }
         }
     }
     public void setProdutoPorOrdem(int ordem, int novoProdutoID, int novoProdutoPrecoDeVenda){
-        Produtos[ordem].setID(novoProdutoID);
-        Produtos[ordem].setPrecoDeVenda(novoProdutoPrecoDeVenda);
+        estoque[ordem].setID(novoProdutoID);
+        estoque[ordem].setPrecoDeVenda(novoProdutoPrecoDeVenda);
     }
 
     public String getNomeLoja(){return nomeLoja;}
@@ -47,61 +47,69 @@ public class Dados_Lojas {
     public String getMapa(){return mapa;}
     public int    getCoordX(){return coordX;}
     public int    getCoordY(){return coordY;}
-    public Dados_LojaProduto[] getProdutos(){return Produtos;}
+    public int    getContProdutos(){
+         if(estoque != null){
+             return estoque.length;
+         }else{
+             return 0;
+         }
+    }
+    public Dados_LojaProduto[] getProdutos(){return estoque;}
     public Dados_LojaProduto getProdutoPorID(int antigoProdutoID){
-        for(int b=0;b<Produtos.length;b++){
-            if(Produtos[b].getID()==antigoProdutoID){
-               return Produtos[b];//Termina o método!
+        for(int b=0;b<estoque.length;b++){
+            if(estoque[b].getID()==antigoProdutoID){
+               return estoque[b];//Termina o método!
             }
         }
         return null;
     }
     public Dados_LojaProduto getProdutoPorOrdem(int ordem){
-        return Produtos[ordem];
+        return estoque[ordem];
     }
 
     public void addProduto(int produtoID, int produtoPreco){
-        if(Produtos != null){
-            Dados_LojaProduto NovaLista[] = new Dados_LojaProduto[Produtos.length+1];
-            for(int b=0;b<Produtos.length;b++){
-                if(Produtos[b].getID()!=produtoID){
-                    NovaLista[b] = new Dados_LojaProduto(Produtos[b].getID(),Produtos[b].getPrecoDeVenda());
+        if(estoque != null){
+            Dados_LojaProduto novoEstoque[] = new Dados_LojaProduto[estoque.length+1];
+            for(int b=0;b<estoque.length;b++){
+                if(estoque[b].getID()!=produtoID){
+                    novoEstoque[b] = new Dados_LojaProduto(estoque[b].getID(),estoque[b].getPrecoDeVenda());
                 }else{
                     return; //Cancela adição de o produto já foi adicionado anteriormente;
                 }
             }
-            NovaLista[Produtos.length] = new Dados_LojaProduto(produtoID, produtoPreco);
-            Produtos = NovaLista;
+            novoEstoque[estoque.length] = new Dados_LojaProduto(produtoID, produtoPreco);
+            estoque = novoEstoque;
         }else{
-            Dados_LojaProduto NovaLista[] = new Dados_LojaProduto[1];
-            NovaLista[0] = new Dados_LojaProduto(produtoID, produtoPreco);
-            Produtos = NovaLista;
+            Dados_LojaProduto novoEstoque[] = new Dados_LojaProduto[1];
+            novoEstoque[0] = new Dados_LojaProduto(produtoID, produtoPreco);
+            estoque = novoEstoque;
         }
     }
     public void delProdutoPorOrdem(int ordem){
-        if(Produtos != null){
-            Dados_LojaProduto NovaLista[] = new Dados_LojaProduto[Produtos.length-1];
+        if(estoque != null){
+            Dados_LojaProduto novoEstoque[] = new Dados_LojaProduto[estoque.length-1];
             int contProduto=0;
-            for(int b=0;b<Produtos.length;b++){
+            for(int b=0;b<estoque.length;b++){
                 if(b!=ordem){
                     contProduto++;
-                    NovaLista[contProduto-1] = new Dados_LojaProduto(Produtos[b].getID(),Produtos[b].getPrecoDeVenda());
+                    novoEstoque[contProduto-1] = new Dados_LojaProduto(estoque[b].getID(),estoque[b].getPrecoDeVenda());
                 }
             }
-            Produtos = NovaLista;
+            estoque = novoEstoque;
         }
     }
     public void delProdutoPorID(int id){
-        if(Produtos != null){
-            Dados_LojaProduto NovaLista[] = new Dados_LojaProduto[Produtos.length-1];
+        if(estoque != null){
+            Dados_LojaProduto novoEstoque[] = new Dados_LojaProduto[estoque.length-1];
             int contProduto=0;
-            for(int b=0;b<Produtos.length;b++){
-                if(Produtos[b].getID()!=id){
+            for(int b=0;b<estoque.length;b++){
+                if(estoque[b].getID()!=id){
                     contProduto++;
-                    NovaLista[contProduto-1] = new Dados_LojaProduto(Produtos[b].getID(),Produtos[b].getPrecoDeVenda());
+                    novoEstoque[contProduto-1] = new Dados_LojaProduto(estoque[b].getID(),estoque[b].getPrecoDeVenda());
                 }
             }
-            Produtos = NovaLista;
+            estoque = novoEstoque;
         }
     }
+    public void delEstoque(){estoque = null;}
 }
