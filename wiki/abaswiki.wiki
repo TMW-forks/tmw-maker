@@ -8,7 +8,7 @@
 
 *Wiki* - Esta página que você está vendo é um Wiki. Aqui você encontrará tutoriais, conforme eles forem escritos, para ajudar no desenvolvimento do código fonte do TMW-Maker.
 
-*Issues* - São notificações de defeitos, avisos de conserto e aviso de problemas, escritas pelos desenvolvedores do projeto e pelos usuários do TMW-Maker.
+*Issues* - São notificações de defeitos, avisos de conserto e aviso de problemas, escritas pelos desenvolvedores do projeto e pelos usuários do TMW-Maker. Vc vai precisar logar para poder postar avisos de defeitos em Issues.
 
 *Source* - São Downloads do *Aplicativo Pronto* e *Código Fonte* para qualquer um possa gratuitamente baixar, usar, distribuir e melhorar o Engine TMW-Maker. Essa sessão é dividida em 3 partes:
  [http://code.google.com/p/tmw-maker/source/checkout Checkout ] - É uma explicação de como usar o [Subversion] (Conhecido como SVN) para baixar o código fonte para seu computador.
