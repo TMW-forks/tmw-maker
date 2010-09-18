@@ -26,7 +26,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" alignment="0" pref="681" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="585" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -37,7 +37,7 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane3" pref="501" max="32767" attributes="1"/>
+              <Component id="jScrollPane3" pref="405" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -109,33 +109,32 @@
             <Property name="text" type="java.lang.String" value="Loja:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton6">
+        <Component class="javax.swing.JButton" name="btnLojaCriar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_casa.png"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_carrinho.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Nova Loja"/>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Criar Loja"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLojaCriarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnLojaEditar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/sbl_lapis.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Editar Loja"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnLojaAbrir">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_pasta.gif"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Abrir Lojas"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="4"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLojaAbrirActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnLojaSalvas">
+        <Component class="javax.swing.JButton" name="btnLojaSalvar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagem/Botoes/sbl_disquete.gif"/>
@@ -147,20 +146,23 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLojaSalvasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLojaSalvarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton8">
+        <Component class="javax.swing.JButton" name="btnLojaAbrir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/fechar.png"/>
+              <Image iconType="3" name="/Imagem/Botoes/sbl_pasta.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Excluir Loja"/>
+            <Property name="toolTipText" type="java.lang.String" value="Abrir Lojas"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="horizontalTextPosition" type="int" value="4"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLojaAbrirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
         </Component>
@@ -301,9 +303,10 @@
         <Component class="javax.swing.JTextField" name="txtEtiqueta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Etiqueta do NPC"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEtiquetaFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -314,9 +317,10 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="001"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtMapaFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -327,8 +331,6 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="001"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -340,8 +342,6 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="001"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="CmbAparencias">
@@ -358,7 +358,6 @@
                 <StringItem index="7" value=" "/>
               </StringArray>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbAparenciasActionPerformed"/>
