@@ -14,8 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-public class frmLojas extends javax.swing.JDialog {
-    public frmLojas(java.awt.Dialog parent, boolean modal) {
+public class FrmLojas extends javax.swing.JDialog {
+    public FrmLojas(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -380,7 +380,7 @@ public class frmLojas extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                frmLojas dialog = new frmLojas(new javax.swing.JDialog(), true);
+                FrmLojas dialog = new FrmLojas(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

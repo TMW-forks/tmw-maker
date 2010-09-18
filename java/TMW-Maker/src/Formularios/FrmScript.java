@@ -306,7 +306,7 @@ public class FrmScript extends javax.swing.JDialog {
             TreScripts.getLeadSelectionPath().getPathCount()==4 && 
             TreScripts.getLeadSelectionPath().getPathComponent(3).toString().equals("_shops.txt")
         ){
-            frmJanela = new frmLojas(this, rootPaneCheckingEnabled);
+            frmJanela = new FrmLojas(this, rootPaneCheckingEnabled);
         }else{
             frmJanela = new FrmPalco(this, rootPaneCheckingEnabled);
         }
