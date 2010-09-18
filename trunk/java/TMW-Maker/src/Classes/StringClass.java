@@ -2,12 +2,11 @@
 package Classes;
 
 public class StringClass {
-    public String StringClass(String Testo) {
+    public StringClass(String Testo) {
         testoEmTratamento = Testo;
-        return testoEmTratamento;
     }
-    public String StringClass() {
-        return testoEmTratamento;
+    public StringClass() {
+        testoEmTratamento = "";
     }
     String testoEmTratamento="";
 

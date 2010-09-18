@@ -101,6 +101,8 @@ public class Dados_Item {
     public String getNomeTitulo(){return NomeTitulo.toString();}
     public String getDescricao(){return Descricao.toString();}
     public String getIconePNG(){return IconePNG.toString();}
+    public String getIconePasta(){return PastaDeItens;}
+    public String getIconeEndereco(){return PastaDeItens+Barra+IconePNG;}
     public BufferedImage getIconeImagem(){
         if(Arquivamento.seExiste(PastaDeItens+Barra+IconePNG)){
             ImagemTratavel Imagem = new ImagemTratavel(PastaDeItens+Barra+IconePNG);

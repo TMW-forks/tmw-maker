@@ -28,6 +28,31 @@ public class Banco_Itens {
         }
         return Lista;
     }
+    public Vector getReferencias() {
+        Vector Lista = new Vector();
+        for(int I=0;I<getContItens();I++){
+            Lista.addElement(Itens[I].getID()+": "+Itens[I].getNomeTitulo());
+        }
+        return Lista;
+    }
+    public Vector getTitutos() {
+        Vector Lista = new Vector();
+        for(int I=0;I<getContItens();I++){
+            Lista.addElement("<html>"+
+                "<table><tr><td><img align=\"middle\" src=\"file://"+
+                    Itens[I].getIconeEndereco()+
+                "\"></td><td>"+
+                    "<b>"+Itens[I].getID()+":</b> "+Itens[I].getNomeTitulo()+"<br/>"+
+                    "<small>"+
+                    "V:"+Itens[I].getPrecoDeVenda()+"GP "+
+                    "C:"+Itens[I].getPrecoDeCompra()+"GP "+
+                    "("+Itens[I].getPoderEfeito()+")"+
+                    "</small>"+
+                "</td></tr></table>"
+            );
+        }
+        return Lista;
+    }
     public Dados_Item getItemPorOrdem(int Ordem) {return Itens[Ordem];}
     public Dados_Item getItemPorID(int ID) {
         for(int i=0;i<Itens.length;i++){
