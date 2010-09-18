@@ -42,9 +42,9 @@ public class ConfigClass {
     private String  DocumentacaoTraducoes =         "";
 
     private long    ComportAtualizacaoEngineUltima =        0;
-    private int     ComportAtualizacaoEngineIntervalo =     1; // Diariamente (Cada 1 Dia)
+    private int     ComportAtualizacaoEngineIntervalo =     7; // Semanalmente (Cada 7 Dias)
     private long    ComportAtualizacaoLocalhostUltima =     0;
-    private int     ComportAtualizacaoLocalhostIntervalo =  1; // Diariamente (Cada 1 Dia)
+    private int     ComportAtualizacaoLocalhostIntervalo =  0; // Sempre (Ao abrir)
 
 
     public String getVersao(){return Versao;}

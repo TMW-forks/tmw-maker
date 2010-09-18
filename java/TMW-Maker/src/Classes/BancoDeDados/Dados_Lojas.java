@@ -6,7 +6,7 @@ public class Dados_Lojas {
     private String mapa="";
     private int coordX=0;
     private int coordY=0;
-    private static Dados_LojaProduto estoque[];
+    private Dados_LojaProduto estoque[]=null;
     public Dados_Lojas(String novoNomeLoja, int novaImagemILoja, String novoMapa, int novaCoordX, int novaCoordY, Dados_LojaProduto NovosProdutos[]) {
         nomeLoja=novoNomeLoja;
         imagemILoja=novaImagemILoja;
@@ -21,6 +21,9 @@ public class Dados_Lojas {
         mapa=novoMapa;
         coordX=novaCoordX;
         coordY=novaCoordY;
+    }
+    public Dados_Lojas() {
+        //Loja Vazia
     }
 
     public void setNomeLoja(String novoNomeLoja){nomeLoja=novoNomeLoja;}

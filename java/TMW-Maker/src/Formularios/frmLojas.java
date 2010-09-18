@@ -1,6 +1,7 @@
 
 package Formularios;
 
+import Classes.BancoDeDados.Banco_Lojas;
 import Classes.BancoDeDados.Dados_NPC;
 import Classes.ImagemTratavel;
 import Classes.Modificadoras.MyComboBoxEditor;
@@ -18,6 +19,8 @@ public class frmLojas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    private static String Barra = System.getProperty("file.separator");
+    Banco_Lojas Galeria = new Banco_Lojas(FrmScript.EnderecoDoScript);
 
     public void ListarAparencias(){
         Dados_NPC NPC = null;
@@ -31,51 +34,79 @@ public class frmLojas extends javax.swing.JDialog {
                 }
             }
         }
-        CmbNovoBlocoScriptImagem.setModel(new javax.swing.DefaultComboBoxModel(Lista));
+        CmbAparencias.setModel(new javax.swing.DefaultComboBoxModel(Lista));
     }
     public Vector addItemVector(int IDTem){
         return addItemVector(IDTem, FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda());
     }
     public Vector addItemVector(int IDTem, int PrecoDeVenda){
         Vector Linha = new Vector();
-        Linha.addElement(new ImageIcon(FrmPrincipal.Itens.getItemPorID(IDTem).getIconeImagem()));
-        Linha.addElement(IDTem);
-        Linha.addElement(FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo());//Se é um
+        //Linha.addElement(new ImageIcon(FrmPrincipal.Itens.getItemPorID(IDTem).getIconeImagem()));
+        //Linha.addElement(IDTem);
+        //Linha.addElement(FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo());//Se é um
+        Linha.addElement("<html>"+
+            "<table><tr><td><img align=\"middle\" src=\"file://"+
+                FrmPrincipal.Itens.getItemPorID(IDTem).getIconeEndereco()+
+            "\"></td><td>"+
+                "<b>"+IDTem+":</b> "+FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo()+"<br/>"+
+                "<small>"+
+                "V:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda()+"GP "+
+                "C:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeCompra()+"GP "+
+                "("+FrmPrincipal.Itens.getItemPorID(IDTem).getPoderEfeito()+")"+
+                "</small>"+
+            "</td></tr></table>"
+        );//Se é um
         Linha.addElement(PrecoDeVenda);
         return Linha;
     }
     public void setCorpo(Vector Dados){
         Vector columnNames = new Vector();
-        columnNames.addElement("IMG");
-        columnNames.addElement("ID");
-        columnNames.addElement("Item");
-        columnNames.addElement("Venda(GP)");
+        //columnNames.addElement("IMG");
+        columnNames.addElement("<html><big>ID: Item");
+        columnNames.addElement("<html><b>Venda</b><br>(GP)");
 
-        tblShop.setRowHeight(32);
+        tblShop.setRowHeight(38);
         tblShop.setModel(new DefaultTableModel(Dados,columnNames) {
-            boolean[] canEdit = new boolean[]{false, true, false, true};
+            boolean[] canEdit = new boolean[]{true, true};
             public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
         });
+        //tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.Itens.getTitutos()));
+        tblShop.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
 
-        tblShop.getTableHeader().getColumnModel().getColumn(0).setCellRenderer(new jTtableImagemDeColuna());
-        //tblShop.setRowHeight(0, 32);
-        tblShop.getTableHeader().getColumnModel().getColumn(0).setMinWidth(32);
-        tblShop.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(32);
-        
-        //TableCellRenderer Tipo2 = CmbIDItens;
-        //tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.Itens.getIDs()));
-        tblShop.getTableHeader().getColumnModel().getColumn(1).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getIDs()));
         tblShop.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
-        tblShop.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(64);
-
-        tblShop.getTableHeader().getColumnModel().getColumn(3).setMinWidth(64);
-        tblShop.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(256);
+        tblShop.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);
     }
-    public void SetExemploDeTabela(){
+    public void setComboAparencia(int Aparencia){
+        for(int A=0;A<CmbAparencias.getItemCount();A++){
+            String Partes[] = CmbAparencias.getItemAt(A).toString().split(":");
+            if(Partes.length>=2 &&  Integer.parseInt(Partes[0])==Aparencia){
+                CmbAparencias.setSelectedIndex(A);
+                return;
+            }
+        }
+    }
+    public void abrirLojas(){
+        Vector Lojas = new Vector();
         Vector Carrinho = new Vector();
-        Carrinho.addElement(addItemVector(3017));
-        Carrinho.addElement(addItemVector(3093));
+        for(int l=0;l<Galeria.getContLojas();l++){
+            Lojas.addElement(Galeria.getLojaPorOrdem(l).getNomeLoja());
+        }
+        cmbLojas.setModel(new javax.swing.DefaultComboBoxModel(Lojas));
+        abrirLojaAtual();
+    }
+    public void abrirLojaAtual(){
+        int G = cmbLojas.getSelectedIndex();
+        int Prods = Galeria.getLojaPorOrdem(G).getContProdutos();
+        Vector Carrinho = new Vector();
+        for(int P=0;P<Prods;P++){
+            Carrinho.addElement(addItemVector(Galeria.getLojaPorOrdem(G).getProdutoPorOrdem(P).getID()));
+        }
+        txtEtiqueta.setText(Galeria.getLojaPorOrdem(G).getNomeLoja());
+        txtMapa.setText(Galeria.getLojaPorOrdem(G).getMapa());
+        txtCoordX.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordX()));
+        txtCoordY.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordY()));
         setCorpo(Carrinho);
+        setComboAparencia(Galeria.getLojaPorOrdem(G).getImagemLoja());
     }
 
     @SuppressWarnings("unchecked")
@@ -86,10 +117,10 @@ public class frmLojas extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnUpdateLoja = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbLojas = new javax.swing.JComboBox();
         jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jLabel4 = new javax.swing.JLabel();
@@ -99,14 +130,14 @@ public class frmLojas extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblShop = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        CmbNovoBlocoScriptImagem = new javax.swing.JComboBox();
-        jTextField2 = new javax.swing.JTextField();
+        CmbAparencias = new javax.swing.JComboBox();
+        txtEtiqueta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMapa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtCoordX = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtCoordY = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -135,12 +166,17 @@ public class frmLojas extends javax.swing.JDialog {
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton7);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_update.gif"))); // NOI18N
-        jButton5.setToolTipText("Atualizar Loja");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton5);
+        btnUpdateLoja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_update.gif"))); // NOI18N
+        btnUpdateLoja.setToolTipText("Atualizar Loja");
+        btnUpdateLoja.setFocusable(false);
+        btnUpdateLoja.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnUpdateLoja.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpdateLoja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateLojaActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnUpdateLoja);
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/fechar.png"))); // NOI18N
         jButton8.setToolTipText("Excluir Loja");
@@ -156,8 +192,13 @@ public class frmLojas extends javax.swing.JDialog {
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jToolBar1.add(jComboBox1);
+        cmbLojas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbLojas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLojasActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(cmbLojas);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_avancar.gif"))); // NOI18N
         jButton3.setToolTipText("Voltar");
@@ -191,46 +232,38 @@ public class frmLojas extends javax.swing.JDialog {
 
         tblShop.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "3017", "Colar Horcrux de Fada", "8000"},
-                {null, "3093", "Máscara Necromante", "10000"}
+                {"3017: Colar Horcrux de Fada", "8000"},
+                {"3093: Máscara Necromante", "10000"}
             },
             new String [] {
-                "IMG", "ID", "Nome", "Preço de Venda"
+                "ID: Nome", "Preço de Venda"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane3.setViewportView(tblShop);
 
-        CmbNovoBlocoScriptImagem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---", "048", "049", "100", "101", "102", "103", " " }));
-        CmbNovoBlocoScriptImagem.addActionListener(new java.awt.event.ActionListener() {
+        CmbAparencias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---", "048", "049", "100", "101", "102", "103", " " }));
+        CmbAparencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbNovoBlocoScriptImagemActionPerformed(evt);
+                CmbAparenciasActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("Etiqueta do NPC");
+        txtEtiqueta.setText("Etiqueta do NPC");
 
         jLabel1.setText("Mapa:");
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setText("001");
+        txtMapa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtMapa.setText("001");
 
         jLabel2.setText("Coord. X:");
 
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField3.setText("001");
+        txtCoordX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCoordX.setText("001");
 
         jLabel3.setText("Coord. Y:");
 
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField4.setText("001");
+        txtCoordY.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCoordY.setText("001");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -239,41 +272,41 @@ public class frmLojas extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(CmbNovoBlocoScriptImagem, 0, 126, Short.MAX_VALUE)
+                    .addComponent(CmbAparencias, 0, 126, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(5, 5, 5)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addComponent(txtMapa, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                    .addComponent(txtEtiqueta, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(5, 5, 5)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))))
+                            .addComponent(txtCoordY, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                            .addComponent(txtCoordX, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CmbNovoBlocoScriptImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CmbAparencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCoordX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCoordY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -308,9 +341,9 @@ public class frmLojas extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CmbNovoBlocoScriptImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbNovoBlocoScriptImagemActionPerformed
-        if(CmbNovoBlocoScriptImagem.getSelectedIndex()>=1){
-            String Selecionado=CmbNovoBlocoScriptImagem.getItemAt(CmbNovoBlocoScriptImagem.getSelectedIndex()).toString();
+    private void CmbAparenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbAparenciasActionPerformed
+        if(CmbAparencias.getSelectedIndex()>=1){
+            String Selecionado=CmbAparencias.getItemAt(CmbAparencias.getSelectedIndex()).toString();
             String Partes[] = Selecionado.split(":");
             if(Partes.length>=2){
                 Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Integer.parseInt(Partes[0]));
@@ -330,12 +363,19 @@ public class frmLojas extends javax.swing.JDialog {
             LblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")));
             LblImagem.setToolTipText(null);
         }
-}//GEN-LAST:event_CmbNovoBlocoScriptImagemActionPerformed
-
+}//GEN-LAST:event_CmbAparenciasActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ListarAparencias();
-        SetExemploDeTabela();
+        //SetExemploDeTabela();
+        abrirLojas();
+        setTitle("L:"+Galeria.getContLojas()+" L(1):"+Galeria.getLojaPorOrdem(0).getContProdutos());
     }//GEN-LAST:event_formWindowOpened
+    private void btnUpdateLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateLojaActionPerformed
+        abrirLojaAtual();
+    }//GEN-LAST:event_btnUpdateLojaActionPerformed
+    private void cmbLojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLojasActionPerformed
+        abrirLojaAtual();
+    }//GEN-LAST:event_cmbLojasActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -352,17 +392,17 @@ public class frmLojas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox CmbNovoBlocoScriptImagem;
+    private javax.swing.JComboBox CmbAparencias;
     private javax.swing.JLabel LblImagem;
+    private javax.swing.JButton btnUpdateLoja;
+    private javax.swing.JComboBox cmbLojas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -371,12 +411,12 @@ public class frmLojas extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTable tblShop;
+    private javax.swing.JTextField txtCoordX;
+    private javax.swing.JTextField txtCoordY;
+    private javax.swing.JTextField txtEtiqueta;
+    private javax.swing.JTextField txtMapa;
     // End of variables declaration//GEN-END:variables
 
 }
