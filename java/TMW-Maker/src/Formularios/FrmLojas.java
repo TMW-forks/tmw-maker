@@ -17,7 +17,7 @@ public class FrmLojas extends javax.swing.JDialog {
         initComponents();
     }
     private static String Barra = System.getProperty("file.separator");
-    Banco_Lojas Galeria = new Banco_Lojas(FrmScript.EnderecoDoScript);
+    Banco_Lojas Galeria = null;
 
     public void ListarAparencias(){
         Dados_NPC NPC = null;
@@ -86,6 +86,7 @@ public class FrmLojas extends javax.swing.JDialog {
                 abrirLojaAtual();
                 tblShop.setColumnSelectionInterval(X, X);
                 tblShop.setRowSelectionInterval(Y, Y);
+                btnLojaSalvas.setEnabled(true);
             }/**/
         });
         //tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.Itens.getTitutos()));
@@ -104,6 +105,8 @@ public class FrmLojas extends javax.swing.JDialog {
         }
     }
     public void abrirLojas(){
+        Galeria = new Banco_Lojas(FrmScript.EnderecoDoScript);
+        btnLojaSalvas.setEnabled(false);
         Vector Lojas = new Vector();
         Vector Carrinho = new Vector();
         for(int l=0;l<Galeria.getContLojas();l++){
@@ -111,6 +114,7 @@ public class FrmLojas extends javax.swing.JDialog {
         }
         cmbLojas.setModel(new javax.swing.DefaultComboBoxModel(Lojas));
         abrirLojaAtual();
+
     }
     public void abrirLojaAtual(){
         int G = cmbLojas.getSelectedIndex();
@@ -141,13 +145,13 @@ public class FrmLojas extends javax.swing.JDialog {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton7 = new javax.swing.JButton();
-        btnUpdateLoja = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
-        jLabel5 = new javax.swing.JLabel();
         btnLojaAnterior = new javax.swing.JButton();
         btnLojaProximo = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        jLabel5 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        btnLojaAbrir = new javax.swing.JButton();
+        btnLojaSalvas = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jLabel4 = new javax.swing.JLabel();
@@ -178,30 +182,6 @@ public class FrmLojas extends javax.swing.JDialog {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
-        jButton7.setToolTipText("Salvar Loja");
-        jButton7.setEnabled(false);
-        jButton7.setFocusable(false);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton7);
-
-        btnUpdateLoja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_update.gif"))); // NOI18N
-        btnUpdateLoja.setToolTipText("Atualizar Loja");
-        btnUpdateLoja.setFocusable(false);
-        btnUpdateLoja.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUpdateLoja.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnUpdateLoja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateLojaActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnUpdateLoja);
-        jToolBar1.add(jSeparator2);
-
-        jLabel5.setText("Loja:");
-        jToolBar1.add(jLabel5);
-
         btnLojaAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_voltar.gif"))); // NOI18N
         btnLojaAnterior.setToolTipText("Voltar");
         btnLojaAnterior.setFocusable(false);
@@ -225,6 +205,10 @@ public class FrmLojas extends javax.swing.JDialog {
             }
         });
         jToolBar1.add(btnLojaProximo);
+        jToolBar1.add(jSeparator2);
+
+        jLabel5.setText("Loja:");
+        jToolBar1.add(jLabel5);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_casa.png"))); // NOI18N
         jButton6.setToolTipText("Nova Loja");
@@ -233,6 +217,31 @@ public class FrmLojas extends javax.swing.JDialog {
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton6);
+
+        btnLojaAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
+        btnLojaAbrir.setToolTipText("Abrir Lojas");
+        btnLojaAbrir.setFocusable(false);
+        btnLojaAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnLojaAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLojaAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLojaAbrirActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnLojaAbrir);
+
+        btnLojaSalvas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
+        btnLojaSalvas.setToolTipText("Salvar Loja");
+        btnLojaSalvas.setEnabled(false);
+        btnLojaSalvas.setFocusable(false);
+        btnLojaSalvas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLojaSalvas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLojaSalvas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLojaSalvasActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnLojaSalvas);
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/fechar.png"))); // NOI18N
         jButton8.setToolTipText("Excluir Loja");
@@ -438,9 +447,9 @@ public class FrmLojas extends javax.swing.JDialog {
         abrirLojas();
         //setTitle("L:"+Galeria.getContLojas()+" L(1):"+Galeria.getLojaPorOrdem(0).getContProdutos());
     }//GEN-LAST:event_formWindowOpened
-    private void btnUpdateLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateLojaActionPerformed
+    private void btnLojaAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLojaAbrirActionPerformed
         abrirLojas();
-    }//GEN-LAST:event_btnUpdateLojaActionPerformed
+    }//GEN-LAST:event_btnLojaAbrirActionPerformed
     private void cmbLojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLojasActionPerformed
         abrirLojaAtual();
     }//GEN-LAST:event_cmbLojasActionPerformed
@@ -488,6 +497,11 @@ public class FrmLojas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnProdutoExcluirActionPerformed
 
+    private void btnLojaSalvasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLojaSalvasActionPerformed
+        Galeria.arqSalvar(FrmScript.EnderecoDoScript);
+        btnLojaSalvas.setEnabled(false);
+    }//GEN-LAST:event_btnLojaSalvasActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -505,14 +519,14 @@ public class FrmLojas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CmbAparencias;
     private javax.swing.JLabel LblImagem;
+    private javax.swing.JButton btnLojaAbrir;
     private javax.swing.JButton btnLojaAnterior;
     private javax.swing.JButton btnLojaProximo;
+    private javax.swing.JButton btnLojaSalvas;
     private javax.swing.JButton btnProdutoExcluir;
     private javax.swing.JButton btnProdutoNovo;
-    private javax.swing.JButton btnUpdateLoja;
     private javax.swing.JComboBox cmbLojas;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

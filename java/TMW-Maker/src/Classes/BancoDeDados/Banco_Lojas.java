@@ -1,6 +1,7 @@
 package Classes.BancoDeDados;
 
 import Classes.Arquivamento;
+import Classes.ConfigClass;
 import Classes.StringClass;
 
 public class Banco_Lojas {
@@ -121,6 +122,31 @@ public class Banco_Lojas {
          }
     }
     public void setLojas(Dados_Lojas NovasLojas[]){galeria=NovasLojas;}
+    public String getScript(){
+        //005.gat,92,67,0	shop	Jorge	120,1199:3,529:5,1200:1000,530:3000
+        String Script=
+        "///////////////////////////////////////////////////////////////////\n"+
+        "//  IDE: TMW-Maker - Ferramenta Editora de Lojas\n"+
+        "//  MODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+        "///////////////////////////////////////////////////////////////////\n"+
+        "\n";
+        for(int L=0;L<getContLojas();L++){
+            Script +=
+            getLojaPorOrdem(L).getMapa()+".gat,"+
+            getLojaPorOrdem(L).getCoordX()+","+
+            getLojaPorOrdem(L).getCoordY()+",0\tshop\t"+
+            getLojaPorOrdem(L).getNomeLoja()+"\t"+
+            getLojaPorOrdem(L).getImagemLoja();
+            for(int P=0;P<getLojaPorOrdem(L).getContProdutos();P++){
+                Script +=","+
+                getLojaPorOrdem(L).getProdutoPorOrdem(P).getID()+":"+
+                getLojaPorOrdem(L).getProdutoPorOrdem(P).getPrecoDeVenda();
+            }
+            Script +="\n";
+        }
+        return Script;
+
+    }
     public void arqAbrir(String Arquivo){
         StringClass Conteudo = new StringClass(Arquivamento.arquivoAbrir(Arquivo));
         //Vector shops = new Vector();
@@ -157,5 +183,8 @@ public class Banco_Lojas {
                 }
             }
         }
+    }
+    public void arqSalvar(String Arquivo){
+        Arquivamento.arquivoSalvar(Arquivo,getScript());
     }
 }
