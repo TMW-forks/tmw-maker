@@ -133,6 +133,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLojaEditarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLojaSalvar">
           <Properties>
@@ -226,15 +229,9 @@
               </Border>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="2">
-                <Column editable="true" title="ID: Nome" type="java.lang.Object">
-                  <Data value="3017: Colar Horcrux de Fada"/>
-                  <Data value="3093: M&#xe1;scara Necromante"/>
-                </Column>
-                <Column editable="true" title="Pre&#xe7;o de Venda" type="java.lang.Object">
-                  <Data value="8000"/>
-                  <Data value="10000"/>
-                </Column>
+              <Table columnCount="2" rowCount="0">
+                <Column editable="true" title="ID: Nome" type="java.lang.Object"/>
+                <Column editable="true" title="Pre&#xe7;o de Venda" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -254,7 +251,7 @@
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Component id="txtMapa" pref="82" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txtEtiqueta" alignment="1" pref="126" max="32767" attributes="0"/>
+                      <Component id="txtNomeDaLoja" alignment="1" pref="126" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -276,7 +273,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtEtiqueta" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNomeDaLoja" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="CmbAparencias" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
@@ -300,12 +297,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtEtiqueta">
+        <Component class="javax.swing.JTextField" name="txtNomeDaLoja">
           <Properties>
             <Property name="text" type="java.lang.String" value="Etiqueta do NPC"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEtiquetaFocusLost"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNomeDaLojaFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -317,6 +316,8 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="001"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtMapaFocusLost"/>
@@ -331,7 +332,12 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="001"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCoordXFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -342,7 +348,12 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="001"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCoordYFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="CmbAparencias">
           <Properties>
@@ -358,6 +369,8 @@
                 <StringItem index="7" value=" "/>
               </StringArray>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbAparenciasActionPerformed"/>

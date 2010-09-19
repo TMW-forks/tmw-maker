@@ -75,23 +75,19 @@ public class FrmLojas extends javax.swing.JDialog {
                     StringClass Item = new StringClass(aValue.toString());
                     int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
                     Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setID(ID);
-                    //FrmPrincipal.setAvisoEmEstatus("ID:"+ID);
                 }else if(column==1){
                     int Preco= Integer.parseInt(aValue.toString().trim());
                     Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setPrecoDeVenda(Preco);
-                    /*FrmPrincipal.setAvisoEmEstatus("Preço:"+
-                        Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).getPrecoDeVenda()
-                    );/**/
                 }
                 abrirLojaAtual();
                 tblShop.setColumnSelectionInterval(X, X);
                 tblShop.setRowSelectionInterval(Y, Y);
-                btnLojaAnterior.setEnabled(false);
-                btnLojaProximo.setEnabled(cmbLojas.getItemCount()>1);
-                btnLojaCriar.setEnabled(true);
-                btnLojaEditar.setEnabled(true);
+                //btnLojaAnterior.setEnabled(false);
+                //btnLojaProximo.setEnabled(cmbLojas.getItemCount()>1);
+                //btnLojaCriar.setEnabled(true);
+                //btnLojaEditar.setEnabled(true);
                 btnLojaSalvar.setEnabled(true);
-                btnLojaAbrir.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);/**/
             }/**/
         });
         //tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.Itens.getTitutos()));
@@ -110,46 +106,95 @@ public class FrmLojas extends javax.swing.JDialog {
         }
     }
     public void abrirLojas(){
+        int L = (cmbLojas.getSelectedIndex()>=0?cmbLojas.getSelectedIndex():Galeria.getContLojas()-1);
+
         Galeria = new Banco_Lojas(FrmScript.EnderecoDoScript);
-        btnLojaAnterior.setEnabled(false);
-        btnLojaProximo.setEnabled(Galeria.getContLojas()>1);
+        
         btnLojaCriar.setEnabled(true);
-        btnLojaEditar.setEnabled(true);
-        btnLojaSalvar.setEnabled(false);
-        btnLojaAbrir.setEnabled(false);
-        Vector Lojas = new Vector();
-        Vector Carrinho = new Vector();
+        btnLojaEditar.setEnabled(Galeria.getContLojas()>=1);
+        btnLojaProximo.setEnabled(Galeria.getContLojas()>=1 && L<cmbLojas.getItemCount()-1);
+        btnLojaAnterior.setEnabled(Galeria.getContLojas()>=1 && L>0);
+        cmbLojas.setEnabled(Galeria.getContLojas()>=1);
+        btnProdutoNovo.setEnabled(Galeria.getContLojas()>=1);
+        btnProdutoExcluir.setEnabled(Galeria.getContLojas()>=1 &&Galeria.getLojaPorOrdem(L).getContProdutos()>=2);
+
+        btnLojaAbrir.setEnabled(true);
+        btnLojaSalvar.setEnabled(true);
+        txtNomeDaLoja.setEnabled(false);
+        CmbAparencias.setEnabled(false);
+        txtMapa.setEnabled(false);
+        txtCoordX.setEnabled(false);
+        txtCoordY.setEnabled(false);
+
+        txtNomeDaLoja.setOpaque(false);
+        CmbAparencias.setOpaque(false);
+        txtMapa.setOpaque(false);
+        txtCoordX.setOpaque(false);
+        txtCoordY.setOpaque(false);
+
+        tblShop.setEnabled(
+            Galeria.getContLojas()>=1 &&
+            Galeria.getLojaPorOrdem(L).getContProdutos()>=1
+        );
+
+        /*Vector Lojas = new Vector();
+        //Vector Carrinho = new Vector();
         for(int l=0;l<Galeria.getContLojas();l++){
             Lojas.addElement(Galeria.getLojaPorOrdem(l).getNomeLoja());
-        }
-        cmbLojas.setModel(new javax.swing.DefaultComboBoxModel(Lojas));
-        abrirLojaAtual();
+        }/**/
+
+        cmbLojas.setModel(new javax.swing.DefaultComboBoxModel(Galeria.getLojasVector()));
+        cmbLojas.setEnabled(Galeria.getContLojas()>=1);
+        if(Galeria.getContLojas()>=1) cmbLojas.setSelectedIndex(L<cmbLojas.getItemCount()?L:cmbLojas.getItemCount()-1);
+        //abrirLojaAtual();
         FrmPrincipal.setAvisoEmEstatus("Lojas abertas com sucesso!");
    }
     public void abrirLojaAtual(){
-        int G = cmbLojas.getSelectedIndex();
-        int Prods = Galeria.getLojaPorOrdem(G).getContProdutos();
-        Vector Carrinho = new Vector();
-        for(int P=0;P<Prods;P++){
-            //Vector Produto = new Vector();
-            //Produto.addElement(addItemVector(Galeria.getLojaPorOrdem(G).getProdutoPorOrdem(P).getID()));
-            //Produto.addElement(Galeria.getLojaPorOrdem(G).getProdutoPorOrdem(P).getPrecoDeVenda());
-            //Carrinho.add(Produto);
-            Carrinho.add(
-                addItemVector(
-                    Galeria.getLojaPorOrdem(G).getProdutoPorOrdem(P).getID(),
-                    Galeria.getLojaPorOrdem(G).getProdutoPorOrdem(P).getPrecoDeVenda()
-                )
-            );
+        abrirLoja(cmbLojas.getSelectedIndex());
+    }
+    public void abrirLoja(int G){
+        if(Galeria.getContLojas()>=1){
+            int Prods = Galeria.getLojaPorOrdem(G).getContProdutos();
+            Vector Carrinho = new Vector();
+            for(int P=0;P<Prods;P++){
+                Carrinho.add(
+                    addItemVector(
+                        Galeria.getLojaPorOrdem(G).getProdutoPorOrdem(P).getID(),
+                        Galeria.getLojaPorOrdem(G).getProdutoPorOrdem(P).getPrecoDeVenda()
+                    )
+                );
+            }
+            txtNomeDaLoja.setText(Galeria.getLojaPorOrdem(G).getNomeLoja());
+            txtMapa.setText(Galeria.getLojaPorOrdem(G).getMapa());
+            txtCoordX.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordX()));
+            txtCoordY.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordY()));
+            setCorpo(Carrinho);
+            setComboAparencia(Galeria.getLojaPorOrdem(G).getImagemLoja());
+            btnLojaAnterior.setEnabled(G>0);
+            btnLojaProximo.setEnabled(G<cmbLojas.getItemCount()-1);
+        }else{
+            btnLojaCriar.setEnabled(true);
+            btnLojaEditar.setEnabled(false);
+            btnLojaProximo.setEnabled(false);
+            btnLojaAnterior.setEnabled(false);
+            cmbLojas.setEnabled(false);
+            btnProdutoNovo.setEnabled(false);
+            btnProdutoExcluir.setEnabled(false);
+            /*btnLojaAbrir.setEnabled(false);
+            btnLojaSalvar.setEnabled(false);
+
+            txtNomeDaLoja.setEnabled(false);
+            CmbAparencias.setEnabled(false);
+            txtMapa.setEnabled(false);
+            txtCoordX.setEnabled(false);
+            txtCoordY.setEnabled(false);
+
+            txtNomeDaLoja.setOpaque(false);
+            CmbAparencias.setOpaque(false);
+            txtMapa.setOpaque(false);
+            txtCoordX.setOpaque(false);
+            txtCoordY.setOpaque(false);/**/
         }
-        txtEtiqueta.setText(Galeria.getLojaPorOrdem(G).getNomeLoja());
-        txtMapa.setText(Galeria.getLojaPorOrdem(G).getMapa());
-        txtCoordX.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordX()));
-        txtCoordY.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordY()));
-        setCorpo(Carrinho);
-        setComboAparencia(Galeria.getLojaPorOrdem(G).getImagemLoja());
-        btnLojaAnterior.setEnabled(G>0);
-        btnLojaProximo.setEnabled(G<cmbLojas.getItemCount()-1);
     }
 
     @SuppressWarnings("unchecked")
@@ -173,7 +218,7 @@ public class FrmLojas extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblShop = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        txtEtiqueta = new javax.swing.JTextField();
+        txtNomeDaLoja = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtMapa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -239,6 +284,11 @@ public class FrmLojas extends javax.swing.JDialog {
         btnLojaEditar.setFocusable(false);
         btnLojaEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLojaEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLojaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLojaEditarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnLojaEditar);
 
         btnLojaSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
@@ -303,8 +353,7 @@ public class FrmLojas extends javax.swing.JDialog {
         tblShop.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tblShop.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"3017: Colar Horcrux de Fada", "8000"},
-                {"3093: Máscara Necromante", "10000"}
+
             },
             new String [] {
                 "ID: Nome", "Preço de Venda"
@@ -312,10 +361,12 @@ public class FrmLojas extends javax.swing.JDialog {
         ));
         jScrollPane3.setViewportView(tblShop);
 
-        txtEtiqueta.setText("Etiqueta do NPC");
-        txtEtiqueta.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNomeDaLoja.setText("Etiqueta do NPC");
+        txtNomeDaLoja.setEnabled(false);
+        txtNomeDaLoja.setOpaque(false);
+        txtNomeDaLoja.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEtiquetaFocusLost(evt);
+                txtNomeDaLojaFocusLost(evt);
             }
         });
 
@@ -323,6 +374,8 @@ public class FrmLojas extends javax.swing.JDialog {
 
         txtMapa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtMapa.setText("001");
+        txtMapa.setEnabled(false);
+        txtMapa.setOpaque(false);
         txtMapa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtMapaFocusLost(evt);
@@ -333,13 +386,29 @@ public class FrmLojas extends javax.swing.JDialog {
 
         txtCoordX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCoordX.setText("001");
+        txtCoordX.setEnabled(false);
+        txtCoordX.setOpaque(false);
+        txtCoordX.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCoordXFocusLost(evt);
+            }
+        });
 
         jLabel3.setText("Coord. Y:");
 
         txtCoordY.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCoordY.setText("001");
+        txtCoordY.setEnabled(false);
+        txtCoordY.setOpaque(false);
+        txtCoordY.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCoordYFocusLost(evt);
+            }
+        });
 
         CmbAparencias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---", "048", "049", "100", "101", "102", "103", " " }));
+        CmbAparencias.setEnabled(false);
+        CmbAparencias.setOpaque(false);
         CmbAparencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbAparenciasActionPerformed(evt);
@@ -357,7 +426,7 @@ public class FrmLojas extends javax.swing.JDialog {
                         .addComponent(jLabel1)
                         .addGap(5, 5, 5)
                         .addComponent(txtMapa, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-                    .addComponent(txtEtiqueta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(txtNomeDaLoja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -373,7 +442,7 @@ public class FrmLojas extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomeDaLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CmbAparencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
@@ -450,8 +519,8 @@ public class FrmLojas extends javax.swing.JDialog {
                     "<b>Imagem:</b> " + NPC.getXML()+"?img="+NPC.getVariante()+" ("+NPC.getImagem().getWidth()+"x"+NPC.getImagem().getHeight()+"px)"+"<br/>"+
                     "<b>Comentário:</b> " + NPC.getComentario()+"<br/>"
                 );
-                if(!txtEtiqueta.getText().equals("")){
-                    int L = cmbLojas.getSelectedIndex();
+                int L = (cmbLojas.getSelectedIndex()>=0?cmbLojas.getSelectedIndex():Galeria.getContLojas()-1);
+                if(L>=0){
                     String Partes2[] = Selecionado.split(":");
                     if(Partes2.length>=2){
                         int A = Integer.parseInt(Partes2[0]);
@@ -459,10 +528,6 @@ public class FrmLojas extends javax.swing.JDialog {
                     }else{
                         Galeria.getLojaPorOrdem(L).setImagemLoja(0);
                     }
-                    btnLojaSalvar.setEnabled(true);
-                    btnLojaAbrir.setEnabled(true);
-                }else{
-                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar um nome a loja!");
                 }
             }else{
                 LblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")));
@@ -475,9 +540,7 @@ public class FrmLojas extends javax.swing.JDialog {
 }//GEN-LAST:event_CmbAparenciasActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ListarAparencias();
-        //SetExemploDeTabela();
         abrirLojas();
-        //setTitle("L:"+Galeria.getContLojas()+" L(1):"+Galeria.getLojaPorOrdem(0).getContProdutos());
     }//GEN-LAST:event_formWindowOpened
     private void btnLojaAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLojaAbrirActionPerformed
         abrirLojas();
@@ -492,7 +555,7 @@ public class FrmLojas extends javax.swing.JDialog {
         if(cmbLojas.getSelectedIndex()>0) cmbLojas.setSelectedIndex(cmbLojas.getSelectedIndex()-1);
     }//GEN-LAST:event_btnLojaAnteriorActionPerformed
     private void btnProdutoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoNovoActionPerformed
-        Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).addProduto(727, 0);
+        Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).addProduto(727, -1);
         abrirLojaAtual();
         btnLojaSalvar.setEnabled(true);
         btnLojaAbrir.setEnabled(true);
@@ -533,37 +596,181 @@ public class FrmLojas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnProdutoExcluirActionPerformed
     private void btnLojaSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLojaSalvarActionPerformed
+
+        int L = (cmbLojas.getSelectedIndex()>=0?cmbLojas.getSelectedIndex():Galeria.getContLojas()-1);
+        String Aparencia=CmbAparencias.getItemAt(CmbAparencias.getSelectedIndex()).toString();
+        Galeria.getLojaPorOrdem(L).setNomeLoja(txtNomeDaLoja.getText());
+        String Partes2[] = Aparencia.split(":");
+        if(Partes2.length>=2){
+            int A = Integer.parseInt(Partes2[0]);
+            Galeria.getLojaPorOrdem(L).setImagemLoja(A);
+        }else{
+            Galeria.getLojaPorOrdem(L).setImagemLoja(0);
+        }
+        Galeria.getLojaPorOrdem(L).setMapa(txtMapa.getText());
+        Galeria.getLojaPorOrdem(L).setCoordX(Integer.parseInt(txtCoordX.getText()));
+        Galeria.getLojaPorOrdem(L).setCoordY(Integer.parseInt(txtCoordY.getText()));
+
         Galeria.arqSalvar(FrmScript.EnderecoDoScript);
-        btnLojaSalvar.setEnabled(false);
+        
+
+        /*btnLojaCriar.setEnabled(true);
+        btnLojaEditar.setEnabled(Galeria.getContLojas()>=1);
+        btnLojaProximo.setEnabled(Galeria.getContLojas()>=1 && L<cmbLojas.getItemCount()-1);
+        btnLojaAnterior.setEnabled(Galeria.getContLojas()>=1 && L>0);
+
+        
+        btnProdutoNovo.setEnabled(Galeria.getContLojas()>=1);
+        btnProdutoExcluir.setEnabled(Galeria.getContLojas()>=1 && Galeria.getLojaPorOrdem(L).getContProdutos()>=2);
+
+        btnLojaAbrir.setEnabled(true);
+        btnLojaSalvar.setEnabled(true);
+        txtNomeDaLoja.setEnabled(false);
+        CmbAparencias.setEnabled(false);
+        txtMapa.setEnabled(false);
+        txtCoordX.setEnabled(false);
+        txtCoordY.setEnabled(false);
+
+        txtNomeDaLoja.setOpaque(false);
+        CmbAparencias.setOpaque(false);
+        txtMapa.setOpaque(false);
+        txtCoordX.setOpaque(false);
+        txtCoordY.setOpaque(false);
+        
+        tblShop.setEnabled(
+            Galeria.getContLojas()>=1 &&
+            Galeria.getLojaPorOrdem(L).getContProdutos()>=1
+        );/**/
+
         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#0000FF\">AVISO:</FONT> Lojas salvas com sucesso!");
+
+        abrirLojas();
+
+        /*cmbLojas.setEnabled(Galeria.getContLojas()>=1);
+        if(Galeria.getContLojas()>=1){
+            abrirLojas();
+            //cmbLojas.setSelectedIndex(L);
+        }/**/
     }//GEN-LAST:event_btnLojaSalvarActionPerformed
     private void btnLojaCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLojaCriarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLojaCriarActionPerformed
+        Galeria.addLoja(
+            "Loja "+(Galeria.getContLojas()+1), 
+            0, 
+            (Galeria.getContLojas()>=1?Galeria.getLojaPorOrdem(Galeria.getContLojas()-1).getMapa():"001"),
+            100, 100
+        );
+        Galeria.getLojaPorOrdem(Galeria.getContLojas()-1).addProduto(727, -1);
 
-    private void txtEtiquetaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEtiquetaFocusLost
-        if(!txtEtiqueta.getText().equals("")){
-            int L = cmbLojas.getSelectedIndex();
-            Galeria.getLojaPorOrdem(L).setNomeLoja(txtEtiqueta.getText());
-            FrmPrincipal.setAvisoEmEstatus("<html>Novo nome do NPC de Loja: <font color=\"#0000FF\">\""+txtEtiqueta.getText()+"\"</FONT>");
-            btnLojaSalvar.setEnabled(true);
-            btnLojaAbrir.setEnabled(true);
-        }else{
-            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar um nome a loja!");
+        btnLojaCriar.setEnabled(false);
+        btnLojaEditar.setEnabled(false);
+        btnLojaProximo.setEnabled(false);
+        btnLojaAnterior.setEnabled(false);
+        cmbLojas.setEnabled(false);
+        if(Galeria.getContLojas()>=1){
+            cmbLojas.setModel(new javax.swing.DefaultComboBoxModel(Galeria.getLojasVector()));
+            cmbLojas.setSelectedIndex(cmbLojas.getItemCount()-1);
         }
-    }//GEN-LAST:event_txtEtiquetaFocusLost
 
+        btnProdutoNovo.setEnabled(false);
+        btnProdutoExcluir.setEnabled(false);
+
+        btnLojaAbrir.setEnabled(true);
+        btnLojaSalvar.setEnabled(true);
+        txtNomeDaLoja.setEnabled(true);
+        CmbAparencias.setEnabled(true);
+        txtMapa.setEnabled(true);
+        txtCoordX.setEnabled(true);
+        txtCoordY.setEnabled(true);
+
+        txtNomeDaLoja.setOpaque(true);
+        CmbAparencias.setOpaque(true);
+        txtMapa.setOpaque(true);
+        txtCoordX.setOpaque(true);
+        txtCoordY.setOpaque(true);
+
+        txtNomeDaLoja.setText("Loja "+Galeria.getContLojas());
+        setComboAparencia(0);
+        txtMapa.setText("001");
+        txtCoordX.setText("100");
+        txtCoordY.setText("100");
+
+
+    }//GEN-LAST:event_btnLojaCriarActionPerformed
+    private void txtNomeDaLojaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeDaLojaFocusLost
+        int L = cmbLojas.getSelectedIndex();
+        if(L>=0){
+            if(!txtNomeDaLoja.getText().equals("")){
+                Galeria.getLojaPorOrdem(L).setNomeLoja(txtNomeDaLoja.getText());
+                FrmPrincipal.setAvisoEmEstatus("<html>Novo nome do NPC de Loja: <font color=\"#0000FF\">\""+txtNomeDaLoja.getText()+"\"</FONT>");
+                btnLojaSalvar.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar um nome a loja!");
+            }
+        }
+    }//GEN-LAST:event_txtNomeDaLojaFocusLost
     private void txtMapaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMapaFocusLost
-        if(!txtMapa.getText().equals("")){
-            int L = cmbLojas.getSelectedIndex();
-            Galeria.getLojaPorOrdem(L).setMapa(txtMapa.getText());
-            FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+txtMapa.getText()+"\"</FONT>");
-            btnLojaSalvar.setEnabled(true);
-            btnLojaAbrir.setEnabled(true);
-        }else{
-            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar um mapa a loja!");
+        int L = cmbLojas.getSelectedIndex();
+        if(L>=0){
+            if(!txtMapa.getText().equals("")){
+                Galeria.getLojaPorOrdem(L).setMapa(txtMapa.getText());
+                FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+txtMapa.getText()+"\"</FONT>");
+                btnLojaSalvar.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar um mapa a loja!");
+            }
         }
     }//GEN-LAST:event_txtMapaFocusLost
+    private void txtCoordXFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordXFocusLost
+        int L = cmbLojas.getSelectedIndex();
+        if(L>=0){
+            if(!txtCoordX.getText().equals("")){
+                Galeria.getLojaPorOrdem(L).setCoordX(Integer.parseInt(txtCoordX.getText()));
+                FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+txtCoordX.getText()+"\"</FONT>");
+                btnLojaSalvar.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar uma Coordenada X a loja!");
+            }
+        }
+    }//GEN-LAST:event_txtCoordXFocusLost
+    private void txtCoordYFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordYFocusLost
+        int L = cmbLojas.getSelectedIndex();
+        if(L>=0){
+            if(!txtCoordY.getText().equals("")){
+                Galeria.getLojaPorOrdem(L).setCoordY(Integer.parseInt(txtCoordY.getText()));
+                FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+txtCoordY.getText()+"\"</FONT>");
+                btnLojaSalvar.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar uma Coordenada Y a loja!");
+            }
+        }
+    }//GEN-LAST:event_txtCoordYFocusLost
+    private void btnLojaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLojaEditarActionPerformed
+        btnLojaCriar.setEnabled(false);
+        btnLojaEditar.setEnabled(false);
+        btnLojaProximo.setEnabled(false);
+        btnLojaAnterior.setEnabled(false);
+        cmbLojas.setEnabled(false);
+        btnProdutoNovo.setEnabled(false);
+        btnProdutoExcluir.setEnabled(false);
+
+        btnLojaAbrir.setEnabled(true);
+        btnLojaSalvar.setEnabled(true);
+        txtNomeDaLoja.setEnabled(true);
+        CmbAparencias.setEnabled(true);
+        txtMapa.setEnabled(true);
+        txtCoordX.setEnabled(true);
+        txtCoordY.setEnabled(true);
+
+        txtNomeDaLoja.setOpaque(true);
+        CmbAparencias.setOpaque(true);
+        txtMapa.setOpaque(true);
+        txtCoordX.setOpaque(true);
+        txtCoordY.setOpaque(true);
+    }//GEN-LAST:event_btnLojaEditarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -604,8 +811,8 @@ public class FrmLojas extends javax.swing.JDialog {
     private javax.swing.JTable tblShop;
     private javax.swing.JTextField txtCoordX;
     private javax.swing.JTextField txtCoordY;
-    private javax.swing.JTextField txtEtiqueta;
     private javax.swing.JTextField txtMapa;
+    private javax.swing.JTextField txtNomeDaLoja;
     // End of variables declaration//GEN-END:variables
 
 }

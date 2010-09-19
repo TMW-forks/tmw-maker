@@ -3,6 +3,7 @@ package Classes.BancoDeDados;
 import Classes.Arquivamento;
 import Classes.ConfigClass;
 import Classes.StringClass;
+import java.util.Vector;
 
 public class Banco_Lojas {
     private Dados_Lojas galeria[]=null; //Não deve ser instaciado agora!!!!
@@ -97,6 +98,14 @@ public class Banco_Lojas {
     }
     public void delGaleria(){galeria=null;}
     public Dados_Lojas[] getLojas(){return galeria;}
+    public Vector getLojasVector(){
+        Vector Lojas = new Vector();
+        //Vector Carrinho = new Vector();
+        for(int l=0;l<getContLojas();l++){
+            Lojas.addElement(getLojaPorOrdem(l).getNomeLoja());
+        }
+        return Lojas;
+    }
     public Dados_Lojas getLojaPorOrdem(int ordem){
         if(galeria != null){
             return galeria[ordem];

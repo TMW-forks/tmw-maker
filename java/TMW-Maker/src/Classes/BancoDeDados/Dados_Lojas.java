@@ -1,5 +1,7 @@
 package Classes.BancoDeDados;
 
+import java.util.Vector;
+
 public class Dados_Lojas {
     private String nomeLoja="";
     private int imagemILoja=0;
@@ -58,6 +60,16 @@ public class Dados_Lojas {
          }
     }
     public Dados_LojaProduto[] getProdutos(){return estoque;}
+    public Vector getProdutosVector(){
+        Vector Carrinho = new Vector();
+        for(int p=0;p<getContProdutos();p++){
+            Vector Produto = new Vector();
+            Produto.addElement(getProdutoPorOrdem(p).getID());
+            Produto.addElement(getProdutoPorOrdem(p).getPrecoDeVenda());
+            Carrinho.add(Produto);
+        }
+        return Carrinho;
+    }
     public Dados_LojaProduto getProdutoPorID(int antigoProdutoID){
         for(int b=0;b<estoque.length;b++){
             if(estoque[b].getID()==antigoProdutoID){
