@@ -654,6 +654,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                         if(!mapaNome.equals("")){
                                             mapaTMX=baseMapas+barra+mapaNome+".tmx";
                                             if(Arquivamento.seExiste(mapaTMX)){
+//////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
                                                 FrmPrincipal.setAvisoEmEstatus("<html>"+
                                                     "Copilando: <font color=\"#0000FF\">"+mapaNome+".tmx</font>",
                                                     MnuJogoCopilar.getIcon()
@@ -661,6 +662,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                                 mapaConteudo.setTesto(Arquivamento.arquivoAbrir(mapaTMX));
                                                 warpConteudo.setTesto(Arquivamento.arquivoAbrir(warps));
                                                 mobConteudo.setTesto(Arquivamento.arquivoAbrir(mobs));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
 
                                             }else{
                                                 FrmPrincipal.setAvisoEmEstatus("<html>"+
