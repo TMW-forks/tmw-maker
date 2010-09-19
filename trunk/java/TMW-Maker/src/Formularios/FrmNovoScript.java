@@ -152,6 +152,15 @@ public class FrmNovoScript extends javax.swing.JDialog {
     private void BtnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCriarActionPerformed
         if(!TxtNomeSimplesArquivo.getText().trim().equals("")){
             if(!Arquivamento.seExiste(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf")){
+                String Script=
+                "///////////////////////////////////////////////////////////////////\n"+
+                "//  IDE: TMW-Maker v"+FrmPrincipal.Config.getVersao()+"\n"+
+                "//  MODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+                "//  UTILIDADES:\n"+
+                "//    * Neste Arquivo ficarão Scripts de Pensonagens e de Funções\n"+
+                "//      que serão editadas atraves do TMW-Maker!\n"+
+                "///////////////////////////////////////////////////////////////////\n"+
+                "\n";
                 if(Arquivamento.arquivoSalvar(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf","")){
                     String Conteudo = Arquivamento.arquivoAbrir(FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt");
                     if(!Conteudo.isEmpty() && !Conteudo.trim().equals("")){
@@ -176,15 +185,12 @@ public class FrmNovoScript extends javax.swing.JDialog {
                                     try {
                                         Comando = "svn add "+FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+TxtNomeSimplesArquivo.getText().trim()+".conf";/**/
                                         System.out.println(Comando);
-                                        //Retorno=Executador.exec("svn --help");
                                         Retorno=Executador.exec(Comando);
                                         BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                                         while ((line = in.readLine()) != null) {
                                             System.out.println(line);
                                             FrmPrincipal.setAvisoEmEstatus("<html>ENVIADO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
-                                            //Arquivos++;
-                                            //FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
-                                        }/**/
+                                        }
                                         FrmPrincipal.setAvisoEmEstatus("Arquivo Criado e Preparado para Compartilhar som Sucesso!");
                                     } catch (IOException e) {
                                         FrmPrincipal.setAvisoEmEstatus("<html>Falha ao preparar o compartilhamento de \"<font color=\"#FF0000\">"+TxtNomeSimplesArquivo.getText().trim()+".conf</font>\"!");

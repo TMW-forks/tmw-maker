@@ -229,7 +229,7 @@ public class FrmLojas extends javax.swing.JDialog {
         cmbLojas = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editor de Lojas (Modo Somento Leitura)");
+        setTitle("Editor de Personagens Lojistas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -264,7 +264,7 @@ public class FrmLojas extends javax.swing.JDialog {
         jToolBar1.add(btnLojaProximo);
         jToolBar1.add(jSeparator2);
 
-        jLabel5.setText("Loja:");
+        jLabel5.setText("Lojista:");
         jToolBar1.add(jLabel5);
 
         btnLojaCriar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_carrinho.gif"))); // NOI18N

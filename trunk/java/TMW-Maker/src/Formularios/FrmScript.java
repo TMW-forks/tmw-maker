@@ -2,7 +2,12 @@
 package Formularios;
 
 import Classes.Arquivamento;
+import Classes.ConfigClass;
+import Classes.ImagemTratavel;
 import Classes.Mensagem;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class FrmScript extends javax.swing.JDialog {
@@ -89,7 +94,7 @@ public class FrmScript extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         MnuNovo = new javax.swing.JMenu();
         MnuNovoPersonagem = new javax.swing.JMenuItem();
-        MnuNovaLoja = new javax.swing.JMenuItem();
+        MnuNovaLojista = new javax.swing.JMenuItem();
         MnuScript = new javax.swing.JMenu();
         MnuScriptAbrir = new javax.swing.JMenuItem();
         MnuScriptExcluir = new javax.swing.JMenuItem();
@@ -152,12 +157,17 @@ public class FrmScript extends javax.swing.JDialog {
         });
         MnuNovo.add(MnuNovoPersonagem);
 
-        MnuNovaLoja.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        MnuNovaLoja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_presente.gif"))); // NOI18N
-        MnuNovaLoja.setMnemonic('L');
-        MnuNovaLoja.setText("Loja");
-        MnuNovaLoja.setEnabled(false);
-        MnuNovo.add(MnuNovaLoja);
+        MnuNovaLojista.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        MnuNovaLojista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_carrinho.gif"))); // NOI18N
+        MnuNovaLojista.setMnemonic('L');
+        MnuNovaLojista.setText("Lojista");
+        MnuNovaLojista.setEnabled(false);
+        MnuNovaLojista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuNovaLojistaActionPerformed(evt);
+            }
+        });
+        MnuNovo.add(MnuNovaLojista);
 
         jMenuBar1.add(MnuNovo);
 
@@ -233,6 +243,10 @@ public class FrmScript extends javax.swing.JDialog {
             PatasDoScript=evt.getPath().getPathComponent(2).toString();
             //EnderecoDoScript=PatasDoScript+barra+evt.getPath().getLastPathComponent().toString();
             MnuNovoPersonagem.setEnabled(true);
+
+            String LojaLocal = Base+Barra+PatasDoScript+Barra+"_shops.txt";
+            MnuNovaLojista.setEnabled(!Arquivamento.seExiste(LojaLocal));
+            
             TipoDeCodigo="Scripts";
         }else if(evt.getPath().getPathCount()==2 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
             PatasDoScript="functions";
@@ -254,6 +268,7 @@ public class FrmScript extends javax.swing.JDialog {
             for(int t=2;t<PartesDoEndereco.length;t++){
                 EnderecoDoScript+=Barra+evt.getPath().getPathComponent(t).toString();
             }
+
             //setTitle("EnderecoDoScript = \""+EnderecoDoScript+"\"");
             setTitle("Script - "+evt.getPath().getLastPathComponent().toString());
         }else if(evt.getPath().getPathCount()==3 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
@@ -273,15 +288,6 @@ public class FrmScript extends javax.swing.JDialog {
             MnuScriptExcluir.setEnabled(false);
             setTitle("Árvore de Scripts");
         }/**/
-        
-        //setTitle("getPathCount() = \""+evt.getPath().getPathCount()+"\" getPathComponent(1) = \""+evt.getPath().getPathComponent(1).toString()+"\"");
-
-        //EnderecoDoScript
-        //TxtScript.setText(evt.getPath().toString());
-
-        //setTitle("Endereco = \""+Endereco+"\"");
-
-        //setTitle("lenght - "+evt.getPaths().length);
     }//GEN-LAST:event_TreScriptsValueChanged
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ListarArquivos();
@@ -294,12 +300,10 @@ public class FrmScript extends javax.swing.JDialog {
         FrmNovoScript.pack();
         FrmNovoScript.setModal(true);
         FrmNovoScript.setVisible(true);
-
     }//GEN-LAST:event_MnuNovoPersonagemActionPerformed
     private void MnuScriptExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptExcluirActionPerformed
         Mensagem.showErro("Esse função ainda não foi implementada!", "Desculpe");
     }//GEN-LAST:event_MnuScriptExcluirActionPerformed
-
     private void MnuScriptAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptAbrirActionPerformed
         javax.swing.JDialog frmJanela = null;
         if(
@@ -317,6 +321,115 @@ public class FrmScript extends javax.swing.JDialog {
         frmJanela.setModal(true);
         frmJanela.setVisible(true);
     }//GEN-LAST:event_MnuScriptAbrirActionPerformed
+    private void MnuNovaLojistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuNovaLojistaActionPerformed
+        if(
+            TreScripts.getLeadSelectionPath().getPathCount()==3 &&
+            TreScripts.getLeadSelectionPath().getPathComponent(1).toString().equals("Scripts")
+        ){
+            EnderecoDoScript = Base+Barra+PatasDoScript+Barra+"_shops.txt";
+            String Import = Base+Barra+PatasDoScript+Barra+"_import.txt";
+            int resposta=0;
+            if(!Arquivamento.seExiste(EnderecoDoScript)){
+                String Script=
+                "///////////////////////////////////////////////////////////////////\n"+
+                "//  IDE: TMW-Maker v"+FrmPrincipal.Config.getVersao()+"\n"+
+                "//  MODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+                "//  UTILIDADES:\n"+
+                "//    * Neste Arquivo ficarão todas as lojas que serão adicionadas\n"+
+                "//      neste mapa atraves do TMW-Maker!\n"+
+                "///////////////////////////////////////////////////////////////////\n"+
+                "\n";
+                if(Arquivamento.arquivoSalvar(EnderecoDoScript,Script)){
+                    String Conteudo = Arquivamento.arquivoAbrir(Import);
+                    if(!Conteudo.isEmpty() && !Conteudo.trim().equals("")){
+                        int loc1 = Conteudo.indexOf("map: ");
+                        if(loc1>=0){
+                            int loc2 = Conteudo.indexOf("\n", loc1);
+                            if(loc2>=0){
+                                String Parte1= Conteudo.substring(0, loc2+1);
+                                String Parte2= Conteudo.substring(loc2+1, Conteudo.length());
+                                if(
+                                    Arquivamento.arquivoSalvar(
+                                        FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt",
+                                        Parte1+
+                                        "npc: npc/"+FrmScript.PatasDoScript+Barra+"_shops.txt\n"+
+                                        Parte2
+                                    )
+                                ){
+                                    String Comando="";
+                                    Runtime Executador = Runtime.getRuntime();
+                                    Process Retorno=null;
+                                    String line="";
+                                    try {
+                                        Comando = "svn add "+EnderecoDoScript;/**/
+                                        System.out.println(Comando);
+                                        Retorno=Executador.exec(Comando);
+                                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+                                        while ((line = in.readLine()) != null) {
+                                            System.out.println(line);
+                                            FrmPrincipal.setAvisoEmEstatus("<html>ENVIADO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
+                                        }
+                                        FrmPrincipal.setAvisoEmEstatus("Arquivo Criado e Preparado para Compartilhar som Sucesso!");
+                                        resposta=1;
+                                    } catch (IOException e) {
+                                        FrmPrincipal.setAvisoEmEstatus("<html>Falha ao preparar o compartilhamento de \"<font color=\"#FF0000\">_shops.txt</font>\"!");
+                                        Mensagem.showErro("<html>" +
+                                            "Falha ao preparar o compartilhamento de \"<font color=\"#FF0000\">_shops.txt</font>\"!<br/>"+
+                                            " * Erro de execução de comando:<br/> " +
+                                            " * <font color=\"#FF0000\"><b>"+Comando+"</b></font>!"
+                                            , "ERRO"
+                                        );
+                                    }
+                                    FrmScript.ListarArquivos();
+                                    dispose();
+                                }else{
+                                    FrmPrincipal.setAvisoEmEstatus("<html>"+
+                                        "<font color=\"#FF0000\">ERRO:</font> Ocorreu um erro ao alterar o arquivo \"<font color=\"#FF0000\">_import.txt</font>\"!"
+                                    );
+                                }
+                            }
+                        }else{
+                            FrmPrincipal.setAvisoEmEstatus("<html>"+
+                                "<font color=\"#FF0000\">ERRO:</font> Formato de conteúdo de \"<font color=\"#FF0000\">_import.txt</font>\" inválido!"
+                            );
+                        }
+                    }else{
+                        FrmPrincipal.setAvisoEmEstatus("<html>"+
+                            "<font color=\"#FF0000\">ERRO:</font> O arquivo \"<font color=\"#FF0000\">_import.txt</font>\" está vazio!"
+                        );
+                    }
+                }else{
+                    FrmPrincipal.setAvisoEmEstatus("<html>"+
+                        "<font color=\"#FF0000\">ERRO:</font> Ocorreu um erro ao criar o arquivo \"<font color=\"#FF0000\">_shops.txt</font>\"!"
+                    );
+                }
+            }else{
+                ImagemTratavel Icone = new ImagemTratavel("/Imagem/Botoes/sbl_carrinho.gif");
+                Icone.setZoom(3.0);
+                resposta = Mensagem.showOpcoes("<html>"+
+                    "O arquivo que contém personagens Lojista já foi criado com sucesso.<br/>"+
+                    "Deseja abrir o arquivo \"<font color=\"#0000FF\">_shops.txt</font>\"?",
+                    "CRIAÇÃO DE ?ERSONAGEM LOJISTA",
+                    Icone,
+                    new Object[]{"SIM","NÃO"},
+                    1
+                );
+            }
+            if(resposta==1){
+                javax.swing.JDialog frmJanela = null;
+                frmJanela = new FrmLojas(this, rootPaneCheckingEnabled);
+
+                frmJanela.setLocation(
+                    ((this.getWidth() - frmJanela.getWidth()) / 2) + this.getX(),
+                    ((this.getHeight() - frmJanela.getHeight()) / 2) + this.getY());
+                frmJanela.pack();
+                frmJanela.setModal(true);
+                frmJanela.setVisible(true);
+            }
+        }else{
+            FrmPrincipal.setAvisoEmEstatus("Selecione a pasta onde o lojista ficará!!");
+        }
+    }//GEN-LAST:event_MnuNovaLojistaActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -332,7 +445,7 @@ public class FrmScript extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JMenuItem MnuNovaLoja;
+    private static javax.swing.JMenuItem MnuNovaLojista;
     private javax.swing.JMenu MnuNovo;
     private javax.swing.JMenuItem MnuNovoPersonagem;
     private javax.swing.JMenu MnuScript;
