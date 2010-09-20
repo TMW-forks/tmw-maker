@@ -10,7 +10,7 @@ import Classes.BancoDeDados.Banco_Itens;
 import Classes.ImagemTratavel;
 import Classes.Mensagem;
 import Classes.StringClass;
-import Classes.XmlDeEquip.XMLdeEquip;
+import Classes.BancoDeDados.XMLdeEquip;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
