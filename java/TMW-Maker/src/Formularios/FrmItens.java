@@ -12,8 +12,6 @@ public class FrmItens extends javax.swing.JDialog {
         initComponents();
     }
 
-    
-
     private void CarregarCmbIconePNG() {
         if(Arquivamento.seExiste(FrmPrincipal.Itens.PastaDeItens)){
             String[] Arquivos = Arquivamento.listarArquivos(FrmPrincipal.Itens.PastaDeItens);
