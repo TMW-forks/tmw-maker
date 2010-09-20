@@ -3,9 +3,8 @@ package Formularios;
 
 import Classes.BlocoDeScript;
 import Classes.ConfigClass;
-import Classes.BancoDeDados.Dados_NPC;
+import Classes.BancoDeDados.Banco_NPCs.Dados_NPC;
 import Classes.ImagemTratavel;
-import java.lang.Object;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
