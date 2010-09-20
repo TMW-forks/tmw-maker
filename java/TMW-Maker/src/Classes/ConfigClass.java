@@ -19,7 +19,6 @@ import java.util.GregorianCalendar;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-
 public class ConfigClass {
     private String Versao = "0.2";
     private String  Barra = System.getProperty("file.separator");
