@@ -2,12 +2,11 @@
 package Formularios;
 
 import Classes.BancoDeDados.Banco_Lojas;
-import Classes.BancoDeDados.Dados_NPC;
+import Classes.BancoDeDados.Banco_NPCs.Dados_NPC;
 import Classes.ImagemTratavel;
 import Classes.Mensagem;
 import Classes.Modificadoras.MyComboBoxEditor;
 import Classes.StringClass;
-import java.lang.reflect.Array;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
