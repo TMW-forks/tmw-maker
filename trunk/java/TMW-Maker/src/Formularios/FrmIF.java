@@ -11,12 +11,8 @@
 
 package Formularios;
 
-import Classes.BancoDeDados.Dados_Item;
-import Classes.ImagemTratavel;
+import Classes.BancoDeDados.Banco_Itens.Dados_Item;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.text.BadLocationException;
 
 /**
  *
