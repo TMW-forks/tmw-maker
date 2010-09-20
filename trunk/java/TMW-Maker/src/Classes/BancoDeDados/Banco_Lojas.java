@@ -1,6 +1,6 @@
 package Classes.BancoDeDados;
 
-import Classes.Arquivamento;
+import Classes.FileClass;
 import Classes.BancoDeDados.Banco_Lojas.Dados_Lojas.Dados_LojaProduto;
 import Classes.ConfigClass;
 import Classes.StringClass;
@@ -158,7 +158,7 @@ public class Banco_Lojas {
 
     }
     public void arqAbrir(String Arquivo){
-        StringClass Conteudo = new StringClass(Arquivamento.arquivoAbrir(Arquivo));
+        StringClass Conteudo = new StringClass(FileClass.arquivoAbrir(Arquivo));
         //Vector shops = new Vector();
         for(int ln=0;ln<Conteudo.getContLinhas();ln++){
             String Partes[] = Conteudo.getLinha(ln).trim().split(",");
@@ -195,7 +195,7 @@ public class Banco_Lojas {
         }
     }
     public void arqSalvar(String Arquivo){
-        Arquivamento.arquivoSalvar(Arquivo,getScript());
+        FileClass.arquivoSalvar(Arquivo,getScript());
     }
 
     //package Classes.BancoDeDados;

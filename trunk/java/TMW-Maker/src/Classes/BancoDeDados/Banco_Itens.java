@@ -1,7 +1,7 @@
 package Classes.BancoDeDados;
 
-import Classes.Arquivamento;
-import Classes.Mensagem;
+import Classes.FileClass;
+import Classes.DialogClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.io.BufferedReader;
@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
 
-//import Classes.Arquivamento;
-import Classes.ImagemTratavel;
+//import Classes.FileClass;
+import Classes.ImagemClass;
 //import Formularios.FrmPrincipal;
 import java.awt.image.BufferedImage;
 
@@ -102,7 +102,7 @@ public class Banco_Itens {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            Mensagem.showErro("Não foi possivel abrir \""+EnderecoItensTXT+"\"!","AVISO");
+            DialogClass.showErro("Não foi possivel abrir \""+EnderecoItensTXT+"\"!","AVISO");
             return; // em caso de falha
         }/**/
 
@@ -118,7 +118,7 @@ public class Banco_Itens {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            Mensagem.showErro("Não foi possivel abrir \""+EnderecoItensXML+"\"!","AVISO");
+            DialogClass.showErro("Não foi possivel abrir \""+EnderecoItensXML+"\"!","AVISO");
             return; // em caso de falha
         }
 
@@ -172,7 +172,7 @@ public class Banco_Itens {
     public void AbrirItens_deprecado() {
         //String ConteudoTotal=ConfigClass.arquivoAbrir(EnderecoItensTXT);
         StringClass ConteudoTotal = new StringClass();
-        ConteudoTotal.setTesto(Arquivamento.arquivoAbrir(EnderecoItensXML));
+        ConteudoTotal.setTesto(FileClass.arquivoAbrir(EnderecoItensXML));
         int Part01=0;
         StringClass ItemXML = new StringClass();
         Dados_Item ItensA[] = new Dados_Item[0];
@@ -301,8 +301,8 @@ public class Banco_Itens {
         public String getIconePasta() {return PastaDeItens;}
         public String getIconeEndereco() {return PastaDeItens + Barra + IconePNG;}
         public BufferedImage getIconeImagem() {
-            if (Arquivamento.seExiste(PastaDeItens + Barra + IconePNG)) {
-                ImagemTratavel Imagem = new ImagemTratavel(PastaDeItens + Barra + IconePNG);
+            if (FileClass.seExiste(PastaDeItens + Barra + IconePNG)) {
+                ImagemClass Imagem = new ImagemClass(PastaDeItens + Barra + IconePNG);
                 return Imagem.getImage();
             }
             return null;

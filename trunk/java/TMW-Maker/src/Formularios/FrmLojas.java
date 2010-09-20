@@ -3,8 +3,8 @@ package Formularios;
 
 import Classes.BancoDeDados.Banco_Lojas;
 import Classes.BancoDeDados.Banco_NPCs.Dados_NPC;
-import Classes.ImagemTratavel;
-import Classes.Mensagem;
+import Classes.ImagemClass;
+import Classes.DialogClass;
 import Classes.Modificadoras.MyComboBoxEditor;
 import Classes.StringClass;
 import java.util.Vector;
@@ -509,7 +509,7 @@ public class FrmLojas extends javax.swing.JDialog {
             String Partes[] = Selecionado.split(":");
             if(Partes.length>=2){
                 Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Integer.parseInt(Partes[0]));
-                ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+                ImagemClass Imagem = new ImagemClass(NPC.getImagem());
                 Imagem.setZoom(2.0);
                 LblImagem.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
                 LblImagem.setToolTipText(
@@ -560,14 +560,14 @@ public class FrmLojas extends javax.swing.JDialog {
         btnLojaAbrir.setEnabled(true);
     }//GEN-LAST:event_btnProdutoNovoActionPerformed
     private void btnProdutoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoExcluirActionPerformed
-        //Mensagem Dialogo = new Mensagem();
+        //DialogClass Dialogo = new DialogClass();
         if(Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getContProdutos()>1){
             int X=tblShop.getSelectedColumn(), Y=tblShop.getSelectedRow();
             if(X>=0 && Y>=0){
                 int ID = Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(Y).getID();
-                ImagemTratavel Item = new ImagemTratavel(FrmPrincipal.Itens.getItemPorID(ID).getIconeImagem());
+                ImagemClass Item = new ImagemClass(FrmPrincipal.Itens.getItemPorID(ID).getIconeImagem());
                 Item.setZoom(3.0);
-                int R=Mensagem.showOpcoes(
+                int R=DialogClass.showOpcoes(
                     "Deseja realmente excluir este produto do estoque de Loja?",
                     "EXCLUIR ITEM DO ESTOQUE",
                     Item.getIcone(),

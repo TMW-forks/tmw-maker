@@ -1,10 +1,10 @@
 
 package Formularios;
 
-import Classes.ImagemTratavel;
+import Classes.ImagemClass;
 import Classes.Modificadoras.jTtableImagemDeColuna;
 import Classes.Modificadoras.jTtableImagemDeCabecalho;
-import Classes.SpriteDados;
+import Classes.SpriteClass;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -146,7 +146,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
     public void Teste_A05(){
         try {
-            SpriteDados Sprite = new SpriteDados("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+            SpriteClass Sprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
             int Bloco=8;
             jLabel1.setIcon(new ImageIcon(Sprite.getBloco(Bloco)));
             Sprite.EsportarBloco(Bloco,"/home/indigovox/Desktop/corte.jpg");
@@ -156,9 +156,9 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
     public void Teste_A06(){
         try {
-            SpriteDados Sprite = new SpriteDados("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+            SpriteClass Sprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
             int Bloco=8;
-            ImagemTratavel BlocoImagem = new ImagemTratavel(Sprite.getBloco(Bloco));
+            ImagemClass BlocoImagem = new ImagemClass(Sprite.getBloco(Bloco));
             BlocoImagem.setCorte(0, 28, 64, 20);
             //BlocoImagem.setInverterHorizontal();
             //BlocoImagem.setInverterVertical();
@@ -431,7 +431,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         columnNames.addElement("Frame 2");
         columnNames.addElement("Frame 3");
 
-        SpriteDados Sprite = new SpriteDados("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+        SpriteClass Sprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
         ImageIcon Icone = new ImageIcon(Sprite.getBloco(8));
         ImageIcon Icone2 = new ImageIcon(Sprite.getBloco(0));
         ImageIcon Icone3 = new ImageIcon(Sprite.getBloco(999));
@@ -705,7 +705,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
             public void setImgemColuna(int Coluna, ImageIcon Imagem) {
                 //return canEdit [columnIndex];
-                SpriteDados MeuSprite = new SpriteDados("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+                SpriteClass MeuSprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
                 ImageIcon Icone = new ImageIcon(MeuSprite.getBloco(0));
                 jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setCellRenderer(new Classes.Modificadoras.jTtableImagemDeColuna());
                 jTable1.setRowHeight(0, Icone.getIconHeight());

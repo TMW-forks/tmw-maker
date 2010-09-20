@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class Mensagem {
+public class DialogClass {
 
     public static void showErro(String Aviso, String Titulo) {
         System.out.println(Aviso);
@@ -12,10 +12,10 @@ public class Mensagem {
         JOptionPane.showMessageDialog(null,Aviso,Titulo,JOptionPane.WARNING_MESSAGE);
     }
     public static void showAlerta(String Aviso, String Titulo, String EnderecoOuResource) {
-        ImagemTratavel Imagem = new ImagemTratavel(EnderecoOuResource);
+        ImagemClass Imagem = new ImagemClass(EnderecoOuResource);
         showAlerta(Aviso, Titulo, Imagem);
     }
-    public static void showAlerta(String Aviso, String Titulo, ImagemTratavel Imagem) {
+    public static void showAlerta(String Aviso, String Titulo, ImagemClass Imagem) {
         showAlerta(Aviso, Titulo, Imagem.getIcone());
     }
     public static void showAlerta(String Aviso, String Titulo, ImageIcon Icone) {
@@ -35,7 +35,7 @@ public class Mensagem {
         );
     }
     public static int  showOpcoes(String Aviso, String Titulo, String EnderecoOuResource, Object Opcoes[], int FocarOpcao){
-        ImagemTratavel Imagem = new ImagemTratavel(EnderecoOuResource);
+        ImagemClass Imagem = new ImagemClass(EnderecoOuResource);
         return showOpcoes(
             Aviso,
             Titulo,
@@ -44,7 +44,7 @@ public class Mensagem {
             FocarOpcao
         );
     }
-    public static int  showOpcoes(String Aviso, String Titulo, ImagemTratavel Imagem, Object Opcoes[], int FocarOpcao){
+    public static int  showOpcoes(String Aviso, String Titulo, ImagemClass Imagem, Object Opcoes[], int FocarOpcao){
         return showOpcoes(
             Aviso,
             Titulo,
