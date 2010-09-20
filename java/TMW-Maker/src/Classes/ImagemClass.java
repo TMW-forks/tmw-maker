@@ -12,8 +12,8 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-public class ImagemTratavel {
-    public ImagemTratavel(String EnderecoOuResource) {
+public class ImagemClass {
+    public ImagemClass(String EnderecoOuResource) {
         try{
             ImageIcon Icone = new ImageIcon(getClass().getResource(EnderecoOuResource));
             setImage(Icone.getImage());
@@ -21,17 +21,17 @@ public class ImagemTratavel {
             setEndereço(EnderecoOuResource);
         }
     }
-    public ImagemTratavel(BufferedImage NovaImagem) {
+    public ImagemClass(BufferedImage NovaImagem) {
         setImage(NovaImagem);
     }
-    public ImagemTratavel(Image NovaImagem) {
+    public ImagemClass(Image NovaImagem) {
         setImage(NovaImagem);
     }
-    public ImagemTratavel(URL Endereco) {
+    public ImagemClass(URL Endereco) {
         ImageIcon Icone = new ImageIcon(Endereco);
         setImage(Icone.getImage());
     }
-    public ImagemTratavel(ImageIcon Icone) {
+    public ImagemClass(ImageIcon Icone) {
         setImage(Icone.getImage());
     }
 

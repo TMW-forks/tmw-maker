@@ -1,7 +1,7 @@
 package Formularios;
 
-import Classes.Arquivamento;
-import Classes.ImagemTratavel;
+import Classes.FileClass;
+import Classes.ImagemClass;
 import Classes.BancoDeDados.Banco_Itens;
 import java.awt.Cursor;
 import javax.swing.DefaultComboBoxModel;
@@ -13,8 +13,8 @@ public class FrmItens extends javax.swing.JDialog {
     }
 
     private void CarregarCmbIconePNG() {
-        if(Arquivamento.seExiste(FrmPrincipal.Itens.PastaDeItens)){
-            String[] Arquivos = Arquivamento.listarArquivos(FrmPrincipal.Itens.PastaDeItens);
+        if(FileClass.seExiste(FrmPrincipal.Itens.PastaDeItens)){
+            String[] Arquivos = FileClass.listarArquivos(FrmPrincipal.Itens.PastaDeItens);
             //setTitle(""+Arquivos.length);
             if(Arquivos.length>=1){
 
@@ -97,7 +97,7 @@ public class FrmItens extends javax.swing.JDialog {
         String LocalSelecionado=CmbLocal.getItemAt(CmbLocal.getSelectedIndex()).toString();
         String Endereco=Banco_Itens.PastaDeItens+Banco_Itens.Barra+ImagemSelecionada;
         //setTitle("\""+LocalSelecionado+"\"");
-        ImagemTratavel Icone = new ImagemTratavel(Endereco);
+        ImagemClass Icone = new ImagemClass(Endereco);
         Icone.setZoom(3.0);
         LblTitulo.setIcon(new javax.swing.ImageIcon(Icone.getImage()));
         LblTitulo.setSize(LblTitulo.getWidth(), Icone.getAltura()+15);

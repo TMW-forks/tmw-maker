@@ -13,7 +13,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
 
-public class Arquivamento {
+public class FileClass {
     public static void apagar(String PastaOuArquivo){
         File Objeto = new File(PastaOuArquivo);
         Objeto.delete();

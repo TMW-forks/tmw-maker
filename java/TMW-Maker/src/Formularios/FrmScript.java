@@ -1,10 +1,10 @@
 
 package Formularios;
 
-import Classes.Arquivamento;
+import Classes.FileClass;
 import Classes.ConfigClass;
-import Classes.ImagemTratavel;
-import Classes.Mensagem;
+import Classes.ImagemClass;
+import Classes.DialogClass;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,7 +29,7 @@ public class FrmScript extends javax.swing.JDialog {
         if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
             javax.swing.tree.DefaultMutableTreeNode No3 = null;
             javax.swing.tree.DefaultMutableTreeNode No4 = null;
-            String Pasta[] = Arquivamento.listarPasta(Base);
+            String Pasta[] = FileClass.listarPasta(Base);
             String Arquivo[] = null;
             int ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Scripts");
@@ -40,7 +40,7 @@ public class FrmScript extends javax.swing.JDialog {
                     No2.add(No3);
 
                     ContArquivos=0;
-                    Arquivo = Arquivamento.listarArquivos(Base+Barra+Pasta[p]);
+                    Arquivo = FileClass.listarArquivos(Base+Barra+Pasta[p]);
                     for(int a=0; a<Arquivo.length; a++){
                         if(
                             !Arquivo[a].substring(Arquivo[a].toString().length()-1, Arquivo[a].toString().length()).equals("~") &&
@@ -64,7 +64,7 @@ public class FrmScript extends javax.swing.JDialog {
 
             ContArquivos=0;
             No2 = new javax.swing.tree.DefaultMutableTreeNode("Funções");
-            Arquivo = Arquivamento.listarArquivos(Base+Barra+"functions");
+            Arquivo = FileClass.listarArquivos(Base+Barra+"functions");
             for(int a=0; a<Arquivo.length; a++){
                 ContArquivos++;
                 //TxtScript.setText(TxtScript.getText()+Arquivo[a]+"\n");
@@ -245,7 +245,7 @@ public class FrmScript extends javax.swing.JDialog {
             MnuNovoPersonagem.setEnabled(true);
 
             String LojaLocal = Base+Barra+PatasDoScript+Barra+"_shops.txt";
-            MnuNovaLojista.setEnabled(!Arquivamento.seExiste(LojaLocal));
+            MnuNovaLojista.setEnabled(!FileClass.seExiste(LojaLocal));
             
             TipoDeCodigo="Scripts";
         }else if(evt.getPath().getPathCount()==2 && evt.getPath().getPathComponent(1).toString().equals("Funções")){
@@ -302,7 +302,7 @@ public class FrmScript extends javax.swing.JDialog {
         FrmNovoScript.setVisible(true);
     }//GEN-LAST:event_MnuNovoPersonagemActionPerformed
     private void MnuScriptExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptExcluirActionPerformed
-        Mensagem.showErro("Esse função ainda não foi implementada!", "Desculpe");
+        DialogClass.showErro("Esse função ainda não foi implementada!", "Desculpe");
     }//GEN-LAST:event_MnuScriptExcluirActionPerformed
     private void MnuScriptAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuScriptAbrirActionPerformed
         javax.swing.JDialog frmJanela = null;
@@ -329,7 +329,7 @@ public class FrmScript extends javax.swing.JDialog {
             EnderecoDoScript = Base+Barra+PatasDoScript+Barra+"_shops.txt";
             String Import = Base+Barra+PatasDoScript+Barra+"_import.txt";
             int resposta=0;
-            if(!Arquivamento.seExiste(EnderecoDoScript)){
+            if(!FileClass.seExiste(EnderecoDoScript)){
                 String Script=
                 "///////////////////////////////////////////////////////////////////\n"+
                 "//  IDE: TMW-Maker v"+FrmPrincipal.Config.getVersao()+"\n"+
@@ -339,8 +339,8 @@ public class FrmScript extends javax.swing.JDialog {
                 "//      neste mapa atraves do TMW-Maker!\n"+
                 "///////////////////////////////////////////////////////////////////\n"+
                 "\n";
-                if(Arquivamento.arquivoSalvar(EnderecoDoScript,Script)){
-                    String Conteudo = Arquivamento.arquivoAbrir(Import);
+                if(FileClass.arquivoSalvar(EnderecoDoScript,Script)){
+                    String Conteudo = FileClass.arquivoAbrir(Import);
                     if(!Conteudo.isEmpty() && !Conteudo.trim().equals("")){
                         int loc1 = Conteudo.indexOf("map: ");
                         if(loc1>=0){
@@ -349,7 +349,7 @@ public class FrmScript extends javax.swing.JDialog {
                                 String Parte1= Conteudo.substring(0, loc2+1);
                                 String Parte2= Conteudo.substring(loc2+1, Conteudo.length());
                                 if(
-                                    Arquivamento.arquivoSalvar(
+                                    FileClass.arquivoSalvar(
                                         FrmScript.Base+Barra+FrmScript.PatasDoScript+Barra+"_import.txt",
                                         Parte1+
                                         "npc: npc/"+FrmScript.PatasDoScript+Barra+"_shops.txt\n"+
@@ -373,7 +373,7 @@ public class FrmScript extends javax.swing.JDialog {
                                         resposta=1;
                                     } catch (IOException e) {
                                         FrmPrincipal.setAvisoEmEstatus("<html>Falha ao preparar o compartilhamento de \"<font color=\"#FF0000\">_shops.txt</font>\"!");
-                                        Mensagem.showErro("<html>" +
+                                        DialogClass.showErro("<html>" +
                                             "Falha ao preparar o compartilhamento de \"<font color=\"#FF0000\">_shops.txt</font>\"!<br/>"+
                                             " * Erro de execução de comando:<br/> " +
                                             " * <font color=\"#FF0000\"><b>"+Comando+"</b></font>!"
@@ -404,9 +404,9 @@ public class FrmScript extends javax.swing.JDialog {
                     );
                 }
             }else{
-                ImagemTratavel Icone = new ImagemTratavel("/Imagem/Botoes/sbl_carrinho.gif");
+                ImagemClass Icone = new ImagemClass("/Imagem/Botoes/sbl_carrinho.gif");
                 Icone.setZoom(3.0);
-                resposta = Mensagem.showOpcoes("<html>"+
+                resposta = DialogClass.showOpcoes("<html>"+
                     "O arquivo que contém personagens Lojista já foi criado com sucesso.<br/>"+
                     "Deseja abrir o arquivo \"<font color=\"#0000FF\">_shops.txt</font>\"?",
                     "CRIAÇÃO DE ?ERSONAGEM LOJISTA",

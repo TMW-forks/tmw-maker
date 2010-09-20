@@ -1,8 +1,8 @@
 package Formularios;
 
-import Classes.Arquivamento;
-import Classes.ImagemTratavel;
-import Classes.SpriteDados;
+import Classes.FileClass;
+import Classes.ImagemClass;
+import Classes.SpriteClass;
 import Classes.BancoDeDados.XMLdeEquip;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -19,7 +19,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
     //String PastaDeSprites="/home/indigovox/localhost/tmwdata/graphics/sprites/";
     String PastaDeSprites=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"sprites"+Barra;
     String Endereco="";
-    SpriteDados Sprite=null;
+    SpriteClass Sprite=null;
 
     private void setComoGeral(){
         FrmPrincipal.xmlEditada.setNovaAcao("stand");
@@ -128,8 +128,8 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
         CarregarSpritesPNG("player_male_base.png");
     }
     private void CarregarSpritesPNG(String Focar){
-        if(Arquivamento.seExiste(PastaDeSprites)){
-            String[] Arquivos = Arquivamento.listarArquivos(PastaDeSprites);
+        if(FileClass.seExiste(PastaDeSprites)){
+            String[] Arquivos = FileClass.listarArquivos(PastaDeSprites);
             //setTitle(""+Arquivos.length);
             if(Arquivos.length>=1){
 
@@ -159,7 +159,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
     public void AbrirSprite(){
         String Arquivo=CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
         Endereco=PastaDeSprites+Arquivo;
-        if(Arquivamento.seExiste(Endereco)){
+        if(FileClass.seExiste(Endereco)){
             
             String Tipo[]=new String[]{
                 "chest-",
@@ -196,7 +196,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
 
             }/**/
 
-            Sprite = new SpriteDados(
+            Sprite = new SpriteClass(
                 Endereco,
                 Integer.parseInt(SpnLinhas.getValue().toString()),
                 Integer.parseInt(SpnColunas.getValue().toString())
@@ -204,7 +204,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
         }
     }
     public void ExibirBloco(){
-        if(Sprite instanceof SpriteDados){
+        if(Sprite instanceof SpriteClass){
             Sprite.setSpriteLinhas(Integer.parseInt(SpnLinhas.getValue().toString()));
             Sprite.setSpriteColunas(Integer.parseInt(SpnColunas.getValue().toString()));
             SldLinha.setValue(SldLinha.getValue()<=Sprite.getSpriteLinhas()-1?SldLinha.getValue():Sprite.getSpriteLinhas()-1);
@@ -216,7 +216,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
                 TxtAltura.setText(Sprite.getBlocoAltura()+"/"+Sprite.getSpriteAltura()+"px");
                 LblLinha.setText("Linha: "+SldLinha.getValue());
                 LblColuna.setText("Coluna: "+SldColuna.getValue());
-                ImagemTratavel ImgBloco = new ImagemTratavel(Sprite.getBloco((Sprite.getSpriteColunas()*SldLinha.getValue())+SldColuna.getValue()));
+                ImagemClass ImgBloco = new ImagemClass(Sprite.getBloco((Sprite.getSpriteColunas()*SldLinha.getValue())+SldColuna.getValue()));
                 //if(ImgBloco.getAltura()<90)
                 ImgBloco.setZoom(128/(double)ImgBloco.getAltura());
                 if(ImgBloco.getLargura()>=PnlBloco.getWidth()){
@@ -541,7 +541,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
             //File Arquivo = Dialogo.getSelectedFile();
             /*This is where a real application would open the file.
             log.append("Opening: " + file.getName() + "." + newline);/**/
-            Arquivamento.arquivoCopiar(
+            FileClass.arquivoCopiar(
                 Dialogo.getSelectedFile(),
                 PastaDeSprites+FrmPrincipal.barra+Dialogo.getSelectedFile().getName()
             );

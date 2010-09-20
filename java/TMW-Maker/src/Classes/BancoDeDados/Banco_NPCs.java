@@ -1,9 +1,9 @@
 
 package Classes.BancoDeDados;
 
-import Classes.Arquivamento;
-import Classes.Mensagem;
-import Classes.SpriteDados;
+import Classes.FileClass;
+import Classes.DialogClass;
+import Classes.SpriteClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.awt.image.BufferedImage;
@@ -17,7 +17,7 @@ public class Banco_NPCs {
     public Banco_NPCs() {AbrirGeral();} // Só executa de for instaciado como objeto
 //####################### PRIVADOS #########################################
     private static Dados_NPC NPCs[]; //Não deve ser instaciado agora!!!!
-    private SpriteDados getSpriteDeXML(String Endereco) {
+    private SpriteClass getSpriteDeXML(String Endereco) {
         String Linha="";
         StringClass XML_Geral = new StringClass();
         try {
@@ -33,10 +33,10 @@ public class Banco_NPCs {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            Mensagem.showErro("Não foi possivel abrir \""+Endereco+"\"!","AVISO");
+            DialogClass.showErro("Não foi possivel abrir \""+Endereco+"\"!","AVISO");
         }
 
-        SpriteDados Sprite = new SpriteDados(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+XML_Geral.extrairEntre("src=\"", "\""));
+        SpriteClass Sprite = new SpriteClass(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+XML_Geral.extrairEntre("src=\"", "\""));
         Sprite.setSpriteColunas(Sprite.getSpriteLargura()/Integer.parseInt(XML_Geral.extrairEntre("width=\"", "\"")));
         Sprite.setSpriteLinhas(Sprite.getSpriteAltura()/Integer.parseInt(XML_Geral.extrairEntre("height=\"", "\"")));
         return Sprite;
@@ -61,7 +61,7 @@ public class Banco_NPCs {
             streamReader.close();
             stream.close();
         } catch (IOException ex) {
-            Mensagem.showErro("Não foi possivel abrir \""+EnderecoXMLdeNPCs+"\"!","AVISO");
+            DialogClass.showErro("Não foi possivel abrir \""+EnderecoXMLdeNPCs+"\"!","AVISO");
             return; // em caso de falha
         }
 
@@ -80,7 +80,7 @@ public class Banco_NPCs {
                 NPCs[l-1].setParticulaXML(NPC.extrairEntre("<particlefx>", "</particlefx>"));
                 NPCs[l-1].setComentario(NPC.extrairEntre("<!--", "-->"));
 
-                if(!NPCs[l-1].getXML().equals("") && Arquivamento.seExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
+                if(!NPCs[l-1].getXML().equals("") && FileClass.seExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
                     NPCs[l-1].setSprite(getSpriteDeXML(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML()));
                 }
             }
@@ -109,7 +109,7 @@ public class Banco_NPCs {
         private int Variante=0;
         private String Nome="";
         private String Comentario="";
-        private SpriteDados Sprite = null;
+        private SpriteClass Sprite = null;
 
         public void setID(int NovoID){ID=NovoID;}
         public void setXML(String NovoXML){XML=NovoXML;}
@@ -117,7 +117,7 @@ public class Banco_NPCs {
         public void setVariante(int NovaVariante){Variante=NovaVariante;}
         public void setNome(String NovoNome){Nome=NovoNome;}
         public void setComentario(String NovoComentario){Comentario=NovoComentario;}
-        public void setSprite(SpriteDados NovoSprite){Sprite=NovoSprite;}
+        public void setSprite(SpriteClass NovoSprite){Sprite=NovoSprite;}
 
         public int getID(){return ID;}
         public String getXML(){return XML;}
@@ -125,7 +125,7 @@ public class Banco_NPCs {
         public int getVariante(){return Variante;}
         public String getNome(){return Nome;}
         public String getComentario(){return Comentario;}
-        public SpriteDados getSprite(){return Sprite;}
+        public SpriteClass getSprite(){return Sprite;}
         public BufferedImage getImagem(){return Sprite.getBloco(Variante);}
     }
 

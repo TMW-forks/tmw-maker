@@ -1,9 +1,9 @@
 
 package Formularios;
 
-import Classes.Arquivamento;
+import Classes.FileClass;
 import Classes.ConfigClass;
-import Classes.Mensagem;
+import Classes.DialogClass;
 import java.awt.Cursor;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -197,10 +197,10 @@ public class FrmLocalhost extends javax.swing.JDialog {
         if (R == JOptionPane.YES_OPTION || !ChkForcar.isSelected()) {
             String SistemaOperacional = System.getProperty("os.name").toLowerCase();
             if (SistemaOperacional.indexOf("win") >= 0) {
-                Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+                DialogClass.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
             } else if (SistemaOperacional.indexOf("mac") >= 0) {
                 /*Executador.exec("open " + URL);/**/
-                Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+                DialogClass.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
             } else {
                 Thread tThread = new Thread(new Runnable() {
                     public void run() {
@@ -265,7 +265,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                     //Partes=line.split("/");
                                     //FrmPrincipal.PgbBarra.setString(Partes[Partes.length-1]);
                                 }
-                                //Mensagem.showErro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
+                                //DialogClass.showErro("Repositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!", "AVISO");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Repositório \"<font color=\"#0000FF\"><b>"+FrmPrincipal.Config.getConexaoLocalhost()+"</b></font>\" recebido com sucesso!");
                                 TxtEstatus.setText(TxtEstatus.getText()+"\nRepositório \""+FrmPrincipal.Config.getConexaoLocalhost()+"\" recebido com sucesso!");
                                 FrmPrincipal.PgbBarra.setString("Concluido!");
@@ -290,7 +290,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 }
                             } catch (IOException e) {
                                 TxtEstatus.setText(TxtEstatus.getText()+"\nFalha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!");
-                                //Mensagem.showErro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
+                                //DialogClass.showErro("<html><font color=\"#FF0000\">Falha ao receber o repositório \""+FrmPrincipal.Config.getConexaoUsuario()+"\"!", "ERRO");
                                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">Falha ao receber o repositório \"<b>"+FrmPrincipal.Config.getConexaoUsuario()+"</b>\"!");
                                 FrmPrincipal.PgbBarra.setString("ERRO!");
                             }/**/
@@ -310,15 +310,15 @@ public class FrmLocalhost extends javax.swing.JDialog {
     }
     private void LocalhostMontar() {
     if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
-        Mensagem.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+        DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
     } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
-        Mensagem.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+        DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
     } else if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
         int R = JOptionPane.YES_OPTION;
         if(FrmPrincipal.Config.getSeDependenciaDeGCC()){
-            if (Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server") ||
-                Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server") ||
-                Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
+            if (FileClass.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "char-server") ||
+                FileClass.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "login-server") ||
+                FileClass.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "map-server")) {
                 Object[] options = {"Remontar", "Cancelar"};
                 R = JOptionPane.showOptionDialog(
                     null, "<html>" +
@@ -356,12 +356,12 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         FrmPrincipal.PgbBarra.setString("Apagando...");
                         FrmPrincipal.setAvisoEmEstatus("Apagando binários...");
                         addLinhaDeEstatus("Apagando binários...");
-                        if (Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
-                            Arquivamento.apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
+                        if (FileClass.seExiste(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins")) {
+                            FileClass.apagar(FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins");
                         }
-                        Arquivamento.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server");
-                        Arquivamento.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
-                        Arquivamento.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
+                        FileClass.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "char-server");
+                        FileClass.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "login-server");
+                        FileClass.apagar(FrmPrincipal.Config.getEathenaData() +Barra+ "map-server");
 
                         FrmPrincipal.PgbBarra.setString("Abaixando...");
                         FrmPrincipal.setAvisoEmEstatus("Baixando binários novos...");
@@ -372,7 +372,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                     FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
                             BinariosEspecificos = true;
                             System.out.println(Comando);
-                            //Mensagem.showErro(Comando,"Nota de Programador");
+                            //DialogClass.showErro(Comando,"Nota de Programador");
                         } else {
                             Comando = "svn checkout " +
                                     "http://tmw-maker.googlecode.com/svn/bins/compiler " +
@@ -380,7 +380,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             addLinhaDeEstatus("svn checkout http://tmw-maker.googlecode.com/svn/bins/compiler ");
                             BinariosEspecificos = false;
                             System.out.println(Comando);
-                            //Mensagem.showErro(Comando,"Nota de Programador");
+                            //DialogClass.showErro(Comando,"Nota de Programador");
                         }
                         try {
                             Process Retorno = Executador.exec(Comando);
@@ -396,7 +396,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             e.printStackTrace();
                             addLinhaDeEstatus("ERRO: "+Comando);
                             FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                            Mensagem.showErro(
+                            DialogClass.showErro(
                                 "<html><b>O TMW-Maker não conseguiu baixar os binários:</b><br/><br/>" +
                                 "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                 "</html>",
@@ -413,8 +413,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         }
                         if (BinariosEspecificos == true) {
                             FrmPrincipal.PgbBarra.setString("Deslocando...");
-                            if (!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"char-server")) {
-                                Arquivamento.arquivoMover(
+                            if (!FileClass.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"char-server")) {
+                                FileClass.arquivoMover(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"char-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
@@ -431,8 +431,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"login-server")) {
-                                Arquivamento.arquivoMover(
+                            if (!FileClass.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"login-server")) {
+                                FileClass.arquivoMover(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"login-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
@@ -449,8 +449,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"map-server")) {
-                                Arquivamento.arquivoMover(
+                            if (!FileClass.seExiste(FrmPrincipal.Config.getEathenaData()+Barra+"map-server")) {
+                                FileClass.arquivoMover(
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins"+Barra+"map-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
@@ -479,8 +479,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
 
                             FrmPrincipal.PgbBarra.setString("Deslocando...");
 
-                            if (!Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server")) {
-                                Arquivamento.arquivoMover(
+                            if (!FileClass.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server")) {
+                                FileClass.arquivoMover(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "char-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"char-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
@@ -497,8 +497,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server")) {
-                                Arquivamento.arquivoMover(
+                            if (!FileClass.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server")) {
+                                FileClass.arquivoMover(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "login-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"login-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
@@ -515,8 +515,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }
-                            if (!Arquivamento.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server")) {
-                                Arquivamento.arquivoMover(
+                            if (!FileClass.seExiste(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server")) {
+                                FileClass.arquivoMover(
                                         FrmPrincipal.Config.getConexaoLocalhost()+Barra+"bins"+Barra+"eathena"+Barra+ "map-server",
                                         FrmPrincipal.Config.getEathenaData()+Barra+"map-server");
                                 FrmPrincipal.setAvisoEmEstatus("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
@@ -591,29 +591,29 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         };
 
                         for (int r = 0; r < De.length; r++) {
-                            if (Arquivamento.seExiste(Pasta[r] +Barra+ De[r])) {
-                                if (Arquivamento.seExiste(Pasta[r] +Barra+ Para[r])) {
-                                    Arquivamento.apagar(Pasta[r] +Barra+ Para[r]);
+                            if (FileClass.seExiste(Pasta[r] +Barra+ De[r])) {
+                                if (FileClass.seExiste(Pasta[r] +Barra+ Para[r])) {
+                                    FileClass.apagar(Pasta[r] +Barra+ Para[r]);
                                     addLinhaDeEstatus("     Apagando: \"" + Para[r] + "\"!");
                                     FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + Para[r] + "\"!");
                                 }
                                 addLinhaDeEstatus("     Renomeando: \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
                                 FrmPrincipal.setAvisoEmEstatus("<html><b>Renomeando:</b> \"" + De[r] + "\" -> \"" + Para[r] + "\"...");
-                                Arquivamento.arquivoMover(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
+                                FileClass.arquivoMover(Pasta[r] +Barra+ De[r], Pasta[r] +Barra+ Para[r]);
                             }
                         }
 
-                        if(!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
+                        if(!FileClass.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "log")) {
                             addLinhaDeEstatus("     Criando Pasta: \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
                             FrmPrincipal.setAvisoEmEstatus("<html><b>Criando Pasta:</b> \"" + FrmPrincipal.Config.getEathenaData()  +Barra+ "log\"...");
-                            Arquivamento.pastaCriar(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
+                            FileClass.pastaCriar(FrmPrincipal.Config.getEathenaData()  +Barra+ "log");
                         }
 
                         /*
                         Criar pasta de ~/localhost/eathena-data/log
                         gcc -o eathena-monitor eathena-monitor.c
                         /**/
-                        if(!Arquivamento.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
+                        if(!FileClass.seExiste(FrmPrincipal.Config.getEathenaData()  +Barra+ "eathena-monitor")) {
                             FrmPrincipal.PgbBarra.setString("Copilando...");
                             addLinhaDeEstatus("     Copilando binário \"eathena-monitor\"...");
                             FrmPrincipal.setAvisoEmEstatus("Copilando binário \"eathena-monitor\"...");
@@ -631,7 +631,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 e.printStackTrace();
                                 addLinhaDeEstatus("ERRO: "+Comando);
                                 FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                                Mensagem.showErro(
+                                DialogClass.showErro(
                                     "<html><b>O TMW-Maker não conseguiu copilar o binário de monitor:</b><br/><br/>" +
                                     "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                     "</html>",
@@ -652,8 +652,8 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         rm $HOME/tmwserver // Apaga Link
                         ln -s $PWD $HOME/tmwserver //Recria Link
                         /**/
-                        if(Arquivamento.seExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
-                            Arquivamento.apagar(System.getProperty("user.home")+Barra+"tmwserver");
+                        if(FileClass.seExiste(System.getProperty("user.home")+Barra+"tmwserver")) {
+                            FileClass.apagar(System.getProperty("user.home")+Barra+"tmwserver");
                         }
                         FrmPrincipal.PgbBarra.setString("Coligando...");
                         addLinhaDeEstatus("     Criando link \""+System.getProperty("user.home")+Barra+"tmwserver\"...");
@@ -672,7 +672,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             e.printStackTrace();
                             addLinhaDeEstatus("ERRO: "+Comando);
                             FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                            Mensagem.showErro(
+                            DialogClass.showErro(
                                 "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
                                 "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
                                 "</html>",
@@ -700,7 +700,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
                         if(FrmPrincipal.Config.getSeDependenciaDeManaplus() || FrmPrincipal.Config.getSeDependenciaDeTMW()){
-                            Mensagem.showErro("<html>"+
+                            DialogClass.showErro("<html>"+
                                 "Locahost <font color=\"#0000FF\">montado com sucesso</font>!<br/>"+
                                 "Para executar o tmw-maker <b>pressione tecla F9</b>.<br/>"+
                                 "Crie uma nova conta de jogador no servidor \"localhost\"!"
@@ -727,7 +727,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
         }else{
             FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#0000FF\">CANCELADO:</font> Existe uma dependencia de GCC para você resolver!");
             addLinhaDeEstatus("CANCELADO: Existe uma dependencia de GCC para você resolver!");
-            Mensagem.showErro("<html>"+
+            DialogClass.showErro("<html>"+
                 "Esta função possui a <font face=\"monospace\" color=\"#FF0000\">dependencia</font> do comando GCC!",
                 "ERRO DE EXECUÇÃO"
             );
@@ -737,10 +737,10 @@ public class FrmLocalhost extends javax.swing.JDialog {
     private void LocalhostCompartilhar() {
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
         if (SistemaOperacional.indexOf("win") >= 0) {
-            Mensagem.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
+            DialogClass.showErro("Este comando ainda não foi implementado para o WINDOWS!","Descupe!");
         } else if (SistemaOperacional.indexOf("mac") >= 0) {
             /*Executador.exec("open " + URL);/**/
-            Mensagem.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            DialogClass.showErro("Este comando ainda não foi implementado para o MAC!","Descupe!");
         } else {
             Thread tThread = new Thread(new Runnable() {
                 public void run() {
@@ -810,7 +810,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                                 }
                             } catch (IOException e) {
                                 FrmPrincipal.setAvisoEmEstatus("Falha ao compartilhar o localhost \""+FrmPrincipal.Config.getConexaoLocalhost()+"\"!");
-                                Mensagem.showErro("<html>" +
+                                DialogClass.showErro("<html>" +
                                     "Falha ao compartilhar o localhost:<br/> " +
                                     "<font color=\"#FF0000\"> <b>"+Comando+"</b>!"
                                     , "ERRO"
@@ -821,7 +821,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                             TxtEstatus.setText(TxtEstatus.getText()+"\n * Compartilhamento cancelado pelo Usuário!");
                             FrmPrincipal.setAvisoEmEstatus("Compartilhamento cancelado pelo usuário!");
                             FrmPrincipal.PgbBarra.setString("Cancelado!");
-                            //Mensagem.showErro("Compartilhamento cancelado pelo usuários!", "ERRO");
+                            //DialogClass.showErro("Compartilhamento cancelado pelo usuários!", "ERRO");
                         }
                     }else{
                         TxtEstatus.setText(TxtEstatus.getText()+
@@ -831,7 +831,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         );
                         FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">PARADA CRÍTICA:</font> Você não identificação \"HTTPS\" em suas configurações!!");
                         FrmPrincipal.PgbBarra.setString("PARADA CRÍTICA");
-                        Mensagem.showErro("<html>" +
+                        DialogClass.showErro("<html>" +
                             "<font color=\"#FF0000\">AVISO:</font>  Você não possui identificação \"HTTPS\" em suas configurações.<br/><br/>"+
                             "Antes de continuar configure a Conexão do Repositório como <br/>" +
                             "\"HTTPS\" e preencha a identificação com o \"Usuário\" e a \"Senha\"!"

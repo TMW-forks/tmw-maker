@@ -5,7 +5,7 @@ package Formularios;
 import Classes.BlocoDeScript;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_NPCs.Dados_NPC;
-import Classes.ImagemTratavel;
+import Classes.ImagemClass;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -190,7 +190,7 @@ public class FrmPalco extends javax.swing.JDialog {
                                 TxtScriptPalco.setText(Instancia[Sel].getScript());
 
                                 /*Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[Sel].getImagem());
-                                ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+                                ImagemClass Imagem = new ImagemClass(NPC.getImagem());
                                 Imagem.setZoom(24/Imagem.getAltura());
                                 LblAparencia.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
                                 LblAparencia.setToolTipText("<html><font size=\"+1\">"+
@@ -428,7 +428,7 @@ public class FrmPalco extends javax.swing.JDialog {
         TxtScriptPalco.setText(Cod.toString());/**/
 
         Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[CmbScript.getSelectedIndex()].getImagem());
-        ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+        ImagemClass Imagem = new ImagemClass(NPC.getImagem());
         double Escala = 96.0/(double)Imagem.getLargura();
         //double Escala = 1.0;
         Imagem.setZoom(Escala);

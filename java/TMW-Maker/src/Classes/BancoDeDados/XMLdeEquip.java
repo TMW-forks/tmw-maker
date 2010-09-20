@@ -1,33 +1,33 @@
 package Classes.BancoDeDados;
 
-import Classes.SpriteDados;
+import Classes.SpriteClass;
 
 public class XMLdeEquip {
     public XMLdeEquip(String Nome, String Endereco, int Linhas, int Colunas){
         Banco_Nome=Nome;
-        SpriteDados = new SpriteDados(Endereco, Linhas, Colunas);
+        SpriteDados = new SpriteClass(Endereco, Linhas, Colunas);
     }
-    public XMLdeEquip(String Nome, SpriteDados Sprite){
+    public XMLdeEquip(String Nome, SpriteClass Sprite){
         Banco_Nome=Nome;
         SpriteDados = Sprite;
     }
     public XMLdeEquip(String Nome, String Endereco, int Linhas, int Colunas, XmlAcao Acoes[]){
         Banco_Nome=Nome;
-        SpriteDados = new SpriteDados(Endereco, Linhas, Colunas);
+        SpriteDados = new SpriteClass(Endereco, Linhas, Colunas);
         Banco_Acoes= Acoes;
     }
-    public XMLdeEquip(String Nome, SpriteDados Sprite, XmlAcao Acoes[]){
+    public XMLdeEquip(String Nome, SpriteClass Sprite, XmlAcao Acoes[]){
         Banco_Nome=Nome;
         SpriteDados = Sprite;
         Banco_Acoes= Acoes;
     }
 
     private String Banco_Nome="";
-    private SpriteDados SpriteDados = null;
+    private SpriteClass SpriteDados = null;
     private XmlAcao Banco_Acoes[]; //Não deve ser instaciado agora!!!!
 
     public String getNome(){return Banco_Nome;}
-    public SpriteDados getSpriteDados(){return SpriteDados;}
+    public SpriteClass getSpriteDados(){return SpriteDados;}
     public XmlAcao[] getAcoes(){return Banco_Acoes;}
     public XmlAcao getAcao(int Ordem){
         if(Banco_Acoes != null){
@@ -69,7 +69,7 @@ public class XMLdeEquip {
     }
 
     public void setNome(String NovoNome){Banco_Nome=NovoNome;}
-    public void setSpriteDados(SpriteDados NovoSpriteDados){SpriteDados=NovoSpriteDados;}
+    public void setSpriteDados(SpriteClass NovoSpriteDados){SpriteDados=NovoSpriteDados;}
     public void setAcoes(XmlAcao NovasAcoes[]){Banco_Acoes=NovasAcoes;}
     public void setAcao(int Ordem, XmlAcao NovaAcao){
         Banco_Acoes[Ordem]=NovaAcao;

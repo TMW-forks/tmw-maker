@@ -4,7 +4,7 @@ package Formularios;
 import Classes.BlocoDeScript;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_NPCs.Dados_NPC;
-import Classes.ImagemTratavel;
+import Classes.ImagemClass;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -499,7 +499,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             String Partes[] = Selecionado.split(":");
             if(Partes.length>=2){
                 Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Integer.parseInt(Partes[0]));
-                ImagemTratavel Imagem = new ImagemTratavel(NPC.getImagem());
+                ImagemClass Imagem = new ImagemClass(NPC.getImagem());
                 Imagem.setZoom(2.0);
                 LblImagem.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
                 LblImagem.setToolTipText("<html><font size=\"+1\">"+

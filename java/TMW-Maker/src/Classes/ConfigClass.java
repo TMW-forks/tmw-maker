@@ -204,7 +204,7 @@ public class ConfigClass {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            Mensagem.showErro(
+            DialogClass.showErro(
                 "\n\n O TMW-Maker não conseguiu abrir o seu navegador padrão ao tentar acessar: \n\n " + URL + "\n\n",
                 "Erro de acesso ao Navegado"
             );
@@ -292,7 +292,7 @@ public class ConfigClass {
             Capsula.flush();
             Capsula.close();
         } catch (java.io.IOException exc) {
-            Mensagem.showErro("Não foi possível salvar as configurações!", "ERRO");
+            DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
         }
     }
     public void ConfiguracoesAbrir(){ConfiguracoesAbrir(ConfiguracaoURL);}
@@ -353,7 +353,7 @@ public class ConfigClass {
     }
 
     public boolean getSeDependenciaDeConfiguracao() {
-        if(Arquivamento.seExiste(ConfiguracaoURL)){
+        if(FileClass.seExiste(ConfiguracaoURL)){
             return true;
         }else{
             return false;
@@ -363,39 +363,39 @@ public class ConfigClass {
         return SeComandoProcede("svn --help");
     }
     public boolean getSeDependenciaDeLocalhost(){
-        return Arquivamento.seExiste(getConexaoLocalhost());
+        return FileClass.seExiste(getConexaoLocalhost());
     }
     public boolean getSeDependenciaDeGCC(){
         return SeComandoProcede("gcc --help");
     }
     public boolean getSeDependenciaDeMontagem(){
         if(
-            Arquivamento.seExiste(
+            FileClass.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"char-server"
             )
             &&
-            Arquivamento.seExiste(
+            FileClass.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"login-server"
             )
             &&
-            Arquivamento.seExiste(
+            FileClass.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"map-server"
             )
             &&
-            Arquivamento.seExiste(
+            FileClass.seExiste(
                 getConexaoLocalhost().toString()+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"save"+
                 System.getProperty("file.separator")+"account.txt"
             )
             &&
-            Arquivamento.seExiste(
+            FileClass.seExiste(
                 ConexaoLocalhost+
                 System.getProperty("file.separator")+"eathena-data"+
                 System.getProperty("file.separator")+"conf"+
