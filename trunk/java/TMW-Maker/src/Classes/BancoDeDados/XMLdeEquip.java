@@ -1,4 +1,4 @@
-package Classes.XmlDeEquip;
+package Classes.BancoDeDados;
 
 import Classes.SpriteDados;
 

@@ -3,7 +3,7 @@ package Formularios;
 import Classes.Arquivamento;
 import Classes.ImagemTratavel;
 import Classes.SpriteDados;
-import Classes.XmlDeEquip.XMLdeEquip;
+import Classes.BancoDeDados.XMLdeEquip;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
