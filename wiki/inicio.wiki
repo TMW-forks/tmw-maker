@@ -9,5 +9,6 @@ Você pode colaborar como o projeto e dando sugestões. Se você tem experiênci
 <p align="center"><wiki:video url="http://www.youtube.com/watch?v=kAKlXVji62A" width="640" height="505"/>
 
 ==Membros do Projeto==
- * *Lunovox* - Fundador e Administrador autoditada para Java.
+ * *Lunovox* - Fundador e Administrador Autoditada do TMW-Maker em Java (*¬¬ Sou Noob em Java, sim! E dae?*).
  * *Ablankzin* - DEV baixarelando em Ciência da Computação, habilitado em Java.
+ * *Easter Egg* - Membro oficial da comunidade Ubuntu, habilitado em Linux, Python, Django e PHP.
