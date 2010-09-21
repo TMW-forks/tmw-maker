@@ -14,6 +14,8 @@ Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois mo
 
 <p align="center"><img src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"> 
 
+|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo a passo o que é alterado no TMW-Maker ||
+
 ----
 
 =Modo Colaborativo=
@@ -26,5 +28,3 @@ Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois mo
 || v0.2 || Colaborativo || svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
 
 <p align="center"><img src="http://www.ecourban.org/blog/wp-content/uploads/2008/05/edicion_colectiva.jpg">
-
-|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo a passo o que é alterado no TMW-Maker ||
