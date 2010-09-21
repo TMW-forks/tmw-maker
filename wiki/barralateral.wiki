@@ -15,7 +15,7 @@
  * [AvisandoDefeito Avisando Defeito]
  * Menu
   * Sistema
-   * [Alteracoes Alterações (F12)]
+   * [http://code.google.com/p/tmw-maker/source/list Alterações (F12)]
    * [Atualizar Atualizar (Ctrl+F12)]
    * [Configuracao Configurações (Ctrl+G)]
     * Conexão
@@ -41,6 +41,8 @@
     * [JogoLocalhost Supervisionar (Ctrl+L)]
     * [JogoLocalhostAtualizar Atualizar (Ctrl+PageDown)]
     * [JogoLocalhostCompartilhar Compartilhar (Ctrl+PageUp)]
+  * Ajuda
+    * [http://code.google.com/p/tmw-maker/issues/entry Indicar Defeito(F5)]
  * [Ferramentas Ferramentas de DEVs]
   * [OpenJDK OpenJDK Java 6 Runtime]
   * [NetBeans NetBeans IDE 6.7.1]
