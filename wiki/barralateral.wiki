@@ -11,7 +11,7 @@
    * [EathenaScript Eathena Script]
    * [Java]
  * [versoes_tmwmaker Download do TMW-Maker]
- * [CodigoFonte Código Fonte GPL-v3]
+ * [CodigoFonte Código Fonte]
  * [AvisandoDefeito Avisando Defeito]
  * Menu
   * Sistema
