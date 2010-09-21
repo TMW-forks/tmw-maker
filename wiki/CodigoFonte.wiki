@@ -3,8 +3,7 @@
 
 Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os planos de quem baixar. Se desejar baixar o código fonte, escolha um os modos de digite o respectivo comando abaixo em seu terminal.
 
-|| <img align="abscenter" src="http://intranet.iprj.uerj.br:8080/intranet/modulo/gc/imagens/m_gifSenha_V2.gif"> [https://code.google.com/hosting/settings SENHA DE COLABORADOR] || <img align="abscenter" src="http://www.finishertriatlon.com/images/shared/examinar.png"> [http://code.google.com/p/tmw-maker/source/browse/ VER PELO NAVEGADOR] || <img align="abscenter" src="http://www.equipe21.com/img/2.0/historico.png"> [http://code.google.com/p/tmw-maker/source/list HISTÓRICO DE ALTERAÇÕES] ||
-
+----
 
 =Modo Observador=
 
@@ -18,6 +17,8 @@ Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois mo
 ----
 
 =Modo Colaborativo=
+
+|| <img align="abscenter" src="http://intranet.iprj.uerj.br:8080/intranet/modulo/gc/imagens/m_gifSenha_V2.gif"> [https://code.google.com/hosting/settings SENHA DE COLABORADOR] || <img align="abscenter" src="http://www.finishertriatlon.com/images/shared/examinar.png"> [http://code.google.com/p/tmw-maker/source/browse/ VER PELO NAVEGADOR] || <img align="abscenter" src="http://www.equipe21.com/img/2.0/historico.png"> [http://code.google.com/p/tmw-maker/source/list HISTÓRICO DE ALTERAÇÕES] ||
 
 <p align="justify">É possível baixar, modificar, e devolver as modificações que você fez no engine TMW-Make para este siter. Esse modo é recomendado apenas para aqueles que querem ajudar no desenvolvimento desta ferramenta. Para usar o modo Colaborativo você precisará ter um "*username*" e "*password*" autorizados. Entre em contato conosco através do [http://code.google.com/p/tmw-maker/issues/entry ISSUES] relatando seu desejo de participação para conseguir esse Username e Password.
 
