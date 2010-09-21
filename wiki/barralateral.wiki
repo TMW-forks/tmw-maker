@@ -11,6 +11,7 @@
    * [EathenaScript Eathena Script]
    * [Java]
  * [versoes_tmwmaker Download do TMW-Maker]
+ * [AvisandoDefeito Avisando Defeito]
  * Menu
   * Sistema
    * [Alteracoes Alterações (F12)]
