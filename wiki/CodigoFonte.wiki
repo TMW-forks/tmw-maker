@@ -1,6 +1,8 @@
 #labels SourceCode,CódigoFonte,Java,TMW-Maker,Netbeans
 ==Código Fonte do TMW-Maker==
 
+|| VER PELO NAVEGADOR || [http://code.google.com/p/tmw-maker/wiki/CodigoFonte HISTÓRICO DE ALTERAÇÕES] ||
+
 Existem dois modos de adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os planos de quem baixar. Se desejar baixar o código fonte, escolha um os modos de digite o respectivo comando abaixo em seu terminal.
 
 ----
