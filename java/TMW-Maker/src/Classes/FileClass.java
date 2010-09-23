@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.RandomAccessFile;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
@@ -178,6 +179,22 @@ public class FileClass {
             return Conteudo;
         } catch (IOException e) {
             return Conteudo;
+        }
+    }
+    public static String urlAbrir(String Endereco){
+         try {
+            URL arquivo = new URL(Endereco);
+            BufferedReader in = new BufferedReader(new InputStreamReader(arquivo.openStream()));
+            String str, Conteudo="";
+            int contador=0;
+            while ((str = in.readLine()) != null) {
+                contador += 1;
+                Conteudo+=(Conteudo.equals("")?str:"\n"+str);
+            }
+            in.close();
+            return Conteudo;
+        } catch (IOException e) {
+            return null;
         }
     }
 
