@@ -75,6 +75,14 @@ public class FrmSplash extends javax.swing.JDialog {
                 );
                 FrmPrincipal.Itens = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
                 //--------------------------------------------------------------------------------
+                /**/
+                 FrmPrincipal.setAvisoEmEstatus(
+                    "<html>Carregando Banco de Dados de Mapas (<font color=#FF0000>Por favor espere!</font>)",
+                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
+                );
+                FrmPrincipal.Mundo = new Classes.BancoDeDados.Banco_Mapas(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                /**/
+                //--------------------------------------------------------------------------------
                 FrmPrincipal.PgbBarra.setString("Concluído");
                 FrmPrincipal.setAvisoEmEstatus(
                     "Banco de Dados Eathena carregado com sucesso!",

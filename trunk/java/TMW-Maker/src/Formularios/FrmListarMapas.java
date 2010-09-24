@@ -1,11 +1,14 @@
 
 package Formularios;
 
+import Classes.ConfigClass;
 import Classes.DialogClass;
 import Classes.FileClass;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Vector;
+import javax.lang.model.element.Element;
 
 public class FrmListarMapas extends javax.swing.JDialog {
     public FrmListarMapas(java.awt.Frame parent, boolean modal) {
@@ -18,6 +21,7 @@ public class FrmListarMapas extends javax.swing.JDialog {
     public static String PastaDeMiniaturas=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"minimaps";
     public static String PastaDeColisoes=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"data";
 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,24 +32,29 @@ public class FrmListarMapas extends javax.swing.JDialog {
         BtnAbrir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Fortaleza", "<html>005.tmx<br/>005.wlk<br/>005.pnp", "200x140t", "400x280px", "Magick - Real.ogg"}
+                {"Fortaleza", "<html>005.tmx<br/>005.tmx<br/>005.tmx<br/>005.tmx", "200x140t"}
             },
             new String [] {
-                "Mapa", "Arquivo", "Tamanho", "Miniatura", "Musica"
+                "Mapa", "Arquivo", "Tamanho"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setRowHeight(46);
+        jTable1.setRowHeight(65);
         jScrollPane1.setViewportView(jTable1);
 
         jToolBar1.setFloatable(false);
@@ -85,14 +94,18 @@ public class FrmListarMapas extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void AbrirMapa(String Endereco){
-        if(FileClass.seExiste(Tiled)){
+        if(FrmPrincipal.Config.SeComandoProcede("tiled --help") || FileClass.seExiste(Tiled)){
             if(FileClass.seExiste(Endereco)){
                 String Comando="";
                 Runtime Executador = Runtime.getRuntime();
                 Process Retorno=null;
                 String line="";
                 try {
-                    Comando = "java -jar "+Tiled+" "+Endereco;/**/
+                    if(FrmPrincipal.Config.SeComandoProcede("tiled --help")){
+                        Comando = "tiled "+Endereco;/**/
+                    }else{
+                        Comando = "java -jar "+Tiled+" "+Endereco;
+                    }
                     System.out.println(Comando);
                     Retorno=Executador.exec(Comando);
                     BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
@@ -100,7 +113,11 @@ public class FrmListarMapas extends javax.swing.JDialog {
                         System.out.println(line);
                         FrmPrincipal.setAvisoEmEstatus("<html>ENVIADO: "+line+" (<font color=\"#FF0000\"><b>Espere concluir...</b></font>)");
                     }
-                    FrmPrincipal.setAvisoEmEstatus("Mapa: "+Endereco);
+                    if(FrmPrincipal.Config.SeComandoProcede("tiled --help")){
+                        FrmPrincipal.setAvisoEmEstatus("Tiled Qt: "+Endereco);
+                    }else{
+                        FrmPrincipal.setAvisoEmEstatus("Tiled Java: "+Endereco);
+                    }
                 } catch (IOException e) {
                     FrmPrincipal.setAvisoEmEstatus("<html>Falha ao abrir o mapa no programa \"<font color=\"#FF0000\">tiled.jar</font>\"!");
                     DialogClass.showErro("<html>" +
@@ -120,8 +137,42 @@ public class FrmListarMapas extends javax.swing.JDialog {
     }
 
     private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
-        AbrirMapa(PastaDeMapas+Barra+"005.tmx");
+        //String Arquivo=jTable1.getModel().getValueAt(jTable1.getSelectedRow(),1).toString();
+        String Arquivo=FrmPrincipal.Mundo.getMapaPorOrdem(jTable1.getSelectedRow()).getArquivo();
+        AbrirMapa(PastaDeMapas+Barra+Arquivo);
     }//GEN-LAST:event_BtnAbrirActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Vector Mapa = new Vector();
+
+        for(int M=0;M<FrmPrincipal.Mundo.getContMapas();M++){
+            Vector Linha = new Vector();
+            Linha.addElement(FrmPrincipal.Mundo.getMapaPorOrdem(M).getNome());
+            Linha.addElement("<html>"+
+                "<b>Mapa:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getArquivo()+"<br/>"+
+                "<b>Colisão:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getColisao()+"<br/>"+
+                "<b>Miniatura:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getMiniatura()+"<br/>"+
+                "<b>Música:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getMusica()
+            );
+            Linha.addElement(
+                FrmPrincipal.Mundo.getMapaPorOrdem(M).getLargura()+"x"+
+                FrmPrincipal.Mundo.getMapaPorOrdem(M).getAltura()
+            );
+            Mapa.add(Linha);
+        }
+        //Vector Cabecalho[] = ;
+        Vector Cabecalho = new Vector();
+        Cabecalho.addElement("Mapa");
+        Cabecalho.addElement("Arquivo");
+        Cabecalho.addElement("Tamanho");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(Mapa,Cabecalho) {
+            boolean[] canEdit = new boolean [] {false, true, false};
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

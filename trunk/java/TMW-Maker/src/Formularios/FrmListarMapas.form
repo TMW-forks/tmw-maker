@@ -7,6 +7,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -52,25 +55,19 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="1">
+              <Table columnCount="3" rowCount="1">
                 <Column editable="false" title="Mapa" type="java.lang.Object">
                   <Data value="Fortaleza"/>
                 </Column>
                 <Column editable="false" title="Arquivo" type="java.lang.Object">
-                  <Data value="&lt;html&gt;005.tmx&lt;br/&gt;005.wlk&lt;br/&gt;005.pnp"/>
+                  <Data value="&lt;html&gt;005.tmx&lt;br/&gt;005.tmx&lt;br/&gt;005.tmx&lt;br/&gt;005.tmx"/>
                 </Column>
                 <Column editable="false" title="Tamanho" type="java.lang.Object">
                   <Data value="200x140t"/>
                 </Column>
-                <Column editable="false" title="Miniatura" type="java.lang.Object">
-                  <Data value="400x280px"/>
-                </Column>
-                <Column editable="false" title="Musica" type="java.lang.Object">
-                  <Data value="Magick - Real.ogg"/>
-                </Column>
               </Table>
             </Property>
-            <Property name="rowHeight" type="int" value="46"/>
+            <Property name="rowHeight" type="int" value="65"/>
           </Properties>
         </Component>
       </SubComponents>
