@@ -155,7 +155,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 ((this.getHeight() - FrmSplash.getHeight()) / 2) + this.getY());
         FrmSplash.pack();
         FrmSplash.setModal(true);
-        FrmSplash.setVisible(true);/**/
+        try{
+            FrmSplash.setVisible(true);/**/
+        }catch(Exception E){
+            
+        }
     }
     public void LocalhostMontar() {
         if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
