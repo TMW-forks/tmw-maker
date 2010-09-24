@@ -7,6 +7,7 @@ import Classes.FileClass;
 import Classes.BancoDeDados.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_Itens;
+import Classes.BancoDeDados.Banco_Mapas;
 import Classes.ImagemClass;
 import Classes.DialogClass;
 import Classes.StringClass;
@@ -30,6 +31,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static String barra = System.getProperty("file.separator");
     static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
+    static Banco_Mapas Mundo; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     //public static String SpritePNG=""; // É esado em FrmEquipXML***
     static XMLdeEquip xmlEditada; // É usado em FrmEquipXML***
 
@@ -1418,16 +1420,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_casa.png"))); // NOI18N
         MnuEditarCampos.setMnemonic('C');
         MnuEditarCampos.setText("Campos");
-        MnuEditarCampos.setEnabled(false);
 
         MnuEditarCamposTilesets.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_terreno.gif"))); // NOI18N
         MnuEditarCamposTilesets.setMnemonic('T');
         MnuEditarCamposTilesets.setText("Tilesets");
+        MnuEditarCamposTilesets.setEnabled(false);
         MnuEditarCampos.add(MnuEditarCamposTilesets);
 
+        MnuEditarCamposMapas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         MnuEditarCamposMapas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))); // NOI18N
         MnuEditarCamposMapas.setMnemonic('M');
         MnuEditarCamposMapas.setText("Mapas");
+        MnuEditarCamposMapas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuEditarCamposMapasActionPerformed(evt);
+            }
+        });
         MnuEditarCampos.add(MnuEditarCamposMapas);
 
         MnuEditar.add(MnuEditarCampos);
@@ -1887,6 +1895,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void BtnJogoCopilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJogoCopilarActionPerformed
         if(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled()) MnuJogoCopilarActionPerformed(evt);
     }//GEN-LAST:event_BtnJogoCopilarActionPerformed
+
+    private void MnuEditarCamposMapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarCamposMapasActionPerformed
+        javax.swing.JDialog FrmListarMapas = new FrmListarMapas(this, rootPaneCheckingEnabled);
+        FrmListarMapas.setLocation(
+            ((this.getWidth() - FrmListarMapas.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmListarMapas.getHeight()) / 2) + this.getY());
+        FrmListarMapas.pack();
+        FrmListarMapas.setModal(true);
+        FrmListarMapas.setVisible(true);/**/
+    }//GEN-LAST:event_MnuEditarCamposMapasActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -65,10 +65,11 @@ public class FrmSobre extends javax.swing.JDialog {
         setTitle("Sobre o TMW-Maker v"+FrmPrincipal.Config.getVersao()+" ("+FrmPrincipal.Config.getOS()+":"+FrmPrincipal.Config.getArquiteturaOS()+")");
     }//GEN-LAST:event_formWindowOpened
     private void TxpNavegadorHyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_TxpNavegadorHyperlinkUpdate
-        LinkFocado=evt.getURL().toString();
-        //setTitle(LinkFocado);
         if (evt.getEventType() == javax.swing.event.HyperlinkEvent.EventType.ACTIVATED ){
             ConfigClass.AbrirNavegador(evt.getURL().toString());
+            FrmPrincipal.setAvisoEmEstatus("evt.getURL().toString()");
+        }else{
+            FrmPrincipal.setAvisoEmEstatus("");
         }
     }//GEN-LAST:event_TxpNavegadorHyperlinkUpdate
 

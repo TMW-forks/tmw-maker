@@ -13,6 +13,12 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
+import javax.lang.model.element.Element;
+import javax.swing.text.Document;
+import java.util.HashMap;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+
 
 public class FileClass {
     public static void apagar(String PastaOuArquivo){
@@ -181,6 +187,32 @@ public class FileClass {
             return Conteudo;
         }
     }
+    public static void arquivoAbrirXML(String Endereco){
+        if(seExiste(Endereco)){
+            DocumentBuilderFactory Fabrica = DocumentBuilderFactory.newInstance();
+            DocumentBuilder Construtor = null;
+            Document Documento = null;
+            try {
+                Construtor = Fabrica.newDocumentBuilder();
+                Documento = (Document) Construtor.parse(Endereco);
+
+                for(int e=0;e<Documento.getDefaultRootElement().getElementCount();e++){
+                    System.out.println(Documento.getDefaultRootElement().getElement(e).getName().toString());
+                }
+            } catch (Exception e) {
+                System.out.println("Não é possível carregar o arquivo '"+Endereco+"'.");
+                e.printStackTrace();
+            }
+            
+
+
+            /*Element elem = ;
+            // pega todos os elementos 'monstro' do XML
+            NodeList nl = elem.getElementsByTagName("monstro");
+            return (Element[]) Documento.getRootElements();/**/
+        }
+    }
+
     public static String urlAbrir(String Endereco){
          try {
             URL arquivo = new URL(Endereco);
