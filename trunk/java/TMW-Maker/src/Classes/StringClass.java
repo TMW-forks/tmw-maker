@@ -1,6 +1,8 @@
 
 package Classes;
 
+import java.io.UnsupportedEncodingException;
+
 public class StringClass {
     public StringClass(String Testo) {
         testoEmTratamento = Testo;
@@ -23,6 +25,29 @@ public class StringClass {
     public String getLinha(int Linha) {
         String Partes[] = testoEmTratamento.split("\n");
         return Partes[Linha];
+    }
+
+    public void setKeyCode(String codigoDeCaracteres){
+        if(codigoDeCaracteres.equals("UTF-8")){//Transforma ISO-8859-1 ? UTF-8
+            testoEmTratamento=ISO88591toUTF8(testoEmTratamento);
+        }else if(codigoDeCaracteres.equals("ISO-8859-1")){//Transforma UTF-8 ? ISO-8859-1
+            testoEmTratamento=UTF8toISO88591(testoEmTratamento);
+        }
+    }
+    private static String UTF8toISO88591(String UTF8){ //Funcionando perfeitamente
+        try{
+            return new String(UTF8.getBytes("ISO-8859-1"), "UTF-8");
+        } catch(UnsupportedEncodingException E){
+            return UTF8;
+        }
+    }
+    private static String ISO88591toUTF8(String ISO88591){ //Funcionamento não-testado
+        try{
+            return new String(ISO88591.getBytes("UTF-8"), "ISO-8859-1");
+            //return java.net.URLDecoder.decode(ISO88591, "ISO-8859-1");
+        } catch(UnsupportedEncodingException E){
+            return ISO88591;
+        }
     }
 
     public void substituir(String De, String Por){

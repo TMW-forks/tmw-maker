@@ -158,23 +158,6 @@ public class ConfigClass {
         }
         while (TempoAtual-TempoInicio<Milisegundos);
     }
-
-    public static String UTF8toISO88591(String UTF8){
-        try{
-            return java.net.URLDecoder.decode(UTF8, "ISO-8859-1");
-        } catch(UnsupportedEncodingException E){
-            return UTF8;
-        }
-    }
-    public static String ISO88591toUTF8(String ISO88591){
-        try{
-            String busca = new String(ISO88591.getBytes("UTF-8"), "ISO-8859-1");
-            return busca;
-        } catch(UnsupportedEncodingException E){
-            return ISO88591;
-
-        }/**/
-    }
     public static boolean AbrirNavegador(String URL) {
         //minimizes the app
 

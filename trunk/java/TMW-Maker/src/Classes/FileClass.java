@@ -13,11 +13,18 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
-import javax.lang.model.element.Element;
-import javax.swing.text.Document;
-import java.util.HashMap;
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+
 
 
 public class FileClass {
@@ -187,31 +194,62 @@ public class FileClass {
             return Conteudo;
         }
     }
-    public static void arquivoAbrirXML(String Endereco){
+    /*public static Document arquivoAbrirXML(String Endereco){
         if(seExiste(Endereco)){
-            DocumentBuilderFactory Fabrica = DocumentBuilderFactory.newInstance();
-            DocumentBuilder Construtor = null;
-            Document Documento = null;
             try {
-                Construtor = Fabrica.newDocumentBuilder();
-                Documento = (Document) Construtor.parse(Endereco);
-
-                for(int e=0;e<Documento.getDefaultRootElement().getElementCount();e++){
-                    System.out.println(Documento.getDefaultRootElement().getElement(e).getName().toString());
-                }
-            } catch (Exception e) {
-                System.out.println("Não é possível carregar o arquivo '"+Endereco+"'.");
-                e.printStackTrace();
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                DocumentBuilder db=dbf.newDocumentBuilder();
+                return db.parse(Endereco);
+                // pega todos os elementos usuario do XML
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-
-
-            /*Element elem = ;
-            // pega todos os elementos 'monstro' do XML
-            NodeList nl = elem.getElementsByTagName("monstro");
-            return (Element[]) Documento.getRootElements();/**/
         }
+        return null;
     }
+    public static Vector getNos(Document Documento,String Elemento){
+        Element Elementos = Documento.getDocumentElement();
+        NodeList nl = Elementos.getElementsByTagName(Elemento); //Elemento="usuario"
+        // percorre cada elemento usuario encontrado  
+        Vector usuarios = new Vector();  
+        for (int i = 0; i < nl.getLength(); i++) {
+            Element tagUsuario = (Element) nl.item(i);
+
+            // pega os dados cadastrado para o usuario atual  
+            int id = Integer.parseInt(tagUsuario.getAttribute("id"));
+            String nome = getChildTagValue(tagUsuario, "nome");
+            Integer idade = new Integer(getChildTagValue(tagUsuario, "idade"));
+            String email = getChildTagValue(tagUsuario, "email");
+
+            // cria uma nova instancia do UsuarioGuj com os dados do xml  
+            UsuarioGUJ usuarioGuj = new UsuarioGUJ(id, nome, idade, email);
+
+            // adiciona o usuario na coleção (vector) de usuários do guj  
+            usuarios.addElement(usuarioGuj);
+        }
+
+        return usuarios;
+    }
+    
+    // este método lê e retorna o conteúdo (texto) de uma tag (elemento)  
+    // filho da tag informada como parâmetro. A tag filho a ser pesquisada  
+    // é a tag informada pelo nome (string)  
+    private String getChildTagValue(Element elem, String tagName){
+        NodeList children = elem.getElementsByTagName(tagName);
+        if (children == null) {
+            return null;
+        }
+        Element child = (Element) children.item(0);
+        if (child == null) {
+            return null;
+        }
+        return child.getFirstChild().getNodeValue();
+    }/**/
+
 
     public static String urlAbrir(String Endereco){
          try {
