@@ -402,6 +402,7 @@
                 </Property>
                 <Property name="mnemonic" type="int" value="67"/>
                 <Property name="text" type="java.lang.String" value="Copilar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoCopilarActionPerformed"/>
@@ -527,7 +528,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-              <Component id="LblFundo" pref="428" max="32767" attributes="0"/>
+              <Component id="LblFundo" pref="468" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="PnlBarraDeEstatus" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -689,6 +690,34 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator8">
         </Component>
+        <Component class="javax.swing.JButton" name="BtnEditarCamposMapas">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/sbl_globo.gif"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Editor de Mapa (Ctrl+M)"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEditarCamposMapasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BtnEditarCamposTilesets">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/sbl_terreno.gif"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Listar Tilesets (Ctrl+T)"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator12">
+        </Component>
         <Component class="javax.swing.JButton" name="BtnEditarPersonagemScript">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -741,6 +770,7 @@
               <Image iconType="3" name="/Imagem/Botoes/sbl_atomico.gif"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Copilar (Ctrl+F9)"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
