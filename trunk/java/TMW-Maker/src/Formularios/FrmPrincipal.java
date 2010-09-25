@@ -967,11 +967,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuJogoLocalhost.setEnabled(Config.getSeDependenciaDeSVN());
             MnuJogoLocalhostAtualizar.setEnabled(Config.getSeDependenciaDeSVN() && Config.getSeDependenciaDeMontagem());
             MnuJogoLocalhostCompartilhar.setEnabled(Config.getSeDependenciaDeSVN() && Config.getSeDependenciaDeMontagem());
-            MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuEditarCampos.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarPersonagem.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarItens.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuJogoExecutar.setEnabled(Config.getSeDependenciaDeMontagem());
-            MnuJogoCopilar.setEnabled(Config.getSeDependenciaDeMontagem());
+            //MnuJogoCopilar.setEnabled(Config.getSeDependenciaDeMontagem());
         }
     }
     public void VerificarBarraDeFerramentas() {
@@ -980,10 +981,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnSistemaDependencias.setEnabled(MnuSistema.isEnabled() && MnuSistemaDependencias.isEnabled());
         BtnEditorItensSprites.setEnabled(MnuEditar.isEnabled() && MnuEditarItens.isEnabled() && MnuEditarItensSprites.isEnabled());
         BtnEditarItensDados.setEnabled(MnuEditar.isEnabled() && MnuEditarItens.isEnabled() && MnuEditarItensDados.isEnabled());
+        BtnEditarCamposMapas.setEnabled(MnuEditar.isEnabled() && MnuEditarCampos.isEnabled() && MnuEditarCamposMapas.isEnabled());
         BtnEditarPersonagemScript.setEnabled(MnuEditar.isEnabled() && MnuEditarPersonagem.isEnabled() && MnuEditarPersonagemScript.isEnabled());
         BtnEditarContas.setEnabled(MnuEditar.isEnabled() && MnuEditarContas.isEnabled());
         BtnJogoExecular.setEnabled(MnuJogo.isEnabled() && MnuJogoExecutar.isEnabled());
-        BtnJogoCopilar.setEnabled(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled());
+        //BtnJogoCopilar.setEnabled(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled());
         BtnJogoLocalhostSupervisonar.setEnabled(MnuJogo.isEnabled() && MnuJogoLocalhost.isEnabled() && MnuJogoLocalhostSupervisionado.isEnabled());
         BtnJogoLocalhostAtualizar.setEnabled(MnuJogo.isEnabled() && MnuJogoLocalhost.isEnabled() && MnuJogoLocalhostAtualizar.isEnabled());
         BtnJogoLocalhostCompartilhar.setEnabled(MnuJogo.isEnabled() && MnuJogoLocalhost.isEnabled() && MnuJogoLocalhostCompartilhar.isEnabled());
@@ -1015,6 +1017,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnEditorItensSprites = new javax.swing.JButton();
         BtnEditarItensDados = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
+        BtnEditarCamposMapas = new javax.swing.JButton();
+        BtnEditarCamposTilesets = new javax.swing.JButton();
+        jSeparator12 = new javax.swing.JToolBar.Separator();
         BtnEditarPersonagemScript = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JToolBar.Separator();
         BtnEditarContas = new javax.swing.JButton();
@@ -1188,6 +1193,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jToolBar1.add(BtnEditarItensDados);
         jToolBar1.add(jSeparator8);
 
+        BtnEditarCamposMapas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))); // NOI18N
+        BtnEditarCamposMapas.setToolTipText("Editor de Mapa (Ctrl+M)");
+        BtnEditarCamposMapas.setFocusable(false);
+        BtnEditarCamposMapas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnEditarCamposMapas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BtnEditarCamposMapas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarCamposMapasActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BtnEditarCamposMapas);
+
+        BtnEditarCamposTilesets.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_terreno.gif"))); // NOI18N
+        BtnEditarCamposTilesets.setToolTipText("Listar Tilesets (Ctrl+T)");
+        BtnEditarCamposTilesets.setEnabled(false);
+        BtnEditarCamposTilesets.setFocusable(false);
+        BtnEditarCamposTilesets.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnEditarCamposTilesets.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(BtnEditarCamposTilesets);
+        jToolBar1.add(jSeparator12);
+
         BtnEditarPersonagemScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_arvore.png"))); // NOI18N
         BtnEditarPersonagemScript.setToolTipText("Arvore de Scripts de NPC (Ctrl+N)");
         BtnEditarPersonagemScript.setFocusable(false);
@@ -1228,6 +1254,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         BtnJogoCopilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_atomico.gif"))); // NOI18N
         BtnJogoCopilar.setToolTipText("Copilar (Ctrl+F9)");
+        BtnJogoCopilar.setEnabled(false);
         BtnJogoCopilar.setFocusable(false);
         BtnJogoCopilar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnJogoCopilar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1575,6 +1602,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuJogoCopilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_atomico.gif"))); // NOI18N
         MnuJogoCopilar.setMnemonic('C');
         MnuJogoCopilar.setText("Copilar");
+        MnuJogoCopilar.setEnabled(false);
         MnuJogoCopilar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnuJogoCopilarActionPerformed(evt);
@@ -1649,7 +1677,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 428, Short.MAX_VALUE)
+                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 468, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1895,7 +1923,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void BtnJogoCopilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJogoCopilarActionPerformed
         if(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled()) MnuJogoCopilarActionPerformed(evt);
     }//GEN-LAST:event_BtnJogoCopilarActionPerformed
-
     private void MnuEditarCamposMapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarCamposMapasActionPerformed
         javax.swing.JDialog FrmListarMapas = new FrmListarMapas(this, rootPaneCheckingEnabled);
         FrmListarMapas.setLocation(
@@ -1905,6 +1932,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmListarMapas.setModal(true);
         FrmListarMapas.setVisible(true);/**/
     }//GEN-LAST:event_MnuEditarCamposMapasActionPerformed
+    private void BtnEditarCamposMapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarCamposMapasActionPerformed
+        if(MnuEditar.isEnabled() && MnuEditarCampos.isEnabled() && MnuEditarCamposMapas.isEnabled()) MnuEditarCamposMapasActionPerformed(evt);
+    }//GEN-LAST:event_BtnEditarCamposMapasActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1918,6 +1948,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BtnAjudaComponentes;
     private javax.swing.JButton BtnAjudaIndicarDefeito;
     private javax.swing.JButton BtnAjudaSobre;
+    private javax.swing.JButton BtnEditarCamposMapas;
+    private javax.swing.JButton BtnEditarCamposTilesets;
     private javax.swing.JButton BtnEditarContas;
     private javax.swing.JButton BtnEditarItensDados;
     private javax.swing.JButton BtnEditarPersonagemScript;
@@ -1977,6 +2009,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
+    private javax.swing.JToolBar.Separator jSeparator12;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
