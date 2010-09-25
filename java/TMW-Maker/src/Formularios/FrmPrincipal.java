@@ -19,11 +19,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
 
     public FrmPrincipal() {
+        try {
+            String Endereco ="/Imagem/Botoes/sbl_localhost-tmw.png";
+            //String Endereco ="/Imagem/Botoes/sbl_tmw.png";
+            //String Endereco ="/Imagem/Fundos/icon-tmwmaker-96x96px.png";
+            super.setIconImage((new ImageIcon(getClass().getResource(Endereco))).getImage());
+        } catch (Exception e) {
+            System.out.println("Icone erro:\n" + e.getMessage());
+        }
         initComponents();
     }
     static String ComponenteSelecionado = "";
