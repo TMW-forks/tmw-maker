@@ -1,0 +1,203 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>lvhues</title>
+<style type="text/css">
+<!--
+  a {font-weight:bold;text-decoration:none;}
+  a:hover {text-decoration:underline;}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#003366"
+vlink="#003366" alink="#FFFF00">
+
+<p align="center"><font size="3" face="Arial"><em><strong>lvhues
+applet 3.0 - by </strong></em></font><a
+href="http://www.cromoteca.com/"><font size="3" face="Arial"><em><strong>Cromoteca</strong></em></font></a></p>
+
+<p><font size="2" face="Arial"><strong>lvhues</strong> is an
+applet that shows an image changing its hue continuously. Note
+that is convenient to set the applet dimensions equal to the
+image dimensions. To use this applet you need to put in your web
+site both lvhues.class and lv1.class.</font></p>
+
+<p><font size="2" face="Arial">This is an example:</font></p>
+
+<p align="center">
+  <applet code="lvhues.class" archive="lvhues.jar" align="baseline"
+width="160" height="144">
+    <param name="credits"
+value="applet by www.cromoteca.com">
+    <param name="image"
+value="lvlogo.jpg">
+    <param name="link"
+value="http://www.cromoteca.com">
+    <param name="reducecolors"
+value="2">
+  </applet>
+</p>
+
+<p><font size="2" face="Arial">Look at another </font><a
+href="example.html"><font size="2" face="Arial">example</font></a><font
+size="2" face="Arial"> that shows what happens using two images:
+the image itself and a mask.</font></p>
+
+<p><font size="2" face="Arial">You can configure these
+parameters:</font></p>
+<div align="center"><center>
+
+    <table border="0" cellpadding="3" cellspacing="1">
+      <tr>
+        <td valign="top" bgcolor="#0066CC"><font size="2"
+        face="Arial"><strong>Parameter Name</strong></font></td>
+        <td valign="top" bgcolor="#0066CC"><font size="2"
+        face="Arial">Default Value</font></td>
+        <td valign="top" bgcolor="#0066CC"><font size="2"
+        face="Arial">Short Description</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Image</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">(none)</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">The name of the image file</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Mask</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">(none)</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">The name of the mask file (if used)</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Period</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">15000</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Time to perform a complete hue rotation (in milliseconds)</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>ReduceColors</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">0 for GIF files, 3 for JPEG files</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">A coefficient that reduces the number of colors in the image,
+          allowing better performance. Normally you can accept the default setting,
+          but it's a good idea to reduce it to &quot;0&quot;, &quot;1&quot; or
+          &quot;2&quot; for small JPEGs. The max. value is &quot;7&quot;. (You
+          can also use numbers from &quot;-1&quot; to &quot;-7&quot; that will
+          darken the image.)</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Link</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">(none)</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">The URL to be shown when the users clicks over the applet</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Target</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">_self</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Destination frame for the link</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Separator</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">,</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">A character used as separator for parameters that specify
+          multiple characteristics (e.g. <strong>Font</strong>)</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Font</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Dialog,0,12</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Text font. The format is:</font> <pre>type + separator + style + separator + size</pre>
+          <p><font size="2" face="Arial">where type can be &quot;Courier&quot;,
+            &quot;Dialog&quot;, &quot;Helvetica&quot; or &quot;TimesRoman&quot;;
+            style can be &quot;0&quot; (Normal), &quot;1&quot; (<em>Italic</em>),
+            &quot;2&quot; (<strong>Bold</strong>) or &quot;3&quot; (<em><strong>BoldItalic</strong></em>);
+            size is an integer</font></p></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Background</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">000000</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Background color. The format is &quot;RRGGBB&quot; (similar
+          to HTML)</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Foreground</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">FFFFFF</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Text color</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>HandCursor</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Yes</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Uses the hand-shaped cursor over the links or not. The value
+          can be &quot;Yes&quot; or &quot;No&quot;</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>SleepTime</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">10</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Short pause between the animation frames (in milliseconds)</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Text</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Loading...</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Text to display while loading the image</font></td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#3399CC"><font size="2"
+        face="Arial"><strong>Credits</strong></font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">(none)</font></td>
+        <td valign="top" bgcolor="#6699FF"><font size="2"
+        face="Arial">Please set it to &quot;applet by www.cromoteca.com&quot;
+          as a credit for the author. Thank you! (This is required if you use
+          this applet on the web, otherwise it won't work)</font></td>
+      </tr>
+    </table>
+</center></div>
+
+<p><font size="2" face="Arial">Note: the names of their
+parameters and their values are case-insensitive, with the
+exception of the font names (&quot;Courier&quot;,
+&quot;Dialog&quot;, &quot;Helvetica&quot; and
+&quot;TimesRoman&quot;) and of the <strong>Credits</strong>
+value.</font></p>
+
+<p align="center"><a href="http://www.cromoteca.com/java"><font
+size="2" face="Arial">Cromoteca - java home</font></a></p>
+</body>
+</html>
