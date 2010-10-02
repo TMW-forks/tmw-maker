@@ -12,7 +12,7 @@ import Classes.BancoDeDados.Banco_Spawns;
 import Classes.ImagemClass;
 import Classes.DialogClass;
 import Classes.StringClass;
-import Classes.BancoDeDados.SpriteXML;
+import Classes.SpriteXML;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
