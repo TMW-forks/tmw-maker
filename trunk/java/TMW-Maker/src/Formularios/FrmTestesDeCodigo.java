@@ -4,7 +4,7 @@ package Formularios;
 import Classes.ImagemClass;
 import Classes.Modificadoras.jTtableImagemDeColuna;
 import Classes.Modificadoras.jTtableImagemDeCabecalho;
-import Classes.SpriteClass;
+import Classes.SpritePNG;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -146,7 +146,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
     public void Teste_A05(){
         try {
-            SpriteClass Sprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+            SpritePNG Sprite = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
             int Bloco=8;
             jLabel1.setIcon(new ImageIcon(Sprite.getBloco(Bloco)));
             Sprite.EsportarBloco(Bloco,"/home/indigovox/Desktop/corte.jpg");
@@ -156,7 +156,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
     public void Teste_A06(){
         try {
-            SpriteClass Sprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+            SpritePNG Sprite = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
             int Bloco=8;
             ImagemClass BlocoImagem = new ImagemClass(Sprite.getBloco(Bloco));
             BlocoImagem.setCorte(0, 28, 64, 20);
@@ -431,7 +431,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         columnNames.addElement("Frame 2");
         columnNames.addElement("Frame 3");
 
-        SpriteClass Sprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+        SpritePNG Sprite = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
         ImageIcon Icone = new ImageIcon(Sprite.getBloco(8));
         ImageIcon Icone2 = new ImageIcon(Sprite.getBloco(0));
         ImageIcon Icone3 = new ImageIcon(Sprite.getBloco(999));
@@ -605,10 +605,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     }
     public void LoadImagensAMesclar(){
         lblImagemMesclada.setIcon(null);
-        SpriteClass SpriteChar = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+        SpritePNG SpriteChar = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
         ImagemClass BlocoMesclado = new ImagemClass(SpriteChar.getBloco(0));
 
-        SpriteClass SpriteCabelo = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/hairstyle15.png",1,5);
+        SpritePNG SpriteCabelo = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/hairstyle15.png",1,5);
         ImagemClass BlocoCabelo = new ImagemClass(SpriteCabelo.getBloco(0));
         /*BlocoCabelo.setRecolor(
             new Color(0,0,0),
@@ -624,17 +624,17 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         );
         BlocoMesclado.setMesclagem(BlocoCabelo.getImage(),12,-7);
 
-        SpriteClass SpriteEquip1 = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/chest-assassin-male.png",8,9);
+        SpritePNG SpriteEquip1 = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/chest-assassin-male.png",8,9);
         BlocoMesclado.setMesclagem(SpriteEquip1.getBloco(0),0,7);
-        SpriteClass SpriteEquip2 = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/feet-assassin-boots-male.png",8,9);
+        SpritePNG SpriteEquip2 = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/feet-assassin-boots-male.png",8,9);
         BlocoMesclado.setMesclagem(SpriteEquip2.getBloco(0),0,7);
         BlocoMesclado.setMesclagem(
-            (new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/hands-gloves-assassin-male.png",8,9)).getBloco(0)
+            (new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/hands-gloves-assassin-male.png",8,9)).getBloco(0)
             ,0,7
         );
         BlocoMesclado.setMesclagem(
             (
-                new SpriteClass(
+                new SpritePNG(
                     "/home/indigovox/localhost/tmwdata/graphics/sprites/head-masc-ninja2.png"
                     ,1,5
                 )
@@ -643,7 +643,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         );
         BlocoMesclado.setMesclagem(
             (
-                new SpriteClass(
+                new SpritePNG(
                     "/home/indigovox/localhost/tmwdata/graphics/sprites/leg-assassin-male.png"
                     ,8,9
                 )
@@ -843,7 +843,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
             public void setImgemColuna(int Coluna, ImageIcon Imagem) {
                 //return canEdit [columnIndex];
-                Classes.SpriteClass MeuSprite = new Classes.SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+                Classes.SpritePNG MeuSprite = new Classes.SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
                 ImageIcon Icone = new ImageIcon(MeuSprite.getBloco(0));
                 jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setCellRenderer(new Classes.Modificadoras.jTtableImagemDeColuna());
                 jTable1.setRowHeight(0, Icone.getIconHeight());

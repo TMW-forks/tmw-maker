@@ -1,33 +1,33 @@
 package Classes.BancoDeDados;
 
-import Classes.SpriteClass;
+import Classes.SpritePNG;
 
 public class SpriteXML {
     public SpriteXML(String Nome, String Endereco, int Linhas, int Colunas){
         Banco_Nome=Nome;
-        SpriteDados = new SpriteClass(Endereco, Linhas, Colunas);
+        SpriteDados = new SpritePNG(Endereco, Linhas, Colunas);
     }
-    public SpriteXML(String Nome, SpriteClass Sprite){
+    public SpriteXML(String Nome, SpritePNG Sprite){
         Banco_Nome=Nome;
         SpriteDados = Sprite;
     }
     public SpriteXML(String Nome, String Endereco, int Linhas, int Colunas, XmlAcao Acoes[]){
         Banco_Nome=Nome;
-        SpriteDados = new SpriteClass(Endereco, Linhas, Colunas);
+        SpriteDados = new SpritePNG(Endereco, Linhas, Colunas);
         Banco_Acoes= Acoes;
     }
-    public SpriteXML(String Nome, SpriteClass Sprite, XmlAcao Acoes[]){
+    public SpriteXML(String Nome, SpritePNG Sprite, XmlAcao Acoes[]){
         Banco_Nome=Nome;
         SpriteDados = Sprite;
         Banco_Acoes= Acoes;
     }
 
     private String Banco_Nome="";
-    private SpriteClass SpriteDados = null;
+    private SpritePNG SpriteDados = null;
     private XmlAcao Banco_Acoes[]; //Não deve ser instaciado agora!!!!
 
     public String getNome(){return Banco_Nome;}
-    public SpriteClass getSpriteDados(){return SpriteDados;}
+    public SpritePNG getSpriteDados(){return SpriteDados;}
     public XmlAcao[] getAcoes(){return Banco_Acoes;}
     public XmlAcao getAcao(int Ordem){
         if(Banco_Acoes != null){
@@ -69,7 +69,7 @@ public class SpriteXML {
     }
 
     public void setNome(String NovoNome){Banco_Nome=NovoNome;}
-    public void setSpriteDados(SpriteClass NovoSpriteDados){SpriteDados=NovoSpriteDados;}
+    public void setSpriteDados(SpritePNG NovoSpriteDados){SpriteDados=NovoSpriteDados;}
     public void setAcoes(XmlAcao NovasAcoes[]){Banco_Acoes=NovasAcoes;}
     public void setAcao(int Ordem, XmlAcao NovaAcao){
         Banco_Acoes[Ordem]=NovaAcao;
