@@ -947,23 +947,18 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
        LoadImagensAMesclar();
 
     }//GEN-LAST:event_formWindowOpened
-
     private void TxpCodificadorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TxpCodificadorCaretUpdate
         
     }//GEN-LAST:event_TxpCodificadorCaretUpdate
-
     private void TxpCodificadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxpCodificadorKeyReleased
         Autoformatar();
     }//GEN-LAST:event_TxpCodificadorKeyReleased
-
     private void sldVermelhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldVermelhoMouseReleased
         LoadImagensAMesclar();
     }//GEN-LAST:event_sldVermelhoMouseReleased
-
     private void sldVerdeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldVerdeMouseReleased
         LoadImagensAMesclar();
     }//GEN-LAST:event_sldVerdeMouseReleased
-
     private void sldAzulMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldAzulMouseReleased
         LoadImagensAMesclar();
     }//GEN-LAST:event_sldAzulMouseReleased
