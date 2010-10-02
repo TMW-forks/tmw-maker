@@ -8,10 +8,11 @@ import Classes.BancoDeDados.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_Itens;
 import Classes.BancoDeDados.Banco_Mapas;
+import Classes.BancoDeDados.Banco_Spawns;
 import Classes.ImagemClass;
 import Classes.DialogClass;
 import Classes.StringClass;
-import Classes.BancoDeDados.XMLdeEquip;
+import Classes.BancoDeDados.SpriteXML;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -41,16 +42,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_Mapas Mundo; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
+    static Banco_Spawns Spawns; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     //public static String SpritePNG=""; // É esado em FrmEquipXML***
-    static XMLdeEquip xmlEditada; // É usado em FrmEquipXML***
+    static SpriteXML xmlEditada; // É usado em FrmEquipXML***
 
     public static void setAvisoEmEstatus(String Aviso) {
-        setAvisoEmEstatus(Aviso.toString(), null);
+        System.out.println(Aviso.toString());
+        LblEstatus.setText(Aviso.toString());
+        LblEstatus.setIcon(null);
     }
     public static void setAvisoEmEstatus(String Aviso, Icon Icone) {
         System.out.println(Aviso.toString());
         LblEstatus.setText(Aviso.toString());
         LblEstatus.setIcon(Icone);
+    }
+    public static void setAvisoEmEstatus(String Aviso, String EnderecoOuResource) {
+        System.out.println(Aviso.toString());
+        LblEstatus.setText(Aviso.toString());
+        LblEstatus.setIcon((new ImagemClass(EnderecoOuResource)).getIcone());
     }
 
     public void Atualizar(){
@@ -1504,7 +1513,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarPersonagem);
 
-        MnuEditarInimigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_robotuatec.gif"))); // NOI18N
+        MnuEditarInimigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))); // NOI18N
         MnuEditarInimigos.setMnemonic('N');
         MnuEditarInimigos.setText("Inimigos");
         MnuEditarInimigos.setEnabled(false);

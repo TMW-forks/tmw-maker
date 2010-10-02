@@ -2,21 +2,21 @@ package Classes.BancoDeDados;
 
 import Classes.SpriteClass;
 
-public class XMLdeEquip {
-    public XMLdeEquip(String Nome, String Endereco, int Linhas, int Colunas){
+public class SpriteXML {
+    public SpriteXML(String Nome, String Endereco, int Linhas, int Colunas){
         Banco_Nome=Nome;
         SpriteDados = new SpriteClass(Endereco, Linhas, Colunas);
     }
-    public XMLdeEquip(String Nome, SpriteClass Sprite){
+    public SpriteXML(String Nome, SpriteClass Sprite){
         Banco_Nome=Nome;
         SpriteDados = Sprite;
     }
-    public XMLdeEquip(String Nome, String Endereco, int Linhas, int Colunas, XmlAcao Acoes[]){
+    public SpriteXML(String Nome, String Endereco, int Linhas, int Colunas, XmlAcao Acoes[]){
         Banco_Nome=Nome;
         SpriteDados = new SpriteClass(Endereco, Linhas, Colunas);
         Banco_Acoes= Acoes;
     }
-    public XMLdeEquip(String Nome, SpriteClass Sprite, XmlAcao Acoes[]){
+    public SpriteXML(String Nome, SpriteClass Sprite, XmlAcao Acoes[]){
         Banco_Nome=Nome;
         SpriteDados = Sprite;
         Banco_Acoes= Acoes;

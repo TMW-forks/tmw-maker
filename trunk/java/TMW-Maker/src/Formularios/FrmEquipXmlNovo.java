@@ -3,7 +3,7 @@ package Formularios;
 import Classes.FileClass;
 import Classes.ImagemClass;
 import Classes.SpriteClass;
-import Classes.BancoDeDados.XMLdeEquip;
+import Classes.BancoDeDados.SpriteXML;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -571,7 +571,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
     private void BtnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCriarActionPerformed
         String Arquivo=CmbEndereco.getItemAt(CmbEndereco.getSelectedIndex()).toString();
 
-        FrmPrincipal.xmlEditada = new XMLdeEquip("base", Sprite);
+        FrmPrincipal.xmlEditada = new SpriteXML("base", Sprite);
         if(Arquivo.indexOf("head-")==0) setComoHead();
         else setComoGeral();
 
