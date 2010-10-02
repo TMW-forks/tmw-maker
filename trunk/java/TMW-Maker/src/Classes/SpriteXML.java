@@ -1,4 +1,4 @@
-package Classes.BancoDeDados;
+package Classes;
 
 import Classes.SpritePNG;
 

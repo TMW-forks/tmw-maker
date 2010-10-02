@@ -3,7 +3,7 @@ package Formularios;
 import Classes.FileClass;
 import Classes.ImagemClass;
 import Classes.SpritePNG;
-import Classes.BancoDeDados.SpriteXML;
+import Classes.SpriteXML;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
