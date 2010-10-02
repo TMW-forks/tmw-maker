@@ -16,8 +16,7 @@ import javax.swing.ImageIcon;
 public class ImagemClass {
     public ImagemClass(String EnderecoOuResource) {
         try{
-            ImageIcon Icone = new ImageIcon(getClass().getResource(EnderecoOuResource));
-            setImage(Icone.getImage());
+            setImage((new ImageIcon(getClass().getResource(EnderecoOuResource))).getImage());
         }catch(NullPointerException E){
             setEndereço(EnderecoOuResource);
         }

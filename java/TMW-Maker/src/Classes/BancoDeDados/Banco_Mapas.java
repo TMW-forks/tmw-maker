@@ -68,7 +68,8 @@ public class Banco_Mapas {
                                     if(FileClass.seExiste(mapaTMX)){
 //////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
                                         FrmPrincipal.setAvisoEmEstatus("<html>"+
-                                            "Carregando: \"<font color=\"#0000FF\">"+mapaNome+".tmx</font>\"!"
+                                            "Carregando Mapa: \"<font color=\"#0000FF\">"+mapaNome+".tmx</font>\"!",
+                                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
                                         );
 
                                         //Vector Prop_Tiles = importMapaXML(mapaTMX);
