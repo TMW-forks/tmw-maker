@@ -137,7 +137,17 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
                 int ContArquivos=0;
                 for(int a=0;a<Arquivos.length;a++){
                     if(
-                        Arquivos[a].substring(Arquivos[a].length()-4, Arquivos[a].length()).equals(".png")
+                        Arquivos[a].substring(Arquivos[a].length()-4, Arquivos[a].length()).equals(".png") &&
+                        !Arquivos[a].equals("emotions.png") &&
+                        Arquivos[a].indexOf("npc-")!=0 &&
+                        Arquivos[a].indexOf("npcs")!=0 &&
+                        Arquivos[a].indexOf("icon-")!=0 &&
+                        Arquivos[a].indexOf("generic-")!=0 &&
+                        Arquivos[a].indexOf("resource-")!=0 &&
+                        Arquivos[a].indexOf("hairstyle")!=0 &&
+                        Arquivos[a].indexOf("monster-")!=0 &&
+                        Arquivos[a].indexOf("monstro-")!=0 &&
+                        Arquivos[a].indexOf("player_")!=0
                     ){
                         ContArquivos++;
                         AgrupamentoDeArquivos[ContArquivos-1]=Arquivos[a];
@@ -168,13 +178,13 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
                 "head-",
                 "resource-",
                 "leg-",
-                "weapon",
+                "weapon",/*
                 "monster-",
-                "monstro-",
+                "monstro-",/**/
                 "npc",
                 "pet-",
-                "player_",
-                "hairstyle"
+                "hairstyle"/*,
+                "player_"/**/
             };
 
             try{
@@ -186,12 +196,12 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
                 T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(1,2);
                 T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
                 T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
-                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(4,10);
-                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(4,10);
+                //T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(4,10);
+                //T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(4,10);
                 T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(6,14);
                 T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(5,9);
-                T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
                 T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(1,9);
+                //T++; if(Arquivo.substring(0,Arquivo.length()<Tipo[T].length()?Arquivo.length():Tipo[T].length()).equals(Tipo[T])) setDimencao(8,9);
             }catch(StringIndexOutOfBoundsException E){
 
             }/**/
@@ -222,6 +232,11 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
                 if(ImgBloco.getLargura()>=PnlBloco.getWidth()){
                     ImgBloco.setZoom(PnlBloco.getWidth()/(double)ImgBloco.getLargura());
                 }
+
+                /*SpriteClass SpriteChar = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+                ImagemClass BlocoMesclado = new ImagemClass(SpriteChar.getBloco(numBloco));
+                BlocoMesclado.setMesclagem(ImgBloco.getImage(),12,-7);
+                LblBloco.setIcon(new ImageIcon(BlocoMesclado.getImage()));/**/
 
                 LblBloco.setIcon(new ImageIcon(ImgBloco.getImage()));
                 LblBloco.setToolTipText(
