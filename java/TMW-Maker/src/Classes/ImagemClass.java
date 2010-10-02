@@ -1,6 +1,7 @@
 
 package Classes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -151,10 +152,46 @@ public class ImagemClass {
         return getMesclagem(Fundo, NovaCamada, 0, 0);
     }
     public BufferedImage getMesclagem(BufferedImage Fundo, BufferedImage NovaCamada, int X, int Y) {
-        BufferedImage novaImagem = new BufferedImage(Fundo.getWidth(), Fundo.getHeight(), BufferedImage.TYPE_INT_RGB);
+        int Xfundo, Yfundo, Xtopo, Ytopo, NewW, NewH;
+        if(X<0){
+            Xfundo=X*(-1);
+            Xtopo=0;
+            if(Xfundo+Fundo.getWidth()>Xfundo+NovaCamada.getWidth()){
+                NewW=Xfundo+Fundo.getWidth();
+            }else{
+                NewW=Xfundo+NovaCamada.getWidth();
+            }
+        }else{
+            Xfundo=0;
+            Xtopo=X;
+            if(Xtopo+Fundo.getWidth()>Xtopo+NovaCamada.getWidth()){
+                NewW=Xtopo+Fundo.getWidth();
+            }else{
+                NewW=Xtopo+NovaCamada.getWidth();
+            }
+        }
+        if(Y<0){
+            Yfundo=Y*(-1);
+            Ytopo=0;
+            if(Yfundo+Fundo.getHeight()>Yfundo+NovaCamada.getHeight()){
+                NewH=Yfundo+Fundo.getHeight();
+            }else{
+                NewH=Yfundo+NovaCamada.getHeight();
+            }
+        }else{
+            Yfundo=0;
+            Ytopo=Y;
+            if(Ytopo+Fundo.getHeight()>Ytopo+NovaCamada.getHeight()){
+                NewH=Ytopo+Fundo.getHeight();
+            }else{
+                NewH=Ytopo+NovaCamada.getHeight();
+            }
+        }
+        BufferedImage novaImagem = new BufferedImage(NewW, NewH, Fundo.getType());
+        //BufferedImage.TYPE_INT_RGB
         Graphics g = novaImagem.getGraphics();
-        g.drawImage(Fundo, 0, 0, null);
-        g.drawImage(NovaCamada, X, Y, null);
+        g.drawImage(Fundo, Xfundo, Yfundo, null);
+        g.drawImage(NovaCamada, Xtopo, Ytopo, null);
         return novaImagem;
     }
     public void setCorte(int X, int Y, int Largura, int Altura) {
@@ -189,6 +226,67 @@ public class ImagemClass {
             for (int T=0; T<H; T++) {
                 Ponteiro=(H*L)+(H-(T+1));
                 Matriz[Ponteiro]=SuaImagem.getRGB(L, T);
+            }
+        }
+        BufferedImage ImagemDestino = new BufferedImage(SuaImagem.getHeight(),SuaImagem.getWidth(),SuaImagem.getType());
+        ImagemDestino.setRGB(0, 0, ImagemDestino.getWidth(), ImagemDestino.getHeight(), Matriz, 0, ImagemDestino.getWidth());
+        return ImagemDestino;
+    }
+    public void setRecolor(Color CorDestino) {
+        Imagem=getRecolor(
+            Imagem,
+            new Color(0,0,0),
+            new Color(255,255,255),
+            CorDestino
+        );
+    }
+    public void setRecolor(Color CorOrigemMin, Color CorOrigemMax, Color CorDestino) {
+        Imagem=getRecolor(Imagem, CorOrigemMin, CorOrigemMax, CorDestino);
+    }
+    public BufferedImage getRecolor(BufferedImage SuaImagem, Color CorOrigemMin, Color CorOrigemMax, Color CorDestino) {
+        //
+        int Ponteiro=0, W=SuaImagem.getWidth(), H=SuaImagem.getHeight();
+        int Matriz[] = new int[W * H];
+        for (int T=0; T<H; T++) {
+            for (int L=0; L<W; L++) {
+                //Ponteiro=(H*L)+(H-(T+1));
+                Ponteiro=(W*T)+L;
+                Color Cor = new Color(SuaImagem.getRGB(L, T));
+                if(Cor.getRed()>0 && Cor.getGreen()>0 && Cor.getBlue()>0){
+                    if(
+                        (Cor.getRed()> CorOrigemMin.getRed() && Cor.getRed()< CorOrigemMax.getRed()) ||
+                        (Cor.getGreen()> CorOrigemMin.getGreen() && Cor.getGreen()< CorOrigemMax.getGreen()) ||
+                        (Cor.getBlue()> CorOrigemMin.getBlue() && Cor.getBlue()< CorOrigemMax.getBlue())
+                    ){
+                        int red=Cor.getRed();
+                        int green=Cor.getGreen();
+                        int blue=Cor.getBlue();
+
+                        if(Cor.getRed()>= CorOrigemMin.getRed() && Cor.getRed()<= CorOrigemMax.getRed()){
+                            red=(CorDestino.getRed()+Cor.getRed())/2;
+                        }
+                        if(Cor.getGreen()>= CorOrigemMin.getGreen() && Cor.getGreen()<= CorOrigemMax.getGreen()){
+                            green=(CorDestino.getGreen()+Cor.getGreen())/2;
+                        }
+                        if(Cor.getBlue()>= CorOrigemMin.getBlue() && Cor.getBlue()<= CorOrigemMax.getBlue()){
+                            blue=(CorDestino.getBlue()+Cor.getBlue()) /2;
+                        }
+                        /*Matriz[Ponteiro]=
+                            (red*(256^2))+
+                            (green*(256^1))+
+                            (blue*(256^0));/**/
+                        Matriz[Ponteiro]=(new Color(red,green,blue)).getRGB();
+                        //Matriz[Ponteiro]=(Cor.getRGB()+CorDestino.getRGB())/2;
+                        //Matriz[Ponteiro]=Cor.getRGB();
+                    }else{
+                        Matriz[Ponteiro]=SuaImagem.getRGB(L, T);
+                        //Matriz[Ponteiro]=Cor.getRGB();
+                        //SuaImagem.setRGB(L, T, Cor.getRGB());
+                    }
+                }else{
+                    Matriz[Ponteiro]=SuaImagem.getRGB(L, T);
+                    //Matriz[Ponteiro]=Cor.getRGB();
+                }
             }
         }
         BufferedImage ImagemDestino = new BufferedImage(SuaImagem.getHeight(),SuaImagem.getWidth(),SuaImagem.getType());
