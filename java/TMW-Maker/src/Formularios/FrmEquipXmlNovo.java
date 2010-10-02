@@ -2,7 +2,7 @@ package Formularios;
 
 import Classes.FileClass;
 import Classes.ImagemClass;
-import Classes.SpriteClass;
+import Classes.SpritePNG;
 import Classes.BancoDeDados.SpriteXML;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -19,7 +19,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
     //String PastaDeSprites="/home/indigovox/localhost/tmwdata/graphics/sprites/";
     String PastaDeSprites=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"sprites"+Barra;
     String Endereco="";
-    SpriteClass Sprite=null;
+    SpritePNG Sprite=null;
 
     private void setComoGeral(){
         FrmPrincipal.xmlEditada.setNovaAcao("stand");
@@ -206,7 +206,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
 
             }/**/
 
-            Sprite = new SpriteClass(
+            Sprite = new SpritePNG(
                 Endereco,
                 Integer.parseInt(SpnLinhas.getValue().toString()),
                 Integer.parseInt(SpnColunas.getValue().toString())
@@ -214,7 +214,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
         }
     }
     public void ExibirBloco(){
-        if(Sprite instanceof SpriteClass){
+        if(Sprite instanceof SpritePNG){
             Sprite.setSpriteLinhas(Integer.parseInt(SpnLinhas.getValue().toString()));
             Sprite.setSpriteColunas(Integer.parseInt(SpnColunas.getValue().toString()));
             SldLinha.setValue(SldLinha.getValue()<=Sprite.getSpriteLinhas()-1?SldLinha.getValue():Sprite.getSpriteLinhas()-1);
@@ -233,7 +233,7 @@ public class FrmEquipXmlNovo extends javax.swing.JDialog {
                     ImgBloco.setZoom(PnlBloco.getWidth()/(double)ImgBloco.getLargura());
                 }
 
-                /*SpriteClass SpriteChar = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+                /*SpritePNG SpriteChar = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
                 ImagemClass BlocoMesclado = new ImagemClass(SpriteChar.getBloco(numBloco));
                 BlocoMesclado.setMesclagem(ImgBloco.getImage(),12,-7);
                 LblBloco.setIcon(new ImageIcon(BlocoMesclado.getImage()));/**/

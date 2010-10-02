@@ -8,8 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class SpriteClass {
-    public SpriteClass(String Endereco, int Linhas, int Colunas) {
+public class SpritePNG {
+    public SpritePNG(String Endereco, int Linhas, int Colunas) {
         try {
             File Arquivo = new File(Endereco);
             if(Arquivo.exists()){
@@ -24,7 +24,7 @@ public class SpriteClass {
             e.printStackTrace();
         }
     } // Só executa de for instaciado como objeto
-    public SpriteClass(String Endereco) {
+    public SpritePNG(String Endereco) {
         try {
             File Arquivo = new File(Endereco);
             if(Arquivo.exists()){
@@ -39,7 +39,7 @@ public class SpriteClass {
             e.printStackTrace();
         }
     } // Só executa de for instaciado como objeto
-    public SpriteClass(BufferedImage Imagem, int Linhas, int Colunas) {
+    public SpritePNG(BufferedImage Imagem, int Linhas, int Colunas) {
         SpriteEndereco="";
         SpriteLinhas=Linhas;
         SpriteColunas=Colunas;
@@ -47,7 +47,7 @@ public class SpriteClass {
         BlocoLargura=Sprite.getWidth()/Colunas;
         BlocoAltura=Sprite.getHeight()/Linhas;
     } // Só executa de for instaciado como objeto
-    public SpriteClass(BufferedImage Imagem) {
+    public SpritePNG(BufferedImage Imagem) {
         SpriteEndereco="";
         SpriteLinhas=1;
         SpriteColunas=1;
@@ -134,7 +134,7 @@ public class SpriteClass {
                 new File(Endereco)
             );
         } catch (IOException ex) {
-            Logger.getLogger(SpriteClass.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SpritePNG.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

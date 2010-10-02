@@ -3,7 +3,7 @@ package Classes.BancoDeDados;
 
 import Classes.FileClass;
 import Classes.DialogClass;
-import Classes.SpriteClass;
+import Classes.SpritePNG;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.awt.image.BufferedImage;
@@ -17,7 +17,7 @@ public class Banco_NPCs {
     public Banco_NPCs() {AbrirGeral();} // Só executa de for instaciado como objeto
 //####################### PRIVADOS #########################################
     private static Dados_NPC NPCs[]; //Não deve ser instaciado agora!!!!
-    private SpriteClass getSpriteDeXML(String Endereco) {
+    private SpritePNG getSpriteDeXML(String Endereco) {
         String Linha="";
         StringClass XML_Geral = new StringClass();
         try {
@@ -36,7 +36,7 @@ public class Banco_NPCs {
             DialogClass.showErro("Não foi possivel abrir \""+Endereco+"\"!","AVISO");
         }
 
-        SpriteClass Sprite = new SpriteClass(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+XML_Geral.extrairEntre("src=\"", "\""));
+        SpritePNG Sprite = new SpritePNG(FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+XML_Geral.extrairEntre("src=\"", "\""));
         Sprite.setSpriteColunas(Sprite.getSpriteLargura()/Integer.parseInt(XML_Geral.extrairEntre("width=\"", "\"")));
         Sprite.setSpriteLinhas(Sprite.getSpriteAltura()/Integer.parseInt(XML_Geral.extrairEntre("height=\"", "\"")));
         return Sprite;
@@ -109,7 +109,7 @@ public class Banco_NPCs {
         private int Variante=0;
         private String Nome="";
         private String Comentario="";
-        private SpriteClass Sprite = null;
+        private SpritePNG Sprite = null;
 
         public void setID(int NovoID){ID=NovoID;}
         public void setXML(String NovoXML){XML=NovoXML;}
@@ -117,7 +117,7 @@ public class Banco_NPCs {
         public void setVariante(int NovaVariante){Variante=NovaVariante;}
         public void setNome(String NovoNome){Nome=NovoNome;}
         public void setComentario(String NovoComentario){Comentario=NovoComentario;}
-        public void setSprite(SpriteClass NovoSprite){Sprite=NovoSprite;}
+        public void setSprite(SpritePNG NovoSprite){Sprite=NovoSprite;}
 
         public int getID(){return ID;}
         public String getXML(){return XML;}
@@ -125,7 +125,7 @@ public class Banco_NPCs {
         public int getVariante(){return Variante;}
         public String getNome(){return Nome;}
         public String getComentario(){return Comentario;}
-        public SpriteClass getSprite(){return Sprite;}
+        public SpritePNG getSprite(){return Sprite;}
         public BufferedImage getImagem(){return Sprite.getBloco(Variante);}
     }
 
