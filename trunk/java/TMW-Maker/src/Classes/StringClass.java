@@ -2,6 +2,7 @@
 package Classes;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 public class StringClass {
     public StringClass(String Testo) {
@@ -34,17 +35,16 @@ public class StringClass {
             testoEmTratamento=UTF8toISO88591(testoEmTratamento);
         }
     }
-    private static String UTF8toISO88591(String UTF8){ //Funcionando perfeitamente
+    public static String UTF8toISO88591(String UTF8){ // Só funciona se for executado fora do netbeans!
         try{
-            return new String(UTF8.getBytes("ISO-8859-1"), "UTF-8");
+            return URLDecoder.decode(UTF8, "ISO-8859-1");
         } catch(UnsupportedEncodingException E){
             return UTF8;
         }
     }
-    private static String ISO88591toUTF8(String ISO88591){ //Funcionamento não-testado
+    public static String ISO88591toUTF8(String ISO88591){ // Só funciona se for executado fora do netbeans!
         try{
             return new String(ISO88591.getBytes("UTF-8"), "ISO-8859-1");
-            //return java.net.URLDecoder.decode(ISO88591, "ISO-8859-1");
         } catch(UnsupportedEncodingException E){
             return ISO88591;
         }
