@@ -603,12 +603,72 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         //ep1.registerEditorKitForContentType("text/html", ep1);
         return ep1.getText();
     }
+    public void LoadImagensAMesclar(){
+        lblImagemMesclada.setIcon(null);
+        SpriteClass SpriteChar = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+        ImagemClass BlocoMesclado = new ImagemClass(SpriteChar.getBloco(0));
+
+        SpriteClass SpriteCabelo = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/hairstyle15.png",1,5);
+        ImagemClass BlocoCabelo = new ImagemClass(SpriteCabelo.getBloco(0));
+        /*BlocoCabelo.setRecolor(
+            new Color(0,0,0),
+            new Color(255,255,255),
+            new Color(255,255,0)
+        );/**/
+        BlocoCabelo.setRecolor(
+            new Color(
+                sldVermelho.getValue(),
+                sldVerde.getValue(),
+                sldAzul.getValue()
+            )
+        );
+        BlocoMesclado.setMesclagem(BlocoCabelo.getImage(),12,-7);
+
+        SpriteClass SpriteEquip1 = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/chest-assassin-male.png",8,9);
+        BlocoMesclado.setMesclagem(SpriteEquip1.getBloco(0),0,7);
+        SpriteClass SpriteEquip2 = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/feet-assassin-boots-male.png",8,9);
+        BlocoMesclado.setMesclagem(SpriteEquip2.getBloco(0),0,7);
+        BlocoMesclado.setMesclagem(
+            (new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/hands-gloves-assassin-male.png",8,9)).getBloco(0)
+            ,0,7
+        );
+        BlocoMesclado.setMesclagem(
+            (
+                new SpriteClass(
+                    "/home/indigovox/localhost/tmwdata/graphics/sprites/head-masc-ninja2.png"
+                    ,1,5
+                )
+            ).getBloco(0)
+            ,18,7
+        );
+        BlocoMesclado.setMesclagem(
+            (
+                new SpriteClass(
+                    "/home/indigovox/localhost/tmwdata/graphics/sprites/leg-assassin-male.png"
+                    ,8,9
+                )
+            ).getBloco(0)
+            ,0,7
+        );
+        //
+        
+        BlocoMesclado.setZoom(3.0);
+        lblImagemMesclada.setIcon(BlocoMesclado.getIcone());
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        lblImagemMesclada = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        sldAzul = new javax.swing.JSlider();
+        sldVermelho = new javax.swing.JSlider();
+        sldVerde = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -635,6 +695,84 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             }
         });
 
+        lblImagemMesclada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel4.setText("Vermelho:");
+
+        jLabel5.setText("Verde:");
+
+        jLabel6.setText("Azul:");
+
+        sldAzul.setMajorTickSpacing(8);
+        sldAzul.setMaximum(255);
+        sldAzul.setPaintTicks(true);
+        sldAzul.setSnapToTicks(true);
+        sldAzul.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                sldAzulMouseReleased(evt);
+            }
+        });
+
+        sldVermelho.setMajorTickSpacing(8);
+        sldVermelho.setMaximum(255);
+        sldVermelho.setPaintTicks(true);
+        sldVermelho.setSnapToTicks(true);
+        sldVermelho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                sldVermelhoMouseReleased(evt);
+            }
+        });
+
+        sldVerde.setMajorTickSpacing(8);
+        sldVerde.setMaximum(255);
+        sldVerde.setPaintTicks(true);
+        sldVerde.setSnapToTicks(true);
+        sldVerde.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                sldVerdeMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblImagemMesclada, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(sldAzul, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                    .addComponent(sldVerde, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                    .addComponent(sldVermelho, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sldVermelho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sldVerde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sldAzul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImagemMesclada, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Imagens", jPanel4);
+
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setOpaque(false);
@@ -660,10 +798,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -705,7 +843,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
 
             public void setImgemColuna(int Coluna, ImageIcon Imagem) {
                 //return canEdit [columnIndex];
-                SpriteClass MeuSprite = new SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
+                Classes.SpriteClass MeuSprite = new Classes.SpriteClass("/home/indigovox/localhost/tmwdata/graphics/sprites/player_male_base.png",8,9);
                 ImageIcon Icone = new ImageIcon(MeuSprite.getBloco(0));
                 jTable1.getTableHeader().getColumnModel().getColumn(Coluna).setCellRenderer(new Classes.Modificadoras.jTtableImagemDeColuna());
                 jTable1.setRowHeight(0, Icone.getIconHeight());
@@ -721,7 +859,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -759,8 +897,8 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -781,7 +919,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -802,9 +940,11 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
        //Teste_D02(); //Colocar Imagem em jTable editada por Vetores
        //Teste_E03(); //Colorir corretamente um jTextPane
 
-       AddCodigo(); Autoformatar();
-       TxaCodigo.setText(Desformatar(TxpCodificador.getText()));
+       //AddCodigo(); Autoformatar();
+       //TxaCodigo.setText(Desformatar(TxpCodificador.getText()));
        //TxaCodigo.setText(TxpCodificador.getText().intern());
+
+       LoadImagensAMesclar();
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -815,6 +955,18 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     private void TxpCodificadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxpCodificadorKeyReleased
         Autoformatar();
     }//GEN-LAST:event_TxpCodificadorKeyReleased
+
+    private void sldVermelhoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldVermelhoMouseReleased
+        LoadImagensAMesclar();
+    }//GEN-LAST:event_sldVermelhoMouseReleased
+
+    private void sldVerdeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldVerdeMouseReleased
+        LoadImagensAMesclar();
+    }//GEN-LAST:event_sldVerdeMouseReleased
+
+    private void sldAzulMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldAzulMouseReleased
+        LoadImagensAMesclar();
+    }//GEN-LAST:event_sldAzulMouseReleased
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -836,9 +988,13 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -848,6 +1004,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel lblImagemMesclada;
+    private javax.swing.JSlider sldAzul;
+    private javax.swing.JSlider sldVerde;
+    private javax.swing.JSlider sldVermelho;
     // End of variables declaration//GEN-END:variables
 
 }
