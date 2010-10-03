@@ -177,8 +177,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         FrmSplash.setModal(true);
         try{
             FrmSplash.setVisible(true);/**/
-        }catch(Exception E){
-            
+        }catch(Exception Ex){
+        //}catch(NullPointerException Ex){
         }
     }
     public void LocalhostMontar() {
