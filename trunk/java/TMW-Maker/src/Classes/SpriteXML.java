@@ -22,41 +22,42 @@ public class SpriteXML {
             SpriteDados = new SpritePNG(
                 TMWData+Barra+FileClass.getAtributo(tagImageset,"src",""),
                 FileClass.getAtributo(tagImageset,"width",0),
-                FileClass.getAtributo(tagImageset,"64",0)
+                FileClass.getAtributo(tagImageset,"height",0)
             );
 
             NodeList noAction = Elementos.getElementsByTagName("action"); //elemento="usuario"
-            //noAction = Elementos.getElementsByTagNameNS("action","DIREC"); //elemento="usuario"
-            Vector Action = new Vector();
             for (int Ac = 0; Ac < noAction.getLength(); Ac++) {
-                Vector Registro = new Vector();
+                //Vector Registro = new Vector();
                 Element tagAction = (Element) noAction.item(Ac);
                 addAcao(
                     FileClass.getAtributo(tagAction,"name",""),
                     FileClass.getAtributo(tagAction,"imageset","")
                 );
-                NodeList noAnimacao = noAction.item(Ac).getChildNodes(); //elemento="usuario"
+                //NodeList noAnimacao = noAction.item(Ac).getChildNodes(); //elemento="usuario"
+                NodeList noAnimacao = tagAction.getElementsByTagName("animation");
                 for (int An = 0; An < noAnimacao.getLength(); An++) {
                     Element tagAnimacao = (Element) noAnimacao.item(An);
                     getAcao(Ac).addAnimacao(FileClass.getAtributo(tagAnimacao,"direction",""));
 
-                    NodeList noFrame = noAnimacao.item(An).getChildNodes(); //elemento="usuario"
+                    //NodeList noFrame = noAnimacao.item(An).getChildNodes(); //elemento="usuario"
+                    NodeList noFrame = tagAnimacao.getElementsByTagName("*");
+                    //NodeList noFrame = tagAnimacao.getChildNodes();
                     for (int Fr = 0; Fr < noFrame.getLength(); Fr++) {
                         Element tagComando = (Element) noFrame.item(Fr); // Comando = Frame ou Sequence
                         if(tagComando.getTagName().toLowerCase().equals("frame")){
                             getAcao(Ac).getAnimacao(An).addFrame(
-                                FileClass.getAtributo(tagAnimacao,"index",0),
-                                FileClass.getAtributo(tagAnimacao,"offsetX",0),
-                                FileClass.getAtributo(tagAnimacao,"offsetY",0),
-                                FileClass.getAtributo(tagAnimacao,"delay",0)
+                                FileClass.getAtributo(tagComando,"index",0),
+                                FileClass.getAtributo(tagComando,"offsetX",0),
+                                FileClass.getAtributo(tagComando,"offsetY",0),
+                                FileClass.getAtributo(tagComando,"delay",0)
                             );
                         }else if(tagComando.getTagName().toLowerCase().equals("frame")){
                             getAcao(Ac).getAnimacao(An).addSequencia(
-                                FileClass.getAtributo(tagAnimacao,"start",0),
-                                FileClass.getAtributo(tagAnimacao,"end",0),
-                                FileClass.getAtributo(tagAnimacao,"offsetX",0),
-                                FileClass.getAtributo(tagAnimacao,"offsetY",0),
-                                FileClass.getAtributo(tagAnimacao,"delay",0)
+                                FileClass.getAtributo(tagComando,"start",0),
+                                FileClass.getAtributo(tagComando,"end",0),
+                                FileClass.getAtributo(tagComando,"offsetX",0),
+                                FileClass.getAtributo(tagComando,"offsetY",0),
+                                FileClass.getAtributo(tagComando,"delay",0)
                             );
                         }
                     }
