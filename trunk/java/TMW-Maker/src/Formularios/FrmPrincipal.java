@@ -1250,7 +1250,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jToolBar1.add(jSeparator13);
 
         btnEditarMonstrosDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))); // NOI18N
-        btnEditarMonstrosDados.setToolTipText("Editor de Monstros");
+        btnEditarMonstrosDados.setToolTipText("Editor de Monstros (Ctrl+R)");
         btnEditarMonstrosDados.setFocusable(false);
         btnEditarMonstrosDados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditarMonstrosDados.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

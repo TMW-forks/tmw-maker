@@ -1,9 +1,12 @@
 package Classes.BancoDeDados;
 
 import Classes.FileClass;
+import Classes.SpriteXML;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.util.Vector;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class Banco_Spawns {
     public Banco_Spawns() {
@@ -22,10 +25,11 @@ public class Banco_Spawns {
     public static String Barra = System.getProperty("file.separator");
     public static String EnderecoTXT = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"db"+Barra+"mob_db.txt";
     public static String EnderecoXML = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"monsters.xml";
+    public static String PastaDeSprites = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"sprites";
 
     private static Dados_Spawns Spawns[]=null;
     public void abrirBanco(String mobTXT, String mobXML){
-        if(FileClass.seExiste(mobTXT)){
+        if(FileClass.seExiste(mobTXT) && FileClass.seExiste(mobXML)){
             StringClass ConteudoTXT = new StringClass(FileClass.arquivoAbrir(mobTXT));
             FrmPrincipal.PgbBarra.setIndeterminate(false);
             FrmPrincipal.PgbBarra.setEnabled(true);
@@ -87,6 +91,42 @@ public class Banco_Spawns {
                                     );
                                 }
                             }catch(NumberFormatException ex){ }
+                        }
+
+                        Element Elementos=FileClass.arquivoAbrirXML(mobXML);
+                        NodeList noMonster = Elementos.getElementsByTagName("monster");
+                        for (int Ms = (getContSpawns()-1); Ms < noMonster.getLength(); Ms++) {
+                            Element tagMonster = (Element) noMonster.item(Ms);
+                            if((FileClass.getAtributo(tagMonster,"id",-1)+1002)==getSpawnPorOrdem(getContSpawns()-1).getID()){
+                                NodeList noSound = tagMonster.getElementsByTagName("sound");
+                                for (int Sn = 0; Sn < noSound.getLength(); Sn++) {
+                                    Element tagSound = (Element) noSound.item(Sn);
+                                    getSpawnPorOrdem(getContSpawns()-1).addSom(
+                                        FileClass.getAtributo(tagSound,"event",""),
+                                        tagSound.getFirstChild().getTextContent()
+                                    );
+                                }
+
+                                NodeList noSprite = tagMonster.getElementsByTagName("sprite");
+                                for (int Sp = 0; Sp < noSprite.getLength(); Sp++) {
+                                    Element tagSprite = (Element) noSprite.item(Sp);
+                                    String Sexo=FileClass.getAtributo(tagSprite,"gender","");
+                                    String Arquivo="", Recolor="";
+                                    if(tagSprite.getFirstChild().getTextContent().indexOf("|")>=0){
+                                        String Partes2[]=tagSprite.getFirstChild().getTextContent().split("\\|");
+                                        if(Partes2.length==2){
+                                            Arquivo=Partes2[0];
+                                            Recolor=Partes2[1];
+                                        }else if(Partes2.length>=3){
+                                            Arquivo=Partes2[0];
+                                        }
+                                    }else{
+                                        Arquivo=tagSprite.getFirstChild().getTextContent();
+                                    }
+                                    getSpawnPorOrdem(getContSpawns()-1).addSprite(Sexo,Arquivo,Recolor);
+                                }
+                                Ms=noMonster.getLength();
+                            }
                         }
                     }
                 }
@@ -159,6 +199,8 @@ public class Banco_Spawns {
         //######################################################################################
 
         private Banco_Drops Drops[]=null;
+        private Banco_Sounds Sons[]=null;
+        private Banco_Sprites Sprites[]=null;
 
         public int getID(){return ID;}
         public String getNomeSumonico(){return NomeSumonico;}
@@ -248,6 +290,78 @@ public class Banco_Spawns {
                 Drops = novosDrops;
             }
         }
+
+        public int getContSons(){
+            if(Sons != null){
+                return Sons.length;
+            }else{
+                return 0;
+            }
+        }
+        public Banco_Sounds getSomPorOrdem(int ordem){
+            if(Sons != null){
+                return Sons[ordem];
+            }else{
+                return null;
+            }
+        }
+        public void addSom(String novoEvent, String novoEndereco){
+            if(Sons != null){
+                Banco_Sounds novosSons[] = new Banco_Sounds[Sons.length+1];
+                for(int b=0;b<Sons.length;b++){
+                    novosSons[b]=getSomPorOrdem(b);
+                }
+                novosSons[Sons.length] = new Banco_Sounds(novoEvent, novoEndereco);
+                Sons = novosSons;
+            }else{
+                Banco_Sounds novosSons[] = new Banco_Sounds[1];
+                novosSons[0] = new Banco_Sounds(novoEvent, novoEndereco);
+                Sons = novosSons;
+            }
+        }
+
+        public int getContSprites(){
+            if(Sprites != null){
+                return Sprites.length;
+            }else{
+                return 0;
+            }
+        }
+        public Banco_Sprites getSpritePorOrdem(int ordem){
+            if(Sprites != null){
+                return Sprites[ordem];
+            }else{
+                return null;
+            }
+        }
+        public void addSprite(String novoSexo, String novoArquivo, String novoRecolor){
+            if(Sprites != null){
+                Banco_Sprites novosSprites[] = new Banco_Sprites[Sprites.length+1];
+                for(int b=0;b<Sprites.length;b++){
+                    novosSprites[b]=getSpritePorOrdem(b);
+                }
+                novosSprites[Sprites.length] = new Banco_Sprites(novoSexo, novoArquivo, novoRecolor);
+                Sprites = novosSprites;
+            }else{
+                Banco_Sprites novosSprites[] = new Banco_Sprites[1];
+                novosSprites[0] = new Banco_Sprites(novoSexo, novoArquivo, novoRecolor);
+                Sprites = novosSprites;
+            }
+        }
+
+
+        public class Banco_Sounds {
+            public Banco_Sounds(String novoEvent, String novoEndereco) {
+                evento=novoEvent;
+                endereco=novoEndereco;
+            }
+            private String evento="";
+            private String endereco="";
+            public String getEvent(){return evento;}
+            public String getEndereco(){return endereco;}
+            public void setEvent(String novoEvent){evento=novoEvent;}
+            public void setEndereco(String novoEndereco){endereco=novoEndereco;}
+        }
         public class Banco_Drops {
             public Banco_Drops(int novoID, int novoPercentual) {
                 id=novoID;
@@ -259,6 +373,27 @@ public class Banco_Spawns {
             public int getpercentual(){return percentual;}
             public void setID(int novoID){id=novoID;}
             public void setPercentual(int novoPercentual){percentual=novoPercentual;}
+        }
+        public class Banco_Sprites {
+            public Banco_Sprites(String novoSexo, String novoArquivoXML, String novoRecolor) {
+                sexo=novoSexo;
+                arquivoXML=novoArquivoXML;
+                recolor=novoRecolor;
+            }
+            private String sexo="";
+            private String arquivoXML="";
+            private String recolor="";
+            public String geSexo(){return sexo;}
+            public String getXML(){return arquivoXML;}
+            public SpriteXML getClassXML(){
+                return new SpriteXML(PastaDeSprites+Barra+arquivoXML);
+            }
+
+            public String getRecolor(){return recolor;}
+
+            public void setSexo(String novoSexo){sexo=novoSexo;}
+            public void setArquivo(String novoArquivoXML){arquivoXML=novoArquivoXML;}
+            public void setRecolor(String novoRecolor){recolor=novoRecolor;}
         }
     }
 }
