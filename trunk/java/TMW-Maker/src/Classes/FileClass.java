@@ -13,9 +13,6 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -194,7 +191,64 @@ public class FileClass {
             return Conteudo;
         }
     }
-    /*public static Document arquivoAbrirXML(String Endereco){
+    public static Element arquivoAbrirXML(String Endereco){
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db=dbf.newDocumentBuilder();
+            Document Documento =db.parse(Endereco);
+            return Documento.getDocumentElement();
+        } catch (ParserConfigurationException ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static int getAtributo(Element elem, String atributo, int padrao){
+        try {
+            return Integer.parseInt(elem.getAttribute(atributo));
+        } catch (Exception ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1;
+    }
+    public static String getAtributo(Element elem, String atributo, String padrao) {
+        String str = elem.getAttribute(atributo);
+        if (str == null) {
+            str = padrao;
+        }
+        return str;
+    }/**/
+    public static int getConteudo(Element elemento, String tag, int padrao) {
+        try {
+            NodeList children = elemento.getElementsByTagName(tag);
+            if(children == null) return 0;
+            Element child = (Element) children.item(0);
+            if( child == null ) return 0;
+            return Integer.parseInt(child.getFirstChild().getNodeValue());
+        } catch (Exception ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    public static String getConteudo(Element elemento, String tag, String padrao) {
+        try {
+            NodeList children = elemento.getElementsByTagName(tag);
+            if(children == null) return "";
+            Element child = (Element) children.item(0);
+            if( child == null ) return "";
+            return child.getFirstChild().getNodeValue();
+        } catch (Exception ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }/**/
+
+    /**
+      public static Document arquivoAbrirXML(String Endereco){
         if(seExiste(Endereco)){
             try {
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

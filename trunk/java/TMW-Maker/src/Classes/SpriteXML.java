@@ -1,8 +1,69 @@
 package Classes;
 
-import Classes.SpritePNG;
+import Formularios.FrmPrincipal;
+import java.util.Vector;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class SpriteXML {
+    private static String Barra = System.getProperty("file.separator");
+    private static String TMWData=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata";
+
+    public SpriteXML(String Endereco){
+        if(FileClass.seExiste(Endereco)){
+            Element Elementos=FileClass.arquivoAbrirXML(Endereco);
+
+            NodeList noImageset = Elementos.getElementsByTagName("imageset"); //elemento="usuario"
+            Element tagImageset = (Element) noImageset.item(0);
+            Banco_Nome=FileClass.getAtributo(tagImageset,"name","");
+            SpriteDados = new SpritePNG(
+                TMWData+Barra+FileClass.getAtributo(tagImageset,"src",""),
+                FileClass.getAtributo(tagImageset,"width",0),
+                FileClass.getAtributo(tagImageset,"64",0)
+            );
+
+            NodeList noAction = Elementos.getElementsByTagName("action"); //elemento="usuario"
+            //noAction = Elementos.getElementsByTagNameNS("action","DIREC"); //elemento="usuario"
+            Vector Action = new Vector();
+            for (int Ac = 0; Ac < noAction.getLength(); Ac++) {
+                Vector Registro = new Vector();
+                Element tagAction = (Element) noAction.item(Ac);
+                addAcao(
+                    FileClass.getAtributo(tagAction,"name",""),
+                    FileClass.getAtributo(tagAction,"imageset","")
+                );
+                NodeList noAnimacao = noAction.item(Ac).getChildNodes(); //elemento="usuario"
+                for (int An = 0; An < noAnimacao.getLength(); An++) {
+                    Element tagAnimacao = (Element) noAnimacao.item(An);
+                    getAcao(Ac).addAnimacao(FileClass.getAtributo(tagAnimacao,"direction",""));
+
+                    NodeList noFrame = noAnimacao.item(An).getChildNodes(); //elemento="usuario"
+                    for (int Fr = 0; Fr < noFrame.getLength(); Fr++) {
+                        Element tagComando = (Element) noFrame.item(Fr); // Comando = Frame ou Sequence
+                        if(tagComando.getTagName().toLowerCase().equals("frame")){
+                            getAcao(Ac).getAnimacao(An).addFrame(
+                                FileClass.getAtributo(tagAnimacao,"index",0),
+                                FileClass.getAtributo(tagAnimacao,"offsetX",0),
+                                FileClass.getAtributo(tagAnimacao,"offsetY",0),
+                                FileClass.getAtributo(tagAnimacao,"delay",0)
+                            );
+                        }else if(tagComando.getTagName().toLowerCase().equals("frame")){
+                            getAcao(Ac).getAnimacao(An).addSequencia(
+                                FileClass.getAtributo(tagAnimacao,"start",0),
+                                FileClass.getAtributo(tagAnimacao,"end",0),
+                                FileClass.getAtributo(tagAnimacao,"offsetX",0),
+                                FileClass.getAtributo(tagAnimacao,"offsetY",0),
+                                FileClass.getAtributo(tagAnimacao,"delay",0)
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }
     public SpriteXML(String Nome, String Endereco, int Linhas, int Colunas){
         Banco_Nome=Nome;
         SpriteDados = new SpritePNG(Endereco, Linhas, Colunas);
@@ -74,10 +135,25 @@ public class SpriteXML {
     public void setAcao(int Ordem, XmlAcao NovaAcao){
         Banco_Acoes[Ordem]=NovaAcao;
     }
-    public void setNovaAcao(String NomeAcao){
-        setNovaAcao(new XmlAcao(NomeAcao));
+    public void addAcao(String NomeAcao){
+        addAcao(new XmlAcao(NomeAcao));
     }
-    public void setNovaAcao(XmlAcao NovaAcao){
+    public void addAcao(String NomeAcao, String novaImageSet){
+        if(Banco_Acoes != null){
+            XmlAcao Novas_Acoes[] = new XmlAcao[Banco_Acoes.length+1];
+            for(int b=0;b<Banco_Acoes.length;b++){
+                //Novas_Acoes[b] = new XmlAcao(Banco_Acoes[b].getNome(),Banco_Acoes[b].getAnimacoes());
+                Novas_Acoes[b] = getAcao(b);
+            }
+            Novas_Acoes[Banco_Acoes.length] = new XmlAcao(NomeAcao, novaImageSet);
+            Banco_Acoes = Novas_Acoes;
+        }else{
+            XmlAcao Novo_Banco_Acoes[] = new XmlAcao[1];
+            Novo_Banco_Acoes[0] = new XmlAcao(NomeAcao, novaImageSet);
+            Banco_Acoes = Novo_Banco_Acoes;
+        }
+    }
+    public void addAcao(XmlAcao NovaAcao){
         if(Banco_Acoes != null){
             XmlAcao Novo_Banco_Acoes[] = new XmlAcao[Banco_Acoes.length+1];
             for(int b=0;b<Banco_Acoes.length;b++){
@@ -94,17 +170,22 @@ public class SpriteXML {
 //#################################################################################################
     //package Classes.XmlDeEquip;
     public class XmlAcao {
-        public XmlAcao(String Nome){Banco_Nome=Nome;}
+        public XmlAcao(String Nome){this.Nome=Nome;}
+        public XmlAcao(String novoNome, String novaImageSet){
+            Nome=novoNome;
+            ImageSet=novaImageSet;
+        }
         public XmlAcao(String Nome, XmlAnimacao Animacoes[]){
-            Banco_Nome=Nome;
+            this.Nome=Nome;
             Banco_Animacoes = Animacoes;
         }
 
-        private String Banco_Nome="";
+        private String Nome="";
+        private String ImageSet="";
         private XmlAnimacao Banco_Animacoes[]; //Não deve ser instaciado agora!!!!
 
 
-        public String getNome(){return Banco_Nome;}
+        public String getNome(){return Nome;}
         public XmlAnimacao[] getAnimacoes(){return Banco_Animacoes;}
         public XmlAnimacao getAnimacao(int Ordem){
             if(Banco_Animacoes != null){
@@ -145,15 +226,28 @@ public class SpriteXML {
             }
         }
 
-        public void setNome(String NovoNome){Banco_Nome=NovoNome;}
+        public void setNome(String NovoNome){Nome=NovoNome;}
         public void setAnimacoes(XmlAnimacao Animacoes[]){Banco_Animacoes = Animacoes;}
         public void setAnimacao(int Ordem, XmlAnimacao Animacao){
             Banco_Animacoes[Ordem]=Animacao;
         }
-        public void setNovaAnimacao(String NomeAnimacao){
-            setNovaAnimacao(new XmlAnimacao(NomeAnimacao));
+        public void addAnimacao(String NomeDirecao){
+            //addAnimacao(new XmlAnimacao(NomeDirecao));
+            if(Banco_Animacoes != null){
+                XmlAnimacao Novas_Animacoes[] = new XmlAnimacao[Banco_Animacoes.length+1];
+                for(int b=0;b<Banco_Animacoes.length;b++){
+                    //Novas_Animacoes[b] = new XmlAnimacao(Banco_Animacoes[b].getNome(),Banco_Animacoes[b].getFrames());
+                    Novas_Animacoes[b]=getAnimacao(b);
+                }
+                Novas_Animacoes[Banco_Animacoes.length] = new XmlAnimacao(NomeDirecao);
+                Banco_Animacoes = Novas_Animacoes;
+            }else{
+                XmlAnimacao Novas_Animacoes[] = new XmlAnimacao[1];
+                Novas_Animacoes[0] = new XmlAnimacao(NomeDirecao);
+                Banco_Animacoes = Novas_Animacoes;
+            }
         }
-        public void setNovaAnimacao(XmlAnimacao NovaAnimacao){
+        public void addAnimacao(XmlAnimacao NovaAnimacao){
             if(Banco_Animacoes != null){
                 XmlAnimacao Novo_Banco_Animacoes[] = new XmlAnimacao[Banco_Animacoes.length+1];
                 for(int b=0;b<Banco_Animacoes.length;b++){
@@ -167,113 +261,117 @@ public class SpriteXML {
                 Banco_Animacoes = Novo_Banco_Animacoes;
             }
         }
-    }
-    //package Classes.XmlDeEquip;
-    public class XmlAnimacao {
-        public XmlAnimacao(String Nome){Banco_Nome=Nome;}
-        public XmlAnimacao(String Nome, XmlFrame Frames[]){
-            Banco_Nome=Nome;
-            Banco_Frames = Frames;
-            /*Banco_Frames = new Frame[Frames.length];
-            for(int b=0;b<Frames.length;b++){
-                Banco_Frames[b] = new Frame();
-                Banco_Frames[b].setIndex(Frames[b].getIndex());
-                Banco_Frames[b].setOffsetX(Frames[b].getOffsetX());
-                Banco_Frames[b].setOffsetY(Frames[b].getOffsetY());
-                Banco_Frames[b].setDelay(Frames[b].getDelay());
-            }/**/
-        }
 
-        private String Banco_Nome="";
-        private XmlFrame Banco_Frames[]; //Não deve ser instaciado agora!!!!
-
-        public String getNome(){return Banco_Nome;}
-        public XmlFrame[] getFrames(){return Banco_Frames;}
-        public XmlFrame getFrame(int Ordem){
-            if(Banco_Frames != null){
-                return Banco_Frames[Ordem];
-            }else{
-                return null;
+        //package Classes.XmlDeEquip;
+        public class XmlAnimacao {
+            public XmlAnimacao(String Nome){Banco_Nome=Nome;}
+            public XmlAnimacao(String Nome, XmlFrame Frames[]){
+                Banco_Nome=Nome;
+                Banco_Frames = Frames;
+                /*Banco_Frames = new Frame[Frames.length];
+                for(int b=0;b<Frames.length;b++){
+                    Banco_Frames[b] = new Frame();
+                    Banco_Frames[b].setIndex(Frames[b].getIndex());
+                    Banco_Frames[b].setOffsetX(Frames[b].getOffsetX());
+                    Banco_Frames[b].setOffsetY(Frames[b].getOffsetY());
+                    Banco_Frames[b].setDelay(Frames[b].getDelay());
+                }/**/
             }
-        }
-        public int getContFrames(){
-            if(Banco_Frames != null){
-                return Banco_Frames.length;
-            }else{
-                return 0;
-            }
-        }
 
-        public void setNome(String NovoNome){Banco_Nome=NovoNome;}
-        public void setFrames(XmlFrame Frames[]){Banco_Frames = Frames;}
-        public void setFrame(int Ordem, XmlFrame Frame){
-            Banco_Frames[Ordem]=Frame;
-        }
-        public void setNovoFrame(int Index, int OffsetX, int OffsetY, int Delay){
-            setNovoFrame(new XmlFrame(Index, OffsetX, OffsetY, Delay));
-        }
-        public void setNovoFrame(XmlFrame NovoFrame){
-            if(Banco_Frames != null){
-                XmlFrame Novo_Banco_Frames[] = new XmlFrame[Banco_Frames.length+1];
-                for(int b=0;b<Banco_Frames.length;b++){
-                    Novo_Banco_Frames[b] = new XmlFrame(
-                        Banco_Frames[b].getIndex(),
-                        Banco_Frames[b].getOffsetX(),
-                        Banco_Frames[b].getOffsetY(),
-                        Banco_Frames[b].getDelay()
-                    );
+            private String Banco_Nome="";
+            private XmlFrame Banco_Frames[]; //Não deve ser instaciado agora!!!!
+
+            public String getNome(){return Banco_Nome;}
+            public XmlFrame[] getFrames(){return Banco_Frames;}
+            public XmlFrame getFrame(int Ordem){
+                if(Banco_Frames != null){
+                    return Banco_Frames[Ordem];
+                }else{
+                    return null;
                 }
-                Novo_Banco_Frames[Banco_Frames.length] = new XmlFrame(
-                    NovoFrame.getIndex(),
-                    NovoFrame.getOffsetX(),
-                    NovoFrame.getOffsetY(),
-                    NovoFrame.getDelay()
-                );
-                Banco_Frames = Novo_Banco_Frames;
-            }else{
-                XmlFrame Novo_Banco_Frames[] = new XmlFrame[1];
-
-                Novo_Banco_Frames[0] = new XmlFrame(
-                    NovoFrame.getIndex(),
-                    NovoFrame.getOffsetX(),
-                    NovoFrame.getOffsetY(),
-                    NovoFrame.getDelay()
-                );
-                Banco_Frames = Novo_Banco_Frames;
             }
-        }
-        public void setNovaSequencia(int IndexInicio, int IndexFinal, int OffsetX, int OffsetY, int Delay){
-            for(int f=IndexInicio;f<=IndexFinal;f++){
-                setNovoFrame(f, OffsetX, OffsetY, Delay);
+            public int getContFrames(){
+                if(Banco_Frames != null){
+                    return Banco_Frames.length;
+                }else{
+                    return 0;
+                }
             }
-        }
-    }
-    //package Classes.XmlDeEquip;
-    public class XmlFrame {
-        public XmlFrame(int NovoIndex){
-            index=NovoIndex;
-        }
-        public XmlFrame(int NovoIndex, int NovoOffsetX, int NovoOffsetY, int NovoDelay){
-            index=NovoIndex;
-            offsetX=NovoOffsetX;
-            offsetY=NovoOffsetY;
-            delay=NovoDelay;
+
+            public void setNome(String NovoNome){Banco_Nome=NovoNome;}
+            public void setFrames(XmlFrame Frames[]){Banco_Frames = Frames;}
+            public void setFrame(int Ordem, XmlFrame Frame){
+                Banco_Frames[Ordem]=Frame;
+            }
+            public void addFrame(int Index, int OffsetX, int OffsetY, int Delay){
+                addFrame(new XmlFrame(Index, OffsetX, OffsetY, Delay));
+            }
+            public void addFrame(XmlFrame NovoFrame){
+                if(Banco_Frames != null){
+                    XmlFrame Novo_Banco_Frames[] = new XmlFrame[Banco_Frames.length+1];
+                    for(int b=0;b<Banco_Frames.length;b++){
+                        Novo_Banco_Frames[b] = new XmlFrame(
+                            Banco_Frames[b].getIndex(),
+                            Banco_Frames[b].getOffsetX(),
+                            Banco_Frames[b].getOffsetY(),
+                            Banco_Frames[b].getDelay()
+                        );
+                    }
+                    Novo_Banco_Frames[Banco_Frames.length] = new XmlFrame(
+                        NovoFrame.getIndex(),
+                        NovoFrame.getOffsetX(),
+                        NovoFrame.getOffsetY(),
+                        NovoFrame.getDelay()
+                    );
+                    Banco_Frames = Novo_Banco_Frames;
+                }else{
+                    XmlFrame Novo_Banco_Frames[] = new XmlFrame[1];
+
+                    Novo_Banco_Frames[0] = new XmlFrame(
+                        NovoFrame.getIndex(),
+                        NovoFrame.getOffsetX(),
+                        NovoFrame.getOffsetY(),
+                        NovoFrame.getDelay()
+                    );
+                    Banco_Frames = Novo_Banco_Frames;
+                }
+            }
+            public void addSequencia(int IndexInicio, int IndexFinal, int OffsetX, int OffsetY, int Delay){
+                for(int f=IndexInicio;f<=IndexFinal;f++){
+                    addFrame(f, OffsetX, OffsetY, Delay);
+                }
+            }
+
+            //package Classes.XmlDeEquip;
+            public class XmlFrame {
+                public XmlFrame(int NovoIndex){
+                    index=NovoIndex;
+                }
+                public XmlFrame(int NovoIndex, int NovoOffsetX, int NovoOffsetY, int NovoDelay){
+                    index=NovoIndex;
+                    offsetX=NovoOffsetX;
+                    offsetY=NovoOffsetY;
+                    delay=NovoDelay;
+                }
+
+                private int index = 0;
+                private int offsetX = 0;
+                private int offsetY = 0;
+                private int delay = 0;
+
+                public int getIndex(){return index;}
+                public int getOffsetX(){return offsetX;}
+                public int getOffsetY(){return offsetY;}
+                public int getDelay(){return delay;}
+
+                public void setIndex(int NovoIndex){index=NovoIndex;}
+                public void setOffsetX(int NovoOffsetX){offsetX=NovoOffsetX;}
+                public void setOffsetY(int NovoOffsetY){offsetY=NovoOffsetY;}
+                public void setDelay(int NovoDelay){delay=NovoDelay;}
+            }
+
         }
 
-        private int index = 0;
-        private int offsetX = 0;
-        private int offsetY = 0;
-        private int delay = 0;
-
-        public int getIndex(){return index;}
-        public int getOffsetX(){return offsetX;}
-        public int getOffsetY(){return offsetY;}
-        public int getDelay(){return delay;}
-
-        public void setIndex(int NovoIndex){index=NovoIndex;}
-        public void setOffsetX(int NovoOffsetX){offsetX=NovoOffsetX;}
-        public void setOffsetY(int NovoOffsetY){offsetY=NovoOffsetY;}
-        public void setDelay(int NovoDelay){delay=NovoDelay;}
     }
 
 }
