@@ -418,11 +418,11 @@ public class FrmMonstros extends javax.swing.JDialog {
             //SpriteXML spriteXML = new SpriteXML("/home/indigovox/localhost/tmwdata/graphics/sprites/monstro-fada.xml");
             //lblVisualizacao.setIcon(new javax.swing.ImageIcon(spriteXML.getSpriteDados().getBloco(0)));
 
-            SpritePNG spritePNG = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/monstro-fada.png",6,9);
+            /*SpritePNG spritePNG = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/monstro-fada.png",6,9);
             ImagemClass imgTradadora = new ImagemClass(spritePNG.getBloco(0));
             imgTradadora.setZoom(((double)imgTradadora.getLargura())/100.0);
             //lblVisualizacao.setIcon(new javax.swing.ImageIcon());
-            lblVisualizacao.setIcon(imgTradadora.getIcone());
+            lblVisualizacao.setIcon(imgTradadora.getIcone());/**/
         }
     }//GEN-LAST:event_formWindowOpened
     private void sldRanger1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldRanger1StateChanged
