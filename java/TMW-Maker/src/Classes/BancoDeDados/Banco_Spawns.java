@@ -3,6 +3,7 @@ package Classes.BancoDeDados;
 import Classes.FileClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
+import java.util.Vector;
 
 public class Banco_Spawns {
     public Banco_Spawns() {
@@ -99,6 +100,13 @@ public class Banco_Spawns {
             return 0;
         }
     }
+    public Vector getVectorIDs(){
+        Vector IDs = new Vector();
+        for(int v=0;v<getContSpawns();v++){
+            IDs.addElement(getSpawnPorOrdem(v).getID());
+        }
+        return IDs;
+    }
     public Dados_Spawns getSpawnPorOrdem(int ordem){
         if(Spawns != null){
             return Spawns[ordem];
@@ -154,7 +162,7 @@ public class Banco_Spawns {
 
         public int getID(){return ID;}
         public String getNomeSumonico(){return NomeSumonico;}
-        public String getNameTitulo(){return NameTitulo;}
+        public String getNomeTitulo(){return NameTitulo;}
         public int getNivel(){return Nível;}
         public int getHP(){return HP;}
         public int getSP(){return SP;}

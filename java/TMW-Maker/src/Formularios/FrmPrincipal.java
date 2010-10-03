@@ -42,7 +42,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_Mapas Mundo; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
-    static Banco_Spawns Spawns; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
+    static Banco_Spawns Monstros; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     //public static String SpritePNG=""; // É esado em FrmEquipXML***
     static SpriteXML xmlEditada; // É usado em FrmEquipXML***
 
@@ -985,9 +985,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuJogoLocalhost.setEnabled(Config.getSeDependenciaDeSVN());
             MnuJogoLocalhostAtualizar.setEnabled(Config.getSeDependenciaDeSVN() && Config.getSeDependenciaDeMontagem());
             MnuJogoLocalhostCompartilhar.setEnabled(Config.getSeDependenciaDeSVN() && Config.getSeDependenciaDeMontagem());
+            MnuEditarItens.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarCampos.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarPersonagem.setEnabled(Config.getSeDependenciaDeMontagem());
-            MnuEditarItens.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuEditarMonstrosDados.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuJogoExecutar.setEnabled(Config.getSeDependenciaDeMontagem());
             //MnuJogoCopilar.setEnabled(Config.getSeDependenciaDeMontagem());
@@ -1000,7 +1001,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnEditorItensSprites.setEnabled(MnuEditar.isEnabled() && MnuEditarItens.isEnabled() && MnuEditarItensSprites.isEnabled());
         BtnEditarItensDados.setEnabled(MnuEditar.isEnabled() && MnuEditarItens.isEnabled() && MnuEditarItensDados.isEnabled());
         BtnEditarCamposMapas.setEnabled(MnuEditar.isEnabled() && MnuEditarCampos.isEnabled() && MnuEditarCamposMapas.isEnabled());
-        BtnEditarPersonagemScript.setEnabled(MnuEditar.isEnabled() && MnuEditarPersonagem.isEnabled() && MnuEditarPersonagemScript.isEnabled());
+        BtnEditarPersonagemScript.setEnabled(MnuEditar.isEnabled() && MnuEditarMonstros.isEnabled() && MnuEditarMonstrosDados.isEnabled());
+
         BtnEditarContas.setEnabled(MnuEditar.isEnabled() && MnuEditarContas.isEnabled());
         BtnJogoExecular.setEnabled(MnuJogo.isEnabled() && MnuJogoExecutar.isEnabled());
         //BtnJogoCopilar.setEnabled(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled());
@@ -1039,6 +1041,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnEditarCamposTilesets = new javax.swing.JButton();
         jSeparator12 = new javax.swing.JToolBar.Separator();
         BtnEditarPersonagemScript = new javax.swing.JButton();
+        jSeparator13 = new javax.swing.JToolBar.Separator();
+        btnEditarMonstrosDados = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JToolBar.Separator();
         BtnEditarContas = new javax.swing.JButton();
         jSeparator11 = new javax.swing.JToolBar.Separator();
@@ -1072,9 +1076,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarPersonagemAparencia = new javax.swing.JMenuItem();
         MnuEditarPersonagemLoja = new javax.swing.JMenuItem();
         MnuEditarPersonagemScript = new javax.swing.JMenuItem();
-        MnuEditarInimigos = new javax.swing.JMenu();
+        MnuEditarMonstros = new javax.swing.JMenu();
         MnuEditarInimigosAnimacao = new javax.swing.JMenuItem();
-        MnuEditarInimigosDados = new javax.swing.JMenuItem();
+        MnuEditarMonstrosDados = new javax.swing.JMenuItem();
         MnuEditarInimigosArenas = new javax.swing.JMenuItem();
         MnuEditarMagias = new javax.swing.JMenu();
         MnuEditarMagiasCompetencias = new javax.swing.JMenuItem();
@@ -1132,7 +1136,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatusLayout.setHorizontalGroup(
             PnlBarraDeEstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlBarraDeEstatusLayout.createSequentialGroup()
-                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(PgbBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1243,6 +1247,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(BtnEditarPersonagemScript);
+        jToolBar1.add(jSeparator13);
+
+        btnEditarMonstrosDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))); // NOI18N
+        btnEditarMonstrosDados.setToolTipText("Editor de Monstros");
+        btnEditarMonstrosDados.setFocusable(false);
+        btnEditarMonstrosDados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEditarMonstrosDados.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditarMonstrosDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarMonstrosDadosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnEditarMonstrosDados);
         jToolBar1.add(jSeparator9);
 
         BtnEditarContas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_contato.gif"))); // NOI18N
@@ -1450,7 +1467,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarItens.add(MnuEditarItensSprites);
 
         MnuEditarItensDados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        MnuEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_presente.gif"))); // NOI18N
+        MnuEditarItensDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lapis.png"))); // NOI18N
         MnuEditarItensDados.setMnemonic('D');
         MnuEditarItensDados.setText("Editor de Ítens");
         MnuEditarItensDados.addActionListener(new java.awt.event.ActionListener() {
@@ -1513,27 +1530,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         MnuEditar.add(MnuEditarPersonagem);
 
-        MnuEditarInimigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))); // NOI18N
-        MnuEditarInimigos.setMnemonic('N');
-        MnuEditarInimigos.setText("Inimigos");
-        MnuEditarInimigos.setEnabled(false);
+        MnuEditarMonstros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))); // NOI18N
+        MnuEditarMonstros.setMnemonic('N');
+        MnuEditarMonstros.setText("Monstros");
 
         MnuEditarInimigosAnimacao.setMnemonic('A');
         MnuEditarInimigosAnimacao.setText("Animação");
         MnuEditarInimigosAnimacao.setEnabled(false);
-        MnuEditarInimigos.add(MnuEditarInimigosAnimacao);
+        MnuEditarMonstros.add(MnuEditarInimigosAnimacao);
 
-        MnuEditarInimigosDados.setMnemonic('D');
-        MnuEditarInimigosDados.setText("Dados");
-        MnuEditarInimigosDados.setEnabled(false);
-        MnuEditarInimigos.add(MnuEditarInimigosDados);
+        MnuEditarMonstrosDados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        MnuEditarMonstrosDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lapis.png"))); // NOI18N
+        MnuEditarMonstrosDados.setMnemonic('D');
+        MnuEditarMonstrosDados.setText("Editors de Monstros");
+        MnuEditarMonstrosDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuEditarMonstrosDadosActionPerformed(evt);
+            }
+        });
+        MnuEditarMonstros.add(MnuEditarMonstrosDados);
 
         MnuEditarInimigosArenas.setMnemonic('R');
         MnuEditarInimigosArenas.setText("Arenas");
         MnuEditarInimigosArenas.setEnabled(false);
-        MnuEditarInimigos.add(MnuEditarInimigosArenas);
+        MnuEditarMonstros.add(MnuEditarInimigosArenas);
 
-        MnuEditar.add(MnuEditarInimigos);
+        MnuEditar.add(MnuEditarMonstros);
 
         MnuEditarMagias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_magica.png"))); // NOI18N
         MnuEditarMagias.setMnemonic('M');
@@ -1687,15 +1709,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-            .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+            .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 468, Short.MAX_VALUE)
+                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 487, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1954,6 +1976,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         if(MnuEditar.isEnabled() && MnuEditarCampos.isEnabled() && MnuEditarCamposMapas.isEnabled()) MnuEditarCamposMapasActionPerformed(evt);
     }//GEN-LAST:event_BtnEditarCamposMapasActionPerformed
 
+    private void MnuEditarMonstrosDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuEditarMonstrosDadosActionPerformed
+        javax.swing.JDialog FrmMonstros = new FrmMonstros(this, rootPaneCheckingEnabled);
+        FrmMonstros.setLocation(
+            ((this.getWidth() - FrmMonstros.getWidth()) / 2) + this.getX(),
+            ((this.getHeight() - FrmMonstros.getHeight()) / 2) + this.getY());
+        FrmMonstros.pack();
+        FrmMonstros.setModal(true);
+        FrmMonstros.setVisible(true);/**/
+    }//GEN-LAST:event_MnuEditarMonstrosDadosActionPerformed
+
+    private void btnEditarMonstrosDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMonstrosDadosActionPerformed
+        MnuEditarMonstrosDadosActionPerformed(evt);
+    }//GEN-LAST:event_btnEditarMonstrosDadosActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1991,16 +2027,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarCamposMapas;
     private javax.swing.JMenuItem MnuEditarCamposTilesets;
     private javax.swing.JMenuItem MnuEditarContas;
-    private javax.swing.JMenu MnuEditarInimigos;
     private javax.swing.JMenuItem MnuEditarInimigosAnimacao;
     private javax.swing.JMenuItem MnuEditarInimigosArenas;
-    private javax.swing.JMenuItem MnuEditarInimigosDados;
     public static javax.swing.JMenu MnuEditarItens;
     private javax.swing.JMenuItem MnuEditarItensDados;
     private javax.swing.JMenuItem MnuEditarItensSprites;
     private javax.swing.JMenu MnuEditarMagias;
     private javax.swing.JMenuItem MnuEditarMagiasCompetencias;
     private javax.swing.JMenuItem MnuEditarMagiasConjurações;
+    private javax.swing.JMenu MnuEditarMonstros;
+    private javax.swing.JMenuItem MnuEditarMonstrosDados;
     public static javax.swing.JMenu MnuEditarPersonagem;
     private javax.swing.JMenuItem MnuEditarPersonagemAparencia;
     private javax.swing.JMenuItem MnuEditarPersonagemLoja;
@@ -2021,6 +2057,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuSistemaFechar;
     public static javax.swing.JProgressBar PgbBarra;
     private javax.swing.JPanel PnlBarraDeEstatus;
+    private javax.swing.JButton btnEditarMonstrosDados;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem6;
@@ -2028,6 +2065,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
     private javax.swing.JToolBar.Separator jSeparator12;
+    private javax.swing.JToolBar.Separator jSeparator13;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

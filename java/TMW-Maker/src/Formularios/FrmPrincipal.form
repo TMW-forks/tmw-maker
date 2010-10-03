@@ -147,7 +147,7 @@
                       <KeyStroke key="Ctrl+I"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagem/Botoes/sbl_presente.gif"/>
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_lapis.png"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="68"/>
                     <Property name="text" type="java.lang.String" value="Editor de &#xcd;tens"/>
@@ -240,14 +240,13 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="MnuEditarInimigos">
+            <Menu class="javax.swing.JMenu" name="MnuEditarMonstros">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagem/Botoes/sbl_caveira.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="78"/>
-                <Property name="text" type="java.lang.String" value="Inimigos"/>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Monstros"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarInimigosAnimacao">
@@ -257,12 +256,20 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnuEditarInimigosDados">
+                <MenuItem class="javax.swing.JMenuItem" name="MnuEditarMonstrosDados">
                   <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="Ctrl+R"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Imagem/Botoes/sbl_lapis.png"/>
+                    </Property>
                     <Property name="mnemonic" type="int" value="68"/>
-                    <Property name="text" type="java.lang.String" value="Dados"/>
-                    <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="Editors de Monstros"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuEditarMonstrosDadosActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarInimigosArenas">
                   <Properties>
@@ -519,8 +526,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="PnlBarraDeEstatus" alignment="0" max="32767" attributes="0"/>
-          <Component id="jToolBar1" alignment="0" pref="594" max="32767" attributes="0"/>
-          <Component id="LblFundo" alignment="0" pref="594" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="613" max="32767" attributes="0"/>
+          <Component id="LblFundo" alignment="0" pref="613" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -528,7 +535,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-              <Component id="LblFundo" pref="468" max="32767" attributes="0"/>
+              <Component id="LblFundo" pref="487" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="PnlBarraDeEstatus" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -551,7 +558,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="LblEstatus" pref="422" max="32767" attributes="0"/>
+                  <Component id="LblEstatus" pref="441" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="PgbBarra" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -730,6 +737,22 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEditarPersonagemScriptActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator13">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnEditarMonstrosDados">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagem/Botoes/sbl_caveira.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Editor de Monstros"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarMonstrosDadosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator9">

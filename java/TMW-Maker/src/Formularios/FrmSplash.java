@@ -85,7 +85,7 @@ public class FrmSplash extends javax.swing.JDialog {
                      "<html>Carregando Banco de Dados de Monstros (<font color=#FF0000>Por favor espere!</font>)",
                      new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))
                  );
-                FrmPrincipal.Spawns = new Classes.BancoDeDados.Banco_Spawns(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                FrmPrincipal.Monstros = new Classes.BancoDeDados.Banco_Spawns(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.PgbBarra.setString("Concluído");
                 FrmPrincipal.setAvisoEmEstatus(

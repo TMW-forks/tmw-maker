@@ -213,38 +213,36 @@ public class FileClass {
         } catch (Exception ex) {
             //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 1;
+        return padrao;
     }
     public static String getAtributo(Element elem, String atributo, String padrao) {
         String str = elem.getAttribute(atributo);
-        if (str == null) {
-            str = padrao;
-        }
+        if (str == null) str = padrao;
         return str;
     }/**/
     public static int getConteudo(Element elemento, String tag, int padrao) {
         try {
             NodeList children = elemento.getElementsByTagName(tag);
-            if(children == null) return 0;
+            if(children == null) return padrao;
             Element child = (Element) children.item(0);
-            if( child == null ) return 0;
+            if( child == null ) return padrao;
             return Integer.parseInt(child.getFirstChild().getNodeValue());
         } catch (Exception ex) {
             //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 0;
+        return padrao;
     }
     public static String getConteudo(Element elemento, String tag, String padrao) {
         try {
             NodeList children = elemento.getElementsByTagName(tag);
-            if(children == null) return "";
+            if(children == null) return padrao;
             Element child = (Element) children.item(0);
-            if( child == null ) return "";
+            if( child == null ) return padrao;
             return child.getFirstChild().getNodeValue();
         } catch (Exception ex) {
             //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "";
+        return padrao;
     }/**/
 
     /**
