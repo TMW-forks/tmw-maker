@@ -6,12 +6,7 @@ import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.io.IOException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -169,18 +164,19 @@ public class Banco_Mapas {
     private Vector importMapaXML(String Endereco) {
         if(FileClass.seExiste(Endereco)){
             try {
-                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                /*DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
                 DocumentBuilder db=dbf.newDocumentBuilder();
                 Document Documento =db.parse(Endereco);
-                Element Elementos = Documento.getDocumentElement();
+                Element Elementos = Documento.getDocumentElement();/**/
+                Element Elementos=FileClass.arquivoAbrirXML(Endereco);
 
                 NodeList noPropriedades = Elementos.getElementsByTagName("property"); //elemento="usuario"
                 Vector Propriedades = new Vector();
                 for (int i = 0; i < noPropriedades.getLength(); i++) {
                     Vector Registro = new Vector();
                     Element tagPropriedade = (Element) noPropriedades.item(i);
-                    Registro.addElement(getAtributo(tagPropriedade,"name",""));
-                    Registro.addElement(getAtributo(tagPropriedade,"value",""));
+                    Registro.addElement(FileClass.getAtributo(tagPropriedade,"name",""));
+                    Registro.addElement(FileClass.getAtributo(tagPropriedade,"value",""));
                     Propriedades.add(Registro);
                 }
 
@@ -189,13 +185,13 @@ public class Banco_Mapas {
                 for (int i = 0; i < noTileset.getLength(); i++) {
                     Vector Registro = new Vector();
                     Element tagTileset = (Element) noTileset.item(i);
-                    Registro.addElement(getAtributo(tagTileset,"firstgid",0));
-                    Registro.addElement(getAtributo(tagTileset,"name",""));
-                    Registro.addElement(getAtributo(tagTileset,"tilewidth",0));
-                    Registro.addElement(getAtributo(tagTileset,"tileheight",0));
+                    Registro.addElement(FileClass.getAtributo(tagTileset,"firstgid",0));
+                    Registro.addElement(FileClass.getAtributo(tagTileset,"name",""));
+                    Registro.addElement(FileClass.getAtributo(tagTileset,"tilewidth",0));
+                    Registro.addElement(FileClass.getAtributo(tagTileset,"tileheight",0));
                     NodeList noImagem = noTileset.item(i).getChildNodes(); //elemento="usuario"
                     Element tagImagem = (Element) noImagem.item(0);
-                    Registro.addElement(getAtributo(tagImagem,"source",0));
+                    Registro.addElement(FileClass.getAtributo(tagImagem,"source",0));
                     Tilesets.add(Registro);
                 }
 
@@ -204,14 +200,14 @@ public class Banco_Mapas {
                 for (int i = 0; i < noLayer.getLength(); i++) {
                     Vector Registro = new Vector();
                     Element tagLayer = (Element) noLayer.item(i);
-                    Registro.addElement(getAtributo(tagLayer,"name",""));
-                    Registro.addElement(getAtributo(tagLayer,"width",0));
-                    Registro.addElement(getAtributo(tagLayer,"height",0));
-                    Registro.addElement(getConteudo(tagLayer,"data",""));
+                    Registro.addElement(FileClass.getAtributo(tagLayer,"name",""));
+                    Registro.addElement(FileClass.getAtributo(tagLayer,"width",0));
+                    Registro.addElement(FileClass.getAtributo(tagLayer,"height",0));
+                    Registro.addElement(FileClass.getConteudo(tagLayer,"data",""));
                     NodeList data = noLayer.item(i).getChildNodes(); //elemento="usuario"
                     Element tagData = (Element) data.item(0);
-                    Registro.addElement(getAtributo(tagData,"encoding",""));
-                    Registro.addElement(getAtributo(tagData,"compression",""));
+                    Registro.addElement(FileClass.getAtributo(tagData,"encoding",""));
+                    Registro.addElement(FileClass.getAtributo(tagData,"compression",""));
 
                     Layers.add(Registro);
                 }
@@ -223,11 +219,11 @@ public class Banco_Mapas {
 
                 return Mapa;
                 // pega todos os elementos usuario do XML
-            } catch (ParserConfigurationException ex) {
+            //} catch (ParserConfigurationException ex) {
                 //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+            //} catch (IOException ex) {
                 //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SAXException ex) {
+            //} catch (SAXException ex) {
                 //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassCastException ex) {
                 //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,45 +233,6 @@ public class Banco_Mapas {
         }
         return null;
     }
-    private int getAtributo(Element elem, String atributo, int padrao){
-        try {
-            return Integer.parseInt(elem.getAttribute(atributo));
-        } catch (Exception ex) {
-            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 1;
-    }
-    private String getAtributo(Element elem, String atributo, String padrao) {
-        String str = elem.getAttribute(atributo);
-        if (str == null) {
-            str = padrao;
-        }
-        return str;
-    }/**/
-    private int getConteudo(Element elemento, String tag, int padrao) {
-        try {
-            NodeList children = elemento.getElementsByTagName(tag);
-            if(children == null) return 0;
-            Element child = (Element) children.item(0);
-            if( child == null ) return 0;
-            return Integer.parseInt(child.getFirstChild().getNodeValue());
-        } catch (Exception ex) {
-            Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 0;
-    }
-    private String getConteudo(Element elemento, String tag, String padrao) {
-        try {
-            NodeList children = elemento.getElementsByTagName(tag);
-            if(children == null) return "";
-            Element child = (Element) children.item(0);
-            if( child == null ) return "";
-            return child.getFirstChild().getNodeValue();
-        } catch (Exception ex) {
-            Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "";
-    }/**/
 
     public void addMapa(String Nome, String Miniatura, String Arquivo, String Colisao, String Musica, int Largura, int Altura){
         if(Mundo != null){
