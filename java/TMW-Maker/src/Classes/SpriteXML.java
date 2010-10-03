@@ -15,14 +15,29 @@ public class SpriteXML {
     public SpriteXML(String Endereco){
         if(FileClass.seExiste(Endereco)){
             Element Elementos=FileClass.arquivoAbrirXML(Endereco);
-
             NodeList noImageset = Elementos.getElementsByTagName("imageset"); //elemento="usuario"
             Element tagImageset = (Element) noImageset.item(0);
             Banco_Nome=FileClass.getAtributo(tagImageset,"name","");
+
+            String src=TMWData+Barra+FileClass.getAtributo(tagImageset,"src","");
+            String Arquivo="", Recolor="";
+            if(src.indexOf("|")>=0){
+                String Partes2[]=src.split("\\|");
+                if(Partes2.length==2){
+                    Arquivo=Partes2[0];
+                    Recolor=Partes2[1];
+                }else if(Partes2.length>=3){
+                    Arquivo=Partes2[0];
+                }
+            }else{
+                Arquivo=src;
+            }
+
+            ImagemClass Imagem = new ImagemClass(Arquivo);
             SpriteDados = new SpritePNG(
-                TMWData+Barra+FileClass.getAtributo(tagImageset,"src",""),
-                FileClass.getAtributo(tagImageset,"width",0),
-                FileClass.getAtributo(tagImageset,"height",0)
+                Imagem.getImage(),
+                Imagem.getAltura()/FileClass.getAtributo(tagImageset,"height",0),
+                Imagem.getLargura()/FileClass.getAtributo(tagImageset,"width",0)
             );
 
             NodeList noAction = Elementos.getElementsByTagName("action"); //elemento="usuario"
