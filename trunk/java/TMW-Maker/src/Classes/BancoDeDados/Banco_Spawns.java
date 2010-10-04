@@ -123,7 +123,9 @@ public class Banco_Spawns {
                                     }else{
                                         Arquivo=tagSprite.getFirstChild().getTextContent();
                                     }
-                                    getSpawnPorOrdem(getContSpawns()-1).addSprite(Sexo,Arquivo,Recolor);
+                                    if(FileClass.seExiste(PastaDeSprites+Barra+Arquivo)){
+                                        getSpawnPorOrdem(getContSpawns()-1).addSprite(Sexo,Arquivo,Recolor);
+                                    }
                                 }
                                 Ms=noMonster.getLength();
                             }
@@ -384,10 +386,13 @@ public class Banco_Spawns {
             private String arquivoXML="";
             private String recolor="";
             public String geSexo(){return sexo;}
-            public String getXML(){return arquivoXML;}
+            public String getArquivoXML(){return arquivoXML;}
             public SpriteXML getClassXML(){
                 return new SpriteXML(PastaDeSprites+Barra+arquivoXML);
             }
+            public String getEnderecoPNG(){
+                return (new SpriteXML(PastaDeSprites+Barra+arquivoXML)).getEnderecoPNG();
+            }/**/
 
             public String getRecolor(){return recolor;}
 

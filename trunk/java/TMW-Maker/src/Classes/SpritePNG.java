@@ -39,7 +39,7 @@ public class SpritePNG {
             e.printStackTrace();
         }
     } // Só executa de for instaciado como objeto
-    public SpritePNG(BufferedImage Imagem, int Linhas, int Colunas) {
+    /*public SpritePNG(BufferedImage Imagem, int Linhas, int Colunas) {
         SpriteEndereco="";
         SpriteLinhas=Linhas;
         SpriteColunas=Colunas;
@@ -55,6 +55,7 @@ public class SpritePNG {
         BlocoLargura=Sprite.getWidth();
         BlocoAltura=Sprite.getHeight();
     } // Só executa de for instaciado como objeto
+    /**/
     
     BufferedImage Sprite;
     String SpriteEndereco="";
@@ -66,9 +67,15 @@ public class SpritePNG {
     public BufferedImage getSprite(){
         return Sprite;
     }
-    public String getSpriteEndereco(){
+    public String getEnderecoPNG(){
         return SpriteEndereco;
     }
+    public String getArquivoPNG(){
+        //return SpriteEndereco;
+        String Partes[] = SpriteEndereco.split(System.getProperty("file.separator"));
+        return Partes[Partes.length-1];
+    }
+
     public String getSpriteTipo(){
         String ParteDoEndereco[]=SpriteEndereco.split("\\.");
         return ParteDoEndereco[ParteDoEndereco.length-1].toLowerCase();
