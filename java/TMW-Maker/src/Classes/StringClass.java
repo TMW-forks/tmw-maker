@@ -50,17 +50,19 @@ public class StringClass {
         }
     }
 
-    public void substituir(String De, String Por){
-        String Entrada=testoEmTratamento;
-        substituir(Entrada, De, Por);
+    public void setSubstituicao(String De, String Por){
+        testoEmTratamento=getSubstituicao(testoEmTratamento, De, Por);
     }
-    public String substituir(String Entrada, String De, String Por){
+    public String getSubstituicao(String De, String Por){
+        return getSubstituicao(testoEmTratamento, De, Por);
+    }
+    public String getSubstituicao(String Entrada, String De, String Por){
        int Loc1=-1;
         Loc1=Entrada.indexOf(De);
         if(Loc1>=0){
             String Parte1="", Parte2="";
             Parte1=Entrada.substring(0, Loc1);
-            Parte2=Entrada.substring(Loc1+De.length(), Entrada.length()-1);
+            Parte2=Entrada.substring(Loc1+De.length(), Entrada.length());
             Entrada = Parte1+Por+Parte2;
         }
         return Entrada;

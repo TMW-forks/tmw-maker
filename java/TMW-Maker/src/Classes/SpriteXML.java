@@ -1,6 +1,7 @@
 package Classes;
 
 import Formularios.FrmPrincipal;
+import java.awt.image.BufferedImage;
 import java.util.Vector;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,7 +36,7 @@ public class SpriteXML {
 
             ImagemClass Imagem = new ImagemClass(Arquivo);
             SpriteDados = new SpritePNG(
-                Imagem.getImage(),
+                Arquivo,
                 Imagem.getAltura()/FileClass.getAtributo(tagImageset,"height",0),
                 Imagem.getLargura()/FileClass.getAtributo(tagImageset,"width",0)
             );
@@ -104,7 +105,8 @@ public class SpriteXML {
     private XmlAcao Banco_Acoes[]; //Não deve ser instaciado agora!!!!
 
     public String getNome(){return Banco_Nome;}
-    public SpritePNG getSpriteDados(){return SpriteDados;}
+    public SpritePNG getDadosPNG(){return SpriteDados;}
+    public String getEnderecoPNG(){return SpriteDados.getEnderecoPNG();}
     public XmlAcao[] getAcoes(){return Banco_Acoes;}
     public XmlAcao getAcao(int Ordem){
         if(Banco_Acoes != null){
