@@ -1,10 +1,10 @@
 package Formularios;
 
+import Classes.BancoDeDados.Banco_Spawns.Dados_Spawns;
 import Classes.BancoDeDados.Banco_Spawns.Dados_Spawns.Banco_Sprites;
 import Classes.FileClass;
 import Classes.ImagemClass;
 import Classes.SpriteXML;
-import Classes.StringClass;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -179,23 +179,23 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel2)
-                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -434,7 +434,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -444,8 +444,8 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Informação", jPanel1);
@@ -532,7 +532,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
@@ -540,11 +540,11 @@ public class FrmMonstros extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -552,7 +552,7 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblVisualizacao.setBackground(java.awt.Color.gray);
+        lblVisualizacao.setBackground(java.awt.Color.darkGray);
         lblVisualizacao.setForeground(new java.awt.Color(254, 254, 254));
         lblVisualizacao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblVisualizacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png"))); // NOI18N
@@ -574,8 +574,8 @@ public class FrmMonstros extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -596,7 +596,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -678,30 +678,42 @@ public class FrmMonstros extends javax.swing.JDialog {
         tblAudios.getTableHeader().getColumnModel().getColumn(0).setMinWidth(75);
         tblAudios.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(75);
 
-        /*lstAudios.setModel(new javax.swing.AbstractListModel() {
-            public int getSize() { return xmlAnimacoes.size(); }
-            public Object getElementAt(int i) { 
-                return (oggAudios.size()>=1 && i<oggAudios.size())?oggAudios.elementAt(i).toString():null;
+
+
+
+
+        Dados_Spawns Monstro = FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem);
+
+        String direcao="down";
+        SpriteXML spriteXML = Monstro.getSpritePorOrdem(0).getClassXML();
+        ImagemClass camadaFundo = new ImagemClass(spriteXML.getDadosPNG().getBloco(0));/**/
+        /*int s1=0;
+        if(spriteXML.haAcao("stand")){
+            if(spriteXML.getAcao("stand").haAnimacao(direcao)){
+                s1=spriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getIndex();
+            }else{
+                s1=spriteXML.getAcao("stand").getAnimacao(0).getFrame(0).getIndex();
             }
-        });/**/
-        
-
-
-        SpriteXML spriteXML = FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getSpritePorOrdem(0).getClassXML();
-        ImagemClass imgTradadora = new ImagemClass(spriteXML.getDadosPNG().getBloco(0));
-        /*for(int s=1;s<FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getContSprites();s++){
-            int x1,y1,x2,y2;
-            x1=spriteXML.getAcao(0).getAnimacao(0).getFrame(0).getOffsetX();
-            y1=spriteXML.getAcao(0).getAnimacao(0).getFrame(0).getOffsetY();
-            SpriteXML novoSpriteXML = FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getSpritePorOrdem(s).getClassXML();
-            ImagemClass novaCamada = new ImagemClass(novoSpriteXML.getDadosPNG().getBloco(0));
-            x2=novoSpriteXML.getAcao(0).getAnimacao(0).getFrame(0).getOffsetX();
-            y2=novoSpriteXML.getAcao(0).getAnimacao(0).getFrame(0).getOffsetY();
-            imgTradadora.setMesclagem(novaCamada.getImage(),x1-x2,y1-y2);
+        }
+        ImagemClass camadaFundo = new ImagemClass(spriteXML.getDadosPNG().getBloco(s1));
+        int x1=0,y1=0;
+        x1=camadaFundo.getLargura()/2;
+        y1=camadaFundo.getAltura()/2;
+        int Camadas=Monstro.getContSprites();
+        for(int s=1;s<Camadas;s++){
+            String EnderecoCamadaPNG = Monstro.getSpritePorOrdem(s).getClassXML().getDadosPNG().getEnderecoPNG();
+            if(FileClass.seExiste(EnderecoCamadaPNG)){
+                SpriteXML novoSpriteXML = Monstro.getSpritePorOrdem(s).getClassXML();
+                int x2=0, y2=0,  s2=novoSpriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getIndex();
+                ImagemClass camadaTopo = new ImagemClass(novoSpriteXML.getDadosPNG().getBloco(s2));
+                x2=(camadaTopo.getLargura()/2)+novoSpriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getOffsetX();
+                y2=(camadaTopo.getAltura()/2)+novoSpriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getOffsetY();
+                camadaFundo.setMesclagem(camadaTopo.getImage(),x1-x2,y1-y2);
+            }
         }/**/
-        imgTradadora.setZoom(((double)(146/imgTradadora.getLargura())));
-        //imgTradadora.setZoom(3.0);
-        lblVisualizacao.setIcon(imgTradadora.getIcone());/**/
+        camadaFundo.setZoom(((double)(((double)150.0)/((double)camadaFundo.getLargura()))));
+        //camadaFundo.setZoom(3.0);
+        lblVisualizacao.setIcon(camadaFundo.getIcone());/**/
         lblVisualizacao.setText(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getNomeTitulo());
     }
 
@@ -736,15 +748,15 @@ public class FrmMonstros extends javax.swing.JDialog {
             AbrirRegistro(CmbIDs.getSelectedIndex());
             
             /*SpriteXML spriteXML = new SpriteXML("/home/indigovox/localhost/tmwdata/graphics/sprites/monstro-fada.xml");
-            ImagemClass imgTradadora = new ImagemClass(spriteXML.getDadosPNG().getBloco(0));
-            imgTradadora.setZoom(((double)(150/imgTradadora.getLargura())));
-            lblVisualizacao.setIcon(imgTradadora.getIcone());/**/
+            ImagemClass camadaFundo = new ImagemClass(spriteXML.getDadosPNG().getBloco(0));
+            camadaFundo.setZoom(((double)(150/camadaFundo.getLargura())));
+            lblVisualizacao.setIcon(camadaFundo.getIcone());/**/
 
             /*SpritePNG spritePNG = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/monstro-fada.png",6,9);
-            ImagemClass imgTradadora = new ImagemClass(spritePNG.getBloco(0));
-            imgTradadora.setZoom(((double)(100/imgTradadora.getLargura())));
+            ImagemClass camadaFundo = new ImagemClass(spritePNG.getBloco(0));
+            camadaFundo.setZoom(((double)(100/camadaFundo.getLargura())));
             //lblVisualizacao.setIcon(new javax.swing.ImageIcon());
-            lblVisualizacao.setIcon(imgTradadora.getIcone());/**/
+            lblVisualizacao.setIcon(camadaFundo.getIcone());/**/
         }
     }//GEN-LAST:event_formWindowOpened
     private void sldRanger1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldRanger1StateChanged

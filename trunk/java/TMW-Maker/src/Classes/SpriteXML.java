@@ -1,11 +1,6 @@
 package Classes;
 
 import Formularios.FrmPrincipal;
-import java.awt.image.BufferedImage;
-import java.util.Vector;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -122,10 +117,18 @@ public class SpriteXML {
                    return Banco_Acoes[a];
                 }
             }
-            return null;
-        }else{
-            return null;
         }
+        return null;
+    }
+    public boolean haAcao(String Nome){
+        if(Banco_Acoes != null){
+            for(int a=0;a<Banco_Acoes.length;a++){
+                if(Banco_Acoes[a].getNome().equals(Nome)){
+                   return true;
+                }
+            }
+        }
+        return false;
     }
     public int getOrdem(String Nome){
         if(Banco_Acoes != null){
@@ -212,17 +215,25 @@ public class SpriteXML {
                 return null;
             }
         }
-        public XmlAnimacao getAnimacao(String Nome){
+        public XmlAnimacao getAnimacao(String Direcao){
             if(Banco_Animacoes != null){
                 for(int d=0;d<Banco_Animacoes.length;d++){
-                    if(Banco_Animacoes[d].getNome().equals(Nome)){
+                    if(Banco_Animacoes[d].getNome().equals(Direcao)){
                        return Banco_Animacoes[d];
                     }
                 }
-                return null;
-            }else{
-                return null;
             }
+            return null;
+        }
+        public boolean haAnimacao(String Direcao){
+            if(Banco_Animacoes != null){
+                for(int d=0;d<Banco_Animacoes.length;d++){
+                    if(Banco_Animacoes[d].getNome().equals(Direcao)){
+                       return true;
+                    }
+                }
+            }
+            return false;
         }
         public int getOrdem(String Nome){
             if(Banco_Animacoes != null){
