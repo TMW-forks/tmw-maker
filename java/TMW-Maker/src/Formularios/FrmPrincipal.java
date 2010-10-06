@@ -1118,7 +1118,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        PnlBarraDeEstatus.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PnlBarraDeEstatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PnlBarraDeEstatus.setAlignmentX(0.0F);
         PnlBarraDeEstatus.setAlignmentY(0.0F);
 
@@ -1136,7 +1136,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatusLayout.setHorizontalGroup(
             PnlBarraDeEstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlBarraDeEstatusLayout.createSequentialGroup()
-                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addComponent(LblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(PgbBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1150,6 +1150,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         LblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/tela_1492x1024.png"))); // NOI18N
         LblFundo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        jToolBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
@@ -1362,7 +1363,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(BtnAjudaIndicarDefeito);
 
-        BtnAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))); // NOI18N
+        BtnAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/tmw-maker-80x15.png"))); // NOI18N
         BtnAjudaSobre.setToolTipText("Sobre o Engine...");
         BtnAjudaSobre.setFocusable(false);
         BtnAjudaSobre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1709,15 +1710,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
-            .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+            .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 667, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 487, Short.MAX_VALUE)
+                .addComponent(LblFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 499, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(PnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

@@ -526,8 +526,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="PnlBarraDeEstatus" alignment="0" max="32767" attributes="0"/>
-          <Component id="jToolBar1" alignment="0" pref="613" max="32767" attributes="0"/>
-          <Component id="LblFundo" alignment="0" pref="613" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="667" max="32767" attributes="0"/>
+          <Component id="LblFundo" alignment="0" pref="667" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -535,7 +535,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-              <Component id="LblFundo" pref="487" max="32767" attributes="0"/>
+              <Component id="LblFundo" pref="499" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="PnlBarraDeEstatus" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -546,8 +546,8 @@
     <Container class="javax.swing.JPanel" name="PnlBarraDeEstatus">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
           </Border>
         </Property>
         <Property name="alignmentX" type="float" value="0.0"/>
@@ -558,7 +558,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="LblEstatus" pref="441" max="32767" attributes="0"/>
+                  <Component id="LblEstatus" pref="493" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="PgbBarra" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -617,6 +617,11 @@
     </Component>
     <Container class="javax.swing.JToolBar" name="jToolBar1">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
         <Property name="floatable" type="boolean" value="false"/>
         <Property name="rollover" type="boolean" value="true"/>
       </Properties>
@@ -878,7 +883,7 @@
         <Component class="javax.swing.JButton" name="BtnAjudaSobre">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagem/Botoes/sbl_localhost-tmw.png"/>
+              <Image iconType="3" name="/Imagem/Fundos/tmw-maker-80x15.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Sobre o Engine..."/>
             <Property name="focusable" type="boolean" value="false"/>
