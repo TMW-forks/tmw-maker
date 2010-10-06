@@ -38,7 +38,7 @@ public class Banco_Spawns {
             FrmPrincipal.PgbBarra.setMaximum(ConteudoTXT.getContLinhas()-1);
             for(int l=0;l<ConteudoTXT.getContLinhas();l++){
                 FrmPrincipal.PgbBarra.setValue(l);
-                FrmPrincipal.PgbBarra.setString((((int)(l+1)/ConteudoTXT.getContLinhas())*100)+"%");
+                FrmPrincipal.PgbBarra.setString((int)(((l+1)*100)/ConteudoTXT.getContLinhas())+"%");
                 if(
                     !ConteudoTXT.getLinha(l).trim().equals("") &&
                     !ConteudoTXT.getLinha(l).trim().substring(0, 2).equals("//") &&

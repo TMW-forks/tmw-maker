@@ -988,7 +988,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             MnuEditarItens.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarCampos.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarPersonagem.setEnabled(Config.getSeDependenciaDeMontagem());
-            MnuEditarMonstrosDados.setEnabled(Config.getSeDependenciaDeMontagem());
+            MnuEditarMonstros.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuEditarContas.setEnabled(Config.getSeDependenciaDeMontagem());
             MnuJogoExecutar.setEnabled(Config.getSeDependenciaDeMontagem());
             //MnuJogoCopilar.setEnabled(Config.getSeDependenciaDeMontagem());
@@ -1002,7 +1002,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnEditarItensDados.setEnabled(MnuEditar.isEnabled() && MnuEditarItens.isEnabled() && MnuEditarItensDados.isEnabled());
         BtnEditarCamposMapas.setEnabled(MnuEditar.isEnabled() && MnuEditarCampos.isEnabled() && MnuEditarCamposMapas.isEnabled());
         BtnEditarPersonagemScript.setEnabled(MnuEditar.isEnabled() && MnuEditarMonstros.isEnabled() && MnuEditarMonstrosDados.isEnabled());
-
+        btnEditarMonstrosDados.setEnabled(MnuEditar.isEnabled() && MnuEditarMonstros.isEnabled() && MnuEditarMonstrosDados.isEnabled());
         BtnEditarContas.setEnabled(MnuEditar.isEnabled() && MnuEditarContas.isEnabled());
         BtnJogoExecular.setEnabled(MnuJogo.isEnabled() && MnuJogoExecutar.isEnabled());
         //BtnJogoCopilar.setEnabled(MnuJogo.isEnabled() && MnuJogoCopilar.isEnabled());
