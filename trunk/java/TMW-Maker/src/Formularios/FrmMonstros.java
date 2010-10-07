@@ -4,7 +4,9 @@ import Classes.BancoDeDados.Banco_Spawns.Dados_Spawns;
 import Classes.BancoDeDados.Banco_Spawns.Dados_Spawns.Banco_Sprites;
 import Classes.FileClass;
 import Classes.ImagemClass;
+import Classes.Modificadoras.MyComboBoxEditor;
 import Classes.SpriteXML;
+import Classes.StringClass;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -58,6 +60,12 @@ public class FrmMonstros extends javax.swing.JDialog {
         sldDefFisico = new javax.swing.JSlider();
         lblDefMagico = new javax.swing.JLabel();
         sldDefMagico = new javax.swing.JSlider();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblItens = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -449,7 +457,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(15, 15, 15)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
@@ -457,6 +465,61 @@ public class FrmMonstros extends javax.swing.JDialog {
         );
 
         jTabbedPane1.addTab("Informação", jPanel1);
+
+        jLabel6.setText("Itens que o montro deixará cair ao morrer:");
+
+        tblItens.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblItens.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID: Nome", "Drops(%)"
+            }
+        ));
+        jScrollPane4.setViewportView(tblItens);
+
+        jButton1.setText("Adicionar");
+        jButton1.setEnabled(false);
+
+        jButton2.setText("Remover");
+        jButton2.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addContainerGap())
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
+
+        jTabbedPane1.addTab("Drops", jPanel6);
 
         jLabel5.setText("Áudios OGG:");
 
@@ -552,7 +615,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -586,7 +649,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblVisualizacao, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -607,14 +670,33 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public Vector addItemVector(int IDTem, double PerctDeDrops){
+        Vector Linha = new Vector();
+        //Linha.addElement(new ImageIcon(FrmPrincipal.Itens.getItemPorID(IDTem).getIconeImagem()));
+        //Linha.addElement(IDTem);
+        //Linha.addElement(FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo());//Se é um
+        Linha.addElement("<html>"+
+            "<table><tr><td><img align=\"middle\" src=\"file://"+
+                FrmPrincipal.Itens.getItemPorID(IDTem).getIconeEndereco()+
+            "\"></td><td>"+
+                "<b>"+IDTem+":</b> "+FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo()+"<br/>"+
+                "<small>"+
+                "V:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda()+"GP "+
+                "C:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeCompra()+"GP "+
+                "("+FrmPrincipal.Itens.getItemPorID(IDTem).getPoderEfeito()+")"+
+                "</small>"+
+            "</td></tr></table>"
+        );//Se é um
+        Linha.addElement(PerctDeDrops);
+        return Linha;
+    }
     private void AbrirRegistro(int Ordem) {
         /*******************************************************************************************************
          * ID,Name,Jname,
@@ -691,6 +773,59 @@ public class FrmMonstros extends javax.swing.JDialog {
 
 
 
+
+
+
+
+        
+
+        int Prods = FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getContDrops();
+        Vector NomesDeColuna2 = new Vector();
+        NomesDeColuna2.addElement("<html><big>ID: Item");
+        NomesDeColuna2.addElement("<html><b>Drops</b><br>(%)");
+
+        Vector Dados = new Vector();
+        if(Prods>=1){
+            for(int P=0;P<Prods;P++){
+                Dados.add(
+                    addItemVector(
+                        FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getDropPorOrdem(P).getID(),
+                        ((double)FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getDropPorOrdem(P).getpercentual())/100.0
+                    )
+                );
+            }
+        }
+        tblItens.setRowHeight(38);
+        tblItens.setModel(new DefaultTableModel(Dados,NomesDeColuna2) {
+            boolean[] canEdit = new boolean[]{false, false};
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
+            @Override
+            public void setValueAt(Object aValue, int row, int column) {
+                int X=tblItens.getSelectedColumn(), Y=tblItens.getSelectedRow();
+                if(column==0){
+                    StringClass Item = new StringClass(aValue.toString());
+                    int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
+                    //Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setID(ID);
+                    FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).getDropPorOrdem(row).setID(ID);
+                }else if(column==1){
+                    int PercDeDrops= Integer.parseInt(aValue.toString().trim());
+                    //Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setPrecoDeVenda(PercDeDrops);
+                    FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).getDropPorOrdem(row).setPercentual(PercDeDrops);
+                }
+                tblItens.setColumnSelectionInterval(X, X);
+                tblItens.setRowSelectionInterval(Y, Y);
+
+            }
+        });
+        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
+
+        tblItens.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
+        tblItens.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);
+
+
+
+        
 
 
         Dados_Spawns Monstro = FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem);
@@ -825,6 +960,8 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JButton BtnLocalizar;
     private javax.swing.JButton BtnVoltar;
     public static javax.swing.JComboBox CmbIDs;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -833,15 +970,18 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -870,6 +1010,7 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JSlider sldRanger1;
     private javax.swing.JSlider sldSP;
     private javax.swing.JTable tblAudios;
+    private javax.swing.JTable tblItens;
     private javax.swing.JTextField txtNomeSumonico;
     private javax.swing.JTextField txtNomeTitulo;
     // End of variables declaration//GEN-END:variables
