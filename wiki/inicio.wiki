@@ -2,7 +2,7 @@
 =WIKI TMW-Maker=
 
 ==Como ajudar ao projeto TMW-Maker?==
-Você pode colaborar como o projeto e dando sugestões. Se você tem experiência, também poderá ajudar com o [EathenaScript Eathena Script] do TMW-BR e com Aplicações Gráfica em Java pode participar editando partes do projeto.
+aaaa Você pode colaborar como o projeto e dando sugestões. Se você tem experiência, também poderá ajudar com o [EathenaScript Eathena Script] do TMW-BR e com Aplicações Gráfica em Java pode participar editando partes do projeto.
 
 || *DICA:* Se vc está enteressado em ajudar, comece entendendo a utilidade cada Aba deste site, que está inglês acima, clicando [abaswiki AQUI]. ||
 
