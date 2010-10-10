@@ -1,5 +1,6 @@
 package Classes.BancoDeDados;
 
+import Classes.ConfigClass;
 import Classes.FileClass;
 import Classes.SpriteXML;
 import Classes.StringClass;
@@ -54,33 +55,35 @@ public class Banco_Spawns {
                             "Carregando Monstro: \"<font color=\"#0000FF\">"+Partes[0]+": "+Partes[2]+"</font>\"!",
                             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))
                         );
-                        int c=3;
-                        getSpawnPorOrdem(getContSpawns()-1).setNivel(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setHP(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setSP(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setExp(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setJob(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setRange1(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setAtaque1(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setAtaque2(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setDefesaFisica(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setDefesaMagica(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setEstatusForca(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setEstatusAgilidade(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setEstatusVitalidade(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setEstatusInteligencia(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setEstatusDestresa(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setEstatusSorte(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setRange2(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setRange3(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setScale(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setRace(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setElement(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setMode(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setSpeed(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setAdelay(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setAMotion(Integer.parseInt(Partes[c++]));
-                        getSpawnPorOrdem(getContSpawns()-1).setDMotion(Integer.parseInt(Partes[c++]));
+                        getSpawnPorOrdem(getContSpawns()-1).setNivel(Integer.parseInt(Partes[3]));
+                        getSpawnPorOrdem(getContSpawns()-1).setHP(Integer.parseInt(Partes[4]));
+                        getSpawnPorOrdem(getContSpawns()-1).setSP(Integer.parseInt(Partes[5]));
+                        getSpawnPorOrdem(getContSpawns()-1).setExp(Integer.parseInt(Partes[6]));
+                        getSpawnPorOrdem(getContSpawns()-1).setJob(Integer.parseInt(Partes[7]));
+                        getSpawnPorOrdem(getContSpawns()-1).setRange1(Integer.parseInt(Partes[8]));
+                        getSpawnPorOrdem(getContSpawns()-1).setAtaque1(Integer.parseInt(Partes[9]));
+                        getSpawnPorOrdem(getContSpawns()-1).setAtaque2(Integer.parseInt(Partes[10]));
+                        getSpawnPorOrdem(getContSpawns()-1).setDefesaFisica(Integer.parseInt(Partes[11]));
+                        getSpawnPorOrdem(getContSpawns()-1).setDefesaMagica(Integer.parseInt(Partes[12]));
+                        getSpawnPorOrdem(getContSpawns()-1).setEstatusForca(Integer.parseInt(Partes[13]));
+                        getSpawnPorOrdem(getContSpawns()-1).setEstatusAgilidade(Integer.parseInt(Partes[14]));
+                        getSpawnPorOrdem(getContSpawns()-1).setEstatusVitalidade(Integer.parseInt(Partes[15]));
+                        getSpawnPorOrdem(getContSpawns()-1).setEstatusInteligencia(Integer.parseInt(Partes[16]));
+                        getSpawnPorOrdem(getContSpawns()-1).setEstatusDestresa(Integer.parseInt(Partes[17]));
+                        getSpawnPorOrdem(getContSpawns()-1).setEstatusSorte(Integer.parseInt(Partes[18]));
+                        getSpawnPorOrdem(getContSpawns()-1).setRange2(Integer.parseInt(Partes[19]));
+                        getSpawnPorOrdem(getContSpawns()-1).setRange3(Integer.parseInt(Partes[20]));
+                        getSpawnPorOrdem(getContSpawns()-1).setEscala(Integer.parseInt(Partes[21]));
+                        getSpawnPorOrdem(getContSpawns()-1).setRace(Integer.parseInt(Partes[22]));
+                        getSpawnPorOrdem(getContSpawns()-1).setElement(Integer.parseInt(Partes[23]));
+                        getSpawnPorOrdem(getContSpawns()-1).setMode(Integer.parseInt(Partes[24]));
+                        getSpawnPorOrdem(getContSpawns()-1).setSpeed(Integer.parseInt(Partes[25]));
+                        getSpawnPorOrdem(getContSpawns()-1).setAdelay(Integer.parseInt(Partes[26]));
+                        getSpawnPorOrdem(getContSpawns()-1).setAMotion(Integer.parseInt(Partes[27]));
+                        getSpawnPorOrdem(getContSpawns()-1).setDMotion(Integer.parseInt(Partes[28]));
+
+                        getSpawnPorOrdem(getContSpawns()-1).setMutationCount(Integer.parseInt(Partes[55]));
+                        getSpawnPorOrdem(getContSpawns()-1).setMutationStrength(Integer.parseInt(Partes[56]));
 
                         for(int d=29;d<=46;d+=2){
                             try{
@@ -135,8 +138,11 @@ public class Banco_Spawns {
             }
         }
     }
-    private String darCabecalhoMobTXT(){
+    private String getCabecalhoMobTXT(){
         return
+        "///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n"+
+        "//  IDE: TMW-Maker - Ferramenta Editora de Banco de Dados de Monstros\n"+
+        "//  MODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
         "///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n"+
         "//\n"+
         "//     ** ID,NomeSumonico,NomeTítulo,\n"+
@@ -149,7 +155,7 @@ public class Banco_Spawns {
         "//     ** Item1,Item2,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,mutiation count,mutation strength\n"+
         "//\n"+
         "//		 * NomeSumonico: Sem espaço e nem caracteres especiais. Exemplo: \"CapitaoDaGuarda\"\n"+
-        "//		 * NomeTítulo: Pode haver espaço e caracteres especiais noformato UTF-8. Exemplo: \"Capitão da Guarda\"\n"+
+        "//		 * NomeTítulo: Pode haver espaço e caracteres especiais no formato UTF-8. Exemplo: \"Capitão da Guarda\"\n"+
         "//		 * LVL: Qual o nível do monstros. Exemplo: É preferivel que Jogadores LVL30 enfrente Monstros LVL30.\n"+
         "//				  Monstros acima de nível maximo (LVL99) são BOSS.\n"+
         "//		 * HP: São os pontos de saúde do monstro.\n"+
@@ -175,8 +181,67 @@ public class Banco_Spawns {
         "//		 * Velocidade: Velocidade de caminhada da mob. 1 é o mais rápido, 3000 é o menor. 1000 é o caminhar normal de velocidade.\n"+
         "///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////";
     }
+    public void salvarBanco(){
+        salvarBanco(EnderecoTXT, EnderecoXML);
+    }
     public void salvarBanco(String mobTXT, String mobXML){
+        StringClass ConteudoTXT = new StringClass(getCabecalhoMobTXT());
+        ConteudoTXT.setTesto(ConteudoTXT.getTesto()+"\n");
+        for(int m=0;m<getContSpawns();m++){
+            ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
+                "\n"+getSpawnPorOrdem(m).getID()+
+                ","+getSpawnPorOrdem(m).getNomeSumonico()+
+                ","+getSpawnPorOrdem(m).getNomeTitulo()+
+                
+                ","+getSpawnPorOrdem(m).getNivel()+
+                ","+getSpawnPorOrdem(m).getHP()+
+                ","+getSpawnPorOrdem(m).getSP()+
+                ","+getSpawnPorOrdem(m).getExp()+
+                ","+getSpawnPorOrdem(m).getJob()+
 
+                ","+getSpawnPorOrdem(m).getRange1()+
+                ","+getSpawnPorOrdem(m).getAtaque1()+
+                ","+getSpawnPorOrdem(m).getAtaque2()+
+                ","+getSpawnPorOrdem(m).getDefesaFisica()+
+                ","+getSpawnPorOrdem(m).getDefesaMagica()+
+
+                ","+getSpawnPorOrdem(m).getEstatusForca()+
+                ","+getSpawnPorOrdem(m).getEstatusAgilidade()+
+                ","+getSpawnPorOrdem(m).getEstatusVitalidade()+
+                ","+getSpawnPorOrdem(m).getEstatusInteligencias()+
+                ","+getSpawnPorOrdem(m).getEstatusDestresa()+
+                ","+getSpawnPorOrdem(m).getEstatusSorte()+
+
+                ","+getSpawnPorOrdem(m).getRange2()+
+                ","+getSpawnPorOrdem(m).getRange3()+
+                ","+getSpawnPorOrdem(m).getEscala()+
+                ","+getSpawnPorOrdem(m).getRace()+
+                ","+getSpawnPorOrdem(m).getElement()+
+                ","+getSpawnPorOrdem(m).getMode()+
+                ","+getSpawnPorOrdem(m).getSpeed()+
+                ","+getSpawnPorOrdem(m).getAdelay()+
+
+                ","+getSpawnPorOrdem(m).getAMotion()+
+                ","+getSpawnPorOrdem(m).getDMotion()
+            );
+            for(int i=0;i<8;i++){
+                if(i<getSpawnPorOrdem(m).getContDrops()){
+                    ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
+                        ","+getSpawnPorOrdem(m).getDropPorOrdem(i).getID()+
+                        ","+getSpawnPorOrdem(m).getDropPorOrdem(i).getpercentual()
+                    );
+                }else{
+                    ConteudoTXT.setTesto(ConteudoTXT.getTesto()+",0,0");
+                }
+            }
+            ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
+                ",,,,,,,,,,"+
+                ","+getSpawnPorOrdem(m).getMutationCount()+
+                ","+getSpawnPorOrdem(m).getMutationStrength()
+            );
+        }
+        ConteudoTXT.setTesto(ConteudoTXT.getTesto()+"\n"+"\n");
+        FileClass.arquivoSalvar(mobTXT, ConteudoTXT.getTesto());
     }
     public int getContSpawns(){
         if(Spawns != null){
@@ -234,10 +299,11 @@ public class Banco_Spawns {
         //######### mobTXT #####################################################################
         private int ID=0;
         private String NomeSumonico="", NameTitulo="";
-        private int Nível=0, HP=0, SP=0,Exp=0, Job=0, Range1=0, Ataque1=0, Ataque2=0, DefesaFisica=0, DefesaMagica=0;
-        private int Stt_STR=0, Stt_AGI=0, Stt_VIT=0, Stt_INT=0, Stt_DEX=0, Stt_LUK=0;
-        private int Range2=0, Range3=0, Scale=0, Race=0, Element=0, Mode=0, Speed=0, Adelay=0;
-        private int AMotion=0, DMotion=0; //Motion(Movimento de Animação), DMotion(MovimrntoDeDano)
+        private int Nível=1, HP=1, SP=0,Exp=0, Job=0, Range1=1, Ataque1=1, Ataque2=1, DefesaFisica=0, DefesaMagica=0;
+        private int Stt_STR=1, Stt_AGI=1, Stt_VIT=1, Stt_INT=1, Stt_DEX=1, Stt_LUK=1;
+        private int Range2=1, Range3=1, Scale=1, Race=0, Element=20, Mode=0, Speed=1000, Adelay=500;
+        private int AMotion=700, DMotion=500; //Motion(Movimento de Animação), DMotion(MovimrntoDeDano)
+        private int MutationCount=0, MutationStrength=0;
 
         //######### mobXML #####################################################################
         private String targetCursor="";
@@ -268,7 +334,7 @@ public class Banco_Spawns {
         public int getEstatusSorte(){return Stt_LUK;}
         public int getRange2(){return Range2;}
         public int getRange3(){return Range3;}
-        public int getScale(){return Scale;}
+        public int getEscala(){return Scale;}
         public int getRace(){return Race;}
         public int getElement(){return Element;}
         public int getMode(){return Mode;}
@@ -276,10 +342,12 @@ public class Banco_Spawns {
         public int getAdelay(){return Adelay;}
         public int getAMotion(){return AMotion;}
         public int getDMotion(){return DMotion;}
+        public int getMutationCount(){return MutationCount;}
+        public int getMutationStrength(){return MutationStrength;}
 
         public void setID(int novoID){ID=novoID;}
         public void setNomeSumonico(String novoNomeSumonico){NomeSumonico=novoNomeSumonico;}
-        public void setNameTitulo(String novoNameTitulo){NameTitulo=novoNameTitulo;}
+        public void setNomeTitulo(String novoNameTitulo){NameTitulo=novoNameTitulo;}
         public void setNivel(int novoNível){Nível=novoNível;}
         public void setHP(int novoHP){HP=novoHP;}
         public void setSP(int novoSP){SP=novoSP;}
@@ -293,12 +361,12 @@ public class Banco_Spawns {
         public void setEstatusForca(int novoStt_STR){Stt_STR=novoStt_STR;}
         public void setEstatusAgilidade(int novoStt_AGI){Stt_AGI=novoStt_AGI;}
         public void setEstatusVitalidade(int novoStt_VIT){Stt_VIT=novoStt_VIT;}
-        public void setEstatusInteligencia(int novoStt_STR){Stt_STR=novoStt_STR;}
+        public void setEstatusInteligencia(int novoStt_INT){Stt_INT=novoStt_INT;}
         public void setEstatusDestresa(int novoStt_DEX){Stt_DEX=novoStt_DEX;}
         public void setEstatusSorte(int novoStt_LUK){Stt_LUK=novoStt_LUK;}
         public void setRange2(int novoRange2){Range2=novoRange2;}
         public void setRange3(int novoRange3){Range3=novoRange3;}
-        public void setScale(int novoScale){Scale=novoScale;}
+        public void setEscala(int novaEscala){Scale=novaEscala;}
         public void setRace(int novoRace){Race=novoRace;}
         public void setElement(int novoElement){Element=novoElement;}
         public void setMode(int novoMode){Mode=novoMode;}
@@ -306,6 +374,8 @@ public class Banco_Spawns {
         public void setAdelay(int novoAdelay){Adelay=novoAdelay;}
         public void setAMotion(int novoAMotion){AMotion=novoAMotion;}
         public void setDMotion(int novoDMotion){DMotion=novoDMotion;}
+        public void setMutationCount(int novoMutationCount){MutationCount=novoMutationCount;}
+        public void setMutationStrength(int novoMutationStrength){MutationStrength=novoMutationStrength;}
 
         public int getContDrops(){
             if(Drops != null){
