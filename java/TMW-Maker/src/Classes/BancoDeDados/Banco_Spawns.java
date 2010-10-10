@@ -20,7 +20,7 @@ public class Banco_Spawns {
      * Range2,Range3,Scale,Race,Element,Mode,Speed,Adelay,
      * Amotion,Dmotion,
      * Drop1id,Drop1per,Drop2id,Drop2per,Drop3id,Drop3per,Drop4id,Drop4per,Drop5id,Drop5per,Drop6id,Drop6per,Drop7id,Drop7per,Drop8id,Drop8per,
-     * Item1,Item2,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,mutiation count,mutation strength
+     * Item1,Item2,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,mutation count,mutation strength
      *******************************************************************************************************/
     public static String Barra = System.getProperty("file.separator");
     public static String EnderecoTXT = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"db"+Barra+"mob_db.txt";
@@ -134,6 +134,49 @@ public class Banco_Spawns {
                 }
             }
         }
+    }
+    private String darCabecalhoMobTXT(){
+        return
+        "///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n"+
+        "//\n"+
+        "//     ** ID,NomeSumonico,NomeTítulo,\n"+
+        "//     ** LVL,HP,SP,EXP,JobEXP,\n"+
+        "//     ** Alcance1,AtaqMin,AtaqMax,DEF,MagDEF,\n"+
+        "//     ** Força,Agilidade,Vitalidade,Inteligência,Destresa,Sorte,\n"+
+        "//     ** Alcance2,Alcance3,Escala,Raça,Elemento,Modo,Velocidade,IntervaloAtaque,\n"+
+        "//     ** Amotion,Dmotion,\n"+
+        "//     ** Drop1id,Drop1per,Drop2id,Drop2per,Drop3id,Drop3per,Drop4id,Drop4per,Drop5id,Drop5per,Drop6id,Drop6per,Drop7id,Drop7per,Drop8id,Drop8per,\n"+
+        "//     ** Item1,Item2,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,mutiation count,mutation strength\n"+
+        "//\n"+
+        "//		 * NomeSumonico: Sem espaço e nem caracteres especiais. Exemplo: \"CapitaoDaGuarda\"\n"+
+        "//		 * NomeTítulo: Pode haver espaço e caracteres especiais noformato UTF-8. Exemplo: \"Capitão da Guarda\"\n"+
+        "//		 * LVL: Qual o nível do monstros. Exemplo: É preferivel que Jogadores LVL30 enfrente Monstros LVL30.\n"+
+        "//				  Monstros acima de nível maximo (LVL99) são BOSS.\n"+
+        "//		 * HP: São os pontos de saúde do monstro.\n"+
+        "//		 * SP: São os pontos de magia do monstro, que definem quantas vezes o monstro pode usar uma determinada magia.\n"+
+        "//		 * EXP: Quanto de Experiencia o Monstro dará ao jogador quando for vencido.\n"+
+        "//				  Se for 0 a experiencia oferecida é calculada automaticamente.\n"+
+        "//		 * Escala: 0 se a sua pequena, 1 se a sua média, 2 se o seu grande\n"+
+        "//		 * Raça:  0 = sem forma, 1 = mortos-vivos, 2 = animais, 3 = planta, 4 = inseto, 5 = peixe, 6 = demônio, 7 Demihuman = 8 = anjo, 9 = dragão.\n"+
+        "//		 * Elemento: Esta é a parte complicada. O número de elementos tem 2 partes, vamos chamá-los:\n"+
+        "//				 XY: X = nível do elemento, e Y = número do elemento\n"+
+        "//				     X: 2 = LVL1, 4 = LVL2, 6 = LVL3, 8 = LVL4.\n"+
+        "//					  Y: 0 = Neutro, 1 = Água, 2 = Terra, 3 = Fogo, 4 = Vento, 5 = Venenoso, 6 = Sagrado, 7 = Sombra, 8 = Fantasma, 9 = Imortal\n"+
+        "//					  * E agora, para tornar o elemento, basta pegar o número do lvl que você quer ser, e\n"+
+        "//						 o número do elemento que você quer que seja. Vamos dizer que queremos um Monstros de fogo lvl 3.\n"+
+        "//						 Capturamos o 6 para o primeiro número e os 3 para o segundo, sendo 6=lvl3, e 3=fogo.\n"+
+        "//						 Será algo como = 63\n"+
+        "//		 * Modo: Define o comportamento do Monstro. Os números são estes:\n"+
+        "//				1=SeMovimeta, 2=ColetaNoChão, 4=Agressivo, 8=AuxiliaEspecie, 16=MultiAdversario, 32=Boss, 64=Planta, 128=PodeRevidar, 256=Detector, 512=EscolheAlvo\n"+
+        "//				Exemplos:\n"+
+        "//					* 133(A Morte)=128(PodeRevidar)+4(Agressivo)+1(SeMovimeta).\n"+
+        "//					* 135(LimoVermelho)=128(PodeRevidar)+4(Agressivo)+2(ColetaNoChão)+1(SeMovimeta)\n"+
+        "//					* 137(FadaGuardia)=128(PodeRevidar)+8(AuxiliaEspecie)+1(SeMovimeta)\n"+
+        "//		 * Velocidade: Velocidade de caminhada da mob. 1 é o mais rápido, 3000 é o menor. 1000 é o caminhar normal de velocidade.\n"+
+        "///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////";
+    }
+    public void salvarBanco(String mobTXT, String mobXML){
+
     }
     public int getContSpawns(){
         if(Spawns != null){
