@@ -1,13 +1,13 @@
 package Formularios;
 
-import Classes.BancoDeDados.Banco_Spawns.Dados_Spawns;
-import Classes.BancoDeDados.Banco_Spawns.Dados_Spawns.Banco_Sprites;
-import Classes.FileClass;
+import Classes.BancoDeDados.Banco_Monstros.Dados_Monstro;
+import Classes.BancoDeDados.Banco_Monstros.Dados_Monstro.Banco_Sprites;
 import Classes.ImagemClass;
 import Classes.Modificadoras.MyComboBoxEditor;
 import Classes.SpriteXML;
 import Classes.StringClass;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmMonstros extends javax.swing.JDialog {
@@ -22,11 +22,12 @@ public class FrmMonstros extends javax.swing.JDialog {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jToolBar1 = new javax.swing.JToolBar();
-        BtnVoltar = new javax.swing.JButton();
-        CmbIDs = new javax.swing.JComboBox();
-        BtnAvancar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
+        cmbIDs = new javax.swing.JComboBox();
+        btnAvancar = new javax.swing.JButton();
         BtnLocalizar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
+        btnAbrir = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -95,37 +96,36 @@ public class FrmMonstros extends javax.swing.JDialog {
         jToolBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jToolBar1.setFloatable(false);
 
-        BtnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_voltar.gif"))); // NOI18N
-        BtnVoltar.setToolTipText("Anterior (Ctrl+Alt+?)");
-        BtnVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnVoltar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_voltar.gif"))); // NOI18N
+        btnVoltar.setToolTipText("Anterior (Ctrl+Alt+?)");
+        btnVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVoltar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVoltarActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnVoltar);
+        jToolBar1.add(btnVoltar);
 
-        CmbIDs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3046" }));
-        CmbIDs.setToolTipText("Número ID");
-        CmbIDs.setMaximumSize(new java.awt.Dimension(67, 25));
-        CmbIDs.addActionListener(new java.awt.event.ActionListener() {
+        cmbIDs.setToolTipText("ID dos Monstros");
+        cmbIDs.setMaximumSize(new java.awt.Dimension(67, 25));
+        cmbIDs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbIDsActionPerformed(evt);
+                cmbIDsActionPerformed(evt);
             }
         });
-        jToolBar1.add(CmbIDs);
+        jToolBar1.add(cmbIDs);
 
-        BtnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_avancar.gif"))); // NOI18N
-        BtnAvancar.setToolTipText("Próxima (Ctrl+Alt+?)");
-        BtnAvancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnAvancar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnAvancar.addActionListener(new java.awt.event.ActionListener() {
+        btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_avancar.gif"))); // NOI18N
+        btnAvancar.setToolTipText("Próxima (Ctrl+Alt+?)");
+        btnAvancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAvancar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAvancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAvancarActionPerformed(evt);
+                btnAvancarActionPerformed(evt);
             }
         });
-        jToolBar1.add(BtnAvancar);
+        jToolBar1.add(btnAvancar);
 
         BtnLocalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lupa.gif"))); // NOI18N
         BtnLocalizar.setFocusable(false);
@@ -138,6 +138,19 @@ public class FrmMonstros extends javax.swing.JDialog {
         });
         jToolBar1.add(BtnLocalizar);
         jToolBar1.add(jSeparator1);
+
+        btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pasta.gif"))); // NOI18N
+        btnAbrir.setToolTipText("Abrir (Ctrl+A)");
+        btnAbrir.setEnabled(false);
+        btnAbrir.setFocusable(false);
+        btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnAbrir);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_disquete.gif"))); // NOI18N
         btnSalvar.setToolTipText("Salvar (Ctrl+S)");
@@ -433,7 +446,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(sldDefFisico, gridBagConstraints);
 
-        lblDefMagico.setText("Def.Mágico: (0)");
+        lblDefMagico.setText("Def.Mágica: (0)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -472,7 +485,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -521,7 +534,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -579,7 +592,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         gridBagConstraints.ipady = 61;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel7.add(jScrollPane2, gridBagConstraints);
 
         jButton3.setText("Adicionar");
@@ -629,7 +642,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -663,7 +676,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblVisualizacao, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -684,14 +697,22 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public Vector addItemVector(int IDTem, double PerctDeDrops){
+    private void darAuteracao(boolean Alterado){
+        btnAbrir.setEnabled(Alterado);
+        btnSalvar.setEnabled(Alterado);
+        btnVoltar.setEnabled(!Alterado);
+        btnAvancar.setEnabled(!Alterado);
+        cmbIDs.setEnabled(!Alterado);
+        BtnLocalizar.setEnabled(!Alterado);
+    }
+    private Vector addItemVector(int IDTem, double PerctDeDrops){
         Vector Linha = new Vector();
         //Linha.addElement(new ImageIcon(FrmPrincipal.Itens.getItemPorID(IDTem).getIconeImagem()));
         //Linha.addElement(IDTem);
@@ -712,6 +733,8 @@ public class FrmMonstros extends javax.swing.JDialog {
         return Linha;
     }
     private void AbrirRegistro(int Ordem) {
+        if(Ordem<0) return;
+
         /*******************************************************************************************************
          * ID,Name,Jname,
          * LV,HP,SP,EXP,JEXP,
@@ -723,31 +746,31 @@ public class FrmMonstros extends javax.swing.JDialog {
          * Item1,Item2,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,mutiation count,mutation strength
          *******************************************************************************************************/
 
-        txtNomeTitulo.setText(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getNomeTitulo());
-        txtNomeSumonico.setText(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getNomeSumonico());
-        sldNivel.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getNivel());
-        sldRanger1.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getRange1());
-        sldHP.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getHP());
-        sldSP.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getSP());
-        sldEXP.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getExp());
-        sldJob.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getJob());
-        sldAtaque1.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getAtaque1());
+        txtNomeTitulo.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeTitulo());
+        txtNomeSumonico.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeSumonico());
+        sldNivel.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNivel());
+        sldRanger1.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getRange1());
+        sldHP.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getHP());
+        sldSP.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSP());
+        sldEXP.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getExp());
+        sldJob.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getJob());
+        sldAtaque1.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getAtaque1());
         sldAtaque2.setMinimum(sldAtaque1.getValue());
-        sldAtaque2.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getAtaque2());
-        sldDefFisico.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getDefesaFisica());
-        sldDefMagico.setValue(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getDefesaMagica());
+        sldAtaque2.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getAtaque2());
+        sldDefFisico.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDefesaFisica());
+        sldDefMagico.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDefesaMagica());
 
         final Vector xmlAnimacoes = new Vector();
         //final Vector pngImagens = new Vector();
-        for(int s=0;s<FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getContSprites();s++){
-            Banco_Sprites Sprites =FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getSpritePorOrdem(s);
+        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContSprites();s++){
+            Banco_Sprites Sprites =FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSpritePorOrdem(s);
             xmlAnimacoes.addElement(Sprites.getArquivoXML());
         }
         Vector oggAudios = new Vector();
-        for(int s=0;s<FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getContSons();s++){
+        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContSons();s++){
             Vector oggAudio = new Vector();
-            oggAudio.addElement(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getSomPorOrdem(s).getEvent());
-            oggAudio.addElement(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getSomPorOrdem(s).getEndereco());
+            oggAudio.addElement(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEvent());
+            oggAudio.addElement(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEndereco());
             oggAudios.add(oggAudio);
         }
         lstAnimacoes.setModel(new javax.swing.AbstractListModel() {
@@ -775,7 +798,7 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         
 
-        int Prods = FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getContDrops();
+        int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContDrops();
         Vector NomesDeColuna2 = new Vector();
         NomesDeColuna2.addElement("<html><big>ID: Item");
         NomesDeColuna2.addElement("<html><b>Drops</b><br>(%)");
@@ -785,8 +808,8 @@ public class FrmMonstros extends javax.swing.JDialog {
             for(int P=0;P<Prods;P++){
                 Dados.add(
                     addItemVector(
-                        FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getDropPorOrdem(P).getID(),
-                        ((double)FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getDropPorOrdem(P).getpercentual())/100.0
+                        FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDropPorOrdem(P).getID(),
+                        ((double)FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDropPorOrdem(P).getpercentual())/100.0
                     )
                 );
             }
@@ -803,11 +826,11 @@ public class FrmMonstros extends javax.swing.JDialog {
                     StringClass Item = new StringClass(aValue.toString());
                     int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
                     //Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setID(ID);
-                    FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).getDropPorOrdem(row).setID(ID);
+                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setID(ID);
                 }else if(column==1){
                     int PercDeDrops= Integer.parseInt(aValue.toString().trim());
                     //Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setPrecoDeVenda(PercDeDrops);
-                    FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).getDropPorOrdem(row).setPercentual(PercDeDrops);
+                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setPercentual(PercDeDrops);
                 }
                 tblItens.setColumnSelectionInterval(X, X);
                 tblItens.setRowSelectionInterval(Y, Y);
@@ -824,7 +847,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         
 
 
-        Dados_Spawns Monstro = FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem);
+        Dados_Monstro Monstro = FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem);
 
         String direcao="down";
         SpriteXML spriteXML = Monstro.getSpritePorOrdem(0).getClassXML();
@@ -856,22 +879,24 @@ public class FrmMonstros extends javax.swing.JDialog {
         camadaFundo.setZoom(((double)(((double)150.0)/((double)camadaFundo.getLargura()))));
         //camadaFundo.setZoom(3.0);
         lblVisualizacao.setIcon(camadaFundo.getIcone());/**/
-        lblVisualizacao.setText(FrmPrincipal.Monstros.getSpawnPorOrdem(Ordem).getNomeTitulo());
+        lblVisualizacao.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeTitulo());
+
+        darAuteracao(false);
     }
 
-    private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
-        if(CmbIDs.getSelectedIndex()>0) CmbIDs.setSelectedIndex(CmbIDs.getSelectedIndex()-1);
-        AbrirRegistro(CmbIDs.getSelectedIndex());
-}//GEN-LAST:event_BtnVoltarActionPerformed
-    private void CmbIDsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIDsActionPerformed
-        AbrirRegistro(CmbIDs.getSelectedIndex());
-}//GEN-LAST:event_CmbIDsActionPerformed
-    private void BtnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAvancarActionPerformed
-        if(CmbIDs.getSelectedIndex()<CmbIDs.getItemCount()-1) CmbIDs.setSelectedIndex(CmbIDs.getSelectedIndex()+1);
-        AbrirRegistro(CmbIDs.getSelectedIndex());
-        BtnAvancar.grabFocus();
-        //MnuSistemaAtualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.CTRL_MASK))
-}//GEN-LAST:event_BtnAvancarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        if(cmbIDs.getSelectedIndex()>0) cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()-1);
+        AbrirRegistro(cmbIDs.getSelectedIndex());
+        btnVoltar.grabFocus();
+}//GEN-LAST:event_btnVoltarActionPerformed
+    private void cmbIDsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIDsActionPerformed
+        AbrirRegistro(cmbIDs.getSelectedIndex());
+}//GEN-LAST:event_cmbIDsActionPerformed
+    private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
+        if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1) cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()+1);
+        AbrirRegistro(cmbIDs.getSelectedIndex());
+        btnAvancar.grabFocus();
+}//GEN-LAST:event_btnAvancarActionPerformed
     private void BtnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLocalizarActionPerformed
         javax.swing.JDialog FrmMonstrosLocalizar = new FrmMonstrosLocalizar(this, rootPaneCheckingEnabled);
         FrmMonstrosLocalizar.setLocation(
@@ -882,94 +907,88 @@ public class FrmMonstros extends javax.swing.JDialog {
         FrmMonstrosLocalizar.setVisible(true);/**/
 }//GEN-LAST:event_BtnLocalizarActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if(FrmPrincipal.Monstros.getContSpawns()>=1){
-            CmbIDs.setModel(new javax.swing.DefaultComboBoxModel(FrmPrincipal.Monstros.getVectorIDs()));
-            AbrirRegistro(CmbIDs.getSelectedIndex());
-            
-            /*SpriteXML spriteXML = new SpriteXML("/home/indigovox/localhost/tmwdata/graphics/sprites/monstro-fada.xml");
-            ImagemClass camadaFundo = new ImagemClass(spriteXML.getDadosPNG().getBloco(0));
-            camadaFundo.setZoom(((double)(150/camadaFundo.getLargura())));
-            lblVisualizacao.setIcon(camadaFundo.getIcone());/**/
-
-            /*SpritePNG spritePNG = new SpritePNG("/home/indigovox/localhost/tmwdata/graphics/sprites/monstro-fada.png",6,9);
-            ImagemClass camadaFundo = new ImagemClass(spritePNG.getBloco(0));
-            camadaFundo.setZoom(((double)(100/camadaFundo.getLargura())));
-            //lblVisualizacao.setIcon(new javax.swing.ImageIcon());
-            lblVisualizacao.setIcon(camadaFundo.getIcone());/**/
+        if(FrmPrincipal.Monstros!=null && FrmPrincipal.Monstros.getContMonstros()>=1){
+            cmbIDs.setModel(new DefaultComboBoxModel(FrmPrincipal.Monstros.getVectorIDs()));
+            AbrirRegistro(cmbIDs.getSelectedIndex());
         }
     }//GEN-LAST:event_formWindowOpened
     private void sldRanger1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldRanger1StateChanged
         lblRanger1.setText("Dist. Ataq.: ("+sldRanger1.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setRange1(sldRanger1.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldRanger1StateChanged
     private void sldSPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldSPStateChanged
         lblSP.setText("SP: ("+sldSP.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setSP(sldSP.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldSPStateChanged
     private void sldJobStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldJobStateChanged
         lblJob.setText("Job: ("+sldJob.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setJob(sldJob.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldJobStateChanged
     private void sldNivelStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldNivelStateChanged
         lblNivel.setText("Nível: ("+sldNivel.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setNivel(sldNivel.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldNivelStateChanged
     private void sldHPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldHPStateChanged
         lblHP.setText("HP: ("+sldHP.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setHP(sldHP.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldHPStateChanged
     private void sldEXPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEXPStateChanged
         lblEXP.setText("Exp: ("+sldEXP.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setExp(sldEXP.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldEXPStateChanged
     private void sldAtaque2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldAtaque2StateChanged
         lblAtaque2.setText("Max. Ataq: ("+sldAtaque2.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setAtaque2(sldAtaque2.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldAtaque2StateChanged
     private void sldAtaque1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldAtaque1StateChanged
         lblAtaque1.setText("Min. Ataq: ("+sldAtaque1.getValue()+")");
         sldAtaque2.setMinimum(sldAtaque1.getValue());
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setAtaque1(sldAtaque1.getValue());
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setAtaque2(sldAtaque2.getValue());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_sldAtaque1StateChanged
     private void sldDefFisicoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldDefFisicoStateChanged
-        lblDefFisico.setText("Def.Físico: ("+sldDefFisico.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setDefesaFisica(sldDefFisico.getValue());
-        btnSalvar.setEnabled(true);
+        lblDefFisico.setText("Def.Física: ("+sldDefFisico.getValue()+")");
+        darAuteracao(true);
     }//GEN-LAST:event_sldDefFisicoStateChanged
     private void sldDefMagicoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldDefMagicoStateChanged
-        lblDefMagico.setText("Def.Mágico: ("+sldDefMagico.getValue()+")");
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setDefesaMagica(sldDefMagico.getValue());
-        btnSalvar.setEnabled(true);
+        lblDefMagico.setText("Def.Mágica: ("+sldDefMagico.getValue()+")");
+        darAuteracao(true);
     }//GEN-LAST:event_sldDefMagicoStateChanged
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeTitulo(txtNomeTitulo.getText().trim());
+        lblVisualizacao.setText(txtNomeTitulo.getText().trim());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeSumonico(txtNomeSumonico.getText().trim());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNivel(sldNivel.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setRange1(sldRanger1.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setHP(sldHP.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setSP(sldSP.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setExp(sldEXP.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setJob(sldJob.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque1(sldAtaque1.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque2(sldAtaque2.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaFisica(sldDefFisico.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaMagica(sldDefMagico.getValue());
+
         FrmPrincipal.Monstros.salvarBanco();
-        btnSalvar.setEnabled(false);
+        darAuteracao(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
     private void txtNomeTituloCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNomeTituloCaretUpdate
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setNomeTitulo(txtNomeTitulo.getText().trim());
-        lblVisualizacao.setText(txtNomeTitulo.getText().trim());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_txtNomeTituloCaretUpdate
     private void txtNomeSumonicoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeSumonicoFocusLost
         String Nome = txtNomeSumonico.getText();
         Nome = Nome.replace(" ", "");
         txtNomeSumonico.setText(Nome);
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setNomeSumonico(txtNomeSumonico.getText());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
 }//GEN-LAST:event_txtNomeSumonicoFocusLost
     private void txtNomeSumonicoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNomeSumonicoCaretUpdate
-        FrmPrincipal.Monstros.getSpawnPorOrdem(CmbIDs.getSelectedIndex()).setNomeSumonico(txtNomeSumonico.getText().trim());
-        btnSalvar.setEnabled(true);
+        darAuteracao(true);
     }//GEN-LAST:event_txtNomeSumonicoCaretUpdate
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        if(FrmPrincipal.Monstros!=null && FrmPrincipal.Monstros.getContMonstros()>=1){
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+            darAuteracao(false);
+        }
+    }//GEN-LAST:event_btnAbrirActionPerformed
 
     /**
     * @param args the command line arguments
@@ -989,11 +1008,12 @@ public class FrmMonstros extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAvancar;
     private javax.swing.JButton BtnLocalizar;
-    private javax.swing.JButton BtnVoltar;
-    public static javax.swing.JComboBox CmbIDs;
+    private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnAvancar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
+    public static javax.swing.JComboBox cmbIDs;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

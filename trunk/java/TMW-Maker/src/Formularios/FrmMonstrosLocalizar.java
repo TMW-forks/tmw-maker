@@ -182,9 +182,9 @@ public class FrmMonstrosLocalizar extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void Localizar() {
-        int Inicio=FrmMonstros.CmbIDs.getSelectedIndex();
+        int Inicio=FrmMonstros.cmbIDs.getSelectedIndex();
         int Ponteiro=Inicio;
-        if(Ponteiro==FrmMonstros.CmbIDs.getItemCount()-1) Ponteiro=0;
+        if(Ponteiro==FrmMonstros.cmbIDs.getItemCount()-1) Ponteiro=0;
         boolean SeSair=false,Redirecionado=false;
         TxtLocalizar.setEnabled(false);
         OptNomeTitulo.setEnabled(false);
@@ -195,12 +195,12 @@ public class FrmMonstrosLocalizar extends javax.swing.JDialog {
         do{
             Ponteiro++;
             if(
-                (OptNomeTitulo.isSelected() && FrmPrincipal.Monstros.getSpawnPorOrdem(Ponteiro).getNomeTitulo().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0) ||
-                (OptNomeSumonico.isSelected() && FrmPrincipal.Monstros.getSpawnPorOrdem(Ponteiro).getNomeSumonico().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0)
+                (OptNomeTitulo.isSelected() && FrmPrincipal.Monstros.getMonstroPorOrdem(Ponteiro).getNomeTitulo().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0) ||
+                (OptNomeSumonico.isSelected() && FrmPrincipal.Monstros.getMonstroPorOrdem(Ponteiro).getNomeSumonico().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0)
             ){
                 SeSair=true;
-                FrmMonstros.CmbIDs.setSelectedIndex(Ponteiro);
-            }else if(Ponteiro==FrmMonstros.CmbIDs.getItemCount()-1 && SeSair==false && Redirecionado==false){
+                FrmMonstros.cmbIDs.setSelectedIndex(Ponteiro);
+            }else if(Ponteiro==FrmMonstros.cmbIDs.getItemCount()-1 && SeSair==false && Redirecionado==false){
                 int R = JOptionPane.YES_OPTION;
                 Object[] Opcoes = {"Sim", "Não"};
                 R = JOptionPane.showOptionDialog(
@@ -220,7 +220,7 @@ public class FrmMonstrosLocalizar extends javax.swing.JDialog {
                 }else{
                     SeSair=true;
                 }
-            }else if(Ponteiro==FrmMonstros.CmbIDs.getItemCount()-1 && SeSair==false && Redirecionado==true){
+            }else if(Ponteiro==FrmMonstros.cmbIDs.getItemCount()-1 && SeSair==false && Redirecionado==true){
                 SeSair=true;
                 DialogClass.showErro("Item não encontrado!","LOCALIZADOR DE ITENS");
             }

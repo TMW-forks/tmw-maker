@@ -8,7 +8,7 @@ import Classes.BancoDeDados.Banco_NPCs;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_Itens;
 import Classes.BancoDeDados.Banco_Mapas;
-import Classes.BancoDeDados.Banco_Spawns;
+import Classes.BancoDeDados.Banco_Monstros;
 import Classes.ImagemClass;
 import Classes.DialogClass;
 import Classes.StringClass;
@@ -42,7 +42,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     static Banco_Itens Itens; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs NPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_Mapas Mundo; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
-    static Banco_Spawns Monstros; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
+    static Banco_Monstros Monstros; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     //public static String SpritePNG=""; // É esado em FrmEquipXML***
     static SpriteXML xmlEditada; // É usado em FrmEquipXML***
 
