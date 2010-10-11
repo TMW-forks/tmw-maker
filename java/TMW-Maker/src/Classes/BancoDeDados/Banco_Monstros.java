@@ -48,7 +48,7 @@ public class Banco_Monstros {
                 ){
                     String Partes[]=ConteudoTXT.getLinha(l).trim().split(",");
                     if(Partes.length>=47){
-                        addSpawn(
+                        addMonstro(
                             Integer.parseInt(Partes[0]),
                             Partes[1], Partes[2]
                         );
@@ -251,7 +251,7 @@ public class Banco_Monstros {
     public Vector getVectorIDs(){
         Vector LIstarIDs = new Vector();
         for(int v=0;v<getContMonstros();v++){
-            LIstarIDs.addElement(getMonstroPorOrdem(v).getID());
+            LIstarIDs.addElement(getMonstroPorOrdem(v).getID()+": "+getMonstroPorOrdem(v).getNomeTitulo());
         }
         return LIstarIDs;
     }
@@ -269,10 +269,24 @@ public class Banco_Monstros {
         }
         return null;
     }
-    public void addSpawn(int ID, String NomeSumonico, String NameTitulo){
+    public void addMonstro(Dados_Monstro Monstro){
         if(Monstros != null){
-            Dados_Monstro novosSpawns[] = new Dados_Monstro[Monstros.length+1];
-            for(int b=0;b<Monstros.length;b++){
+            Dados_Monstro novosSpawns[] = new Dados_Monstro[getContMonstros()+1];
+            for(int b=0;b<getContMonstros();b++){
+                novosSpawns[b]=getMonstroPorOrdem(b);
+            }
+            novosSpawns[Monstros.length] = Monstro;
+            Monstros = novosSpawns;
+        }else{
+            Dados_Monstro novosSpawns[] = new Dados_Monstro[1];
+            novosSpawns[0] = Monstro;
+            Monstros = novosSpawns;
+        }
+    }
+    public void addMonstro(int ID, String NomeSumonico, String NameTitulo){
+        if(Monstros != null){
+            Dados_Monstro novosSpawns[] = new Dados_Monstro[getContMonstros()+1];
+            for(int b=0;b<getContMonstros();b++){
                 novosSpawns[b]=getMonstroPorOrdem(b);
             }
             novosSpawns[Monstros.length] = new Dados_Monstro(ID, NomeSumonico, NameTitulo);

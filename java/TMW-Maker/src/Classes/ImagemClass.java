@@ -91,6 +91,9 @@ public class ImagemClass {
     public void setZoom(double Decimal) {
         Imagem=getZoom(Imagem,Decimal);
     }
+    public BufferedImage getZoom(double Decimal) {
+        return getZoom(Imagem, Decimal);
+    }
     public BufferedImage getZoom(BufferedImage SuaImagem, double Decimal) {
         return getEsticar(SuaImagem, (int)(SuaImagem.getWidth()*Decimal), (int)(SuaImagem.getHeight()*Decimal));
     }

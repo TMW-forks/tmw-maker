@@ -2,6 +2,8 @@ package Formularios;
 
 import Classes.BancoDeDados.Banco_Monstros.Dados_Monstro;
 import Classes.BancoDeDados.Banco_Monstros.Dados_Monstro.Banco_Sprites;
+import Classes.DialogClass;
+import Classes.FileClass;
 import Classes.ImagemClass;
 import Classes.Modificadoras.MyComboBoxEditor;
 import Classes.SpriteXML;
@@ -21,10 +23,13 @@ public class FrmMonstros extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        grpDirecao = new javax.swing.ButtonGroup();
         jToolBar1 = new javax.swing.JToolBar();
-        btnVoltar = new javax.swing.JButton();
+        btnRegistroInicio = new javax.swing.JButton();
+        btnRegistroVoltar = new javax.swing.JButton();
         cmbIDs = new javax.swing.JComboBox();
-        btnAvancar = new javax.swing.JButton();
+        btnRegistroAvancar = new javax.swing.JButton();
+        btnRegistroFinal = new javax.swing.JButton();
         BtnLocalizar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btnAbrir = new javax.swing.JButton();
@@ -44,6 +49,18 @@ public class FrmMonstros extends javax.swing.JDialog {
             MskNomeSimples.setValidCharacters(" 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
         }catch(java.text.ParseException Erro){}
         txtNomeSumonico = new javax.swing.JFormattedTextField(MskNomeSimples);
+        jPanel7 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstAnimacoes = new javax.swing.JList();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAudios = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblNivel = new javax.swing.JLabel();
         sldNivel = new javax.swing.JSlider();
@@ -65,25 +82,33 @@ public class FrmMonstros extends javax.swing.JDialog {
         sldDefFisico = new javax.swing.JSlider();
         lblDefMagico = new javax.swing.JLabel();
         sldDefMagico = new javax.swing.JSlider();
+        jPanel8 = new javax.swing.JPanel();
+        lblForca = new javax.swing.JLabel();
+        sldEstatusForca = new javax.swing.JSlider();
+        lblAgilidade = new javax.swing.JLabel();
+        sldEstatusAgilidade = new javax.swing.JSlider();
+        lblVitalidade = new javax.swing.JLabel();
+        sldEstatusVitalidade = new javax.swing.JSlider();
+        lblInteligencia = new javax.swing.JLabel();
+        sldEstatusInteligencia = new javax.swing.JSlider();
+        lblDestreza = new javax.swing.JLabel();
+        sldEstatusDestreza = new javax.swing.JSlider();
+        lblSorte = new javax.swing.JLabel();
+        sldEstatusSorte = new javax.swing.JSlider();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblItens = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblAudios = new javax.swing.JTable();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lstAnimacoes = new javax.swing.JList();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblVisualizacao = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        tgbDirecaoAcima = new javax.swing.JToggleButton();
+        tgbDirecaoEsquerda = new javax.swing.JToggleButton();
+        tgbDirecaoDireita = new javax.swing.JToggleButton();
+        tgbDirecaoAbaixo = new javax.swing.JToggleButton();
+        tgbDirecaoDireita1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editor de Monstros (Modo Somento-Leitura)");
@@ -96,19 +121,32 @@ public class FrmMonstros extends javax.swing.JDialog {
         jToolBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jToolBar1.setFloatable(false);
 
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_voltar.gif"))); // NOI18N
-        btnVoltar.setToolTipText("Anterior (Ctrl+Alt+?)");
-        btnVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVoltar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistroInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_inicio.gif"))); // NOI18N
+        btnRegistroInicio.setFocusable(false);
+        btnRegistroInicio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegistroInicio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRegistroInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
+                btnRegistroInicioActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnVoltar);
+        jToolBar1.add(btnRegistroInicio);
+
+        btnRegistroVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_voltar.gif"))); // NOI18N
+        btnRegistroVoltar.setToolTipText("Anterior (Ctrl+Alt+?)");
+        btnRegistroVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegistroVoltar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRegistroVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroVoltarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnRegistroVoltar);
 
         cmbIDs.setToolTipText("ID dos Monstros");
-        cmbIDs.setMaximumSize(new java.awt.Dimension(67, 25));
+        cmbIDs.setMaximumSize(new java.awt.Dimension(300, 25));
+        cmbIDs.setMinimumSize(new java.awt.Dimension(200, 25));
+        cmbIDs.setPreferredSize(new java.awt.Dimension(200, 25));
         cmbIDs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbIDsActionPerformed(evt);
@@ -116,16 +154,27 @@ public class FrmMonstros extends javax.swing.JDialog {
         });
         jToolBar1.add(cmbIDs);
 
-        btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_avancar.gif"))); // NOI18N
-        btnAvancar.setToolTipText("Próxima (Ctrl+Alt+?)");
-        btnAvancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAvancar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAvancar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistroAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_avancar.gif"))); // NOI18N
+        btnRegistroAvancar.setToolTipText("Próxima (Ctrl+Alt+?)");
+        btnRegistroAvancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegistroAvancar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRegistroAvancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAvancarActionPerformed(evt);
+                btnRegistroAvancarActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnAvancar);
+        jToolBar1.add(btnRegistroAvancar);
+
+        btnRegistroFinal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_final.gif"))); // NOI18N
+        btnRegistroFinal.setFocusable(false);
+        btnRegistroFinal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegistroFinal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRegistroFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroFinalActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnRegistroFinal);
 
         BtnLocalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lupa.gif"))); // NOI18N
         BtnLocalizar.setFocusable(false);
@@ -215,8 +264,8 @@ public class FrmMonstros extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
+                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -230,341 +279,8 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNomeSumonico, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(6, Short.MAX_VALUE))
         );
-
-        jPanel3.setLayout(new java.awt.GridBagLayout());
-
-        lblNivel.setText("Nível: (21)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblNivel, gridBagConstraints);
-
-        sldNivel.setMajorTickSpacing(80);
-        sldNivel.setMaximum(255);
-        sldNivel.setMinimum(1);
-        sldNivel.setMinorTickSpacing(20);
-        sldNivel.setPaintTicks(true);
-        sldNivel.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldNivelStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel3.add(sldNivel, gridBagConstraints);
-
-        lblRanger1.setText("Dist. Ataq.: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblRanger1, gridBagConstraints);
-
-        sldRanger1.setMajorTickSpacing(10);
-        sldRanger1.setMaximum(30);
-        sldRanger1.setMinorTickSpacing(2);
-        sldRanger1.setPaintTicks(true);
-        sldRanger1.setValue(0);
-        sldRanger1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldRanger1StateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 100;
-        jPanel3.add(sldRanger1, gridBagConstraints);
-
-        lblHP.setText("HP: (1)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblHP, gridBagConstraints);
-
-        sldHP.setMajorTickSpacing(5000);
-        sldHP.setMaximum(25000);
-        sldHP.setMinimum(1);
-        sldHP.setMinorTickSpacing(1000);
-        sldHP.setPaintTicks(true);
-        sldHP.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldHPStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 0, 0);
-        jPanel3.add(sldHP, gridBagConstraints);
-
-        lblSP.setText("SP: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblSP, gridBagConstraints);
-
-        sldSP.setMajorTickSpacing(2000);
-        sldSP.setMaximum(10000);
-        sldSP.setMinorTickSpacing(500);
-        sldSP.setPaintTicks(true);
-        sldSP.setValue(0);
-        sldSP.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldSPStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel3.add(sldSP, gridBagConstraints);
-
-        lblEXP.setText("Exp: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblEXP, gridBagConstraints);
-
-        sldEXP.setMajorTickSpacing(5000);
-        sldEXP.setMaximum(25000);
-        sldEXP.setMinorTickSpacing(1000);
-        sldEXP.setPaintTicks(true);
-        sldEXP.setValue(100);
-        sldEXP.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldEXPStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel3.add(sldEXP, gridBagConstraints);
-
-        lblJob.setText("Job: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblJob, gridBagConstraints);
-
-        sldJob.setMajorTickSpacing(5000);
-        sldJob.setMaximum(25000);
-        sldJob.setMinorTickSpacing(1000);
-        sldJob.setPaintTicks(true);
-        sldJob.setValue(0);
-        sldJob.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldJobStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel3.add(sldJob, gridBagConstraints);
-
-        lblAtaque1.setText("Min. Ataq: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblAtaque1, gridBagConstraints);
-
-        sldAtaque1.setMajorTickSpacing(200);
-        sldAtaque1.setMaximum(1000);
-        sldAtaque1.setMinorTickSpacing(50);
-        sldAtaque1.setPaintTicks(true);
-        sldAtaque1.setValue(0);
-        sldAtaque1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldAtaque1StateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel3.add(sldAtaque1, gridBagConstraints);
-
-        lblAtaque2.setText("Max. Ataq: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblAtaque2, gridBagConstraints);
-
-        sldAtaque2.setMajorTickSpacing(200);
-        sldAtaque2.setMaximum(1000);
-        sldAtaque2.setMinorTickSpacing(50);
-        sldAtaque2.setPaintTicks(true);
-        sldAtaque2.setValue(0);
-        sldAtaque2.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldAtaque2StateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 100;
-        jPanel3.add(sldAtaque2, gridBagConstraints);
-
-        lblDefFisico.setText("Def.Física: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblDefFisico, gridBagConstraints);
-
-        sldDefFisico.setMajorTickSpacing(200);
-        sldDefFisico.setMaximum(1000);
-        sldDefFisico.setMinorTickSpacing(50);
-        sldDefFisico.setPaintTicks(true);
-        sldDefFisico.setValue(0);
-        sldDefFisico.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldDefFisicoStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel3.add(sldDefFisico, gridBagConstraints);
-
-        lblDefMagico.setText("Def.Mágica: (0)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(lblDefMagico, gridBagConstraints);
-
-        sldDefMagico.setMajorTickSpacing(200);
-        sldDefMagico.setMaximum(1000);
-        sldDefMagico.setMinorTickSpacing(50);
-        sldDefMagico.setPaintTicks(true);
-        sldDefMagico.setValue(0);
-        sldDefMagico.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sldDefMagicoStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel3.add(sldDefMagico, gridBagConstraints);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Informação", jPanel1);
-
-        jLabel6.setText("Itens que o montro deixará cair ao morrer:");
-
-        tblItens.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tblItens.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID: Nome", "Drops(%)"
-            }
-        ));
-        jScrollPane4.setViewportView(tblItens);
-
-        jButton1.setText("Adicionar");
-        jButton1.setEnabled(false);
-
-        jButton2.setText("Remover");
-        jButton2.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jLabel6)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap())
-        );
-
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
-
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
-        );
-
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
-
-        jTabbedPane1.addTab("Drops", jPanel6);
-
-        jLabel5.setText("Áudios OGG:");
-
-        tblAudios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"hits", "audio.ogg"}
-            },
-            new String [] {
-                "Evento", "Arquivo"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(tblAudios);
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
@@ -622,31 +338,583 @@ public class FrmMonstros extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         jPanel7.add(jButton5, gridBagConstraints);
 
+        jLabel5.setText("Áudios OGG:");
+
+        tblAudios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"hits", "audio.ogg"}
+            },
+            new String [] {
+                "Evento", "Arquivo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblAudios);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addContainerGap(497, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Arquivos", jPanel5);
+        jTabbedPane1.addTab("Aparência", jPanel1);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        lblNivel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblNivel.setText("Nível: (21)");
+        lblNivel.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblNivel, gridBagConstraints);
+
+        sldNivel.setMajorTickSpacing(80);
+        sldNivel.setMaximum(255);
+        sldNivel.setMinimum(1);
+        sldNivel.setMinorTickSpacing(20);
+        sldNivel.setPaintTicks(true);
+        sldNivel.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldNivel.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldNivelStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(sldNivel, gridBagConstraints);
+
+        lblRanger1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRanger1.setText("Dist. Ataq.: (0)");
+        lblRanger1.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblRanger1, gridBagConstraints);
+
+        sldRanger1.setMajorTickSpacing(10);
+        sldRanger1.setMaximum(30);
+        sldRanger1.setMinorTickSpacing(2);
+        sldRanger1.setPaintTicks(true);
+        sldRanger1.setValue(0);
+        sldRanger1.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldRanger1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldRanger1StateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 100;
+        jPanel3.add(sldRanger1, gridBagConstraints);
+
+        lblHP.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblHP.setText("HP: (1)");
+        lblHP.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblHP, gridBagConstraints);
+
+        sldHP.setMajorTickSpacing(5000);
+        sldHP.setMaximum(25000);
+        sldHP.setMinimum(1);
+        sldHP.setMinorTickSpacing(1000);
+        sldHP.setPaintTicks(true);
+        sldHP.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldHP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldHPStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 0, 0, 0);
+        jPanel3.add(sldHP, gridBagConstraints);
+
+        lblSP.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSP.setText("SP: (0)");
+        lblSP.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblSP, gridBagConstraints);
+
+        sldSP.setMajorTickSpacing(2000);
+        sldSP.setMaximum(10000);
+        sldSP.setMinorTickSpacing(500);
+        sldSP.setPaintTicks(true);
+        sldSP.setValue(0);
+        sldSP.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldSP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldSPStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel3.add(sldSP, gridBagConstraints);
+
+        lblEXP.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEXP.setText("Exp: (0)");
+        lblEXP.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblEXP, gridBagConstraints);
+
+        sldEXP.setMajorTickSpacing(5000);
+        sldEXP.setMaximum(25000);
+        sldEXP.setMinorTickSpacing(1000);
+        sldEXP.setPaintTicks(true);
+        sldEXP.setValue(100);
+        sldEXP.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldEXP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldEXPStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel3.add(sldEXP, gridBagConstraints);
+
+        lblJob.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblJob.setText("Job: (0)");
+        lblJob.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblJob, gridBagConstraints);
+
+        sldJob.setMajorTickSpacing(5000);
+        sldJob.setMaximum(25000);
+        sldJob.setMinorTickSpacing(1000);
+        sldJob.setPaintTicks(true);
+        sldJob.setValue(0);
+        sldJob.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldJob.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldJobStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel3.add(sldJob, gridBagConstraints);
+
+        lblAtaque1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAtaque1.setText("Min. Ataq: (0)");
+        lblAtaque1.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblAtaque1, gridBagConstraints);
+
+        sldAtaque1.setMajorTickSpacing(200);
+        sldAtaque1.setMaximum(1000);
+        sldAtaque1.setMinorTickSpacing(50);
+        sldAtaque1.setPaintTicks(true);
+        sldAtaque1.setValue(0);
+        sldAtaque1.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldAtaque1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldAtaque1StateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(sldAtaque1, gridBagConstraints);
+
+        lblAtaque2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAtaque2.setText("Max. Ataq: (0)");
+        lblAtaque2.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblAtaque2, gridBagConstraints);
+
+        sldAtaque2.setMajorTickSpacing(200);
+        sldAtaque2.setMaximum(1000);
+        sldAtaque2.setMinorTickSpacing(50);
+        sldAtaque2.setPaintTicks(true);
+        sldAtaque2.setValue(0);
+        sldAtaque2.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldAtaque2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldAtaque2StateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 100;
+        jPanel3.add(sldAtaque2, gridBagConstraints);
+
+        lblDefFisico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDefFisico.setText("Def.Física: (0)");
+        lblDefFisico.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblDefFisico, gridBagConstraints);
+
+        sldDefFisico.setMajorTickSpacing(200);
+        sldDefFisico.setMaximum(1000);
+        sldDefFisico.setMinorTickSpacing(50);
+        sldDefFisico.setPaintTicks(true);
+        sldDefFisico.setValue(0);
+        sldDefFisico.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldDefFisico.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldDefFisicoStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel3.add(sldDefFisico, gridBagConstraints);
+
+        lblDefMagico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDefMagico.setText("Def.Mágica: (0)");
+        lblDefMagico.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(lblDefMagico, gridBagConstraints);
+
+        sldDefMagico.setMajorTickSpacing(200);
+        sldDefMagico.setMaximum(1000);
+        sldDefMagico.setMinorTickSpacing(50);
+        sldDefMagico.setPaintTicks(true);
+        sldDefMagico.setValue(0);
+        sldDefMagico.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldDefMagico.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldDefMagicoStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel3.add(sldDefMagico, gridBagConstraints);
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        lblForca.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblForca.setText("Força: (1)");
+        lblForca.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel8.add(lblForca, gridBagConstraints);
+
+        sldEstatusForca.setMajorTickSpacing(20);
+        sldEstatusForca.setMaximum(99);
+        sldEstatusForca.setMinimum(1);
+        sldEstatusForca.setMinorTickSpacing(5);
+        sldEstatusForca.setPaintTicks(true);
+        sldEstatusForca.setValue(1);
+        sldEstatusForca.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldEstatusForca.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldEstatusForcaStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel8.add(sldEstatusForca, gridBagConstraints);
+
+        lblAgilidade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAgilidade.setText("Agilidade: (1)");
+        lblAgilidade.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel8.add(lblAgilidade, gridBagConstraints);
+
+        sldEstatusAgilidade.setMajorTickSpacing(20);
+        sldEstatusAgilidade.setMaximum(99);
+        sldEstatusAgilidade.setMinimum(1);
+        sldEstatusAgilidade.setMinorTickSpacing(5);
+        sldEstatusAgilidade.setPaintTicks(true);
+        sldEstatusAgilidade.setValue(1);
+        sldEstatusAgilidade.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldEstatusAgilidade.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldEstatusAgilidadeStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel8.add(sldEstatusAgilidade, gridBagConstraints);
+
+        lblVitalidade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblVitalidade.setText("Vitalidade: (1)");
+        lblVitalidade.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel8.add(lblVitalidade, gridBagConstraints);
+
+        sldEstatusVitalidade.setMajorTickSpacing(20);
+        sldEstatusVitalidade.setMaximum(99);
+        sldEstatusVitalidade.setMinimum(1);
+        sldEstatusVitalidade.setMinorTickSpacing(5);
+        sldEstatusVitalidade.setPaintTicks(true);
+        sldEstatusVitalidade.setValue(1);
+        sldEstatusVitalidade.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldEstatusVitalidade.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldEstatusVitalidadeStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel8.add(sldEstatusVitalidade, gridBagConstraints);
+
+        lblInteligencia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblInteligencia.setText("Inteligência: (1)");
+        lblInteligencia.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel8.add(lblInteligencia, gridBagConstraints);
+
+        sldEstatusInteligencia.setMajorTickSpacing(20);
+        sldEstatusInteligencia.setMaximum(99);
+        sldEstatusInteligencia.setMinimum(1);
+        sldEstatusInteligencia.setMinorTickSpacing(5);
+        sldEstatusInteligencia.setPaintTicks(true);
+        sldEstatusInteligencia.setValue(1);
+        sldEstatusInteligencia.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldEstatusInteligencia.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldEstatusInteligenciaStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel8.add(sldEstatusInteligencia, gridBagConstraints);
+
+        lblDestreza.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDestreza.setText("Destreza: (1)");
+        lblDestreza.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel8.add(lblDestreza, gridBagConstraints);
+
+        sldEstatusDestreza.setMajorTickSpacing(20);
+        sldEstatusDestreza.setMaximum(99);
+        sldEstatusDestreza.setMinimum(1);
+        sldEstatusDestreza.setMinorTickSpacing(5);
+        sldEstatusDestreza.setPaintTicks(true);
+        sldEstatusDestreza.setValue(1);
+        sldEstatusDestreza.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldEstatusDestreza.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldEstatusDestrezaStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel8.add(sldEstatusDestreza, gridBagConstraints);
+
+        lblSorte.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSorte.setText("Sorte: (1)");
+        lblSorte.setMinimumSize(new java.awt.Dimension(135, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel8.add(lblSorte, gridBagConstraints);
+
+        sldEstatusSorte.setMajorTickSpacing(20);
+        sldEstatusSorte.setMaximum(99);
+        sldEstatusSorte.setMinimum(1);
+        sldEstatusSorte.setMinorTickSpacing(5);
+        sldEstatusSorte.setPaintTicks(true);
+        sldEstatusSorte.setValue(1);
+        sldEstatusSorte.setMinimumSize(new java.awt.Dimension(38, 30));
+        sldEstatusSorte.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldEstatusSorteStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel8.add(sldEstatusSorte, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Poder", jPanel9);
+
+        jLabel6.setText("Itens que o montro deixará cair ao morrer:");
+
+        tblItens.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblItens.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID: Nome", "Drops(%)"
+            }
+        ));
+        jScrollPane4.setViewportView(tblItens);
+
+        jButton1.setText("Adicionar");
+        jButton1.setEnabled(false);
+
+        jButton2.setText("Remover");
+        jButton2.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addContainerGap())
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
+
+        jTabbedPane1.addTab("Prêmios", jPanel6);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -669,25 +937,112 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblVisualizacao, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 219, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        grpDirecao.add(tgbDirecaoAcima);
+        tgbDirecaoAcima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ceta-norte.png"))); // NOI18N
+        tgbDirecaoAcima.setMaximumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoAcima.setMinimumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoAcima.setPreferredSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoAcima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgbDirecaoAcimaActionPerformed(evt);
+            }
+        });
+
+        grpDirecao.add(tgbDirecaoEsquerda);
+        tgbDirecaoEsquerda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ceta-oeste.png"))); // NOI18N
+        tgbDirecaoEsquerda.setMaximumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoEsquerda.setMinimumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoEsquerda.setPreferredSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoEsquerda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgbDirecaoEsquerdaActionPerformed(evt);
+            }
+        });
+
+        grpDirecao.add(tgbDirecaoDireita);
+        tgbDirecaoDireita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ceta-leste.png"))); // NOI18N
+        tgbDirecaoDireita.setMaximumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoDireita.setMinimumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoDireita.setPreferredSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoDireita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgbDirecaoDireitaActionPerformed(evt);
+            }
+        });
+
+        grpDirecao.add(tgbDirecaoAbaixo);
+        tgbDirecaoAbaixo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/ceta-sul.png"))); // NOI18N
+        tgbDirecaoAbaixo.setSelected(true);
+        tgbDirecaoAbaixo.setMaximumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoAbaixo.setMinimumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoAbaixo.setPreferredSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoAbaixo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgbDirecaoAbaixoActionPerformed(evt);
+            }
+        });
+
+        grpDirecao.add(tgbDirecaoDireita1);
+        tgbDirecaoDireita1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/cetas.png"))); // NOI18N
+        tgbDirecaoDireita1.setEnabled(false);
+        tgbDirecaoDireita1.setMaximumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoDireita1.setMinimumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoDireita1.setPreferredSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoDireita1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgbDirecaoDireita1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(tgbDirecaoEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tgbDirecaoAbaixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tgbDirecaoAcima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(tgbDirecaoDireita1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tgbDirecaoDireita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(tgbDirecaoAcima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tgbDirecaoEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tgbDirecaoDireita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tgbDirecaoDireita1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tgbDirecaoAbaixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -697,9 +1052,11 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -707,8 +1064,10 @@ public class FrmMonstros extends javax.swing.JDialog {
     private void darAuteracao(boolean Alterado){
         btnAbrir.setEnabled(Alterado);
         btnSalvar.setEnabled(Alterado);
-        btnVoltar.setEnabled(!Alterado);
-        btnAvancar.setEnabled(!Alterado);
+        btnRegistroInicio.setEnabled(!Alterado);
+        btnRegistroVoltar.setEnabled(!Alterado);
+        btnRegistroAvancar.setEnabled(!Alterado);
+        btnRegistroFinal.setEnabled(!Alterado);
         cmbIDs.setEnabled(!Alterado);
         BtnLocalizar.setEnabled(!Alterado);
     }
@@ -731,6 +1090,118 @@ public class FrmMonstros extends javax.swing.JDialog {
         );//Se é um
         Linha.addElement(PerctDeDrops);
         return Linha;
+    }
+    private void exibirAparencia(int ordem, String acao, String direcao) {
+    //#################### CONFIGURAÇÕES ######################################
+        int MaxCamadas=1; // Mas que uma camada Esta dando erro
+        int LarguraMaxima=150;
+        int TipoDeAvisoDeErro=0; //0=Nada; 1=EmEstatus(Indisponível); 2=EmDialogo
+    //#########################################################################
+        
+        Dados_Monstro Monstro = FrmPrincipal.Monstros.getMonstroPorOrdem(ordem);
+        SpriteXML camBaseXML = Monstro.getSpritePorOrdem(0).getClassXML();
+        tgbDirecaoAcima.setEnabled(false);
+        tgbDirecaoAbaixo.setEnabled(false);
+        tgbDirecaoEsquerda.setEnabled(false);
+        tgbDirecaoDireita.setEnabled(false);
+        if(FileClass.seExiste(camBaseXML.getDadosPNG().getEnderecoPNG())){
+            int s1=0,x1=0,y1=0;
+            if(camBaseXML.haAcao(acao)){
+                if(camBaseXML.getAcao(acao).haAnimacao(direcao)){
+                    if(camBaseXML.getAcao(acao).getAnimacao(direcao).getContFrames()>=1){
+                        s1=camBaseXML.getAcao(acao).getAnimacao(direcao).getFrame(0).getIndex();
+                        tgbDirecaoAcima.setEnabled(true);
+                        tgbDirecaoAbaixo.setEnabled(true);
+                        tgbDirecaoEsquerda.setEnabled(true);
+                        tgbDirecaoDireita.setEnabled(true);
+                    }else{
+                        s1=0;
+                        if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
+                            "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+":"+0+"\"</font>!",
+                            "ERRO DE CAMADA 0"
+                        );
+                    }
+                }else{
+                    s1=0;
+                    if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
+                        "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+"\"</font>!",
+                        "ERRO DE CAMADA 0"
+                    );
+                }
+            }else{
+                s1=0;
+                if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
+                    "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getDadosPNG().getArquivoPNG()+":"+acao+"\"</font>!",
+                    "ERRO DE CAMADA 0"
+                );
+            }
+            ImagemClass camBasePNG = new ImagemClass(camBaseXML.getDadosPNG().getBloco(s1));
+            x1=(int)(camBasePNG.getLargura()/2);
+            y1=(int)(camBasePNG.getAltura()/2);
+
+            int Camadas=(Monstro.getContSprites()>MaxCamadas?MaxCamadas:Monstro.getContSprites());
+            for(int cam=1;cam<Camadas;cam++){
+                tgbDirecaoAcima.setEnabled(false);
+                tgbDirecaoAbaixo.setEnabled(false);
+                tgbDirecaoEsquerda.setEnabled(false);
+                tgbDirecaoDireita.setEnabled(false);
+                SpriteXML camTopoXML = Monstro.getSpritePorOrdem(cam).getClassXML();
+                String EnderecoCamadaPNG = camTopoXML.getDadosPNG().getEnderecoPNG();
+                if(FileClass.seExiste(EnderecoCamadaPNG)){
+                    int s2=0,x2=0,y2=0;
+                    if(camTopoXML.haAcao(acao)){
+                        if(camTopoXML.getAcao(acao).haAnimacao(direcao)){
+                            if(camTopoXML.getAcao(acao).getAnimacao(direcao).getContFrames()>=1){
+                                s2=camTopoXML.getAcao(acao).getAnimacao(direcao).getFrame(0).getIndex();
+                            }else{
+                                s2=0;
+                                if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
+                                    "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+":"+0+"\"</font>!",
+                                    "ERRO DE CAMADA "+cam
+                                );
+                            }
+                        }else{
+                            s2=0;
+                            if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
+                                "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+"\"</font>!",
+                                "ERRO DE CAMADA "+cam
+                            );
+                        }
+                    }else{
+                        s2=0;
+                        if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
+                            "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getDadosPNG().getArquivoPNG()+":"+acao+"\"</font>!",
+                            "ERRO DE CAMADA "+cam
+                        );
+                    }
+
+                    ImagemClass camTopoPNG = new ImagemClass(camTopoXML.getDadosPNG().getBloco(s2));
+
+                    if(
+                        camTopoXML.haAcao(acao) &&
+                        camTopoXML.getAcao(acao).haAnimacao(direcao) &&
+                        camTopoXML.getAcao(acao).getAnimacao(direcao).getContFrames()>=1
+                    ){
+                        x2=((int)(camTopoPNG.getLargura()/2))+camTopoXML.getAcao(acao).getAnimacao(direcao).getFrame(0).getOffsetX();
+                        y2=((int)(camTopoPNG.getAltura()/2))+camTopoXML.getAcao(acao).getAnimacao(direcao).getFrame(0).getOffsetY();
+                        tgbDirecaoAcima.setEnabled(true);
+                        tgbDirecaoAbaixo.setEnabled(true);
+                        tgbDirecaoEsquerda.setEnabled(true);
+                        tgbDirecaoDireita.setEnabled(true);
+                    }
+                    camBasePNG.setMesclagem(camTopoPNG.getImage(),x1-x2,y1-y2);
+                }
+            }
+            if(camBasePNG.getZoom(3.0).getWidth()<=LarguraMaxima){
+                camBasePNG.setZoom(3.0);
+            }else{
+                double Zoom = ((double)(((double)LarguraMaxima)/((double)camBasePNG.getLargura())));
+                camBasePNG.setZoom(Zoom);
+            }
+            //camBasePNG.setZoom(3.0);
+            lblVisualizacao.setIcon(camBasePNG.getIcone());/**/
+        }
+        lblVisualizacao.setText(Monstro.getNomeTitulo());
     }
     private void AbrirRegistro(int Ordem) {
         if(Ordem<0) return;
@@ -790,6 +1261,13 @@ public class FrmMonstros extends javax.swing.JDialog {
         tblAudios.getTableHeader().getColumnModel().getColumn(0).setMinWidth(75);
         tblAudios.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(75);
 
+        sldEstatusForca.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusForca());
+        sldEstatusAgilidade.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusAgilidade());
+        sldEstatusVitalidade.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusVitalidade());
+        sldEstatusInteligencia.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusInteligencias());
+        sldEstatusDestreza.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusDestresa());
+        sldEstatusSorte.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusSorte());
+
 
 
 
@@ -846,57 +1324,32 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         
 
-
-        Dados_Monstro Monstro = FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem);
-
-        String direcao="down";
-        SpriteXML spriteXML = Monstro.getSpritePorOrdem(0).getClassXML();
-        ImagemClass camadaFundo = new ImagemClass(spriteXML.getDadosPNG().getBloco(0));/**/
-        /*int s1=0;
-        if(spriteXML.haAcao("stand")){
-            if(spriteXML.getAcao("stand").haAnimacao(direcao)){
-                s1=spriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getIndex();
-            }else{
-                s1=spriteXML.getAcao("stand").getAnimacao(0).getFrame(0).getIndex();
-            }
-        }
-        ImagemClass camadaFundo = new ImagemClass(spriteXML.getDadosPNG().getBloco(s1));
-        int x1=0,y1=0;
-        x1=camadaFundo.getLargura()/2;
-        y1=camadaFundo.getAltura()/2;
-        int Camadas=Monstro.getContSprites();
-        for(int s=1;s<Camadas;s++){
-            String EnderecoCamadaPNG = Monstro.getSpritePorOrdem(s).getClassXML().getDadosPNG().getEnderecoPNG();
-            if(FileClass.seExiste(EnderecoCamadaPNG)){
-                SpriteXML novoSpriteXML = Monstro.getSpritePorOrdem(s).getClassXML();
-                int x2=0, y2=0,  s2=novoSpriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getIndex();
-                ImagemClass camadaTopo = new ImagemClass(novoSpriteXML.getDadosPNG().getBloco(s2));
-                x2=(camadaTopo.getLargura()/2)+novoSpriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getOffsetX();
-                y2=(camadaTopo.getAltura()/2)+novoSpriteXML.getAcao("stand").getAnimacao(direcao).getFrame(0).getOffsetY();
-                camadaFundo.setMesclagem(camadaTopo.getImage(),x1-x2,y1-y2);
-            }
-        }/**/
-        camadaFundo.setZoom(((double)(((double)150.0)/((double)camadaFundo.getLargura()))));
-        //camadaFundo.setZoom(3.0);
-        lblVisualizacao.setIcon(camadaFundo.getIcone());/**/
-        lblVisualizacao.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeTitulo());
+        if(tgbDirecaoAbaixo.isSelected()) exibirAparencia(Ordem,"stand","down");
+        if(tgbDirecaoAcima.isSelected()) exibirAparencia(Ordem,"stand","up");
+        if(tgbDirecaoEsquerda.isSelected()) exibirAparencia(Ordem,"stand","left");
+        if(tgbDirecaoDireita.isSelected()) exibirAparencia(Ordem,"stand","right");
+        
 
         darAuteracao(false);
     }
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        if(cmbIDs.getSelectedIndex()>0) cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()-1);
-        AbrirRegistro(cmbIDs.getSelectedIndex());
-        btnVoltar.grabFocus();
-}//GEN-LAST:event_btnVoltarActionPerformed
+    private void btnRegistroVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVoltarActionPerformed
+        if(cmbIDs.getSelectedIndex()>0){
+            cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()-1);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        btnRegistroVoltar.grabFocus();
+}//GEN-LAST:event_btnRegistroVoltarActionPerformed
     private void cmbIDsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIDsActionPerformed
         AbrirRegistro(cmbIDs.getSelectedIndex());
 }//GEN-LAST:event_cmbIDsActionPerformed
-    private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
-        if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1) cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()+1);
-        AbrirRegistro(cmbIDs.getSelectedIndex());
-        btnAvancar.grabFocus();
-}//GEN-LAST:event_btnAvancarActionPerformed
+    private void btnRegistroAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAvancarActionPerformed
+        if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1){
+            cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()+1);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        btnRegistroAvancar.grabFocus();
+}//GEN-LAST:event_btnRegistroAvancarActionPerformed
     private void BtnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLocalizarActionPerformed
         javax.swing.JDialog FrmMonstrosLocalizar = new FrmMonstrosLocalizar(this, rootPaneCheckingEnabled);
         FrmMonstrosLocalizar.setLocation(
@@ -968,6 +1421,13 @@ public class FrmMonstros extends javax.swing.JDialog {
         FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaFisica(sldDefFisico.getValue());
         FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaMagica(sldDefMagico.getValue());
 
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusForca(sldEstatusForca.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusAgilidade(sldEstatusAgilidade.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusVitalidade(sldEstatusVitalidade.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusInteligencia(sldEstatusInteligencia.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusDestresa(sldEstatusDestreza.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusSorte(sldEstatusSorte.getValue());
+
         FrmPrincipal.Monstros.salvarBanco();
         darAuteracao(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -989,6 +1449,61 @@ public class FrmMonstros extends javax.swing.JDialog {
             darAuteracao(false);
         }
     }//GEN-LAST:event_btnAbrirActionPerformed
+    private void sldEstatusForcaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEstatusForcaStateChanged
+        lblForca.setText("Força: ("+sldEstatusForca.getValue()+")");
+        darAuteracao(true);
+    }//GEN-LAST:event_sldEstatusForcaStateChanged
+    private void sldEstatusAgilidadeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEstatusAgilidadeStateChanged
+        lblAgilidade.setText("Agilidade: ("+sldEstatusAgilidade.getValue()+")");
+        darAuteracao(true);
+    }//GEN-LAST:event_sldEstatusAgilidadeStateChanged
+    private void sldEstatusVitalidadeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEstatusVitalidadeStateChanged
+        lblVitalidade.setText("Vitalidade: ("+sldEstatusVitalidade.getValue()+")");
+        darAuteracao(true);
+    }//GEN-LAST:event_sldEstatusVitalidadeStateChanged
+    private void sldEstatusInteligenciaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEstatusInteligenciaStateChanged
+        lblInteligencia.setText("Inteligência: ("+sldEstatusInteligencia.getValue()+")");
+        darAuteracao(true);
+    }//GEN-LAST:event_sldEstatusInteligenciaStateChanged
+    private void sldEstatusDestrezaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEstatusDestrezaStateChanged
+        lblDestreza.setText("Destreza: ("+sldEstatusDestreza.getValue()+")");
+        darAuteracao(true);
+    }//GEN-LAST:event_sldEstatusDestrezaStateChanged
+    private void sldEstatusSorteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEstatusSorteStateChanged
+        lblSorte.setText("Sorte: ("+sldEstatusSorte.getValue()+")");
+        darAuteracao(true);
+    }//GEN-LAST:event_sldEstatusSorteStateChanged
+    private void btnRegistroInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroInicioActionPerformed
+        if(cmbIDs.getSelectedIndex()>0){
+            cmbIDs.setSelectedIndex(0);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        btnRegistroInicio.grabFocus();
+    }//GEN-LAST:event_btnRegistroInicioActionPerformed
+    private void btnRegistroFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroFinalActionPerformed
+        if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1){
+            cmbIDs.setSelectedIndex(cmbIDs.getItemCount()-1);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        btnRegistroFinal.grabFocus();
+    }//GEN-LAST:event_btnRegistroFinalActionPerformed
+
+    private void tgbDirecaoAbaixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoAbaixoActionPerformed
+        exibirAparencia(cmbIDs.getSelectedIndex(),"stand","down");
+    }//GEN-LAST:event_tgbDirecaoAbaixoActionPerformed
+    private void tgbDirecaoAcimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoAcimaActionPerformed
+        exibirAparencia(cmbIDs.getSelectedIndex(),"stand","up");
+    }//GEN-LAST:event_tgbDirecaoAcimaActionPerformed
+    private void tgbDirecaoDireitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoDireitaActionPerformed
+        exibirAparencia(cmbIDs.getSelectedIndex(),"stand","right");
+    }//GEN-LAST:event_tgbDirecaoDireitaActionPerformed
+    private void tgbDirecaoEsquerdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoEsquerdaActionPerformed
+        exibirAparencia(cmbIDs.getSelectedIndex(),"stand","left");
+    }//GEN-LAST:event_tgbDirecaoEsquerdaActionPerformed
+
+    private void tgbDirecaoDireita1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoDireita1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tgbDirecaoDireita1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1010,10 +1525,13 @@ public class FrmMonstros extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnLocalizar;
     private javax.swing.JButton btnAbrir;
-    private javax.swing.JButton btnAvancar;
+    private javax.swing.JButton btnRegistroAvancar;
+    private javax.swing.JButton btnRegistroFinal;
+    private javax.swing.JButton btnRegistroInicio;
+    private javax.swing.JButton btnRegistroVoltar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnVoltar;
     public static javax.swing.JComboBox cmbIDs;
+    private javax.swing.ButtonGroup grpDirecao;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1027,12 +1545,15 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1040,23 +1561,35 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblAgilidade;
     private javax.swing.JLabel lblAtaque1;
     private javax.swing.JLabel lblAtaque2;
     private javax.swing.JLabel lblDefFisico;
     private javax.swing.JLabel lblDefMagico;
+    private javax.swing.JLabel lblDestreza;
     private javax.swing.JLabel lblEXP;
+    private javax.swing.JLabel lblForca;
     private javax.swing.JLabel lblHP;
+    private javax.swing.JLabel lblInteligencia;
     private javax.swing.JLabel lblJob;
     private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblRanger1;
     private javax.swing.JLabel lblSP;
+    private javax.swing.JLabel lblSorte;
     private javax.swing.JLabel lblVisualizacao;
+    private javax.swing.JLabel lblVitalidade;
     private javax.swing.JList lstAnimacoes;
     private javax.swing.JSlider sldAtaque1;
     private javax.swing.JSlider sldAtaque2;
     private javax.swing.JSlider sldDefFisico;
     private javax.swing.JSlider sldDefMagico;
     private javax.swing.JSlider sldEXP;
+    private javax.swing.JSlider sldEstatusAgilidade;
+    private javax.swing.JSlider sldEstatusDestreza;
+    private javax.swing.JSlider sldEstatusForca;
+    private javax.swing.JSlider sldEstatusInteligencia;
+    private javax.swing.JSlider sldEstatusSorte;
+    private javax.swing.JSlider sldEstatusVitalidade;
     private javax.swing.JSlider sldHP;
     private javax.swing.JSlider sldJob;
     private javax.swing.JSlider sldNivel;
@@ -1064,6 +1597,11 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JSlider sldSP;
     private javax.swing.JTable tblAudios;
     private javax.swing.JTable tblItens;
+    private javax.swing.JToggleButton tgbDirecaoAbaixo;
+    private javax.swing.JToggleButton tgbDirecaoAcima;
+    private javax.swing.JToggleButton tgbDirecaoDireita;
+    private javax.swing.JToggleButton tgbDirecaoDireita1;
+    private javax.swing.JToggleButton tgbDirecaoEsquerda;
     private javax.swing.JFormattedTextField txtNomeSumonico;
     private javax.swing.JTextField txtNomeTitulo;
     // End of variables declaration//GEN-END:variables
