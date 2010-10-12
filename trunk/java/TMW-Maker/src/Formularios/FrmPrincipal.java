@@ -3,12 +3,12 @@ package Formularios;
 
 
 
-import Classes.FileClass;
 import Classes.BancoDeDados.Banco_NPCs;
-import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_Itens;
 import Classes.BancoDeDados.Banco_Mapas;
 import Classes.BancoDeDados.Banco_Monstros;
+import Classes.FileClass;
+import Classes.ConfigClass;
 import Classes.ImagemClass;
 import Classes.DialogClass;
 import Classes.StringClass;
@@ -24,7 +24,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
-
     public FrmPrincipal() {
         try {
             String Endereco ="/Imagem/Botoes/sbl_localhost-tmw.png";
