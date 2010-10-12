@@ -309,7 +309,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ChkEquipavelTorco1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ChkEquipavelTorco2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="ChkEquipavelCabeça" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelCabeca" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ChkEquipavelBraco1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ChkEquipavelBraco2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -329,7 +329,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="ChkEquipavelCabeça" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkEquipavelCabeca" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="ChkEquipavelMaos" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -357,7 +357,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JCheckBox" name="ChkEquipavelCabe&#xe7;a">
+                <Component class="javax.swing.JCheckBox" name="ChkEquipavelCabeca">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cabe&#xe7;a (p/ Chap&#xe9;us)"/>
                   </Properties>
