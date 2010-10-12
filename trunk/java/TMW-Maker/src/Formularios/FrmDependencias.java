@@ -404,7 +404,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMinWidth(100);
         TblDependencias.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(100);
     }
-    public void Pendencias_SugerirSolução(){
+    public void Pendencias_SugerirSolucao(){
         Pendencias_Verificar();
         if(!FrmPrincipal.Config.getSeDependenciaDeConfiguracao()) {
             Object[] options = {"Instalar", "Cancelar"};
@@ -507,7 +507,7 @@ public class FrmDependencias extends javax.swing.JDialog {
         FrmPrincipal.Config.ConfiguracoesGravar();
         BtnResolver.setEnabled(false);
         FrmPrincipal.setAvisoEmEstatus("Definida configuração padrão com sucesso!");
-        Pendencias_SugerirSolução();
+        Pendencias_SugerirSolucao();
     }
     public void InstalarSVN(){
         String SistemaOperacional = System.getProperty("os.name").toLowerCase();
@@ -581,7 +581,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     TblDependencias.setEnabled(true);
                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                    Pendencias_SugerirSolução();
+                    Pendencias_SugerirSolucao();
                 }
             });
             tThread.start();
@@ -659,7 +659,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     TblDependencias.setEnabled(true);
                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                    Pendencias_SugerirSolução();
+                    Pendencias_SugerirSolucao();
 
                 }
             });
@@ -736,7 +736,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                     TblDependencias.setEnabled(true);
                     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                    Pendencias_SugerirSolução();
+                    Pendencias_SugerirSolucao();
                 }
             });
             tThread.start();
@@ -904,7 +904,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                         TblDependencias.setEnabled(true);
                         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                        Pendencias_SugerirSolução();
+                        Pendencias_SugerirSolucao();
                     }
                 }
             });
@@ -1282,7 +1282,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 return;
                             }else{
-                                Pendencias_SugerirSolução();
+                                Pendencias_SugerirSolucao();
                             }
                             
                         }

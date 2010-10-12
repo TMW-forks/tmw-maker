@@ -297,7 +297,7 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnuEditarMagiasConjura&#xe7;&#xf5;es">
+                <MenuItem class="javax.swing.JMenuItem" name="MnuEditarMagiasConjuracoes">
                   <Properties>
                     <Property name="mnemonic" type="int" value="67"/>
                     <Property name="text" type="java.lang.String" value="Conjura&#xe7;&#xf5;es"/>

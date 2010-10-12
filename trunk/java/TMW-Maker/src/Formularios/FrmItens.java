@@ -144,7 +144,7 @@ public class FrmItens extends javax.swing.JDialog {
             boolean SeEquipamento = (CmbUtilidade.getSelectedIndex()>=3 && CmbUtilidade.getSelectedIndex()<=8);
             ChkEquipavelMunicao.setSelected(Loc/32768>=1); if(Loc/32768>=1)Loc-=32768; ChkEquipavelMunicao.setEnabled(SeEquipamento);
             ChkEquipavelTorco2.setSelected(Loc/512>=1);    if(Loc/512>=1)  Loc-=512;   ChkEquipavelTorco2.setEnabled(SeEquipamento);
-            ChkEquipavelCabeça.setSelected(Loc/256>=1);    if(Loc/256>=1)  Loc-=256;   ChkEquipavelCabeça.setEnabled(SeEquipamento);
+            ChkEquipavelCabeca.setSelected(Loc/256>=1);    if(Loc/256>=1)  Loc-=256;   ChkEquipavelCabeca.setEnabled(SeEquipamento);
             ChkEquipavelAcessorio.setSelected(Loc/128>=1); if(Loc/128>=1)  Loc-=128;   ChkEquipavelAcessorio.setEnabled(SeEquipamento);
             ChkEquipavelPes.setSelected(Loc/64>=1);        if(Loc/64>=1)   Loc-=64;    ChkEquipavelPes.setEnabled(SeEquipamento);
             ChkEquipavelBraco2.setSelected(Loc/32>=1);     if(Loc/32>=1)   Loc-=32;    ChkEquipavelBraco2.setEnabled(SeEquipamento);
@@ -192,7 +192,7 @@ public class FrmItens extends javax.swing.JDialog {
         TxtIconeCor = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        ChkEquipavelCabeça = new javax.swing.JCheckBox();
+        ChkEquipavelCabeca = new javax.swing.JCheckBox();
         ChkEquipavelPernas = new javax.swing.JCheckBox();
         ChkEquipavelMaos = new javax.swing.JCheckBox();
         ChkEquipavelPes = new javax.swing.JCheckBox();
@@ -407,7 +407,7 @@ public class FrmItens extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Local equipavel do corpo"));
 
-        ChkEquipavelCabeça.setText("Cabeça (p/ Chapéus)");
+        ChkEquipavelCabeca.setText("Cabeça (p/ Chapéus)");
 
         ChkEquipavelPernas.setText("Pernas (p/ Calças)");
 
@@ -436,7 +436,7 @@ public class FrmItens extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChkEquipavelTorco1)
                     .addComponent(ChkEquipavelTorco2)
-                    .addComponent(ChkEquipavelCabeça)
+                    .addComponent(ChkEquipavelCabeca)
                     .addComponent(ChkEquipavelBraco1)
                     .addComponent(ChkEquipavelBraco2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -452,7 +452,7 @@ public class FrmItens extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ChkEquipavelCabeça)
+                    .addComponent(ChkEquipavelCabeca)
                     .addComponent(ChkEquipavelMaos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1221,7 +1221,7 @@ public class FrmItens extends javax.swing.JDialog {
     private javax.swing.JCheckBox ChkEquipavelAcessorio;
     private javax.swing.JCheckBox ChkEquipavelBraco1;
     private javax.swing.JCheckBox ChkEquipavelBraco2;
-    private javax.swing.JCheckBox ChkEquipavelCabeça;
+    private javax.swing.JCheckBox ChkEquipavelCabeca;
     private javax.swing.JCheckBox ChkEquipavelMaos;
     private javax.swing.JCheckBox ChkEquipavelMunicao;
     private javax.swing.JCheckBox ChkEquipavelPernas;

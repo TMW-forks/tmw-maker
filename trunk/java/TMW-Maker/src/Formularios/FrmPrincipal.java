@@ -1081,7 +1081,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarInimigosArenas = new javax.swing.JMenuItem();
         MnuEditarMagias = new javax.swing.JMenu();
         MnuEditarMagiasCompetencias = new javax.swing.JMenuItem();
-        MnuEditarMagiasConjurações = new javax.swing.JMenuItem();
+        MnuEditarMagiasConjuracoes = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
         MnuEditarContas = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -1567,10 +1567,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuEditarMagiasCompetencias.setEnabled(false);
         MnuEditarMagias.add(MnuEditarMagiasCompetencias);
 
-        MnuEditarMagiasConjurações.setMnemonic('C');
-        MnuEditarMagiasConjurações.setText("Conjurações");
-        MnuEditarMagiasConjurações.setEnabled(false);
-        MnuEditarMagias.add(MnuEditarMagiasConjurações);
+        MnuEditarMagiasConjuracoes.setMnemonic('C');
+        MnuEditarMagiasConjuracoes.setText("Conjurações");
+        MnuEditarMagiasConjuracoes.setEnabled(false);
+        MnuEditarMagias.add(MnuEditarMagiasConjuracoes);
 
         MnuEditar.add(MnuEditarMagias);
         MnuEditar.add(jSeparator3);
@@ -2034,7 +2034,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuEditarItensSprites;
     private javax.swing.JMenu MnuEditarMagias;
     private javax.swing.JMenuItem MnuEditarMagiasCompetencias;
-    private javax.swing.JMenuItem MnuEditarMagiasConjurações;
+    private javax.swing.JMenuItem MnuEditarMagiasConjuracoes;
     private javax.swing.JMenu MnuEditarMonstros;
     private javax.swing.JMenuItem MnuEditarMonstrosDados;
     public static javax.swing.JMenu MnuEditarPersonagem;

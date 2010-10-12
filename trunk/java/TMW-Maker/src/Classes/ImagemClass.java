@@ -18,7 +18,7 @@ public class ImagemClass {
         try{
             setImage((new ImageIcon(getClass().getResource(EnderecoOuResource))).getImage());
         }catch(NullPointerException E){
-            setEndereço(EnderecoOuResource);
+            setEndereco(EnderecoOuResource);
         }
     }
     public ImagemClass(BufferedImage NovaImagem) {
@@ -62,10 +62,10 @@ public class ImagemClass {
         String ParteDoEndereco[]=ImagemEndereco.split("\\.");
         return ParteDoEndereco[ParteDoEndereco.length-1].toLowerCase();
     }
-    public String getEndereço() {
+    public String getEndereco() {
         return ImagemEndereco;
     }
-    public void setEndereço(String Endereco) {
+    public void setEndereco(String Endereco) {
         try {
             File Arquivo = new File(Endereco);
             if(Arquivo.exists()){
