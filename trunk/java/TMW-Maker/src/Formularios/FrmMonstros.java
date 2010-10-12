@@ -27,9 +27,9 @@ public class FrmMonstros extends javax.swing.JDialog {
         jToolBar1 = new javax.swing.JToolBar();
         btnRegistroInicio = new javax.swing.JButton();
         btnRegistroVoltar = new javax.swing.JButton();
-        cmbIDs = new javax.swing.JComboBox();
         btnRegistroAvancar = new javax.swing.JButton();
         btnRegistroFinal = new javax.swing.JButton();
+        cmbIDs = new javax.swing.JComboBox();
         BtnLocalizar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btnAbrir = new javax.swing.JButton();
@@ -143,17 +143,6 @@ public class FrmMonstros extends javax.swing.JDialog {
         });
         jToolBar1.add(btnRegistroVoltar);
 
-        cmbIDs.setToolTipText("ID dos Monstros");
-        cmbIDs.setMaximumSize(new java.awt.Dimension(300, 25));
-        cmbIDs.setMinimumSize(new java.awt.Dimension(200, 25));
-        cmbIDs.setPreferredSize(new java.awt.Dimension(200, 25));
-        cmbIDs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbIDsActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(cmbIDs);
-
         btnRegistroAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_avancar.gif"))); // NOI18N
         btnRegistroAvancar.setToolTipText("Próxima (Ctrl+Alt+?)");
         btnRegistroAvancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -175,6 +164,17 @@ public class FrmMonstros extends javax.swing.JDialog {
             }
         });
         jToolBar1.add(btnRegistroFinal);
+
+        cmbIDs.setToolTipText("ID dos Monstros");
+        cmbIDs.setMaximumSize(new java.awt.Dimension(300, 25));
+        cmbIDs.setMinimumSize(new java.awt.Dimension(200, 25));
+        cmbIDs.setPreferredSize(new java.awt.Dimension(200, 25));
+        cmbIDs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbIDsActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(cmbIDs);
 
         BtnLocalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_lupa.gif"))); // NOI18N
         BtnLocalizar.setFocusable(false);
@@ -846,7 +846,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1104,7 +1104,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         tgbDirecaoAbaixo.setEnabled(false);
         tgbDirecaoEsquerda.setEnabled(false);
         tgbDirecaoDireita.setEnabled(false);
-        if(FileClass.seExiste(camBaseXML.getDadosPNG().getEnderecoPNG())){
+        if(FileClass.seExiste(camBaseXML.getSpritePNGdados().getEnderecoPNG())){
             int s1=0,x1=0,y1=0;
             if(camBaseXML.haAcao(acao)){
                 if(camBaseXML.getAcao(acao).haAnimacao(direcao)){
@@ -1117,25 +1117,25 @@ public class FrmMonstros extends javax.swing.JDialog {
                     }else{
                         s1=0;
                         if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
-                            "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+":"+0+"\"</font>!",
+                            "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getSpritePNGdados().getArquivoPNG()+":"+acao+":"+direcao+":"+0+"\"</font>!",
                             "ERRO DE CAMADA 0"
                         );
                     }
                 }else{
                     s1=0;
                     if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
-                        "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+"\"</font>!",
+                        "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getSpritePNGdados().getArquivoPNG()+":"+acao+":"+direcao+"\"</font>!",
                         "ERRO DE CAMADA 0"
                     );
                 }
             }else{
                 s1=0;
                 if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
-                    "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getDadosPNG().getArquivoPNG()+":"+acao+"\"</font>!",
+                    "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camBaseXML.getSpritePNGdados().getArquivoPNG()+":"+acao+"\"</font>!",
                     "ERRO DE CAMADA 0"
                 );
             }
-            ImagemClass camBasePNG = new ImagemClass(camBaseXML.getDadosPNG().getBloco(s1));
+            ImagemClass camBasePNG = new ImagemClass(camBaseXML.getSpritePNGdados().getBloco(s1));
             x1=(int)(camBasePNG.getLargura()/2);
             y1=(int)(camBasePNG.getAltura()/2);
 
@@ -1146,7 +1146,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 tgbDirecaoEsquerda.setEnabled(false);
                 tgbDirecaoDireita.setEnabled(false);
                 SpriteXML camTopoXML = Monstro.getSpritePorOrdem(cam).getClassXML();
-                String EnderecoCamadaPNG = camTopoXML.getDadosPNG().getEnderecoPNG();
+                String EnderecoCamadaPNG = camTopoXML.getSpritePNGdados().getEnderecoPNG();
                 if(FileClass.seExiste(EnderecoCamadaPNG)){
                     int s2=0,x2=0,y2=0;
                     if(camTopoXML.haAcao(acao)){
@@ -1156,26 +1156,26 @@ public class FrmMonstros extends javax.swing.JDialog {
                             }else{
                                 s2=0;
                                 if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
-                                    "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+":"+0+"\"</font>!",
+                                    "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getSpritePNGdados().getArquivoPNG()+":"+acao+":"+direcao+":"+0+"\"</font>!",
                                     "ERRO DE CAMADA "+cam
                                 );
                             }
                         }else{
                             s2=0;
                             if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
-                                "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getDadosPNG().getArquivoPNG()+":"+acao+":"+direcao+"\"</font>!",
+                                "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getSpritePNGdados().getArquivoPNG()+":"+acao+":"+direcao+"\"</font>!",
                                 "ERRO DE CAMADA "+cam
                             );
                         }
                     }else{
                         s2=0;
                         if(TipoDeAvisoDeErro==2) DialogClass.showErro("<html>"+
-                            "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getDadosPNG().getArquivoPNG()+":"+acao+"\"</font>!",
+                            "Não foi possivel visualizar o frame \"<font color=\"#FF0000\">"+camTopoXML.getSpritePNGdados().getArquivoPNG()+":"+acao+"\"</font>!",
                             "ERRO DE CAMADA "+cam
                         );
                     }
 
-                    ImagemClass camTopoPNG = new ImagemClass(camTopoXML.getDadosPNG().getBloco(s2));
+                    ImagemClass camTopoPNG = new ImagemClass(camTopoXML.getSpritePNGdados().getBloco(s2));
 
                     if(
                         camTopoXML.haAcao(acao) &&
@@ -1235,7 +1235,11 @@ public class FrmMonstros extends javax.swing.JDialog {
         //final Vector pngImagens = new Vector();
         for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContSprites();s++){
             Banco_Sprites Sprites =FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSpritePorOrdem(s);
-            xmlAnimacoes.addElement(Sprites.getArquivoXML());
+            xmlAnimacoes.addElement(
+                Sprites.getArquivoXML()+
+                (Sprites.getClassXML().getSpritePNGbaseRecolor().trim().equals("")?"":"|"+Sprites.getClassXML().getSpritePNGbaseRecolor())+
+                (Sprites.getRecolor().trim().equals("")?"":"|"+Sprites.getRecolor())
+            );
         }
         Vector oggAudios = new Vector();
         for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContSons();s++){

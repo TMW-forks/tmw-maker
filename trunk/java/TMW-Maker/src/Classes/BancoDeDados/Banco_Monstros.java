@@ -513,7 +513,7 @@ public class Banco_Monstros {
                 return new SpriteXML(PastaDeSprites+Barra+arquivoXML);
             }
             public String getEnderecoPNG(){
-                return (new SpriteXML(PastaDeSprites+Barra+arquivoXML)).getEnderecoPNG();
+                return (new SpriteXML(PastaDeSprites+Barra+arquivoXML)).getSpritePNGendereco();
             }/**/
 
             public String getRecolor(){return recolor;}

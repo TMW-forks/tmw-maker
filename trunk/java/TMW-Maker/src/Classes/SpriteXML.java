@@ -16,12 +16,12 @@ public class SpriteXML {
             Banco_Nome=FileClass.getAtributo(tagImageset,"name","");
 
             String src=TMWData+Barra+FileClass.getAtributo(tagImageset,"src","");
-            String Arquivo="", Recolor="";
+            String Arquivo="";
             if(src.indexOf("|")>=0){
                 String Partes2[]=src.split("\\|");
                 if(Partes2.length==2){
                     Arquivo=Partes2[0];
-                    Recolor=Partes2[1];
+                    setSpritePNGbaseRecolor(Partes2[1]);
                 }else if(Partes2.length>=3){
                     Arquivo=Partes2[0];
                 }
@@ -96,12 +96,14 @@ public class SpriteXML {
     }
 
     private String Banco_Nome="";
+    private String BaseRecolor="";
     private SpritePNG SpriteDados = null;
     private XmlAcao Banco_Acoes[]; //Não deve ser instaciado agora!!!!
 
     public String getNome(){return Banco_Nome;}
-    public SpritePNG getDadosPNG(){return SpriteDados;}
-    public String getEnderecoPNG(){return SpriteDados.getEnderecoPNG();}
+    public SpritePNG getSpritePNGdados(){return SpriteDados;}
+    public String getSpritePNGendereco(){return SpriteDados.getEnderecoPNG();}
+    public String getSpritePNGbaseRecolor(){return BaseRecolor;}
     public XmlAcao[] getAcoes(){return Banco_Acoes;}
     public XmlAcao getAcao(int Ordem){
         if(Banco_Acoes != null){
@@ -151,7 +153,8 @@ public class SpriteXML {
     }
 
     public void setNome(String NovoNome){Banco_Nome=NovoNome;}
-    public void setSpriteDados(SpritePNG NovoSpriteDados){SpriteDados=NovoSpriteDados;}
+    public void setSpritePNGdados(SpritePNG NovoSpriteDados){SpriteDados=NovoSpriteDados;}
+    public void setSpritePNGbaseRecolor(String novoRecolor){BaseRecolor=novoRecolor;}
     public void setAcoes(XmlAcao NovasAcoes[]){Banco_Acoes=NovasAcoes;}
     public void setAcao(int Ordem, XmlAcao NovaAcao){
         Banco_Acoes[Ordem]=NovaAcao;
