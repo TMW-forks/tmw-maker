@@ -226,10 +226,10 @@ public class Banco_Monstros {
                 ","+getMonstroPorOrdem(m).getDMotion()
             );
             for(int i=0;i<8;i++){
-                if(i<getMonstroPorOrdem(m).getContDrops()){
+                if(i<getMonstroPorOrdem(m).getDropsCont()){
                     ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
                         ","+getMonstroPorOrdem(m).getDropPorOrdem(i).getID()+
-                        ","+getMonstroPorOrdem(m).getDropPorOrdem(i).getpercentual()
+                        ","+getMonstroPorOrdem(m).getDropPorOrdem(i).getPercentual()
                     );
                 }else{
                     ConteudoTXT.setTesto(ConteudoTXT.getTesto()+",0,0");
@@ -386,7 +386,10 @@ public class Banco_Monstros {
         public void setMutationCount(int novoMutationCount){MutationCount=novoMutationCount;}
         public void setMutationStrength(int novoMutationStrength){MutationStrength=novoMutationStrength;}
 
-        public int getContDrops(){
+        public void setDropsReset(){
+            Drops=null;
+        }
+        public int getDropsCont(){
             if(Drops != null){
                 return Drops.length;
             }else{
@@ -415,7 +418,10 @@ public class Banco_Monstros {
             }
         }
 
-        public int getContSons(){
+        public void setSonsReset(){
+            Sons=null;
+        }
+        public int getSonsCont(){
             if(Sons != null){
                 return Sons.length;
             }else{
@@ -444,7 +450,10 @@ public class Banco_Monstros {
             }
         }
 
-        public int getContSprites(){
+        public void setSpritesReset(){
+            Sprites=null;
+        }
+        public int getSpritesCont(){
             if(Sprites != null){
                 return Sprites.length;
             }else{
@@ -494,7 +503,7 @@ public class Banco_Monstros {
             private int id=0;
             private int percentual=0;
             public int getID(){return id;}
-            public int getpercentual(){return percentual;}
+            public int getPercentual(){return percentual;}
             public void setID(int novoID){id=novoID;}
             public void setPercentual(int novoPercentual){percentual=novoPercentual;}
         }
