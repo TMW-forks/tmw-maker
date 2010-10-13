@@ -99,8 +99,8 @@ public class FrmMonstros extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblItens = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnItemAdicionar = new javax.swing.JButton();
+        btnItemRemover = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblVisualizacao = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
@@ -108,7 +108,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         tgbDirecaoEsquerda = new javax.swing.JToggleButton();
         tgbDirecaoDireita = new javax.swing.JToggleButton();
         tgbDirecaoAbaixo = new javax.swing.JToggleButton();
-        tgbDirecaoDireita1 = new javax.swing.JToggleButton();
+        tgbDirecaoCentral = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editor de Monstros (Modo Somento-Leitura)");
@@ -874,11 +874,20 @@ public class FrmMonstros extends javax.swing.JDialog {
         ));
         jScrollPane4.setViewportView(tblItens);
 
-        jButton1.setText("Adicionar");
-        jButton1.setEnabled(false);
+        btnItemAdicionar.setMnemonic('A');
+        btnItemAdicionar.setText("Adicionar");
+        btnItemAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnItemAdicionarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Remover");
-        jButton2.setEnabled(false);
+        btnItemRemover.setText("Remover");
+        btnItemRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnItemRemoverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -890,13 +899,13 @@ public class FrmMonstros extends javax.swing.JDialog {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                     .addComponent(jLabel6)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnItemAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btnItemRemover)))
                 .addContainerGap())
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnItemAdicionar, btnItemRemover});
 
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -907,14 +916,14 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnItemAdicionar)
+                    .addComponent(btnItemRemover))
                 .addContainerGap())
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnItemAdicionar, btnItemRemover});
 
-        jTabbedPane1.addTab("Prêmios", jPanel6);
+        jTabbedPane1.addTab("Lote", jPanel6);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -992,17 +1001,12 @@ public class FrmMonstros extends javax.swing.JDialog {
             }
         });
 
-        grpDirecao.add(tgbDirecaoDireita1);
-        tgbDirecaoDireita1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/cetas.png"))); // NOI18N
-        tgbDirecaoDireita1.setEnabled(false);
-        tgbDirecaoDireita1.setMaximumSize(new java.awt.Dimension(23, 23));
-        tgbDirecaoDireita1.setMinimumSize(new java.awt.Dimension(23, 23));
-        tgbDirecaoDireita1.setPreferredSize(new java.awt.Dimension(23, 23));
-        tgbDirecaoDireita1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tgbDirecaoDireita1ActionPerformed(evt);
-            }
-        });
+        grpDirecao.add(tgbDirecaoCentral);
+        tgbDirecaoCentral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/cetas.png"))); // NOI18N
+        tgbDirecaoCentral.setEnabled(false);
+        tgbDirecaoCentral.setMaximumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoCentral.setMinimumSize(new java.awt.Dimension(23, 23));
+        tgbDirecaoCentral.setPreferredSize(new java.awt.Dimension(23, 23));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1015,7 +1019,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                     .addComponent(tgbDirecaoAbaixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgbDirecaoAcima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(tgbDirecaoDireita1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tgbDirecaoCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tgbDirecaoDireita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -1027,7 +1031,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tgbDirecaoEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgbDirecaoDireita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tgbDirecaoDireita1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tgbDirecaoCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tgbDirecaoAbaixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1139,7 +1143,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             x1=(int)(camBasePNG.getLargura()/2);
             y1=(int)(camBasePNG.getAltura()/2);
 
-            int Camadas=(Monstro.getContSprites()>MaxCamadas?MaxCamadas:Monstro.getContSprites());
+            int Camadas=(Monstro.getSpritesCont()>MaxCamadas?MaxCamadas:Monstro.getSpritesCont());
             for(int cam=1;cam<Camadas;cam++){
                 tgbDirecaoAcima.setEnabled(false);
                 tgbDirecaoAbaixo.setEnabled(false);
@@ -1203,11 +1207,59 @@ public class FrmMonstros extends javax.swing.JDialog {
         }
         lblVisualizacao.setText(Monstro.getNomeTitulo());
     }
+    private void exibirLotePorOrdemDeMonstro(int OrdemDeMonstro) {
+        int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(OrdemDeMonstro).getDropsCont();
+        Vector Dados = new Vector();
+        if(Prods>=1){
+            for(int P=0;P<Prods;P++){
+                Dados.add(
+                    addItemVector(
+                        FrmPrincipal.Monstros.getMonstroPorOrdem(OrdemDeMonstro).getDropPorOrdem(P).getID(),
+                        ((double)FrmPrincipal.Monstros.getMonstroPorOrdem(OrdemDeMonstro).getDropPorOrdem(P).getPercentual())/100.0
+                    )
+                );
+            }
+        }
+        TabelaDeItens(Dados);
+
+        /*tblItens.setRowHeight(38);
+        tblItens.setModel(new DefaultTableModel(Dados,NomesDeColuna2) {
+            boolean[] canEdit = new boolean[]{true, true};
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
+            @Override
+            public void setValueAt(Object aValue, int row, int column) {
+                int X=tblItens.getSelectedColumn(), Y=tblItens.getSelectedRow();
+                if(column==0){
+                    StringClass Valor = new StringClass(aValue.toString());
+                    int ID2= Integer.parseInt(Valor.extrairEntre("<td><b>", ":</b>"));
+                    if(FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).getID()!=ID2){
+                        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setID(ID2);
+                        darAuteracao(true);
+                    }
+                }else if(column==1){
+                    Double PercDeDrops2= Double.parseDouble(aValue.toString().trim())*100;
+                    if(FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).getPercentual()!=PercDeDrops2){
+                        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setPercentual(PercDeDrops2.intValue());
+                        darAuteracao(true);
+                    }
+                }
+                darAuteracao(true);
+                tblItens.setColumnSelectionInterval(X, X);
+                tblItens.setRowSelectionInterval(Y, Y);
+
+            }
+        });
+        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
+
+        tblItens.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
+        tblItens.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);/**/
+    }
     private void AbrirRegistro(int Ordem) {
         if(Ordem<0) return;
 
         /*******************************************************************************************************
-         * ID,Name,Jname,
+         * ID2,Name,Jname,
          * LV,HP,SP,EXP,JEXP,
          * Range1,ATK1,ATK2,DEF,MDEF,
          * STR,AGI,VIT,INT,DEX,LUK,
@@ -1233,7 +1285,7 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         final Vector xmlAnimacoes = new Vector();
         //final Vector pngImagens = new Vector();
-        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContSprites();s++){
+        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSpritesCont();s++){
             Banco_Sprites Sprites =FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSpritePorOrdem(s);
             xmlAnimacoes.addElement(
                 Sprites.getArquivoXML()+
@@ -1242,7 +1294,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             );
         }
         Vector oggAudios = new Vector();
-        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContSons();s++){
+        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSonsCont();s++){
             Vector oggAudio = new Vector();
             oggAudio.addElement(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEvent());
             oggAudio.addElement(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEndereco());
@@ -1277,52 +1329,10 @@ public class FrmMonstros extends javax.swing.JDialog {
 
 
 
-
+        exibirLotePorOrdemDeMonstro(Ordem);
         
 
-        int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getContDrops();
-        Vector NomesDeColuna2 = new Vector();
-        NomesDeColuna2.addElement("<html><big>ID: Item");
-        NomesDeColuna2.addElement("<html><b>Drops</b><br>(%)");
-
-        Vector Dados = new Vector();
-        if(Prods>=1){
-            for(int P=0;P<Prods;P++){
-                Dados.add(
-                    addItemVector(
-                        FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDropPorOrdem(P).getID(),
-                        ((double)FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDropPorOrdem(P).getpercentual())/100.0
-                    )
-                );
-            }
-        }
-        tblItens.setRowHeight(38);
-        tblItens.setModel(new DefaultTableModel(Dados,NomesDeColuna2) {
-            boolean[] canEdit = new boolean[]{false, false};
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
-            @Override
-            public void setValueAt(Object aValue, int row, int column) {
-                int X=tblItens.getSelectedColumn(), Y=tblItens.getSelectedRow();
-                if(column==0){
-                    StringClass Item = new StringClass(aValue.toString());
-                    int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
-                    //Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setID(ID);
-                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setID(ID);
-                }else if(column==1){
-                    int PercDeDrops= Integer.parseInt(aValue.toString().trim());
-                    //Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(row).setPrecoDeVenda(PercDeDrops);
-                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setPercentual(PercDeDrops);
-                }
-                tblItens.setColumnSelectionInterval(X, X);
-                tblItens.setRowSelectionInterval(Y, Y);
-
-            }
-        });
-        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
-
-        tblItens.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
-        tblItens.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);
+        
 
 
 
@@ -1335,6 +1345,26 @@ public class FrmMonstros extends javax.swing.JDialog {
         
 
         darAuteracao(false);
+    }
+    private void TabelaDeItens(final Vector Dados) {
+        Vector NomesDeColuna2 = new Vector();
+        NomesDeColuna2.addElement("<html><big>ID: Item");
+        NomesDeColuna2.addElement("<html><b>Drops</b><br>(%)");
+        tblItens.setRowHeight(38);
+        tblItens.setModel(new DefaultTableModel(Dados,NomesDeColuna2) {
+            boolean[] canEdit = new boolean[]{true, true};
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {return canEdit [columnIndex];}
+            @Override
+            public void setValueAt(Object aValue, int row, int column) {
+                super.setValueAt(aValue, row, column);
+                darAuteracao(true);
+            }
+        });
+        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
+
+        tblItens.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
+        tblItens.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);
     }
 
     private void btnRegistroVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVoltarActionPerformed
@@ -1432,6 +1462,23 @@ public class FrmMonstros extends javax.swing.JDialog {
         FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusDestresa(sldEstatusDestreza.getValue());
         FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusSorte(sldEstatusSorte.getValue());
 
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDropsReset();
+        if(tblItens.getRowCount()>=1){
+            //int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropsCont();
+            int Prods = tblItens.getModel().getRowCount();
+            Vector Dados = new Vector();
+            if(Prods>=1){
+                for(int P=0;P<Prods;P++){
+                    StringClass Item = new StringClass(tblItens.getValueAt(P, 0).toString());
+                    int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
+                    //int Percet=Integer.parseInt(String.valueOf(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100));
+                    int Percet=(int)(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100);
+                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).addDrop(ID, Percet);
+                    //setTitle("IDicon:"+IDicon+" PERC:"+Percet+" ROW:"+P);
+                }
+            }/**/
+        }
+
         FrmPrincipal.Monstros.salvarBanco();
         darAuteracao(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -1491,7 +1538,6 @@ public class FrmMonstros extends javax.swing.JDialog {
         }
         btnRegistroFinal.grabFocus();
     }//GEN-LAST:event_btnRegistroFinalActionPerformed
-
     private void tgbDirecaoAbaixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoAbaixoActionPerformed
         exibirAparencia(cmbIDs.getSelectedIndex(),"stand","down");
     }//GEN-LAST:event_tgbDirecaoAbaixoActionPerformed
@@ -1504,10 +1550,67 @@ public class FrmMonstros extends javax.swing.JDialog {
     private void tgbDirecaoEsquerdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoEsquerdaActionPerformed
         exibirAparencia(cmbIDs.getSelectedIndex(),"stand","left");
     }//GEN-LAST:event_tgbDirecaoEsquerdaActionPerformed
+    private void btnItemAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItemAdicionarActionPerformed
+        if(tblItens.getRowCount()<8){
+            int Prods = tblItens.getModel().getRowCount();
+            Vector Dados = new Vector();
+            if(Prods>=1){
+                for(int P=0;P<Prods;P++){
+                    StringClass Item = new StringClass(tblItens.getValueAt(P, 0).toString());
+                    int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
+                    double Percet=Double.parseDouble(tblItens.getValueAt(P, 1).toString());
+                    Dados.add(
+                        addItemVector(ID,Percet)
+                    );
+                    //setTitle("ID:"+ID+" PERC:"+Percet+" ROW:"+P);
+                }
+            }
+            Dados.add(addItemVector(727,0.01));
+            TabelaDeItens(Dados);
+            darAuteracao(true);
+        }else{
+            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> Você atengiu o limite máximo de itens por lote!");
+        }
+    }//GEN-LAST:event_btnItemAdicionarActionPerformed
+    private void btnItemRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItemRemoverActionPerformed
+        if(tblItens.getRowCount()>=1){
+            int X=tblItens.getSelectedColumn(), Y=tblItens.getSelectedRow();
+            if(X>=0 && Y>=0){
+                StringClass Valor = new StringClass(tblItens.getValueAt(Y, 0).toString());
+                int IDicon= Integer.parseInt(Valor.extrairEntre("<td><b>", ":</b>"));
 
-    private void tgbDirecaoDireita1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoDireita1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tgbDirecaoDireita1ActionPerformed
+                ImagemClass ItemImagem = new ImagemClass(FrmPrincipal.Itens.getItemPorID(IDicon).getIconeImagem());
+                ItemImagem.setZoom(3.0);
+                int R=DialogClass.showOpcoes(
+                    "Deseja realmente excluir este Item do Lote do Monstro?",
+                    "EXCLUIR ITEM DO LOTE",
+                    ItemImagem.getIcone(),
+                    new Object[]{"SIM","NÃO"},
+                    1
+                );
+                if(R==0){
+                    Vector Dados = new Vector();
+                    for(int P=0;P<tblItens.getModel().getRowCount();P++){
+                        if(Y!=P){
+                            StringClass Item = new StringClass(tblItens.getValueAt(P, 0).toString());
+                            int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
+                            double Percet=Double.parseDouble(tblItens.getValueAt(P, 1).toString());
+                            Dados.add(
+                                addItemVector(ID,Percet)
+                            );
+                            //setTitle("ID:"+ID+" PERC:"+Percet+" ROW:"+P);
+                        }
+                    }
+                    TabelaDeItens(Dados);
+                    darAuteracao(true);
+                }
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> Selecione o Item que deseja remover!");
+            }
+        }else{
+            FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> Não há itens para serem remividos deste lote!");
+        }
+    }//GEN-LAST:event_btnItemRemoverActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1529,6 +1632,8 @@ public class FrmMonstros extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnLocalizar;
     private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnItemAdicionar;
+    private javax.swing.JButton btnItemRemover;
     private javax.swing.JButton btnRegistroAvancar;
     private javax.swing.JButton btnRegistroFinal;
     private javax.swing.JButton btnRegistroInicio;
@@ -1536,8 +1641,6 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JButton btnSalvar;
     public static javax.swing.JComboBox cmbIDs;
     private javax.swing.ButtonGroup grpDirecao;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1603,8 +1706,8 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JTable tblItens;
     private javax.swing.JToggleButton tgbDirecaoAbaixo;
     private javax.swing.JToggleButton tgbDirecaoAcima;
+    private javax.swing.JToggleButton tgbDirecaoCentral;
     private javax.swing.JToggleButton tgbDirecaoDireita;
-    private javax.swing.JToggleButton tgbDirecaoDireita1;
     private javax.swing.JToggleButton tgbDirecaoEsquerda;
     private javax.swing.JFormattedTextField txtNomeSumonico;
     private javax.swing.JTextField txtNomeTitulo;
