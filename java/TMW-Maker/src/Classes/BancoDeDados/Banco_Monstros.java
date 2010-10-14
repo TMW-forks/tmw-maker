@@ -77,7 +77,7 @@ public class Banco_Monstros {
                         getMonstroPorOrdem(getContMonstros()-1).setEscala(Integer.parseInt(Partes[21]));
                         getMonstroPorOrdem(getContMonstros()-1).setRace(Integer.parseInt(Partes[22]));
                         getMonstroPorOrdem(getContMonstros()-1).setElement(Integer.parseInt(Partes[23]));
-                        getMonstroPorOrdem(getContMonstros()-1).setMode(Integer.parseInt(Partes[24]));
+                        getMonstroPorOrdem(getContMonstros()-1).setComportamento(Integer.parseInt(Partes[24]));
                         getMonstroPorOrdem(getContMonstros()-1).setSpeed(Integer.parseInt(Partes[25]));
                         getMonstroPorOrdem(getContMonstros()-1).setAdelay(Integer.parseInt(Partes[26]));
                         getMonstroPorOrdem(getContMonstros()-1).setAMotion(Integer.parseInt(Partes[27]));
@@ -218,7 +218,7 @@ public class Banco_Monstros {
                 ","+getMonstroPorOrdem(m).getEscala()+
                 ","+getMonstroPorOrdem(m).getRace()+
                 ","+getMonstroPorOrdem(m).getElement()+
-                ","+getMonstroPorOrdem(m).getMode()+
+                ","+getMonstroPorOrdem(m).getComportamento()+
                 ","+getMonstroPorOrdem(m).getSpeed()+
                 ","+getMonstroPorOrdem(m).getAdelay()+
 
@@ -346,7 +346,7 @@ public class Banco_Monstros {
         public int getEscala(){return Scale;}
         public int getRace(){return Race;}
         public int getElement(){return Element;}
-        public int getMode(){return Mode;}
+        public int getComportamento(){return Mode;}
         public int getSpeed(){return Speed;}
         public int getAdelay(){return Adelay;}
         public int getAMotion(){return AMotion;}
@@ -378,7 +378,7 @@ public class Banco_Monstros {
         public void setEscala(int novaEscala){Scale=novaEscala;}
         public void setRace(int novoRace){Race=novoRace;}
         public void setElement(int novoElement){Element=novoElement;}
-        public void setMode(int novoMode){Mode=novoMode;}
+        public void setComportamento(int novoMode){Mode=novoMode;}
         public void setSpeed(int novoSpeed){Speed=novoSpeed;}
         public void setAdelay(int novoAdelay){Adelay=novoAdelay;}
         public void setAMotion(int novoAMotion){AMotion=novoAMotion;}

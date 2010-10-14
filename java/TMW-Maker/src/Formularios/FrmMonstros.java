@@ -17,6 +17,16 @@ public class FrmMonstros extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    /**
+     * ID2,Name,Jname,
+     * LV,HP,SP,EXP,JEXP,
+     * Range1,ATK1,ATK2,DEF,MDEF,
+     * STR,AGI,VIT,INT,DEX,LUK,
+     * Range2,Range3,Scale,Race,Element,Mode,Speed,Adelay,
+     * Amotion,Dmotion,
+     * Drop1id,Drop1per,Drop2id,Drop2per,Drop3id,Drop3per,Drop4id,Drop4per,Drop5id,Drop5per,Drop6id,Drop6per,Drop7id,Drop7per,Drop8id,Drop8per,
+     * Item1,Item2,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,mutiation count,mutation strength
+     */
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -60,6 +70,8 @@ public class FrmMonstros extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAudios = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblNivel = new javax.swing.JLabel();
@@ -95,6 +107,18 @@ public class FrmMonstros extends javax.swing.JDialog {
         sldEstatusDestreza = new javax.swing.JSlider();
         lblSorte = new javax.swing.JLabel();
         sldEstatusSorte = new javax.swing.JSlider();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        chkComportamentoDeslocador = new javax.swing.JCheckBox();
+        chkComportamentoAgressor = new javax.swing.JCheckBox();
+        chkComportamentoMultiAtacante = new javax.swing.JCheckBox();
+        chkComportamentoPlanta = new javax.swing.JCheckBox();
+        chkComportamentoDetector = new javax.swing.JCheckBox();
+        chkComportamentoEscolhaDeAlvo = new javax.swing.JCheckBox();
+        chkComportamentoRevidante = new javax.swing.JCheckBox();
+        chkComportamentoChefe = new javax.swing.JCheckBox();
+        chkComportamentoAuxiliador = new javax.swing.JCheckBox();
+        chkComportamentoColetor = new javax.swing.JCheckBox();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -264,9 +288,8 @@ public class FrmMonstros extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(txtNomeSumonico, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                    .addComponent(txtNomeTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +361,14 @@ public class FrmMonstros extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         jPanel7.add(jButton5, gridBagConstraints);
 
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
         jLabel5.setText("Áudios OGG:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(jLabel5, gridBagConstraints);
 
         tblAudios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -358,22 +388,34 @@ public class FrmMonstros extends javax.swing.JDialog {
         });
         jScrollPane3.setViewportView(tblAudios);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addContainerGap(497, Short.MAX_VALUE))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 554;
+        gridBagConstraints.ipady = 56;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        jPanel5.add(jScrollPane3, gridBagConstraints);
+
+        jButton1.setText("Remover");
+        jButton1.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(jButton1, gridBagConstraints);
+
+        jButton2.setText("Adicionar");
+        jButton2.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(jButton2, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -382,9 +424,9 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 557, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -394,13 +436,13 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Aparência", jPanel1);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dificuldade de Combate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12))); // NOI18N
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         lblNivel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -667,12 +709,14 @@ public class FrmMonstros extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(sldDefMagico, gridBagConstraints);
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Atributos Básicos:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12))); // NOI18N
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
         lblForca.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblForca.setText("Força: (1)");
-        lblForca.setMinimumSize(new java.awt.Dimension(135, 15));
+        lblForca.setMaximumSize(new java.awt.Dimension(110, 15));
+        lblForca.setMinimumSize(new java.awt.Dimension(110, 15));
+        lblForca.setPreferredSize(new java.awt.Dimension(110, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -700,7 +744,9 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         lblAgilidade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAgilidade.setText("Agilidade: (1)");
-        lblAgilidade.setMinimumSize(new java.awt.Dimension(135, 15));
+        lblAgilidade.setMaximumSize(new java.awt.Dimension(110, 15));
+        lblAgilidade.setMinimumSize(new java.awt.Dimension(110, 15));
+        lblAgilidade.setPreferredSize(new java.awt.Dimension(110, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -728,7 +774,9 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         lblVitalidade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblVitalidade.setText("Vitalidade: (1)");
-        lblVitalidade.setMinimumSize(new java.awt.Dimension(135, 15));
+        lblVitalidade.setMaximumSize(new java.awt.Dimension(110, 15));
+        lblVitalidade.setMinimumSize(new java.awt.Dimension(110, 15));
+        lblVitalidade.setPreferredSize(new java.awt.Dimension(110, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -756,7 +804,9 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         lblInteligencia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblInteligencia.setText("Inteligência: (1)");
-        lblInteligencia.setMinimumSize(new java.awt.Dimension(135, 15));
+        lblInteligencia.setMaximumSize(new java.awt.Dimension(110, 15));
+        lblInteligencia.setMinimumSize(new java.awt.Dimension(110, 15));
+        lblInteligencia.setPreferredSize(new java.awt.Dimension(110, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -784,7 +834,9 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         lblDestreza.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDestreza.setText("Destreza: (1)");
-        lblDestreza.setMinimumSize(new java.awt.Dimension(135, 15));
+        lblDestreza.setMaximumSize(new java.awt.Dimension(110, 15));
+        lblDestreza.setMinimumSize(new java.awt.Dimension(110, 15));
+        lblDestreza.setPreferredSize(new java.awt.Dimension(110, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -812,7 +864,9 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         lblSorte.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSorte.setText("Sorte: (1)");
-        lblSorte.setMinimumSize(new java.awt.Dimension(135, 15));
+        lblSorte.setMaximumSize(new java.awt.Dimension(110, 15));
+        lblSorte.setMinimumSize(new java.awt.Dimension(110, 15));
+        lblSorte.setPreferredSize(new java.awt.Dimension(110, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -844,22 +898,164 @@ public class FrmMonstros extends javax.swing.JDialog {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 557, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
 
         jTabbedPane1.addTab("Poder", jPanel9);
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forma como o monstro comporta-se no jogo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12))); // NOI18N
+        jPanel12.setLayout(new java.awt.GridBagLayout());
+
+        chkComportamentoDeslocador.setText("Se desloca pelo mapa");
+        chkComportamentoDeslocador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoDeslocadorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoDeslocador, gridBagConstraints);
+
+        chkComportamentoAgressor.setText("Inicia a agressão");
+        chkComportamentoAgressor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoAgressorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoAgressor, gridBagConstraints);
+
+        chkComportamentoMultiAtacante.setText("Foca-se em múltiplos adversários");
+        chkComportamentoMultiAtacante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoMultiAtacanteActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoMultiAtacante, gridBagConstraints);
+
+        chkComportamentoPlanta.setText("É uma Planta");
+        chkComportamentoPlanta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoPlantaActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoPlanta, gridBagConstraints);
+
+        chkComportamentoDetector.setText("Possui detecção");
+        chkComportamentoDetector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoDetectorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoDetector, gridBagConstraints);
+
+        chkComportamentoEscolhaDeAlvo.setText("Escolhe melhor alvo");
+        chkComportamentoEscolhaDeAlvo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoEscolhaDeAlvoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoEscolhaDeAlvo, gridBagConstraints);
+
+        chkComportamentoRevidante.setText("Pode revidar ataque");
+        chkComportamentoRevidante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoRevidanteActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoRevidante, gridBagConstraints);
+
+        chkComportamentoChefe.setText("É um Chefe");
+        chkComportamentoChefe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoChefeActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoChefe, gridBagConstraints);
+
+        chkComportamentoAuxiliador.setText("Auxilia a própria especie");
+        chkComportamentoAuxiliador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoAuxiliadorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoAuxiliador, gridBagConstraints);
+
+        chkComportamentoColetor.setText("Coleta Itens no chão");
+        chkComportamentoColetor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkComportamentoColetorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel12.add(chkComportamentoColetor, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Modo", jPanel10);
 
         jLabel6.setText("Itens que o montro deixará cair ao morrer:");
 
@@ -896,7 +1092,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                     .addComponent(jLabel6)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(btnItemAdicionar)
@@ -913,7 +1109,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnItemAdicionar)
@@ -952,7 +1148,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 246, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1040,14 +1236,14 @@ public class FrmMonstros extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1059,7 +1255,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1257,18 +1453,6 @@ public class FrmMonstros extends javax.swing.JDialog {
     }
     private void AbrirRegistro(int Ordem) {
         if(Ordem<0) return;
-
-        /*******************************************************************************************************
-         * ID2,Name,Jname,
-         * LV,HP,SP,EXP,JEXP,
-         * Range1,ATK1,ATK2,DEF,MDEF,
-         * STR,AGI,VIT,INT,DEX,LUK,
-         * Range2,Range3,Scale,Race,Element,Mode,Speed,Adelay,
-         * Amotion,Dmotion,
-         * Drop1id,Drop1per,Drop2id,Drop2per,Drop3id,Drop3per,Drop4id,Drop4per,Drop5id,Drop5per,Drop6id,Drop6per,Drop7id,Drop7per,Drop8id,Drop8per,
-         * Item1,Item2,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,mutiation count,mutation strength
-         *******************************************************************************************************/
-
         txtNomeTitulo.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeTitulo());
         txtNomeSumonico.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeSumonico());
         sldNivel.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNivel());
@@ -1324,19 +1508,19 @@ public class FrmMonstros extends javax.swing.JDialog {
         sldEstatusDestreza.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusDestresa());
         sldEstatusSorte.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusSorte());
 
-
-
-
-
+        int Modo=FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getComportamento();
+        chkComportamentoEscolhaDeAlvo.setSelected(Modo/512>=1); if(Modo/512>=1) Modo-=512;
+        chkComportamentoDetector.setSelected(Modo/256>=1);      if(Modo/256>=1) Modo-=256;
+        chkComportamentoRevidante.setSelected(Modo/128>=1);     if(Modo/128>=1) Modo-=128;
+        chkComportamentoPlanta.setSelected(Modo/64>=1);         if(Modo/64>=1)  Modo-=64;
+        chkComportamentoChefe.setSelected(Modo/32>=1);          if(Modo/32>=1)  Modo-=32;
+        chkComportamentoMultiAtacante.setSelected(Modo/16>=1);  if(Modo/16>=1)  Modo-=16;
+        chkComportamentoAuxiliador.setSelected(Modo/8>=1);      if(Modo/8>=1)   Modo-=8;
+        chkComportamentoAgressor.setSelected(Modo/4>=1);        if(Modo/4>=1)   Modo-=4;
+        chkComportamentoColetor.setSelected(Modo/2>=1);         if(Modo/2>=1)   Modo-=2;
+        chkComportamentoDeslocador.setSelected(Modo/1>=1);      if(Modo/1>=1)   Modo-=1;
 
         exibirLotePorOrdemDeMonstro(Ordem);
-        
-
-        
-
-
-
-        
 
         if(tgbDirecaoAbaixo.isSelected()) exibirAparencia(Ordem,"stand","down");
         if(tgbDirecaoAcima.isSelected()) exibirAparencia(Ordem,"stand","up");
@@ -1344,6 +1528,61 @@ public class FrmMonstros extends javax.swing.JDialog {
         if(tgbDirecaoDireita.isSelected()) exibirAparencia(Ordem,"stand","right");
         
 
+        darAuteracao(false);
+    }
+    private void SalvarRegistro() {
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeTitulo(txtNomeTitulo.getText().trim());
+        lblVisualizacao.setText(txtNomeTitulo.getText().trim());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeSumonico(txtNomeSumonico.getText().trim());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNivel(sldNivel.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setRange1(sldRanger1.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setHP(sldHP.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setSP(sldSP.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setExp(sldEXP.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setJob(sldJob.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque1(sldAtaque1.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque2(sldAtaque2.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaFisica(sldDefFisico.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaMagica(sldDefMagico.getValue());
+
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusForca(sldEstatusForca.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusAgilidade(sldEstatusAgilidade.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusVitalidade(sldEstatusVitalidade.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusInteligencia(sldEstatusInteligencia.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusDestresa(sldEstatusDestreza.getValue());
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusSorte(sldEstatusSorte.getValue());
+
+        int Modo=0;
+        Modo+=chkComportamentoEscolhaDeAlvo.isSelected()?512:0;
+        Modo+=chkComportamentoDetector.isSelected()?256:0;
+        Modo+=chkComportamentoRevidante.isSelected()?128:0;
+        Modo+=chkComportamentoPlanta.isSelected()?64:0;
+        Modo+=chkComportamentoChefe.isSelected()?32:0;
+        Modo+=chkComportamentoMultiAtacante.isSelected()?16:0;
+        Modo+=chkComportamentoAuxiliador.isSelected()?8:0;
+        Modo+=chkComportamentoAgressor.isSelected()?4:0;
+        Modo+=chkComportamentoColetor.isSelected()?2:0;
+        Modo+=chkComportamentoDeslocador.isSelected()?1:0;
+
+
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDropsReset();
+        if(tblItens.getRowCount()>=1){
+            //int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropsCont();
+            int Prods = tblItens.getModel().getRowCount();
+            Vector Dados = new Vector();
+            if(Prods>=1){
+                for(int P=0;P<Prods;P++){
+                    StringClass Item = new StringClass(tblItens.getValueAt(P, 0).toString());
+                    int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
+                    //int Percet=Integer.parseInt(String.valueOf(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100));
+                    int Percet=(int)(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100);
+                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).addDrop(ID, Percet);
+                    //setTitle("IDicon:"+IDicon+" PERC:"+Percet+" ROW:"+P);
+                }
+            }/**/
+        }
+
+        FrmPrincipal.Monstros.salvarBanco();
         darAuteracao(false);
     }
     private void TabelaDeItens(final Vector Dados) {
@@ -1441,46 +1680,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         darAuteracao(true);
     }//GEN-LAST:event_sldDefMagicoStateChanged
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeTitulo(txtNomeTitulo.getText().trim());
-        lblVisualizacao.setText(txtNomeTitulo.getText().trim());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeSumonico(txtNomeSumonico.getText().trim());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNivel(sldNivel.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setRange1(sldRanger1.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setHP(sldHP.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setSP(sldSP.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setExp(sldEXP.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setJob(sldJob.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque1(sldAtaque1.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque2(sldAtaque2.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaFisica(sldDefFisico.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaMagica(sldDefMagico.getValue());
-
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusForca(sldEstatusForca.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusAgilidade(sldEstatusAgilidade.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusVitalidade(sldEstatusVitalidade.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusInteligencia(sldEstatusInteligencia.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusDestresa(sldEstatusDestreza.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusSorte(sldEstatusSorte.getValue());
-
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDropsReset();
-        if(tblItens.getRowCount()>=1){
-            //int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropsCont();
-            int Prods = tblItens.getModel().getRowCount();
-            Vector Dados = new Vector();
-            if(Prods>=1){
-                for(int P=0;P<Prods;P++){
-                    StringClass Item = new StringClass(tblItens.getValueAt(P, 0).toString());
-                    int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
-                    //int Percet=Integer.parseInt(String.valueOf(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100));
-                    int Percet=(int)(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100);
-                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).addDrop(ID, Percet);
-                    //setTitle("IDicon:"+IDicon+" PERC:"+Percet+" ROW:"+P);
-                }
-            }/**/
-        }
-
-        FrmPrincipal.Monstros.salvarBanco();
-        darAuteracao(false);
+        SalvarRegistro();
     }//GEN-LAST:event_btnSalvarActionPerformed
     private void txtNomeTituloCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNomeTituloCaretUpdate
         darAuteracao(true);
@@ -1611,6 +1811,36 @@ public class FrmMonstros extends javax.swing.JDialog {
             FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> Não há itens para serem remividos deste lote!");
         }
     }//GEN-LAST:event_btnItemRemoverActionPerformed
+    private void chkComportamentoDeslocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoDeslocadorActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoDeslocadorActionPerformed
+    private void chkComportamentoColetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoColetorActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoColetorActionPerformed
+    private void chkComportamentoAgressorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoAgressorActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoAgressorActionPerformed
+    private void chkComportamentoAuxiliadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoAuxiliadorActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoAuxiliadorActionPerformed
+    private void chkComportamentoMultiAtacanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoMultiAtacanteActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoMultiAtacanteActionPerformed
+    private void chkComportamentoChefeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoChefeActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoChefeActionPerformed
+    private void chkComportamentoPlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoPlantaActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoPlantaActionPerformed
+    private void chkComportamentoRevidanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoRevidanteActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoRevidanteActionPerformed
+    private void chkComportamentoDetectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoDetectorActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoDetectorActionPerformed
+    private void chkComportamentoEscolhaDeAlvoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkComportamentoEscolhaDeAlvoActionPerformed
+        darAuteracao(true);
+    }//GEN-LAST:event_chkComportamentoEscolhaDeAlvoActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1639,8 +1869,20 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JButton btnRegistroInicio;
     private javax.swing.JButton btnRegistroVoltar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JCheckBox chkComportamentoAgressor;
+    private javax.swing.JCheckBox chkComportamentoAuxiliador;
+    private javax.swing.JCheckBox chkComportamentoChefe;
+    private javax.swing.JCheckBox chkComportamentoColetor;
+    private javax.swing.JCheckBox chkComportamentoDeslocador;
+    private javax.swing.JCheckBox chkComportamentoDetector;
+    private javax.swing.JCheckBox chkComportamentoEscolhaDeAlvo;
+    private javax.swing.JCheckBox chkComportamentoMultiAtacante;
+    private javax.swing.JCheckBox chkComportamentoPlanta;
+    private javax.swing.JCheckBox chkComportamentoRevidante;
     public static javax.swing.JComboBox cmbIDs;
     private javax.swing.ButtonGroup grpDirecao;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1652,7 +1894,9 @@ public class FrmMonstros extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
