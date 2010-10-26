@@ -1563,7 +1563,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         Modo+=chkComportamentoAgressor.isSelected()?4:0;
         Modo+=chkComportamentoColetor.isSelected()?2:0;
         Modo+=chkComportamentoDeslocador.isSelected()?1:0;
-
+        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setComportamento(Modo);
 
         FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDropsReset();
         if(tblItens.getRowCount()>=1){
