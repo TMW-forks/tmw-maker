@@ -1,7 +1,7 @@
 #labels Configurações,TMW-Maker,Engine
 ==Sistema → Configuração (Ctrl+G)==
 
-Para o bom funcionamento, antes de tudo, configure o tmw-maker. É posssivel fazer configurações personalizadas, mas para leigos sugerimos que ponha as configurações das 3 fotos abaixo:
+Para o bom funcionamento, antes de tudo, configure o tmw-maker. É possível fazer configurações personalizadas, mas para leigos sugerimos que ponha as configurações das fotos abaixo:
 
 
 
@@ -30,10 +30,10 @@ Veja sugestões do que pôr acima em:
 https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoDocumentacao.png
 
 Veja sugestões do que pôr acima em:
- * [DocumentacaoAlteracoes Alterações]
- * [DocumentacaoComponentes Componentes]
- * [DocumentacaoComentarios Comentários]
- * [DocumentacaoTraducoes Traduções]
+ * [TxtConfiguracaoDocumentacaoAlteracoes Alterações]
+ * [TxtConfiguracaoDocumentacaoComponentes Componentes]
+ * [TxtConfiguracaoDocumentacaoComentarios Comentários]
+ * [TxtConfiguracaoDocumentacaoTraducoes Traduções]
 
 
 
@@ -41,5 +41,5 @@ https://tmw-maker.googlecode.com/svn/Imagens/Componentes/FrmConfiguracaoComporta
 
 Veja sugestões do que pôr acima em:
  * Pedir permissão para atualizar:
-  * Engine
-  * Localhost
+  * [TxtConfiguracaoComportamentoAtualizacaoEngine Engine]
+  * [TxtConfiguracaoComportamentoAtualizacaoLocalhost Localhost]
