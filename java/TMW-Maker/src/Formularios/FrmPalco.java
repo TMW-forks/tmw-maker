@@ -1,3 +1,11 @@
+/*
+ * Segunda versão do FrmPalco4.
+ * Editado por Vanderson M. do Rosario
+ * Foram adicionados o suporte a auto complemento e highlight syntax.
+ * Ainda não fora feito testes profundos a procura de bug. 
+ * Ao encontro de qualquer bug mandar e-mail para: vandersonmr2@gmail.com
+ * 
+ */
 
 package Formularios;
 
@@ -19,12 +27,22 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.DefaultComboBoxModel;
+/* Classes da API */
+import autocomplete.*;
+import java.net.URISyntaxException;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
 
 public class FrmPalco extends javax.swing.JDialog {
     public FrmPalco(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+    
+    /*RSyntaxTextArea é uma classe swing da API externa. Ela faz o trabalho de enumerar, auto complementar e colorir o código*/
+   
 
     public static BlocoDeScript Instancia[];
 
@@ -241,14 +259,54 @@ public class FrmPalco extends javax.swing.JDialog {
         BtnScriptComandoMes.setEnabled(SeAtivo);
         BtnScriptComandoIF.setEnabled(SeAtivo);
     }
+    
+       private CompletionProvider CriarComplementos() {
+
+
+        DefaultCompletionProvider provider = new DefaultCompletionProvider();
+
+        /*COMANDOS A SEREM COMPLMENTADOS
+         *POR FAVOR ADICIONEM MAIS CÓDIGOS AO AUTO COMPLEMENTO.
+         *Para adicionar copie isto: provider.addCompletion(new BasicCompletion(provider, "E AQUI COLOQUE O CÓDIGO"));
+         */
+        DocComando Doc = new DocComando();
+        java.util.List comandos = null;
+        try {
+            comandos = Doc.resgatarXML();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(FrmPalco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for(int i=0;i<comandos.size();i++){
+            Comandos coms = (Comandos) comandos.get(i);
+            provider.addCompletion(new BasicCompletion(provider,coms.getcomando()));
+        }
+        /*
+        provider.addCompletion(new BasicCompletion(provider, "mes\"\""));
+        provider.addCompletion(new BasicCompletion(provider, "@quem$"));
+        provider.addCompletion(new BasicCompletion(provider, "close"));
+        provider.addCompletion(new BasicCompletion(provider, "getinventorylist"));
+        provider.addCompletion(new BasicCompletion(provider, "menu"));
+        provider.addCompletion(new BasicCompletion(provider, "goto"));
+        provider.addCompletion(new BasicCompletion(provider, "countitem()"));
+        provider.addCompletion(new BasicCompletion(provider, "rand()"));
+        provider.addCompletion(new BasicCompletion(provider, "getitem"));
+        provider.addCompletion(new BasicCompletion(provider, "delitem"));
+        */
+        return provider;
+
+    }
+    
+    
+    
 
 //#####################################################################################################
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TxtScriptPalco = new javax.swing.JTextArea();
+        
+        TxtScriptPalco = new RSyntaxTextArea();
         jToolBar1 = new javax.swing.JToolBar();
         BtnNovoBloco = new javax.swing.JButton();
         BtnSalvarBloco = new javax.swing.JButton();
@@ -260,6 +318,7 @@ public class FrmPalco extends javax.swing.JDialog {
         BtnScriptComandoIF = new javax.swing.JButton();
         BtnScriptComandoMes = new javax.swing.JButton();
         LblAparencia = new javax.swing.JLabel();
+        jScrollPane1 = new RTextScrollPane(TxtScriptPalco);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editor de Scripts");
@@ -275,11 +334,15 @@ public class FrmPalco extends javax.swing.JDialog {
         });
 
         TxtScriptPalco.setColumns(20);
-        TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        //TxtScriptPalco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         TxtScriptPalco.setRows(5);
         TxtScriptPalco.setEnabled(false);
-        TxtScriptPalco.setSelectedTextColor(java.awt.Color.black);
-        TxtScriptPalco.setSelectionColor(new java.awt.Color(145, 254, 124));
+        TxtScriptPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+        CompletionProvider provider = CriarComplementos();
+        AutoCompletion AutoComplementar = new AutoCompletion(provider); //Classe também da API externa. Esta é responsavel pela auto complemento
+        AutoComplementar.install(TxtScriptPalco);
+        //TxtScriptPalco.setSelectedTextColor(java.awt.Color.black);
+        //TxtScriptPalco.setSelectionColor(new java.awt.Color(145, 254, 124));
         TxtScriptPalco.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 TxtScriptPalcoCaretUpdate(evt);
@@ -290,7 +353,7 @@ public class FrmPalco extends javax.swing.JDialog {
                 TxtScriptPalcoKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(TxtScriptPalco);
+        //jScrollPane1.setViewportView(TxtScriptPalco);
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -419,9 +482,9 @@ public class FrmPalco extends javax.swing.JDialog {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 //#####################################################################################################
-    private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbScriptActionPerformed
+    private void CmbScriptActionPerformed(java.awt.event.ActionEvent evt) {                                          
         //abrirInstancia(FrmScript.EnderecoDoScript);
         //this.setTitle(Integer.toString(i));
         String Cod= Instancia[CmbScript.getSelectedIndex()].getScript().toString();
@@ -438,8 +501,8 @@ public class FrmPalco extends javax.swing.JDialog {
             "<b>Imagem:</b> " + NPC.getXML()+"?img="+NPC.getVariante()+" ("+NPC.getImagem().getWidth()+"x"+NPC.getImagem().getHeight()+"px)"+"<br/>"+
             "<b>Comentário:</b> " + NPC.getComentario()+"<br/>"
         );
-    }//GEN-LAST:event_CmbScriptActionPerformed
-    private void TxtScriptPalcoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtScriptPalcoKeyPressed
+    }                                         
+    private void TxtScriptPalcoKeyPressed(java.awt.event.KeyEvent evt) {                                          
         if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_F1 && evt.isControlDown()){
             //ExemploDeConteudo();
         }else if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_T && evt.isControlDown()){
@@ -468,18 +531,18 @@ public class FrmPalco extends javax.swing.JDialog {
             CmbScript.setEnabled(false);
             BtnSalvarBloco.setEnabled(true);
         }/**/
-    }//GEN-LAST:event_TxtScriptPalcoKeyPressed
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    }                                         
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         //ExemploDeConteudo();
         abrirInstancia(FrmScript.EnderecoDoScript);
-    }//GEN-LAST:event_formWindowOpened
-    private void BtnAbrirBlocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirBlocoActionPerformed
+    }                                 
+    private void BtnAbrirBlocoActionPerformed(java.awt.event.ActionEvent evt) {                                              
         abrirInstancia(FrmScript.EnderecoDoScript);
-    }//GEN-LAST:event_BtnAbrirBlocoActionPerformed
-    private void BtnSalvarBlocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarBlocoActionPerformed
+    }                                             
+    private void BtnSalvarBlocoActionPerformed(java.awt.event.ActionEvent evt) {                                               
         salvarInstancia(FrmScript.EnderecoDoScript);
-    }//GEN-LAST:event_BtnSalvarBlocoActionPerformed
-    private void BtnNovoBlocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoBlocoActionPerformed
+    }                                              
+    private void BtnNovoBlocoActionPerformed(java.awt.event.ActionEvent evt) {                                             
         if(BtnNovoBloco.isEnabled()){
             javax.swing.JDialog FrmNovoBloco = new FrmNovoBloco(this,false);
             FrmNovoBloco.setLocation(
@@ -489,8 +552,8 @@ public class FrmPalco extends javax.swing.JDialog {
             FrmNovoBloco.setModal(true);
             FrmNovoBloco.setVisible(true);/**/
         }
-    }//GEN-LAST:event_BtnNovoBlocoActionPerformed
-    private void BtnScriptComandoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptComandoMesActionPerformed
+    }                                            
+    private void BtnScriptComandoMesActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
             javax.swing.JDialog FrmMes = new FrmMes(this,false);
             FrmMes.setLocation(
@@ -500,8 +563,8 @@ public class FrmPalco extends javax.swing.JDialog {
             FrmMes.setModal(true);
             FrmMes.setVisible(true);/**/
         }
-    }//GEN-LAST:event_BtnScriptComandoMesActionPerformed
-    private void TxtScriptPalcoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TxtScriptPalcoCaretUpdate
+    }                                                   
+    private void TxtScriptPalcoCaretUpdate(javax.swing.event.CaretEvent evt) {                                           
         int linha = 0, coluna = 0;
         if(FrmPalco.TxtScriptPalco.getCaretPosition()>=0){
             try {
@@ -514,9 +577,9 @@ public class FrmPalco extends javax.swing.JDialog {
         }else{
             FrmPrincipal.LblEstatus.setText("");
         }
-    }//GEN-LAST:event_TxtScriptPalcoCaretUpdate
+    }                                          
 
-    private void BtnScriptComandoIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScriptComandoIFActionPerformed
+    private void BtnScriptComandoIFActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         if(TxtScriptPalco.isEnabled() && TxtScriptPalco.isFocusable()){
             javax.swing.JDialog FrmIF = new FrmIF(this,false);
             FrmIF.setLocation(
@@ -526,9 +589,9 @@ public class FrmPalco extends javax.swing.JDialog {
             FrmIF.setModal(true);
             FrmIF.setVisible(true);/**/
         }
-    }//GEN-LAST:event_BtnScriptComandoIFActionPerformed
+    }                                                  
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {                                    
         Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
         /*this.setBounds(
                 (Tela.width - this.getWidth()) / 2,
@@ -537,7 +600,7 @@ public class FrmPalco extends javax.swing.JDialog {
                 this.getHeight());/**/
         this.setBounds(0,70,Tela.width,Tela.height-120);/**/
         //this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
-    }//GEN-LAST:event_formComponentShown
+    }                                   
 //#####################################################################################################
 
     public static void main(String args[]) {
@@ -554,7 +617,7 @@ public class FrmPalco extends javax.swing.JDialog {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     public static javax.swing.JButton BtnAbrirBloco;
     public static javax.swing.JButton BtnExcluirBloco;
     public static javax.swing.JButton BtnNovoBloco;
@@ -563,11 +626,11 @@ public class FrmPalco extends javax.swing.JDialog {
     public static javax.swing.JButton BtnScriptComandoMes;
     public static javax.swing.JComboBox CmbScript;
     private javax.swing.JLabel LblAparencia;
-    public static javax.swing.JTextArea TxtScriptPalco;
+    public static RSyntaxTextArea TxtScriptPalco;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private RTextScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }
