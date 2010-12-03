@@ -1,0 +1,17 @@
+<list>
+  <autocomplete.Comandos>
+    <comando>mes</comando>
+    <funcao>Criar mensagem falado pelo NPC.</funcao>
+    <exemplo>mes &quot;Seja bem vindo a nossa loja&quot;</exemplo>
+  </autocomplete.Comandos>
+  <autocomplete.Comandos>
+    <comando>menu</comando>
+    <funcao>Criar menu de opções de fala.</funcao>
+    <exemplo>menu</exemplo>
+  </autocomplete.Comandos>
+  <autocomplete.Comandos>
+    <comando>testandoComando</comando>
+    <funcao>Comando de teste de comando.</funcao>
+    <exemplo>testandocomando("Teste aqui");</exemplo>
+  </autocomplete.Comandos>
+</list>
