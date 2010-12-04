@@ -11,6 +11,7 @@ import com.thoughtworks.xstream.XStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
   
 /**
@@ -24,7 +25,7 @@ public class DocComando {
        
         /*O ARQUIVO COMANDOS.XML DEVE QUE ESTAR DO LADO DO .JAR, OU SEJA NA MESMA PASTA*/
         //File file = new File(DocComando.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("JQuestEdit.jar", "")+"comandos.xml");
-      File file =null;
+      File file = null;
 
 
       
@@ -48,7 +49,11 @@ public class DocComando {
             return comandos;
         } catch (Exception ioe) {
             JOptionPane.showMessageDialog(null,"Para funcionamento do Palco, o arquivo comandos.xml deve estar na seguinte pasta: \n"+DocComando.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("TMW-Maker.jar", "")+"comandos.xml","Error",0);
-            return null;
+            List<Comandos> list = new ArrayList<Comandos>();
+            
+            list.add(new Comandos());
+            
+            return list;
         }
         
     }
