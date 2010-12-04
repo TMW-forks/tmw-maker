@@ -11,6 +11,7 @@ import com.thoughtworks.xstream.XStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import javax.swing.JOptionPane;
   
 /**
  *
@@ -29,9 +30,10 @@ public class DocComando {
       
         try {
             //PROBLEMA
+            
              file = new File(DocComando.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("TMW-Maker.jar", "")+"comandos.xml");
              //Este comando file só funciona se o arquivo comando.xml estiver na pasta do .jar
-             
+            
              FileReader reader = new FileReader(file);  
                BufferedReader leitor = new BufferedReader(reader);  
                
@@ -45,7 +47,7 @@ public class DocComando {
 
             return comandos;
         } catch (Exception ioe) {
-            System.out.println("Bug na leitura "+ioe+"\n\n"+file.getAbsolutePath()+"\n");
+            JOptionPane.showMessageDialog(null,"Para funcionamento do Palco, o arquivo comandos.xml deve estar na seguinte pasta: \n"+DocComando.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("TMW-Maker.jar", "")+"comandos.xml","Error",0);
             return null;
         }
         
