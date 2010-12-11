@@ -53,9 +53,7 @@ class Util {
 	 *         <code>false</code> on JRE's older than 1.6.
 	 */
 	public static boolean browse(URI uri) {
-
 		boolean success = false;
-
 		if (uri!=null) {
 			Object desktop = getDesktop();
 			if (desktop!=null) {
@@ -71,9 +69,7 @@ class Util {
 				}
 			}
 		}
-
 		return success;
-
 	}
 
 
@@ -85,37 +81,25 @@ class Util {
 	 * @return The desktop, as an {@link Object}.
 	 */
 	private static Object getDesktop() {
-
 		synchronized (LOCK_DESKTOP_CREATION) {
-
 			if (!desktopCreationAttempted) {
-
 				desktopCreationAttempted = true;
-
 				try {
 					Class desktopClazz = Class.forName("java.awt.Desktop");
-					Method m = desktopClazz.
-						getDeclaredMethod("isDesktopSupported", null);
-
-					boolean supported = ((Boolean)m.invoke(null, null)).
-												booleanValue();
+					Method m = desktopClazz.getDeclaredMethod("isDesktopSupported", null);
+					boolean supported = ((Boolean)m.invoke(null, null)).booleanValue();
 					if (supported) {
 						m = desktopClazz.getDeclaredMethod("getDesktop", null);
 						desktop = m.invoke(null, null);
 					}
-
 				} catch (RuntimeException re) {
 					throw re; // Keep FindBugs happy
 				} catch (Exception e) {
 					// Ignore; keeps desktop as null.
 				}
-
 			}
-
 		}
-
 		return desktop;
-
 	}
 
 
@@ -127,7 +111,6 @@ class Util {
 	 *         or <code>null</code> if <code>c</code> is <code>null</code>.
 	 */
 	public static String getHexString(Color c) {
-
 		if (c==null) {
 			return null;
 		}
@@ -179,6 +162,4 @@ class Util {
 		// If point is outside all monitors, default to default monitor (?)
 		return env.getMaximumWindowBounds();
 	}
-
-
 }
