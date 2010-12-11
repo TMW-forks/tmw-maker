@@ -2,4 +2,7 @@
 <img align="right" src="http://4.bp.blogspot.com/_24IC_IeLxao/SIOvWeo1IrI/AAAAAAAAAsc/_AtKOcOaOE8/s320/Newspaper_Feed_add_512x512_copy.jpg">
 =Assinatura Gratuita de Feed RSS=
 
+
+
+
 *Feed RSS* é um forma de acompanhar as notícias sobre tudo o que esta sendo feito sobre o TMW-Maker, sem precisar dar suas informações pessoais a ninguém. Para ver o formato nosso *Feed RSS* é só clicar [http://code.google.com/feeds/p/tmw-maker/updates/basic AQUI]
