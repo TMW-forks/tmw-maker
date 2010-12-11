@@ -1,5 +1,5 @@
 #labels Feed,Feedback,Assinatura,TMW-Maker
-<img align="right" src="http://4.bp.blogspot.com/_24IC_IeLxao/SIOvWeo1IrI/AAAAAAAAAsc/_AtKOcOaOE8/s320/Newspaper_Feed_add_512x512_copy.jpg">
+<img align="left" width="150" src="http://4.bp.blogspot.com/_24IC_IeLxao/SIOvWeo1IrI/AAAAAAAAAsc/_AtKOcOaOE8/s320/Newspaper_Feed_add_512x512_copy.jpg">
 =Assinatura Gratuita de Feed RSS=
 
 
