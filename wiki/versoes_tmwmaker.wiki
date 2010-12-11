@@ -6,6 +6,6 @@ O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por e
 
 || <img align="bottom" src="https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker/src/Imagem/Botoes/sbl_localhost-tmw.png"> *Download* || *Tamanho* || *Descrição* ||
 || *[https://tmw-maker.googlecode.com/svn/tags/TMW-Maker/TMW-Maker.jar TMW-Maker.jar]* || ~4,6MB/~39,1MB || Veja [Dependencias AQUI] como instalar o Engine TMW-Maker [opensource Open Source] em seu Ubuntu Linux 10.04. ||
-|| *[CodigoFonte Código Fonte]* || Variante || Para programadores Java que desejam modificar o TMW-Maker ao seu proprio modo, respeitando os termos da licença *[GNU_GPL_v3 GNU GPL v3]*. Vão necessitar apenas da IDE *[NetBeans NetBeans 6.7]* (ou superior) que também é [opensource Open Source] para visualizar e editar este código fonte. ||
+|| *[CodigoFonte Código Fonte]* || ~15,2MB || Para programadores Java que desejam modificar o TMW-Maker ao seu proprio modo, respeitando os termos da licença *[GNU_GPL_v3 GNU GPL v3]*. Vão necessitar apenas da IDE *[NetBeans NetBeans 6.7]* (ou superior) que também é [opensource Open Source] para visualizar e editar este código fonte. ||
 
 || *OBSERVAÇÃO:* As utilidades acima só funcionarão no linux e se tiver todas as suas *[Dependencias Dependências]* pré-atendidas. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ||
