@@ -54,7 +54,7 @@ class Util {
 	 */
 	public static boolean browse(URI uri) {
 		boolean success = false;
-		if (uri!=null) {
+		/*if (uri!=null) {
 			Object desktop = getDesktop();
 			if (desktop!=null) {
 				try {
@@ -67,8 +67,8 @@ class Util {
 				} catch (Exception e) {
 					// Ignore, just return "false" below.
 				}
-			}
-		}
+			*}
+		}*/
 		return success;
 	}
 
@@ -81,7 +81,7 @@ class Util {
 	 * @return The desktop, as an {@link Object}.
 	 */
 	private static Object getDesktop() {
-		synchronized (LOCK_DESKTOP_CREATION) {
+		/*synchronized (LOCK_DESKTOP_CREATION) {
 			if (!desktopCreationAttempted) {
 				desktopCreationAttempted = true;
 				try {
@@ -99,7 +99,9 @@ class Util {
 				}
 			}
 		}
-		return desktop;
+             * 
+             */
+		return null;
 	}
 
 
