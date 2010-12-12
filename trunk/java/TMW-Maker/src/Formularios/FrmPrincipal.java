@@ -236,7 +236,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
                             PgbBarra.setString("Preparando...");
                             setAvisoEmEstatus("Preparando para baixar binários novos...");
-                            if (OS.indexOf("linux") >= 0 && Arch.indexOf("i386") >= 0) {
+                            if (OS.indexOf("linux") >= 0 && FileClass.seExiste("http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch)){
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
                                         FrmPrincipal.Config.getConexaoLocalhost() +barra+ "bins";

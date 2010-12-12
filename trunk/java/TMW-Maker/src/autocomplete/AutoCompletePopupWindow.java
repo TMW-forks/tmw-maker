@@ -23,6 +23,7 @@
  */
 package autocomplete;
 
+import Classes.DialogClass;
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
@@ -839,53 +840,56 @@ class AutoCompletePopupWindow extends JWindow implements CaretListener,
 
 
 	class EnterAction extends AbstractAction {
-
 		public void actionPerformed(ActionEvent e) {
 			if (isVisible()) {
 				insertSelectedCompletion();
 			}
 		}
-
 	}
 
 
 	class EscapeAction extends AbstractAction {
-
 		public void actionPerformed(ActionEvent e) {
 			if (isVisible()) {
 				setVisible(false);
 			}
 		}
-
 	}
 
 
-	class HomeAction extends AbstractAction {
-
-		public void actionPerformed(ActionEvent e) {
-			if (isVisible()) {
-                            
-                                DocComando Doc = new DocComando();
-                                List listC = null;
+    class HomeAction extends AbstractAction {
+        public void actionPerformed(ActionEvent e) {
+            if (isVisible()) {
+                DocComando Doc = new DocComando();
+                List listC = null;
                 try {
                     listC = Doc.resgatarXML();
                 } catch (URISyntaxException ex) {
                     Logger.getLogger(AutoCompletePopupWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                                Comandos comd;
-                                for(int i=0;i<listC.size();i++){
-                                     
-                                    comd = (Comandos) listC.get(i);
-                                    
-                                    if(comd.getcomando().equals(getSelection().getReplacementText())){
-                                        JOptionPane.showMessageDialog(null, "O comando "+getSelection().getReplacementText()+"\n é usado para: \n "+comd.getfuncao()+" \nExemplo: "+ comd.getexemplo());
-                                    }
-                                }
-                                
-			}
-		}
+                Comandos comd;
+                for (int i = 0; i < listC.size(); i++) {
 
-	}
+                    comd = (Comandos) listC.get(i);
+                    if (comd.getcomando().equals(getSelection().getReplacementText())) {
+                        DialogClass.showErro(
+                            comd.getfuncao()+"\n\n"+
+                            "EXEMPLO: "+comd.getexemplo(),
+                            getSelection().getReplacementText().toUpperCase()
+                        );
+                        /*JOptionPane.showMessageDialog(
+                            null,
+                                "O comando " + getSelection().getReplacementText() + "\n"+
+                                " é usado para: \n"+
+                                " " + comd.getfuncao() + " \n"+
+                                "Exemplo: " + comd.getexemplo()
+                        );/**/
+                    }
+                }
+
+            }
+        }
+    }
 
 
 	/**

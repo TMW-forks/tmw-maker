@@ -366,7 +366,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         FrmPrincipal.PgbBarra.setString("Abaixando...");
                         FrmPrincipal.setAvisoEmEstatus("Baixando binários novos...");
                         addLinhaDeEstatus("Baixando binários novos...");
-                        if (OS.indexOf("linux") >= 0 && Arch.indexOf("i386") >= 0) {
+                        if (OS.indexOf("linux") >= 0 && FileClass.seExiste("http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch)){
                             Comando = "svn checkout " +
                                     "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
                                     FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
