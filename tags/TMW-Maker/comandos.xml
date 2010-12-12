@@ -1,71 +1,18 @@
+<!-- Doc V0.01A R001 -->
 <list>
     <autocomplete.Comandos>
         <comando>mes</comando>
-        <sintaxe>mes "Test Inicial "[+ @variavel][+ " restante do testo"];</sintaxe>
-        <funcao>
-            Abre uma caixa de mensagem com um testo específico.\n
-            Use sinal: \n
-            * [+] para concatenar, \n
-            * [:] para quebra de paragrafo, \n
-            * [\\n] para quebra de linha, \n
-            * [\\t] para imprimir tabulação(TAB), \n
-            * [\\:] para imprimir dois pontos(:), \n
-            * [\\\\] para imprimir contrabarra(\\), \n
-            * [\\"] para imprimir aspas.
-        </funcao>
-        <exemplo>mes "\\"Você tem " + Zeny + "GP de grana para gastar!\\"";</exemplo>
-        <ajuda>http://code.google.com/p/tmw-maker/wiki/EathenaScript#*mes_%22%3Cstring%3E%22;</ajuda>
-    </autocomplete.Comandos>
-    <autocomplete.Comandos>
-        <comando>next</comando>
-        <sintaxe>next;</sintaxe>
-        <funcao>
-            Para temporariamente a execução de comandos até que o \n
-            botão [AVANÇAR] seja clicado.
-        </funcao>
-        <exemplo>next;</exemplo>
-        <ajuda>http://code.google.com/p/tmw-maker/wiki/EathenaScript#*next;</ajuda>
-    </autocomplete.Comandos>
-    <autocomplete.Comandos>
-        <comando>close</comando>
-        <sintaxe>close;</sintaxe>
-        <funcao>
-            Para definitivamente a execução dos comandos, sugindo um \n
-            botão [FECHAR] que esconde a caixa de dialogo.
-        </funcao>
-        <exemplo>close;</exemplo>
-        <ajuda>http://code.google.com/p/tmw-maker/wiki/EathenaScript#*close;</ajuda>
-    </autocomplete.Comandos>
-    <autocomplete.Comandos>
-        <comando>end</comando>
-        <sintaxe>end;</sintaxe>
-        <funcao>
-            Para definitivamente a execução dos comandos, mas \n
-            não fecha a caixa de dialogo.
-        </funcao>
-        <exemplo>end;</exemplo>
-    </autocomplete.Comandos>
-    <autocomplete.Comandos>
-        <comando>goto</comando>
-        <sintaxe>goto [etiqueta];</sintaxe>
-        <funcao>Leca o ponteiro de execução até a linha que possuir a respectiva etiqueta.</funcao>
-        <exemplo>goto _NomeDaEtiqueta;</exemplo>
-        <ajuda>http://code.google.com/p/tmw-maker/wiki/EathenaScript#*goto_%3Cr%C3%B3tulo%3E;</ajuda>
+        <funcao>Criar mensagem falado pelo NPC.</funcao>
+        <exemplo>mes "Seja bem vindo a nossa loja";</exemplo>
     </autocomplete.Comandos>
     <autocomplete.Comandos>
         <comando>menu</comando>
-        <sintaxe>menu "Opção 1", _label1[, "Opção 2 (Nada)", -][...][, "Opção N", _labelN];</sintaxe>
-        <funcao>
-            Abre uma caixa com opções selecionáveis que levarão o ponteiro de execução até \n
-            sua respectiva etiqueta.
-        </funcao>
-        <exemplo>
-            \nmenu\n
-            "Opção Nenhuma", -,\n
-            "Opção 1", _Label1,\n
-            "Opção 2", _Label2,\n
-            "Opção N", _LabelN;\n
-        </exemplo>
-        <ajuda>http://code.google.com/p/tmw-maker/wiki/EathenaScript#*menu_%22%3CTexto_da_Op%C3%A7%C3%A3o%3E%22,%3Cr%C3%B3tulo_alvo%3E{</ajuda>
+        <funcao>Criar menu de opções de fala.</funcao>
+        <exemplo>menu "olá!", _comprimenta, "tchau!", -;</exemplo>
+    </autocomplete.Comandos>
+    <autocomplete.Comandos>
+        <comando>close</comando>
+        <funcao>fecha caixa de dialogo</funcao>
+        <exemplo>close;</exemplo>
     </autocomplete.Comandos>
 </list>
