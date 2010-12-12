@@ -849,20 +849,20 @@ com o comando 'if', os rótulos podem ter qualquer nome, mas evite rótulos com
 traço "-", isso às vezes buga:
 {{{
 	mes "Isto será visto normalmente";
-	goto L_Label;
+	goto _Label;
 	mes "Isso não será visto";
 
-	L_Label:
+	_Label:
 	mes "O Script pulará pra cá";
 }}}
 exemplo 2:
 {{{
 	mes "Deixe me ver se você tem zeny suficiente.";
-	if(Zeny < 10) goto L_Zeny;
+	if(Zeny < 10) goto _Zeny;
 	mes "Sim você tem 10 ou mais zenys !!";
 	close;
 
-	L_Zeny;
+	_Zeny;
 	mes "me desculpe você tem menos de 10 zenys, não posso continuar";	
 	close;
 }}}
@@ -878,14 +878,14 @@ Duas opções podem ser direcionadas à um mesmo rótulo, separadas pelo caracte
       mes "[Nagato]";
       mes "O Que você deseja";
       mes "senhor "+strcharinfo(0);
-      menu "Dinheiro:Money",L_Money,"Nada",L_Nada;//Aparecerá 3 opções: Dinheiro, Money e Nada
+      menu "Dinheiro:Money",_Money,"Nada",_Nada;//Aparecerá 3 opções: Dinheiro, Money e Nada
 		//Sendo que as 2 primeiras irão pro mesmo rótulo.
-      L_Money:
+      _Money:
       mes "[Nagato]";
       mes "Vai trabalhar!";
       close;
 
-      L_Nada:
+      _Nada:
       mes "[Nagato]";
       mes "Então vá embora oras !";
       close;
@@ -895,15 +895,15 @@ Existe também uma variavel especial @menu, ela contém o numero da opção esco
       mes "[Nagato]";
       mes "O Que você deseja";
       mes "senhor "+strcharinfo(0);
-      menu "Dinheiro:Money",L_Money,"Nada",L_Nada;//Aparecerá 3 opções: Dinheiro, Money e Nada
+      menu "Dinheiro:Money",_Money,"Nada",_Nada;//Aparecerá 3 opções: Dinheiro, Money e Nada
 						//Sendo que as 2 primeiras irão pro mesmo rótulo.
 
-      L_Money:// aqui @menu será 1
+      _Money:// aqui @menu será 1
       mes "[Nagato]";
       mes "Vai trabalhar!";
       close;
 
-      L_Nada:// aqui 2.
+      _Nada:// aqui 2.
       mes "[Nagato]";
       mes "Então vá embora oras !";
       close;
