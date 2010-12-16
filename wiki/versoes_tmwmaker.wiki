@@ -1,6 +1,6 @@
 #labels Versões,Download,TMW-Maker
 =DOWNLOAD DO TMW-MAKER=
-O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por enquanto funciona apenas no sistemap operaciona Ubuntu Linux i386. Ou seja, se você possui windows nem adianta tentar usa-lo. Existe planos de adaptar o TMW-Maker para o windows também, mas isso só ocorrerá após o final de sua construção.
+O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por enquanto funciona apenas no sistema operacional Ubuntu Linux de arquitetura i386/x64/amd64. Ou seja, se você possui windows nem adianta tentar usa-lo. Existe planos de adaptar o TMW-Maker para o windows também, mas isso só ocorrerá após o final de sua construção.
 
 <p align="center"><img src="https://tmw-maker.googlecode.com/svn/Imagens/Versoes/TMW-Maker_v0.2.png">
 
