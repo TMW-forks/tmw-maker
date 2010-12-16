@@ -6,7 +6,6 @@
 package autocomplete;
 import Classes.DialogClass;
 import Classes.FileClass;
-import Classes.StringClass;
 import java.net.URISyntaxException;
 import java.util.List;  
   
@@ -15,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
   
 /**
  *

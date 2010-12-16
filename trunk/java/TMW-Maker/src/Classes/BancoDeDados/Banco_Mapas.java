@@ -4,12 +4,9 @@ import Classes.DialogClass;
 import Classes.FileClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
-import java.io.IOException;
 import java.util.Vector;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 
 public class Banco_Mapas {
