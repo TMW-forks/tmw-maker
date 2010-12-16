@@ -73,6 +73,8 @@ import javax.swing.text.JTextComponent;
 class AutoCompletePopupWindow extends JWindow implements CaretListener,
 									ListSelectionListener, MouseListener {
 
+    
+
 	/**
 	 * The parent AutoCompletion instance.
 	 */
@@ -126,6 +128,7 @@ class AutoCompletePopupWindow extends JWindow implements CaretListener,
 	private KeyActionPair enterKap;
 	private KeyActionPair tabKap;
 	private KeyActionPair homeKap;
+        private KeyActionPair F1Kap;
 	private KeyActionPair endKap;
 	private KeyActionPair pageUpKap;
 	private KeyActionPair pageDownKap;
@@ -243,6 +246,7 @@ class AutoCompletePopupWindow extends JWindow implements CaretListener,
 		enterKap = new KeyActionPair("Enter", enterAction);
 		tabKap = new KeyActionPair("Tab", enterAction);
 		homeKap = new KeyActionPair("Home", new HomeAction());
+                F1Kap = new KeyActionPair("F1", new F1Action());
 		endKap = new KeyActionPair("End", new EndAction());
 		pageUpKap = new KeyActionPair("PageUp", new PageUpAction());
 		pageDownKap = new KeyActionPair("PageDown", new PageDownAction());
@@ -352,6 +356,7 @@ class AutoCompletePopupWindow extends JWindow implements CaretListener,
 		replaceAction(im, am, KeyEvent.VK_ENTER, enterKap, oldEnter);
 		replaceAction(im, am, KeyEvent.VK_TAB, tabKap, oldTab);
 		replaceAction(im, am, KeyEvent.VK_HOME, homeKap, oldHome);
+                replaceAction(im, am, KeyEvent.VK_F1, F1Kap, oldHome);
 		replaceAction(im, am, KeyEvent.VK_END, endKap, oldEnd);
 		replaceAction(im, am, KeyEvent.VK_PAGE_UP, pageUpKap, oldPageUp);
 		replaceAction(im, am, KeyEvent.VK_PAGE_DOWN, pageDownKap, oldPageDown);
@@ -761,6 +766,7 @@ class AutoCompletePopupWindow extends JWindow implements CaretListener,
 		putBackAction(im, am, KeyEvent.VK_ENTER, oldEnter);
 		putBackAction(im, am, KeyEvent.VK_TAB, oldTab);
 		putBackAction(im, am, KeyEvent.VK_HOME, oldHome);
+                putBackAction(im, am,KeyEvent.VK_F1, oldHome);
 		putBackAction(im, am, KeyEvent.VK_END, oldEnd);
 		putBackAction(im, am, KeyEvent.VK_PAGE_UP, oldPageUp);
 		putBackAction(im, am, KeyEvent.VK_PAGE_DOWN, oldPageDown);
@@ -890,6 +896,41 @@ class AutoCompletePopupWindow extends JWindow implements CaretListener,
             }
         }
     }
+     class F1Action extends AbstractAction {
+        public void actionPerformed(ActionEvent e) {
+           
+            if (isVisible()) {
+                DocComando Doc = new DocComando();
+                List listC = null;
+                try {
+                    listC = Doc.resgatarXML();
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(AutoCompletePopupWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Comandos comd;
+                for (int i = 0; i < listC.size(); i++) {
+
+                    comd = (Comandos) listC.get(i);
+                    if (comd.getcomando().equals(getSelection().getReplacementText())) {
+                        DialogClass.showErro(
+                            comd.getfuncao()+"\n\n"+
+                            "EXEMPLO: "+comd.getexemplo(),
+                            getSelection().getReplacementText().toUpperCase()
+                        );
+                        /*JOptionPane.showMessageDialog(
+                            null,
+                                "O comando " + getSelection().getReplacementText() + "\n"+
+                                " é usado para: \n"+
+                                " " + comd.getfuncao() + " \n"+
+                                "Exemplo: " + comd.getexemplo()
+                        );/**/
+                    }
+                }
+
+            }
+        }
+    }
+
 
 
 	/**
