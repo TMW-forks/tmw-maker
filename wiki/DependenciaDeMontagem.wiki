@@ -3,9 +3,9 @@
 Para que o jogo consiga rodar o localhost(servidor local) que não precisa de intenet para funcionar. É necessário montar o locahost que foi baixado recentemente. Essa montagem só é necessária apenas uma vez. 
 
 ===Resolvendo a Dependência de Montagem===
-Monte o localhost automaticamente através do menu "*Jogo -> Montar*" ou através do painel de dependências, clicando no nome de "Montagem" depois no botão "Resolver". Ambas montam automaticamente e da mesma forma o Localhost. 
+Monte o localhost automaticamente através do painel de dependências, clicando no nome de "Montagem" depois no botão "Resolver". 
 
-Por enquanto o localhost só será  montando corretamente apenas para usuários do sistema operacional Ubuntu Linux i386. Se você possui outro sistema operacional precisará consegui manualmente os 3 binário "*char-server*", "*login-server*" e "*map-server*" compatíveis com seus sistema operacional que ficam na pasta "*eathena-data*".
+Por enquanto o localhost só será  montando corretamente apenas para usuários do sistema operacional Ubuntu Linux (i386/x64/amd64). Se você possui outro sistema operacional precisará consegui manualmente os 3 binário "*char-server*", "*login-server*" e "*map-server*" compatíveis com seus sistema operacional que ficam na pasta "*eathena-data*".
 
 || *AVISO IMPORTANTE:* Pedimos desculpas por não conseguir fornecer os 3 binários diferenciados para cada tipo de sistema operacional do mundo inteiros. Se você conseguir manualmente os 3 binário "char-server", "login-server" e "map-server" compatíveis com seus sistema operacional que ficam na pasta "eathena-data", por favor os envie para o e-mail [mailto:rui.gravata@hotmail.com rui.gravata@hotmail.com] para que possamos fazer o TMW-Maker montar automaticamente para outros usuários que usam um sistema sistema operacional igual ao seu. ||
 
