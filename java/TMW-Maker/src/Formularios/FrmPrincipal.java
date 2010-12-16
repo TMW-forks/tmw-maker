@@ -236,7 +236,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
                             PgbBarra.setString("Preparando...");
                             setAvisoEmEstatus("Preparando para baixar binários novos...");
-                            if (OS.indexOf("linux") >= 0 && FileClass.seExiste("http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch)){
+                            if (OS.indexOf("linux") >= 0 && (Arch.indexOf("i386") >= 0 || Arch.indexOf("x64") >= 0 || Arch.indexOf("amd64") >= 0)){
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
                                         FrmPrincipal.Config.getConexaoLocalhost() +barra+ "bins";
@@ -244,12 +244,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 System.out.println(Comando);
                                 //DialogClass.showAlerta(Comando,"Nota de Programador");
                             } else {
-                                Comando = "svn checkout " +
+                                /*Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/compiler " +
                                         FrmPrincipal.Config.getConexaoLocalhost() +barra+ "bins";
                                 BinariosEspecificos = false;
                                 System.out.println(Comando);
-                                //DialogClass.showAlerta(Comando,"Nota de Programador");
+                                //DialogClass.showAlerta(Comando,"Nota de Programador");/**/
+                                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!");
+                                DialogClass.showErro(
+                                    "<html><b>O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!</html>",
+                                    "ERRO DE EXECUÇÃO"
+                                );
+                                PgbBarra.setString("!!!ERRO!!!");
+                                PgbBarra.setIndeterminate(false);
+                                MnuSistema.setEnabled(true);
+                                MnuEditar.setEnabled(true);
+                                MnuJogo.setEnabled(true);
+                                MnuAjuda.setEnabled(true);
+                                VerificarBarraDeFerramentas();
+                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                return;
                             }
                             try {
                                 Process Retorno = Executador.exec(Comando);
