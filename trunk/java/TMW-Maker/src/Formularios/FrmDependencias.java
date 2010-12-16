@@ -968,7 +968,7 @@ public class FrmDependencias extends javax.swing.JDialog {
                             FrmPrincipal.PgbBarra.setString("Abaixando...");
                             FrmPrincipal.setAvisoEmEstatus("Baixando binários novos...");
                             addLinhaDeEstatus("Baixando binários novos...");
-                            if (OS.indexOf("linux") >= 0 && FileClass.seExiste("http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch)){
+                            if (OS.indexOf("linux") >= 0 && (Arch.indexOf("i386") >= 0 || Arch.indexOf("x64") >= 0 || Arch.indexOf("amd64") >= 0)){
                                 Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
@@ -976,13 +976,24 @@ public class FrmDependencias extends javax.swing.JDialog {
                                 System.out.println(Comando);
                                 //DialogClass.showErro(Comando,"Nota de Programador");
                             } else {
-                                Comando = "svn checkout " +
+                                /*Comando = "svn checkout " +
                                         "http://tmw-maker.googlecode.com/svn/bins/compiler " +
                                         FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
                                 addLinhaDeEstatus("svn checkout http://tmw-maker.googlecode.com/svn/bins/compiler ");
                                 BinariosEspecificos = false;
                                 System.out.println(Comando);
-                                //DialogClass.showErro(Comando,"Nota de Programador");
+                                //DialogClass.showErro(Comando,"Nota de Programador");/**/
+                                addLinhaDeEstatus("ERRO: "+Comando);
+                                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!");
+                                DialogClass.showErro(
+                                    "<html><b>O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!</html>",
+                                    "ERRO DE EXECUÇÃO"
+                                );
+                                FrmPrincipal.PgbBarra.setIndeterminate(false);
+                                BtnFechar.setEnabled(true);
+                                TblDependencias.setEnabled(true);
+                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                                return;
                             }
                             try {
                                 Process Retorno = Executador.exec(Comando);
