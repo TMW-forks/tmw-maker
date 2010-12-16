@@ -4,11 +4,6 @@
 
 package Classes;
 
-import java.util.HashMap;
-
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
-
 public class MobScript {
 
     //private HashMap<Integer, Mob> mobs = null;
