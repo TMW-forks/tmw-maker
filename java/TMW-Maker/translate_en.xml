@@ -1,0 +1,15 @@
+<tmwmaker language="en" by="Lunovox" email="rui.gravata@hotmail.com" update="2010-12-18 16:11:10">
+	<FrmPrincipal>
+		<translate id="1">System</translate>
+		<translate id="2">Edit</translate>
+		<translate id="3">Game</translate>
+		<translate id="4">Help</translate>
+		<translate id="5">Close</translate>
+	</FrmPrincipal>
+	<FrmPalco>
+		<translate id="1">Open</translate>
+		<translate id="2">Opens the last saved changes to the document!</translate>
+		<translate id="3">Delete</translate>
+		<translate id="4">Delete the file %1 permanently?</translate>
+	</FrmPalco>
+</tmwmaker>
