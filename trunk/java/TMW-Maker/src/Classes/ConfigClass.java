@@ -1,5 +1,6 @@
 package Classes;
 
+import autocomplete.DocComando;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -45,6 +47,19 @@ public class ConfigClass {
     private int     ComportAtualizacaoLocalhostIntervalo =  0; // Sempre (Ao abrir)
 
 
+    public String getPastaDoSistema(){
+        try {
+            return DocComando.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("TMW-Maker.jar", "");
+        } catch (URISyntaxException ex) {
+            //Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
+    }
+    public String getIdiomaDoSistema(){
+        return System.getProperty("user.language");
+        //return Locale.getDefault().getDisplayLanguage();
+        //return Locale.getDefault().getLanguage();
+    }
     public String getVersao(){return Versao;}
     public long getAtualizacaoEngineUltima(){return ComportAtualizacaoEngineUltima;}
     public long getAtualizacaoEngineIntervaloReal(){
