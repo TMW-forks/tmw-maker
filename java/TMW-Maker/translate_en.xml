@@ -10,6 +10,6 @@
 		<translate id="BtnAbrirBloco">Open</translate>
 		<translate id="Message[0]">Opens the last saved changes to the document!</translate>
 		<translate id="BtnExcluirBloco">Delete</translate>
-		<translate id="Message[0]">Delete the file %1 permanently?</translate>
+		<translate id="Message[1]">Delete the file %1 permanently?</translate>
 	</FrmPalco>
 </tmwmaker>
