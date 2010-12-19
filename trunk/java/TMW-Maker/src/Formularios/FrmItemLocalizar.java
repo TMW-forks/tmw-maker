@@ -195,8 +195,8 @@ public class FrmItemLocalizar extends javax.swing.JDialog {
         do{
             Ponteiro++;
             if(
-                (OptNomeTitulo.isSelected() && FrmPrincipal.Itens.getItemPorOrdem(Ponteiro).getNomeTitulo().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0) ||
-                (OptNomeSumonico.isSelected() && FrmPrincipal.Itens.getItemPorOrdem(Ponteiro).getNomeSumonico().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0)
+                (OptNomeTitulo.isSelected() && FrmPrincipal.bdProds.getItemPorOrdem(Ponteiro).getNomeTitulo().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0) ||
+                (OptNomeSumonico.isSelected() && FrmPrincipal.bdProds.getItemPorOrdem(Ponteiro).getNomeSumonico().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0)
             ){
                 SeSair=true;
                 FrmItens.CmbIDs.setSelectedIndex(Ponteiro);

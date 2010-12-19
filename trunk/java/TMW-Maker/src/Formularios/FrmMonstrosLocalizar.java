@@ -195,8 +195,8 @@ public class FrmMonstrosLocalizar extends javax.swing.JDialog {
         do{
             Ponteiro++;
             if(
-                (OptNomeTitulo.isSelected() && FrmPrincipal.Monstros.getMonstroPorOrdem(Ponteiro).getNomeTitulo().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0) ||
-                (OptNomeSumonico.isSelected() && FrmPrincipal.Monstros.getMonstroPorOrdem(Ponteiro).getNomeSumonico().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0)
+                (OptNomeTitulo.isSelected() && FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ponteiro).getNomeTitulo().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0) ||
+                (OptNomeSumonico.isSelected() && FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ponteiro).getNomeSumonico().toLowerCase().indexOf(TxtLocalizar.getText().toLowerCase())>=0)
             ){
                 SeSair=true;
                 FrmMonstros.cmbIDs.setSelectedIndex(Ponteiro);

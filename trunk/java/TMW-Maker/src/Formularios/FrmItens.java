@@ -13,8 +13,8 @@ public class FrmItens extends javax.swing.JDialog {
     }
 
     private void CarregarCmbIconePNG() {
-        if(FileClass.seExiste(FrmPrincipal.Itens.PastaDeItens)){
-            String[] Arquivos = FileClass.listarArquivos(FrmPrincipal.Itens.PastaDeItens);
+        if(FileClass.seExiste(FrmPrincipal.bdProds.PastaDeItens)){
+            String[] Arquivos = FileClass.listarArquivos(FrmPrincipal.bdProds.PastaDeItens);
             //setTitle(""+Arquivos.length);
             if(Arquivos.length>=1){
 
@@ -42,7 +42,7 @@ public class FrmItens extends javax.swing.JDialog {
     private void CarregarCmbIDs() {
         Thread tThread = new Thread(new Runnable() {
             public void run() {
-                if(FrmPrincipal.Itens.getContItens()>=1){
+                if(FrmPrincipal.bdProds.getContItens()>=1){
                     FrmPrincipal.PgbBarra.setString("Carregando...");
                     FrmPrincipal.setAvisoEmEstatus("Favor espere carregar o Banco de Dados de Itens...");
                     setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -56,13 +56,13 @@ public class FrmItens extends javax.swing.JDialog {
                     BtnCarregar.setEnabled(false);
                     FrmPrincipal.PgbBarra.setIndeterminate(false);
                     FrmPrincipal.PgbBarra.setMinimum(1);
-                    FrmPrincipal.PgbBarra.setMaximum(FrmPrincipal.Itens.getContItens());
+                    FrmPrincipal.PgbBarra.setMaximum(FrmPrincipal.bdProds.getContItens());
 
-                    Object[] CapsulaDeIDs= new java.lang.Object[FrmPrincipal.Itens.getContItens()];
-                    for(int i=0;i<FrmPrincipal.Itens.getContItens();i++){
+                    Object[] CapsulaDeIDs= new java.lang.Object[FrmPrincipal.bdProds.getContItens()];
+                    for(int i=0;i<FrmPrincipal.bdProds.getContItens();i++){
                         FrmPrincipal.PgbBarra.setValue(i+1);
-                        FrmPrincipal.setAvisoEmEstatus((i+1)+"/"+FrmPrincipal.Itens.getContItens());
-                        CapsulaDeIDs[i]=Integer.toString(FrmPrincipal.Itens.getItemPorOrdem(i).getID());
+                        FrmPrincipal.setAvisoEmEstatus((i+1)+"/"+FrmPrincipal.bdProds.getContItens());
+                        CapsulaDeIDs[i]=Integer.toString(FrmPrincipal.bdProds.getItemPorOrdem(i).getID());
                     }
                     CmbIDs.setModel(new DefaultComboBoxModel(CapsulaDeIDs));
 
@@ -115,32 +115,32 @@ public class FrmItens extends javax.swing.JDialog {
         if(LocalSelecionado.equals("equip-torso")) {LblEquipTorso.setIcon(new javax.swing.ImageIcon(Endereco)); }else{LblEquipTorso.setIcon(null);}
     }
     private void AbrirRegistro(int Registro) {
-        if(FrmPrincipal.Itens.getContItens()>=1){
-        //if(ItensFrmPrincipal.Itens.getContItens()>=1){
-            TxtNomeSumonico.setText(FrmPrincipal.Itens.getItemPorOrdem(Registro).getNomeSumonico());
-            TxtNomeTitulo.setText(FrmPrincipal.Itens.getItemPorOrdem(Registro).getNomeTitulo());
+        if(FrmPrincipal.bdProds.getContItens()>=1){
+        //if(ItensFrmPrincipal.bdProds.getContItens()>=1){
+            TxtNomeSumonico.setText(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getNomeSumonico());
+            TxtNomeTitulo.setText(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getNomeTitulo());
             LblTitulo.setText(TxtNomeTitulo.getText());
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==0) CmbUtilidade.setSelectedIndex(0);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==2) CmbUtilidade.setSelectedIndex(1);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==3) CmbUtilidade.setSelectedIndex(2);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==4) CmbUtilidade.setSelectedIndex(3);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==5) CmbUtilidade.setSelectedIndex(4);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==6) CmbUtilidade.setSelectedIndex(5);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==7) CmbUtilidade.setSelectedIndex(6);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==8) CmbUtilidade.setSelectedIndex(7);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==10) CmbUtilidade.setSelectedIndex(8);
-            if(FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoObjeto()==11) CmbUtilidade.setSelectedIndex(9);
-            SpnPeso.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPeso());
-            SpnPrecoVenda.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPrecoDeVenda());
-            SpnPrecoCompra.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPrecoDeCompra());
-            SpnPoderAtaque.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderAtaque());
-            SpnPoderDefesa.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderDefesa());
-            SpnPoderAlcance.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderAlcance());
-            SpnPoderBonusMagico.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderBonusMagico());
-            SpnOculpacaoDeLote.setValue(FrmPrincipal.Itens.getItemPorOrdem(Registro).getOcupacaoDeLote());
-            CmbGenero.setSelectedIndex(FrmPrincipal.Itens.getItemPorOrdem(Registro).getGenero());
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==0) CmbUtilidade.setSelectedIndex(0);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==2) CmbUtilidade.setSelectedIndex(1);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==3) CmbUtilidade.setSelectedIndex(2);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==4) CmbUtilidade.setSelectedIndex(3);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==5) CmbUtilidade.setSelectedIndex(4);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==6) CmbUtilidade.setSelectedIndex(5);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==7) CmbUtilidade.setSelectedIndex(6);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==8) CmbUtilidade.setSelectedIndex(7);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==10) CmbUtilidade.setSelectedIndex(8);
+            if(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoObjeto()==11) CmbUtilidade.setSelectedIndex(9);
+            SpnPeso.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPeso());
+            SpnPrecoVenda.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPrecoDeVenda());
+            SpnPrecoCompra.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPrecoDeCompra());
+            SpnPoderAtaque.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPoderAtaque());
+            SpnPoderDefesa.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPoderDefesa());
+            SpnPoderAlcance.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPoderAlcance());
+            SpnPoderBonusMagico.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPoderBonusMagico());
+            SpnOculpacaoDeLote.setValue(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getOcupacaoDeLote());
+            CmbGenero.setSelectedIndex(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getGenero());
 
-            int Loc=FrmPrincipal.Itens.getItemPorOrdem(Registro).getLocalEquipavel();
+            int Loc=FrmPrincipal.bdProds.getItemPorOrdem(Registro).getLocalEquipavel();
             boolean SeEquipamento = (CmbUtilidade.getSelectedIndex()>=3 && CmbUtilidade.getSelectedIndex()<=8);
             ChkEquipavelMunicao.setSelected(Loc/32768>=1); if(Loc/32768>=1)Loc-=32768; ChkEquipavelMunicao.setEnabled(SeEquipamento);
             ChkEquipavelTorco2.setSelected(Loc/512>=1);    if(Loc/512>=1)  Loc-=512;   ChkEquipavelTorco2.setEnabled(SeEquipamento);
@@ -153,14 +153,14 @@ public class FrmItens extends javax.swing.JDialog {
             ChkEquipavelBraco1.setSelected(Loc/2>=1);      if(Loc/2>=1)    Loc-=2;     ChkEquipavelBraco1.setEnabled(SeEquipamento);
             ChkEquipavelPernas.setSelected(Loc/1>=1);      if(Loc/1>=1)    Loc-=1;     ChkEquipavelPernas.setEnabled(SeEquipamento);
 
-            TxtScripAoConsulmir.setText(FrmPrincipal.Itens.getItemPorOrdem(Registro).getScriptAoConsulmir().trim());
-            TxtScripAoEquipar.setText(FrmPrincipal.Itens.getItemPorOrdem(Registro).getScriptAoEquipar().trim());
+            TxtScripAoConsulmir.setText(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getScriptAoConsulmir().trim());
+            TxtScripAoEquipar.setText(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getScriptAoEquipar().trim());
 
-            TxtDescricao.setText(FrmPrincipal.Itens.getItemPorOrdem(Registro).getDescricao().trim());
-            TxtEfeito.setText(FrmPrincipal.Itens.getItemPorOrdem(Registro).getPoderEfeito().trim());
-            CmbIconePNG.setSelectedItem((Object)FrmPrincipal.Itens.getItemPorOrdem(Registro).getIconePNG().trim());
-            TxtIconeCor.setText(FrmPrincipal.Itens.getItemPorOrdem(Registro).getIconeCor().trim());
-            CmbLocal.setSelectedItem((Object)FrmPrincipal.Itens.getItemPorOrdem(Registro).getTipoNome().trim());
+            TxtDescricao.setText(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getDescricao().trim());
+            TxtEfeito.setText(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getPoderEfeito().trim());
+            CmbIconePNG.setSelectedItem((Object)FrmPrincipal.bdProds.getItemPorOrdem(Registro).getIconePNG().trim());
+            TxtIconeCor.setText(FrmPrincipal.bdProds.getItemPorOrdem(Registro).getIconeCor().trim());
+            CmbLocal.setSelectedItem((Object)FrmPrincipal.bdProds.getItemPorOrdem(Registro).getTipoNome().trim());
 
             BtnAvancar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()<(CmbIDs.getItemCount()-1)));
             BtnVoltar.setEnabled((CmbIDs.isEnabled() && CmbIDs.getSelectedIndex()>0));
@@ -1134,10 +1134,10 @@ public class FrmItens extends javax.swing.JDialog {
                 BtnCarregar.setEnabled(false);
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
 
-                if(FrmPrincipal.Config.getSeDependenciaDeLocalhost() && !(FrmPrincipal.Itens instanceof Classes.BancoDeDados.Banco_Itens)){ // Só carrega se não tiver carregado antes
+                if(FrmPrincipal.Config.getSeDependenciaDeLocalhost() && !(FrmPrincipal.bdProds instanceof Classes.BancoDeDados.Banco_Itens)){ // Só carrega se não tiver carregado antes
                     FrmPrincipal.PgbBarra.setString("Carregando...");
                     FrmPrincipal.setAvisoEmEstatus("<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)");
-                    FrmPrincipal.Itens = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
+                    FrmPrincipal.bdProds = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre os arquivos item_db.txt e item.xml (Operação Demorada)
                 } 
 
                 FrmPrincipal.PgbBarra.setString("Organizando...");

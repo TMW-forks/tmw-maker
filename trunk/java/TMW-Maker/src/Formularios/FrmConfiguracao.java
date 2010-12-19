@@ -16,8 +16,8 @@ public class FrmConfiguracao extends javax.swing.JDialog {
 
 
     private void setMarcarComponente(String Componente) {
-        FrmPrincipal.ComponenteSelecionado = Componente.toString();
-        if(FrmPrincipal.ComponenteSelecionado.isEmpty()) {
+        FrmPrincipal.componenteSelecionado = Componente.toString();
+        if(FrmPrincipal.componenteSelecionado.isEmpty()) {
             BtnConfiguracaoAjuda.setEnabled(false);
         } else {
             BtnConfiguracaoAjuda.setEnabled(true);
@@ -50,7 +50,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         }
     }
     public static void showAjuda(){
-        ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+FrmPrincipal.ComponenteSelecionado);
+        ConfigClass.AbrirNavegador(FrmPrincipal.Config.getDocumentacaoComponentes()+Barra+FrmPrincipal.componenteSelecionado);
         Toolkit.getDefaultToolkit().beep();
     }
     public static void showAjuda(java.awt.event.KeyEvent evt){

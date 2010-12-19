@@ -22,8 +22,8 @@ public class FrmLojas extends javax.swing.JDialog {
         Dados_NPC NPC = null;
         Vector Lista = new Vector();
         Lista.add("Não (Script Intangível)");
-        for(int n=0;n<FrmPrincipal.NPCs.getContNPCs();n++){
-            NPC = FrmPrincipal.NPCs.getNPCporOrdem(n);
+        for(int n=0;n<FrmPrincipal.bdNPCs.getContNPCs();n++){
+            NPC = FrmPrincipal.bdNPCs.getNPCporOrdem(n);
             if(NPC!=null){
                 if(NPC.getSprite()!=null){
                     if(NPC.getID()>0) Lista.add(NPC.getID()+": "+(NPC.getNome().equals("")?"\""+NPC.getComentario().trim()+"\"":NPC.getNome()));
@@ -34,22 +34,22 @@ public class FrmLojas extends javax.swing.JDialog {
         CmbAparencias.setModel(new javax.swing.DefaultComboBoxModel(Lista));
     }
     public Vector addItemVector(int IDTem){
-        return addItemVector(IDTem, FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda());
+        return addItemVector(IDTem, FrmPrincipal.bdProds.getItemPorID(IDTem).getPrecoDeVenda());
     }
     public Vector addItemVector(int IDTem, int PrecoDeVenda){
         Vector Linha = new Vector();
-        //Linha.addElement(new ImageIcon(FrmPrincipal.Itens.getItemPorID(IDTem).getIconeImagem()));
+        //Linha.addElement(new ImageIcon(FrmPrincipal.bdProds.getItemPorID(IDTem).getIconeImagem()));
         //Linha.addElement(IDTem);
-        //Linha.addElement(FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo());//Se é um
+        //Linha.addElement(FrmPrincipal.bdProds.getItemPorID(IDTem).getNomeTitulo());//Se é um
         Linha.addElement("<html>"+
             "<table><tr><td><img align=\"middle\" src=\"file://"+
-                FrmPrincipal.Itens.getItemPorID(IDTem).getIconeEndereco()+
+                FrmPrincipal.bdProds.getItemPorID(IDTem).getIconeEndereco()+
             "\"></td><td>"+
-                "<b>"+IDTem+":</b> "+FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo()+"<br/>"+
+                "<b>"+IDTem+":</b> "+FrmPrincipal.bdProds.getItemPorID(IDTem).getNomeTitulo()+"<br/>"+
                 "<small>"+
-                "V:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda()+"GP "+
-                "C:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeCompra()+"GP "+
-                "("+FrmPrincipal.Itens.getItemPorID(IDTem).getPoderEfeito()+")"+
+                "V:"+FrmPrincipal.bdProds.getItemPorID(IDTem).getPrecoDeVenda()+"GP "+
+                "C:"+FrmPrincipal.bdProds.getItemPorID(IDTem).getPrecoDeCompra()+"GP "+
+                "("+FrmPrincipal.bdProds.getItemPorID(IDTem).getPoderEfeito()+")"+
                 "</small>"+
             "</td></tr></table>"
         );//Se é um
@@ -89,8 +89,8 @@ public class FrmLojas extends javax.swing.JDialog {
                 btnLojaAbrir.setEnabled(true);/**/
             }/**/
         });
-        //tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.Itens.getTitutos()));
-        tblShop.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
+        //tblShop.getTableHeader().getColumnModel().getColumn(1).setCellRenderer(new jTable_CmbIDItens(FrmPrincipal.bdProds.getTitutos()));
+        tblShop.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.bdProds.getTitutos()));
 
         tblShop.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
         tblShop.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);
@@ -508,7 +508,7 @@ public class FrmLojas extends javax.swing.JDialog {
             String Selecionado=CmbAparencias.getItemAt(CmbAparencias.getSelectedIndex()).toString();
             String Partes[] = Selecionado.split(":");
             if(Partes.length>=2){
-                Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Integer.parseInt(Partes[0]));
+                Dados_NPC NPC = FrmPrincipal.bdNPCs.getNPCporID(Integer.parseInt(Partes[0]));
                 ImagemClass Imagem = new ImagemClass(NPC.getImagem());
                 Imagem.setZoom(2.0);
                 LblImagem.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
@@ -565,7 +565,7 @@ public class FrmLojas extends javax.swing.JDialog {
             int X=tblShop.getSelectedColumn(), Y=tblShop.getSelectedRow();
             if(X>=0 && Y>=0){
                 int ID = Galeria.getLojaPorOrdem(cmbLojas.getSelectedIndex()).getProdutoPorOrdem(Y).getID();
-                ImagemClass Item = new ImagemClass(FrmPrincipal.Itens.getItemPorID(ID).getIconeImagem());
+                ImagemClass Item = new ImagemClass(FrmPrincipal.bdProds.getItemPorID(ID).getIconeImagem());
                 Item.setZoom(3.0);
                 int R=DialogClass.showOpcoes(
                     "Deseja realmente excluir este produto do estoque de Loja?",

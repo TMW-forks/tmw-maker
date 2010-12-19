@@ -145,7 +145,7 @@ public class FrmListarMapas extends javax.swing.JDialog {
 
     private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
         try{
-            String Arquivo=FrmPrincipal.Mundo.getMapaPorOrdem(tblMapas.getSelectedRow()).getArquivo();
+            String Arquivo=FrmPrincipal.bdWarps.getMapaPorOrdem(tblMapas.getSelectedRow()).getArquivo();
             AbrirMapa(PastaDeMapas+Barra+Arquivo);
         }catch(NullPointerException ex){
 
@@ -154,19 +154,19 @@ public class FrmListarMapas extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Vector Mapa = new Vector();
 
-        for(int M=0;M<FrmPrincipal.Mundo.getContMapas();M++){
+        for(int M=0;M<FrmPrincipal.bdWarps.getContMapas();M++){
             Vector Linha = new Vector();
             Linha.addElement("<html>"+
-                //"<body bgcolor=\"#000000\" text=\"#FFFFFF\" background=\"file://"+PastaDeMiniaturas+Barra+FrmPrincipal.Mundo.getMapaPorOrdem(M).getMiniatura()+"\">"+
-                "<b>"+FrmPrincipal.Mundo.getMapaPorOrdem(M).getNome()+"</b><br/>"+
-                "<small><b>Tamanho:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getLargura()+"x"+
-                FrmPrincipal.Mundo.getMapaPorOrdem(M).getAltura()
+                //"<body bgcolor=\"#000000\" text=\"#FFFFFF\" background=\"file://"+PastaDeMiniaturas+Barra+FrmPrincipal.bdWarps.getMapaPorOrdem(M).getMiniatura()+"\">"+
+                "<b>"+FrmPrincipal.bdWarps.getMapaPorOrdem(M).getNome()+"</b><br/>"+
+                "<small><b>Tamanho:</b> "+FrmPrincipal.bdWarps.getMapaPorOrdem(M).getLargura()+"x"+
+                FrmPrincipal.bdWarps.getMapaPorOrdem(M).getAltura()
             );
             Linha.addElement("<html>"+
-                "<b>Mapa:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getArquivo()+"<br/>"+
-                "<b>Colisão:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getColisao()+"<br/>"+
-                "<b>Miniatura:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getMiniatura()+"<br/>"+
-                "<b>Música:</b> "+FrmPrincipal.Mundo.getMapaPorOrdem(M).getMusica()
+                "<b>Mapa:</b> "+FrmPrincipal.bdWarps.getMapaPorOrdem(M).getArquivo()+"<br/>"+
+                "<b>Colisão:</b> "+FrmPrincipal.bdWarps.getMapaPorOrdem(M).getColisao()+"<br/>"+
+                "<b>Miniatura:</b> "+FrmPrincipal.bdWarps.getMapaPorOrdem(M).getMiniatura()+"<br/>"+
+                "<b>Música:</b> "+FrmPrincipal.bdWarps.getMapaPorOrdem(M).getMusica()
             );
             Mapa.add(Linha);
         }
@@ -191,9 +191,9 @@ public class FrmListarMapas extends javax.swing.JDialog {
     private void tblMapasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMapasMouseClicked
         try{
             if(tblMapas.getSelectedRow()>=0){
-                if(!FrmPrincipal.Mundo.getMapaPorOrdem(tblMapas.getSelectedRow()).getMiniatura().equals("")){
+                if(!FrmPrincipal.bdWarps.getMapaPorOrdem(tblMapas.getSelectedRow()).getMiniatura().equals("")){
                     tblMapas.setToolTipText("<html>"+
-                        "<img src=\"file://"+PastaDeMiniaturas+Barra+FrmPrincipal.Mundo.getMapaPorOrdem(tblMapas.getSelectedRow()).getMiniatura()+"\">"
+                        "<img src=\"file://"+PastaDeMiniaturas+Barra+FrmPrincipal.bdWarps.getMapaPorOrdem(tblMapas.getSelectedRow()).getMiniatura()+"\">"
                     );
                 }else{
                     tblMapas.setToolTipText("");
