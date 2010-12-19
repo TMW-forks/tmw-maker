@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 public class TranslateClass {
     public TranslateClass(){
         idiomaXML=FrmPrincipal.Config.getPastaDoSistema()+System.getProperty("file.separator")+"translate_"+FrmPrincipal.Config.getIdiomaDoSistema()+".xml";
+        //idiomaXML=System.getProperty("user.home")+System.getProperty("file.separator")+"translate_en.xml";
         abrirTraducao(idiomaXML);
     }
     public TranslateClass(String Endereco){

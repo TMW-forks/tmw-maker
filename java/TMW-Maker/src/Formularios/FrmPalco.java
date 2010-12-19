@@ -207,7 +207,7 @@ public class FrmPalco extends javax.swing.JDialog {
                                 CmbScript.setSelectedIndex(Sel);
                                 TxtScriptPalco.setText(Instancia[Sel].getScript());
 
-                                /*Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[Sel].getImagem());
+                                /*Dados_NPC NPC = FrmPrincipal.bdNPCs.getNPCporID(Instancia[Sel].getImagem());
                                 ImagemClass Imagem = new ImagemClass(NPC.getImagem());
                                 Imagem.setZoom(24/Imagem.getAltura());
                                 LblAparencia.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));
@@ -490,7 +490,7 @@ public class FrmPalco extends javax.swing.JDialog {
         String Cod= Instancia[CmbScript.getSelectedIndex()].getScript().toString();
         TxtScriptPalco.setText(Cod.toString());/**/
 
-        Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Instancia[CmbScript.getSelectedIndex()].getImagem());
+        Dados_NPC NPC = FrmPrincipal.bdNPCs.getNPCporID(Instancia[CmbScript.getSelectedIndex()].getImagem());
         ImagemClass Imagem = new ImagemClass(NPC.getImagem());
         double Escala = 96.0/(double)Imagem.getLargura();
         //double Escala = 1.0;

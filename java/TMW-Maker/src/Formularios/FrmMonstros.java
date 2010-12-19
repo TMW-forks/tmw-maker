@@ -1273,18 +1273,18 @@ public class FrmMonstros extends javax.swing.JDialog {
     }
     private Vector addItemVector(int IDTem, double PerctDeDrops){
         Vector Linha = new Vector();
-        //Linha.addElement(new ImageIcon(FrmPrincipal.Itens.getItemPorID(IDTem).getIconeImagem()));
+        //Linha.addElement(new ImageIcon(FrmPrincipal.bdProds.getItemPorID(IDTem).getIconeImagem()));
         //Linha.addElement(IDTem);
-        //Linha.addElement(FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo());//Se é um
+        //Linha.addElement(FrmPrincipal.bdProds.getItemPorID(IDTem).getNomeTitulo());//Se é um
         Linha.addElement("<html>"+
             "<table><tr><td><img align=\"middle\" src=\"file://"+
-                FrmPrincipal.Itens.getItemPorID(IDTem).getIconeEndereco()+
+                FrmPrincipal.bdProds.getItemPorID(IDTem).getIconeEndereco()+
             "\"></td><td>"+
-                "<b>"+IDTem+":</b> "+FrmPrincipal.Itens.getItemPorID(IDTem).getNomeTitulo()+"<br/>"+
+                "<b>"+IDTem+":</b> "+FrmPrincipal.bdProds.getItemPorID(IDTem).getNomeTitulo()+"<br/>"+
                 "<small>"+
-                "V:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeVenda()+"GP "+
-                "C:"+FrmPrincipal.Itens.getItemPorID(IDTem).getPrecoDeCompra()+"GP "+
-                "("+FrmPrincipal.Itens.getItemPorID(IDTem).getPoderEfeito()+")"+
+                "V:"+FrmPrincipal.bdProds.getItemPorID(IDTem).getPrecoDeVenda()+"GP "+
+                "C:"+FrmPrincipal.bdProds.getItemPorID(IDTem).getPrecoDeCompra()+"GP "+
+                "("+FrmPrincipal.bdProds.getItemPorID(IDTem).getPoderEfeito()+")"+
                 "</small>"+
             "</td></tr></table>"
         );//Se é um
@@ -1298,7 +1298,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         int TipoDeAvisoDeErro=0; //0=Nada; 1=EmEstatus(Indisponível); 2=EmDialogo
     //#########################################################################
         
-        Dados_Monstro Monstro = FrmPrincipal.Monstros.getMonstroPorOrdem(ordem);
+        Dados_Monstro Monstro = FrmPrincipal.bdMOBs.getMonstroPorOrdem(ordem);
         SpriteXML camBaseXML = Monstro.getSpritePorOrdem(0).getClassXML();
         tgbDirecaoAcima.setEnabled(false);
         tgbDirecaoAbaixo.setEnabled(false);
@@ -1404,14 +1404,14 @@ public class FrmMonstros extends javax.swing.JDialog {
         lblVisualizacao.setText(Monstro.getNomeTitulo());
     }
     private void exibirLotePorOrdemDeMonstro(int OrdemDeMonstro) {
-        int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(OrdemDeMonstro).getDropsCont();
+        int Prods = FrmPrincipal.bdMOBs.getMonstroPorOrdem(OrdemDeMonstro).getDropsCont();
         Vector Dados = new Vector();
         if(Prods>=1){
             for(int P=0;P<Prods;P++){
                 Dados.add(
                     addItemVector(
-                        FrmPrincipal.Monstros.getMonstroPorOrdem(OrdemDeMonstro).getDropPorOrdem(P).getID(),
-                        ((double)FrmPrincipal.Monstros.getMonstroPorOrdem(OrdemDeMonstro).getDropPorOrdem(P).getPercentual())/100.0
+                        FrmPrincipal.bdMOBs.getMonstroPorOrdem(OrdemDeMonstro).getDropPorOrdem(P).getID(),
+                        ((double)FrmPrincipal.bdMOBs.getMonstroPorOrdem(OrdemDeMonstro).getDropPorOrdem(P).getPercentual())/100.0
                     )
                 );
             }
@@ -1429,14 +1429,14 @@ public class FrmMonstros extends javax.swing.JDialog {
                 if(column==0){
                     StringClass Valor = new StringClass(aValue.toString());
                     int ID2= Integer.parseInt(Valor.extrairEntre("<td><b>", ":</b>"));
-                    if(FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).getID()!=ID2){
-                        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setID(ID2);
+                    if(FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).getID()!=ID2){
+                        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setID(ID2);
                         darAuteracao(true);
                     }
                 }else if(column==1){
                     Double PercDeDrops2= Double.parseDouble(aValue.toString().trim())*100;
-                    if(FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).getPercentual()!=PercDeDrops2){
-                        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setPercentual(PercDeDrops2.intValue());
+                    if(FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).getPercentual()!=PercDeDrops2){
+                        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropPorOrdem(row).setPercentual(PercDeDrops2.intValue());
                         darAuteracao(true);
                     }
                 }
@@ -1446,31 +1446,31 @@ public class FrmMonstros extends javax.swing.JDialog {
 
             }
         });
-        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
+        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.bdProds.getTitutos()));
 
         tblItens.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
         tblItens.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);/**/
     }
     private void AbrirRegistro(int Ordem) {
         if(Ordem<0) return;
-        txtNomeTitulo.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeTitulo());
-        txtNomeSumonico.setText(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNomeSumonico());
-        sldNivel.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getNivel());
-        sldRanger1.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getRange1());
-        sldHP.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getHP());
-        sldSP.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSP());
-        sldEXP.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getExp());
-        sldJob.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getJob());
-        sldAtaque1.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getAtaque1());
+        txtNomeTitulo.setText(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getNomeTitulo());
+        txtNomeSumonico.setText(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getNomeSumonico());
+        sldNivel.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getNivel());
+        sldRanger1.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getRange1());
+        sldHP.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getHP());
+        sldSP.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSP());
+        sldEXP.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getExp());
+        sldJob.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getJob());
+        sldAtaque1.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getAtaque1());
         sldAtaque2.setMinimum(sldAtaque1.getValue());
-        sldAtaque2.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getAtaque2());
-        sldDefFisico.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDefesaFisica());
-        sldDefMagico.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getDefesaMagica());
+        sldAtaque2.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getAtaque2());
+        sldDefFisico.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getDefesaFisica());
+        sldDefMagico.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getDefesaMagica());
 
         final Vector xmlAnimacoes = new Vector();
         //final Vector pngImagens = new Vector();
-        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSpritesCont();s++){
-            Banco_Sprites Sprites =FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSpritePorOrdem(s);
+        for(int s=0;s<FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSpritesCont();s++){
+            Banco_Sprites Sprites =FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSpritePorOrdem(s);
             xmlAnimacoes.addElement(
                 Sprites.getArquivoXML()+
                 (Sprites.getClassXML().getSpritePNGbaseRecolor().trim().equals("")?"":"|"+Sprites.getClassXML().getSpritePNGbaseRecolor())+
@@ -1478,10 +1478,10 @@ public class FrmMonstros extends javax.swing.JDialog {
             );
         }
         Vector oggAudios = new Vector();
-        for(int s=0;s<FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSonsCont();s++){
+        for(int s=0;s<FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSonsCont();s++){
             Vector oggAudio = new Vector();
-            oggAudio.addElement(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEvent());
-            oggAudio.addElement(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEndereco());
+            oggAudio.addElement(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEvent());
+            oggAudio.addElement(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEndereco());
             oggAudios.add(oggAudio);
         }
         lstAnimacoes.setModel(new javax.swing.AbstractListModel() {
@@ -1501,14 +1501,14 @@ public class FrmMonstros extends javax.swing.JDialog {
         tblAudios.getTableHeader().getColumnModel().getColumn(0).setMinWidth(75);
         tblAudios.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(75);
 
-        sldEstatusForca.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusForca());
-        sldEstatusAgilidade.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusAgilidade());
-        sldEstatusVitalidade.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusVitalidade());
-        sldEstatusInteligencia.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusInteligencias());
-        sldEstatusDestreza.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusDestresa());
-        sldEstatusSorte.setValue(FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getEstatusSorte());
+        sldEstatusForca.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getEstatusForca());
+        sldEstatusAgilidade.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getEstatusAgilidade());
+        sldEstatusVitalidade.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getEstatusVitalidade());
+        sldEstatusInteligencia.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getEstatusInteligencias());
+        sldEstatusDestreza.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getEstatusDestresa());
+        sldEstatusSorte.setValue(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getEstatusSorte());
 
-        int Modo=FrmPrincipal.Monstros.getMonstroPorOrdem(Ordem).getComportamento();
+        int Modo=FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getComportamento();
         chkComportamentoEscolhaDeAlvo.setSelected(Modo/512>=1); if(Modo/512>=1) Modo-=512;
         chkComportamentoDetector.setSelected(Modo/256>=1);      if(Modo/256>=1) Modo-=256;
         chkComportamentoRevidante.setSelected(Modo/128>=1);     if(Modo/128>=1) Modo-=128;
@@ -1531,26 +1531,26 @@ public class FrmMonstros extends javax.swing.JDialog {
         darAuteracao(false);
     }
     private void SalvarRegistro() {
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeTitulo(txtNomeTitulo.getText().trim());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeTitulo(txtNomeTitulo.getText().trim());
         lblVisualizacao.setText(txtNomeTitulo.getText().trim());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeSumonico(txtNomeSumonico.getText().trim());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNivel(sldNivel.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setRange1(sldRanger1.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setHP(sldHP.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setSP(sldSP.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setExp(sldEXP.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setJob(sldJob.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque1(sldAtaque1.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque2(sldAtaque2.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaFisica(sldDefFisico.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaMagica(sldDefMagico.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNomeSumonico(txtNomeSumonico.getText().trim());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setNivel(sldNivel.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setRange1(sldRanger1.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setHP(sldHP.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setSP(sldSP.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setExp(sldEXP.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setJob(sldJob.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque1(sldAtaque1.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setAtaque2(sldAtaque2.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaFisica(sldDefFisico.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDefesaMagica(sldDefMagico.getValue());
 
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusForca(sldEstatusForca.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusAgilidade(sldEstatusAgilidade.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusVitalidade(sldEstatusVitalidade.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusInteligencia(sldEstatusInteligencia.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusDestresa(sldEstatusDestreza.getValue());
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusSorte(sldEstatusSorte.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusForca(sldEstatusForca.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusAgilidade(sldEstatusAgilidade.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusVitalidade(sldEstatusVitalidade.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusInteligencia(sldEstatusInteligencia.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusDestresa(sldEstatusDestreza.getValue());
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setEstatusSorte(sldEstatusSorte.getValue());
 
         int Modo=0;
         Modo+=chkComportamentoEscolhaDeAlvo.isSelected()?512:0;
@@ -1563,11 +1563,11 @@ public class FrmMonstros extends javax.swing.JDialog {
         Modo+=chkComportamentoAgressor.isSelected()?4:0;
         Modo+=chkComportamentoColetor.isSelected()?2:0;
         Modo+=chkComportamentoDeslocador.isSelected()?1:0;
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setComportamento(Modo);
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setComportamento(Modo);
 
-        FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDropsReset();
+        FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).setDropsReset();
         if(tblItens.getRowCount()>=1){
-            //int Prods = FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropsCont();
+            //int Prods = FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).getDropsCont();
             int Prods = tblItens.getModel().getRowCount();
             Vector Dados = new Vector();
             if(Prods>=1){
@@ -1576,13 +1576,13 @@ public class FrmMonstros extends javax.swing.JDialog {
                     int ID= Integer.parseInt(Item.extrairEntre("<td><b>", ":</b>"));
                     //int Percet=Integer.parseInt(String.valueOf(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100));
                     int Percet=(int)(Double.parseDouble(tblItens.getValueAt(P, 1).toString())*100);
-                    FrmPrincipal.Monstros.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).addDrop(ID, Percet);
+                    FrmPrincipal.bdMOBs.getMonstroPorOrdem(cmbIDs.getSelectedIndex()).addDrop(ID, Percet);
                     //setTitle("IDicon:"+IDicon+" PERC:"+Percet+" ROW:"+P);
                 }
             }/**/
         }
 
-        FrmPrincipal.Monstros.salvarBanco();
+        FrmPrincipal.bdMOBs.salvarBanco();
         darAuteracao(false);
     }
     private void TabelaDeItens(final Vector Dados) {
@@ -1600,7 +1600,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 darAuteracao(true);
             }
         });
-        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.Itens.getTitutos()));
+        tblItens.getTableHeader().getColumnModel().getColumn(0).setCellEditor(new MyComboBoxEditor(FrmPrincipal.bdProds.getTitutos()));
 
         tblItens.getTableHeader().getColumnModel().getColumn(1).setMinWidth(64);
         tblItens.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);
@@ -1633,8 +1633,8 @@ public class FrmMonstros extends javax.swing.JDialog {
         FrmMonstrosLocalizar.setVisible(true);/**/
 }//GEN-LAST:event_BtnLocalizarActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if(FrmPrincipal.Monstros!=null && FrmPrincipal.Monstros.getContMonstros()>=1){
-            cmbIDs.setModel(new DefaultComboBoxModel(FrmPrincipal.Monstros.getVectorIDs()));
+        if(FrmPrincipal.bdMOBs!=null && FrmPrincipal.bdMOBs.getContMonstros()>=1){
+            cmbIDs.setModel(new DefaultComboBoxModel(FrmPrincipal.bdMOBs.getVectorIDs()));
             AbrirRegistro(cmbIDs.getSelectedIndex());
         }
     }//GEN-LAST:event_formWindowOpened
@@ -1695,7 +1695,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         darAuteracao(true);
     }//GEN-LAST:event_txtNomeSumonicoCaretUpdate
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        if(FrmPrincipal.Monstros!=null && FrmPrincipal.Monstros.getContMonstros()>=1){
+        if(FrmPrincipal.bdMOBs!=null && FrmPrincipal.bdMOBs.getContMonstros()>=1){
             AbrirRegistro(cmbIDs.getSelectedIndex());
             darAuteracao(false);
         }
@@ -1779,7 +1779,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 StringClass Valor = new StringClass(tblItens.getValueAt(Y, 0).toString());
                 int IDicon= Integer.parseInt(Valor.extrairEntre("<td><b>", ":</b>"));
 
-                ImagemClass ItemImagem = new ImagemClass(FrmPrincipal.Itens.getItemPorID(IDicon).getIconeImagem());
+                ImagemClass ItemImagem = new ImagemClass(FrmPrincipal.bdProds.getItemPorID(IDicon).getIconeImagem());
                 ItemImagem.setZoom(3.0);
                 int R=DialogClass.showOpcoes(
                     "Deseja realmente excluir este Item do Lote do Monstro?",

@@ -483,8 +483,8 @@ public class FrmNovoBloco extends javax.swing.JDialog {
         Dados_NPC NPC = null;
         Vector Lista = new Vector();
         Lista.add("Não (Script Intangível)");
-        for(int n=0;n<FrmPrincipal.NPCs.getContNPCs();n++){
-            NPC = FrmPrincipal.NPCs.getNPCporOrdem(n);
+        for(int n=0;n<FrmPrincipal.bdNPCs.getContNPCs();n++){
+            NPC = FrmPrincipal.bdNPCs.getNPCporOrdem(n);
             if(NPC!=null){
                 if(NPC.getSprite()!=null){
                     if(NPC.getID()>0) Lista.add(NPC.getID()+": "+(NPC.getNome().equals("")?"\""+NPC.getComentario().trim()+"\"":NPC.getNome()));
@@ -498,7 +498,7 @@ public class FrmNovoBloco extends javax.swing.JDialog {
             String Selecionado=CmbNovoBlocoScriptImagem.getItemAt(CmbNovoBlocoScriptImagem.getSelectedIndex()).toString();
             String Partes[] = Selecionado.split(":");
             if(Partes.length>=2){
-                Dados_NPC NPC = FrmPrincipal.NPCs.getNPCporID(Integer.parseInt(Partes[0]));
+                Dados_NPC NPC = FrmPrincipal.bdNPCs.getNPCporID(Integer.parseInt(Partes[0]));
                 ImagemClass Imagem = new ImagemClass(NPC.getImagem());
                 Imagem.setZoom(2.0);
                 LblImagem.setIcon(new javax.swing.ImageIcon(Imagem.getImage()));

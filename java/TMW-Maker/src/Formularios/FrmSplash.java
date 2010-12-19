@@ -24,7 +24,7 @@ public class FrmSplash extends javax.swing.JDialog {
         LblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Carregando TMW-Maker ...");
+        setTitle(FrmPrincipal.traducao.getTraducao("FrmSplash", "FrmSplash", "Carregando TMW-Maker..."));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -67,25 +67,25 @@ public class FrmSplash extends javax.swing.JDialog {
                     "<html>Carregando Banco de Dados de NPCs (<font color=#FF0000>Por favor espere!</font>)",
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))
                 );
-                FrmPrincipal.NPCs = new Classes.BancoDeDados.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
+                FrmPrincipal.bdNPCs = new Classes.BancoDeDados.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.setAvisoEmEstatus(
                     "<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)",
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))
                 );
-                FrmPrincipal.Itens = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                FrmPrincipal.bdProds = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.setAvisoEmEstatus(
                     "<html>Carregando Banco de Dados de Mapas (<font color=#FF0000>Por favor espere!</font>)",
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
                 );
-                FrmPrincipal.Mundo = new Classes.BancoDeDados.Banco_Mapas(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                FrmPrincipal.bdWarps = new Classes.BancoDeDados.Banco_Mapas(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.setAvisoEmEstatus(
                      "<html>Carregando Banco de Dados de Monstros (<font color=#FF0000>Por favor espere!</font>)",
                      new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))
                  );
-                FrmPrincipal.Monstros = new Classes.BancoDeDados.Banco_Monstros(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                FrmPrincipal.bdMOBs = new Classes.BancoDeDados.Banco_Monstros(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.PgbBarra.setString("Concluído");
                 FrmPrincipal.setAvisoEmEstatus(

@@ -7,7 +7,9 @@
         <Menu class="javax.swing.JMenu" name="MnuSistema">
           <Properties>
             <Property name="mnemonic" type="int" value="83"/>
-            <Property name="text" type="java.lang.String" value="Sistema"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuSistema&quot;, &quot;Sistema&quot;)" type="code"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MnuSistemaAlteracoes">
@@ -19,7 +21,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_file_rss.gif"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="84"/>
-                <Property name="text" type="java.lang.String" value="Altera&#xe7;&#xf5;es"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuSistemaAlteracoes&quot;, &quot;Altera&#xe7;&#xf5;es&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuSistemaAlteracoesActionPerformed"/>
@@ -34,7 +38,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_update.gif"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="65"/>
-                <Property name="text" type="java.lang.String" value="Atualizar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuSistemaAtualizar&quot;, &quot;Atualizar&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuSistemaAtualizarActionPerformed"/>
@@ -51,7 +57,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_chaveinglesa.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="71"/>
-                <Property name="text" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuSistemaConfiguracoes&quot;, &quot;Configura&#xe7;&#xf5;es&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuSistemaConfiguracoesActionPerformed"/>
@@ -69,7 +77,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_dependencias.gif"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="68"/>
-                <Property name="text" type="java.lang.String" value="Dependencias"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuSistemaDependencias&quot;, &quot;Depend&#xea;ncias&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuSistemaDependenciasActionPerformed"/>
@@ -77,17 +87,19 @@
             </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator2">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuSistemaAreaDeTeste">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuSistemaAreaDeTestes">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Shift+Ctrl+T"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="84"/>
-                <Property name="text" type="java.lang.String" value="&#xc1;rea de Testes"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuSistemaAreaDeTestes&quot;, &quot;&#xc1;rea de Testes&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuSistemaAreaDeTesteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuSistemaAreaDeTestesActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MnuSistemaFechar">
@@ -96,7 +108,9 @@
                   <KeyStroke key="Ctrl+Q"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="70"/>
-                <Property name="text" type="java.lang.String" value="Fechar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuSistemaFechar&quot;, &quot;Fechar&quot;)" type="code"/>
+                </Property>
                 <Property name="name" type="java.lang.String" value="BtnPrincipalFechar" noResource="true"/>
               </Properties>
               <AccessibilityProperties>
@@ -111,7 +125,9 @@
         <Menu class="javax.swing.JMenu" name="MnuEditar">
           <Properties>
             <Property name="mnemonic" type="int" value="69"/>
-            <Property name="text" type="java.lang.String" value="Editar"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditar&quot;, &quot;Editar&quot;)" type="code"/>
+            </Property>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="MnuEditarItens">
@@ -120,7 +136,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_armadura.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="73"/>
-                <Property name="text" type="java.lang.String" value="Itens"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditarItens&quot;, &quot;&#xcd;tens&quot;)" type="code"/>
+                </Property>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -164,7 +182,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_casa.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="67"/>
-                <Property name="text" type="java.lang.String" value="Campos"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditarCampos&quot;, &quot;Campos&quot;)" type="code"/>
+                </Property>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarCamposTilesets">
@@ -200,7 +220,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_pessoa.gif"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="80"/>
-                <Property name="text" type="java.lang.String" value="Personagem (NPC)"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditarPersonagem&quot;, &quot;Personagens (NPCs)&quot;)" type="code"/>
+                </Property>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -246,7 +268,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_caveira.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="78"/>
-                <Property name="text" type="java.lang.String" value="Monstros"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditarMonstros&quot;, &quot;Monstros&quot;)" type="code"/>
+                </Property>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuEditarInimigosAnimacao">
@@ -286,7 +310,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_magica.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="77"/>
-                <Property name="text" type="java.lang.String" value="Magias"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditarMagias&quot;, &quot;Magias&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <SubComponents>
@@ -317,16 +343,20 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_contato.gif"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="84"/>
-                <Property name="text" type="java.lang.String" value="Contas"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditarContas&quot;, &quot;Contas&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuEditarContasActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuEditarParticulas">
               <Properties>
                 <Property name="mnemonic" type="int" value="65"/>
-                <Property name="text" type="java.lang.String" value="Part&#xed;culas"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuEditarParticulas&quot;, &quot;Part&#xed;culas&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
@@ -335,7 +365,9 @@
         <Menu class="javax.swing.JMenu" name="MnuJogo">
           <Properties>
             <Property name="mnemonic" type="int" value="74"/>
-            <Property name="text" type="java.lang.String" value="Jogo"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuJogo&quot;, &quot;Jogo&quot;)" type="code"/>
+            </Property>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="MnuJogoLocalhost">
@@ -344,7 +376,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_tmw.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="76"/>
-                <Property name="text" type="java.lang.String" value="Localhost"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuJogoLocalhost&quot;, &quot;Localhost&quot;)" type="code"/>
+                </Property>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="MnuJogoLocalhostSupervisionado">
@@ -356,7 +390,9 @@
                       <Image iconType="3" name="/Imagem/Botoes/sbl_load.gif"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="83"/>
-                    <Property name="text" type="java.lang.String" value="Supervisionado..."/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuJogoLocalhostSupervisionado&quot;, &quot;Supervisionado...&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoLocalhostSupervisionadoActionPerformed"/>
@@ -373,7 +409,9 @@
                       <Image iconType="3" name="/Imagem/Botoes/sbl_download.gif"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="65"/>
-                    <Property name="text" type="java.lang.String" value="Atualizar"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuJogoLocalhostAtualizar&quot;, &quot;Atualizar&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoLocalhostAtualizarActionPerformed"/>
@@ -388,7 +426,9 @@
                       <Image iconType="3" name="/Imagem/Botoes/sbl_upload.gif"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="67"/>
-                    <Property name="text" type="java.lang.String" value="Compartilhar"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuJogoLocalhostCompartilhar&quot;, &quot;Compartilhar&quot;)" type="code"/>
+                    </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -399,7 +439,7 @@
             </Menu>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator5">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoCopilar">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuJogoCompilar">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+F9"/>
@@ -408,11 +448,13 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_atomico.gif"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="67"/>
-                <Property name="text" type="java.lang.String" value="Copilar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuJogoCompilar&quot;, &quot;Compilar&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoCopilarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoCompilarActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MnuJogoExecutar">
@@ -424,7 +466,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_play.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="69"/>
-                <Property name="text" type="java.lang.String" value="Executar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuJogoExecutar&quot;, &quot;Executar&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuJogoExecutarActionPerformed"/>
@@ -438,7 +482,9 @@
         <Menu class="javax.swing.JMenu" name="MnuAjuda">
           <Properties>
             <Property name="mnemonic" type="int" value="65"/>
-            <Property name="text" type="java.lang.String" value="Ajuda"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuAjuda&quot;, &quot;Ajuda&quot;)" type="code"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MnuAjudaComponentes">
@@ -450,7 +496,9 @@
                   <Image iconType="3" name="/Imagem/Botoes/ajuda.gif"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="80"/>
-                <Property name="text" type="java.lang.String" value="Componentes"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuAjudaComponentes&quot;, &quot;Componentes&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
@@ -463,15 +511,19 @@
                   <Image iconType="3" name="/Imagem/Botoes/sbl_alerta.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="68"/>
-                <Property name="text" type="java.lang.String" value="Indicar Defeito"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuAjudaIndicarDefeito&quot;, &quot;Indicar Defeito&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnuAjudaIndicarDefeitoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuAjudaTraducoes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tradu&#xe7;&#xf5;es"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuAjudaTraducoes&quot;, &quot;Tradu&#xe7;&#xf5;es&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
@@ -482,7 +534,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagem/Botoes/sbl_localhost-tmw.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Sobre o Engine"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="traducao.getTraducao(&quot;FrmPrincipal&quot;, &quot;MnuAjudaSobre&quot;, &quot;Sobre o Engine&quot;)" type="code"/>
+                </Property>
                 <Property name="name" type="java.lang.String" value="MnuPrincipalSobre" noResource="true"/>
               </Properties>
               <AccessibilityProperties>
@@ -792,19 +846,19 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnJogoExecularActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="BtnJogoCopilar">
+        <Component class="javax.swing.JButton" name="BtnJogoCompilar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagem/Botoes/sbl_atomico.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Copilar (Ctrl+F9)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Compilar (Ctrl+F9)"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnJogoCopilarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnJogoCompilarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnJogoLocalhostSupervisonar">

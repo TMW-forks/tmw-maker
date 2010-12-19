@@ -477,7 +477,7 @@ public class FrmIF extends javax.swing.JDialog {
         /*String Selecionado=CmbCondicaoDeItemID.getItemAt(CmbCondicaoDeItemID.getSelectedIndex()).toString();
         String Partes[] = Selecionado.split(":");
         if(Partes.length>=2){
-            Dados_Item Item = FrmPrincipal.Itens.getItemPorID(Integer.parseInt(Partes[0]));
+            Dados_Item Item = FrmPrincipal.bdProds.getItemPorID(Integer.parseInt(Partes[0]));
             LblItem.setIcon(new javax.swing.ImageIcon(Item.getIconeImagem()));
             LblItem.setToolTipText("<html><font size=\"+1\">"+
                 "<b>Nome(ID:"+Item.getID()+"):</b> " + Item.getNomeTitulo()+"<br/>"+
@@ -488,7 +488,7 @@ public class FrmIF extends javax.swing.JDialog {
             LblItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmwmaker-96x96px.png")));
             LblItem.setToolTipText(null);
         }/**/
-        Dados_Item Item = FrmPrincipal.Itens.getItemPorOrdem(CmbCondicaoDeItemID.getSelectedIndex());
+        Dados_Item Item = FrmPrincipal.bdProds.getItemPorOrdem(CmbCondicaoDeItemID.getSelectedIndex());
         LblItem.setIcon(new javax.swing.ImageIcon(Item.getIconeImagem()));
         LblItem.setToolTipText("<html><font size=\"+1\">"+
             "<b>Nome(ID:"+Item.getID()+"):</b> " + Item.getNomeTitulo()+"<br/>"+
@@ -520,9 +520,9 @@ public class FrmIF extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAdicionarActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Vector Itens = new Vector();
-        for(int i=0;i<FrmPrincipal.Itens.getContItens();i++){
+        for(int i=0;i<FrmPrincipal.bdProds.getContItens();i++){
             if(i==0){
-                Dados_Item Item = FrmPrincipal.Itens.getItemPorOrdem(i);
+                Dados_Item Item = FrmPrincipal.bdProds.getItemPorOrdem(i);
                 LblItem.setIcon(new javax.swing.ImageIcon(Item.getIconeImagem()));
                 LblItem.setToolTipText("<html><font size=\"+1\">"+
                     "<b>Nome(ID:"+Item.getID()+"):</b> " + Item.getNomeTitulo()+"<br/>"+
@@ -530,9 +530,9 @@ public class FrmIF extends javax.swing.JDialog {
                     "<b>Descrição:</b> " + Item.getDescricao()+"<br/>"
                 );
             }
-            Itens.add(FrmPrincipal.Itens.getItemPorOrdem(i).getID()+": "+FrmPrincipal.Itens.getItemPorOrdem(i).getNomeTitulo());
+            Itens.add(FrmPrincipal.bdProds.getItemPorOrdem(i).getID()+": "+FrmPrincipal.bdProds.getItemPorOrdem(i).getNomeTitulo());
         }
-        //if(Itens.capacity()>=1)
+        //if(bdProds.capacity()>=1)
         CmbCondicaoDeItemID.setModel(new javax.swing.DefaultComboBoxModel(Itens));
         AtualizarCodigo();
     }//GEN-LAST:event_formWindowOpened
