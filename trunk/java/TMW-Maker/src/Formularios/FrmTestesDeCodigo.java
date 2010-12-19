@@ -1,10 +1,12 @@
 
 package Formularios;
 
+import Classes.FileClass;
 import Classes.ImagemClass;
 import Classes.Modificadoras.jTtableImagemDeColuna;
 import Classes.Modificadoras.jTtableImagemDeCabecalho;
 import Classes.SpritePNG;
+import Classes.TranslateClass;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -656,6 +658,19 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         lblImagemMesclada.setIcon(BlocoMesclado.getIcone());
     }
 
+    //TESTE-E FALHOU
+    public void Teste_F01(){
+        TranslateClass Traducao = new TranslateClass(System.getProperty("user.home")+System.getProperty("file.separator")+"translate_en.xml");
+        TxtTeste.setText(
+            "getEnderecoXML(): "+Traducao.getEnderecoXML()+"\n"+
+            "SeExisteXML(): "+FileClass.seExiste(Traducao.getEnderecoXML())+"\n"+
+            "Formularios: "+Traducao.getContFormulario()+"\n"+
+            (Traducao.getContFormulario()>=1?("Formulario["+(Traducao.getContFormulario()-1)+"]: "+Traducao.getFormularioPorOrdem(Traducao.getContFormulario()-1).getNome()) :"")+"\n"+
+            "FrmPrincipal.MnuJogo: "+Traducao.getTraducao("FrmPrincipal", "MnuJogo-", "Quem quer saber?")
+        );
+    }
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -685,6 +700,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         TxpCodificador = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         TxaCodigo = new javax.swing.JTextArea();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TxtTeste = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Área em Desenvolvimento");
@@ -768,7 +787,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sldAzul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblImagemMesclada, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Imagens", jPanel4);
@@ -817,7 +836,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -866,14 +885,14 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Grupo 02", jPanel2);
 
         TxpCodificador.setContentType("text/html");
-        TxpCodificador.setFont(new java.awt.Font("Monospaced", 0, 13));
+        TxpCodificador.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
         TxpCodificador.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 TxpCodificadorCaretUpdate(evt);
@@ -897,8 +916,8 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -906,12 +925,46 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Editor de Codigos", jPanel3);
+
+        TxtTeste.setColumns(20);
+        TxtTeste.setRows(5);
+        jScrollPane6.setViewportView(TxtTeste);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("JTextArea", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -926,7 +979,7 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -944,7 +997,9 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
        //TxaCodigo.setText(Desformatar(TxpCodificador.getText()));
        //TxaCodigo.setText(TxpCodificador.getText().intern());
 
-       LoadImagensAMesclar();
+       //LoadImagensAMesclar();
+        Teste_F01();
+
 
     }//GEN-LAST:event_formWindowOpened
     private void TxpCodificadorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TxpCodificadorCaretUpdate
@@ -963,6 +1018,10 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
         LoadImagensAMesclar();
     }//GEN-LAST:event_sldAzulMouseReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Teste_F01();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -980,6 +1039,8 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TxaCodigo;
     private javax.swing.JTextPane TxpCodificador;
+    private javax.swing.JTextArea TxtTeste;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -990,11 +1051,13 @@ public class FrmTestesDeCodigo extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;

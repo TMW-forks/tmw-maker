@@ -1,15 +1,16 @@
-<tmwmaker language="en" by="Lunovox" email="rui.gravata@hotmail.com" update="2010-12-18 16:11:10">
-	<FrmPrincipal>
-		<translate id="MnuSistema">System</translate>
-		<translate id="MnuEdit">Edit</translate>
-		<translate id="MnuJogo">Game</translate>
-		<translate id="MnuAjuda">Help</translate>
-		<translate id="MnuSistemaFechar">Close</translate>
-	</FrmPrincipal>
-	<FrmPalco>
-		<translate id="BtnAbrirBloco">Open</translate>
-		<translate id="Message[0]">Opens the last saved changes to the document!</translate>
-		<translate id="BtnExcluirBloco">Delete</translate>
-		<translate id="Message[1]">Delete the file %1 permanently?</translate>
-	</FrmPalco>
+<tmwmaker>
+	<properties language="en" by="Lunovox" email="rui.gravata@hotmail.com" update="2010-12-18 16:11:10"/>
+    <form name="FrmPrincipal">
+        <translate id="MnuSistema">System</translate>
+        <translate id="MnuEdit">Edit</translate>
+        <translate id="MnuJogo">Game</translate>
+        <translate id="MnuAjuda">Help</translate>
+        <translate id="MnuSistemaFechar">Close</translate>
+    </form>
+    <form name="FrmPalco">
+        <translate id="BtnAbrirBloco">Open</translate>
+        <translate id="Message[0]">Opens the last saved changes to the document!</translate>
+        <translate id="BtnExcluirBloco">Delete</translate>
+        <translate id="Message[1]">Delete the file %1 permanently?</translate>
+    </form>
 </tmwmaker>
