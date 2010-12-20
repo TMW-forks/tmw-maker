@@ -1,5 +1,8 @@
 #labels sidebar,barralateral
 == TMW-WIKI-MAKER ==
+
+<wiki:gadget align="center" width="200" border="0" url="http://ralph.feedback.googlepages.com/googlecalendarviewer.xml" />
+
 ----
  * [inicio INÍCIO]
   * [abaswiki Abas do Projeto]
@@ -48,6 +51,3 @@
   * [NetBeans NetBeans IDE 6.7.1]
   * [Java Desenvolvimento em Java]
 ----
-
-
-<p align="center"><wiki:gadget url="http://ralph.feedback.googlepages.com/googlecalendarviewer.xml" width="200" border="0" />
