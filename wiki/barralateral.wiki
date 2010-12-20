@@ -48,3 +48,6 @@
   * [NetBeans NetBeans IDE 6.7.1]
   * [Java Desenvolvimento em Java]
 ----
+
+
+<wiki:gadget url="http://ralph.feedback.googlepages.com/googlecalendarviewer.xml" height="200" border="0" />
