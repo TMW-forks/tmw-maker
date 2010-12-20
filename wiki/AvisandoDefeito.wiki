@@ -1,6 +1,8 @@
 #labels Issues,Defeitos,TMW-Maker
 =Avisando Defeito (ISSUES)=
 
-Se você usa o TMW-Maker e quer colaborar, mas não sabe como. Você pode avisar sobre defeitos que encontrar clicando *[http://code.google.com/p/tmw-maker/issues/entry AQUI]* para se logar ao Google e escrever sobre o que encontrou!
 <p align="center"><img src="http://malucoporjesus.files.wordpress.com/2009/12/defeito.jpg?w=336&h=336">
+
+Se você usa o TMW-Maker e quer colaborar, mas não sabe como. Você pode avisar sobre defeitos que encontrar clicando *[http://code.google.com/p/tmw-maker/issues/entry AQUI]* para se logar ao Google e escrever sobre o que encontrou!
+
 || Se vc só que ler os avisos de defeito que foram feitos clique *[http://code.google.com/p/tmw-maker/issues/list AQUI]* ||
