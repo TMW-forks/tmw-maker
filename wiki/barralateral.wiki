@@ -50,4 +50,4 @@
 ----
 
 
-<wiki:gadget url="http://ralph.feedback.googlepages.com/googlecalendarviewer.xml" width="200" border="0" />
+<p align="center"><wiki:gadget url="http://ralph.feedback.googlepages.com/googlecalendarviewer.xml" width="200" border="0" />
