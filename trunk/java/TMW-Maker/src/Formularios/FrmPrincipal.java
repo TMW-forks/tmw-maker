@@ -1,8 +1,5 @@
 package Formularios;
 
-
-
-
 import Classes.BancoDeDados.Banco_NPCs;
 import Classes.BancoDeDados.Banco_Itens;
 import Classes.BancoDeDados.Banco_Mapas;
@@ -38,7 +35,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     static String componenteSelecionado = "";
     public static ConfigClass Config = new ConfigClass();
-    public static TranslateClass traducao = new TranslateClass(System.getProperty("user.home")+System.getProperty("file.separator")+"translate_en.xml");
+    public static TranslateClass traducao = new TranslateClass(); // System.getProperty("user.home")+System.getProperty("file.separator")+"translate_en.xml"
     static String barra = System.getProperty("file.separator");
     static Banco_Itens bdProds; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
     static Banco_NPCs bdNPCs; // será instaciado em WindowOpened(java.awt.event.WindowEvent evt) por precisar de uma barra de contagem
@@ -84,8 +81,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 FrmPrincipal.setAvisoEmEstatus("Baixando atualização...");
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-                String Destino=FrmPrincipal.Config.getConexaoLocalhost()+barra+"tmw-maker";
-                Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Destino;
+                String Destino=Config.getPastaDoSistema();
+                Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Destino+" --force";
 
                 try {
                     Process Retorno=Executador.exec(Comando);
@@ -1118,7 +1115,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuAjudaSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TMW-MAKER 0.2");
+        setTitle("TMW-MAKER JAVA");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -1806,6 +1803,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MostrarDePendencias();
     }//GEN-LAST:event_MnuSistemaDependenciasActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //this.setTitle(Config.getPastaDoSistema());
         Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
         this.setBounds(
                 (Tela.width - this.getWidth()) / 2,
@@ -1857,9 +1855,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                     options,
                                     options[0]
                                 );
-                                if (R == JOptionPane.YES_OPTION) {
-                                    Atualizar();
-                                }
+                                if (R == JOptionPane.YES_OPTION) Atualizar();
                             }
                         }
                     }

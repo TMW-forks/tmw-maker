@@ -23,10 +23,9 @@ import java.util.zip.ZipFile;
 public class ConfigClass {
     private String Versao = "0.2";
     private String  Barra = System.getProperty("file.separator");
-    private String  ConfiguracaoURL = System.getProperty("user.home")+Barra+".tmw-maker.ini";
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
-    private String  ConexaoLocalhost =              System.getProperty("user.home")+Barra+"localhost";
+    private String  ConexaoLocalhost =              getPastaDoUsuario()+Barra+"localhost";
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
     private String  ExecucaoComando =               "manaplus";
@@ -46,10 +45,25 @@ public class ConfigClass {
     private long    ComportAtualizacaoLocalhostUltima =     0;
     private int     ComportAtualizacaoLocalhostIntervalo =  0; // Sempre (Ao abrir)
 
+    //private String  ConfiguracaoURL = getPastaDoUsuario()+Barra+".tmw-maker.ini";
+    private String  ConfiguracaoURL = getPastaDoSistema()+Barra+".tmw-maker.ini";
 
+
+    public String getPastaDoUsuario(){
+        return System.getProperty("user.home");
+    }
     public String getPastaDoSistema(){
         try {
-            return DocComando.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("TMW-Maker.jar", "");
+            int Loc1=-1;
+            String EnderecoReal="";
+            EnderecoReal=DocComando.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("TMW-Maker.jar", "");
+            EnderecoReal=EnderecoReal.substring(0, EnderecoReal.length()-1);
+            Loc1=EnderecoReal.indexOf("build/classes");
+            if(Loc1>=0){
+                return getConexaoLocalhost()+Barra+"tmw-maker";
+            }else{
+                return EnderecoReal;
+            }
         } catch (URISyntaxException ex) {
             //Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
             return "";
