@@ -6,7 +6,7 @@ import org.w3c.dom.NodeList;
 
 public class TranslateClass {
     public TranslateClass(){
-        idiomaXML=FrmPrincipal.Config.getPastaDoSistema()+"translate_"+FrmPrincipal.Config.getIdiomaDoSistema()+".xml";
+        idiomaXML=FrmPrincipal.Config.getPastaDoSistema()+barra+"translate_"+FrmPrincipal.Config.getIdiomaDoSistema()+".xml";
         //idiomaXML=System.getProperty("user.home")+System.getProperty("file.separator")+"translate_en.xml";
         abrirTraducao(idiomaXML);
     }
@@ -14,6 +14,7 @@ public class TranslateClass {
         idiomaXML=Endereco;
         abrirTraducao(Endereco);
     }
+    static String barra = System.getProperty("file.separator");
     private String idiomaXML = "";
     private String language="pt";
     private String by="";

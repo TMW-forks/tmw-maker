@@ -81,7 +81,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 FrmPrincipal.setAvisoEmEstatus("Baixando atualização...");
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-                String Destino=Config.getPastaDoSistema();
+                String Destino=Config.getPastaDoSistema()+barra;
                 Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Destino+" --force";
 
                 try {
@@ -100,6 +100,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }/**/
 
                 if(Arquivos>=2){
+                    /*
                     //ln -t /home/indigovox/Desktop -s /home/indigovox/localhost/tmw-maker/TMW-Maker_0.2.jar
                     Link=Config.getConexaoLocalhost()+barra+ "tmw-maker"+barra+ "TMW-Maker.jar";
                     Simbolo=System.getProperty("user.home")+barra+"Desktop";
@@ -125,6 +126,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         );
                         return;
                     }
+                    /**/
                     FrmPrincipal.setAvisoEmEstatus("<html>Atualização do recebida com sucesso! (<font color=\"#0000FF\"><b>Favor reiniciar pelo link em Área de Trabalho</b></font>)");
                     VisualizarNovidades();
                 }else{
