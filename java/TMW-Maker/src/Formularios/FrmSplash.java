@@ -61,7 +61,7 @@ public class FrmSplash extends javax.swing.JDialog {
             public void run() {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
-                FrmPrincipal.PgbBarra.setString("Carregando...");
+                FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Carregando)","Carregando..."));
                 //--------------------------------------------------------------------------------
                 //String Frase = FrmPrincipal.traducao.getTraducao("FrmSplash", "bdNPCs.Message[0]", "<html>Carregando Banco de Dados de NPCs (<font color=\"#FF0000\">Por favor espere!</font>)");
                 FrmPrincipal.setAvisoEmEstatus(
@@ -100,9 +100,12 @@ public class FrmSplash extends javax.swing.JDialog {
                  );
                 FrmPrincipal.bdMOBs = new Classes.BancoDeDados.Banco_Monstros(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
                 //--------------------------------------------------------------------------------
-                FrmPrincipal.PgbBarra.setString("Concluído");
+                FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Concluido)","Concluido!"));
                 FrmPrincipal.setAvisoEmEstatus(
-                    "Banco de Dados Eathena carregado com sucesso!",
+                    FrmPrincipal.traducao.getTraducaoNormatizada(
+                        "FrmSplash", "FrmSplash.End()",
+                        "Banco de Dados Eathena carregado com sucesso!"
+                    ),
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
                 );
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

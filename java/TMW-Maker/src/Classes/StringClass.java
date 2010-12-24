@@ -57,15 +57,18 @@ public class StringClass {
         return getSubstituicao(testoEmTratamento, De, Por);
     }
     public String getSubstituicao(String Entrada, String De, String Por){
-       int Loc1=-1;
-        Loc1=Entrada.indexOf(De);
-        if(Loc1>=0){
-            String Parte1="", Parte2="";
-            Parte1=Entrada.substring(0, Loc1);
-            Parte2=Entrada.substring(Loc1+De.length(), Entrada.length());
-            Entrada = Parte1+Por+Parte2;
-        }
-        return Entrada;
+        int Loc1=-1;
+        do{
+            Loc1=-1;
+            Loc1=Entrada.indexOf(De);
+            if(Loc1>=0){
+                String Parte1="", Parte2="";
+                Parte1=Entrada.substring(0, Loc1);
+                Parte2=Entrada.substring(Loc1+De.length(), Entrada.length());
+                Entrada = Parte1+Por+Parte2;
+            }
+        }while(Loc1>=0);
+        return Entrada;/**/
     }
     public String extrairEntre(String Parte1, String Parte2){
         return extrairEntre(testoEmTratamento, Parte1, Parte2);

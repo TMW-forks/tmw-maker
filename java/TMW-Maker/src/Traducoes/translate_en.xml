@@ -7,22 +7,35 @@
     />
     <form name="FrmSplash">
         <translate id="FrmSplash">Loading TMW-Maker...</translate>
+        <translate id="FrmSplash.End()">Database eAthena loaded successfully!</translate>
+        Atualizar
         <translate id="PgbBarra(Erro)">ERRO!</translate>
-        <translate id="PgbBarra(Concluido)">Completed!</translate>
+        <translate id="PgbBarra(Concluido)">Finalized!</translate>
+        <translate id="PgbBarra(Carregando)">Loading...</translate>
         <translate id="bdNPCs.Load()">[html]Loading database of NPCs ([color[#FF0000]color]Please wait![/color])</translate>
         <translate id="bdProds.Load()">[html]Loading database of Items ([color[#FF0000]color]Please wait![/color])</translate>
 
         <translate id="bdWarps.Load()">[html]Loading database of Maps ([color[#FF0000]color]Please wait![/color])</translate>
         <translate id="bdWarps.Compilador">Compiler</translate>
         <translate id="bdWarps.getMap(%)">[html]Loading Map: "[color[#0000FF]color]%1.tmx[/color]"!</translate>
-        <translate id="bdWarps.getErro(noFoundMap)">[html][color[#FF0000]color]ERRO:[/color] Map \"[color[#FF0000]color]%1.tmx[/color]\" not found!</translate>
-        <translate id="bdWarps.getErro(noFoundMob)">[html][color[#FF0000]color]ERRO:[/color] Spawn \"[color[#FF0000]color]%1.tmx[/color]\" not found!</translate>
-        <translate id="bdWarps.getErro(noFoundWarps)">[html][color[#FF0000]color]ERRO:[/color] Warp \"[color[#FF0000]color]%1.tmx[/color]\" not found!</translate>
+        <translate id="bdWarps.getErro(noFoundMap)">[html][color[#FF0000]color]ERRO:[/color] Map "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
+        <translate id="bdWarps.getErro(noFoundMob)">[html][color[#FF0000]color]ERRO:[/color] Spawn "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
+        <translate id="bdWarps.getErro(noFoundWarps)">[html][color[#FF0000]color]ERRO:[/color] Warp "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
         <translate id="bdWarps.End()">[html]Compilation partially finished! ([color[#FF0000]color]Deprecated Function[/color])</translate>
 
         <translate id="bdMOBs.Load()">[html]Loading database of Monsters ([color[#FF0000]color]Please wait![/color])</translate>
+        <translate id="bdMOBs.getSpawn(%)">[html]Loading Monster: "[color[#0000FF]color]%1: %2[/color]"!</translate>
     </form>
     <form name="FrmPrincipal">
+        <translate id="LblEstatus">Welcome to TMW-Maker!</translate>
+
+        <translate id="showOpcoes.Title[0]">UPDATE LOCALHOST</translate>
+        <translate id="showOpcoes.Message[0]">[html]The TMW-Maker is a tool for collaborative development. [br]For this reason, your Localhost may be outdated. [br]Do you want to look for other devs update shared by the Internet?</translate>
+        <translate id="showOpcoes.Title[1]">UPDATE TMW-MAKER</translate>
+        <translate id="showOpcoes.Message[1]">[html]Your TMW-Maker may be outdated. [br]Do you want to look for an updated version?</translate>
+        <translate id="showOpcoes.btnAtualizar">Update</translate>
+        <translate id="showOpcoes.btnDepois">After</translate>
+
         <translate id="MnuSistema">System</translate>
         <translate id="MnuSistemaAlteracoes">Changes</translate>
         <translate id="MnuSistemaAtualizar">Update</translate>
