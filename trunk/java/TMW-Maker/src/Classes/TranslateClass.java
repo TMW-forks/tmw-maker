@@ -7,7 +7,13 @@ import org.w3c.dom.NodeList;
 public class TranslateClass {
     public TranslateClass(){
         idiomaXML=FrmPrincipal.Config.getPastaDoSistema()+barra+"translate_"+FrmPrincipal.Config.getIdiomaDoSistema()+".xml";
+        if(!FileClass.seExiste(idiomaXML)){
+            String myURL="http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker/src/Traducoes/translate_"+FrmPrincipal.Config.getIdiomaDoSistema()+".xml";
+            String Conteudo = FileClass.urlAbrir(myURL);
+            if(Conteudo!=null && !Conteudo.equals("")) FileClass.arquivoSalvar(idiomaXML, Conteudo);
+        }   
         //idiomaXML=System.getProperty("user.home")+System.getProperty("file.separator")+"translate_en.xml";
+        //http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker/src/Traducoes/translate_en.xml
         abrirTraducao(idiomaXML);
     }
     public TranslateClass(String Endereco){
