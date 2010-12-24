@@ -1137,7 +1137,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         PnlBarraDeEstatus.setAlignmentY(0.0F);
 
         LblEstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))); // NOI18N
-        LblEstatus.setText("Bem Vindo ao TMW-Maker!");
+        LblEstatus.setText(traducao.getTraducao("FrmPrincipal", "LblEstatus", "Bem Vindo ao TMW-Maker!"));
         LblEstatus.setBorder(null);
 
         PgbBarra.setBackground(new java.awt.Color(0, 79, 24));
@@ -1821,21 +1821,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
                         if(!(FrmPrincipal.bdProds instanceof Classes.BancoDeDados.Banco_Itens)){
                             if(FrmPrincipal.Config.getAtualizacaoLocalhostIntervalo()>=0 && ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacaoLocalhostFutura()){
-                                int R = JOptionPane.YES_OPTION;
-                                Object[] options = {"Procurar", "Depois"};
-                                R = JOptionPane.showOptionDialog(
-                                    null, "<html>" +
-                                    "O TMW-Maker é uma ferramenta de desenvolvimento colaborativa.<br/>" +
-                                    "Por esta razão, seu Localhost pode estar desatualizado.<br/>" +
-                                    "Deseja procurar atualização criada por outros DEVs via internet?",
-                                    "ATUALIZAÇÃO DO LOCALHOST",
-                                    JOptionPane.YES_NO_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png")),
-                                    options,
-                                    options[0]
-                                );
-                                if (R == JOptionPane.YES_OPTION) {
+                                if (
+                                    DialogClass.showOpcoes(
+                                        traducao.getTraducaoNormatizada(
+                                            "FrmPrincipal", "showOpcoes.Message[0]",
+                                            "[html]O TMW-Maker é uma ferramenta de desenvolvimento colaborativa.[br]" +
+                                            "Por esta razão, seu Localhost pode estar desatualizado.[br]" +
+                                            "Deseja procurar atualização criada por outros DEVs via internet?"
+                                        ),
+                                        traducao.getTraducao("FrmPrincipal", "showOpcoes.Title[0]", "ATUALIZAÇÃO DO LOCALHOST"),
+                                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png")),
+                                        new Object[]{
+                                            traducao.getTraducao("FrmPrincipal", "showOpcoes.btnAtualizar", "Atualizar"),
+                                            traducao.getTraducao("FrmPrincipal", "showOpcoes.btnDepois", "Depois")
+                                        }, 0
+                                    ) == 0
+                                ) {
                                     LocalhostReceber();
                                 }else{
                                     MostrarDeSplash();
@@ -1844,20 +1845,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 MostrarDeSplash();
                             }
                             if(FrmPrincipal.Config.getAtualizacaoEngineIntervalo()>=0 && ConfigClass.getAgora()>=FrmPrincipal.Config.getAtualizacaoEngineFutura()){
-                                int R = JOptionPane.YES_OPTION;
-                                Object[] options = {"Atualizar", "Depois"};
-                                R = JOptionPane.showOptionDialog(
-                                    null, "<html>" +
-                                    "Seu TMW-Maker pode estar desatualizado.<br/>" +
-                                    "Deseja procurar uma versão atualizada?",
-                                    "ATUALIZAÇÃO DO TMW-MAKER v"+FrmPrincipal.Config.getVersao()+"",
-                                    JOptionPane.YES_NO_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png")),
-                                    options,
-                                    options[0]
-                                );
-                                if (R == JOptionPane.YES_OPTION) Atualizar();
+                                if (
+                                    DialogClass.showOpcoes(
+                                        traducao.getTraducaoNormatizada(
+                                            "FrmPrincipal", "showOpcoes.Message[1]",
+                                            "[html]Seu TMW-Maker pode estar desatualizado. [br]Deseja procurar uma versão atualizada?"
+                                        ),
+                                        traducao.getTraducao("FrmPrincipal", "showOpcoes.Title[1]", "ATUALIZAÇÃO DO TMW-MAKER"),
+                                        new javax.swing.ImageIcon(getClass().getResource("/Imagem/Fundos/icon-tmw-96x96px.png")),
+                                        new Object[]{
+                                            traducao.getTraducao("FrmPrincipal", "showOpcoes.btnAtualizar", "Atualizar"),
+                                            traducao.getTraducao("FrmPrincipal", "showOpcoes.btnDepois", "Depois")
+                                        }, 0
+                                    ) == 0
+                                ) Atualizar();
                             }
                         }
                     }

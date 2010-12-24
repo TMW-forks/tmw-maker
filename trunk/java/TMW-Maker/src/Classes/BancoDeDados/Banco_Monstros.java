@@ -52,8 +52,12 @@ public class Banco_Monstros {
                             Integer.parseInt(Partes[0]),
                             Partes[1], Partes[2]
                         );
-                        FrmPrincipal.setAvisoEmEstatus("<html>"+
-                            "Carregando Monstro: \"<font color=\"#0000FF\">"+Partes[0]+": "+Partes[2]+"</font>\"!",
+                        FrmPrincipal.setAvisoEmEstatus(
+                            FrmPrincipal.traducao.getTraducaoNormatizada(
+                                "FrmSplash", "bdMOBs.getSpawn(%)",
+                                "[html]Carregando Monstro: \"[color[#0000FF]color]%1: %2[/color]\"!",
+                                Partes[0]+"&&"+Partes[2]
+                            ),
                             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))
                         );
                         getMonstroPorOrdem(getContMonstros()-1).setNivel(Integer.parseInt(Partes[3]));
