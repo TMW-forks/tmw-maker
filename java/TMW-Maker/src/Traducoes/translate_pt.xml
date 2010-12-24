@@ -6,7 +6,7 @@
         update="2010-12-18 16:11:10"
     />
     <form name="FrmSplash">
-        <translate id="FrmSplash">Loading TMW-Maker...</translate>
+        <translate id="FrmSplash">Carregando TMW-Maker...</translate>
     </form>
     <form name="FrmPrincipal">
         <translate id="MnuSistema">System</translate>
