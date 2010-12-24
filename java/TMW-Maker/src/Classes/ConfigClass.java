@@ -46,6 +46,7 @@ public class ConfigClass {
     private int     ComportAtualizacaoLocalhostIntervalo =  0; // Sempre (Ao abrir)
 
     //private String  ConfiguracaoURL = getPastaDoUsuario()+Barra+".tmw-maker.ini";
+    private boolean SeExecutandoCodigofonte = false;
     private String  ConfiguracaoURL = getPastaDoSistema()+Barra+".tmw-maker.ini";
 
 
@@ -60,8 +61,10 @@ public class ConfigClass {
             EnderecoReal=EnderecoReal.substring(0, EnderecoReal.length()-1);
             Loc1=EnderecoReal.indexOf("build/classes");
             if(Loc1>=0){
-                return getConexaoLocalhost()+Barra+"tmw-maker";
+                SeExecutandoCodigofonte=true;
+                return "/usr/share/TMW-Maker";
             }else{
+                SeExecutandoCodigofonte=false;
                 return EnderecoReal;
             }
         } catch (URISyntaxException ex) {
@@ -69,8 +72,15 @@ public class ConfigClass {
             return "";
         }
     }
+    public boolean getSeExecutandoCodigofonte(){
+        return SeExecutandoCodigofonte;
+    }
     public String getIdiomaDoSistema(){
-        return System.getProperty("user.language");
+        if(!getSeExecutandoCodigofonte()){
+            return System.getProperty("user.language");
+        }else{
+            return "en";
+        }
         //return Locale.getDefault().getDisplayLanguage();
         //return Locale.getDefault().getLanguage();
     }
@@ -311,13 +321,6 @@ public class ConfigClass {
         //Rotina de Abrir Configuracões
         String Conteudo="";
         try {
-            /*FileReader CapsulaDeLer = new FileReader(Endereco);
-            int Caracater = CapsulaDeLer.read();
-            while (Caracater!=-1) {
-                Conteudo = Conteudo + (char) Caracater;
-                Caracater = CapsulaDeLer.read();
-            }
-            CapsulaDeLer.close();/**/
             String Linha="";
             FileInputStream stream = new FileInputStream(Endereco);
             InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
