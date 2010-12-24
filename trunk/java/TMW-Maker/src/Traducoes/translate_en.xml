@@ -7,6 +7,20 @@
     />
     <form name="FrmSplash">
         <translate id="FrmSplash">Loading TMW-Maker...</translate>
+        <translate id="PgbBarra(Erro)">ERRO!</translate>
+        <translate id="PgbBarra(Concluido)">Completed!</translate>
+        <translate id="bdNPCs.Load()">[html]Loading database of NPCs ([color[#FF0000]color]Please wait![/color])</translate>
+        <translate id="bdProds.Load()">[html]Loading database of Items ([color[#FF0000]color]Please wait![/color])</translate>
+
+        <translate id="bdWarps.Load()">[html]Loading database of Maps ([color[#FF0000]color]Please wait![/color])</translate>
+        <translate id="bdWarps.Compilador">Compiler</translate>
+        <translate id="bdWarps.getMap(%)">[html]Loading Map: "[color[#0000FF]color]%1.tmx[/color]"!</translate>
+        <translate id="bdWarps.getErro(noFoundMap)">[html][color[#FF0000]color]ERRO:[/color] Map \"[color[#FF0000]color]%1.tmx[/color]\" not found!</translate>
+        <translate id="bdWarps.getErro(noFoundMob)">[html][color[#FF0000]color]ERRO:[/color] Spawn \"[color[#FF0000]color]%1.tmx[/color]\" not found!</translate>
+        <translate id="bdWarps.getErro(noFoundWarps)">[html][color[#FF0000]color]ERRO:[/color] Warp \"[color[#FF0000]color]%1.tmx[/color]\" not found!</translate>
+        <translate id="bdWarps.End()">[html]Compilation partially finished! ([color[#FF0000]color]Deprecated Function[/color])</translate>
+
+        <translate id="bdMOBs.Load()">[html]Loading database of Monsters ([color[#FF0000]color]Please wait![/color])</translate>
     </form>
     <form name="FrmPrincipal">
         <translate id="MnuSistema">System</translate>
@@ -47,4 +61,3 @@
         <translate id="Message[1]">Delete the file %1 permanently?</translate>
     </form>
 </tmwmaker>
-

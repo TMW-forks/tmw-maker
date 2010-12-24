@@ -59,8 +59,12 @@ public class Banco_Mapas {
                                     mapaTMX=PastaDeMapas+Barra+mapaNome+".tmx";
                                     if(FileClass.seExiste(mapaTMX)){
 //////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
-                                        FrmPrincipal.setAvisoEmEstatus("<html>"+
-                                            "Carregando Mapa: \"<font color=\"#0000FF\">"+mapaNome+".tmx</font>\"!",
+                                        FrmPrincipal.setAvisoEmEstatus(
+                                            FrmPrincipal.traducao.getTraducaoNormatizada(
+                                                "FrmSplash", "bdWarps.getMap(%)",
+                                                "[html]Carregando Mapa: \"[color[#0000FF]color]%1.tmx[/color]\"!",
+                                                mapaNome
+                                            ),
                                             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
                                         );
 
@@ -118,42 +122,49 @@ public class Banco_Mapas {
 //////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
 
                                     }else{
-                                        FrmPrincipal.setAvisoEmEstatus("<html>"+
-                                            "<font color=\"#FF0000\">ERRO:</font> Não foi possivel encontrar o mapa\"<font color=\"#FF0000\">"+mapaNome+".tmx</font>\"!",
-                                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                                        String Testo=FrmPrincipal.traducao.getTraducaoNormatizada(
+                                            "FrmSplash", "bdWarps.getErro(noFoundMap)",
+                                            "[html][color[#FF0000]color]ERRO:[/color] Não foi possivel encontrar o mapa\"[color[#FF0000]color]%1.tmx[/color]\"!",
+                                            mapaNome
                                         );
-                                        DialogClass.showErro("<html>Não foi possivel encontrar o mapa \"<font color=\"#FF0000\">"+mapaNome+".tmx</font>\"!", "Copilador");
-                                        FrmPrincipal.PgbBarra.setString("ERRO!");
+                                        FrmPrincipal.setAvisoEmEstatus(Testo,new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png")));
+                                        DialogClass.showErro(Testo,FrmPrincipal.traducao.getTraducao("FrmSplash", "bdWarps.Compilador","Compilador"));
+                                        FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Erro)","ERRO!"));
                                         return;
                                     }
                                 }//else{DialogClass.showErro("Arquivo\""+importador+"\" bloqueado!", "Copilador");}
                             }else{
-                                FrmPrincipal.setAvisoEmEstatus("<html>"+
-                                    "<font color=\"#FF0000\">ERRO:</font> Não foi possivel encontrar os spawns:<br/>"+
-                                    "\"<font color=\"#FF0000\">"+mobs+".tmx</font>\"",
-                                    new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                                String Testo=FrmPrincipal.traducao.getTraducaoNormatizada(
+                                    "FrmSplash", "bdWarps.getErro(noFoundMob)",
+                                    "[html][color[#FF0000]color]ERRO:[/color] Não foi possivel encontrar os spawns \"[color[#FF0000]color]%1.tmx[/color]\"!",
+                                    mobs
                                 );
-                                DialogClass.showErro("<html>Não foi possivel encontrar o mapa \"<font color=\"#FF0000\">"+warps+".tmx</font>\"!", "Copilador");
-                                FrmPrincipal.PgbBarra.setString("ERRO!");
+                                FrmPrincipal.setAvisoEmEstatus(Testo,new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png")));
+                                DialogClass.showErro(Testo,FrmPrincipal.traducao.getTraducao("FrmSplash", "bdWarps.Compilador","Compilador"));
+                                FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Erro)","ERRO!"));
                                 return;
                             }
                         }else{
-                            FrmPrincipal.setAvisoEmEstatus("<html>"+
-                                "<font color=\"#FF0000\">ERRO:</font> Não foi possivel encontrar os portais:<br/>"+
-                                "\"<font color=\"#FF0000\">"+warps+".tmx</font>\"!",
-                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png"))
+                            String Testo=FrmPrincipal.traducao.getTraducaoNormatizada(
+                                "FrmSplash", "bdWarps.getErro(noFoundWarps)",
+                                "[html][color[#FF0000]color]ERRO:[/color] Não foi possivel encontrar os portais \"[color[#FF0000]color]%1.tmx[/color]\"!",
+                                warps
                             );
-                            DialogClass.showErro("<html>Não foi possivel encontrar o mapa \"<font color=\"#FF0000\">"+warps+".tmx</font>\"!", "Copilador");
-                            FrmPrincipal.PgbBarra.setString("ERRO!");
+                            FrmPrincipal.setAvisoEmEstatus(Testo,new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_alerta.png")));
+                            DialogClass.showErro(Testo,FrmPrincipal.traducao.getTraducao("FrmSplash", "bdWarps.Compilador","Compilador"));
+                            FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Erro)","ERRO!"));
                             return;
                         }
                     }//else{DialogClass.showErro("Não foi possivel encontrar o arquivo\""+importador+"\"!", "Copilador");}
                 }
             }
         }
-        FrmPrincipal.PgbBarra.setString("Concluido!");
-        FrmPrincipal.setAvisoEmEstatus("<html>"+
-            "Copilação semi-concluida! (<font color=\"#FF0000\">Função Deprecada</font>)",
+        FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Concluido)","Concluido!"));
+        FrmPrincipal.setAvisoEmEstatus(
+            FrmPrincipal.traducao.getTraducaoNormatizada(
+                "FrmSplash", "bdWarps.End()",
+                "[html]Compilação semi-concluida! ([color[#FF0000]color]Função Deprecada[/color])"
+            ),
             new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
         );
     }
