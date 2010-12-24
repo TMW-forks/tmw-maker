@@ -55,6 +55,44 @@ public class TranslateClass {
     public String getTraducao(String Formulario, String ID){
         return getTraducao(Formulario, ID, "");
     }
+    public String getNortizacao(String Testo){
+        StringClass testoNormativador = new StringClass(Testo);
+        testoNormativador.setSubstituicao("[html]", "<html>");
+        testoNormativador.setSubstituicao("[/html]", "</html>");
+        testoNormativador.setSubstituicao("[br]", "<br/>");
+        testoNormativador.setSubstituicao("[br/]", "<br/>");
+        testoNormativador.setSubstituicao("[b]", "<b>");
+        testoNormativador.setSubstituicao("[/b]", "</b>");
+        testoNormativador.setSubstituicao("[i]", "<i>");
+        testoNormativador.setSubstituicao("[/i]", "</i>");
+        testoNormativador.setSubstituicao("[u]", "<u>");
+        testoNormativador.setSubstituicao("[/u]", "</u>");
+        testoNormativador.setSubstituicao("[/font]", "</font>");
+        testoNormativador.setSubstituicao("[color[", "<font color=\"");
+        testoNormativador.setSubstituicao("]color]", "\">");
+        testoNormativador.setSubstituicao("[/color]", "</font>");
+        return testoNormativador.getTesto();
+    }
+    public String getTraducaoNormatizada(String Formulario, String ID, String TestoAlternativo){
+        return getNortizacao(getTraducao(Formulario, ID, TestoAlternativo));
+    }
+    public String getTraducaoNormatizada(String Formulario, String ID, String TestoAlternativo, String Variaveis){
+        return getNortizacao(getTraducao(Formulario, ID, TestoAlternativo, Variaveis));
+    }
+    public String getTraducaoNormatizada(String Formulario, String ID, String TestoAlternativo, String Variaveis[]){
+        return getNortizacao(getTraducao(Formulario, ID, TestoAlternativo, Variaveis));
+    }
+    public String getTraducao(String Formulario, String ID, String TestoAlternativo, String Variaveis){
+        String Partes[] = Variaveis.split("&&");
+        return getTraducao(Formulario, ID, TestoAlternativo, Partes);
+    }
+    public String getTraducao(String Formulario, String ID, String TestoAlternativo, String Variaveis[]){
+        String Testo = getTraducao(Formulario, ID, TestoAlternativo);
+        for(int v=0;v<Variaveis.length;v++){
+            Testo=Testo.replaceAll("%"+(v+1), Variaveis[v]);
+        }
+        return Testo;
+    }
     public String getTraducao(String Formulario, String ID, String TestoAlternativo){
         FormClass Form = getFormularioPorNome(Formulario);
         if(Form != null){
