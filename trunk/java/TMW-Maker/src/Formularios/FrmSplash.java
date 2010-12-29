@@ -61,13 +61,12 @@ public class FrmSplash extends javax.swing.JDialog {
             public void run() {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
-                FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Carregando)","Carregando..."));
+                FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducaoNormatizada("FrmSplash", "PgbBarra(Carregando)","Carregando..."));
                 //--------------------------------------------------------------------------------
-                //String Frase = FrmPrincipal.traducao.getTraducao("FrmSplash", "bdNPCs.Message[0]", "<html>Carregando Banco de Dados de NPCs (<font color=\"#FF0000\">Por favor espere!</font>)");
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
                         "FrmSplash", "bdNPCs.Load()",
-                        "Carregando Banco de Dados de NPCs (<font color=\"#FF0000\">Por favor espere!</font>)"
+                        "[html]Carregando Banco de Dados de NPCs ([color[#FF0000]color]Por favor espere![color])"
                     ),
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))
                 );
@@ -76,7 +75,7 @@ public class FrmSplash extends javax.swing.JDialog {
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
                         "FrmSplash", "bdProds.Load()",
-                        "<html>Carregando Banco de Dados de Itens (<font color=#FF0000>Por favor espere!</font>)"
+                        "[html]Carregando Banco de Dados de Itens ([color[#FF0000]color]Por favor espere![color])"
                     ),
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))
                 );
@@ -85,7 +84,7 @@ public class FrmSplash extends javax.swing.JDialog {
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
                         "FrmSplash", "bdWarps.Load()",
-                        "<html>Carregando Banco de Dados de Mapas (<font color=#FF0000>Por favor espere!</font>)"
+                        "[html]Carregando Banco de Dados de Mapas ([color[#FF0000]color]Por favor espere![color])"
                     ),
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
                 );
@@ -94,13 +93,13 @@ public class FrmSplash extends javax.swing.JDialog {
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
                         "FrmSplash", "bdMOBs.Load()",
-                        "<html>Carregando Banco de Dados de Monstros (<font color=#FF0000>Por favor espere!</font>)"
+                        "[html]Carregando Banco de Dados de Monstros ([color[#FF0000]color]Por favor espere![color])"
                     ),
                      new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))
                  );
                 FrmPrincipal.bdMOBs = new Classes.BancoDeDados.Banco_Monstros(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
                 //--------------------------------------------------------------------------------
-                FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducao("FrmSplash", "PgbBarra(Concluido)","Concluido!"));
+                FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducaoNormatizada("FrmSplash", "PgbBarra(Concluido)","Concluido!"));
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
                         "FrmSplash", "FrmSplash.End()",

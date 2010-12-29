@@ -46,20 +46,28 @@
 
         <translate id="MnuEditar">Edit</translate>
         <translate id="MnuEditarItens">Items</translate>
+            <translate id="MnuEditarItensSprites">New Equipment</translate>
+            <translate id="MnuEditarItensDados">Items Editor</translate>
         <translate id="MnuEditarCampos">Lands</translate>
+            <translate id="MnuEditarCamposTilesets">Tilesets</translate>
+            <translate id="MnuEditarCamposMapas">Maps</translate>
         <translate id="MnuEditarPersonagem">NPCs</translate>
+            <translate id="MnuEditarPersonagemAparencia">Appearance</translate>
+            <translate id="MnuEditarPersonagemScript">Tree Script NPC</translate>
         <translate id="MnuEditarMonstros">Monsters</translate>
+            <translate id="MnuEditarMonstrosDados">Monsters Editor</translate>
+            <translate id="MnuEditarMonstrosAnimacao">Animation</translate>
+            <translate id="MnuEditarMonstrosArenas">Arenas</translate>
         <translate id="MnuEditarMagias">Magics</translate>
         <translate id="MnuEditarContas">Accounts</translate>
         <translate id="MnuEditarParticulas">Particles</translate>
 
-        <translate id="MnuJogo">Game</translate>
-        <translate id="MnuJogoCompilar">Compile</translate>
-        <translate id="MnuJogoExecutar">Play</translate>
-        <translate id="MnuJogoLocalhost">Localhost</translate>
-        <translate id="MnuJogoLocalhostSupervisionado">Supervised...</translate>
-        <translate id="MnuJogoLocalhostAtualizar">Update</translate>
-        <translate id="MnuJogoLocalhostCompartilhar">Share</translate>
+        <translate id="MnuLocalhost">Localhost</translate>
+        <translate id="MnuLocalhostSupervisionar">Supervise...</translate>
+        <translate id="MnuLocalhostAtualizar">Update</translate>
+        <translate id="MnuLocalhostCompartilhar">Share</translate>
+        <translate id="MnuLocalhostCompilar">Compile</translate>
+        <translate id="MnuLocalhostExecutar">Play</translate>
 
         <translate id="MnuAjuda">Help</translate>
         <translate id="MnuAjudaComponentes">Components</translate>
