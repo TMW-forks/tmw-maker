@@ -1,13 +1,13 @@
 #labels SourceCode,CódigoFonte,Java,TMW-Maker,Netbeans
 ==Código Fonte do TMW-Maker==
 
-O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização de seu código fonte. Existem dois modos para você adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os seus planos. Se você deseja baixar o código fonte, escolha um os modos, e digite o respectivo comando abaixo em seu terminal.
+O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização de seu código fonte. Existem dois modos para você adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os seus planos. Se você deseja baixar o código fonte, escolha um os modos abaixo, e digite o respectivo comando abaixo em seu terminal.
 
 ----
 
 =Modo Observador=
 
-<p align="justify">É possível baixar, modificar o engine TMW-Maker. Esse modo é recomendado para qualquer que deseje saber como é construído esse programa. Para usar o modo Observador você *NÃO PRECISARÁ* se identificar, nem pedir permissão. É só digitar esse comando acima em seu terminal.
+<p align="justify">É possível baixar, modificar o engine TMW-Maker. Esse modo é recomendado para qualquer que deseje saber como é construído esse programa. Para usar o modo Observador você *NÃO PRECISARÁ* se identificar, nem pedir permissão. É só digitar esse comando abaixo em seu terminal.
 
 || *Versão* || *Modo* || *Comando SVN de Terminal Shell* ||
 || v0.2 || Observador || svn checkout http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
