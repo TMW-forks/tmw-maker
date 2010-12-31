@@ -126,8 +126,17 @@ public class Banco_Monstros {
                             if((FileClass.getAtributo(tagMonster,"id",-1)+1002)==getMonstroPorOrdem(getContMonstros()-1).getID()){
                                 String TargetCursor = FileClass.getAtributo(tagMonster,"targetCursor","");
                                 if(!TargetCursor.equals("")) getMonstroPorOrdem(getContMonstros()-1).setTargetCursor(TargetCursor);
-                                String Comentario = FileClass.getAtributo(tagMonster,"comment","");
-                                if(!Comentario.equals("")) getMonstroPorOrdem(getContMonstros()-1).setComentario(Comentario);
+                                
+                                NodeList noDescription = tagMonster.getElementsByTagName("description");
+                                String Comentario="";
+                                if(noDescription.getLength()>=1){
+                                    for (int Ds = 0; Ds < noDescription.getLength(); Ds++) {
+                                        Element tagDescription = (Element) noDescription.item(Ds);
+                                        Comentario += tagDescription.getFirstChild().getTextContent();
+                                    }
+                                    getMonstroPorOrdem(getContMonstros()-1).setDescricao(Comentario);
+                                }
+
                                 NodeList noSprite = tagMonster.getElementsByTagName("sprite");
                                 for (int Sp = 0; Sp < noSprite.getLength(); Sp++) {
                                     Element tagSprite = (Element) noSprite.item(Sp);
@@ -292,9 +301,17 @@ public class Banco_Monstros {
                 Element Monster = Doc.createElement("monster");
                 Monster.setAttribute("id", String.valueOf(getMonstroPorOrdem(m).getID()-1002));
                 Monster.setAttribute("name", getMonstroPorOrdem(m).getNomeTitulo());
+                Monster.setAttribute("summon", getMonstroPorOrdem(m).getNomeSumonico());
                 if(!getMonstroPorOrdem(m).getTargetCursor().equals("")) Monster.setAttribute("targetCursor", getMonstroPorOrdem(m).getTargetCursor());
-                if(!getMonstroPorOrdem(m).getComentario().equals("")) Monster.setAttribute("comment", getMonstroPorOrdem(m).getComentario());
+                //if(!getMonstroPorOrdem(m).getDescricao().equals("")) Monster.setAttribute("comment", getMonstroPorOrdem(m).getDescricao());
 
+                String Descricao=getMonstroPorOrdem(m).getDescricao();
+                if(!Descricao.trim().equals("")){
+                    Element Description = Doc.createElement("description");
+                    Description.appendChild(Doc.createTextNode(getMonstroPorOrdem(m).getDescricao()));
+                    Monster.appendChild(Description);
+                }
+                
                 for(int Spt=0;Spt<getMonstroPorOrdem(m).getContSprites();Spt++){
                     Element Sprite = Doc.createElement("sprite");
                     String Genero = getMonstroPorOrdem(m).getSpritePorOrdem(Spt).geSexo();
@@ -421,7 +438,7 @@ public class Banco_Monstros {
         private int MutationCount=0, MutationStrength=0;
 
         //######### mobXML #####################################################################
-        private String Comentario="";
+        private String Descricao="";
         private String targetCursor="";
         //######################################################################################
 
@@ -434,7 +451,7 @@ public class Banco_Monstros {
         public String getNomeSumonico(){return NomeSumonico;}
         public String getNomeTitulo(){return NameTitulo;}
         public String getTargetCursor(){return targetCursor;}
-        public String getComentario(){return Comentario;}
+        public String getDescricao(){return Descricao;}
         public int getNivel(){return Nível;}
         public int getHP(){return HP;}
         public int getSP(){return SP;}
@@ -468,7 +485,7 @@ public class Banco_Monstros {
         public void setNomeSumonico(String novoNomeSumonico){NomeSumonico=novoNomeSumonico;}
         public void setNomeTitulo(String novoNameTitulo){NameTitulo=novoNameTitulo;}
         public void setTargetCursor(String novoTargetCursor){targetCursor=novoTargetCursor;}
-        public void setComentario(String novoComentario){Comentario=novoComentario;}
+        public void setDescricao(String novoDescricao){Descricao=novoDescricao;}
         public void setNivel(int novoNível){Nível=novoNível;}
         public void setHP(int novoHP){HP=novoHP;}
         public void setSP(int novoSP){SP=novoSP;}
@@ -625,7 +642,6 @@ public class Banco_Monstros {
                 Particulas = novasParticulas;
             }
         }
-
 
         public class Banco_Sounds {
             public Banco_Sounds(String novoEvent, String novoEndereco) {
