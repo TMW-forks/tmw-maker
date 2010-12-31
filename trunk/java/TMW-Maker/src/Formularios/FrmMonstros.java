@@ -135,7 +135,7 @@ public class FrmMonstros extends javax.swing.JDialog {
         tgbDirecaoCentral = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editor de Monstros (Modo Somento-Leitura)");
+        setTitle("Editor de Monstros");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -436,7 +436,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1052,7 +1052,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modo", jPanel10);
@@ -1109,7 +1109,7 @@ public class FrmMonstros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnItemAdicionar)
@@ -1339,7 +1339,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             x1=(int)(camBasePNG.getLargura()/2);
             y1=(int)(camBasePNG.getAltura()/2);
 
-            int Camadas=(Monstro.getSpritesCont()>MaxCamadas?MaxCamadas:Monstro.getSpritesCont());
+            int Camadas=(Monstro.getContSprites()>MaxCamadas?MaxCamadas:Monstro.getContSprites());
             for(int cam=1;cam<Camadas;cam++){
                 tgbDirecaoAcima.setEnabled(false);
                 tgbDirecaoAbaixo.setEnabled(false);
@@ -1469,7 +1469,7 @@ public class FrmMonstros extends javax.swing.JDialog {
 
         final Vector xmlAnimacoes = new Vector();
         //final Vector pngImagens = new Vector();
-        for(int s=0;s<FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSpritesCont();s++){
+        for(int s=0;s<FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getContSprites();s++){
             Banco_Sprites Sprites =FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSpritePorOrdem(s);
             xmlAnimacoes.addElement(
                 Sprites.getArquivoXML()+
@@ -1478,7 +1478,7 @@ public class FrmMonstros extends javax.swing.JDialog {
             );
         }
         Vector oggAudios = new Vector();
-        for(int s=0;s<FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSonsCont();s++){
+        for(int s=0;s<FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getContSons();s++){
             Vector oggAudio = new Vector();
             oggAudio.addElement(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEvent());
             oggAudio.addElement(FrmPrincipal.bdMOBs.getMonstroPorOrdem(Ordem).getSomPorOrdem(s).getEndereco());

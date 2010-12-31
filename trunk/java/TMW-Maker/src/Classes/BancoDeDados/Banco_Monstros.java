@@ -5,7 +5,23 @@ import Classes.FileClass;
 import Classes.SpriteXML;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Comment;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -27,6 +43,8 @@ public class Banco_Monstros {
     public static String EnderecoTXT = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"db"+Barra+"mob_db.txt";
     public static String EnderecoXML = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"monsters.xml";
     public static String PastaDeSprites = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"sprites";
+    public static String PastaDeParticulas = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"graphics"+Barra+"particles";
+    public static String PastaDeTMWdata = FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata";
 
     private Dados_Monstro Monstros[]=null;
     public void abrirBanco(String mobTXT, String mobXML){
@@ -106,15 +124,10 @@ public class Banco_Monstros {
                         for (int Ms = (getContMonstros()-1); Ms < noMonster.getLength(); Ms++) {
                             Element tagMonster = (Element) noMonster.item(Ms);
                             if((FileClass.getAtributo(tagMonster,"id",-1)+1002)==getMonstroPorOrdem(getContMonstros()-1).getID()){
-                                NodeList noSound = tagMonster.getElementsByTagName("sound");
-                                for (int Sn = 0; Sn < noSound.getLength(); Sn++) {
-                                    Element tagSound = (Element) noSound.item(Sn);
-                                    getMonstroPorOrdem(getContMonstros()-1).addSom(
-                                        FileClass.getAtributo(tagSound,"event",""),
-                                        tagSound.getFirstChild().getTextContent()
-                                    );
-                                }
-
+                                String TargetCursor = FileClass.getAtributo(tagMonster,"targetCursor","");
+                                if(!TargetCursor.equals("")) getMonstroPorOrdem(getContMonstros()-1).setTargetCursor(TargetCursor);
+                                String Comentario = FileClass.getAtributo(tagMonster,"comment","");
+                                if(!Comentario.equals("")) getMonstroPorOrdem(getContMonstros()-1).setComentario(Comentario);
                                 NodeList noSprite = tagMonster.getElementsByTagName("sprite");
                                 for (int Sp = 0; Sp < noSprite.getLength(); Sp++) {
                                     Element tagSprite = (Element) noSprite.item(Sp);
@@ -135,6 +148,27 @@ public class Banco_Monstros {
                                         getMonstroPorOrdem(getContMonstros()-1).addSprite(Sexo,Arquivo,Recolor);
                                     }
                                 }
+
+                                NodeList noSound = tagMonster.getElementsByTagName("sound");
+                                for (int Sn = 0; Sn < noSound.getLength(); Sn++) {
+                                    Element tagSound = (Element) noSound.item(Sn);
+                                    getMonstroPorOrdem(getContMonstros()-1).addSom(
+                                        FileClass.getAtributo(tagSound,"event",""),
+                                        tagSound.getFirstChild().getTextContent()
+                                    );
+                                }
+
+                                NodeList noParticula = tagMonster.getElementsByTagName("particlefx");
+                                for (int Pfx = 0; Pfx < noParticula.getLength(); Pfx++) {
+                                    Element tagParticula = (Element) noParticula.item(Pfx);
+                                    //String Sexo=FileClass.getAtributo(tagParticula,"gender","");
+                                    String Arquivo="";
+                                    Arquivo=tagParticula.getFirstChild().getTextContent();
+                                    if(FileClass.seExiste(PastaDeTMWdata+Barra+Arquivo)){
+                                        getMonstroPorOrdem(getContMonstros()-1).addParticula(Arquivo);
+                                    }
+                                }
+
                                 Ms=noMonster.getLength();
                             }
                         }
@@ -192,61 +226,129 @@ public class Banco_Monstros {
     public void salvarBanco(String mobTXT, String mobXML){
         StringClass ConteudoTXT = new StringClass(getCabecalhoMobTXT());
         ConteudoTXT.setTesto(ConteudoTXT.getTesto()+"\n");
-        for(int m=0;m<getContMonstros();m++){
-            ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
-                "\n"+getMonstroPorOrdem(m).getID()+
-                ","+getMonstroPorOrdem(m).getNomeSumonico()+
-                ","+getMonstroPorOrdem(m).getNomeTitulo()+
-                
-                ","+getMonstroPorOrdem(m).getNivel()+
-                ","+getMonstroPorOrdem(m).getHP()+
-                ","+getMonstroPorOrdem(m).getSP()+
-                ","+getMonstroPorOrdem(m).getExp()+
-                ","+getMonstroPorOrdem(m).getJob()+
+        try {
+            DocumentBuilderFactory Factory = DocumentBuilderFactory.newInstance();
+            Factory.setNamespaceAware(true);
+            Factory.setIgnoringElementContentWhitespace(false);
+            Factory.setValidating(true);
+            DocumentBuilder Builder = Factory.newDocumentBuilder();
+            Document Doc = Builder.newDocument();
+            Element Monsters = Doc.createElement("monsters");
+            Monsters.setAttribute("offset", "1002");
 
-                ","+getMonstroPorOrdem(m).getRange1()+
-                ","+getMonstroPorOrdem(m).getAtaque1()+
-                ","+getMonstroPorOrdem(m).getAtaque2()+
-                ","+getMonstroPorOrdem(m).getDefesaFisica()+
-                ","+getMonstroPorOrdem(m).getDefesaMagica()+
+            for(int m=0;m<getContMonstros();m++){
+                ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
+                    "\n"+getMonstroPorOrdem(m).getID()+
+                    ","+getMonstroPorOrdem(m).getNomeSumonico()+
+                    ","+getMonstroPorOrdem(m).getNomeTitulo()+
 
-                ","+getMonstroPorOrdem(m).getEstatusForca()+
-                ","+getMonstroPorOrdem(m).getEstatusAgilidade()+
-                ","+getMonstroPorOrdem(m).getEstatusVitalidade()+
-                ","+getMonstroPorOrdem(m).getEstatusInteligencias()+
-                ","+getMonstroPorOrdem(m).getEstatusDestresa()+
-                ","+getMonstroPorOrdem(m).getEstatusSorte()+
+                    ","+getMonstroPorOrdem(m).getNivel()+
+                    ","+getMonstroPorOrdem(m).getHP()+
+                    ","+getMonstroPorOrdem(m).getSP()+
+                    ","+getMonstroPorOrdem(m).getExp()+
+                    ","+getMonstroPorOrdem(m).getJob()+
 
-                ","+getMonstroPorOrdem(m).getRange2()+
-                ","+getMonstroPorOrdem(m).getRange3()+
-                ","+getMonstroPorOrdem(m).getEscala()+
-                ","+getMonstroPorOrdem(m).getRace()+
-                ","+getMonstroPorOrdem(m).getElement()+
-                ","+getMonstroPorOrdem(m).getComportamento()+
-                ","+getMonstroPorOrdem(m).getSpeed()+
-                ","+getMonstroPorOrdem(m).getAdelay()+
+                    ","+getMonstroPorOrdem(m).getRange1()+
+                    ","+getMonstroPorOrdem(m).getAtaque1()+
+                    ","+getMonstroPorOrdem(m).getAtaque2()+
+                    ","+getMonstroPorOrdem(m).getDefesaFisica()+
+                    ","+getMonstroPorOrdem(m).getDefesaMagica()+
 
-                ","+getMonstroPorOrdem(m).getAMotion()+
-                ","+getMonstroPorOrdem(m).getDMotion()
-            );
-            for(int i=0;i<8;i++){
-                if(i<getMonstroPorOrdem(m).getDropsCont()){
-                    ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
-                        ","+getMonstroPorOrdem(m).getDropPorOrdem(i).getID()+
-                        ","+getMonstroPorOrdem(m).getDropPorOrdem(i).getPercentual()
-                    );
-                }else{
-                    ConteudoTXT.setTesto(ConteudoTXT.getTesto()+",0,0");
+                    ","+getMonstroPorOrdem(m).getEstatusForca()+
+                    ","+getMonstroPorOrdem(m).getEstatusAgilidade()+
+                    ","+getMonstroPorOrdem(m).getEstatusVitalidade()+
+                    ","+getMonstroPorOrdem(m).getEstatusInteligencias()+
+                    ","+getMonstroPorOrdem(m).getEstatusDestresa()+
+                    ","+getMonstroPorOrdem(m).getEstatusSorte()+
+
+                    ","+getMonstroPorOrdem(m).getRange2()+
+                    ","+getMonstroPorOrdem(m).getRange3()+
+                    ","+getMonstroPorOrdem(m).getEscala()+
+                    ","+getMonstroPorOrdem(m).getRace()+
+                    ","+getMonstroPorOrdem(m).getElement()+
+                    ","+getMonstroPorOrdem(m).getComportamento()+
+                    ","+getMonstroPorOrdem(m).getSpeed()+
+                    ","+getMonstroPorOrdem(m).getAdelay()+
+
+                    ","+getMonstroPorOrdem(m).getAMotion()+
+                    ","+getMonstroPorOrdem(m).getDMotion()
+                );
+                for(int i=0;i<8;i++){
+                    if(i<getMonstroPorOrdem(m).getDropsCont()){
+                        ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
+                            ","+getMonstroPorOrdem(m).getDropPorOrdem(i).getID()+
+                            ","+getMonstroPorOrdem(m).getDropPorOrdem(i).getPercentual()
+                        );
+                    }else{
+                        ConteudoTXT.setTesto(ConteudoTXT.getTesto()+",0,0");
+                    }
                 }
+                ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
+                    ",,,,,,,,,,"+
+                    ","+getMonstroPorOrdem(m).getMutationCount()+
+                    ","+getMonstroPorOrdem(m).getMutationStrength()
+                );
+
+                Element Monster = Doc.createElement("monster");
+                Monster.setAttribute("id", String.valueOf(getMonstroPorOrdem(m).getID()-1002));
+                Monster.setAttribute("name", getMonstroPorOrdem(m).getNomeTitulo());
+                if(!getMonstroPorOrdem(m).getTargetCursor().equals("")) Monster.setAttribute("targetCursor", getMonstroPorOrdem(m).getTargetCursor());
+                if(!getMonstroPorOrdem(m).getComentario().equals("")) Monster.setAttribute("comment", getMonstroPorOrdem(m).getComentario());
+
+                for(int Spt=0;Spt<getMonstroPorOrdem(m).getContSprites();Spt++){
+                    Element Sprite = Doc.createElement("sprite");
+                    String Genero = getMonstroPorOrdem(m).getSpritePorOrdem(Spt).geSexo();
+                    if(!Genero.equals("")) Sprite.setAttribute("gender", Genero);
+                    String Recolor=getMonstroPorOrdem(m).getSpritePorOrdem(Spt).getRecolor();
+                    Sprite.appendChild(
+                        Doc.createTextNode(
+                            getMonstroPorOrdem(m).getSpritePorOrdem(Spt).getArquivoXML()+
+                            (!Recolor.equals("")?"|"+Recolor:"")
+                        )
+                    );
+                    Monster.appendChild(Sprite);
+                }
+                for(int Sfx=0;Sfx<getMonstroPorOrdem(m).getContSons();Sfx++){
+                    Element Sound = Doc.createElement("sound");
+                    Sound.setAttribute("event", getMonstroPorOrdem(m).getSomPorOrdem(Sfx).getEvent());
+                    //Sound.
+                    Sound.appendChild(Doc.createTextNode(getMonstroPorOrdem(m).getSomPorOrdem(Sfx).getEndereco()));
+                    Monster.appendChild(Sound);
+                }
+                for(int Pfx=0;Pfx<getMonstroPorOrdem(m).getContParticulas();Pfx++){
+                    Element ParticleFX = Doc.createElement("particlefx");
+                    ParticleFX.appendChild(Doc.createTextNode(getMonstroPorOrdem(m).getParticulaPorOrdem(Pfx).getEndereco()));
+                    Monster.appendChild(ParticleFX);
+                }
+                Monsters.appendChild(Monster);
             }
-            ConteudoTXT.setTesto(ConteudoTXT.getTesto()+
-                ",,,,,,,,,,"+
-                ","+getMonstroPorOrdem(m).getMutationCount()+
-                ","+getMonstroPorOrdem(m).getMutationStrength()
+            Comment Comentario = Doc.createComment("\n"+
+                "\tIDE: TMW-Maker - Ferramenta Editora de Monstros\n"+
+                "\tMODIFICADO: "+ConfigClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"
             );
+            Doc.appendChild(Comentario);
+            Doc.appendChild(Monsters);
+            ConteudoTXT.setTesto(ConteudoTXT.getTesto()+"\n"+"\n");
+            FileClass.arquivoSalvar(mobTXT, ConteudoTXT.getTesto());
+
+            Transformer trans = TransformerFactory.newInstance().newTransformer();
+            trans.setOutputProperty(OutputKeys.INDENT, "yes");//Saber se o XML será identado(terá espaços entre tags).
+            trans.setOutputProperty(OutputKeys.STANDALONE, "yes");
+            trans.setOutputProperty(OutputKeys.ENCODING, "utf-8");
+            trans.transform(
+                new javax.xml.transform.dom.DOMSource(Doc),
+                new StreamResult(new FileOutputStream(mobXML))
+            );
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ConteudoTXT.setTesto(ConteudoTXT.getTesto()+"\n"+"\n");
-        FileClass.arquivoSalvar(mobTXT, ConteudoTXT.getTesto());
+
     }
     public int getContMonstros(){
         if(Monstros != null) return Monstros.length;
@@ -319,16 +421,20 @@ public class Banco_Monstros {
         private int MutationCount=0, MutationStrength=0;
 
         //######### mobXML #####################################################################
+        private String Comentario="";
         private String targetCursor="";
         //######################################################################################
 
         private Banco_Drops Drops[]=null;
         private Banco_Sounds Sons[]=null;
         private Banco_Sprites Sprites[]=null;
+        private Banco_Particulas Particulas[]=null;
 
         public int getID(){return ID;}
         public String getNomeSumonico(){return NomeSumonico;}
         public String getNomeTitulo(){return NameTitulo;}
+        public String getTargetCursor(){return targetCursor;}
+        public String getComentario(){return Comentario;}
         public int getNivel(){return Nível;}
         public int getHP(){return HP;}
         public int getSP(){return SP;}
@@ -361,6 +467,8 @@ public class Banco_Monstros {
         public void setID(int novoID){ID=novoID;}
         public void setNomeSumonico(String novoNomeSumonico){NomeSumonico=novoNomeSumonico;}
         public void setNomeTitulo(String novoNameTitulo){NameTitulo=novoNameTitulo;}
+        public void setTargetCursor(String novoTargetCursor){targetCursor=novoTargetCursor;}
+        public void setComentario(String novoComentario){Comentario=novoComentario;}
         public void setNivel(int novoNível){Nível=novoNível;}
         public void setHP(int novoHP){HP=novoHP;}
         public void setSP(int novoSP){SP=novoSP;}
@@ -425,7 +533,7 @@ public class Banco_Monstros {
         public void setSonsReset(){
             Sons=null;
         }
-        public int getSonsCont(){
+        public int getContSons(){
             if(Sons != null){
                 return Sons.length;
             }else{
@@ -457,7 +565,7 @@ public class Banco_Monstros {
         public void setSpritesReset(){
             Sprites=null;
         }
-        public int getSpritesCont(){
+        public int getContSprites(){
             if(Sprites != null){
                 return Sprites.length;
             }else{
@@ -486,6 +594,38 @@ public class Banco_Monstros {
             }
         }
 
+        public void setParticulaReset(){
+            Particulas=null;
+        }
+        public int getContParticulas(){
+            if(Particulas != null){
+                return Particulas.length;
+            }else{
+                return 0;
+            }
+        }
+        public Banco_Particulas getParticulaPorOrdem(int ordem){
+            if(Particulas != null){
+                return Particulas[ordem];
+            }else{
+                return null;
+            }
+        }
+        public void addParticula(String Enderco){
+            if(Particulas != null){
+                Banco_Particulas novasParticulas[] = new Banco_Particulas[Particulas.length+1];
+                for(int p=0;p<Particulas.length;p++){
+                    novasParticulas[p]=getParticulaPorOrdem(p);
+                }
+                novasParticulas[Particulas.length] = new Banco_Particulas(Enderco);
+                Particulas = novasParticulas;
+            }else{
+                Banco_Particulas novasParticulas[] = new Banco_Particulas[1];
+                novasParticulas[0] = new Banco_Particulas(Enderco);
+                Particulas = novasParticulas;
+            }
+        }
+
 
         public class Banco_Sounds {
             public Banco_Sounds(String novoEvent, String novoEndereco) {
@@ -497,6 +637,14 @@ public class Banco_Monstros {
             public String getEvent(){return evento;}
             public String getEndereco(){return endereco;}
             public void setEvent(String novoEvent){evento=novoEvent;}
+            public void setEndereco(String novoEndereco){endereco=novoEndereco;}
+        }
+        public class Banco_Particulas {
+            public Banco_Particulas(String novoEndereco) {
+                endereco=novoEndereco;
+            }
+            private String endereco="";
+            public String getEndereco(){return endereco;}
             public void setEndereco(String novoEndereco){endereco=novoEndereco;}
         }
         public class Banco_Drops {
