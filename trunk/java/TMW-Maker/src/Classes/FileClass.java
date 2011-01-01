@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,9 +14,18 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -205,6 +215,38 @@ public class FileClass {
             //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    public static boolean arquivoSalvarXML(String Endereco, Document Doc){
+        return arquivoSalvarXML(Endereco, new DOMSource(Doc), "utf-8");
+    }
+    public static boolean arquivoSalvarXML(String Endereco, DOMSource Source){
+        return arquivoSalvarXML(Endereco, Source, "utf-8");
+    }
+    public static boolean arquivoSalvarXML(String Endereco, Document Doc, String Encoding){
+        return arquivoSalvarXML(Endereco, new DOMSource(Doc), Encoding);
+    }
+    public static boolean arquivoSalvarXML(String Endereco, DOMSource Source, String Encoding){
+        try {
+            Transformer trans = TransformerFactory.newInstance().newTransformer();
+            trans.setOutputProperty(OutputKeys.INDENT, "yes");//Saber se o XML será identado(terá espaços entre tags).
+            trans.setOutputProperty(OutputKeys.STANDALONE, "yes");
+            trans.setOutputProperty(OutputKeys.ENCODING, Encoding);
+            trans.transform(
+                Source,
+                new StreamResult(new FileOutputStream(Endereco))
+            );
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+            // Salva compactado.
+            //trans.transform( new GZipStreamSource(new File("input.xml")), new StreamResult(System.out) );
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+            return true;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (TransformerException ex) {
+            Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 
     public static int getAtributo(Element elem, String atributo, int padrao){

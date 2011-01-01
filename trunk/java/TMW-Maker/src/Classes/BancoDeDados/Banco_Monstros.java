@@ -347,21 +347,21 @@ public class Banco_Monstros {
             Doc.appendChild(Monsters);
             ConteudoTXT.setTesto(ConteudoTXT.getTesto()+"\n"+"\n");
             FileClass.arquivoSalvar(mobTXT, ConteudoTXT.getTesto());
+            FileClass.arquivoSalvarXML(mobXML, Doc);
 
-            Transformer trans = TransformerFactory.newInstance().newTransformer();
+            /*Transformer trans = TransformerFactory.newInstance().newTransformer();
             trans.setOutputProperty(OutputKeys.INDENT, "yes");//Saber se o XML será identado(terá espaços entre tags).
             trans.setOutputProperty(OutputKeys.STANDALONE, "yes");
             trans.setOutputProperty(OutputKeys.ENCODING, "utf-8");
             trans.transform(
                 new javax.xml.transform.dom.DOMSource(Doc),
                 new StreamResult(new FileOutputStream(mobXML))
-            );
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (TransformerConfigurationException ex) {
-            Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (TransformerException ex) {
-            Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
+            );/**/
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+            // Salva compactado.
+            //trans.transform( new GZipStreamSource(new File("input.xml")), new StreamResult(System.out) );
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+        
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Banco_Monstros.class.getName()).log(Level.SEVERE, null, ex);
         }

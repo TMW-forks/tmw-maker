@@ -121,15 +121,15 @@ public class FrmLojas extends javax.swing.JDialog {
         btnLojaSalvar.setEnabled(true);
         txtNomeDaLoja.setEnabled(false);
         CmbAparencias.setEnabled(false);
-        txtMapa.setEnabled(false);
-        txtCoordX.setEnabled(false);
-        txtCoordY.setEnabled(false);
+        cmbMapas.setEnabled(false);
+        spnCoordX.setEnabled(false);
+        spnCoordY.setEnabled(false);
 
         txtNomeDaLoja.setOpaque(false);
         CmbAparencias.setOpaque(false);
-        txtMapa.setOpaque(false);
-        txtCoordX.setOpaque(false);
-        txtCoordY.setOpaque(false);
+        cmbMapas.setOpaque(false);
+        spnCoordX.setOpaque(false);
+        spnCoordY.setOpaque(false);
 
         tblShop.setEnabled(
             Galeria.getContLojas()>=1 &&
@@ -153,6 +153,33 @@ public class FrmLojas extends javax.swing.JDialog {
     }
     public void abrirLoja(int G){
         if(Galeria.getContLojas()>=1){
+            for(int M=0;M<cmbMapas.getItemCount();M++){
+                if(Galeria.getLojaPorOrdem(G).getMapa().equals(cmbMapas.getItemAt(M).toString())){
+                    cmbMapas.setSelectedIndex(M);
+                    M=cmbMapas.getItemCount();
+                }
+            }/**/
+            //spnCoordX.setValue(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordX()));
+
+            spnCoordX.setModel(
+                new javax.swing.SpinnerNumberModel(
+                    Integer.valueOf(Galeria.getLojaPorOrdem(G).getCoordX()),
+                    Integer.valueOf(0),
+                    Integer.valueOf(FrmPrincipal.bdWarps.getMapaPorOrdem(cmbMapas.getSelectedIndex()).getLargura()),
+                    Integer.valueOf(1)
+                )
+            );
+            spnCoordY.setModel(
+                new javax.swing.SpinnerNumberModel(
+                    Integer.valueOf(Galeria.getLojaPorOrdem(G).getCoordY()),
+                    Integer.valueOf(0),
+                    Integer.valueOf(FrmPrincipal.bdWarps.getMapaPorOrdem(cmbMapas.getSelectedIndex()).getAltura()),
+                    Integer.valueOf(1)
+                )
+            );
+            //spnCoordX.setValue(Galeria.getLojaPorOrdem(G).getCoordX());
+            //txtCoordY.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordY()));
+
             int Prods = Galeria.getLojaPorOrdem(G).getContProdutos();
             Vector Carrinho = new Vector();
             for(int P=0;P<Prods;P++){
@@ -164,9 +191,6 @@ public class FrmLojas extends javax.swing.JDialog {
                 );
             }
             txtNomeDaLoja.setText(Galeria.getLojaPorOrdem(G).getNomeLoja());
-            txtMapa.setText(Galeria.getLojaPorOrdem(G).getMapa());
-            txtCoordX.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordX()));
-            txtCoordY.setText(Integer.toString(Galeria.getLojaPorOrdem(G).getCoordY()));
             setCorpo(Carrinho);
             setComboAparencia(Galeria.getLojaPorOrdem(G).getImagemLoja());
             btnLojaAnterior.setEnabled(G>0);
@@ -195,7 +219,7 @@ public class FrmLojas extends javax.swing.JDialog {
             txtCoordY.setOpaque(false);/**/
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -219,12 +243,12 @@ public class FrmLojas extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         txtNomeDaLoja = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtMapa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtCoordX = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtCoordY = new javax.swing.JTextField();
         CmbAparencias = new javax.swing.JComboBox();
+        cmbMapas = new javax.swing.JComboBox();
+        spnCoordX = new javax.swing.JSpinner();
+        spnCoordY = new javax.swing.JSpinner();
         cmbLojas = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -369,41 +393,14 @@ public class FrmLojas extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Mapa:");
 
-        txtMapa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtMapa.setText("001");
-        txtMapa.setEnabled(false);
-        txtMapa.setOpaque(false);
-        txtMapa.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtMapaFocusLost(evt);
-            }
-        });
-
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Coord. X:");
 
-        txtCoordX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtCoordX.setText("001");
-        txtCoordX.setEnabled(false);
-        txtCoordX.setOpaque(false);
-        txtCoordX.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCoordXFocusLost(evt);
-            }
-        });
-
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Coord. Y:");
-
-        txtCoordY.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtCoordY.setText("001");
-        txtCoordY.setEnabled(false);
-        txtCoordY.setOpaque(false);
-        txtCoordY.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCoordYFocusLost(evt);
-            }
-        });
 
         CmbAparencias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---", "048", "049", "100", "101", "102", "103", " " }));
         CmbAparencias.setEnabled(false);
@@ -414,6 +411,35 @@ public class FrmLojas extends javax.swing.JDialog {
             }
         });
 
+        cmbMapas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMapas.setEnabled(false);
+        cmbMapas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMapasActionPerformed(evt);
+            }
+        });
+        cmbMapas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cmbMapasFocusLost(evt);
+            }
+        });
+
+        spnCoordX.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        spnCoordX.setEnabled(false);
+        spnCoordX.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                spnCoordXFocusLost(evt);
+            }
+        });
+
+        spnCoordY.setModel(new javax.swing.SpinnerNumberModel());
+        spnCoordY.setEnabled(false);
+        spnCoordY.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                spnCoordYFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -421,22 +447,23 @@ public class FrmLojas extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(5, 5, 5)
-                        .addComponent(txtMapa, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-                    .addComponent(txtNomeDaLoja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(txtNomeDaLoja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(CmbAparencias, 0, 136, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(5, 5, 5)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCoordY, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                            .addComponent(txtCoordX, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)))
-                    .addComponent(CmbAparencias, 0, 126, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbMapas, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnCoordY, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnCoordX, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cmbMapas, spnCoordX, spnCoordY});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -445,19 +472,21 @@ public class FrmLojas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CmbAparencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel1)
-                    .addComponent(txtMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbMapas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel2)
-                    .addComponent(txtCoordX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnCoordX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel3)
-                    .addComponent(txtCoordY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(spnCoordY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cmbMapas, spnCoordX, spnCoordY});
 
         cmbLojas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbLojas.addActionListener(new java.awt.event.ActionListener() {
@@ -479,7 +508,7 @@ public class FrmLojas extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LblImagem)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -538,6 +567,13 @@ public class FrmLojas extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_CmbAparenciasActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+
+        cmbMapas.setModel(new javax.swing.DefaultComboBoxModel(FrmPrincipal.bdWarps.getMapasVector()));
+        //cmbLojas.setEnabled(Galeria.getContLojas()>=1);
+        //if(FrmPrincipal.bdWarps.getContMapas()>=1) cmbMapas.setSelectedIndex(L<cmbLojas.getItemCount()?L:cmbLojas.getItemCount()-1);
+        //cmbMapas.set
+
         ListarAparencias();
         abrirLojas();
     }//GEN-LAST:event_formWindowOpened
@@ -606,9 +642,9 @@ public class FrmLojas extends javax.swing.JDialog {
         }else{
             Galeria.getLojaPorOrdem(L).setImagemLoja(0);
         }
-        Galeria.getLojaPorOrdem(L).setMapa(txtMapa.getText());
-        Galeria.getLojaPorOrdem(L).setCoordX(Integer.parseInt(txtCoordX.getText()));
-        Galeria.getLojaPorOrdem(L).setCoordY(Integer.parseInt(txtCoordY.getText()));
+        Galeria.getLojaPorOrdem(L).setMapa(cmbMapas.getItemAt(cmbMapas.getSelectedIndex()).toString());
+        Galeria.getLojaPorOrdem(L).setCoordX(Integer.parseInt(spnCoordX.getValue().toString()));
+        Galeria.getLojaPorOrdem(L).setCoordY(Integer.parseInt(spnCoordY.getValue().toString()));
 
         Galeria.arqSalvar(FrmScript.EnderecoDoScript);
         
@@ -677,21 +713,22 @@ public class FrmLojas extends javax.swing.JDialog {
         btnLojaSalvar.setEnabled(true);
         txtNomeDaLoja.setEnabled(true);
         CmbAparencias.setEnabled(true);
-        txtMapa.setEnabled(true);
-        txtCoordX.setEnabled(true);
-        txtCoordY.setEnabled(true);
+        cmbMapas.setEnabled(true);
+        spnCoordX.setEnabled(true);
+        spnCoordY.setEnabled(true);
 
         txtNomeDaLoja.setOpaque(true);
         CmbAparencias.setOpaque(true);
-        txtMapa.setOpaque(true);
-        txtCoordX.setOpaque(true);
-        txtCoordY.setOpaque(true);
+        cmbMapas.setOpaque(true);
+        spnCoordX.setOpaque(true);
+        spnCoordY.setOpaque(true);
 
         txtNomeDaLoja.setText("Loja "+Galeria.getContLojas());
         setComboAparencia(0);
-        txtMapa.setText("001");
-        txtCoordX.setText("100");
-        txtCoordY.setText("100");
+        cmbMapas.setSelectedIndex(0);
+        spnCoordX.setValue(Integer.valueOf(FrmPrincipal.bdWarps.getMapaPorOrdem(0).getLargura()/2));
+        spnCoordX.setValue(Integer.valueOf(FrmPrincipal.bdWarps.getMapaPorOrdem(0).getAltura()/2));
+        
 
 
     }//GEN-LAST:event_btnLojaCriarActionPerformed
@@ -708,45 +745,6 @@ public class FrmLojas extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_txtNomeDaLojaFocusLost
-    private void txtMapaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMapaFocusLost
-        int L = cmbLojas.getSelectedIndex();
-        if(L>=0){
-            if(!txtMapa.getText().equals("")){
-                Galeria.getLojaPorOrdem(L).setMapa(txtMapa.getText());
-                FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+txtMapa.getText()+"\"</FONT>");
-                btnLojaSalvar.setEnabled(true);
-                btnLojaAbrir.setEnabled(true);
-            }else{
-                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar um mapa a loja!");
-            }
-        }
-    }//GEN-LAST:event_txtMapaFocusLost
-    private void txtCoordXFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordXFocusLost
-        int L = cmbLojas.getSelectedIndex();
-        if(L>=0){
-            if(!txtCoordX.getText().equals("")){
-                Galeria.getLojaPorOrdem(L).setCoordX(Integer.parseInt(txtCoordX.getText()));
-                FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+txtCoordX.getText()+"\"</FONT>");
-                btnLojaSalvar.setEnabled(true);
-                btnLojaAbrir.setEnabled(true);
-            }else{
-                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar uma Coordenada X a loja!");
-            }
-        }
-    }//GEN-LAST:event_txtCoordXFocusLost
-    private void txtCoordYFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordYFocusLost
-        int L = cmbLojas.getSelectedIndex();
-        if(L>=0){
-            if(!txtCoordY.getText().equals("")){
-                Galeria.getLojaPorOrdem(L).setCoordY(Integer.parseInt(txtCoordY.getText()));
-                FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+txtCoordY.getText()+"\"</FONT>");
-                btnLojaSalvar.setEnabled(true);
-                btnLojaAbrir.setEnabled(true);
-            }else{
-                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar uma Coordenada Y a loja!");
-            }
-        }
-    }//GEN-LAST:event_txtCoordYFocusLost
     private void btnLojaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLojaEditarActionPerformed
         btnLojaCriar.setEnabled(false);
         btnLojaEditar.setEnabled(false);
@@ -760,16 +758,85 @@ public class FrmLojas extends javax.swing.JDialog {
         btnLojaSalvar.setEnabled(true);
         txtNomeDaLoja.setEnabled(true);
         CmbAparencias.setEnabled(true);
-        txtMapa.setEnabled(true);
-        txtCoordX.setEnabled(true);
-        txtCoordY.setEnabled(true);
+        cmbMapas.setEnabled(true);
+        spnCoordX.setEnabled(true);
+        spnCoordY.setEnabled(true);
 
         txtNomeDaLoja.setOpaque(true);
         CmbAparencias.setOpaque(true);
-        txtMapa.setOpaque(true);
-        txtCoordX.setOpaque(true);
-        txtCoordY.setOpaque(true);
+        cmbMapas.setOpaque(true);
+        spnCoordX.setOpaque(true);
+        spnCoordY.setOpaque(true);
     }//GEN-LAST:event_btnLojaEditarActionPerformed
+    private void cmbMapasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbMapasFocusLost
+        int L = cmbLojas.getSelectedIndex();
+        if(L>=0){
+            //String Selecionado=cmbMapas.getItemAt(L).toString();
+            if(!cmbMapas.getItemAt(L).equals("")){
+                Galeria.getLojaPorOrdem(L).setMapa(cmbMapas.getItemAt(L).toString());
+                //int ValX = Galeria.getLojaPorOrdem(L).getCoordX();
+                int ValX = Integer.parseInt(spnCoordX.getValue().toString());
+                int MaxX = FrmPrincipal.bdWarps.getMapaPorOrdem(cmbMapas.getSelectedIndex()).getLargura();
+                if(ValX>MaxX) ValX=MaxX;
+                spnCoordX.setModel(
+                    new javax.swing.SpinnerNumberModel(
+                        Integer.valueOf(ValX),
+                        Integer.valueOf(0),
+                        Integer.valueOf(MaxX),
+                        Integer.valueOf(1)
+                    )
+                );
+                int ValY = Integer.parseInt(spnCoordY.getValue().toString());
+                int MaxY = FrmPrincipal.bdWarps.getMapaPorOrdem(cmbMapas.getSelectedIndex()).getAltura();
+                if(ValY>MaxY) ValY=MaxY;
+                spnCoordY.setModel(
+                    new javax.swing.SpinnerNumberModel(
+                        Integer.valueOf(ValY),
+                        Integer.valueOf(0),
+                        Integer.valueOf(MaxY),
+                        Integer.valueOf(1)
+                    )
+                );
+
+                FrmPrincipal.setAvisoEmEstatus("<html>Novo mapa do NPC de Loja: <font color=\"#0000FF\">\""+cmbMapas.getItemAt(L)+"\"</FONT>");
+                btnLojaSalvar.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar um mapa a loja!");
+            }
+        }
+    }//GEN-LAST:event_cmbMapasFocusLost
+    private void spnCoordXFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spnCoordXFocusLost
+        int L = cmbLojas.getSelectedIndex();
+        if(L>=0){
+            //int V=Integer.parseInt(spnCoordX.getValue().toString());
+            if(Integer.parseInt(spnCoordX.getValue().toString())>=0){
+                Galeria.getLojaPorOrdem(L).setCoordX(Integer.parseInt(spnCoordX.getValue().toString()));
+                FrmPrincipal.setAvisoEmEstatus("<html>A nova coordenada do NPC de Loja: <font color=\"#0000FF\">\""+spnCoordX.getValue()+"\"</FONT>");
+                btnLojaSalvar.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar uma Coordenada X a loja!");
+            }
+        }
+    }//GEN-LAST:event_spnCoordXFocusLost
+    private void spnCoordYFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spnCoordYFocusLost
+        int L = cmbLojas.getSelectedIndex();
+        if(L>=0){
+            //int V=Integer.parseInt(spnCoordX.getValue().toString());
+            if(Integer.parseInt(spnCoordY.getValue().toString())>=0){
+                Galeria.getLojaPorOrdem(L).setCoordY(Integer.parseInt(spnCoordY.getValue().toString()));
+                FrmPrincipal.setAvisoEmEstatus("<html>A nova coordenada do NPC de Loja: <font color=\"#0000FF\">\""+spnCoordY.getValue()+"\"</FONT>");
+                btnLojaSalvar.setEnabled(true);
+                btnLojaAbrir.setEnabled(true);
+            }else{
+                FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">AVISO:</FONT> É obrigatório dar uma Coordenada Y a loja!");
+            }
+        }
+    }//GEN-LAST:event_spnCoordYFocusLost
+    private void cmbMapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMapasActionPerformed
+        //limitarMapa();
+    }//GEN-LAST:event_cmbMapasActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -797,6 +864,7 @@ public class FrmLojas extends javax.swing.JDialog {
     private javax.swing.JButton btnProdutoExcluir;
     private javax.swing.JButton btnProdutoNovo;
     private javax.swing.JComboBox cmbLojas;
+    private javax.swing.JComboBox cmbMapas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -807,10 +875,9 @@ public class FrmLojas extends javax.swing.JDialog {
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JSpinner spnCoordX;
+    private javax.swing.JSpinner spnCoordY;
     private javax.swing.JTable tblShop;
-    private javax.swing.JTextField txtCoordX;
-    private javax.swing.JTextField txtCoordY;
-    private javax.swing.JTextField txtMapa;
     private javax.swing.JTextField txtNomeDaLoja;
     // End of variables declaration//GEN-END:variables
 

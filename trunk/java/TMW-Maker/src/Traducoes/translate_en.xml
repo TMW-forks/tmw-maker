@@ -8,7 +8,6 @@
     <form name="FrmSplash">
         <translate id="FrmSplash">Loading TMW-Maker...</translate>
         <translate id="FrmSplash.End()">Database eAthena loaded successfully!</translate>
-        Atualizar
         <translate id="PgbBarra(Erro)">ERRO!</translate>
         <translate id="PgbBarra(Concluido)">Finalized!</translate>
         <translate id="PgbBarra(Carregando)">Loading...</translate>
@@ -17,7 +16,7 @@
 
         <translate id="bdWarps.Load()">[html]Loading database of Maps ([color[#FF0000]color]Please wait![/color])</translate>
         <translate id="bdWarps.Compilador">Compiler</translate>
-        <translate id="bdWarps.getMap(%)">[html]Loading Map: "[color[#0000FF]color]%1.tmx[/color]"!</translate>
+        <translate id="bdWarps.getMap(%)">[html]Loading Map: "[color[#0000FF]color]%1.tmx[/color]" (%2x%3)!</translate>
         <translate id="bdWarps.getErro(noFoundMap)">[html][color[#FF0000]color]ERRO:[/color] Map "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
         <translate id="bdWarps.getErro(noFoundMob)">[html][color[#FF0000]color]ERRO:[/color] Spawn "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
         <translate id="bdWarps.getErro(noFoundWarps)">[html][color[#FF0000]color]ERRO:[/color] Warp "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>

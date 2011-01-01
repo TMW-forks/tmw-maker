@@ -18,18 +18,9 @@ public class Banco_Mapas {
     private static String baseScripts=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"eathena-data"+Barra+"npc";
     private Dados_Mapas Mundo[]=null; //Não deve ser instaciado agora!!!!
     public Banco_Mapas(){
-        //DialogClass.showAlerta("Esse comando ainda não foi implementado!", "Copilador", null);
-
-        //String PastaDeMapas=FrmPrincipal.Config.getConexaoLocalhost()+Barra+"tmwdata"+Barra+"maps";
-
         FrmPrincipal.PgbBarra.setIndeterminate(false);
         FrmPrincipal.PgbBarra.setEnabled(true);
         FrmPrincipal.PgbBarra.setMinimum(0);
-
-        /*FrmPrincipal.setAvisoEmEstatus(
-            "Listando Mapas...",
-            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_localhost-tmw.png"))
-        );/**/
 
         if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
             String pasta[] = FileClass.listarPasta(baseScripts);
@@ -59,41 +50,39 @@ public class Banco_Mapas {
                                     mapaTMX=PastaDeMapas+Barra+mapaNome+".tmx";
                                     if(FileClass.seExiste(mapaTMX)){
 //////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
-                                        FrmPrincipal.setAvisoEmEstatus(
-                                            FrmPrincipal.traducao.getTraducaoNormatizada(
-                                                "FrmSplash", "bdWarps.getMap(%)",
-                                                "[html]Carregando Mapa: \"[color[#0000FF]color]%1.tmx[/color]\"!",
-                                                mapaNome
-                                            ),
-                                            new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
-                                        );
+                                        Element tagMap=FileClass.arquivoAbrirXML(mapaTMX);
+                                        NodeList noProperties = tagMap.getElementsByTagName("properties");
+                                        if(noProperties.getLength()>=1){
+                                            int Largura=0,Altura=0; String Nome="", Miniatura="", Musica="";
+                                            Largura = FileClass.getAtributo(tagMap,"width",0);
+                                            Altura = FileClass.getAtributo(tagMap,"height",0);
+                                            FrmPrincipal.setAvisoEmEstatus(
+                                                FrmPrincipal.traducao.getTraducaoNormatizada(
+                                                    "FrmSplash", "bdWarps.getMap(%)",
+                                                    "[html]Carregando Mapa: \"[color[#0000FF]color]%1.tmx[/color]\" (%2x%3)!",
+                                                    mapaNome+"&&"+Largura+"&&"+Altura
+                                                ),
+                                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
+                                            );
+                                            Element tagProperties = (Element) noProperties.item(0);
+                                            NodeList noProperty = tagProperties.getElementsByTagName("property");
+                                            for (int Pr = 0; Pr < noProperty.getLength(); Pr++) {
+                                                Element tagProperty = (Element) noProperty.item(Pr);
+                                                String propName = FileClass.getAtributo(tagProperty,"name","");
+                                                String propValue = FileClass.getAtributo(tagProperty,"value","");
+                                                if(propName.equals("name")) Nome=propValue;
+                                                if(propName.equals("minimap")) Miniatura=propValue.replaceAll("/graphics/minimaps/", "");
+                                                if(propName.equals("music")) Musica=propValue;
+                                                if(!Nome.equals("") && !Miniatura.equals("") && !Musica.equals("")) Pr=noProperty.getLength();
+                                            }
+                                            addMapa(Nome,Miniatura,mapaNome+".tmx",mapaNome+".wlk",Musica,Largura,Altura);
+                                        }
+                                        
 
-                                        //Vector Prop_Tiles = importMapaXML(mapaTMX);
+                                        
+                                        
 
-                                                
-                                        mapaConteudo.setTesto(FileClass.arquivoAbrir(mapaTMX));
-                                        mapaConteudo.setKeyCode("ISO-8859-1");//Transforma UTF-8 ? ISO-8859-1
-                                        //String Cabecalho = <map
-                                        StringClass Cabecalho = new StringClass(
-                                            mapaConteudo.extrairEntre("<map", ">")
-                                        );
-                                        int Largura = Integer.parseInt(Cabecalho.extrairEntre("width=\"", "\""));
-                                        int Altura = Integer.parseInt(Cabecalho.extrairEntre("height=\"", "\""));
-                                        String Nome = mapaConteudo.extrairEntre(
-                                            "<property name=\"name\" value=\"", "\""
-                                        );
-                                        String Miniatura = mapaConteudo.extrairEntre(
-                                            "<property name=\"minimap\" value=\"/graphics/minimaps/", "\""
-                                        );
-                                        String Musica = mapaConteudo.extrairEntre(
-                                            "<property name=\"music\" value=\"", "\""
-                                        );
-                                        addMapa(Nome,Miniatura,mapaNome+".tmx",mapaNome+".wlk",Musica,Largura,Altura);
-                                        //warpConteudo.setTesto(FileClass.arquivoAbrir(warps));
-                                        //warpConteudo.setKeyCode("ISO-8859-1");
-                                        //mobConteudo.setTesto(FileClass.arquivoAbrir(mobs));
-                                        //mobConteudo.setKeyCode("ISO-8859-1");
-                                        /**/
+
 
 
 
@@ -303,6 +292,13 @@ public class Banco_Mapas {
         }else{
             return null;
         }
+    }
+    public Vector getMapasVector(){
+        Vector Mapas = new Vector();
+        for(int l=0;l<getContMapas();l++){
+            Mapas.addElement(getMapaPorOrdem(l).getArquivo().replaceAll(".tmx", ""));
+        }
+        return Mapas;
     }
     public Dados_Mapas getMapaPorOrdem(int ordem){
         if(Mundo != null){
