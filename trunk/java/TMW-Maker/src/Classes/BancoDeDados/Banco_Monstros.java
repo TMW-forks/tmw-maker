@@ -178,6 +178,16 @@ public class Banco_Monstros {
                                     }
                                 }
 
+                                NodeList noEfeitosDeAtaque = tagMonster.getElementsByTagName("attack");
+                                for (int Atk = 0; Atk < noEfeitosDeAtaque.getLength(); Atk++) {
+                                    Element tagEfeitosDeAtaque = (Element) noEfeitosDeAtaque.item(Atk);
+                                    int ataqueID=FileClass.getAtributo(tagEfeitosDeAtaque,"id",0);
+                                    String ataqueParticula=FileClass.getAtributo(tagEfeitosDeAtaque,"particle-effect","");
+                                    if(FileClass.seExiste(PastaDeTMWdata+Barra+ataqueParticula)){
+                                        getMonstroPorOrdem(getContMonstros()-1).addEfeitosDeAtaque(ataqueID, ataqueParticula);
+                                    }
+                                }
+
                                 Ms=noMonster.getLength();
                             }
                         }
@@ -337,6 +347,12 @@ public class Banco_Monstros {
                     ParticleFX.appendChild(Doc.createTextNode(getMonstroPorOrdem(m).getParticulaPorOrdem(Pfx).getEndereco()));
                     Monster.appendChild(ParticleFX);
                 }
+                for(int Atk=0;Atk<getMonstroPorOrdem(m).getContEfeitosDeAtaque();Atk++){
+                    Element EfeitoDeAtaque = Doc.createElement("attack");
+                    EfeitoDeAtaque.setAttribute("id", String.valueOf(getMonstroPorOrdem(m).getEfeitosDeAtaquePorOrdem(Atk).getID()));
+                    EfeitoDeAtaque.setAttribute("particle-effect", getMonstroPorOrdem(m).getEfeitosDeAtaquePorOrdem(Atk).getParticleEffect());
+                    Monster.appendChild(EfeitoDeAtaque);
+                }
                 Monsters.appendChild(Monster);
             }
             Comment Comentario = Doc.createComment("\n"+
@@ -446,6 +462,7 @@ public class Banco_Monstros {
         private Banco_Sounds Sons[]=null;
         private Banco_Sprites Sprites[]=null;
         private Banco_Particulas Particulas[]=null;
+        private Banco_AttackEffects EfeitosDeAtaque[]=null;
 
         public int getID(){return ID;}
         public String getNomeSumonico(){return NomeSumonico;}
@@ -643,6 +660,38 @@ public class Banco_Monstros {
             }
         }
 
+        public void setEfeitosDeAtaqueReset(){
+            EfeitosDeAtaque=null;
+        }
+        public int getContEfeitosDeAtaque(){
+            if(EfeitosDeAtaque != null){
+                return EfeitosDeAtaque.length;
+            }else{
+                return 0;
+            }
+        }
+        public Banco_AttackEffects getEfeitosDeAtaquePorOrdem(int ordem){
+            if(EfeitosDeAtaque != null){
+                return EfeitosDeAtaque[ordem];
+            }else{
+                return null;
+            }
+        }
+        public void addEfeitosDeAtaque(int novoID, String novoEfeitosDeAtaque){
+            if(EfeitosDeAtaque != null){
+                Banco_AttackEffects novosEfeitosDeAtaque[] = new Banco_AttackEffects[EfeitosDeAtaque.length+1];
+                for(int p=0;p<EfeitosDeAtaque.length;p++){
+                    novosEfeitosDeAtaque[p]=getEfeitosDeAtaquePorOrdem(p);
+                }
+                novosEfeitosDeAtaque[EfeitosDeAtaque.length] = new Banco_AttackEffects(novoID, novoEfeitosDeAtaque);
+                EfeitosDeAtaque = novosEfeitosDeAtaque;
+            }else{
+                Banco_AttackEffects novosEfeitosDeAtaque[] = new Banco_AttackEffects[1];
+                novosEfeitosDeAtaque[0] = new Banco_AttackEffects(novoID, novoEfeitosDeAtaque);
+                EfeitosDeAtaque = novosEfeitosDeAtaque;
+            }
+        }
+
         public class Banco_Sounds {
             public Banco_Sounds(String novoEvent, String novoEndereco) {
                 evento=novoEvent;
@@ -662,6 +711,18 @@ public class Banco_Monstros {
             private String endereco="";
             public String getEndereco(){return endereco;}
             public void setEndereco(String novoEndereco){endereco=novoEndereco;}
+        }
+        public class Banco_AttackEffects {
+            public Banco_AttackEffects(int novoID, String novoParticleEffect) {
+                ID=novoID;
+                ParticleEffect=novoParticleEffect;
+            }
+            private int ID=0;
+            private String ParticleEffect="";
+            public int getID(){return ID;}
+            public void setID(int novoID){ID=novoID;}
+            public String getParticleEffect(){return ParticleEffect;}
+            public void setParticleEffect(String novoParticleEffect){ParticleEffect=novoParticleEffect;}
         }
         public class Banco_Drops {
             public Banco_Drops(int novoID, int novoPercentual) {
