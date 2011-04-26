@@ -6,7 +6,7 @@
 ==Como Instalar no Ubuntu Linux?==
  # Vá em: Aplicativos -> Central de Programas Ubuntu
  # Pesquise a palavra "NetBeans"
- # Instale o programa "NetBeans IDE 6.7.1" ou superior;
+ # Instale o programa "NetBeans IDE 6.8" ou superior;
 
 Pronto! Vocẽ já pode criar programas em Java ou abrir o Código Fonte do Engine TMW-Maker para melhora-lo conforme suas habilidades de programador. =)
 
