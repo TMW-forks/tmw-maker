@@ -1,5 +1,5 @@
 #labels SourceCode,CódigoFonte,Java,TMW-Maker,NetBeans
-= Baixando o Código-Fonte =
+= Baixando o Código-Fonte no Netbeans=
 
 <img height="300" align_="left" src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"><img height="300" align_="right" src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
 
@@ -9,7 +9,7 @@ O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização 
 
 O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker diretamente no NetBeans 6.9 em Português:
 
- # Abra o Netbeans.
+ # Abra o NetBeans 6.9.
  # Vá no menu: *Equipe → SVN Subversion → Checkout* 
  # Escolha abaixo o tipo de acesso ao código-fonte:
   * *Modo Colaborativo:*  É apenas para colaboradores que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. Entre em [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador contato conosco] relatando seu desejo de participação para conseguir o *[https://code.google.com/hosting/settings Nome de Usuário e Senha]*. O protocolo para o código-fonte no modo colaborativo é: *{{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}* 
