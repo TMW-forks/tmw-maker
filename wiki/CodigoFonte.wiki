@@ -14,7 +14,7 @@ O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização 
 
 <p align="center"><img src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"> 
 
-|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo a passo o que é alterado no TMW-Maker ||
+|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo-a-passo o que é alterado no TMW-Maker ||
 
 ----
 
@@ -27,4 +27,6 @@ O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização 
 || *Versão* || *Modo* || *Comando SVN de Terminal Shell* ||
 || v0.2 || Colaborativo || svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
 
-<p align="center"><img src="http://www.ecourban.org/blog/wp-content/uploads/2008/05/edicion_colectiva.jpg">
+<p align="center"><img src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
+
+|| Clique [http://code.google.com/p/tmw-maker/wiki/svn_no_netbeans AQUI] e veja como baixar o código fonte usando o NetBeans. ||
