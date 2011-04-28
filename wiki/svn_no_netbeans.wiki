@@ -1,13 +1,13 @@
 #labels NetBeans,SVN,Tutorial
-= Baixando pelo NetBeans =
+= Baixando o Código-Fonte =
 O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker diretamente no NetBeans 6.9 em Português:
 
  # Abra o Netbeans.
  # Vá no menu: *Equipe → SVN Subversion → Checkout* 
  # Escolha abaixo o tipo de acesso ao código-fonte:
-  * *Modo Colaborativo:* É apenas para usuários que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações. É necessário possuir nome [https://code.google.com/hosting/settings *Usuário* e *Senha*] para acessar o código-fonte através do modo colaborativo. O protocolo para o código-fonte no modo colaborativo é: *{{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
-  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações. O protocolo para o código-fonte no modo observador é: *{{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
- # Digite o *Protocolo* de sua escolha seguido do seu *Usuário* e *Senha* de forma similar ao que foi mostrado abaixo e clique em Avançar: <img src="http://ompldr.org/vOGdvaA/Checkout_01.png">
+  * *Modo Colaborativo:*  É apenas para usuários que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações. É necessário possuir nome [https://code.google.com/hosting/settings *Usuário* e *Senha*] para acessar o código-fonte através do modo colaborativo. O protocolo para o código-fonte no modo colaborativo é: *{{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}* <img src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
+  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações. O protocolo para o código-fonte no modo observador é: *{{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}* <img src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg">
+ # Se sua escolha for pelo modo colaborativo digite o *Protocolo* de sua escolha e preencha seu *Usuário* e *Senha* de forma similar ao que foi mostrado abaixo. Caso contrário apenas digite o *Protocolo* do modo observador e clique em Avançar: <img src="http://ompldr.org/vOGdvaA/Checkout_01.png">
  # Marque a opção "*Pesquisar projetos do NetBeans após a verificação*".
  # Desmarque as opções "*Ignorar 'TMW-Maker' e obter apenas o conteúdo.*" e "*Exportar uma árvore de diretório limpa de repositório.*"
  # O próprio NetBeans faz uma sugestão de *Pasta Local* onde será baixado os arquivo do código-fonte do TMW-Maker. Sugiro que não mudem o local, pois corre o risco de usuários esquecer qual foi o local que ele próprio selecionou. 
