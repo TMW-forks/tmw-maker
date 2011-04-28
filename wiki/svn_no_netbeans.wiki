@@ -3,4 +3,9 @@
 O Exemplo a segui será demonstrado no NetBeans 6.9:
 
  # Abra o Netbeans.
- #
+ # Vá no menu: *Equipe → SVN Subversion → Checkout* 
+ # Escolha abaixo o tipo de acesso ao código-fonte:
+  * *Modo Colaborativo:* É apenas para usuários que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações. É necessário possuir nome [https://code.google.com/hosting/settings *Usuário* e *Senha*] para acessar o código-fonte através do modo colaborativo. O protocolo para o código-fonte no modo colaborativo é: *{{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
+  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações. O protocolo para o código-fonte no modo observador é: *{{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
+ # Digite o *Protocolo* de sua escolha seguido do seu *Usuário* e *Senha* de forma similar ao que foi mostrado abaixo e clique em Avançar: <img src="http://ompldr.org/vOGdvaA/Checkout_01.png">
+ # <img src="http://ompldr.org/vOGdveA/Checkout_02.png">
