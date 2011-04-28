@@ -12,6 +12,7 @@ O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker dir
  # Desmarque as opções "*Ignorar 'TMW-Maker' e obter apenas o conteúdo.*" e "*Exportar uma árvore de diretório limpa de repositório.*"
  # O próprio NetBeans faz uma sugestão de *Pasta Local* onde será baixado os arquivo do código-fonte do TMW-Maker. Sugiro que não mudem o local, pois corre o risco de usuários esquecer qual foi o local que ele próprio selecionou. 
  # Verifique está similar ao mostrado abaixo, clique em *Finalizar*: <img src="http://ompldr.org/vOGdveA/Checkout_02.png">
- # Espere o NetBeans terminar baixar o código-fonte do TMW-Maker. Se Tudo der certo vai aparecer os arquivos do código fonte na aba de projetos que pode ser aberta em Janela → Projeto.
+ # Espere o NetBeans terminar baixar o código-fonte do TMW-Maker. Se Tudo der certo,  como mostrado abaixo, vai aparecer os arquivos do código fonte na aba de projetos que pode ser aberta em Janela → Projeto. *Bem Vindo ao Projeto TMW-Maker!!!* =D <img src="http://ompldr.org/vOGdwZg/Checkout_03.png">
 
-Qualquer dúvida vocês podem perguntar para Lunovox usando algum mensageiro de MSN (*[mailto:rui.gravata@hotmail.com]*) ou GTalk (*[mailto:rui.gravata@gmail.com]*). Ou se preferir pode telefonar gratuitamente usando o Skype(NameSkype:"*Lunovox*").
+==Em caso de dúvidas...==
+Qualquer dúvida vocês podem perguntar para Lunovox usando algum mensageiro de *[mailto:rui.gravata@hotmail.com MSN]* ou *[mailto:rui.gravata@gmail.com GTalk]*. Ou se preferir pode telefonar gratuitamente usando o Skype (NameSkype:"*Lunovox*").
