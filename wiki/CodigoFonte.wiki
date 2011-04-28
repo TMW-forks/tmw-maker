@@ -1,32 +1,27 @@
-#labels SourceCode,CódigoFonte,Java,TMW-Maker,Netbeans
-==Código Fonte do TMW-Maker==
+#labels SourceCode,CódigoFonte,Java,TMW-Maker,NetBeans
+= Baixando o Código-Fonte =
+
+<img height="300" align_="left" src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"><img height="300" align_="right" src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
 
 O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização de seu código fonte. Existem dois modos para você adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os seus planos. Se você deseja baixar o código fonte, escolha um os modos abaixo, e digite o respectivo comando abaixo em seu terminal.
 
 ----
 
-=Modo Observador=
+O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker diretamente no NetBeans 6.9 em Português:
 
-<p align="justify">É possível baixar, modificar o engine TMW-Maker. Esse modo é recomendado para qualquer que deseje saber como é construído esse programa. Para usar o modo Observador você *NÃO PRECISARÁ* se identificar, nem pedir permissão. É só digitar esse comando abaixo em seu terminal.
-
-|| *Versão* || *Modo* || *Instruções de acesso ao Código-Fonte* ||
-|| v0.2 || Observador || Clique [http://code.google.com/p/tmw-maker/wiki/svn_no_netbeans AQUI] e veja como baixar o código fonte usando o NetBeans. ||
-
-<p align="center"><img src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"> 
-
-|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo-a-passo o que está sendo alterado no TMW-Maker ||
+ # Abra o Netbeans.
+ # Vá no menu: *Equipe → SVN Subversion → Checkout* 
+ # Escolha abaixo o tipo de acesso ao código-fonte:
+  * *Modo Colaborativo:*  É apenas para colaboradores que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. Entre em [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador contato conosco] relatando seu desejo de participação para conseguir o *[https://code.google.com/hosting/settings Nome de Usuário e Senha]*. O protocolo para o código-fonte no modo colaborativo é: *{{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}* 
+  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. O protocolo para o código-fonte no modo observador é: *{{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
+ # Se sua escolha for pelo modo colaborativo digite o *Protocolo* de sua escolha e preencha seu *Usuário* e *Senha* de forma similar ao que foi mostrado abaixo. Caso contrário apenas digite o *Protocolo* do modo observador e clique em Avançar: <img src="http://ompldr.org/vOGdvaA/Checkout_01.png">
+ # Marque a opção "*Pesquisar projetos do NetBeans após a verificação*".
+ # Desmarque as opções "*Ignorar 'TMW-Maker' e obter apenas o conteúdo.*" e "*Exportar uma árvore de diretório limpa de repositório.*"
+ # O próprio NetBeans faz uma sugestão de *Pasta Local* onde será baixado os arquivo do código-fonte do TMW-Maker. Sugiro que não mudem o local, pois corre o risco de usuários esquecer qual foi o local que ele próprio selecionou. 
+ # Verifique está similar ao mostrado abaixo, clique em *Finalizar*: <img src="http://ompldr.org/vOGdveA/Checkout_02.png">
+ # Espere o NetBeans terminar baixar o código-fonte do TMW-Maker. Se Tudo der certo,  como mostrado abaixo, vai aparecer os arquivos do código fonte na aba de projetos que pode ser aberta em Janela → Projeto. *Bem Vindo ao Projeto TMW-Maker!!!* =D <img src="http://ompldr.org/vOGdwZg/Checkout_03.png">
 
 ----
 
-=Modo Colaborativo=
-
-|| <img align="abscenter" src="http://intranet.iprj.uerj.br:8080/intranet/modulo/gc/imagens/m_gifSenha_V2.gif"> [https://code.google.com/hosting/settings SENHA DE COLABORADOR] || <img align="abscenter" src="http://www.finishertriatlon.com/images/shared/examinar.png"> [http://code.google.com/p/tmw-maker/source/browse/ CÓDIGO NO NAVEGADOR] || <img align="abscenter" src="http://www.equipe21.com/img/2.0/historico.png"> [http://code.google.com/p/tmw-maker/source/list HISTÓRICO DE ALTERAÇÕES] ||
-
-<p align="justify">É possível baixar, modificar, e devolver para este site as modificações que você fez no engine TMW-Maker. Esse modo é recomendado apenas para aqueles que querem ajudar no desenvolvimento desta ferramenta. Para usar o modo Colaborativo você precisará ter um *[https://code.google.com/hosting/settings username e password]* autorizados. Entre em [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador contato conosco] relatando seu desejo de participação para conseguir esse *[https://code.google.com/hosting/settings username e password]*.
-
-|| *Versão* || *Modo* || *Instruções de acesso ao Código-Fonte* ||
-|| v0.2 || Colaborativo || Clique [http://code.google.com/p/tmw-maker/wiki/svn_no_netbeans AQUI] e veja como baixar o código fonte usando o NetBeans. ||
-
-<p align="center"><img src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
-
-|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo-a-passo o que está sendo alterado no TMW-Maker ||
+==Em caso de dúvidas...==
+Qualquer dúvida vocês podem perguntar para Lunovox usando algum mensageiro de *[mailto:rui.gravata@hotmail.com MSN]* ou *[mailto:rui.gravata@gmail.com GTalk]*. Ou se preferir pode telefonar gratuitamente usando o Skype (NameSkype:"*Lunovox*").
