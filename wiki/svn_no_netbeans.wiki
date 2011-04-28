@@ -1,5 +1,5 @@
 #labels NetBeans,SVN,Tutorial
-= Baixando pleo NetBeans =
+= Baixando pelo NetBeans =
 O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker diretamente no NetBeans 6.9 em Português:
 
  # Abra o Netbeans.
@@ -8,7 +8,7 @@ O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker dir
   * *Modo Colaborativo:* É apenas para usuários que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações. É necessário possuir nome [https://code.google.com/hosting/settings *Usuário* e *Senha*] para acessar o código-fonte através do modo colaborativo. O protocolo para o código-fonte no modo colaborativo é: *{{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
   * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações. O protocolo para o código-fonte no modo observador é: *{{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
  # Digite o *Protocolo* de sua escolha seguido do seu *Usuário* e *Senha* de forma similar ao que foi mostrado abaixo e clique em Avançar: <img src="http://ompldr.org/vOGdvaA/Checkout_01.png">
- # Marque a opção "*Pesquizar projetos do NetBeans após a verificação*".
+ # Marque a opção "*Pesquisar projetos do NetBeans após a verificação*".
  # Desmarque as opções "*Ignorar 'TMW-Maker' e obter apenas o conteúdo.*" e "*Exportar uma árvore de diretório limpa de repositório.*"
  # O próprio NetBeans faz uma sugestão de *Pasta Local* onde será baixado os arquivo do código-fonte do TMW-Maker. Sugiro que não mudem o local, pois corre o risco de usuários esquecer qual foi o local que ele próprio selecionou. 
  # Verifique está similar ao mostrado abaixo, clique em *Finalizar*: <img src="http://ompldr.org/vOGdveA/Checkout_02.png">
