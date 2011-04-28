@@ -9,12 +9,12 @@ O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização 
 
 <p align="justify">É possível baixar, modificar o engine TMW-Maker. Esse modo é recomendado para qualquer que deseje saber como é construído esse programa. Para usar o modo Observador você *NÃO PRECISARÁ* se identificar, nem pedir permissão. É só digitar esse comando abaixo em seu terminal.
 
-|| *Versão* || *Modo* || *Comando SVN de Terminal Shell* ||
-|| v0.2 || Observador || svn checkout http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
+|| *Versão* || *Modo* || *Instruções de acesso ao Código-Fonte* ||
+|| v0.2 || Observador || Clique [http://code.google.com/p/tmw-maker/wiki/svn_no_netbeans AQUI] e veja como baixar o código fonte usando o NetBeans. ||
 
 <p align="center"><img src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"> 
 
-|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo-a-passo o que é alterado no TMW-Maker ||
+|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo-a-passo o que está sendo alterado no TMW-Maker ||
 
 ----
 
@@ -24,9 +24,9 @@ O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização 
 
 <p align="justify">É possível baixar, modificar, e devolver para este site as modificações que você fez no engine TMW-Maker. Esse modo é recomendado apenas para aqueles que querem ajudar no desenvolvimento desta ferramenta. Para usar o modo Colaborativo você precisará ter um *[https://code.google.com/hosting/settings username e password]* autorizados. Entre em [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador contato conosco] relatando seu desejo de participação para conseguir esse *[https://code.google.com/hosting/settings username e password]*.
 
-|| *Versão* || *Modo* || *Comando SVN de Terminal Shell* ||
-|| v0.2 || Colaborativo || svn checkout https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker TMW-Maker ||
+|| *Versão* || *Modo* || *Instruções de acesso ao Código-Fonte* ||
+|| v0.2 || Colaborativo || Clique [http://code.google.com/p/tmw-maker/wiki/svn_no_netbeans AQUI] e veja como baixar o código fonte usando o NetBeans. ||
 
 <p align="center"><img src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
 
-|| Clique [http://code.google.com/p/tmw-maker/wiki/svn_no_netbeans AQUI] e veja como baixar o código fonte usando o NetBeans. ||
+|| Siga [http://code.google.com/p/tmw-maker/source/list AQUI] passo-a-passo o que está sendo alterado no TMW-Maker ||
