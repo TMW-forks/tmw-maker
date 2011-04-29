@@ -1,13 +1,13 @@
 #labels SourceCode,CódigoFonte,Java,TMW-Maker,NetBeans
-= Baixando o Código-Fonte no Netbeans=
-
 <img height="300" align_="left" src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"><img height="300" align_="right" src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
+
+= Baixando o Código-Fonte no Netbeans=
 
 O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização de seu código fonte. Existem dois modos para você adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os seus planos. Se você deseja baixar o código fonte, escolha um os modos abaixo, e digite o respectivo comando abaixo em seu terminal.
 
-|| <img align="abscenter" src="http://news360.lewispr.com/calendar/images/iconCalendar.gif"> [http://code.google.com/p/tmw-maker/source/list Histórico de Alterações] || <img align="abscenter" src="http://cache.filehippo.com/img/ex/1258t__netbeans.png"> [http://code.google.com/p/tmw-maker/wiki/ComoInstalarNetBeans Download NetBeans] || <img align="abscenter" src="http://www.babooforum.com.br/forum/public/style_images/blue/lock.png"> [https://code.google.com/hosting/settings Usuário e Senha] ||
-
 ----
+
+|| <img align="abscenter" src="http://news360.lewispr.com/calendar/images/iconCalendar.gif"> [http://code.google.com/p/tmw-maker/source/list Histórico de Alterações] || <img align="abscenter" src="http://cache.filehippo.com/img/ex/1258t__netbeans.png"> [http://code.google.com/p/tmw-maker/wiki/ComoInstalarNetBeans Download NetBeans] || <img align="abscenter" src="http://www.babooforum.com.br/forum/public/style_images/blue/lock.png"> [https://code.google.com/hosting/settings Usuário e Senha] || <img align="abscenter" src="http://www.kangarootours.com.br/contents/ico/ico-email-contato.png"> [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador Fale Conosco] ||
 
 O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker diretamente no NetBeans 6.9 em Português:
 
