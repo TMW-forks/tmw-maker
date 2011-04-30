@@ -3,6 +3,6 @@
 
 É um programa [opensource Open Source] que permite desenvolver Aplicativos Gráficos em Java. Permite também enviar e receber alterações do repositório [SVN]. Embora ele edite programas Java, o NetBeans só poderá copilar (criar programas) se tiver uma [OpenJDK Máquina Virtual Java(JVM)] instalada em seu computador. O TMW-Maker está sendo desenvolvido através do Netbeans.
 
-<p align="center"><a href="http://www.semanticmetadata.net/wp-content/uploads/2007/05/netbeans6preview.png"><img width="70%" src="http://www.semanticmetadata.net/wp-content/uploads/2007/05/netbeans6preview.png"><a>
+<p align="center"><a href="http://www.semanticmetadata.net/wp-content/uploads/2007/05/netbeans6preview.png"><img width_="70%" src="http://ompldr.org/vOGh5OA/TMW-Maker%20-%20NetBeans%20IDE%206.9.png"><a>
 
 || *NOTA:* Agora que você ja sabe o que é o NetBeans, aprenda [ComoInstalarNetBeans como instalar]! ||
