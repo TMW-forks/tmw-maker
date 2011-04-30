@@ -1168,7 +1168,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         BtnSistemaConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_chaveinglesa.png"))); // NOI18N
-        BtnSistemaConfiguracoes.setToolTipText("Configurações (Ctrl+G)");
+        BtnSistemaConfiguracoes.setToolTipText(traducao.getTraducao("FrmPrincipal", "BtnSistemaConfiguracoes", "Configurações (Ctrl+G)"));
         BtnSistemaConfiguracoes.setFocusable(false);
         BtnSistemaConfiguracoes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnSistemaConfiguracoes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

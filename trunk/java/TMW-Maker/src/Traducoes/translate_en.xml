@@ -35,6 +35,8 @@
         <translate id="showOpcoes.btnAtualizar">Update</translate>
         <translate id="showOpcoes.btnDepois">After</translate>
 
+        <translate id="BtnSistemaConfiguracoes">Settings (Ctrl+G)</translate>
+
         <translate id="MnuSistema">System</translate>
         <translate id="MnuSistemaAlteracoes">Changes</translate>
         <translate id="MnuSistemaAtualizar">Update</translate>
