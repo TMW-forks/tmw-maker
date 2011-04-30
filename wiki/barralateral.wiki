@@ -13,7 +13,7 @@
   * [LinguagensDeProgramacao Linguagens de Programação]
    * [EathenaScript Eathena Script]
    * [Java]
- * [versoes_tmwmaker Download do TMW-Maker]
+ * [downloads Download do TMW-Maker]
  * [CodigoFonte Código Fonte]
  * [AvisandoDefeito Avisando Defeito]
  * Menu
