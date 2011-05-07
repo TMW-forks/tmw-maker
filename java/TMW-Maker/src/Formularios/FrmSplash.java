@@ -1,5 +1,6 @@
 package Formularios;
 
+import Formularios.FrmPrincipal;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -62,6 +63,7 @@ public class FrmSplash extends javax.swing.JDialog {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 FrmPrincipal.PgbBarra.setIndeterminate(true);
                 FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducaoNormatizada("FrmSplash", "PgbBarra(Carregando)","Carregando..."));
+                System.gc();
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
@@ -70,7 +72,9 @@ public class FrmSplash extends javax.swing.JDialog {
                     ),
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_pessoa.gif"))
                 );
-                FrmPrincipal.bdNPCs = new Classes.BancoDeDados.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
+              FrmPrincipal.bdNPCs = new Classes.BancoDeDados.Banco_NPCs(); //Automaticamente abre npcs.xml e outros XMLs subrelacionados (Operação Demorada)
+                             System.gc();
+
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
@@ -80,6 +84,7 @@ public class FrmSplash extends javax.swing.JDialog {
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_espada.gif"))
                 );
                 FrmPrincipal.bdProds = new Classes.BancoDeDados.Banco_Itens(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                System.gc();
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
@@ -89,6 +94,8 @@ public class FrmSplash extends javax.swing.JDialog {
                     new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
                 );
                 FrmPrincipal.bdWarps = new Classes.BancoDeDados.Banco_Mapas(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
+                             System.gc();
+
                 //--------------------------------------------------------------------------------
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(
@@ -97,8 +104,10 @@ public class FrmSplash extends javax.swing.JDialog {
                     ),
                      new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_caveira.png"))
                  );
+
                 FrmPrincipal.bdMOBs = new Classes.BancoDeDados.Banco_Monstros(); //Automaticamente abre item_db.txt e item.xml (Operação Demorada)
-                //--------------------------------------------------------------------------------
+                     System.gc();
+                 //--------------------------------------------------------------------------------
                 FrmPrincipal.PgbBarra.setString(FrmPrincipal.traducao.getTraducaoNormatizada("FrmSplash", "PgbBarra(Concluido)","Concluido!"));
                 FrmPrincipal.setAvisoEmEstatus(
                     FrmPrincipal.traducao.getTraducaoNormatizada(

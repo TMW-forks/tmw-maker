@@ -73,6 +73,7 @@ public class Banco_NPCs {
             if(!NPC.getTesto().equals("")){
                 ContNPCs++;
                 NPCs[l-1] = new Dados_NPC();
+                NPCs[l-1].setL(l);
                 NPCs[l-1].setID(Integer.parseInt(NPC.extrairEntre("id=\"", "\"").equals("")?"0":NPC.extrairEntre("id=\"", "\"")));
                 NPCs[l-1].setNome(NPC.extrairEntre("name=\"", "\""));
                 NPCs[l-1].setVariante(Integer.parseInt(NPC.extrairEntre("variant=\"", "\"").equals("")?"0":NPC.extrairEntre("variant=\"", "\"")));
@@ -80,12 +81,17 @@ public class Banco_NPCs {
                 NPCs[l-1].setParticulaXML(NPC.extrairEntre("<particlefx>", "</particlefx>"));
                 NPCs[l-1].setComentario(NPC.extrairEntre("<!--", "-->"));
 
-                if(!NPCs[l-1].getXML().equals("") && FileClass.seExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
-                    NPCs[l-1].setSprite(getSpriteDeXML(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML()));
-                }
+             
             }
         }
 
+    }
+    //Separa o carregamento das Imgs do loop principal
+    public void carregarImg(int id){
+      int l = getNPCporID(id).getL();
+       if(!NPCs[l-1].getXML().equals("") && FileClass.seExiste(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML())){
+            NPCs[l-1].setSprite(getSpriteDeXML(EnderecoPastaDeSprites+Barra+NPCs[l-1].getXML()));
+       }
     }
     public int getContNPCs(){
         return NPCs.length;
@@ -110,7 +116,9 @@ public class Banco_NPCs {
         private String Nome="";
         private String Comentario="";
         private SpritePNG Sprite = null;
+        private int l;
 
+        public void setL(int novol){l=novol;}
         public void setID(int NovoID){ID=NovoID;}
         public void setXML(String NovoXML){XML=NovoXML;}
         public void setParticulaXML(String NovaParticula){Particula=NovaParticula;}
@@ -119,6 +127,7 @@ public class Banco_NPCs {
         public void setComentario(String NovoComentario){Comentario=NovoComentario;}
         public void setSprite(SpritePNG NovoSprite){Sprite=NovoSprite;}
 
+        public int getL(){return l;}
         public int getID(){return ID;}
         public String getXML(){return XML;}
         public String getParticulaXML(){return Particula;}
