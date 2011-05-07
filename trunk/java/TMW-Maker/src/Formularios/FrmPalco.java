@@ -14,6 +14,11 @@ import Classes.BlocoDeScript;
 import Classes.ConfigClass;
 import Classes.BancoDeDados.Banco_NPCs.Dados_NPC;
 import Classes.ImagemClass;
+import Formularios.FrmIF;
+import Formularios.FrmMes;
+import Formularios.FrmNovoBloco;
+import Formularios.FrmPrincipal;
+import Formularios.FrmScript;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -489,8 +494,9 @@ public class FrmPalco extends javax.swing.JDialog {
         //this.setTitle(Integer.toString(i));
         String Cod= Instancia[CmbScript.getSelectedIndex()].getScript().toString();
         TxtScriptPalco.setText(Cod.toString());/**/
-
+        FrmPrincipal.bdNPCs.carregarImg(Instancia[CmbScript.getSelectedIndex()].getImagem()); //Carrega a imagem antes de usar!
         Dados_NPC NPC = FrmPrincipal.bdNPCs.getNPCporID(Instancia[CmbScript.getSelectedIndex()].getImagem());
+
         ImagemClass Imagem = new ImagemClass(NPC.getImagem());
         double Escala = 96.0/(double)Imagem.getLargura();
         //double Escala = 1.0;
