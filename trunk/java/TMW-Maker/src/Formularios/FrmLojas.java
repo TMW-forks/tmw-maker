@@ -22,13 +22,15 @@ public class FrmLojas extends javax.swing.JDialog {
         Dados_NPC NPC = null;
         Vector Lista = new Vector();
         Lista.add("Não (Script Intangível)");
+          //Carrega a imagem antes de usar!
         for(int n=0;n<FrmPrincipal.bdNPCs.getContNPCs();n++){
             NPC = FrmPrincipal.bdNPCs.getNPCporOrdem(n);
             if(NPC!=null){
-                if(NPC.getSprite()!=null){
+                
+                
                     if(NPC.getID()>0) Lista.add(NPC.getID()+": "+(NPC.getNome().equals("")?"\""+NPC.getComentario().trim()+"\"":NPC.getNome()));
                     //if(NPC.getID()>0) Lista.add(NPC.getID());
-                }
+                
             }
         }
         CmbAparencias.setModel(new javax.swing.DefaultComboBoxModel(Lista));
@@ -533,10 +535,14 @@ public class FrmLojas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CmbAparenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbAparenciasActionPerformed
+        System.out.println("aqui0");
         if(CmbAparencias.getSelectedIndex()>=1){
             String Selecionado=CmbAparencias.getItemAt(CmbAparencias.getSelectedIndex()).toString();
             String Partes[] = Selecionado.split(":");
+            FrmPrincipal.bdNPCs.carregarImg(Integer.parseInt(Partes[0]));  //Carrega a imagem antes de usar!
+            System.out.println("aqui1");
             if(Partes.length>=2){
+                 System.out.println("aqui2");
                 Dados_NPC NPC = FrmPrincipal.bdNPCs.getNPCporID(Integer.parseInt(Partes[0]));
                 ImagemClass Imagem = new ImagemClass(NPC.getImagem());
                 Imagem.setZoom(2.0);
