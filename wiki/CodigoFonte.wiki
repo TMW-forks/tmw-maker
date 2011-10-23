@@ -1,7 +1,7 @@
 #labels SourceCode,CódigoFonte,Java,TMW-Maker,NetBeans
 <img height="300" align_="left" src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"><img height="300" align_="right" src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
 
-= Baixando o Código-Fonte no Netbeans=
+= Baixando o código-fonte do TMW-Maker pelo Netbeans=
 
 O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização de seu código fonte. Existem dois modos para você adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os seus planos. Se você deseja baixar o código fonte, escolha um os modos abaixo, e digite o respectivo comando abaixo em seu terminal.
 
