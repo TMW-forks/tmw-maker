@@ -19,4 +19,4 @@ Existem Alguns Pluggins no NetBeans que podem habilita-lo para editar outras lin
  Não sei! Quem souber, fique à vontade para explicar! XP
 
 ----
-|| *NOTA:* Agora que você já possui o [OpenJDK] e o [NetBeans] instalado em seu computador, baixe o código fonte da versão mais recente do [downloads Engine TMW-Maker] e tente melhora-lo. Conforme suas habilidades em *Aplicações Gráficas Java* forem crescendo, sua ajudar será bem vinda neste projeto. Voce também pode consultar o [CodigoFonte Código Fonte] deste engine direto do seu navegador. *XD* ||
+|| *NOTA:* Agora que você já possui o [OpenJDK] e o [NetBeans] instalado em seu computador, baixe o [CodigoFonte código fonte] da versão mais recente do [downloads Engine TMW-Maker] e tente melhora-lo. Conforme suas habilidades em *Aplicações Gráficas Java* forem crescendo, sua ajudar será bem vinda neste projeto. Você também pode consultar o [CodigoFonte Código Fonte] deste engine direto do seu navegador. *XD* ||
