@@ -5,6 +5,8 @@ import Classes.FileClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -51,32 +53,40 @@ public class Banco_Mapas {
                                     if(FileClass.seExiste(mapaTMX)){
 //////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
                                         Element tagMap=FileClass.arquivoAbrirXML(mapaTMX);
-                                        NodeList noProperties = tagMap.getElementsByTagName("properties");
-                                        if(noProperties.getLength()>=1){
-                                            int Largura=0,Altura=0; String Nome="", Miniatura="", Musica="";
-                                            Largura = FileClass.getAtributo(tagMap,"width",0);
-                                            Altura = FileClass.getAtributo(tagMap,"height",0);
-                                            FrmPrincipal.setAvisoEmEstatus(
-                                                FrmPrincipal.traducao.getTraducaoNormatizada(
-                                                    "FrmSplash", "bdWarps.getMap(%)",
-                                                    "[html]Carregando Mapa: \"[color[#0000FF]color]%1.tmx[/color]\" (%2x%3)!",
-                                                    mapaNome+"&&"+Largura+"&&"+Altura
-                                                ),
-                                                new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
-                                            );
-                                            Element tagProperties = (Element) noProperties.item(0);
-                                            NodeList noProperty = tagProperties.getElementsByTagName("property");
-                                            for (int Pr = 0; Pr < noProperty.getLength(); Pr++) {
-                                                Element tagProperty = (Element) noProperty.item(Pr);
-                                                String propName = FileClass.getAtributo(tagProperty,"name","");
-                                                String propValue = FileClass.getAtributo(tagProperty,"value","");
-                                                if(propName.equals("name")) Nome=propValue;
-                                                if(propName.equals("minimap")) Miniatura=propValue.replaceAll("/graphics/minimaps/", "");
-                                                if(propName.equals("music")) Musica=propValue;
-                                                if(!Nome.equals("") && !Miniatura.equals("") && !Musica.equals("")) Pr=noProperty.getLength();
-                                            }
-                                            addMapa(Nome,Miniatura,mapaNome+".tmx",mapaNome+".wlk",Musica,Largura,Altura);
-                                        }
+								try {
+									NodeList noProperties = tagMap.getElementsByTagName("properties");
+									if(noProperties.getLength()>=1){
+									    int Largura=0,Altura=0; String Nome="", Miniatura="", Musica="";
+									    Largura = FileClass.getAtributo(tagMap,"width",0);
+									    Altura = FileClass.getAtributo(tagMap,"height",0);
+									    FrmPrincipal.setAvisoEmEstatus(
+										   FrmPrincipal.traducao.getTraducaoNormatizada(
+											  "FrmSplash", "bdWarps.getMap(%)",
+											  "[html]Carregando Mapa: \"[color[#0000FF]color]%1.tmx[/color]\" (%2x%3)!",
+											  mapaNome+"&&"+Largura+"&&"+Altura
+										   ),
+										   new javax.swing.ImageIcon(getClass().getResource("/Imagem/Botoes/sbl_globo.gif"))
+									    );
+									    Element tagProperties = (Element) noProperties.item(0);
+									    NodeList noProperty = tagProperties.getElementsByTagName("property");
+									    for (int Pr = 0; Pr < noProperty.getLength(); Pr++) {
+										   Element tagProperty = (Element) noProperty.item(Pr);
+										   String propName = FileClass.getAtributo(tagProperty,"name","");
+										   String propValue = FileClass.getAtributo(tagProperty,"value","");
+										   if(propName.equals("name")) Nome=propValue;
+										   if(propName.equals("minimap")) Miniatura=propValue.replaceAll("/graphics/minimaps/", "");
+										   if(propName.equals("music")) Musica=propValue;
+										   if(!Nome.equals("") && !Miniatura.equals("") && !Musica.equals("")) Pr=noProperty.getLength();
+									    }
+									    addMapa(Nome,Miniatura,mapaNome+".tmx",mapaNome+".wlk",Musica,Largura,Altura);
+									}
+								} catch (NullPointerException ex) {
+									Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+									DialogClass.showErro(ex.getMessage(), ex.getLocalizedMessage());
+								} catch (Exception ex) {
+									Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+									DialogClass.showErro(ex.getMessage(), ex.getLocalizedMessage());
+								}
                                         
 
                                         
