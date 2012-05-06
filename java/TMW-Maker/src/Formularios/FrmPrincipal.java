@@ -889,6 +889,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     //DialogClass.showAlerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
                     try {
                         Process Retorno = Executador.exec(Comando);
+							   System.out.println(Comando.replaceAll(FrmPrincipal.Config.getExecucaoParametroSenha(), "********"));
                         BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
                         while ((line = in.readLine()) != null) {
                             System.out.println(line);
