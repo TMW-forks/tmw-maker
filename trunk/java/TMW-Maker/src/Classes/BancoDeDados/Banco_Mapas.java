@@ -89,10 +89,10 @@ public class Banco_Mapas {
 														}
 													} catch (NullPointerException ex) {
 														Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-														DialogClass.showErro(ex.getMessage(), ex.getLocalizedMessage());
+														//DialogClass.showErro(ex.getMessage(), ex.getLocalizedMessage());
 													} catch (Exception ex) {
 														Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-														DialogClass.showErro(ex.getMessage(), ex.getLocalizedMessage());
+														//DialogClass.showErro(ex.getMessage(), ex.getLocalizedMessage());
 													}
                                         
 
