@@ -52,7 +52,7 @@ public class Banco_Mapas {
                                     mapaTMX=PastaDeMapas+Barra+mapaNome+".tmx";
                                     if(FileClass.seExiste(mapaTMX)){
 //////////////////////////////////////////////////////// PARA COLPILAR ////////////////////////////////////////////////////////////
-													try {
+													/*try {
 	                                       Element tagMap = FileClass.arquivoAbrirXML(mapaTMX);
 														NodeList noProperties = tagMap.getElementsByTagName("properties");
 														if (noProperties.getLength() >= 1) {
@@ -94,6 +94,8 @@ public class Banco_Mapas {
 														Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
 														//DialogClass.showErro(ex.getMessage(), ex.getLocalizedMessage());
 													}
+													 /**/
+
                                         
 
                                         
