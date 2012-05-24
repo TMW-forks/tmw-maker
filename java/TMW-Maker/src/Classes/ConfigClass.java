@@ -13,19 +13,30 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URISyntaxException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class ConfigClass {
+	 Endecrypt myEndecrypt  = new Endecrypt("OpenWorld");
     private String Versao = "0.2";
     private String  Barra = System.getProperty("file.separator");
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
-    private String  ConexaoLocalhost =              getPastaDoUsuario()+Barra+"localhost";
+	 //private String  ConexaoLocalhost =              getPastaDoUsuario()+Barra+"localhost";
+    private String  ConexaoLocalhost =              getPastaDoSistema()+Barra+"localhost";
+	 
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
     private String  ExecucaoComando =               "manaplus";
@@ -62,7 +73,8 @@ public class ConfigClass {
             Loc1=EnderecoReal.indexOf("build/classes");
             if(Loc1>=0){
                 SeExecutandoCodigofonte=true;
-                return "/usr/share/TMW-Maker";
+					 return "/usr/share/TMW-Maker";
+					 //return EnderecoReal+"/../../dist";
             }else{
                 SeExecutandoCodigofonte=false;
                 return EnderecoReal;
@@ -272,50 +284,58 @@ public class ConfigClass {
     public String  getTMWData(){return ConexaoLocalhost+Barra+"tmwdata";}
 
     public void ConfiguracoesGravar(){ConfiguracoesGravar(ConfiguracaoURL);}
-    public void ConfiguracoesGravar(String Endereco){
-        String Corpo=
-        "////////////////////////////////\n"+
-        "// Configurações do TMW-Maker //\n"+
-        "////////////////////////////////\n"+
-        "\n"+
-        "Versao: "+getVersao()+"\n"+
+    public void ConfiguracoesGravar(String Endereco) {
+		//keyEndecript
 
-        "ConexaoRepositorio: "+getConexaoRepositorio()+"\n"+
-        "ConexaoLocalhost: "+getConexaoLocalhost()+"\n"+
-        "ConexaoUsuario: "+getConexaoUsuario()+"\n"+
-        "ConexaoSenha: "+getConexaoSenha()+"\n"+
+		//Endecrypt aaa
 
-        "ExecucaoComando: "+getExecucaoComando()+"\n"+
-        //"ExecucaoParametroTMWData: "+getExecucaoParametroTMWData()+"\n"+
-        "ExecucaoParametroServidor: "+getExecucaoParametroServidor()+"\n"+
-        "ExecucaoParametroConta: "+getExecucaoParametroConta()+"\n"+
-        "ExecucaoParametroSenha: "+getExecucaoParametroSenha()+"\n"+
-        "ExecucaoParametroPersonagem: "+getExecucaoParametroPersonagem()+"\n"+
-        "ExecucaoParametroSemopengl: "+(getExecucaoParametroSemopengl()?"true":"false")+"\n"+
+		//Endecrypt endecrypt = new Endecrypt($sqlUser + "@" + $sqlServer + "/" + $sqlDB);
+		//$sqlPass = endecrypt.decriptar(FileClass.getAtributo($tagMySQL, "password", $sqlPass));
 
-        "DocumentacaoAlteracoes: "+getDocumentacaoAlteracoes()+"\n"+
-        "DocumentacaoComponentes: "+getDocumentacaoComponentes()+"\n"+
-        "DocumentacaoComentarios: "+getDocumentacaoComentarios()+"\n"+
-        "DocumentacaoTraducoes: "+getDocumentacaoTraducoes()+"\n"+
 
-        "AtualizacaoEngineUltima: "         +getAtualizacaoEngineUltima()+"\n"+
-        "AtualizacaoEngineIntervalo: "      +getAtualizacaoEngineIntervalo()+"\n"+
-        "AtualizacaoLocalhostUltima: "      +getAtualizacaoLocalhostUltima()+"\n"+
-        "AtualizacaoLocalhostIntervalo: "   +getAtualizacaoLocalhostIntervalo()+"\n"+
+		try {
+			String ConexaoSenha = myEndecrypt.encriptar(getConexaoSenha());
+			String ExecucaoParametroSenha = myEndecrypt.encriptar(getExecucaoParametroSenha());
+			String Corpo =
+			  "////////////////////////////////\n"+
+			  "// Configurações do TMW-Maker //\n"+
+			  "////////////////////////////////\n"+
+			  "\n"
+			  + "Versao: " + getVersao() + "\n"
+			  + "ConexaoRepositorio: " + getConexaoRepositorio() + "\n"
+			  + "ConexaoLocalhost: " + getConexaoLocalhost() + "\n"
+			  + "ConexaoUsuario: " + getConexaoUsuario() + "\n"
+			  + "ConexaoSenha: " + myEndecrypt.encriptar(getConexaoSenha()) + "\n"
+			  //+ "ConexaoSenha: " + getConexaoSenha() + "\n"
+			  + "ExecucaoComando: " + getExecucaoComando() + "\n"
+			  + //"ExecucaoParametroTMWData: "+getExecucaoParametroTMWData()+"\n"+
+			  "ExecucaoParametroServidor: " + getExecucaoParametroServidor() + "\n"
+			  + "ExecucaoParametroConta: " + getExecucaoParametroConta() + "\n"
+			  + "ExecucaoParametroSenha: " + myEndecrypt.encriptar(getExecucaoParametroSenha()) + "\n"
+			  //+ "ExecucaoParametroSenha: " + getExecucaoParametroSenha() + "\n"
+			  + "ExecucaoParametroPersonagem: " + getExecucaoParametroPersonagem() + "\n"
+			  + "ExecucaoParametroSemopengl: " + (getExecucaoParametroSemopengl() ? "true" : "false") + "\n"
+			  + "DocumentacaoAlteracoes: " + getDocumentacaoAlteracoes() + "\n"
+			  + "DocumentacaoComponentes: " + getDocumentacaoComponentes() + "\n"
+			  + "DocumentacaoComentarios: " + getDocumentacaoComentarios() + "\n"
+			  + "DocumentacaoTraducoes: " + getDocumentacaoTraducoes() + "\n"
+			  + "AtualizacaoEngineUltima: " + getAtualizacaoEngineUltima() + "\n"
+			  + "AtualizacaoEngineIntervalo: " + getAtualizacaoEngineIntervalo() + "\n"
+			  + "AtualizacaoLocalhostUltima: " + getAtualizacaoLocalhostUltima() + "\n"
+			  + "AtualizacaoLocalhostIntervalo: " + getAtualizacaoLocalhostIntervalo() + "\n"
+			  + "\n//Fim de Configuração";
 
-        "\n//Fim de Configuração";
-        try {
-            /*FileWriter out = new FileWriter(Endereco);
-            out.write(Corpo);
-            out.close();/**/
-            BufferedWriter Capsula = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Endereco),"UTF-8"));
-            Capsula.write(Corpo);
-            Capsula.flush();
-            Capsula.close();
-        } catch (java.io.IOException exc) {
-            DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
-        }
-    }
+			/*FileWriter out = new FileWriter(Endereco);
+			out.write(Corpo);
+			out.close();/**/
+			BufferedWriter Capsula = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Endereco), "UTF-8"));
+			Capsula.write(Corpo);
+			Capsula.flush();
+			Capsula.close();
+		} catch (java.io.IOException exc) {
+			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
+		}
+	}
     public void ConfiguracoesAbrir(){ConfiguracoesAbrir(ConfiguracaoURL);}
     public void ConfiguracoesAbrir(String Endereco){
         //Rotina de Abrir Configuracões
