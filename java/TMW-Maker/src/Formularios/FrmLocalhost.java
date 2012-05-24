@@ -132,8 +132,6 @@ public class FrmLocalhost extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_BtnFecharActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        //setTitle("svn checkout "+FrmPrincipal.Config.getConexaoRepositorio());
-        //BtnCompartilhar.setEnabled(FrmPrincipal.Config.getSeDependenciaDeMontagem());
         if(FrmPrincipal.Config.getSeDependenciaDeLocalhost()){
             BtnBaixar.setMnemonic('A');
             BtnBaixar.setText("Atualizar");
@@ -367,9 +365,7 @@ public class FrmLocalhost extends javax.swing.JDialog {
                         FrmPrincipal.setAvisoEmEstatus("Baixando binários novos...");
                         addLinhaDeEstatus("Baixando binários novos...");
                         if (OS.indexOf("linux") >= 0 && (Arch.indexOf("i386") >= 0 || Arch.indexOf("x64") >= 0 || Arch.indexOf("amd64") >= 0)){
-                            Comando = "svn checkout " +
-                                    "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
-                                    FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
+                            Comando = "svn checkout http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +FrmPrincipal.Config.getConexaoLocalhost() +Barra+ "bins";
                             BinariosEspecificos = true;
                             System.out.println(Comando);
                             //DialogClass.showErro(Comando,"Nota de Programador");
