@@ -1,24 +1,34 @@
 package Classes;
 
+import Metodos.Endecrypt;
 import autocomplete.DocComando;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class ConfigClass {
 	 //Endecrypt myEndecrypt  = new Endecrypt("OpenWorld");
@@ -66,7 +76,8 @@ public class ConfigClass {
             Loc1=EnderecoReal.indexOf("build/classes");
             if(Loc1>=0){
                 SeExecutandoCodigofonte=true;
-					 return "/usr/share/TMW-Maker";
+					 return getPastaDoUsuario();
+					 //return "/usr/share/TMW-Maker";
 					 //return EnderecoReal+"/../../dist";
             }else{
                 SeExecutandoCodigofonte=false;
@@ -278,15 +289,9 @@ public class ConfigClass {
 
     public void ConfiguracoesGravar(){ConfiguracoesGravar(ConfiguracaoURL);}
     public void ConfiguracoesGravar(String Endereco) {
-		//keyEndecript
-
-		//Endecrypt aaa
-
-		//Endecrypt endecrypt = new Endecrypt($sqlUser + "@" + $sqlServer + "/" + $sqlDB);
-		//$sqlPass = endecrypt.decriptar(FileClass.getAtributo($tagMySQL, "password", $sqlPass));
-
-
 		try {
+			Endecrypt endecrypt = new Endecrypt("OpenWorld");
+
 			String Corpo =
 			  "////////////////////////////////\n"+
 			  "// Configurações do TMW-Maker //\n"+
@@ -296,14 +301,14 @@ public class ConfigClass {
 			  + "ConexaoRepositorio: " + getConexaoRepositorio() + "\n"
 			  + "ConexaoLocalhost: " + getConexaoLocalhost() + "\n"
 			  + "ConexaoUsuario: " + getConexaoUsuario() + "\n"
-			  //+ "ConexaoSenha: " + myEndecrypt.encriptar(getConexaoSenha()) + "\n"
-			  + "ConexaoSenha: " + getConexaoSenha() + "\n"
+			  + "ConexaoSenha: " + endecrypt.getEncriptado(getConexaoSenha()) + "\n"
+			  //+ "ConexaoSenha: " + getConexaoSenha() + "\n"
 			  + "ExecucaoComando: " + getExecucaoComando() + "\n"
 			  + //"ExecucaoParametroTMWData: "+getExecucaoParametroTMWData()+"\n"+
 			  "ExecucaoParametroServidor: " + getExecucaoParametroServidor() + "\n"
 			  + "ExecucaoParametroConta: " + getExecucaoParametroConta() + "\n"
-			  //+ "ExecucaoParametroSenha: " + myEndecrypt.encriptar(getExecucaoParametroSenha()) + "\n"
-			  + "ExecucaoParametroSenha: " + getExecucaoParametroSenha() + "\n"
+			  + "ExecucaoParametroSenha: " + endecrypt.getEncriptado(getExecucaoParametroSenha()) + "\n"
+			  //+ "ExecucaoParametroSenha: " + getExecucaoParametroSenha() + "\n"
 			  + "ExecucaoParametroPersonagem: " + getExecucaoParametroPersonagem() + "\n"
 			  + "ExecucaoParametroSemopengl: " + (getExecucaoParametroSemopengl() ? "true" : "false") + "\n"
 			  + "DocumentacaoAlteracoes: " + getDocumentacaoAlteracoes() + "\n"
@@ -325,16 +330,32 @@ public class ConfigClass {
 			Capsula.close();
 		} catch (java.io.IOException exc) {
 			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
+		} catch (NoSuchAlgorithmException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (NoSuchPaddingException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InvalidKeyException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IllegalBlockSizeException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (BadPaddingException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
 	}
     public void ConfiguracoesAbrir(){ConfiguracoesAbrir(ConfiguracaoURL);}
     public void ConfiguracoesAbrir(String Endereco){
         //Rotina de Abrir Configuracões
         String Conteudo="";
         try {
+				Endecrypt endecrypt = new Endecrypt("OpenWorld");
             String Linha="";
-            FileInputStream stream = new FileInputStream(Endereco);
-            InputStreamReader streamReader = new InputStreamReader(stream,"UTF-8");
+            FileInputStream stream;
+				stream = new FileInputStream(Endereco);
+
+            InputStreamReader streamReader;
+
+				streamReader = new InputStreamReader(stream, "UTF-8");
             BufferedReader reader = new BufferedReader(streamReader);
             while ((Linha = reader.readLine()) != null) {
                 if(!Conteudo.equals("")){
@@ -342,7 +363,7 @@ public class ConfigClass {
                 }else{
                     Conteudo=Linha;
                 }
-            }
+			  }
             reader.close();
             streamReader.close();
             stream.close();
@@ -350,12 +371,12 @@ public class ConfigClass {
             setConexaoRepositorio(getPropriedade(Conteudo,"ConexaoRepositorio"));
             setConexaoLocalhost(getPropriedade(Conteudo,"ConexaoLocalhost"));
             setConexaoUsuario(getPropriedade(Conteudo,"ConexaoUsuario"));
-            setConexaoSenha(getPropriedade(Conteudo,"ConexaoSenha"));
+            setConexaoSenha(endecrypt.getDecriptado(getPropriedade(Conteudo,"ConexaoSenha")));
             setExecucaoComando(getPropriedade(Conteudo,"ExecucaoComando"));
             //setExecucaoParametroTMWData(getPropriedade(Conteudo,"ExecucaoParametroTMWData"));
             setExecucaoParametroServidor(getPropriedade(Conteudo,"ExecucaoParametroServidor"));
             setExecucaoParametroConta(getPropriedade(Conteudo,"ExecucaoParametroConta"));
-            setExecucaoParametroSenha(getPropriedade(Conteudo,"ExecucaoParametroSenha"));
+            setExecucaoParametroSenha(endecrypt.getDecriptado(getPropriedade(Conteudo,"ExecucaoParametroSenha")));
             setExecucaoParametroPersonagem(getPropriedade(Conteudo,"ExecucaoParametroPersonagem"));
             setExecucaoParametroSemopengl(getPropriedade(Conteudo,"ExecucaoParametroSemopengl").equals("true"));
             setDocumentacaoAlteracoes(getPropriedade(Conteudo,"DocumentacaoAlteracoes"));
@@ -369,13 +390,20 @@ public class ConfigClass {
             setAtualizacaoLocalhostUltima(Long.parseLong(getPropriedade(Conteudo,"AtualizacaoLocalhostUltima").equals("")?"0":getPropriedade(Conteudo,"AtualizacaoLocalhostUltima")));
             setAtualizacaoLocalhostIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo")));
 
-} catch (java.io.IOException exc) {
-            //showAlerta("Não foi possivel abrir o arquivo!","AVISO");
-            //ExemploDeConteudo();
-            //TxtScript.setEnabled(true);
-            //CmbScript.setEnabled(true);
-        }
-    }
+		} catch (IOException ex) {
+			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");/**/
+		} catch (NoSuchAlgorithmException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (NoSuchPaddingException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InvalidKeyException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IllegalBlockSizeException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (BadPaddingException ex) {
+			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
     public boolean getSeDependenciaDeConfiguracao() {
         if(FileClass.seExiste(ConfiguracaoURL)){
