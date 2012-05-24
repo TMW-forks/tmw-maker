@@ -81,8 +81,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 FrmPrincipal.setAvisoEmEstatus("Baixando atualização...");
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-                String Destino=Config.getPastaDoSistema()+barra;
-                Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Destino+" --force";
+                Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Config.getPastaDoSistema()+barra+" --force";
 
                 try {
                     Process Retorno=Executador.exec(Comando);
@@ -241,9 +240,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             PgbBarra.setString("Preparando...");
                             setAvisoEmEstatus("Preparando para baixar binários novos...");
                             if (OS.indexOf("linux") >= 0 && (Arch.indexOf("i386") >= 0 || Arch.indexOf("x64") >= 0 || Arch.indexOf("amd64") >= 0)){
-                                Comando = "svn checkout " +
-                                        "http://tmw-maker.googlecode.com/svn/bins/" + OS + "/" + Arch + " " +
-                                        FrmPrincipal.Config.getConexaoLocalhost() +barra+ "bins";
+                                Comando = "svn checkout http://tmw-maker.googlecode.com/svn/bins/"+OS+"/"+Arch+" "+FrmPrincipal.Config.getConexaoLocalhost()+barra+"bins";
                                 BinariosEspecificos = true;
                                 System.out.println(Comando);
                                 //DialogClass.showAlerta(Comando,"Nota de Programador");

@@ -35,8 +35,8 @@ public class ConfigClass {
     private String  Barra = System.getProperty("file.separator");
 
     private String  ConexaoRepositorio =            "http://themanaworld-br.googlecode.com/svn/trunk";
-	 //private String  ConexaoLocalhost =              getPastaDoUsuario()+Barra+"localhost";
-    private String  ConexaoLocalhost =              getPastaDoSistema()+Barra+"localhost";
+	 private String  ConexaoLocalhost =              getPastaDoUsuario()+Barra+"localhost";
+    //private String  ConexaoLocalhost =              getPastaDoSistema()+Barra+"localhost";
 	 
     private String  ConexaoUsuario =                "";
     private String  ConexaoSenha =                  "";
@@ -379,7 +379,7 @@ public class ConfigClass {
             setAtualizacaoLocalhostIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo")));
 				System.out.println("Configuração aberta com sucesso!");
 		} catch (IOException ex) {
-			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
+			//DialogClass.showErro("Não foi possível abrir as configurações!", "ERRO");
 		} 
 	}
 
