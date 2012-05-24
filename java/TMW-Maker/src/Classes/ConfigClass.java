@@ -7,14 +7,12 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -290,8 +288,6 @@ public class ConfigClass {
     public void ConfiguracoesGravar(){ConfiguracoesGravar(ConfiguracaoURL);}
     public void ConfiguracoesGravar(String Endereco) {
 		try {
-			Endecrypt endecrypt = new Endecrypt("OpenWorld");
-
 			String Corpo =
 			  "////////////////////////////////\n"+
 			  "// Configurações do TMW-Maker //\n"+
@@ -301,13 +297,13 @@ public class ConfigClass {
 			  + "ConexaoRepositorio: " + getConexaoRepositorio() + "\n"
 			  + "ConexaoLocalhost: " + getConexaoLocalhost() + "\n"
 			  + "ConexaoUsuario: " + getConexaoUsuario() + "\n"
-			  + "ConexaoSenha: " + endecrypt.getEncriptado(getConexaoSenha()) + "\n"
+			  + "ConexaoSenha: " + Endecrypt.getEncriptado(getConexaoSenha()) + "\n"
 			  //+ "ConexaoSenha: " + getConexaoSenha() + "\n"
 			  + "ExecucaoComando: " + getExecucaoComando() + "\n"
 			  + //"ExecucaoParametroTMWData: "+getExecucaoParametroTMWData()+"\n"+
 			  "ExecucaoParametroServidor: " + getExecucaoParametroServidor() + "\n"
 			  + "ExecucaoParametroConta: " + getExecucaoParametroConta() + "\n"
-			  + "ExecucaoParametroSenha: " + endecrypt.getEncriptado(getExecucaoParametroSenha()) + "\n"
+			  + "ExecucaoParametroSenha: " + Endecrypt.getEncriptado(getExecucaoParametroSenha()) + "\n"
 			  //+ "ExecucaoParametroSenha: " + getExecucaoParametroSenha() + "\n"
 			  + "ExecucaoParametroPersonagem: " + getExecucaoParametroPersonagem() + "\n"
 			  + "ExecucaoParametroSemopengl: " + (getExecucaoParametroSemopengl() ? "true" : "false") + "\n"
@@ -328,18 +324,9 @@ public class ConfigClass {
 			Capsula.write(Corpo);
 			Capsula.flush();
 			Capsula.close();
+			System.out.println("Configuração salva com sucesso!");
 		} catch (java.io.IOException exc) {
 			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
-		} catch (NoSuchAlgorithmException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (NoSuchPaddingException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InvalidKeyException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (IllegalBlockSizeException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (BadPaddingException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
@@ -348,7 +335,6 @@ public class ConfigClass {
         //Rotina de Abrir Configuracões
         String Conteudo="";
         try {
-				Endecrypt endecrypt = new Endecrypt("OpenWorld");
             String Linha="";
             FileInputStream stream;
 				stream = new FileInputStream(Endereco);
@@ -371,12 +357,14 @@ public class ConfigClass {
             setConexaoRepositorio(getPropriedade(Conteudo,"ConexaoRepositorio"));
             setConexaoLocalhost(getPropriedade(Conteudo,"ConexaoLocalhost"));
             setConexaoUsuario(getPropriedade(Conteudo,"ConexaoUsuario"));
-            setConexaoSenha(endecrypt.getDecriptado(getPropriedade(Conteudo,"ConexaoSenha")));
+            setConexaoSenha(Endecrypt.getDecriptado(getPropriedade(Conteudo,"ConexaoSenha")));
+            //setConexaoSenha(getPropriedade(Conteudo,"ConexaoSenha"));
             setExecucaoComando(getPropriedade(Conteudo,"ExecucaoComando"));
             //setExecucaoParametroTMWData(getPropriedade(Conteudo,"ExecucaoParametroTMWData"));
             setExecucaoParametroServidor(getPropriedade(Conteudo,"ExecucaoParametroServidor"));
             setExecucaoParametroConta(getPropriedade(Conteudo,"ExecucaoParametroConta"));
-            setExecucaoParametroSenha(endecrypt.getDecriptado(getPropriedade(Conteudo,"ExecucaoParametroSenha")));
+				//setExecucaoParametroSenha(getPropriedade(Conteudo,"ExecucaoParametroSenha"));
+            setExecucaoParametroSenha(Endecrypt.getDecriptado(getPropriedade(Conteudo,"ExecucaoParametroSenha")));
             setExecucaoParametroPersonagem(getPropriedade(Conteudo,"ExecucaoParametroPersonagem"));
             setExecucaoParametroSemopengl(getPropriedade(Conteudo,"ExecucaoParametroSemopengl").equals("true"));
             setDocumentacaoAlteracoes(getPropriedade(Conteudo,"DocumentacaoAlteracoes"));
@@ -389,20 +377,10 @@ public class ConfigClass {
 
             setAtualizacaoLocalhostUltima(Long.parseLong(getPropriedade(Conteudo,"AtualizacaoLocalhostUltima").equals("")?"0":getPropriedade(Conteudo,"AtualizacaoLocalhostUltima")));
             setAtualizacaoLocalhostIntervalo(Integer.parseInt(getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo").equals("")?"1":getPropriedade(Conteudo,"AtualizacaoLocalhostIntervalo")));
-
+				System.out.println("Configuração aberta com sucesso!");
 		} catch (IOException ex) {
-			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");/**/
-		} catch (NoSuchAlgorithmException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (NoSuchPaddingException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InvalidKeyException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (IllegalBlockSizeException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (BadPaddingException ex) {
-			Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
-		}
+			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
+		} 
 	}
 
     public boolean getSeDependenciaDeConfiguracao() {
