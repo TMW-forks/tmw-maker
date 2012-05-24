@@ -13,23 +13,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URISyntaxException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 public class ConfigClass {
-	 Endecrypt myEndecrypt  = new Endecrypt("OpenWorld");
+	 //Endecrypt myEndecrypt  = new Endecrypt("OpenWorld");
+
     private String Versao = "0.2";
     private String  Barra = System.getProperty("file.separator");
 
@@ -294,8 +287,6 @@ public class ConfigClass {
 
 
 		try {
-			String ConexaoSenha = myEndecrypt.encriptar(getConexaoSenha());
-			String ExecucaoParametroSenha = myEndecrypt.encriptar(getExecucaoParametroSenha());
 			String Corpo =
 			  "////////////////////////////////\n"+
 			  "// Configurações do TMW-Maker //\n"+
@@ -305,14 +296,14 @@ public class ConfigClass {
 			  + "ConexaoRepositorio: " + getConexaoRepositorio() + "\n"
 			  + "ConexaoLocalhost: " + getConexaoLocalhost() + "\n"
 			  + "ConexaoUsuario: " + getConexaoUsuario() + "\n"
-			  + "ConexaoSenha: " + myEndecrypt.encriptar(getConexaoSenha()) + "\n"
-			  //+ "ConexaoSenha: " + getConexaoSenha() + "\n"
+			  //+ "ConexaoSenha: " + myEndecrypt.encriptar(getConexaoSenha()) + "\n"
+			  + "ConexaoSenha: " + getConexaoSenha() + "\n"
 			  + "ExecucaoComando: " + getExecucaoComando() + "\n"
 			  + //"ExecucaoParametroTMWData: "+getExecucaoParametroTMWData()+"\n"+
 			  "ExecucaoParametroServidor: " + getExecucaoParametroServidor() + "\n"
 			  + "ExecucaoParametroConta: " + getExecucaoParametroConta() + "\n"
-			  + "ExecucaoParametroSenha: " + myEndecrypt.encriptar(getExecucaoParametroSenha()) + "\n"
-			  //+ "ExecucaoParametroSenha: " + getExecucaoParametroSenha() + "\n"
+			  //+ "ExecucaoParametroSenha: " + myEndecrypt.encriptar(getExecucaoParametroSenha()) + "\n"
+			  + "ExecucaoParametroSenha: " + getExecucaoParametroSenha() + "\n"
 			  + "ExecucaoParametroPersonagem: " + getExecucaoParametroPersonagem() + "\n"
 			  + "ExecucaoParametroSemopengl: " + (getExecucaoParametroSemopengl() ? "true" : "false") + "\n"
 			  + "DocumentacaoAlteracoes: " + getDocumentacaoAlteracoes() + "\n"
