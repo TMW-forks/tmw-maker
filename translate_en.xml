@@ -1,0 +1,85 @@
+<tmwmaker>
+    <properties
+        language="en"
+        by="Lunovox"
+        email="rui.gravata@hotmail.com"
+        update="2010-12-18 16:11:10"
+    />
+    <form name="FrmSplash">
+        <translate id="FrmSplash">Loading TMW-Maker...</translate>
+        <translate id="FrmSplash.End()">Database eAthena loaded successfully!</translate>
+        <translate id="PgbBarra(Erro)">ERRO!</translate>
+        <translate id="PgbBarra(Concluido)">Finalized!</translate>
+        <translate id="PgbBarra(Carregando)">Loading...</translate>
+        <translate id="bdNPCs.Load()">[html]Loading database of NPCs ([color[#FF0000]color]Please wait![/color])</translate>
+        <translate id="bdProds.Load()">[html]Loading database of Items ([color[#FF0000]color]Please wait![/color])</translate>
+
+        <translate id="bdWarps.Load()">[html]Loading database of Maps ([color[#FF0000]color]Please wait![/color])</translate>
+        <translate id="bdWarps.Compilador">Compiler</translate>
+        <translate id="bdWarps.getMap(%)">[html]Loading Map: "[color[#0000FF]color]%1.tmx[/color]" (%2x%3)!</translate>
+        <translate id="bdWarps.getErro(noFoundMap)">[html][color[#FF0000]color]ERRO:[/color] Map "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
+        <translate id="bdWarps.getErro(noFoundMob)">[html][color[#FF0000]color]ERRO:[/color] Spawn "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
+        <translate id="bdWarps.getErro(noFoundWarps)">[html][color[#FF0000]color]ERRO:[/color] Warp "[color[#FF0000]color]%1.tmx[/color]" not found!</translate>
+        <translate id="bdWarps.End()">[html]Compilation partially finished! ([color[#FF0000]color]Deprecated Function[/color])</translate>
+
+        <translate id="bdMOBs.Load()">[html]Loading database of Monsters ([color[#FF0000]color]Please wait![/color])</translate>
+        <translate id="bdMOBs.getSpawn(%)">[html]Loading Monster: "[color[#0000FF]color]%1: %2[/color]"!</translate>
+    </form>
+    <form name="FrmPrincipal">
+        <translate id="LblEstatus">Welcome to TMW-Maker!</translate>
+
+        <translate id="showOpcoes.Title[0]">UPDATE LOCALHOST</translate>
+        <translate id="showOpcoes.Message[0]">[html]The TMW-Maker is a tool for collaborative development. [br]For this reason, your Localhost may be outdated. [br]Do you want to look for other devs update shared by the Internet?</translate>
+        <translate id="showOpcoes.Title[1]">UPDATE TMW-MAKER</translate>
+        <translate id="showOpcoes.Message[1]">[html]Your TMW-Maker may be outdated. [br]Do you want to look for an updated version?</translate>
+        <translate id="showOpcoes.btnAtualizar">Update</translate>
+        <translate id="showOpcoes.btnDepois">After</translate>
+
+        <translate id="BtnSistemaConfiguracoes">Settings (Ctrl+G)</translate>
+
+        <translate id="MnuSistema">System</translate>
+        <translate id="MnuSistemaAlteracoes">Changes</translate>
+        <translate id="MnuSistemaAtualizar">Update</translate>
+        <translate id="MnuSistemaConfiguracoes">Settings...</translate>
+        <translate id="MnuSistemaDependencias">Dependencies...</translate>
+        <translate id="MnuSistemaAreaDeTestes">Testing Area...</translate>
+        <translate id="MnuSistemaFechar">Close</translate>
+
+        <translate id="MnuEditar">Edit</translate>
+        <translate id="MnuEditarItens">Items</translate>
+            <translate id="MnuEditarItensSprites">New Equipment</translate>
+            <translate id="MnuEditarItensDados">Items Editor</translate>
+        <translate id="MnuEditarCampos">Lands</translate>
+            <translate id="MnuEditarCamposTilesets">Tilesets</translate>
+            <translate id="MnuEditarCamposMapas">Maps</translate>
+        <translate id="MnuEditarPersonagem">NPCs</translate>
+            <translate id="MnuEditarPersonagemAparencia">Appearance</translate>
+            <translate id="MnuEditarPersonagemScript">Tree Script NPC</translate>
+        <translate id="MnuEditarMonstros">Monsters</translate>
+            <translate id="MnuEditarMonstrosDados">Monsters Editor</translate>
+            <translate id="MnuEditarMonstrosAnimacao">Animation</translate>
+            <translate id="MnuEditarMonstrosArenas">Arenas</translate>
+        <translate id="MnuEditarMagias">Magics</translate>
+        <translate id="MnuEditarContas">Accounts</translate>
+        <translate id="MnuEditarParticulas">Particles</translate>
+
+        <translate id="MnuLocalhost">Localhost</translate>
+        <translate id="MnuLocalhostSupervisionar">Supervise...</translate>
+        <translate id="MnuLocalhostAtualizar">Update</translate>
+        <translate id="MnuLocalhostCompartilhar">Share</translate>
+        <translate id="MnuLocalhostCompilar">Compile</translate>
+        <translate id="MnuLocalhostExecutar">Play</translate>
+
+        <translate id="MnuAjuda">Help</translate>
+        <translate id="MnuAjudaComponentes">Components</translate>
+        <translate id="MnuAjudaIndicarDefeito">Indicate defect</translate>
+        <translate id="MnuAjudaTraducoes">Translations</translate>
+        <translate id="MnuAjudaSobre">About this Engine</translate>
+    </form>
+    <form name="FrmPalco">
+        <translate id="BtnAbrirBloco">Open</translate>
+        <translate id="Message[0]">Opens the last saved changes to the document!</translate>
+        <translate id="BtnExcluirBloco">Delete</translate>
+        <translate id="Message[1]">Delete the file %1 permanently?</translate>
+    </form>
+</tmwmaker>
