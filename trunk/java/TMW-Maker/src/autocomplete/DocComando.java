@@ -5,7 +5,7 @@
 
 package autocomplete;
 import Classes.DialogClass;
-import Classes.FileClass;
+import classes.FileClass;
 import java.net.URISyntaxException;
 import java.util.List;  
   

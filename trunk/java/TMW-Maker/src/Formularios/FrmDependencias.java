@@ -1,8 +1,9 @@
 package Formularios;
 
-import Classes.FileClass;
+//import classes.FileClass;
 import Classes.ConfigClass;
 import Classes.DialogClass;
+import classes.FileClass;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
@@ -1216,15 +1217,16 @@ public class FrmDependencias extends javax.swing.JDialog {
 							rm $HOME/tmwserver // Apaga Link
 							ln -s $PWD $HOME/tmwserver //Recria Link
 							/**/
-							if (FileClass.seExiste(System.getProperty("user.home") + Barra + "tmwserver")) {
-								FileClass.apagar(System.getProperty("user.home") + Barra + "tmwserver");
-							}
+							String $link = FrmPrincipal.Config.getPastaDoUsuario() + Barra + "tmwserver";
+							String $destino = FrmPrincipal.Config.getConexaoLocalhost() + Barra + "eathena-data";
 							FrmPrincipal.PgbBarra.setString("Coligando...");
-							addLinhaDeEstatus("     Criando link \"" + System.getProperty("user.home") + Barra + "tmwserver\"...");
+							if (FileClass.seExiste($link)){
+									addLinhaDeEstatus("     Removendo arquivo \"" + $link+"\"...");
+									FileClass.apagar($link);
+							}
+							addLinhaDeEstatus("     Criando link  para \"" + $link+"\"...");
 							FrmPrincipal.setAvisoEmEstatus("Criando link \"" + System.getProperty("user.home") + Barra + "tmwserver\"...");
-							Comando = "ln -s "
-									  + FrmPrincipal.Config.getConexaoLocalhost() + Barra + "eathena-data" + " "
-									  + System.getProperty("user.home") + Barra + "tmwserver";
+							Comando = "ln -s "+$destino+" "+$link;
 							System.out.println(Comando);
 							try {
 								Process Retorno = Executador.exec(Comando);
