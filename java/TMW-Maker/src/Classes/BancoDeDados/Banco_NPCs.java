@@ -1,7 +1,7 @@
 
 package Classes.BancoDeDados;
 
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.DialogClass;
 import Classes.SpritePNG;
 import Classes.StringClass;

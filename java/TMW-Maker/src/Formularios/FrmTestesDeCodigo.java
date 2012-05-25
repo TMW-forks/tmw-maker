@@ -1,7 +1,7 @@
 
 package Formularios;
 
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.ImagemClass;
 import Classes.Modificadoras.jTtableImagemDeColuna;
 import Classes.Modificadoras.jTtableImagemDeCabecalho;

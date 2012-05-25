@@ -1,6 +1,6 @@
 package Classes.BancoDeDados;
 
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.BancoDeDados.Banco_Lojas.Dados_Lojas.Dados_LojaProduto;
 import Classes.ConfigClass;
 import Classes.StringClass;

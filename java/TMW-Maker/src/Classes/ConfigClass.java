@@ -1,5 +1,6 @@
 package Classes;
 
+import classes.FileClass;
 import Metodos.Endecrypt;
 import autocomplete.DocComando;
 import java.io.BufferedOutputStream;

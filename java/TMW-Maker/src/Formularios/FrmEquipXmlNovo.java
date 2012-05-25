@@ -1,6 +1,6 @@
 package Formularios;
 
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.ImagemClass;
 import Classes.SpritePNG;
 import Classes.SpriteXML;

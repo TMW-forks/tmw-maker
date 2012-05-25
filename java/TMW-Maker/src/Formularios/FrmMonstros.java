@@ -3,7 +3,7 @@ package Formularios;
 import Classes.BancoDeDados.Banco_Monstros.Dados_Monstro;
 import Classes.BancoDeDados.Banco_Monstros.Dados_Monstro.Banco_Sprites;
 import Classes.DialogClass;
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.ImagemClass;
 import Classes.Modificadoras.MyComboBoxEditor;
 import Classes.SpriteXML;

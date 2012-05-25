@@ -1,6 +1,6 @@
 package Classes.BancoDeDados;
 
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.DialogClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
 
-//import Classes.FileClass;
+//import classes.FileClass;
 import Classes.ImagemClass;
 //import Formularios.FrmPrincipal;
 import java.awt.image.BufferedImage;

@@ -1,5 +1,6 @@
 package Classes;
 
+import classes.FileClass;
 import Formularios.FrmPrincipal;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

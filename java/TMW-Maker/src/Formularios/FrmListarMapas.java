@@ -3,7 +3,7 @@ package Formularios;
 
 import Classes.ConfigClass;
 import Classes.DialogClass;
-import Classes.FileClass;
+import classes.FileClass;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

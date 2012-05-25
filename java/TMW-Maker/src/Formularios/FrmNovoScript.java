@@ -1,7 +1,7 @@
 
 package Formularios;
 
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.ConfigClass;
 import Classes.DialogClass;
 import java.awt.Color;

@@ -1,7 +1,7 @@
 package Formularios;
 
 import Classes.ConfigClass;
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.StringClass;
 
 public class FrmNovidade extends javax.swing.JDialog {

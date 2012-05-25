@@ -1,7 +1,7 @@
 package Classes.BancoDeDados;
 
 import Classes.DialogClass;
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.StringClass;
 import Formularios.FrmPrincipal;
 import java.util.Vector;

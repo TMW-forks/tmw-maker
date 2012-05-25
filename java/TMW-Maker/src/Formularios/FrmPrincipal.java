@@ -4,7 +4,7 @@ import Classes.BancoDeDados.Banco_NPCs;
 import Classes.BancoDeDados.Banco_Itens;
 import Classes.BancoDeDados.Banco_Mapas;
 import Classes.BancoDeDados.Banco_Monstros;
-import Classes.FileClass;
+import classes.FileClass;
 import Classes.ConfigClass;
 import Classes.ImagemClass;
 import Classes.DialogClass;
