@@ -10,6 +10,7 @@ import Classes.ImagemClass;
 import Classes.DialogClass;
 import Classes.StringClass;
 import Classes.SpriteXML;
+import Classes.Subversion;
 import Classes.TranslateClass;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -61,93 +62,70 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     public void Atualizar(){
-        Thread tThread = new Thread(new Runnable() {
-            public void run() {
-                boolean SeConclui=false;
-                Runtime Executador = Runtime.getRuntime();
-                String line="", Partes[];
-                String Comando ="",Link="",Simbolo="";
-                int Arquivos=0;
+		  int R = JOptionPane.YES_OPTION;
+		  R = JOptionPane.showOptionDialog(
+					 null, "<html>" +
+					 "Esta função irá procurar atualizações do TMW-Maker.<br/>" +
+					 "O processo de atualização poderá demorar.<br/>" +
+					 "Deseja realmente atualizar agora?",
+					 "ATUALIZAÇÃO DO TMW-MAKER",
+					 JOptionPane.YES_NO_OPTION,
+					 JOptionPane.QUESTION_MESSAGE,
+					 null,
+					 new Object[]{"Atualizar", "Cancelar"},
+					 "Atualizar");
+		  if (R == JOptionPane.YES_OPTION) {
+			  Thread tThread = new Thread(new Runnable() {
+					public void run() {
+						 boolean SeConclui=false;
+						 Runtime Executador = Runtime.getRuntime();
+						 String line="", Partes[];
+						 String Comando ="",Link="",Simbolo="";
+						 int Arquivos=0;
 
-                FrmPrincipal.PgbBarra.setEnabled(true);
-                MnuSistema.setEnabled(false);
-                MnuEditar.setEnabled(false);
-                MnuLocalhost.setEnabled(false);
-                MnuAjuda.setEnabled(false);
-                VerificarBarraDeFerramentas();
+						 FrmPrincipal.PgbBarra.setEnabled(true);
+						 MnuSistema.setEnabled(false);
+						 MnuEditar.setEnabled(false);
+						 MnuLocalhost.setEnabled(false);
+						 MnuAjuda.setEnabled(false);
+						 VerificarBarraDeFerramentas();
 
-                FrmPrincipal.PgbBarra.setIndeterminate(true);
-                FrmPrincipal.PgbBarra.setString("Baixando...");
-                FrmPrincipal.setAvisoEmEstatus("Baixando atualização...");
-                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+						 String $origem = "http://tmw-maker.googlecode.com/svn/tags/TMW-Maker";
+						 //String $destino = ("\""+Config.getPastaDoSistema()+barra+"\"").replaceAll("\"", "\\\"");
+						 //String $destino = (Config.getPastaDoSistema()+barra).replaceAll(" ", "\\\\ ");
+						 String $destino = (Config.getPastaDoSistema()+barra);
+						 //Comando ="svn checkout "+$origem+" "+$destino;//+" --force";
 
-                Comando ="svn checkout http://tmw-maker.googlecode.com/svn/tags/TMW-Maker "+Config.getPastaDoSistema()+barra+" --force";
+						 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+						 FrmPrincipal.PgbBarra.setIndeterminate(true);
+						 FrmPrincipal.PgbBarra.setString("Baixando...");
+						 FrmPrincipal.setAvisoEmEstatus("<html>Baixando atualização: <font color=\"#008800\">"+$destino+"</FONT>");
+						 System.out.println(" * Origem....: "+$origem);
+						 System.out.println(" * Destino...: "+$destino);
+						 System.out.println("");
+						 System.out.println(Subversion.darCheckout($origem, $destino));
+						 System.out.println("");
+						 FrmPrincipal.setAvisoEmEstatus("Salvando data de atualização de software!");
+						 FrmPrincipal.Config.setAtualizacaoEngineUltimaAgora();
+						 FrmPrincipal.Config.ConfiguracoesGravar();
+						 FrmPrincipal.setAvisoEmEstatus("Salvando data de atualização de software!");
+						 FrmPrincipal.PgbBarra.setString("Concluido!");
+						 FrmPrincipal.setAvisoEmEstatus("<html>Atualização do recebida com sucesso! (<font color=\"#0000FF\"><b>Favor reiniciar pelo link em Área de Trabalho</b></font>)");
 
-                try {
-                    Process Retorno=Executador.exec(Comando);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                    while ((line = in.readLine()) != null) {
-                        Arquivos++;
-                        System.out.println(Arquivos+"º "+line);
-                        FrmPrincipal.setAvisoEmEstatus("<html>"+Arquivos+"º: "+line);
-                        FrmPrincipal.PgbBarra.setString("nº"+Arquivos);
-                    }
-                } catch (IOException e) {
-                    FrmPrincipal.setAvisoEmEstatus("<html><font color=\"#FF0000\">Falha ao receber a atualização!");
-                    FrmPrincipal.PgbBarra.setString("ERRO!");
-                    return;
-                }/**/
+						 FrmPrincipal.PgbBarra.setIndeterminate(false);
 
-                if(Arquivos>=2){
-                    /*
-                    //ln -t /home/indigovox/Desktop -s /home/indigovox/localhost/tmw-maker/TMW-Maker_0.2.jar
-                    Link=Config.getConexaoLocalhost()+barra+ "tmw-maker"+barra+ "TMW-Maker.jar";
-                    Simbolo=System.getProperty("user.home")+barra+"Desktop";
-                    if(FileClass.seExiste(Simbolo)) FileClass.apagar(Simbolo+barra+"TMW-Maker.jar");
-                    PgbBarra.setString("Coligando...");
-                    setAvisoEmEstatus("Criando link \""+Link+"\"...");
-                    Comando="ln -t "+Simbolo+" -s "+Link;
-                    System.out.println(Comando);
-                    try {
-                        Process Retorno = Executador.exec(Comando);
-                        BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-                        while ((line = in.readLine()) != null) {
-                            System.out.println(line);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-                        DialogClass.showErro(
-                            "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>" +
-                            "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>" +
-                            "</html>",
-                            "ERRO DE EXECUÇÃO"
-                        );
-                        return;
-                    }
-                    /**/
-                    FrmPrincipal.setAvisoEmEstatus("<html>Atualização do recebida com sucesso! (<font color=\"#0000FF\"><b>Favor reiniciar pelo link em Área de Trabalho</b></font>)");
-                    VisualizarNovidades();
-                }else{
-                    FrmPrincipal.setAvisoEmEstatus("<html>Este \"<font color=\"#0000FF\"><b>TMW-Maker</b></font>\" já é a versão mais atualizada!");
-                }
-                FrmPrincipal.Config.setAtualizacaoEngineUltimaAgora();
-                FrmPrincipal.Config.ConfiguracoesGravar();
-                FrmPrincipal.PgbBarra.setString("Concluido!");
+						 MnuSistema.setEnabled(true);
+						 MnuEditar.setEnabled(true);
+						 MnuLocalhost.setEnabled(true);
+						 MnuAjuda.setEnabled(true);
+						 VerificarBarraDeFerramentas();
 
-
-                FrmPrincipal.PgbBarra.setIndeterminate(false);
-
-                MnuSistema.setEnabled(true);
-                MnuEditar.setEnabled(true);
-                MnuLocalhost.setEnabled(true);
-                MnuAjuda.setEnabled(true);
-                VerificarBarraDeFerramentas();
-
-                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            }
-        });
-        tThread.start();
+						 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                   VisualizarNovidades();
+					}
+			  });
+			  tThread.start();
+		  }
     }
     public void VisualizarNovidades(){
         javax.swing.JDialog FrmNovidade = new FrmNovidade(this, rootPaneCheckingEnabled);
