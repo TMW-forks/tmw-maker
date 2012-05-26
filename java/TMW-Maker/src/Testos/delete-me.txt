@@ -1,1 +1,0 @@
-esse arquivo foi criado apenas para teste de exclusão pelo lib java!
