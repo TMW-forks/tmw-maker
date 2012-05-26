@@ -16,6 +16,9 @@ public class Subversion {
     public static String darCheckout(String urlRepositorio,String pastaDestino) {
         return darCheckout(urlRepositorio,pastaDestino,"HEAD","","");
     }
+    public static String darCheckout(String urlRepositorio,String pastaDestino,String Usuario,String Senha) {
+        return darCheckout(urlRepositorio,pastaDestino,"HEAD",Usuario,Senha);
+    }
     public static String darCheckout(String urlRepositorio,String pastaDestino,String Revisao) {
         return darCheckout(urlRepositorio,pastaDestino,Revisao,"","");
     }
@@ -51,7 +54,7 @@ public class Subversion {
             //HEAD é a revisão mais nova
             SVNRevision revision = SVNRevision.parse(Revisao);
             //esecuta o checkout e também pega o numero da revisão que foi baixada!
-            long rev = clm.getUpdateClient().doCheckout(url, dst, revision, revision, true);
+				long rev = clm.getUpdateClient().doCheckout(url, dst, revision, revision, SVNDepth.INFINITY, true);
             //System.err.println();
             return "Revisão "+rev+" concluida com sucesso!";
         } catch (SVNException e) {
