@@ -325,7 +325,7 @@ public class ConfigClass {
 			Capsula.write(Corpo);
 			Capsula.flush();
 			Capsula.close();
-			System.out.println("Configuração salva com sucesso!");
+			System.out.println("Nova configuração salva com sucesso!");
 		} catch (java.io.IOException exc) {
 			DialogClass.showErro("Não foi possível salvar as configurações!", "ERRO");
 		}
