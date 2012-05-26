@@ -10,8 +10,8 @@ import Classes.ImagemClass;
 import Classes.DialogClass;
 import Classes.StringClass;
 import Classes.SpriteXML;
-import Classes.Subversion;
 import Classes.TranslateClass;
+import classes.SummarizerSVN;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -103,7 +103,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						 System.out.println(" * Origem....: "+$origem);
 						 System.out.println(" * Destino...: "+$destino);
 						 System.out.println("");
-						 System.out.println(Subversion.darCheckout($origem, $destino));
+						 SummarizerSVN svn = new SummarizerSVN($origem,$destino);
+						 svn.setSobrescrever(true);
+						 if(svn.doCheckout().getNumber()>=0){System.out.println("Revisão "+svn.getRevisao()+" concluida com sucesso!");}
 						 System.out.println("");
 						 FrmPrincipal.setAvisoEmEstatus("Salvando data de atualização de software!");
 						 FrmPrincipal.Config.setAtualizacaoEngineUltimaAgora();
