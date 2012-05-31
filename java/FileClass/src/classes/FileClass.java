@@ -33,10 +33,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.RandomAccessFile;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -56,6 +60,45 @@ import org.xml.sax.SAXException;
  * @author lunovox
  */
 public class FileClass {
+	public static long getAgora() {
+		// um calendar também é criado com a data atual
+		GregorianCalendar calendar = new GregorianCalendar();
+		Date data = calendar.getTime();
+		return data.getTime();
+	}
+	public static String AGORAtoFORMATO(String Formato) {
+		//Formato = "dd/MM/yyyy";
+		//Formato = "h:mm - a";
+		java.util.Date Agora = new java.util.Date();
+		SimpleDateFormat Formatador = new SimpleDateFormat(Formato);
+		return Formatador.format(Agora);
+	}
+	public static String getSeparadorDePastas() {
+		return System.getProperty("file.separator");
+	}
+	public static String getPastaDoUsuario() {
+		return System.getProperty("user.home");
+	}
+	public static String getPastaDoSistema() {
+		try {
+			int Loc1 = -1;
+			String EnderecoReal = "";
+			//EnderecoReal=this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("TMW-Maker.jar", "");
+			EnderecoReal = FileClass.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("/lib/FileClass.ja", "");
+			EnderecoReal = EnderecoReal.substring(0, EnderecoReal.length() - 1);
+			Loc1 = EnderecoReal.indexOf("build/classes");
+			if (Loc1 >= 0) {
+				return getPastaDoUsuario();
+				//return EnderecoReal;
+			} else {
+				return EnderecoReal;
+			}
+		} catch (URISyntaxException ex) {
+			//Logger.getLogger(ConfigClass.class.getName()).log(Level.SEVERE, null, ex);
+			return "";
+		}
+	}
+	
     public static void apagar(String PastaOuArquivo){
         File Objeto = new File(PastaOuArquivo);
         Objeto.delete();
@@ -323,7 +366,6 @@ public class FileClass {
         }
         return padrao;
     }/**/
-
     /**
       public static Document arquivoAbrirXML(String Endereco){
         if(seExiste(Endereco)){
@@ -380,8 +422,6 @@ public class FileClass {
         }
         return child.getFirstChild().getNodeValue();
     }/**/
-
-
     public static String urlAbrir(String Endereco){
          try {
             URL arquivo = new URL(Endereco);
