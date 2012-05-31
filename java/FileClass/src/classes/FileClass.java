@@ -337,6 +337,22 @@ public class FileClass {
         }
         return padrao;
     }
+	 public static long getAtributo(Element elem, String atributo, long padrao){
+        try {
+            return Long.parseLong(elem.getAttribute(atributo));
+        } catch (Exception ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return padrao;
+    }
+	 public static boolean getAtributo(Element elem, String atributo, boolean padrao){
+        try {
+            return elem.getAttribute(atributo).trim().toLowerCase().equals("true")?true:false;
+        } catch (Exception ex) {
+            //Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return padrao;
+    }
     public static String getAtributo(Element elem, String atributo, String padrao) {
         String str = elem.getAttribute(atributo);
         if (str == null) str = padrao;
