@@ -14,7 +14,7 @@
  *###################################################################################
  * @author → Lunovox <rui.gravata@gmail.com>
  * @version → 2012-06-01
- * @description → Programa gerador de checksum adller32
+ * @description → Programa/Biblioteca geradora de checksum adller32
  * @licence → GNU GPL v3: http://www.gnu.org/licenses/gpl.html
  * @msn → rui.gravata@hotmail.com
  * @gTalk → rui.gravata@gmail.com
@@ -23,11 +23,15 @@
  */
 package formularios;
 
-import bibliotecas.Adler32Class;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import java.io.FileInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.zip.Adler32;
+
 
 public class FrmPrincipal extends javax.swing.JFrame {
 	public FrmPrincipal() {
@@ -97,6 +101,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
+	public static String getAdler32CheckSumHexadecimal(String $Endereco) {
+		return Long.toHexString( // ← Transforma Long em Hexadecimal
+				  getAdler32CheckSumLong($Endereco));
+	}
+	public static long getAdler32CheckSumLong(String $Endereco) {
+		Adler32 adler32 = new Adler32();
+		adler32.reset();
+		try {
+			FileInputStream $Capsula = new FileInputStream($Endereco);
+			while ($Capsula.available() > 0) {
+				byte[] buffer = new byte[262144];	// buffer de 256 Kb
+				int $Parte = $Capsula.read(buffer);
+				if ($Parte > 0) {
+					adler32.update(buffer, 0, $Parte);
+				}
+			}
+		} catch (Exception ex) {
+			Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return adler32.getValue(); // ← Faz do Checksum
+	}
+
 	 private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
 		 // TODO add your handling code here:
 		 /**
@@ -115,7 +141,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		 int Teste = Dialogo.showOpenDialog(this);
 		 if (Teste == JFileChooser.APPROVE_OPTION) {
 			 //txtEndereco.setText(Dialogo.getCurrentDirectory().getPath()+Dialogo.getSelectedFile().getName());
-			 txtCheckSum.setText(Adler32Class.getAdler32CheckSumHexadecimal(Dialogo.getSelectedFile().toString()));
+			 txtCheckSum.setText(getAdler32CheckSumHexadecimal(Dialogo.getSelectedFile().toString()));
 			 txtCheckSum.setToolTipText("CheckSum Adllder32 do arquivo '" + Dialogo.getSelectedFile().toString() + "'.");
 		 } else {
 			 //log.append("Open command cancelled by user." + newline);
@@ -151,21 +177,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		System.out.println("###################################################################################");
 		System.out.println(" @author → Lunovox <rui.gravata@gmail.com>");
 		System.out.println(" @version → 2012-06-01");
-		System.out.println(" @description → Programa gerador de checksum adller32");
+		System.out.println(" @description → Programa/Biblioteca geradora de checksum adller32");
 		System.out.println(" @licence → GNU GPL v3: http://www.gnu.org/licenses/gpl.html");
 		System.out.println(" @msn → rui.gravata@hotmail.com");
 		System.out.println(" @gTalk → rui.gravata@gmail.com");
 		System.out.println(" @skype → lunovox");
 		System.out.println(" @PhoneIP → sip:lunovox@ekiga.net");
+		System.out.println("###################################################################################");
 	}
 	public static void main(String args[]) {
 		printHelp();
+		//System.out.println(" → " + getAdler32CheckSumHexadecimal("/home/lunovox/Desenvolvimento/TMW/updates/musicas_2010-11-13.zip"));
+		//System.out.println(" → " + Long.toHexString(getAdler32CheckSumLong("/home/lunovox/Desenvolvimento/TMW/updates/musicas_2010-11-13.zip")));
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
 				new FrmPrincipal().setVisible(true);
 			}
-		});
+		});/**/
 	}
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnSelecionar;
