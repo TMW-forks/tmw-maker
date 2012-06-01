@@ -104,28 +104,6 @@ public class FileClass {
 		}
 	}
 
-	public static String getAdler32CheckSumHexadecimal(String $Endereco){
-		return Long.toHexString(  // ← Transforma Long em Hexadecimal
-			getAdler32CheckSumLong($Endereco)
-		);
-	}
-	public static long getAdler32CheckSumLong(String $Endereco){
-		Adler32 adler32 = new Adler32();
-		adler32.reset();
-		try {
-			FileInputStream $Capsula = new FileInputStream($Endereco);
-			while ($Capsula.available() > 0) {
-				byte[] buffer = new byte[262144];	// buffer de 256 Kb
-				int $Parte = $Capsula.read(buffer);
-				if ($Parte > 0) {
-					adler32.update(buffer, 0, $Parte);
-				}
-			}
-		} catch(Exception ex) {
-			Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return adler32.getValue(); // ← Faz do Checksum
-	}
 	public static void apagar(String PastaOuArquivo) {
 		File Objeto = new File(PastaOuArquivo);
 		Objeto.delete();
@@ -521,7 +499,5 @@ public class FileClass {
 	public static void main(String[] args) {
 		// TODO code application logic here
 		printHelp();
-		//System.out.println(" → " + getAdler32CheckSumHexadecimal("/home/lunovox/Desenvolvimento/TMW/updates/musicas_2010-11-13.zip"));
-		//System.out.println(" → " + Long.toHexString(getAdler32CheckSumLong("/home/lunovox/Desenvolvimento/TMW/updates/musicas_2010-11-13.zip")));
 	}
 }
