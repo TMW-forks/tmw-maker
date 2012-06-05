@@ -1,13 +1,15 @@
 ##0
 ##0 ______________________________________________
 ##0
-##1  .:: Reiniciar todas as contas do TMW-BR? ::.
-##0 Está havendo uma enquete sobre a possibilidade
-##0 que reiniar todas as contas do servidor. Sua
-##0 opinião é muito importante para nós. 
+##1   .:: Dois novos reinos. (2012-06-05) ::.
+##0 Estamos construindo 2 novos reinos para um 
+##0 sistema de guerra. Ajude o tMW-BR criando 
+##0 novas Quests e Sprites de monstros Open Source.
 ##0
-##0 Para informar-se e votar na enquete acesse: 
-##0  * ##3 http://goo.gl/2wmtb
+##0 Envie seus trabalhos para:
+##0  * ##3 http://forums.themanaworld.com.br
+##0 Envie suas dúvidas para:
+##0  * ##3 Lunovox<rui.gravata@gmail.com>
 ##0 ______________________________________________
 ##0
 ##3          .:: REGRAS DO SERVIDOR ::.
@@ -45,6 +47,15 @@
 ##3 http://forums.themanaworld.com.br
 ##0 
 ##3 Façamos um servidor agradável para todos! =D
+##0 ______________________________________________
+##0
+##1  .:: Reiniciar todas as contas do TMW-BR? ::.
+##0 Está havendo uma enquete sobre a possibilidade
+##0 que reiniar todas as contas do servidor. Sua
+##0 opinião é muito importante para nós.
+##0
+##0 Para informar-se e votar na enquete acesse:
+##0  * ##3 http://goo.gl/2wmtb
 ##0 ______________________________________________
 ##0
 ##3         .:: Precisamos de Você! ::.
