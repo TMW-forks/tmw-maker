@@ -1,0 +1,87 @@
+##0
+##0 ______________________________________________
+##0
+##1  .:: Reiniciar todas as contas do TMW-BR? ::.
+##0 Está havendo uma enquete sobre a possibilidade
+##0 que reiniar todas as contas do servidor. Sua
+##0 opinião é muito importante para nós. 
+##0
+##0 Para informar-se e votar na enquete acesse: 
+##0  * ##3 http://goo.gl/2wmtb
+##0 ______________________________________________
+##0
+##3          .:: REGRAS DO SERVIDOR ::.
+##0
+##1 Não use softbots! ##0→ Se o GM falar com o jogador 
+##0 que está se movendo, o jogador deve responder. 
+##0 Mas se o char estiver parado por causa do 
+##0 afastamento do jogador ao teclado, o GM não 
+##0 pode exigir resposta. ##2Pois o char está parado 
+##2 porque o jogador longe do teclado.
+##0
+##1 Respeite a todos! ##0→ Respeite até aqueles que te 
+##0 agrediram. ##2Trolls serão penalizados!
+##0 
+##1 Nunca empreste contas! ##0→ É proibido emprestar 
+##0 contas. Se quem solicitou empréstimo de conta
+##0 fizer alguma infração de regras, quem permitiu 
+##0 tal empréstimo será punido no lugar de quem 
+##0 solicitou.
+##0 
+##1 Nunca empreste ítens! ##0→ Não existem empréstimos 
+##0 em MMORPGs. Quem pegou emprestado algum item, 
+##0 não tem nenhum obrigação de devolver.
+##0 
+##1 Mendigância perniciosa! ##0→ Não insista pedindo 
+##0 itens ou favores aos GMs, DEVs, ADMs ou outros 
+##0 players. Itens são conseguidos por quest ou por 
+##0 eventos sazonais.
+##0 
+##1 Quer Novidade? ##0→ Se querem novidade no TMW-BR 
+##0 façam vocês mesmos. Lembre-se que o TMW-BR é 
+##0 100% feito pelos próprios jogadores. Por isso, 
+##0 recrutamos ##0Mapers, Pixelarts, Questarts, 
+##0 Publishers e Treinadores.
+##3 http://forums.themanaworld.com.br
+##0 
+##3 Façamos um servidor agradável para todos! =D
+##0 ______________________________________________
+##0
+##3         .:: Precisamos de Você! ::.
+##0 Contribua com o The Mana World Brasil. Faça 
+##0 sua doação e ajude a manter o nosso servidor 
+##0 vivo. Para doar acesse: ##3http://goo.gl/uKjj9
+##0 ______________________________________________
+##0
+##3    .:: Nova Administração (27/05/2012) ::.
+##0 Lunovox é o novo ADM do TMW-BR. 
+##0 
+##0 Ítens e níveis não serão devolvidos, nem mediante 
+##0 a screenshots##2(Lamentamos isso! =S)##0.Contas 
+##0 serão desbloqueadas após uma avaliação dos GMs, 
+##0 somente se solicitadas ao email de Desblock em: 
+##3 Lunovox<rui.gravata@gmail.com>
+##0 
+##2 Desculpe-nos pelos transtornos passados!
+##0 ______________________________________________
+##0
+##3          .:: Pedido de Socorro ::.
+##0 Se alguém ficar preço, peça ajuda a um GM pelo
+##0 comando: ##2 @wgm socorro!
+##0 ______________________________________________
+##0
+##3       .:: Penalidade por derrota ::.
+##0 O Jogador que for derrotado fora da zona de 
+##0 segurança perderá pontos de experiência. 
+##0
+##0 Não se descuide! ##1MORRER PODE CUSTAR CARO!!!
+##0 ______________________________________________
+##0
+##3      .:: Gratuita Passagem de Navio ::.
+##0 Viaje em grande estilo no navio do capitão
+##0 Mirc. Por enquanto ele não está cobrando por
+##0 seus serviços, mas a promoção é por tempo
+##0 limitado.
+##0 ______________________________________________
+##0
+##0 ASS.: ##2Administrador Lunovox Heavenfinder
