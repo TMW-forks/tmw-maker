@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <updates>
-	<update type="data" file="2010_geral.zip" hash="f3a22a1d"/>
+ 	<update type="music" required="no" file="musicas.zip" hash="973888bb" desciption="Music data v01"/>
+	<update type="music" required="no" file="musicas_2010-09-28.zip" hash="6db7aab8" desciption="Novas músicas"/>
+	<update type="music" required="no" file="musicas_2010-11-13.zip" hash="e108eee" desciption="Cemitério do Org"/>
+  <update type="data" file="2010_geral.zip" hash="f3a22a1d"/>
 	<update type="data" file="2010_graphics.zip" hash="c22d1269"/>
 	<update type="data" file="2010_sprites.zip" hash="d30c7a3e"/>
 	<update type="data" file="2010_tiles.zip" hash="99a055a0"/>
@@ -15,7 +18,4 @@
 	<update type="data" file="update_2011-09-07.zip" hash="893f076a"/>
 	<update type="data" file="update_2012-01-14.zip" hash="4fc0a906"/>
 	<update type="data" file="update_2012-06-07(2).zip" hash="18408c02"/>
-	<update type="music" required="no" file="musicas.zip" hash="973888bb" desciption="Music data v01"/>
-	<update type="music" required="no" file="musicas_2010-09-28.zip" hash="6db7aab8" desciption="Novas músicas"/>
-	<update type="music" required="no" file="musicas_2010-11-13.zip" hash="e108eee" desciption="Cemitério do Org"/>
 </updates>
