@@ -42,6 +42,9 @@ public final class ClassConfiguracao {
 
 	private String  ConfiguracaoURL = FileClass.getPastaDoSistema()+bar+".config-tmwmaker.xml";
 
+	public String  getEathenaData(){return ConexaoLocalhost+bar+"eathena-data";}
+	public String  getTMWData(){return ConexaoLocalhost+bar+"tmwdata";}
+
 	public String getConexaoRepositorio() {
 		return ConexaoRepositorio;
 	}
