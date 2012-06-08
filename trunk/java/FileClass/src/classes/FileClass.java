@@ -221,6 +221,17 @@ public class FileClass {
 			return false;
 		}
 	}
+	public static Runtime doBash(Runtime Executador, String Comando) throws IOException {
+		//Runtime Executador = Runtime.getRuntime();
+		String line = "";
+		System.out.println(Comando);
+		Process Retorno = Executador.exec(Comando);
+		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+		while ((line = in.readLine()) != null) {
+			System.out.println(line);
+		}
+		return Executador;
+	}
 	public static boolean doBash(String Comando) {
 		try {
 			Runtime Executador = Runtime.getRuntime();
@@ -417,6 +428,17 @@ public class FileClass {
 		}
 		return padrao;
 	}/**/
+
+    public static String getOS() {
+        return System.getProperty("os.name").toLowerCase();
+    }
+    public static String getArquiteturaOS() {
+        return System.getProperty("os.arch").toLowerCase();
+    }
+    public static String getVersaoOS() {
+        return System.getProperty("os.version").toLowerCase();
+    }
+
 	/**
 	public static Document arquivoAbrirXML(String Endereco){
 	if(seExiste(Endereco)){
