@@ -349,6 +349,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					pgbProgresso.setValue(0);
 					pgbProgresso.setMinimum(0);
 					pgbProgresso.setMaximum(5);
+					txtStatus.setText("");
 
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Runtime Executador = Runtime.getRuntime();
