@@ -12,4 +12,4 @@ update_2011-04-12.zip cc0a5ced
 update_2011-05-22.zip 94942089
 update_2011-09-07.zip 893f076a
 update_2012-01-14.zip 4fc0a906
-update_2012-06-07(3).zip dd4c4aaf
+update_2012-06-07(2).zip 18408c02
