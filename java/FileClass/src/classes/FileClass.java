@@ -432,11 +432,16 @@ public class FileClass {
     public static String getOS() {
         return System.getProperty("os.name").toLowerCase();
     }
-    public static String getArquiteturaOS() {
+    public static String getSysArquitetura() {
         return System.getProperty("os.arch").toLowerCase();
     }
-    public static String getVersaoOS() {
+    public static String getSysVersao() {
         return System.getProperty("os.version").toLowerCase();
+    }
+	 public String getSysLanguage(){
+        return System.getProperty("user.language");
+        //return Locale.getDefault().getDisplayLanguage();
+        //return Locale.getDefault().getLanguage();
     }
 
     public static void Esperar(int Milisegundos){
