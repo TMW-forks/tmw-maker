@@ -439,6 +439,71 @@ public class FileClass {
         return System.getProperty("os.version").toLowerCase();
     }
 
+    public static void Esperar(int Milisegundos){
+        long TempoInicio,TempoAtual;
+
+        TempoInicio=System.currentTimeMillis();
+        do{
+            TempoAtual=System.currentTimeMillis();
+        }
+        while (TempoAtual-TempoInicio<Milisegundos);
+    }
+    public static boolean AbrirNavegador(String URL) {
+        //minimizes the app
+
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        Runtime Executador = Runtime.getRuntime();
+        try {
+            if (SistemaOperacional.indexOf("win") >= 0) {
+                String[] cmd = new String[4];
+                cmd[0] = "cmd.exe";
+                cmd[1] = "/C";
+                cmd[2] = "start";
+                cmd[3] = URL;
+                Executador.exec(cmd);
+            } else if (SistemaOperacional.indexOf("mac") >= 0) {
+                Executador.exec("open " + URL);
+            } else {
+                //prioritized 'guess' of users' preference
+                String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx"};
+                StringBuffer cmd = new StringBuffer();
+                for (int i = 0; i < browsers.length; i++) {
+                   cmd.append((i == 0 ? "" : " || ") + browsers[i] + " \"" +
+                           URL + "\" ");
+                }
+                Executador.exec(new String[]{"sh", "-c", cmd.toString()});
+                //rt.exec("firefox http://www.google.com");
+                //System.out.println(cmd.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            /*DialogClass.showErro(
+                "\n\n O TMW-Maker não conseguiu abrir o seu navegador padrão ao tentar acessar: \n\n " + URL + "\n\n",
+                "Erro de acesso ao Navegado"
+            );/**/
+
+            return false;
+        }
+        return true;
+    }
+    public static boolean SeComandoProcede(String Comando) {
+        String SistemaOperacional = System.getProperty("os.name").toLowerCase();
+        Runtime Executador = Runtime.getRuntime();
+        if (SistemaOperacional.indexOf("win") >= 0) {
+            return false;
+        } else if (SistemaOperacional.indexOf("mac") >= 0) {
+            /*Executador.exec("open " + URL);/**/
+            //showAlerta("Este comando ainda não foi implementado para o MAC!","Descupe!");
+            return false;
+        } else {
+            try {
+                Executador.exec(Comando);
+                return true;
+            } catch (IOException e) {
+                return false;
+            }
+        }
+    }
 	/**
 	public static Document arquivoAbrirXML(String Endereco){
 	if(seExiste(Endereco)){
