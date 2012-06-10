@@ -429,7 +429,7 @@ public class FileClass {
 		return padrao;
 	}/**/
 
-    public static String getOS() {
+    public static String getSysName() {
         return System.getProperty("os.name").toLowerCase();
     }
     public static String getSysArquitetura() {
@@ -438,7 +438,7 @@ public class FileClass {
     public static String getSysVersao() {
         return System.getProperty("os.version").toLowerCase();
     }
-	 public String getSysLanguage(){
+	 public static String getSysLanguage(){
         return System.getProperty("user.language");
         //return Locale.getDefault().getDisplayLanguage();
         //return Locale.getDefault().getLanguage();
