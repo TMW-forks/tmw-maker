@@ -8,6 +8,7 @@ package formularios;
 import classes.ClassConfiguracao;
 import classes.DialogClass;
 import classes.FileClass;
+import classes.ImagemClass;
 import classes.SummarizerSVN;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -15,6 +16,7 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.tmatesoft.svn.core.wc.SVNRevision;
 
@@ -34,7 +36,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 	String bar = FileClass.getSeparadorDePastas();
 	String sys = FileClass.getPastaDoSistema();
 
-	private void addLinhaDeEstatus(String Linha) {
+	private static void addLinhaPainel(String Linha) {
 		Linha = Linha.replaceAll("<html>", "");
 		Linha = Linha.replaceAll("<b>", "");
 		Linha = Linha.replaceAll("</b>", "");
@@ -48,20 +50,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		txtStatus.setSelectionStart(txtStatus.getText().length() - 1);
 		txtStatus.setSelectionEnd(txtStatus.getText().length() - 1);
 	}
-	public void setBarStatus(String Testo){
-		addLinhaDeEstatus(Testo);
-		lblStatus.setText(Testo);
+	public static void setAvisoEstatus(String Aviso) {
+		lblStatus.setText(Aviso.toString());
+		lblStatus.setIcon(null);
 	}
+	public static void setAvisoEstatus(String Aviso, Icon Icone) {
+		lblStatus.setText(Aviso.toString());
+		lblStatus.setIcon(Icone);
+	}
+	public static void setAvisoEstatus(String Aviso, String EnderecoOuResource) {
+		lblStatus.setText(Aviso.toString());
+		lblStatus.setIcon((new ImagemClass(EnderecoOuResource)).getIcone());
+	}
+	public static void setAvisoEstatusPainel(String Linha) {
+		addLinhaPainel(Linha);
+		setAvisoEstatus(Linha);
+	}
+
 	public void doCheckoutHead(){
 		Thread tThread = new Thread(new Runnable() {
 			public void run() {
 				mnpRepositorio.setEnabled(false);
 				svn = new SummarizerSVN(conf.getConexaoRepositorio(),conf.getConexaoLocalhost());
-				//setBarStatus("<html>Baixando repositório '<font color='#008800'>"+conf.getConexaoRepositorio()+"</font>'! <font color='#FF0000'>Espere um momento...");
-				setBarStatus("");
-				setBarStatus("<html>Baixando repositório...");
-				addLinhaDeEstatus(" * Origem: " + conf.getConexaoRepositorio());
-				addLinhaDeEstatus(" * Destino: " + conf.getConexaoLocalhost());
+				//setAvisoEstatusPainel("<html>Baixando repositório '<font color='#008800'>"+conf.getConexaoRepositorio()+"</font>'! <font color='#FF0000'>Espere um momento...");
+				setAvisoEstatusPainel("<html>Baixando repositório...");
+				addLinhaPainel(" * Origem: " + conf.getConexaoRepositorio());
+				addLinhaPainel(" * Destino: " + conf.getConexaoLocalhost());
 				pgbProgresso.setIndeterminate(true);
 				pgbProgresso.setString("Baixando...");
 				pgbProgresso.setMinimum(0);
@@ -70,10 +84,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 				SVNRevision rev = svn.doCheckout();
 				conf.doSalvar();
 				if (rev.getNumber()>=0) {
-					setBarStatus("<html>Repositório '<font color='#008800'>" + rev.getNumber() + "</font>' baixado com sucesso!");
+					setAvisoEstatusPainel("<html>Repositório '<font color='#008800'>" + rev.getNumber() + "</font>' baixado com sucesso!");
 					pgbProgresso.setString("Concluido!");
 				} else {
-					setBarStatus("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar o repositório!");
+					setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar o repositório!");
 					pgbProgresso.setString("Erro!");
 				}
 				conf.setAtualizacaoLocalhostUltimaAgora();
@@ -99,18 +113,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnuConfigurar = new javax.swing.JMenuItem();
       mnuSair = new javax.swing.JMenuItem();
       mnpRepositorio = new javax.swing.JMenu();
-      mnuRepositorioSumeter = new javax.swing.JMenuItem();
-      mnuRepositorioAtualizar = new javax.swing.JMenuItem();
+      mnuRepositorioEnviar = new javax.swing.JMenuItem();
+      mnuRepositorioReceber = new javax.swing.JMenuItem();
       jSeparator1 = new javax.swing.JPopupMenu.Separator();
       mnuRepositorioMontar = new javax.swing.JMenuItem();
       mnpLocalhost = new javax.swing.JMenu();
       mnuLocalhostAtivar = new javax.swing.JMenuItem();
       mnuLocalhostDesativar = new javax.swing.JMenuItem();
+      jSeparator2 = new javax.swing.JPopupMenu.Separator();
+      mncTestarAposAtivacao = new javax.swing.JCheckBoxMenuItem();
+      mncDesativarAposTestes = new javax.swing.JCheckBoxMenuItem();
       jSeparator3 = new javax.swing.JPopupMenu.Separator();
       mnuLocalhostTestar = new javax.swing.JMenuItem();
+      mnpAjuda = new javax.swing.JMenu();
+      mnuAjudaSobre = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-      setTitle("TMW-Maker Hope");
+      setTitle("TMW-Maker II Java");
       addWindowListener(new java.awt.event.WindowAdapter() {
          public void windowOpened(java.awt.event.WindowEvent evt) {
             formWindowOpened(evt);
@@ -122,6 +141,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
       lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
       lblStatus.setText("Bem Vindo!");
 
+      pgbProgresso.setValue(100);
+      pgbProgresso.setString("");
       pgbProgresso.setStringPainted(true);
 
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -130,16 +151,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
             .addGap(18, 18, 18)
-            .addComponent(pgbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pgbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(pgbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(lblStatus))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(lblStatus)
+               .addComponent(pgbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(0, 0, 0))
       );
 
@@ -151,7 +173,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
       txtStatus.setFont(new java.awt.Font("Courier New", 0, 15));
       txtStatus.setForeground(java.awt.Color.white);
       txtStatus.setRows(5);
-      txtStatus.setText("Tmw-Maker Hope");
+      txtStatus.setText("Tmw-Maker II Java");
       jScrollPane1.setViewportView(txtStatus);
 
       mnpArquivo.setText("Arquivo");
@@ -178,21 +200,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
       mnpRepositorio.setText("Repositório");
 
-      mnuRepositorioSumeter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
-      mnuRepositorioSumeter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_upload.gif"))); // NOI18N
-      mnuRepositorioSumeter.setText("Submeter");
-      mnuRepositorioSumeter.setEnabled(false);
-      mnpRepositorio.add(mnuRepositorioSumeter);
+      mnuRepositorioEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
+      mnuRepositorioEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_upload.gif"))); // NOI18N
+      mnuRepositorioEnviar.setText("Enviar");
+      mnuRepositorioEnviar.setEnabled(false);
+      mnpRepositorio.add(mnuRepositorioEnviar);
 
-      mnuRepositorioAtualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
-      mnuRepositorioAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_download.gif"))); // NOI18N
-      mnuRepositorioAtualizar.setText("Atualizar");
-      mnuRepositorioAtualizar.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            mnuRepositorioAtualizarActionPerformed(evt);
-         }
-      });
-      mnpRepositorio.add(mnuRepositorioAtualizar);
+      mnuRepositorioReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
+      mnuRepositorioReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_download.gif"))); // NOI18N
+      mnuRepositorioReceber.setText("Receber");
+      mnpRepositorio.add(mnuRepositorioReceber);
       mnpRepositorio.add(jSeparator1);
 
       mnuRepositorioMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/puzzle.png"))); // NOI18N
@@ -202,11 +219,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
       jMenuBar1.add(mnpRepositorio);
 
-      mnpLocalhost.setText("Servidor");
+      mnpLocalhost.setText("Localhost");
 
-      mnuLocalhostAtivar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, java.awt.event.InputEvent.CTRL_MASK));
+      mnuLocalhostAtivar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, java.awt.event.InputEvent.CTRL_MASK));
       mnuLocalhostAtivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_play.png"))); // NOI18N
-      mnuLocalhostAtivar.setText("Play");
+      mnuLocalhostAtivar.setText("Ativar");
       mnuLocalhostAtivar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             mnuLocalhostAtivarActionPerformed(evt);
@@ -214,20 +231,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
       });
       mnpLocalhost.add(mnuLocalhostAtivar);
 
-      mnuLocalhostDesativar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.CTRL_MASK));
+      mnuLocalhostDesativar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, java.awt.event.InputEvent.CTRL_MASK));
       mnuLocalhostDesativar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_parar.png"))); // NOI18N
-      mnuLocalhostDesativar.setText("Stop");
+      mnuLocalhostDesativar.setText("Desativar");
       mnuLocalhostDesativar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             mnuLocalhostDesativarActionPerformed(evt);
          }
       });
       mnpLocalhost.add(mnuLocalhostDesativar);
+      mnpLocalhost.add(jSeparator2);
+
+      mncTestarAposAtivacao.setSelected(true);
+      mncTestarAposAtivacao.setText("Testar após ativação");
+      mnpLocalhost.add(mncTestarAposAtivacao);
+
+      mncDesativarAposTestes.setText("Desativar após testes");
+      mnpLocalhost.add(mncDesativarAposTestes);
       mnpLocalhost.add(jSeparator3);
 
       mnuLocalhostTestar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-      mnuLocalhostTestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
-      mnuLocalhostTestar.setText("Testar");
+      mnuLocalhostTestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_magica.png"))); // NOI18N
+      mnuLocalhostTestar.setText("Testar em Softcliente");
       mnuLocalhostTestar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             mnuLocalhostTestarActionPerformed(evt);
@@ -236,6 +261,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnpLocalhost.add(mnuLocalhostTestar);
 
       jMenuBar1.add(mnpLocalhost);
+
+      mnpAjuda.setText("Ajuda");
+
+      mnuAjudaSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+      mnuAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
+      mnuAjudaSobre.setText("Sobre");
+      mnuAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuAjudaSobreActionPerformed(evt);
+         }
+      });
+      mnpAjuda.add(mnuAjudaSobre);
+
+      jMenuBar1.add(mnpAjuda);
 
       setJMenuBar(jMenuBar1);
 
@@ -246,14 +285,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
          .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addGroup(layout.createSequentialGroup()
             .addGap(12, 12, 12)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
             .addGap(12, 12, 12))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
@@ -286,44 +325,45 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		System.exit(0);
 	}//GEN-LAST:event_mnuSairActionPerformed
-	private void mnuRepositorioAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRepositorioAtualizarActionPerformed
+	private void mnuRepositorioReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRepositorioReceberActionPerformed
 		// TODO add your handling code here:
 		doCheckoutHead();
-	}//GEN-LAST:event_mnuRepositorioAtualizarActionPerformed
+	}//GEN-LAST:event_mnuRepositorioReceberActionPerformed
 
 	private void mnuConfigurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConfigurarActionPerformed
 		// TODO add your handling code here:
 		javax.swing.JDialog frmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
-        frmConfiguracao.setLocation(
-            ((this.getWidth() - frmConfiguracao.getWidth()) / 2) + this.getX(),
-            ((this.getHeight() - frmConfiguracao.getHeight()) / 2) + this.getY());
-        frmConfiguracao.pack();
-        frmConfiguracao.setModal(true);
-        frmConfiguracao.setVisible(true);/**/
+		frmConfiguracao.setLocation(
+			((this.getWidth() - frmConfiguracao.getWidth()) / 2) + this.getX(),
+			((this.getHeight() - frmConfiguracao.getHeight()) / 2) + this.getY()
+		);
+		frmConfiguracao.pack();
+		frmConfiguracao.setModal(true);
+		frmConfiguracao.setVisible(true);/**/
 	}//GEN-LAST:event_mnuConfigurarActionPerformed
 	public Runtime doBash(Runtime Executador, String[] $Comandos) throws IOException {
 		//Runtime Executador = Runtime.getRuntime();
 		String line = "";
 		for(int $c=0;$c<$Comandos.length;$c++){
-			setBarStatus($Comandos[$c]);
+			setAvisoEstatusPainel($Comandos[$c]);
 		}
 		Process Retorno = Executador.exec($Comandos);
 		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-		while ((line = in.readLine()) != null){ setBarStatus(line); }
+		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
 		return Executador;
 	}
 	public Runtime doBash(Runtime Executador, String Comando) throws IOException {
 		//Runtime Executador = Runtime.getRuntime();
 		String line = "";
-		setBarStatus(Comando);
+		setAvisoEstatusPainel(Comando);
 		Process Retorno = Executador.exec(Comando);
 		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-		while ((line = in.readLine()) != null){ setBarStatus(line); }
+		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
 		return Executador;
 	}
 
 	public void ServerPlay() {
-		if (FileClass.getOS().indexOf("win") >= 0) {
+		if (FileClass.getSysName().indexOf("win") >= 0) {
 			/*String[] cmd = new String[4];
 			cmd[0] = "cmd.exe";
 			cmd[1] = "/C";
@@ -333,12 +373,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
 			//C:\cygwin\cygwin.exe
 			//C:\Arquivos de programas\Mana\mana.exe
-		} else if (FileClass.getOS().indexOf("mac") >= 0) {
+		} else if (FileClass.getSysName().indexOf("mac") >= 0) {
 			//Executador.exec("open " + URL);
 			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 		} else {
 			Thread tThread = new Thread(new Runnable() {
-
 				public void run() {
 					//mnpArquivo.setEnabled(false);
 					//mnpRepositorio.setEnabled(false);
@@ -357,19 +396,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
 						pgbProgresso.setString("Ativando...");
-						setBarStatus("Ativando Servidor Local...");
+						setAvisoEstatusPainel("Ativando Servidor Local...");
 						//TxtEstatus.setText("Reiniciando localhost...");
 						try {
 							pgbProgresso.setIndeterminate(true);
 							Executador = doBash(Executador, conf.getConexaoLocalhost() + "/eathena-data/tmw-maker-depure.sh &");
 							pgbProgresso.setIndeterminate(false);
-							setBarStatus("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
+							setAvisoEstatusPainel("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos antes de testar...</b></font>)");
 							long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
 							TempoInicio = System.currentTimeMillis();
 							do {
 								TempoAtual = System.currentTimeMillis();
 								Segundos = (TempoAtual - TempoInicio) / 1000;
-								//setAvisoEmEstatus("Espere "+Segundos+"/5 segundos...");
 								pgbProgresso.setValue((int) Segundos);
 								pgbProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
 								pgbProgresso.setIndeterminate(true);
@@ -379,9 +417,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 							//mnuLocalhostDesativar.setEnabled(true);
 							//mnuLocalhostCliente.setEnabled(true);
 							//pgbProgresso.setIndeterminate(true);
+							if(mncTestarAposAtivacao.isSelected()){ServerTestar();}
 						} catch (IOException e) {
 							e.printStackTrace();
-							setBarStatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
 							DialogClass.showErro(
 								"<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"
 								+ "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
@@ -391,14 +430,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						}
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					
+
 				}
 			});
 			tThread.start();
 		}
 	}
 	public void ServerStop() {
-		if (FileClass.getOS().indexOf("win") >= 0) {
+		if (FileClass.getSysName().indexOf("win") >= 0) {
 			/*String cmd[] = {
 				"cmd.exe",
 				"/C",
@@ -409,7 +448,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
 			//C:\cygwin\cygwin.exe
 			//C:\Arquivos de programas\Mana\mana.exe
-		} else if (FileClass.getOS().indexOf("mac") >= 0) {
+		} else if (FileClass.getSysName().indexOf("mac") >= 0) {
 			//Executador.exec("open " + URL);
 			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 		} else {
@@ -433,17 +472,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
 						pgbProgresso.setString("Desativando...");
-						setBarStatus("Desativando localhost...");
+						setAvisoEstatusPainel("Desativando localhost...");
 						//TxtEstatus.setText("Reiniciando localhost...");
 						try {
 							Executador = doBash(Executador, "pkill map-server");
 							Executador = doBash(Executador, "pkill char-server");
 							Executador = doBash(Executador, "pkill login-server");
-							setBarStatus("Localhost desativado com sucesso!");
+							setAvisoEstatusPainel("Localhost desativado com sucesso!");
+							pgbProgresso.setString("Desativado!");
 						} catch (IOException e) {
+							pgbProgresso.setString("ERRO");
 							e.printStackTrace();
 							//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-							setBarStatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
 							DialogClass.showErro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"
 									  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
 									  + "</html>",
@@ -458,7 +499,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		}
 	}
 	public void ServerTestar() {
-		if (FileClass.getOS().indexOf("win") >= 0) {
+		if (FileClass.getSysName().indexOf("win") >= 0) {
 			/*String[] cmd = new String[4];
 			cmd[0] = "cmd.exe";
 			cmd[1] = "/C";
@@ -468,7 +509,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
 			//C:\cygwin\cygwin.exe
 			//C:\Arquivos de programas\Mana\mana.exe
-		} else if (FileClass.getOS().indexOf("mac") >= 0) {
+		} else if (FileClass.getSysName().indexOf("mac") >= 0) {
 			//Executador.exec("open " + URL);
 			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 		} else {
@@ -491,7 +532,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 
 					//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
-					setBarStatus("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
+					setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
 					Comando = conf.getExecucaoComando() + " "
 							  + "--update-host --default " + //<-- O Manaplus só roda corretamente com essa linha...
 							  ((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("--skip-update --data " + conf.getTMWData() + " ") : "")
@@ -508,11 +549,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						while ((line = in.readLine()) != null) {
 							System.out.println(line);
 							//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-							setBarStatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
-							//pgbProgresso.setString("Executando...");
+							setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
+							pgbProgresso.setString("Executando...");
 						}
-						//pgbProgresso.setString("Fechado!");
-						setBarStatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
+						pgbProgresso.setString("Fechado!");
+						setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
+						if(mncDesativarAposTestes.isSelected()){ServerStop();}
 						//pgbProgresso.setIndeterminate(false);
 					} catch (IOException e) {
 						//pgbProgresso.setIndeterminate(false);
@@ -539,7 +581,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 	}
 
 	public void ExecutarJogo_deprecado() {
-		if (FileClass.getOS().indexOf("win") >= 0) {
+		if (FileClass.getSysName().indexOf("win") >= 0) {
 			/*String[] cmd = new String[4];
 			cmd[0] = "cmd.exe";
 			cmd[1] = "/C";
@@ -549,7 +591,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
 			//C:\cygwin\cygwin.exe
 			//C:\Arquivos de programas\Mana\mana.exe
-		} else if (FileClass.getOS().indexOf("mac") >= 0) {
+		} else if (FileClass.getSysName().indexOf("mac") >= 0) {
 			//Executador.exec("open " + URL);
 			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 		} else {
@@ -571,16 +613,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
 						pgbProgresso.setString("Reiniciando...");
-						setBarStatus("Reiniciando localhost...");
+						setAvisoEstatusPainel("Reiniciando localhost...");
 						//TxtEstatus.setText("Reiniciando localhost...");
 						try {
 							/*Comando = conf.getConexaoLocalhost() + "/eathena-data/eathena.sh restart";
-							setBarStatus(Comando);
+							setAvisoEstatus(Comando);
 							//TxtEstatus.setText(TxtEstatus.getText()+"\n"+Comando);
 							Process Retorno = Executador.exec(Comando);
 							BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
 							while ((line = in.readLine()) != null) {
-								setBarStatus(line);
+								setAvisoEstatus(line);
 								//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
 							}/**/
 							
@@ -667,20 +709,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 
 							//TxtEstatus.setText(TxtEstatus.getText()+"\nEathena reiniciado (Espere 5 segundos...)\n");
-							setBarStatus("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
+							setAvisoEstatusPainel("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos...</b></font>)");
 							long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
 							TempoInicio = System.currentTimeMillis();
 							do {
 								TempoAtual = System.currentTimeMillis();
 								Segundos = (TempoAtual - TempoInicio) / 1000;
-								//setAvisoEmEstatus("Espere "+Segundos+"/5 segundos...");
+								//setAvisoEstatusPainel("Espere "+Segundos+"/5 segundos...");
 								pgbProgresso.setValue((int) Segundos);
 								pgbProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
 							} while (TempoAtual - TempoInicio < Milisegundos);
 						} catch (IOException e) {
 							e.printStackTrace();
 							//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-							setBarStatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
 							DialogClass.showErro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"
 									  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
 									  + "</html>",
@@ -695,7 +737,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					}
 					pgbProgresso.setIndeterminate(true);
 					//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
-					setBarStatus("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
+					setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
 					Comando = conf.getExecucaoComando() + " "
 							  + "--update-host --default " + //<-- O Manaplus só roda corretamente com essa linha...
 							  ((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("--skip-update --data " + conf.getTMWData() + " ") : "")
@@ -712,11 +754,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						while ((line = in.readLine()) != null) {
 							System.out.println(line);
 							//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-							setBarStatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
+							setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
 							pgbProgresso.setString("Executando...");
 						}
 						pgbProgresso.setString("Fechado!");
-						setBarStatus("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
+						setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
 						pgbProgresso.setIndeterminate(false);
 					} catch (IOException e) {
 						pgbProgresso.setIndeterminate(false);
@@ -742,7 +784,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						} else {
 							pgbProgresso.setString("ERRO...");
 							//TxtEstatus.setText(TxtEstatus.getText()+"ERRO DE EXECUÇÃO: "+Comando);
-							setAvisoEmEstatus("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> " + Comando);
+							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO DE EXECUÇÃO:</b></font> " + Comando);
 							DialogClass.showErro(
 									  "<html>O TMW-Maker <font color=\"#FF0000\">não conseguiu abrir</font> nenhum <br/>"
 									  + "aplicativo cliente(jogo) de THE MANA WORLD!<br/>"
@@ -758,7 +800,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
 						pgbProgresso.setString("Desligando...");
-						setBarStatus("Desligando localhost...");
+						setAvisoEstatusPainel("Desligando localhost...");
 						//TxtEstatus.setText("Reiniciando localhost...");
 						try {
 							/*Comando = conf.getConexaoLocalhost() + "/eathena-data/eathena.sh stop";
@@ -774,13 +816,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 							Executador = doBash(Executador, "pkill char-server");
 							Executador = doBash(Executador, "pkill login-server");
 
-							setBarStatus("<html><font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> executados e encerrados com sucesso!");
+							setAvisoEstatusPainel("<html><font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> executados e encerrados com sucesso!");
 							pgbProgresso.setString("Encerrado!");
 						} catch (IOException e) {
 							e.printStackTrace();
 							//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
 
-							setBarStatus("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
 							DialogClass.showErro("<html><b>O TMW-Maker não conseguiu desligar o eathena:</b><br/><br/>"
 									  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
 									  + "</html>",
@@ -815,6 +857,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
 	private void mnuLocalhostDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLocalhostDesativarActionPerformed
 		 ServerStop();
 	}//GEN-LAST:event_mnuLocalhostDesativarActionPerformed
+	private void mnuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAjudaSobreActionPerformed
+		Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
+		javax.swing.JDialog frmSobre = new FrmSobre(this, rootPaneCheckingEnabled);
+		frmSobre.setModal(true);
+		frmSobre.pack();
+		int x = ((int)Tela.getWidth() - frmSobre.getWidth()) / 2;
+		int y = ((int)Tela.getHeight() - frmSobre.getHeight()) / 2;
+		frmSobre.setLocation(x,y);
+		frmSobre.setVisible(true);/**/
+	}//GEN-LAST:event_mnuAjudaSobreActionPerformed
 	
 
 	/**
@@ -833,20 +885,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
    private javax.swing.JPanel jPanel1;
    private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JPopupMenu.Separator jSeparator1;
+   private javax.swing.JPopupMenu.Separator jSeparator2;
    private javax.swing.JPopupMenu.Separator jSeparator3;
    public static javax.swing.JLabel lblStatus;
+   private javax.swing.JCheckBoxMenuItem mncDesativarAposTestes;
+   private javax.swing.JCheckBoxMenuItem mncTestarAposAtivacao;
+   private javax.swing.JMenu mnpAjuda;
    private javax.swing.JMenu mnpArquivo;
    private javax.swing.JMenu mnpLocalhost;
    private javax.swing.JMenu mnpRepositorio;
+   private javax.swing.JMenuItem mnuAjudaSobre;
    private javax.swing.JMenuItem mnuConfigurar;
    private javax.swing.JMenuItem mnuLocalhostAtivar;
    private javax.swing.JMenuItem mnuLocalhostDesativar;
    private javax.swing.JMenuItem mnuLocalhostTestar;
-   private javax.swing.JMenuItem mnuRepositorioAtualizar;
+   private javax.swing.JMenuItem mnuRepositorioEnviar;
    private javax.swing.JMenuItem mnuRepositorioMontar;
-   private javax.swing.JMenuItem mnuRepositorioSumeter;
+   private javax.swing.JMenuItem mnuRepositorioReceber;
    private javax.swing.JMenuItem mnuSair;
    private javax.swing.JProgressBar pgbProgresso;
-   private javax.swing.JTextArea txtStatus;
+   public static javax.swing.JTextArea txtStatus;
    // End of variables declaration//GEN-END:variables
 }
