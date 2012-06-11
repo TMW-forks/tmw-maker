@@ -4,7 +4,6 @@
  * @author lunovox
  */
 package formularios;
-
 import classes.ClassConfiguracao;
 import classes.DialogClass;
 import classes.FileClass;
@@ -21,8 +20,6 @@ import javax.swing.ImageIcon;
 import org.tmatesoft.svn.core.wc.SVNRevision;
 
 public class FrmPrincipal extends javax.swing.JFrame {
-
-	/** Creates new form FrmPrincipal */
 	public FrmPrincipal() {
 		try {
 			super.setIconImage((new ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))).getImage());
@@ -48,25 +45,51 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		Linha = Linha.replaceAll("<font color=\"#0000FF\">", "");
 		Linha = Linha.replaceAll("</font>", "");
 		System.out.println(Linha);
-		txtStatus.setText(txtStatus.getText() + "\n" + Linha);
-		txtStatus.setSelectionStart(txtStatus.getText().length() - 1);
-		txtStatus.setSelectionEnd(txtStatus.getText().length() - 1);
+		txtPainel.setText(txtPainel.getText() + "\n" + Linha);
+		txtPainel.setSelectionStart(txtPainel.getText().length() - 1);
+		txtPainel.setSelectionEnd(txtPainel.getText().length() - 1);
 	}
 	public static void setAvisoEstatus(String Aviso) {
-		lblStatus.setText(Aviso.toString());
-		lblStatus.setIcon(null);
+		lblStatusTexto.setText(Aviso.toString());
+		lblStatusTexto.setIcon(null);
 	}
 	public static void setAvisoEstatus(String Aviso, Icon Icone) {
-		lblStatus.setText(Aviso.toString());
-		lblStatus.setIcon(Icone);
+		lblStatusTexto.setText(Aviso.toString());
+		lblStatusTexto.setIcon(Icone);
 	}
 	public static void setAvisoEstatus(String Aviso, String EnderecoOuResource) {
-		lblStatus.setText(Aviso.toString());
-		lblStatus.setIcon((new ImagemClass(EnderecoOuResource)).getIcone());
+		lblStatusTexto.setText(Aviso.toString());
+		lblStatusTexto.setIcon((new ImagemClass(EnderecoOuResource)).getIcone());
 	}
 	public static void setAvisoEstatusPainel(String Linha) {
 		addLinhaPainel(Linha);
 		setAvisoEstatus(Linha);
+	}
+	public static Runtime doBash(Runtime Executador, String[] $Comandos) throws IOException {
+		//Runtime Executador = Runtime.getRuntime();
+		String line = "";
+		for(int $c=0;$c<$Comandos.length;$c++){
+			setAvisoEstatusPainel($Comandos[$c]);
+		}
+		Process Retorno = Executador.exec($Comandos);
+		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
+		return Executador;
+	}
+	public static Runtime doBash(Runtime Executador, String Comando) throws IOException {
+		//Runtime Executador = Runtime.getRuntime();
+		String line = "";
+		setAvisoEstatusPainel(Comando);
+		Process Retorno = Executador.exec(Comando);
+		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
+		return Executador;
+	}/**/
+	public static Runtime doBash(String Comando) throws IOException {
+		//Runtime Executador = new Runtime();
+		Runtime Executador = Runtime.getRuntime();
+		Executador = doBash(Executador, Comando);
+		return Executador;
 	}
 
 	public void doCheckoutHead(){
@@ -78,29 +101,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
 				setAvisoEstatusPainel("<html>Baixando repositório...");
 				addLinhaPainel(" * Origem: " + conf.getConexaoRepositorio());
 				addLinhaPainel(" * Destino: " + conf.getConexaoLocalhost());
-				mnpArquivo.setEnabled(false);
+				mnpSistema.setEnabled(false);
 				mnpRepositorio.setEnabled(false);
 				mnpLocalhost.setEnabled(false);
-				pgbProgresso.setIndeterminate(true);
-				pgbProgresso.setString("Baixando...");
-				pgbProgresso.setMinimum(0);
-				pgbProgresso.setMaximum(100);
-				pgbProgresso.setValue(100);
+				pgbStatusProgresso.setIndeterminate(true);
+				pgbStatusProgresso.setString("Baixando...");
+				pgbStatusProgresso.setMinimum(0);
+				pgbStatusProgresso.setMaximum(100);
+				pgbStatusProgresso.setValue(100);
 				SVNRevision rev = svn.doCheckout();
 				conf.doSalvar();
 				if (rev.getNumber()>=0) {
 					mnuRepositorioMontar.setEnabled(true);
 					setAvisoEstatusPainel("<html>Repositório '<font color='#008800'>" + rev.getNumber() + "</font>' baixado com sucesso!");
-					pgbProgresso.setString("Concluido!");
+					pgbStatusProgresso.setString("Concluido!");
 				} else {
 					mnuRepositorioMontar.setEnabled(false);
 					setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar o repositório!");
-					pgbProgresso.setString("Erro!");
+					pgbStatusProgresso.setString("Erro!");
 				}
 				conf.setAtualizacaoLocalhostUltimaAgora();
 				conf.doSalvar();
-				pgbProgresso.setIndeterminate(false);
-				mnpArquivo.setEnabled(true);
+				pgbStatusProgresso.setIndeterminate(false);
+				mnpSistema.setEnabled(true);
 				mnpRepositorio.setEnabled(true);
 				mnpLocalhost.setEnabled(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -127,102 +150,95 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			R = DialogClass.showOpcoes(
 				"<html>"
 				+ "O seu localhost já está montado. Ao remontar você<br/>"
-				+ "<font color=\"#FF0000\">pederá todas as contas gravadas</font>deste localhost.<br/>"
+				+ "<font color=\"#FF0000\">pederá todas as contas gravadas</font> neste localhost.<br/>"
 				+ "Deseja realmente forçar uma remontagem?",
 				"REMONTAGEM DE LOCALHOST",
 				new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png")),
 				new Object[] {"Remontar", "Cancelar"},
 				1
 			);
-			/*R = JOptionPane.showOptionDialog(
-				null, "<html>"
-				+ "O seu localhost já está montado. Ao remontar você<br/>"
-				+ "<font color=\"#FF0000\">pederá todas as contas</font> de jogadores deste localhost.<br/>"
-				+ "Deseja realmente forçar uma remontagem?",
-				"REMONTAGEM DE LOCALHOST",
-				JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE,
-				null,
-				new Object[] {"Remontar", "Cancelar"},
-				"Cancelar"
-			);/**/
 		}
 		if (R == 0) {
 			Thread tThread = new Thread(new Runnable() {
 				public void run() {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					mnpArquivo.setEnabled(false);
+					mnpSistema.setEnabled(false);
 					mnpRepositorio.setEnabled(false);
 					mnpLocalhost.setEnabled(false);
 					mnpAjuda.setEnabled(false);
-					pgbProgresso.setEnabled(true);
-					pgbProgresso.setValue(0);
-					pgbProgresso.setIndeterminate(true);
-					pgbProgresso.setString("Apagando...");
-					setAvisoEstatusPainel("Apagando binários...");
-					if(FileClass.seExiste(conf.getConexaoLocalhost() + bar + "bins")){FileClass.apagar(conf.getConexaoLocalhost() + bar + "bins");}
-					if(FileClass.seExiste(conf.getEathenaData() + bar + "char-server")){FileClass.apagar(conf.getEathenaData() + bar + "char-server");}
-					if(FileClass.seExiste(conf.getEathenaData() + bar + "login-server")){FileClass.apagar(conf.getEathenaData() + bar + "login-server");}
-					if(FileClass.seExiste(conf.getEathenaData() + bar + "map-server")){FileClass.apagar(conf.getEathenaData() + bar + "map-server");}
-
-					String $URL = "http://tmw-maker.googlecode.com/svn/bins/"+FileClass.getSysName()+"/"+FileClass.getSysArquitetura();
-					String $PastaBins = FrmPrincipal.conf.getConexaoLocalhost() + bar + "bins";
-
+					pgbStatusProgresso.setEnabled(true);
+					pgbStatusProgresso.setValue(0);
+					pgbStatusProgresso.setIndeterminate(true);
 					if(
-						FileClass.getSysName().indexOf("linux") >= 0 && (
-							FileClass.getSysArquitetura().indexOf("i386") >= 0 ||
-							FileClass.getSysArquitetura().indexOf("x64") >= 0 ||
-							FileClass.getSysArquitetura().indexOf("amd64") >= 0
-						)
-					) {
-						SummarizerSVN svnBinarios = new SummarizerSVN($URL, $PastaBins);
-						pgbProgresso.setString("Preparando...");
-						pgbProgresso.setString("Baixando...");
-						setAvisoEstatusPainel("Preparando para baixar binários novos...");
-						addLinhaPainel(" * Origem: " + $URL);
-						addLinhaPainel(" * Destino: " + $PastaBins);
-						SVNRevision rev = svnBinarios.doCheckout();
-						if (rev.getNumber()>=0) {
-							setAvisoEstatusPainel("<html>Binários '<font color='#008800'>" + rev.getNumber() + "</font>' baixados com sucesso!");
-							pgbProgresso.setString("Concluido!");
+						!FileClass.seExiste(conf.getEathenaData() + bar + "char-server") ||
+						!FileClass.seExiste(conf.getEathenaData() + bar + "login-server") ||
+						!FileClass.seExiste(conf.getEathenaData() + bar + "map-server")
+					){
+						pgbStatusProgresso.setString("Apagando...");
+						setAvisoEstatusPainel("Apagando binários...");
+						if(FileClass.seExiste(conf.getConexaoLocalhost() + bar + "bins")){FileClass.apagar(conf.getConexaoLocalhost() + bar + "bins");}
+						if(FileClass.seExiste(conf.getEathenaData() + bar + "char-server")){FileClass.apagar(conf.getEathenaData() + bar + "char-server");}
+						if(FileClass.seExiste(conf.getEathenaData() + bar + "login-server")){FileClass.apagar(conf.getEathenaData() + bar + "login-server");}
+						if(FileClass.seExiste(conf.getEathenaData() + bar + "map-server")){FileClass.apagar(conf.getEathenaData() + bar + "map-server");}
+
+						String $URL = "http://tmw-maker.googlecode.com/svn/bins/"+FileClass.getSysName()+"/"+FileClass.getSysArquitetura();
+						String $PastaBins = FrmPrincipal.conf.getConexaoLocalhost() + bar + "bins";
+
+						if(
+							FileClass.getSysName().indexOf("linux") >= 0 && (
+								FileClass.getSysArquitetura().indexOf("i386") >= 0 ||
+								FileClass.getSysArquitetura().indexOf("x64") >= 0 ||
+								FileClass.getSysArquitetura().indexOf("amd64") >= 0
+							)
+						) {
+							SummarizerSVN svnBinarios = new SummarizerSVN($URL, $PastaBins);
+							pgbStatusProgresso.setString("Baixando...");
+							setAvisoEstatusPainel("Preparando para baixar binários novos...");
+							addLinhaPainel(" * Origem: " + $URL);
+							addLinhaPainel(" * Destino: " + $PastaBins);
+							SVNRevision rev = svnBinarios.doCheckout();
+							if (rev.getNumber()>=0) {
+								setAvisoEstatusPainel("<html>Binários '<font color='#008800'>" + rev.getNumber() + "</font>' baixados com sucesso!");
+								pgbStatusProgresso.setString("Concluido!");
+							} else {
+								setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar os binários!");
+								pgbStatusProgresso.setString("!!!ERRO!!!");
+								pgbStatusProgresso.setIndeterminate(false);
+								mnpSistema.setEnabled(false);
+								mnpRepositorio.setEnabled(false);
+								mnpLocalhost.setEnabled(false);
+								mnpAjuda.setEnabled(false);
+								setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+								return;
+							}
 						} else {
-							setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar os binários!");
-							pgbProgresso.setString("!!!ERRO!!!");
-							pgbProgresso.setIndeterminate(false);
-							mnpArquivo.setEnabled(false);
+							FrmPrincipal.setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!");
+							DialogClass.showErro(
+								"<html><b>O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!</html>",
+								"ERRO DE EXECUÇÃO"
+							);
+							pgbStatusProgresso.setString("!!!ERRO!!!");
+							pgbStatusProgresso.setIndeterminate(false);
+							mnpSistema.setEnabled(false);
 							mnpRepositorio.setEnabled(false);
 							mnpLocalhost.setEnabled(false);
 							mnpAjuda.setEnabled(false);
 							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 							return;
+						}/**/
+						pgbStatusProgresso.setString("Deslocando...");
+						if (!FileClass.seExiste(conf.getEathenaData() + bar + "char-server")) {
+							FileClass.arquivoMover($PastaBins + bar + "char-server", conf.getEathenaData() + bar + "char-server");
+							setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
 						}
-					} else {
-						FrmPrincipal.setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!");
-						DialogClass.showErro(
-							"<html><b>O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!</html>",
-							"ERRO DE EXECUÇÃO"
-						);
-						pgbProgresso.setString("!!!ERRO!!!");
-						pgbProgresso.setIndeterminate(false);
-						mnpArquivo.setEnabled(false);
-						mnpRepositorio.setEnabled(false);
-						mnpLocalhost.setEnabled(false);
-						mnpAjuda.setEnabled(false);
-						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						return;
-					}/**/
-					pgbProgresso.setString("Deslocando...");
-					if (!FileClass.seExiste(conf.getEathenaData() + bar + "char-server")) {
-						FileClass.arquivoMover($PastaBins + bar + "char-server", conf.getEathenaData() + bar + "char-server");
-						setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
-					}
-					if (!FileClass.seExiste(conf.getEathenaData() + bar + "login-server")) {
-						FileClass.arquivoMover($PastaBins + bar + "login-server", conf.getEathenaData() + bar + "login-server");
-						setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
-					}
-					if (!FileClass.seExiste(conf.getEathenaData() + bar + "map-server")) {
-						FileClass.arquivoMover($PastaBins + bar + "map-server", conf.getEathenaData() + bar + "map-server");
-						setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
+						if (!FileClass.seExiste(conf.getEathenaData() + bar + "login-server")) {
+							FileClass.arquivoMover($PastaBins + bar + "login-server", conf.getEathenaData() + bar + "login-server");
+							setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
+						}
+						if (!FileClass.seExiste(conf.getEathenaData() + bar + "map-server")) {
+							FileClass.arquivoMover($PastaBins + bar + "map-server", conf.getEathenaData() + bar + "map-server");
+							setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
+						}
 					}
 
 					/*
@@ -239,8 +255,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					mv -uv save/account.txt.example save/account.txt
 					/**/
 
-					setAvisoEstatusPainel("Renomeando banco de dados...");
-					pgbProgresso.setString("Renomeando...");
 					String $PastaSaves[] = new String[]{
 						conf.getEathenaData() + bar + "conf",
 						conf.getEathenaData() + bar + "conf",
@@ -283,23 +297,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 					for (int $File = 0; $File < $NomeOriginal.length; $File++) {
 						if (FileClass.seExiste($PastaSaves[$File] + bar + $NomeOriginal[$File])) {
-							if (FileClass.seExiste($PastaSaves[$File] + bar + $NomeUtil[$File])) {
+							/*if(FileClass.seExiste($PastaSaves[$File] + bar + $NomeUtil[$File])) {
 								FileClass.apagar($PastaSaves[$File] + bar + $NomeUtil[$File]);
 								setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + $NomeUtil[$File] + "\"!");
+							}/**/
+							if(!FileClass.seExiste($PastaSaves[$File]+bar+$NomeUtil[$File])) {
+								pgbStatusProgresso.setString("Renomeando...");
+								setAvisoEstatusPainel("<html><b>Renomeando:</b> \""+$NomeOriginal[$File]+"\" → \""+$NomeUtil[$File]+"\"");
+								FileClass.arquivoMover(
+									$PastaSaves[$File]+bar+$NomeOriginal[$File],
+									$PastaSaves[$File]+bar+$NomeUtil[$File]
+								);
 							}
-							setAvisoEstatusPainel("<html><b>Renomeando:</b> \"" + $NomeOriginal[$File] + "\" -> \"" + $NomeUtil[$File] + "\"...");
-							FileClass.arquivoMover($PastaSaves[$File] + bar + $NomeOriginal[$File], $PastaSaves[$File] + bar + $NomeUtil[$File]);
 						}
 					}
 
-					/**
-					 * Será que é realmente necessário esta pasta "LOG"?
-					 * Ela serve para os logs do binário "eathena-monitor".
-					 * Mas o TMwe-Maker2 não usa o binário "eathena-monitor".
-					 * Mas será que são todos logs do binário "eathena-monitor" ou tem logs de outro sistema?.
-					 * Em todo caso botarei o códig oabaixo e verificarei mais tarde se realmente é necessário.
-					 */
 					if (!FileClass.seExiste(conf.getEathenaData() + bar + "log")) {
+						/**   Será que é realmente necessário esta pasta "LOG"?
+						* Ela serve para os logs do binário "eathena-monitor".
+						* Mas o TMwe-Maker2 não usa o binário "eathena-monitor".
+						* Mas será que são todos logs do binário "eathena-monitor" ou tem logs de outro sistema?.
+						* Em todo caso botarei o códig oabaixo e verificarei mais tarde se realmente é necessário.
+						*/
 						setAvisoEstatusPainel("<html><b>Criando Pasta:</b> \"" + conf.getEathenaData() + bar + "log\"...");
 						FileClass.pastaCriar(conf.getEathenaData() + bar + "log");
 					}
@@ -309,21 +328,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					ln -s $PWD $HOME/tmwserver //Recria Link
 					/**/
 					String $link = System.getProperty("user.home") + bar + "tmwserver";
-					if (FileClass.seExiste($link)) {FileClass.apagar($link);}
-					pgbProgresso.setString("Coligando...");
-					setAvisoEstatusPainel("Criando link \""+$link+"\"...");
-
-					String $Comando = "ln -s \""+ conf.getEathenaData()+"\" \""+$link+"\"";
-					System.out.println($Comando);
-					addLinhaPainel($Comando);
+					if (FileClass.seExiste($link)) {
+						pgbStatusProgresso.setString("Excluindo...");
+						setAvisoEstatusPainel("Apagando link \""+$link+"\"...");
+						FileClass.apagar($link);
+					}
+					pgbStatusProgresso.setString("Coligando...");
+					setAvisoEstatusPainel("Recriando link \""+$link+"\"...");
+					//String $Bash = "ln -s \""+ conf.getEathenaData()+"\" \""+$link+"\"";
+					//String $Bash = "ln -s \""+ conf.getEathenaData()+"\" "+$link;
+					String $Bash = "ln -s "+ conf.getEathenaData()+" "+$link;
+					System.out.println($Bash);
 					try{
-						doBash($Comando);
+						doBash($Bash);
 					} catch (IOException ex) {
 						//Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-						setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Comando);
-						pgbProgresso.setString("!!!ERRO!!!");
-						pgbProgresso.setIndeterminate(false);
-						mnpArquivo.setEnabled(false);
+						setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
+						pgbStatusProgresso.setString("!!!ERRO!!!");
+						pgbStatusProgresso.setIndeterminate(false);
+						mnpSistema.setEnabled(false);
 						mnpRepositorio.setEnabled(false);
 						mnpLocalhost.setEnabled(false);
 						mnpAjuda.setEnabled(false);
@@ -333,54 +356,39 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 					//
 					String $Depurador = conf.getEathenaData()+bar+"tmw-maker-depure.sh";
-					setAvisoEstatusPainel("<html><b>Criando Depurador:</b> \"<font color='#FF0000'>"+$Depurador +"</font>\"...");
-					FileClass.arquivoSalvar($Depurador,
-						"#!/bin/bash\n"+
-						"\n"+
-						"cd $HOME/tmwserver\n"+
-						"./login-server &\n"+
-						"./char-server &\n"+
-						"./map-server &"
-					);
-					try{
-						doBash("chmod +x \""+$Depurador +"\"");
-					} catch (IOException ex) {
-						//Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-						setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Comando);
-						pgbProgresso.setString("!!!ERRO!!!");
-						pgbProgresso.setIndeterminate(false);
-						mnpArquivo.setEnabled(false);
-						mnpRepositorio.setEnabled(false);
-						mnpLocalhost.setEnabled(false);
-						mnpAjuda.setEnabled(false);
-						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						return;
-					}
-					addLinhaPainel("<html>chmod +x \""+$Depurador +"\"");
-					//chmod +x /opt/java/jdk-6u6-nb-6_0_1-linux-ml.sh.
-
-					/*try {
-						Process Retorno = Executador.exec(Comando);
-						BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-						while ((line = in.readLine()) != null) {
-							System.out.println(line);
+					if(!FileClass.seExiste($Depurador)){
+						setAvisoEstatusPainel("<html><b>Criando Depurador:</b> \"<font color='#FF0000'>"+$Depurador +"</font>\"...");
+						FileClass.arquivoSalvar(
+							$Depurador,
+							"#!/bin/bash\n"+
+							"\n"+
+							"cd $HOME/tmwserver\n"+
+							"./login-server &\n"+
+							"./char-server &\n"+
+							"./map-server &"
+						);
+						//$Comando="chmod +x \""+$Depurador +"\"";
+						$Bash="chmod +x "+$Depurador;
+						try{
+							doBash($Bash);
+						} catch (IOException ex) {
+							//Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+							setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
+							pgbStatusProgresso.setString("!!!ERRO!!!");
+							pgbStatusProgresso.setIndeterminate(false);
+							mnpSistema.setEnabled(false);
+							mnpRepositorio.setEnabled(false);
+							mnpLocalhost.setEnabled(false);
+							mnpAjuda.setEnabled(false);
+							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+							return;
 						}
-					} catch (IOException e) {
-						e.printStackTrace();
-						//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-						setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-						DialogClass.showErro(
-								  "<html><b>O TMW-Maker não conseguiu criar link:</b><br/><br/>"
-								  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
-								  + "</html>",
-								  "ERRO DE EXECUÇÃO");
-					}/**/
-
+					}
 					setAvisoEstatusPainel("<html><font color=\"#0000FF\">Locahost montado com sucesso!");
-					pgbProgresso.setString("Concluido!");
+					pgbStatusProgresso.setString("Concluido!");
 
-					pgbProgresso.setIndeterminate(false);
-					mnpArquivo.setEnabled(true);
+					pgbStatusProgresso.setIndeterminate(false);
+					mnpSistema.setEnabled(true);
 					mnpRepositorio.setEnabled(true);
 					mnpLocalhost.setEnabled(true);
 					mnpAjuda.setEnabled(true);
@@ -390,7 +398,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			tThread.start();
 		} else {
 			setAvisoEstatusPainel("Remontagem cancelada!");
-			pgbProgresso.setString("");
+			pgbStatusProgresso.setString("");
 		}
 	}
 	public void ServerPlay() {
@@ -410,11 +418,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		} else {
 			Thread tThread = new Thread(new Runnable() {
 				public void run() {
-					pgbProgresso.setEnabled(true);
-					pgbProgresso.setValue(0);
-					pgbProgresso.setMinimum(0);
-					pgbProgresso.setMaximum(5);
-					txtStatus.setText("");
+					pgbStatusProgresso.setEnabled(true);
+					pgbStatusProgresso.setValue(0);
+					pgbStatusProgresso.setMinimum(0);
+					pgbStatusProgresso.setMaximum(5);
+					txtPainel.setText("");
 
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Runtime Executador = Runtime.getRuntime();
@@ -423,14 +431,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
 						if(FileClass.seExiste($ServerDepurador)){
 							$ServerDepurador = $ServerDepurador.replaceAll(" ", "\\\\ ");
-							pgbProgresso.setString("Ativando...");
+							pgbStatusProgresso.setString("Ativando...");
 							setAvisoEstatusPainel("Ativando Servidor Local...");
 							try {
-								pgbProgresso.setIndeterminate(true);
+								pgbStatusProgresso.setIndeterminate(true);
 								Executador = doBash(Executador, $ServerDepurador);
-								pgbProgresso.setIndeterminate(false);
+								pgbStatusProgresso.setIndeterminate(false);
 								setAvisoEstatusPainel("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos antes de testar...</b></font>)");
-								if(mncTestarAposAtivacao.isSelected()){ServerTestar();}
+								if(mncTestarAposAtivacao.isSelected()){ServerExecutar();}
 							} catch (IOException e) {
 								e.printStackTrace();
 								setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + $ServerDepurador);
@@ -482,18 +490,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					//mnuLocalhostDesativar.setEnabled(false);
 					//VerificarbarDeFerramentas();
 
-					pgbProgresso.setEnabled(true);
-					pgbProgresso.setValue(0);
-					pgbProgresso.setMinimum(0);
-					pgbProgresso.setMaximum(5);
-					pgbProgresso.setIndeterminate(false);
+					pgbStatusProgresso.setEnabled(true);
+					pgbStatusProgresso.setValue(0);
+					pgbStatusProgresso.setMinimum(0);
+					pgbStatusProgresso.setMaximum(5);
+					pgbStatusProgresso.setIndeterminate(false);
 
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Runtime Executador = Runtime.getRuntime();
 					String line = "", Comando = "";
 
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
-						pgbProgresso.setString("Desativando...");
+						pgbStatusProgresso.setString("Desativando...");
 						setAvisoEstatusPainel("Desativando localhost...");
 						//TxtEstatus.setText("Reiniciando localhost...");
 						try {
@@ -501,9 +509,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 							Executador = doBash(Executador, "pkill char-server");
 							Executador = doBash(Executador, "pkill login-server");
 							setAvisoEstatusPainel("Localhost desativado com sucesso!");
-							pgbProgresso.setString("Desativado!");
+							pgbStatusProgresso.setString("Desativado!");
 						} catch (IOException e) {
-							pgbProgresso.setString("ERRO");
+							pgbStatusProgresso.setString("ERRO");
 							e.printStackTrace();
 							//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
 							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
@@ -520,7 +528,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			tThread.start();
 		}
 	}
-	public void ServerTestar() {
+	public void ServerExecutar() {
 		if (FileClass.getSysName().indexOf("win") >= 0) {
 			/*String[] cmd = new String[4];
 			cmd[0] = "cmd.exe";
@@ -546,21 +554,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					Runtime Executador = Runtime.getRuntime();
 					String line = "", Comando = "";
 
-					pgbProgresso.setEnabled(true);
-					pgbProgresso.setMinimum(0);
-					pgbProgresso.setMaximum(5);
-					pgbProgresso.setValue(5);
-					pgbProgresso.setIndeterminate(false);
+					pgbStatusProgresso.setEnabled(true);
+					pgbStatusProgresso.setMinimum(0);
+					pgbStatusProgresso.setMaximum(5);
+					pgbStatusProgresso.setValue(5);
+					pgbStatusProgresso.setIndeterminate(false);
 					setAvisoEstatusPainel("<html>Contagem de 5 segundo antes da execução...");
 					long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
 					TempoInicio = System.currentTimeMillis();
 					do {
 						TempoAtual = System.currentTimeMillis();
 						Segundos = (TempoAtual - TempoInicio) / 1000;
-						pgbProgresso.setValue((int) Segundos);
-						pgbProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
+						pgbStatusProgresso.setValue((int) Segundos);
+						pgbStatusProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
 					} while (TempoAtual - TempoInicio < Milisegundos);
-					pgbProgresso.setIndeterminate(true);
+					pgbStatusProgresso.setIndeterminate(true);
 
 					//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
 					setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
@@ -581,9 +589,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 							System.out.println(line);
 							//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
 							setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
-							pgbProgresso.setString("Executando...");
+							pgbStatusProgresso.setString("Executando...");
 						}
-						pgbProgresso.setString("Fechado!");
+						pgbStatusProgresso.setString("Fechado!");
 						setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
 						if(mncDesativarAposTestes.isSelected()){ServerStop();}
 						//pgbProgresso.setIndeterminate(false);
@@ -597,7 +605,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						//setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						//return;
 					}
-					pgbProgresso.setIndeterminate(false);
+					pgbStatusProgresso.setIndeterminate(false);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 			});
@@ -623,21 +631,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			Thread tThread = new Thread(new Runnable() {
 
 				public void run() {
-					mnpArquivo.setEnabled(false);
+					mnpSistema.setEnabled(false);
 					mnpRepositorio.setEnabled(false);
 					//VerificarbarDeFerramentas();
 
-					pgbProgresso.setEnabled(true);
-					pgbProgresso.setValue(0);
-					pgbProgresso.setMinimum(0);
-					pgbProgresso.setMaximum(5);
+					pgbStatusProgresso.setEnabled(true);
+					pgbStatusProgresso.setValue(0);
+					pgbStatusProgresso.setMinimum(0);
+					pgbStatusProgresso.setMaximum(5);
 
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Runtime Executador = Runtime.getRuntime();
 					String line = "", Comando = "";
 
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
-						pgbProgresso.setString("Reiniciando...");
+						pgbStatusProgresso.setString("Reiniciando...");
 						setAvisoEstatusPainel("Reiniciando localhost...");
 						//TxtEstatus.setText("Reiniciando localhost...");
 						try {
@@ -741,8 +749,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 								TempoAtual = System.currentTimeMillis();
 								Segundos = (TempoAtual - TempoInicio) / 1000;
 								//setAvisoEstatusPainel("Espere "+Segundos+"/5 segundos...");
-								pgbProgresso.setValue((int) Segundos);
-								pgbProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
+								pgbStatusProgresso.setValue((int) Segundos);
+								pgbStatusProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
 							} while (TempoAtual - TempoInicio < Milisegundos);
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -752,15 +760,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
 									  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
 									  + "</html>",
 									  "ERRO DE EXECUÇÃO");
-							pgbProgresso.setValue(5);
-							mnpArquivo.setEnabled(true);
+							pgbStatusProgresso.setValue(5);
+							mnpSistema.setEnabled(true);
 							mnpRepositorio.setEnabled(true);
 							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 							//VerificarbarDeFerramentas();
 							return;
 						}
 					}
-					pgbProgresso.setIndeterminate(true);
+					pgbStatusProgresso.setIndeterminate(true);
 					//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
 					setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
 					Comando = conf.getExecucaoComando() + " "
@@ -780,13 +788,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 							System.out.println(line);
 							//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
 							setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
-							pgbProgresso.setString("Executando...");
+							pgbStatusProgresso.setString("Executando...");
 						}
-						pgbProgresso.setString("Fechado!");
+						pgbStatusProgresso.setString("Fechado!");
 						setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
-						pgbProgresso.setIndeterminate(false);
+						pgbStatusProgresso.setIndeterminate(false);
 					} catch (IOException e) {
-						pgbProgresso.setIndeterminate(false);
+						pgbStatusProgresso.setIndeterminate(false);
 						e.printStackTrace();
 						/*if (conf.getExecucaoComando().equals("manaplus") && !conf.getSeDependenciaDeManaplus() && conf.getSeDependenciaDeTMW()) {
 							conf.setExecucaoComando("tmw");
@@ -815,8 +823,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 									  + "aplicativo cliente(jogo) de THE MANA WORLD!<br/>"
 									  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font>", "ERRO DE EXECUÇÃO");
 						}/**/
-						pgbProgresso.setValue(5);
-						mnpArquivo.setEnabled(true);
+						pgbStatusProgresso.setValue(5);
+						mnpSistema.setEnabled(true);
 						mnpRepositorio.setEnabled(true);
 						//VerificarbarDeFerramentas();
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -824,7 +832,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					}
 
 					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
-						pgbProgresso.setString("Desligando...");
+						pgbStatusProgresso.setString("Desligando...");
 						setAvisoEstatusPainel("Desligando localhost...");
 						//TxtEstatus.setText("Reiniciando localhost...");
 						try {
@@ -842,7 +850,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 							Executador = doBash(Executador, "pkill login-server");
  
 							setAvisoEstatusPainel("<html><font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font> e <font color=\"#0000FF\"><b>eathena</b></font> executados e encerrados com sucesso!");
-							pgbProgresso.setString("Encerrado!");
+							pgbStatusProgresso.setString("Encerrado!");
 						} catch (IOException e) {
 							e.printStackTrace();
 							//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
@@ -852,8 +860,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 									  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
 									  + "</html>",
 									  "ERRO DE EXECUÇÃO");
-							pgbProgresso.setValue(5);
-							mnpArquivo.setEnabled(true);
+							pgbStatusProgresso.setValue(5);
+							mnpSistema.setEnabled(true);
 							mnpRepositorio.setEnabled(true);
 							//VerificarbarDeFerramentas();
 							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -861,8 +869,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						}
 					}
 
-					pgbProgresso.setValue(5);
-					mnpArquivo.setEnabled(true);
+					pgbStatusProgresso.setValue(5);
+					mnpSistema.setEnabled(true);
 					mnpRepositorio.setEnabled(true);
 					//VerificarbarDeFerramentas();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -876,19 +884,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      jPanel1 = new javax.swing.JPanel();
-      lblStatus = new javax.swing.JLabel();
-      pgbProgresso = new javax.swing.JProgressBar();
-      jScrollPane1 = new javax.swing.JScrollPane();
-      txtStatus = new javax.swing.JTextArea();
-      jMenuBar1 = new javax.swing.JMenuBar();
-      mnpArquivo = new javax.swing.JMenu();
-      mnuConfigurar = new javax.swing.JMenuItem();
-      mnuSair = new javax.swing.JMenuItem();
+      pnlBarraDeStatus = new javax.swing.JPanel();
+      lblStatusTexto = new javax.swing.JLabel();
+      pgbStatusProgresso = new javax.swing.JProgressBar();
+      scpPainel = new javax.swing.JScrollPane();
+      txtPainel = new javax.swing.JTextArea();
+      mbrBarraDeMenu = new javax.swing.JMenuBar();
+      mnpSistema = new javax.swing.JMenu();
+      mnuSistemaLimparPainel = new javax.swing.JMenuItem();
+      mnuSistemaConfigurar = new javax.swing.JMenuItem();
+      jSeparator5 = new javax.swing.JPopupMenu.Separator();
+      mnuSistemaSair = new javax.swing.JMenuItem();
       mnpRepositorio = new javax.swing.JMenu();
       mnuRepositorioEnviar = new javax.swing.JMenuItem();
       mnuRepositorioReceber = new javax.swing.JMenuItem();
       jSeparator1 = new javax.swing.JPopupMenu.Separator();
+      mnuRepositorioHistorico = new javax.swing.JMenuItem();
+      jSeparator4 = new javax.swing.JPopupMenu.Separator();
       mnuRepositorioMontar = new javax.swing.JMenuItem();
       mnpLocalhost = new javax.swing.JMenu();
       mnuLocalhostAtivar = new javax.swing.JMenuItem();
@@ -897,8 +909,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mncTestarAposAtivacao = new javax.swing.JCheckBoxMenuItem();
       mncDesativarAposTestes = new javax.swing.JCheckBoxMenuItem();
       jSeparator3 = new javax.swing.JPopupMenu.Separator();
-      mnuLocalhostTestar = new javax.swing.JMenuItem();
+      mnuLocalhostExecutar = new javax.swing.JMenuItem();
       mnpAjuda = new javax.swing.JMenu();
+      mnuAjudaInformarDefeito = new javax.swing.JMenuItem();
       mnuAjudaSobre = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -909,77 +922,89 @@ public class FrmPrincipal extends javax.swing.JFrame {
          }
       });
 
-      jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+      pnlBarraDeStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-      lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
-      lblStatus.setText("Bem Vindo!");
+      lblStatusTexto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
+      lblStatusTexto.setText("Bem Vindo!");
 
-      pgbProgresso.setValue(100);
-      pgbProgresso.setString("");
-      pgbProgresso.setStringPainted(true);
+      pgbStatusProgresso.setValue(100);
+      pgbStatusProgresso.setString("");
+      pgbStatusProgresso.setStringPainted(true);
 
-      javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-      jPanel1.setLayout(jPanel1Layout);
-      jPanel1Layout.setHorizontalGroup(
-         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+      javax.swing.GroupLayout pnlBarraDeStatusLayout = new javax.swing.GroupLayout(pnlBarraDeStatus);
+      pnlBarraDeStatus.setLayout(pnlBarraDeStatusLayout);
+      pnlBarraDeStatusLayout.setHorizontalGroup(
+         pnlBarraDeStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBarraDeStatusLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+            .addComponent(lblStatusTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
             .addGap(18, 18, 18)
-            .addComponent(pgbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pgbStatusProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
       );
-      jPanel1Layout.setVerticalGroup(
-         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(lblStatus)
-               .addComponent(pgbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+      pnlBarraDeStatusLayout.setVerticalGroup(
+         pnlBarraDeStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(pnlBarraDeStatusLayout.createSequentialGroup()
+            .addGroup(pnlBarraDeStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(lblStatusTexto)
+               .addComponent(pgbStatusProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(0, 0, 0))
       );
 
-      jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblStatus, pgbProgresso});
+      pnlBarraDeStatusLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblStatusTexto, pgbStatusProgresso});
 
-      txtStatus.setBackground(new java.awt.Color(0, 92, 0));
-      txtStatus.setColumns(20);
-      txtStatus.setEditable(false);
-      txtStatus.setFont(new java.awt.Font("Courier New", 0, 15));
-      txtStatus.setForeground(java.awt.Color.white);
-      txtStatus.setRows(5);
-      txtStatus.setText("Tmw-Maker II Java");
-      jScrollPane1.setViewportView(txtStatus);
+      txtPainel.setBackground(new java.awt.Color(0, 92, 0));
+      txtPainel.setColumns(20);
+      txtPainel.setEditable(false);
+      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
+      txtPainel.setForeground(java.awt.Color.white);
+      txtPainel.setRows(5);
+      txtPainel.setText("Tmw-Maker II Java");
+      scpPainel.setViewportView(txtPainel);
 
-      mnpArquivo.setText("Arquivo");
+      mnpSistema.setText("Arquivo");
 
-      mnuConfigurar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-      mnuConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_chaveinglesa.png"))); // NOI18N
-      mnuConfigurar.setText("Configurar");
-      mnuConfigurar.addActionListener(new java.awt.event.ActionListener() {
+      mnuSistemaLimparPainel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, java.awt.event.InputEvent.CTRL_MASK));
+      mnuSistemaLimparPainel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_borracha.png"))); // NOI18N
+      mnuSistemaLimparPainel.setText("Limpar Painel");
+      mnuSistemaLimparPainel.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            mnuConfigurarActionPerformed(evt);
+            mnuSistemaLimparPainelActionPerformed(evt);
          }
       });
-      mnpArquivo.add(mnuConfigurar);
+      mnpSistema.add(mnuSistemaLimparPainel);
 
-      mnuSair.setText("Sair");
-      mnuSair.addActionListener(new java.awt.event.ActionListener() {
+      mnuSistemaConfigurar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+      mnuSistemaConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_chaveinglesa.png"))); // NOI18N
+      mnuSistemaConfigurar.setText("Configurar...");
+      mnuSistemaConfigurar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            mnuSairActionPerformed(evt);
+            mnuSistemaConfigurarActionPerformed(evt);
          }
       });
-      mnpArquivo.add(mnuSair);
+      mnpSistema.add(mnuSistemaConfigurar);
+      mnpSistema.add(jSeparator5);
 
-      jMenuBar1.add(mnpArquivo);
+      mnuSistemaSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_exit.png"))); // NOI18N
+      mnuSistemaSair.setText("Sair");
+      mnuSistemaSair.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuSistemaSairActionPerformed(evt);
+         }
+      });
+      mnpSistema.add(mnuSistemaSair);
+
+      mbrBarraDeMenu.add(mnpSistema);
 
       mnpRepositorio.setText("Repositório");
 
-      mnuRepositorioEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.CTRL_MASK));
+      mnuRepositorioEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.SHIFT_MASK));
       mnuRepositorioEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_upload.gif"))); // NOI18N
       mnuRepositorioEnviar.setText("Enviar");
       mnuRepositorioEnviar.setEnabled(false);
       mnpRepositorio.add(mnuRepositorioEnviar);
 
-      mnuRepositorioReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.CTRL_MASK));
+      mnuRepositorioReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.SHIFT_MASK));
       mnuRepositorioReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_download.gif"))); // NOI18N
       mnuRepositorioReceber.setText("Receber");
       mnuRepositorioReceber.addActionListener(new java.awt.event.ActionListener() {
@@ -990,9 +1015,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnpRepositorio.add(mnuRepositorioReceber);
       mnpRepositorio.add(jSeparator1);
 
+      mnuRepositorioHistorico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+      mnuRepositorioHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_file_rss.gif"))); // NOI18N
+      mnuRepositorioHistorico.setText("Exibir Histórico...");
+      mnuRepositorioHistorico.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuRepositorioHistoricoActionPerformed(evt);
+         }
+      });
+      mnpRepositorio.add(mnuRepositorioHistorico);
+      mnpRepositorio.add(jSeparator4);
+
       mnuRepositorioMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/puzzle.png"))); // NOI18N
       mnuRepositorioMontar.setText("Montar");
-      mnuRepositorioMontar.setEnabled(false);
       mnuRepositorioMontar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             mnuRepositorioMontarActionPerformed(evt);
@@ -1000,11 +1035,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
       });
       mnpRepositorio.add(mnuRepositorioMontar);
 
-      jMenuBar1.add(mnpRepositorio);
+      mbrBarraDeMenu.add(mnpRepositorio);
 
       mnpLocalhost.setText("Localhost");
 
-      mnuLocalhostAtivar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, java.awt.event.InputEvent.CTRL_MASK));
+      mnuLocalhostAtivar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
       mnuLocalhostAtivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_play.png"))); // NOI18N
       mnuLocalhostAtivar.setText("Ativar");
       mnuLocalhostAtivar.addActionListener(new java.awt.event.ActionListener() {
@@ -1014,7 +1049,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
       });
       mnpLocalhost.add(mnuLocalhostAtivar);
 
-      mnuLocalhostDesativar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, java.awt.event.InputEvent.CTRL_MASK));
+      mnuLocalhostDesativar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
       mnuLocalhostDesativar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_parar.png"))); // NOI18N
       mnuLocalhostDesativar.setText("Desativar");
       mnuLocalhostDesativar.addActionListener(new java.awt.event.ActionListener() {
@@ -1025,7 +1060,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnpLocalhost.add(mnuLocalhostDesativar);
       mnpLocalhost.add(jSeparator2);
 
-      mncTestarAposAtivacao.setSelected(true);
       mncTestarAposAtivacao.setText("Testar após ativação");
       mnpLocalhost.add(mncTestarAposAtivacao);
 
@@ -1033,23 +1067,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnpLocalhost.add(mncDesativarAposTestes);
       mnpLocalhost.add(jSeparator3);
 
-      mnuLocalhostTestar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-      mnuLocalhostTestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_magica.png"))); // NOI18N
-      mnuLocalhostTestar.setText("Testar em Softcliente");
-      mnuLocalhostTestar.addActionListener(new java.awt.event.ActionListener() {
+      mnuLocalhostExecutar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+      mnuLocalhostExecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
+      mnuLocalhostExecutar.setText("Executar...");
+      mnuLocalhostExecutar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            mnuLocalhostTestarActionPerformed(evt);
+            mnuLocalhostExecutarActionPerformed(evt);
          }
       });
-      mnpLocalhost.add(mnuLocalhostTestar);
+      mnpLocalhost.add(mnuLocalhostExecutar);
 
-      jMenuBar1.add(mnpLocalhost);
+      mbrBarraDeMenu.add(mnpLocalhost);
 
       mnpAjuda.setText("Ajuda");
 
+      mnuAjudaInformarDefeito.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+      mnuAjudaInformarDefeito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_comentario.gif"))); // NOI18N
+      mnuAjudaInformarDefeito.setText("Informar defeito...");
+      mnuAjudaInformarDefeito.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuAjudaInformarDefeitoActionPerformed(evt);
+         }
+      });
+      mnpAjuda.add(mnuAjudaInformarDefeito);
+
       mnuAjudaSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-      mnuAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
-      mnuAjudaSobre.setText("Sobre");
+      mnuAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_casa.png"))); // NOI18N
+      mnuAjudaSobre.setText("Sobre...");
       mnuAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             mnuAjudaSobreActionPerformed(evt);
@@ -1057,27 +1101,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
       });
       mnpAjuda.add(mnuAjudaSobre);
 
-      jMenuBar1.add(mnpAjuda);
+      mbrBarraDeMenu.add(mnpAjuda);
 
-      setJMenuBar(jMenuBar1);
+      setJMenuBar(mbrBarraDeMenu);
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addGroup(layout.createSequentialGroup()
-            .addGap(12, 12, 12)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+         .addComponent(pnlBarraDeStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(scpPainel, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
             .addGap(12, 12, 12))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+            .addComponent(scpPainel, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlBarraDeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
       pack();
@@ -1104,15 +1148,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			if(resp==0){doCheckoutHead();}
 		}
 	}//GEN-LAST:event_formWindowOpened
-	private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
+	private void mnuSistemaSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSistemaSairActionPerformed
 		// TODO add your handling code here:
 		System.exit(0);
-	}//GEN-LAST:event_mnuSairActionPerformed
+	}//GEN-LAST:event_mnuSistemaSairActionPerformed
 	private void mnuRepositorioReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRepositorioReceberActionPerformed
 		// TODO add your handling code here:
 		doCheckoutHead();
 	}//GEN-LAST:event_mnuRepositorioReceberActionPerformed
-	private void mnuConfigurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConfigurarActionPerformed
+	private void mnuSistemaConfigurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSistemaConfigurarActionPerformed
 		// TODO add your handling code here:
 		javax.swing.JDialog frmConfiguracao = new FrmConfiguracao(this, rootPaneCheckingEnabled);
 		frmConfiguracao.setLocation(
@@ -1122,38 +1166,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		frmConfiguracao.pack();
 		frmConfiguracao.setModal(true);
 		frmConfiguracao.setVisible(true);/**/
-	}//GEN-LAST:event_mnuConfigurarActionPerformed
-	public Runtime doBash(Runtime Executador, String[] $Comandos) throws IOException {
-		//Runtime Executador = Runtime.getRuntime();
-		String line = "";
-		for(int $c=0;$c<$Comandos.length;$c++){
-			setAvisoEstatusPainel($Comandos[$c]);
-		}
-		Process Retorno = Executador.exec($Comandos);
-		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
-		return Executador;
-	}
-	public Runtime doBash(Runtime Executador, String Comando) throws IOException {
-		//Runtime Executador = Runtime.getRuntime();
-		String line = "";
-		setAvisoEstatusPainel(Comando);
-		Process Retorno = Executador.exec(Comando);
-		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
-		return Executador;
-	}/**/
-	public Runtime doBash(String Comando) throws IOException {
-		//Runtime Executador = new Runtime();
-		Runtime Executador = Runtime.getRuntime();
-		Executador = doBash(Executador, Comando);
-		return Executador;
-	}
-
-	private void mnuLocalhostTestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLocalhostTestarActionPerformed
+	}//GEN-LAST:event_mnuSistemaConfigurarActionPerformed
+	private void mnuLocalhostExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLocalhostExecutarActionPerformed
 		//ExecutarJogo_deprecado();
-		ServerTestar();
-	}//GEN-LAST:event_mnuLocalhostTestarActionPerformed
+		ServerExecutar();
+	}//GEN-LAST:event_mnuLocalhostExecutarActionPerformed
 	private void mnuLocalhostAtivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLocalhostAtivarActionPerformed
 		ServerPlay();
 	}//GEN-LAST:event_mnuLocalhostAtivarActionPerformed
@@ -1170,16 +1187,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		frmSobre.setLocation(x,y);
 		frmSobre.setVisible(true);/**/
 	}//GEN-LAST:event_mnuAjudaSobreActionPerformed
-
 	private void mnuRepositorioMontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRepositorioMontarActionPerformed
 		// TODO add your handling code here:
 		doMontar();
 	}//GEN-LAST:event_mnuRepositorioMontarActionPerformed
-	
+	private void mnuSistemaLimparPainelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSistemaLimparPainelActionPerformed
+		// TODO add your handling code here:
+		if(!txtPainel.getText().equals("")){
+			if(
+			  DialogClass.showOpcoes(
+					"Deseja realmente limpar os dados do painel?",
+					"REMONTAGEM DE LOCALHOST",
+					new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png")),
+					new Object[] {"Remontar", "Cancelar"},
+					1
+				)==0
+			){txtPainel.setText("");}
+		}
+	}//GEN-LAST:event_mnuSistemaLimparPainelActionPerformed
+	private void mnuRepositorioHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRepositorioHistoricoActionPerformed
+		// TODO add your handling code here:
+		FileClass.AbrirNavegador("https://code.google.com/p/themanaworld-br/source/list");
+	}//GEN-LAST:event_mnuRepositorioHistoricoActionPerformed
+	private void mnuAjudaInformarDefeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAjudaInformarDefeitoActionPerformed
+		// TODO add your handling code here:
+		FileClass.AbrirNavegador("mailto:Lunovox%20Heavenfinder<rui.gravata@gmail.com>?subject=Defeito%20no%20TMW-Maker%20versão%202");
+	}//GEN-LAST:event_mnuAjudaInformarDefeitoActionPerformed
 
-	/**
-	 * @param args the command line arguments
-	 */
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1189,29 +1223,34 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		});
 	}
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JMenuBar jMenuBar1;
-   private javax.swing.JPanel jPanel1;
-   private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JPopupMenu.Separator jSeparator1;
    private javax.swing.JPopupMenu.Separator jSeparator2;
    private javax.swing.JPopupMenu.Separator jSeparator3;
-   public static javax.swing.JLabel lblStatus;
+   private javax.swing.JPopupMenu.Separator jSeparator4;
+   private javax.swing.JPopupMenu.Separator jSeparator5;
+   public static javax.swing.JLabel lblStatusTexto;
+   private javax.swing.JMenuBar mbrBarraDeMenu;
    private javax.swing.JCheckBoxMenuItem mncDesativarAposTestes;
    private javax.swing.JCheckBoxMenuItem mncTestarAposAtivacao;
    private javax.swing.JMenu mnpAjuda;
-   private javax.swing.JMenu mnpArquivo;
    private javax.swing.JMenu mnpLocalhost;
    private javax.swing.JMenu mnpRepositorio;
+   private javax.swing.JMenu mnpSistema;
+   private javax.swing.JMenuItem mnuAjudaInformarDefeito;
    private javax.swing.JMenuItem mnuAjudaSobre;
-   private javax.swing.JMenuItem mnuConfigurar;
    private javax.swing.JMenuItem mnuLocalhostAtivar;
    private javax.swing.JMenuItem mnuLocalhostDesativar;
-   private javax.swing.JMenuItem mnuLocalhostTestar;
+   private javax.swing.JMenuItem mnuLocalhostExecutar;
    private javax.swing.JMenuItem mnuRepositorioEnviar;
+   private javax.swing.JMenuItem mnuRepositorioHistorico;
    private javax.swing.JMenuItem mnuRepositorioMontar;
    private javax.swing.JMenuItem mnuRepositorioReceber;
-   private javax.swing.JMenuItem mnuSair;
-   private javax.swing.JProgressBar pgbProgresso;
-   public static javax.swing.JTextArea txtStatus;
+   private javax.swing.JMenuItem mnuSistemaConfigurar;
+   private javax.swing.JMenuItem mnuSistemaLimparPainel;
+   private javax.swing.JMenuItem mnuSistemaSair;
+   private javax.swing.JProgressBar pgbStatusProgresso;
+   private javax.swing.JPanel pnlBarraDeStatus;
+   private javax.swing.JScrollPane scpPainel;
+   public static javax.swing.JTextArea txtPainel;
    // End of variables declaration//GEN-END:variables
 }
