@@ -403,15 +403,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 							Executador = doBash(Executador, conf.getConexaoLocalhost() + "/eathena-data/tmw-maker-depure.sh &");
 							pgbProgresso.setIndeterminate(false);
 							setAvisoEstatusPainel("<html>Eathena reiniciado (<font color=\"#0000FF\"><b>Espere 5 segundos antes de testar...</b></font>)");
-							long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
-							TempoInicio = System.currentTimeMillis();
-							do {
-								TempoAtual = System.currentTimeMillis();
-								Segundos = (TempoAtual - TempoInicio) / 1000;
-								pgbProgresso.setValue((int) Segundos);
-								pgbProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
-								pgbProgresso.setIndeterminate(true);
-							} while (TempoAtual - TempoInicio < Milisegundos);
 							//mnpArquivo.setEnabled(false);
 							//mnpRepositorio.setEnabled(false);
 							//mnuLocalhostDesativar.setEnabled(true);
@@ -514,22 +505,31 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 		} else {
 			Thread tThread = new Thread(new Runnable() {
-
 				public void run() {
 					//mnpArquivo.setEnabled(false);
 					//mnpRepositorio.setEnabled(false);
 					//VerificarBarraDeFerramentas();
 
-					//pgbProgresso.setEnabled(true);
-					//pgbProgresso.setMinimum(0);
-					//pgbProgresso.setMaximum(5);
-					//pgbProgresso.setValue(5);
-					//pgbProgresso.setIndeterminate(true);
 
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Runtime Executador = Runtime.getRuntime();
 					String line = "", Comando = "";
 
+					pgbProgresso.setEnabled(true);
+					pgbProgresso.setMinimum(0);
+					pgbProgresso.setMaximum(5);
+					pgbProgresso.setValue(5);
+					pgbProgresso.setIndeterminate(false);
+					setAvisoEstatusPainel("<html>Contagem de 5 segundo antes da execução...");
+					long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
+					TempoInicio = System.currentTimeMillis();
+					do {
+						TempoAtual = System.currentTimeMillis();
+						Segundos = (TempoAtual - TempoInicio) / 1000;
+						pgbProgresso.setValue((int) Segundos);
+						pgbProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
+					} while (TempoAtual - TempoInicio < Milisegundos);
+					pgbProgresso.setIndeterminate(true);
 
 					//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
 					setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
@@ -566,13 +566,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						//setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						//return;
 					}
-
-
-
-					//pgbProgresso.setValue(5);
-					//mnpArquivo.setEnabled(true);
-					//mnpRepositorio.setEnabled(true);
-					//VerificarBarraDeFerramentas();
+					pgbProgresso.setIndeterminate(false);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 			});
