@@ -60,6 +60,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Receber"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRepositorioReceberActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -71,6 +74,9 @@
                 <Property name="text" type="java.lang.String" value="Montar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRepositorioMontarActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
