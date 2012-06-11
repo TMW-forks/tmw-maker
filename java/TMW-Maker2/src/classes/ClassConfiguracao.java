@@ -22,8 +22,7 @@ public final class ClassConfiguracao {
 	private String bar = FileClass.getSeparadorDePastas();
 
 	private String ConexaoRepositorio = "http://themanaworld-br.googlecode.com/svn/trunk";
-	//private String ConexaoLocalhost = FileClass.getPastaDoUsuario() + bar + "localhost";
-	private String ConexaoLocalhost = FileClass.getPastaDoSistema() + bar + "localhost";
+	private String ConexaoLocalhost = FileClass.getPastaDoUsuario() /*FileClass.getPastaDoSistema()*/+ bar + "localhost"; // ← É melhor deixar q a pasta do localhost seja a HOME, pois o caminho não possui caracter-escpaço.
 	private String ConexaoUsuario = "";
 	private String ConexaoSenha = "";
 	
