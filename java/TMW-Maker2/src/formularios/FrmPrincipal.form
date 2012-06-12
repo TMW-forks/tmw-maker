@@ -361,7 +361,7 @@
               <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Tmw-Maker II Java"/>
+            <Property name="text" type="java.lang.String" value="&#xa;     &#x2192; Bem Vindos ao TMW-Maker Java vers&#xe3;o II...&#xa;"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
