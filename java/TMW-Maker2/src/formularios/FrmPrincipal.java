@@ -892,6 +892,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mbrBarraDeMenu = new javax.swing.JMenuBar();
       mnpSistema = new javax.swing.JMenu();
       mnuSistemaLimparPainel = new javax.swing.JMenuItem();
+      jSeparator6 = new javax.swing.JPopupMenu.Separator();
+      mnuSistemaAtualizar = new javax.swing.JMenuItem();
       mnuSistemaConfigurar = new javax.swing.JMenuItem();
       jSeparator5 = new javax.swing.JPopupMenu.Separator();
       mnuSistemaSair = new javax.swing.JMenuItem();
@@ -956,7 +958,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
       txtPainel.setBackground(new java.awt.Color(0, 92, 0));
       txtPainel.setColumns(20);
       txtPainel.setEditable(false);
-      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
+      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15));
       txtPainel.setForeground(java.awt.Color.white);
       txtPainel.setRows(5);
       txtPainel.setText("Tmw-Maker II Java");
@@ -973,6 +975,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
          }
       });
       mnpSistema.add(mnuSistemaLimparPainel);
+      mnpSistema.add(jSeparator6);
+
+      mnuSistemaAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_update.gif"))); // NOI18N
+      mnuSistemaAtualizar.setText("Atualizar Engine");
+      mnuSistemaAtualizar.setEnabled(false);
+      mnpSistema.add(mnuSistemaAtualizar);
 
       mnuSistemaConfigurar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
       mnuSistemaConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_chaveinglesa.png"))); // NOI18N
@@ -1017,7 +1025,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
       mnuRepositorioHistorico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
       mnuRepositorioHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_file_rss.gif"))); // NOI18N
-      mnuRepositorioHistorico.setText("Exibir Histórico...");
+      mnuRepositorioHistorico.setText("Histórico...");
       mnuRepositorioHistorico.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             mnuRepositorioHistoricoActionPerformed(evt);
@@ -1197,9 +1205,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 			if(
 			  DialogClass.showOpcoes(
 					"Deseja realmente limpar os dados do painel?",
-					"REMONTAGEM DE LOCALHOST",
-					new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png")),
-					new Object[] {"Remontar", "Cancelar"},
+					"LIMPEZA DE PAINEL",
+					new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmwmaker-96x96px.png")),
+					new Object[] {"Limpar", "Cancelar"},
 					1
 				)==0
 			){txtPainel.setText("");}
@@ -1228,6 +1236,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
    private javax.swing.JPopupMenu.Separator jSeparator3;
    private javax.swing.JPopupMenu.Separator jSeparator4;
    private javax.swing.JPopupMenu.Separator jSeparator5;
+   private javax.swing.JPopupMenu.Separator jSeparator6;
    public static javax.swing.JLabel lblStatusTexto;
    private javax.swing.JMenuBar mbrBarraDeMenu;
    private javax.swing.JCheckBoxMenuItem mncDesativarAposTestes;
@@ -1245,6 +1254,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
    private javax.swing.JMenuItem mnuRepositorioHistorico;
    private javax.swing.JMenuItem mnuRepositorioMontar;
    private javax.swing.JMenuItem mnuRepositorioReceber;
+   private javax.swing.JMenuItem mnuSistemaAtualizar;
    private javax.swing.JMenuItem mnuSistemaConfigurar;
    private javax.swing.JMenuItem mnuSistemaLimparPainel;
    private javax.swing.JMenuItem mnuSistemaSair;
