@@ -960,7 +960,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
       txtPainel.setBackground(new java.awt.Color(0, 92, 0));
       txtPainel.setColumns(20);
       txtPainel.setEditable(false);
-      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
+      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15));
       txtPainel.setForeground(java.awt.Color.white);
       txtPainel.setRows(5);
       txtPainel.setText("\n     → Bem Vindos ao TMW-Maker Java versão II...\n");
@@ -1036,7 +1036,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnpRepositorio.add(mnuRepositorioHistorico);
       mnpRepositorio.add(jSeparator4);
 
-      mnuRepositorioMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/puzzle.png"))); // NOI18N
+      mnuRepositorioMontar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_puzzle.png"))); // NOI18N
       mnuRepositorioMontar.setText("Montar");
       mnuRepositorioMontar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
