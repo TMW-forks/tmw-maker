@@ -39,7 +39,7 @@ public final class ClassConfiguracao {
 	private long ComportAtualizacaoLocalhostUltima = 0;
 	private int ComportAtualizacaoLocalhostIntervalo = 0; // Sempre (Ao abrir)
 
-	private String  ConfiguracaoURL = FileClass.getPastaDoSistema()+bar+".config-tmwmaker.xml";
+	private String  ConfiguracaoURL = FileClass.getPastaDoUsuario()+bar+".config-tmwmaker.xml"; // ← É melhor deixar q a pasta do localhost seja a HOME, pois o caminho não possui caracter-escpaço.
 
 	public String  getEathenaData(){return ConexaoLocalhost+bar+"eathena-data";}
 	public String  getTMWData(){return ConexaoLocalhost+bar+"tmwdata";}
@@ -231,7 +231,7 @@ public final class ClassConfiguracao {
 
 	}
 	public void doAbrir() {
-		doAbrir(ConfiguracaoURL);
+		if(FileClass.seExiste(ConfiguracaoURL)){doAbrir(ConfiguracaoURL);}
 	}
 	public void doAbrir(String Endereco) {
 		try{
