@@ -189,7 +189,7 @@ public final class ClassConfiguracao {
 			Factory.setValidating(true);
 			DocumentBuilder Builder = Factory.newDocumentBuilder();
 			Document Doc = Builder.newDocument();
-			Comment Comentario = Doc.createComment("\n\tConfigurações do TMW-Maker Hope \n\tConfigurado: "+ FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n");
+			Comment Comentario = Doc.createComment("\n\tConfigurações do TMW-Maker2 \n\tConfigurado: "+ FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n");
 			Doc.appendChild(Comentario);
 
 			Element config = Doc.createElement("config");

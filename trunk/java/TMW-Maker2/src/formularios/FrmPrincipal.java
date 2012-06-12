@@ -960,10 +960,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
       txtPainel.setBackground(new java.awt.Color(0, 92, 0));
       txtPainel.setColumns(20);
       txtPainel.setEditable(false);
-      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15));
+      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
       txtPainel.setForeground(java.awt.Color.white);
       txtPainel.setRows(5);
-      txtPainel.setText("Tmw-Maker II Java");
+      txtPainel.setText("\n     → Bem Vindos ao TMW-Maker Java versão II...\n");
       scpPainel.setViewportView(txtPainel);
 
       mnpSistema.setText("Arquivo");
