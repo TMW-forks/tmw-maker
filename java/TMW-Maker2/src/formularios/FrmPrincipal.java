@@ -914,6 +914,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnuLocalhostExecutar = new javax.swing.JMenuItem();
       mnpAjuda = new javax.swing.JMenu();
       mnuAjudaInformarDefeito = new javax.swing.JMenuItem();
+      mnuAjudaForum = new javax.swing.JMenuItem();
+      jSeparator7 = new javax.swing.JPopupMenu.Separator();
       mnuAjudaSobre = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1071,6 +1073,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mncTestarAposAtivacao.setText("Testar após ativação");
       mnpLocalhost.add(mncTestarAposAtivacao);
 
+      mncDesativarAposTestes.setSelected(true);
       mncDesativarAposTestes.setText("Desativar após testes");
       mnpLocalhost.add(mncDesativarAposTestes);
       mnpLocalhost.add(jSeparator3);
@@ -1090,7 +1093,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
       mnpAjuda.setText("Ajuda");
 
       mnuAjudaInformarDefeito.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-      mnuAjudaInformarDefeito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_comentario.gif"))); // NOI18N
+      mnuAjudaInformarDefeito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_broken.png"))); // NOI18N
       mnuAjudaInformarDefeito.setText("Informar defeito...");
       mnuAjudaInformarDefeito.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1099,8 +1102,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
       });
       mnpAjuda.add(mnuAjudaInformarDefeito);
 
+      mnuAjudaForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_forum.png"))); // NOI18N
+      mnuAjudaForum.setText("Forum TMW-BR");
+      mnuAjudaForum.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuAjudaForumActionPerformed(evt);
+         }
+      });
+      mnpAjuda.add(mnuAjudaForum);
+      mnpAjuda.add(jSeparator7);
+
       mnuAjudaSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-      mnuAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_casa.png"))); // NOI18N
+      mnuAjudaSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_informacao.png"))); // NOI18N
       mnuAjudaSobre.setText("Sobre...");
       mnuAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1221,6 +1234,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		FileClass.AbrirNavegador("mailto:Lunovox%20Heavenfinder<rui.gravata@gmail.com>?subject=Defeito%20no%20TMW-Maker%20versão%202");
 	}//GEN-LAST:event_mnuAjudaInformarDefeitoActionPerformed
+	private void mnuAjudaForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAjudaForumActionPerformed
+		// TODO add your handling code here:
+		FileClass.AbrirNavegador("http://forums.themanaworld.com.br");
+	}//GEN-LAST:event_mnuAjudaForumActionPerformed
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1237,6 +1254,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
    private javax.swing.JPopupMenu.Separator jSeparator4;
    private javax.swing.JPopupMenu.Separator jSeparator5;
    private javax.swing.JPopupMenu.Separator jSeparator6;
+   private javax.swing.JPopupMenu.Separator jSeparator7;
    public static javax.swing.JLabel lblStatusTexto;
    private javax.swing.JMenuBar mbrBarraDeMenu;
    private javax.swing.JCheckBoxMenuItem mncDesativarAposTestes;
@@ -1245,6 +1263,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
    private javax.swing.JMenu mnpLocalhost;
    private javax.swing.JMenu mnpRepositorio;
    private javax.swing.JMenu mnpSistema;
+   private javax.swing.JMenuItem mnuAjudaForum;
    private javax.swing.JMenuItem mnuAjudaInformarDefeito;
    private javax.swing.JMenuItem mnuAjudaSobre;
    private javax.swing.JMenuItem mnuLocalhostAtivar;

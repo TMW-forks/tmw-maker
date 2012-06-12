@@ -529,7 +529,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         FunMudaTesto();
     }//GEN-LAST:event_CmbConfiguracaoConexaoRepositorioActionPerformed
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 FrmConfiguracao dialog = new FrmConfiguracao(new javax.swing.JFrame(), true);
@@ -541,7 +541,7 @@ public class FrmConfiguracao extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-    }
+    }/**/
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JTabbedPane AbaConfiguracoes;

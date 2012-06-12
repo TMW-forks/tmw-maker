@@ -167,6 +167,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mncDesativarAposTestes">
               <Properties>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Desativar ap&#xf3;s testes"/>
               </Properties>
             </MenuItem>
@@ -199,7 +200,7 @@
                   <KeyStroke key="F3"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagens/botoes/sbl_comentario.gif"/>
+                  <Image iconType="3" name="/imagens/botoes/sbl_broken.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Informar defeito..."/>
               </Properties>
@@ -207,13 +208,26 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAjudaInformarDefeitoActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuAjudaForum">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/botoes/sbl_forum.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Forum TMW-BR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAjudaForumActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator7">
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuAjudaSobre">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagens/botoes/sbl_casa.png"/>
+                  <Image iconType="3" name="/imagens/botoes/sbl_informacao.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sobre..."/>
               </Properties>
