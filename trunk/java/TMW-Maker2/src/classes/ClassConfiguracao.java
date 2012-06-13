@@ -25,8 +25,8 @@ public final class ClassConfiguracao {
 	private String ConexaoLocalhost = FileClass.getPastaDoUsuario() /*FileClass.getPastaDoSistema()*/+ bar + "localhost"; // ← É melhor deixar q a pasta do localhost seja a HOME, pois o caminho não possui caracter-escpaço.
 	private String ConexaoUsuario = "";
 	private String ConexaoSenha = "";
-	
-	private String ExecucaoComando = "manaplus";
+
+	private String ExecucaoComando = getNovoExecutor();
 	private String ExecucaoParametroTMWData = ConexaoLocalhost + bar + "tmwdata";
 	private String ExecucaoParametroServidor = "localhost";
 	private String ExecucaoParametroConta = ""; //Inicia sem valor
@@ -41,6 +41,14 @@ public final class ClassConfiguracao {
 
 	private String  ConfiguracaoURL = FileClass.getPastaDoUsuario()+bar+".config-tmwmaker.xml"; // ← É melhor deixar q a pasta do localhost seja a HOME, pois o caminho não possui caracter-escpaço.
 
+	private String getNovoExecutor(){
+		if(FileClass.getSysName().toLowerCase().indexOf("linux") >= 0){
+			return "manaplus";
+		}else if(FileClass.getSysName().toLowerCase().indexOf("win") >= 0 && FileClass.seExiste("C:\\Arquivos de programas\\Mana\\manaplus.exe")){
+			return "C:\\Arquivos de programas\\Mana\\manaplus.exe";
+		}
+		return "";
+	}
 	public String  getEathenaData(){return ConexaoLocalhost+bar+"eathena-data";}
 	public String  getTMWData(){return ConexaoLocalhost+bar+"tmwdata";}
 
