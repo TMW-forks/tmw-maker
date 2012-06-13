@@ -1,5 +1,5 @@
 /*
- * FrmPrincipal.java
+ * FrmTMWMaker2.java
  * Created on 30/05/2012, 16:34:09
  * @author lunovox
  */
@@ -19,8 +19,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.tmatesoft.svn.core.wc.SVNRevision;
 
-public class FrmPrincipal extends javax.swing.JFrame {
-	public FrmPrincipal() {
+public class FrmTMWMaker2 extends javax.swing.JFrame {
+	public FrmTMWMaker2() {
 		try {
 			super.setIconImage((new ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))).getImage());
 		} catch (Exception e) {
@@ -182,7 +182,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						if(FileClass.seExiste(conf.getEathenaData() + bar + "map-server")){FileClass.apagar(conf.getEathenaData() + bar + "map-server");}
 
 						String $URL = "http://tmw-maker.googlecode.com/svn/bins/"+FileClass.getSysName()+"/"+FileClass.getSysArquitetura();
-						String $PastaBins = FrmPrincipal.conf.getConexaoLocalhost() + bar + "bins";
+						String $PastaBins = FrmTMWMaker2.conf.getConexaoLocalhost() + bar + "bins";
 
 						if(
 							FileClass.getSysName().indexOf("linux") >= 0 && (
@@ -212,7 +212,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 								return;
 							}
 						} else {
-							FrmPrincipal.setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!");
+							FrmTMWMaker2.setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!");
 							DialogClass.showErro(
 								"<html><b>O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!</html>",
 								"ERRO DE EXECUÇÃO"
@@ -342,7 +342,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 					try{
 						doBash($Bash);
 					} catch (IOException ex) {
-						//Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+						//Logger.getLogger(FrmTMWMaker2.class.getName()).log(Level.SEVERE, null, ex);
 						setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
 						pgbStatusProgresso.setString("!!!ERRO!!!");
 						pgbStatusProgresso.setIndeterminate(false);
@@ -372,7 +372,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 						try{
 							doBash($Bash);
 						} catch (IOException ex) {
-							//Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+							//Logger.getLogger(FrmTMWMaker2.class.getName()).log(Level.SEVERE, null, ex);
 							setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
 							pgbStatusProgresso.setString("!!!ERRO!!!");
 							pgbStatusProgresso.setIndeterminate(false);
@@ -1243,7 +1243,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				new FrmPrincipal().setVisible(true);
+				new FrmTMWMaker2().setVisible(true);
 			}
 		});
 	}

@@ -16,7 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-		 FrmPrincipal frmPrincipal = new FrmPrincipal();
+		 FrmTMWMaker2 frmPrincipal = new FrmTMWMaker2();
 		 frmPrincipal.show();
     }
 
