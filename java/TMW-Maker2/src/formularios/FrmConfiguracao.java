@@ -9,9 +9,9 @@ public class FrmConfiguracao extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 		  /*//CmbConfiguracaoConexaoRepositorio.set
-		  TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.conf.getConexaoLocalhost());
-		  TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.conf.getConexaoUsuario());
-		  TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.conf.getConexaoSenha());/**/
+		  TxtConfiguracaoConexaoLocalhost.setText(FrmTMWMaker2.conf.getConexaoLocalhost());
+		  TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmTMWMaker2.conf.getConexaoUsuario());
+		  TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmTMWMaker2.conf.getConexaoSenha());/**/
     }
 
     static String Barra = System.getProperty("file.separator");
@@ -45,45 +45,45 @@ public class FrmConfiguracao extends javax.swing.JDialog {
     
     
     public void ImportarConfiguracao() {
-        CmbConfiguracaoConexaoRepositorio.setSelectedItem((Object)FrmPrincipal.conf.getConexaoRepositorio().toString());
-        FrmPrincipal.conf.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
-        TxtConfiguracaoConexaoLocalhost.setText(FrmPrincipal.conf.getConexaoLocalhost());
-        TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmPrincipal.conf.getConexaoUsuario());
-        TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmPrincipal.conf.getConexaoSenha());
-        CmbConfiguracaoExecucaoSoftwareCliente.setSelectedItem((Object)FrmPrincipal.conf.getExecucaoComando());
-        /*if(!FrmPrincipal.conf.SeComandoProcede(FrmPrincipal.conf.getExecucaoComando()+" --help")){
+        CmbConfiguracaoConexaoRepositorio.setSelectedItem((Object)FrmTMWMaker2.conf.getConexaoRepositorio().toString());
+        FrmTMWMaker2.conf.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
+        TxtConfiguracaoConexaoLocalhost.setText(FrmTMWMaker2.conf.getConexaoLocalhost());
+        TxtConfiguracaoConexaoIdentificacaoUsuario.setText(FrmTMWMaker2.conf.getConexaoUsuario());
+        TxtConfiguracaoConexaoIdentificacaoSenha.setText(FrmTMWMaker2.conf.getConexaoSenha());
+        CmbConfiguracaoExecucaoSoftwareCliente.setSelectedItem((Object)FrmTMWMaker2.conf.getExecucaoComando());
+        /*if(!FrmTMWMaker2.conf.SeComandoProcede(FrmTMWMaker2.conf.getExecucaoComando()+" --help")){
             CmbConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
-            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:</font> Aplicativo \"<font color=\"#FF0000\">"+FrmPrincipal.conf.getExecucaoComando()+"</font>\" n�o existe ou n�o est� funcionando!");
+            FrmTMWMaker2.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:</font> Aplicativo \"<font color=\"#FF0000\">"+FrmTMWMaker2.conf.getExecucaoComando()+"</font>\" n�o existe ou n�o est� funcionando!");
             AbaConfiguracoes.setSelectedIndex(1);
             CmbConfiguracaoExecucaoSoftwareCliente.gotFocus(null, CmbConfiguracaoExecucaoSoftwareCliente);
         }/**/
-        TxtConfiguracaoExecucaoParamentroServidor.setText(FrmPrincipal.conf.getExecucaoParametroServidor());
-        TxtConfiguracaoExecucaoParamentroConta.setText(FrmPrincipal.conf.getExecucaoParametroConta());
-        TxtConfiguracaoExecucaoParamentroSenha.setText(FrmPrincipal.conf.getExecucaoParametroSenha());
-        TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmPrincipal.conf.getExecucaoParametroPersonagem());
-        ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmPrincipal.conf.getExecucaoParametroSemOpenGL());
+        TxtConfiguracaoExecucaoParamentroServidor.setText(FrmTMWMaker2.conf.getExecucaoParametroServidor());
+        TxtConfiguracaoExecucaoParamentroConta.setText(FrmTMWMaker2.conf.getExecucaoParametroConta());
+        TxtConfiguracaoExecucaoParamentroSenha.setText(FrmTMWMaker2.conf.getExecucaoParametroSenha());
+        TxtConfiguracaoExecucaoParamentroPersonagem.setText(FrmTMWMaker2.conf.getExecucaoParametroPersonagem());
+        ChkConfiguracaoExecucaoParamentroSemopengl.setSelected(FrmTMWMaker2.conf.getExecucaoParametroSemOpenGL());
 
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()== -1) CmbConfiguracaoComportamentoEngine.setSelectedIndex(0);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()==  0) CmbConfiguracaoComportamentoEngine.setSelectedIndex(1);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()==  1) CmbConfiguracaoComportamentoEngine.setSelectedIndex(2);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()==  7) CmbConfiguracaoComportamentoEngine.setSelectedIndex(3);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()== 15) CmbConfiguracaoComportamentoEngine.setSelectedIndex(4);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()== 30) CmbConfiguracaoComportamentoEngine.setSelectedIndex(5);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()== 60) CmbConfiguracaoComportamentoEngine.setSelectedIndex(6);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()== 90) CmbConfiguracaoComportamentoEngine.setSelectedIndex(7);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()==182) CmbConfiguracaoComportamentoEngine.setSelectedIndex(8);
-        if(FrmPrincipal.conf.getAtualizacaoEngineIntervalo()==365) CmbConfiguracaoComportamentoEngine.setSelectedIndex(9);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()== -1) CmbConfiguracaoComportamentoEngine.setSelectedIndex(0);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()==  0) CmbConfiguracaoComportamentoEngine.setSelectedIndex(1);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()==  1) CmbConfiguracaoComportamentoEngine.setSelectedIndex(2);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()==  7) CmbConfiguracaoComportamentoEngine.setSelectedIndex(3);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()== 15) CmbConfiguracaoComportamentoEngine.setSelectedIndex(4);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()== 30) CmbConfiguracaoComportamentoEngine.setSelectedIndex(5);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()== 60) CmbConfiguracaoComportamentoEngine.setSelectedIndex(6);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()== 90) CmbConfiguracaoComportamentoEngine.setSelectedIndex(7);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()==182) CmbConfiguracaoComportamentoEngine.setSelectedIndex(8);
+        if(FrmTMWMaker2.conf.getAtualizacaoEngineIntervalo()==365) CmbConfiguracaoComportamentoEngine.setSelectedIndex(9);
 
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()== -1) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(0);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()==  0) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(1);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()==  1) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(2);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()==  7) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(3);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()== 15) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(4);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()== 30) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(5);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()== 60) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(6);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()== 90) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(7);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()==182) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(8);
-        if(FrmPrincipal.conf.getAtualizacaoLocalhostIntervalo()==365) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(9);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()== -1) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(0);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()==  0) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(1);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()==  1) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(2);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()==  7) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(3);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()== 15) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(4);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()== 30) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(5);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()== 60) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(6);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()== 90) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(7);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()==182) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(8);
+        if(FrmTMWMaker2.conf.getAtualizacaoLocalhostIntervalo()==365) CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(9);
 
         FunMudaTesto();
     }
@@ -466,50 +466,50 @@ public class FrmConfiguracao extends javax.swing.JDialog {
        //System.exit(0);
     }//GEN-LAST:event_BtnConfiguracaoCancelarActionPerformed
     private void BtnConfiguracaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracaoOkActionPerformed
-        boolean RecarregaBD=!TxtConfiguracaoConexaoLocalhost.getText().equals(FrmPrincipal.conf.getConexaoLocalhost());
+        boolean RecarregaBD=!TxtConfiguracaoConexaoLocalhost.getText().equals(FrmTMWMaker2.conf.getConexaoLocalhost());
 
-        FrmPrincipal.conf.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
-        //FrmPrincipal.conf.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
-        FrmPrincipal.conf.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
-        FrmPrincipal.conf.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
-        FrmPrincipal.conf.setConexaoSenha(TxtConfiguracaoConexaoIdentificacaoSenha.getText());
-        //FrmPrincipal.conf.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
-        FrmPrincipal.conf.setExecucaoComando(CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString());
-        //FrmPrincipal.conf.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
-        FrmPrincipal.conf.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
-        FrmPrincipal.conf.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
-        FrmPrincipal.conf.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
-        FrmPrincipal.conf.setExecucaoParametroPersonagem(TxtConfiguracaoExecucaoParamentroPersonagem.getText());
-        FrmPrincipal.conf.setExecucaoParametroSemOpenGL(ChkConfiguracaoExecucaoParamentroSemopengl.isSelected());
+        FrmTMWMaker2.conf.setConexaoRepositorio(CmbConfiguracaoConexaoRepositorio.getEditor().getItem().toString());
+        //FrmTMWMaker2.conf.setConexaoRepositorio(TxtConfiguracaoConexaoRepositorio.getText());
+        FrmTMWMaker2.conf.setConexaoLocalhost(TxtConfiguracaoConexaoLocalhost.getText());
+        FrmTMWMaker2.conf.setConexaoUsuario(TxtConfiguracaoConexaoIdentificacaoUsuario.getText());
+        FrmTMWMaker2.conf.setConexaoSenha(TxtConfiguracaoConexaoIdentificacaoSenha.getText());
+        //FrmTMWMaker2.conf.setExecucaoComando(TxtConfiguracaoExecucaoSoftwareCliente.getText());
+        FrmTMWMaker2.conf.setExecucaoComando(CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString());
+        //FrmTMWMaker2.conf.setExecucaoParametroTMWData(TxtConfiguracaoExecucaoParamentroTMWData.getText());
+        FrmTMWMaker2.conf.setExecucaoParametroServidor(TxtConfiguracaoExecucaoParamentroServidor.getText());
+        FrmTMWMaker2.conf.setExecucaoParametroConta(TxtConfiguracaoExecucaoParamentroConta.getText());
+        FrmTMWMaker2.conf.setExecucaoParametroSenha(TxtConfiguracaoExecucaoParamentroSenha.getText());
+        FrmTMWMaker2.conf.setExecucaoParametroPersonagem(TxtConfiguracaoExecucaoParamentroPersonagem.getText());
+        FrmTMWMaker2.conf.setExecucaoParametroSemOpenGL(ChkConfiguracaoExecucaoParamentroSemopengl.isSelected());
 
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==0) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(-1);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==1) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(0);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==2) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(1);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==3) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(7);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==4) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(15);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==5) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(30);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==6) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(60);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==7) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(90);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==8) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(182);
-        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==9) FrmPrincipal.conf.setAtualizacaoEngineIntervalo(365);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==0) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(-1);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==1) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(0);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==2) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(1);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==3) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(7);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==4) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(15);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==5) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(30);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==6) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(60);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==7) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(90);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==8) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(182);
+        if(CmbConfiguracaoComportamentoEngine.getSelectedIndex()==9) FrmTMWMaker2.conf.setAtualizacaoEngineIntervalo(365);
 
 
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==0) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(-1);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==1) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(0);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==2) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(1);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==3) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(7);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==4) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(15);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==5) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(30);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==6) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(60);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==7) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(90);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==8) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(182);
-        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==9) FrmPrincipal.conf.setAtualizacaoLocalhostIntervalo(365);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==0) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(-1);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==1) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(0);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==2) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(1);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==3) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(7);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==4) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(15);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==5) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(30);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==6) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(60);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==7) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(90);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==8) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(182);
+        if(CmbConfiguracaoComportamentoLocalhost.getSelectedIndex()==9) FrmTMWMaker2.conf.setAtualizacaoLocalhostIntervalo(365);
 
-        FrmPrincipal.conf.doSalvar();
+        FrmTMWMaker2.conf.doSalvar();
 
         this.dispose();
         
-        /*if(RecarregaBD && FrmPrincipal.conf.getSeDependenciaDeLocalhost()){
+        /*if(RecarregaBD && FrmTMWMaker2.conf.getSeDependenciaDeLocalhost()){
             javax.swing.JDialog FrmSplash = new FrmSplash(this, rootPaneCheckingEnabled);
             FrmSplash.setLocation(
                     ((this.getWidth() - FrmSplash.getWidth()) / 2) + this.getX(),
@@ -582,17 +582,17 @@ public class FrmConfiguracao extends javax.swing.JDialog {
 
     /*private void Alterado_SoftwareCliente() {
         if(!CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString().isEmpty()){
-            boolean SeProcede=FrmPrincipal.conf.SeComandoProcede(CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+" --help");
+            boolean SeProcede=FrmTMWMaker2.conf.SeComandoProcede(CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+" --help");
             if(SeProcede){
                 CmbConfiguracaoExecucaoSoftwareCliente.setForeground(java.awt.SystemColor.textText);
-                FrmPrincipal.LblEstatus.setText("Comando \""+CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+"\" Ok!");
+                FrmTMWMaker2.LblEstatus.setText("Comando \""+CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+"\" Ok!");
 
             }else{
                 CmbConfiguracaoExecucaoSoftwareCliente.setForeground(Color.red);
-                FrmPrincipal.LblEstatus.setText("Comando \""+CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+"\" n�o procede!");
+                FrmTMWMaker2.LblEstatus.setText("Comando \""+CmbConfiguracaoExecucaoSoftwareCliente.getEditor().getItem().toString()+"\" n�o procede!");
             }
         }else{
-            FrmPrincipal.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:<font> Digite o comando que abrir� o jogo The Mana World!");
+            FrmTMWMaker2.LblEstatus.setText("<html><font color=\"#FF0000\">AVISO:<font> Digite o comando que abrir� o jogo The Mana World!");
         }
     }/**/
 

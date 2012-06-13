@@ -81,19 +81,19 @@ public class FrmSobre extends javax.swing.JDialog {
 	 private void txpNavegadorHyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_txpNavegadorHyperlinkUpdate
 		 if (evt.getEventType() == javax.swing.event.HyperlinkEvent.EventType.ACTIVATED) {
 			FileClass.AbrirNavegador(evt.getURL().toString());
-			FrmPrincipal.setAvisoEstatus(
+			FrmTMWMaker2.setAvisoEstatus(
 				"<HTML><b>Abrindo:</b> <u><font color=\"#0000FF\">" + evt.getURL().toString() + "</u></font>",
 				new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))
 			);/**/
 		 } else if (evt.getEventType() == javax.swing.event.HyperlinkEvent.EventType.ENTERED) {
 			txpNavegador.setToolTipText(evt.getURL().toString());
-			FrmPrincipal.setAvisoEstatus(
+			FrmTMWMaker2.setAvisoEstatus(
 			evt.getURL().toString(),
 			new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))
 			);
 		 } else if (evt.getEventType() == javax.swing.event.HyperlinkEvent.EventType.EXITED) {
 			 txpNavegador.setToolTipText("");
-			 FrmPrincipal.setAvisoEstatus("");
+			 FrmTMWMaker2.setAvisoEstatus("");
 		 }
 }//GEN-LAST:event_txpNavegadorHyperlinkUpdate
 
