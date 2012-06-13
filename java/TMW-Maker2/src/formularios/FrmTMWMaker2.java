@@ -161,7 +161,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 						);
 					}
 					if (R == 0) {
-						doMontarLinux();
+						doMontar();
 					} else {
 						setAvisoEstatusPainel("Montagem cancelada!");
 						pgbStatusProgresso.setString("");
@@ -173,253 +173,383 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 	}
 	public void doMontar(){
 		if ( FileClass.getSysName().toLowerCase().indexOf("win") >= 0) {
-			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
-		} else if (FileClass.getSysName().toLowerCase().indexOf("mac") >= 0) {
-			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+			//DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+			Thread tThread = new Thread(new Runnable() {public void run() {doMontarWindows();}});
+			tThread.start();
 		} else if (FileClass.getSysName().toLowerCase().indexOf("linux") >= 0) {
-			doMontarLinux();
+			Thread tThread = new Thread(new Runnable() {public void run() {doMontarLinux();}});
+			tThread.start();
+		} else {
+			DialogClass.showErro("Este comando ainda não foi implementado para o sistema operacional "+FileClass.getSysName()+"!", "Descupe!");
 		}
 	}
 	public void doMontarLinux(){
-		Thread tThread = new Thread(new Runnable() {
-			public void run() {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		mnpSistema.setEnabled(false);
+		mnpRepositorio.setEnabled(false);
+		mnpLocalhost.setEnabled(false);
+		mnpAjuda.setEnabled(false);
+		pgbStatusProgresso.setEnabled(true);
+		pgbStatusProgresso.setValue(0);
+		pgbStatusProgresso.setIndeterminate(true);
+		String $Binario[] = {"login-server","char-server","map-server"};
+		if(
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[0]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[1]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[2])
+		){
+			String $URL = "http://tmw-maker.googlecode.com/svn/bins/"+FileClass.getSysName();
+			String $PastaBins = FrmTMWMaker2.conf.getConexaoLocalhost() + bar + "bins";
+			SummarizerSVN svnBinarios = new SummarizerSVN($URL, $PastaBins);
+			pgbStatusProgresso.setString("Baixando...");
+			addLinhaPainel("Preparando para baixar binários novos...");
+			addLinhaPainel(" * Origem: " + $URL);
+			addLinhaPainel(" * Destino: " + $PastaBins);
+			setAvisoEstatusPainel("Baixando binários novos...");
+			SVNRevision rev = svnBinarios.doCheckout();
+			if (rev.getNumber()>=0) {
+				setAvisoEstatusPainel("<html>Binários '<font color='#008800'>" + rev.getNumber() + "</font>' baixados com sucesso!");
+				pgbStatusProgresso.setString("Concluido!");
+			} else {
+				setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar os binários!");
+				pgbStatusProgresso.setString("!!!ERRO!!!");
+				pgbStatusProgresso.setIndeterminate(false);
 				mnpSistema.setEnabled(false);
 				mnpRepositorio.setEnabled(false);
 				mnpLocalhost.setEnabled(false);
 				mnpAjuda.setEnabled(false);
-				pgbStatusProgresso.setEnabled(true);
-				pgbStatusProgresso.setValue(0);
-				pgbStatusProgresso.setIndeterminate(true);
-				if(
-					!FileClass.seExiste(conf.getEathenaData() + bar + "char-server") ||
-					!FileClass.seExiste(conf.getEathenaData() + bar + "login-server") ||
-					!FileClass.seExiste(conf.getEathenaData() + bar + "map-server")
-				){
-					pgbStatusProgresso.setString("Apagando...");
-					setAvisoEstatusPainel("Apagando binários...");
-					if(FileClass.seExiste(conf.getConexaoLocalhost() + bar + "bins")){FileClass.apagar(conf.getConexaoLocalhost() + bar + "bins");}
-					if(FileClass.seExiste(conf.getEathenaData() + bar + "char-server")){FileClass.apagar(conf.getEathenaData() + bar + "char-server");}
-					if(FileClass.seExiste(conf.getEathenaData() + bar + "login-server")){FileClass.apagar(conf.getEathenaData() + bar + "login-server");}
-					if(FileClass.seExiste(conf.getEathenaData() + bar + "map-server")){FileClass.apagar(conf.getEathenaData() + bar + "map-server");}
-
-					String $URL = "http://tmw-maker.googlecode.com/svn/bins/"+FileClass.getSysName();
-					String $PastaBins = FrmTMWMaker2.conf.getConexaoLocalhost() + bar + "bins";
-
-					if(FileClass.getSysName().indexOf("linux") >= 0) {
-						SummarizerSVN svnBinarios = new SummarizerSVN($URL, $PastaBins);
-						pgbStatusProgresso.setString("Baixando...");
-						setAvisoEstatusPainel("Preparando para baixar binários novos...");
-						addLinhaPainel(" * Origem: " + $URL);
-						addLinhaPainel(" * Destino: " + $PastaBins);
-						SVNRevision rev = svnBinarios.doCheckout();
-						if (rev.getNumber()>=0) {
-							setAvisoEstatusPainel("<html>Binários '<font color='#008800'>" + rev.getNumber() + "</font>' baixados com sucesso!");
-							pgbStatusProgresso.setString("Concluido!");
-						} else {
-							setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar os binários!");
-							pgbStatusProgresso.setString("!!!ERRO!!!");
-							pgbStatusProgresso.setIndeterminate(false);
-							mnpSistema.setEnabled(false);
-							mnpRepositorio.setEnabled(false);
-							mnpLocalhost.setEnabled(false);
-							mnpAjuda.setEnabled(false);
-							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-							return;
-						}
-					} else {
-						FrmTMWMaker2.setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!");
-						DialogClass.showErro(
-							"<html><b>O seu sistema operacional <font face=\"monospace\" color=\"#FF0000\">não possui os binários</font> necessários para montar o localhost do TMW-Maker!</html>",
-							"ERRO DE EXECUÇÃO"
-						);
-						pgbStatusProgresso.setString("!!!ERRO!!!");
-						pgbStatusProgresso.setIndeterminate(false);
-						mnpSistema.setEnabled(false);
-						mnpRepositorio.setEnabled(false);
-						mnpLocalhost.setEnabled(false);
-						mnpAjuda.setEnabled(false);
-						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						return;
-					}/**/
-					pgbStatusProgresso.setString("Deslocando...");
-					if (!FileClass.seExiste(conf.getEathenaData() + bar + "char-server")) {
-						FileClass.arquivoMover($PastaBins + bar + "char-server", conf.getEathenaData() + bar + "char-server");
-						setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">char-server</font>...");
-					}
-					if (!FileClass.seExiste(conf.getEathenaData() + bar + "login-server")) {
-						FileClass.arquivoMover($PastaBins + bar + "login-server", conf.getEathenaData() + bar + "login-server");
-						setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">login-server</font>...");
-					}
-					if (!FileClass.seExiste(conf.getEathenaData() + bar + "map-server")) {
-						FileClass.arquivoMover($PastaBins + bar + "map-server", conf.getEathenaData() + bar + "map-server");
-						setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">map-server</font>...");
-					}
-				}
-
-				/*
-				mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
-				mv -uv conf/battle_local.conf.example conf/battle_local.conf
-				mv -uv conf/char_local.conf.example conf/char_local.conf
-				mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
-				mv -uv conf/gm_account.txt.example conf/gm_account.txt
-				mv -uv conf/help.txt.example conf/help.txt
-				mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
-				mv -uv conf/login_local.conf.example conf/login_local.conf
-				mv -uv conf/map_local.conf.example conf/map_local.conf
-				mv -uv conf/motd.txt.example conf/motd.txt
-				mv -uv save/account.txt.example save/account.txt
-				/**/
-
-				String $PastaSaves[] = new String[]{
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "conf",
-					conf.getEathenaData() + bar + "save"
-				};
-				String $NomeOriginal[] = new String[]{
-					"atcommand_local.conf.example",
-					"battle_local.conf.example",
-					"char_local.conf.example",
-					"eathena-monitor.conf.example",
-					"gm_account.txt.example",
-					"help.txt.example",
-					"ladmin_local.conf.example",
-					"login_local.conf.example",
-					"map_local.conf.example",
-					"motd.txt.example",
-					"account.txt.example"
-				};
-				String $NomeUtil[] = new String[]{
-					"atcommand_local.conf",
-					"battle_local.conf",
-					"char_local.conf",
-					"eathena-monitor.conf",
-					"gm_account.txt",
-					"help.txt",
-					"ladmin_local.conf",
-					"login_local.conf",
-					"map_local.conf",
-					"motd.txt",
-					"account.txt"
-				};
-
-				for (int $File = 0; $File < $NomeOriginal.length; $File++) {
-					if (FileClass.seExiste($PastaSaves[$File] + bar + $NomeOriginal[$File])) {
-						/*if(FileClass.seExiste($PastaSaves[$File] + bar + $NomeUtil[$File])) {
-							FileClass.apagar($PastaSaves[$File] + bar + $NomeUtil[$File]);
-							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + $NomeUtil[$File] + "\"!");
-						}/**/
-						if(!FileClass.seExiste($PastaSaves[$File]+bar+$NomeUtil[$File])) {
-							pgbStatusProgresso.setString("Renomeando...");
-							setAvisoEstatusPainel("<html><b>Renomeando:</b> \""+$NomeOriginal[$File]+"\" → \""+$NomeUtil[$File]+"\"");
-							FileClass.arquivoMover(
-								$PastaSaves[$File]+bar+$NomeOriginal[$File],
-								$PastaSaves[$File]+bar+$NomeUtil[$File]
-							);
-						}
-					}
-				}
-
-				if (!FileClass.seExiste(conf.getEathenaData() + bar + "log")) {
-					/**   Será que é realmente necessário esta pasta "LOG"?
-					* Ela serve para os logs do binário "eathena-monitor".
-					* Mas o TMwe-Maker2 não usa o binário "eathena-monitor".
-					* Mas será que são todos logs do binário "eathena-monitor" ou tem logs de outro sistema?.
-					* Em todo caso botarei o códig oabaixo e verificarei mais tarde se realmente é necessário.
-					*/
-					setAvisoEstatusPainel("<html><b>Criando Pasta:</b> \"" + conf.getEathenaData() + bar + "log\"...");
-					FileClass.pastaCriar(conf.getEathenaData() + bar + "log");
-				}
-
-				/*
-				rm $HOME/tmwserver // Apaga Link
-				ln -s $PWD $HOME/tmwserver //Recria Link
-				/**/
-				String $link = FileClass.getPastaDoUsuario() + bar + "tmwserver";
-				if (FileClass.seExiste($link)) {
-					pgbStatusProgresso.setString("Excluindo...");
-					setAvisoEstatusPainel("Apagando link \""+$link+"\"...");
-					FileClass.apagar($link);
-				}
-				pgbStatusProgresso.setString("Coligando...");
-				setAvisoEstatusPainel("Recriando link \""+$link+"\"...");
-				//String $Bash = "ln -s \""+ conf.getEathenaData()+"\" \""+$link+"\"";
-				//String $Bash = "ln -s \""+ conf.getEathenaData()+"\" "+$link;
-				String $Bash = "ln -s "+ conf.getEathenaData()+" "+$link;
-				System.out.println($Bash);
-				try{
-					doBash($Bash);
-				} catch (IOException ex) {
-					//Logger.getLogger(FrmTMWMaker2.class.getName()).log(Level.SEVERE, null, ex);
-					setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
-					pgbStatusProgresso.setString("!!!ERRO!!!");
-					pgbStatusProgresso.setIndeterminate(false);
-					mnpSistema.setEnabled(false);
-					mnpRepositorio.setEnabled(false);
-					mnpLocalhost.setEnabled(false);
-					mnpAjuda.setEnabled(false);
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					return;
-				}
-
-				//
-				String $Depurador = conf.getEathenaData()+bar+"tmw-maker-depure.sh";
-				if(!FileClass.seExiste($Depurador)){
-					setAvisoEstatusPainel("<html><b>Criando Depurador:</b> \"<font color='#FF0000'>"+$Depurador +"</font>\"...");
-					FileClass.arquivoSalvar(
-						$Depurador,
-						"#!/bin/bash\n"+
-						"\n"+
-						"cd $HOME/tmwserver\n"+
-						"./login-server &\n"+
-						"./char-server &\n"+
-						"./map-server &"
-					);
-					//$Comando="chmod +x \""+$Depurador +"\"";
-					$Bash="chmod +x "+$Depurador;
-					try{
-						doBash($Bash);
-					} catch (IOException ex) {
-						//Logger.getLogger(FrmTMWMaker2.class.getName()).log(Level.SEVERE, null, ex);
-						setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
-						pgbStatusProgresso.setString("!!!ERRO!!!");
-						pgbStatusProgresso.setIndeterminate(false);
-						mnpSistema.setEnabled(false);
-						mnpRepositorio.setEnabled(false);
-						mnpLocalhost.setEnabled(false);
-						mnpAjuda.setEnabled(false);
-						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						return;
-					}
-				}
-				setAvisoEstatusPainel("<html><font color=\"#0000FF\">Locahost montado com sucesso!");
-				pgbStatusProgresso.setString("Concluido!");
-				DialogClass.showAlerta(
-					"<html>"+
-					"<font color=\"#0000FF\">Locahost montado com sucesso!</font><br/>"+
-					"<br/>"+
-					"Precione F7 para ativar o localhost, e<br/>"+
-					"depois F5 para executar o softcliente!",
-					"MONTAGEM CONCLUIDA",
-					new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png"))
-				);
-				pgbStatusProgresso.setIndeterminate(false);
-				mnpSistema.setEnabled(true);
-				mnpRepositorio.setEnabled(true);
-				mnpLocalhost.setEnabled(true);
-				mnpAjuda.setEnabled(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				return;
 			}
-		});
-		tThread.start();
+			pgbStatusProgresso.setString("Deslocando...");
+			for(int $f=0;$f<$Binario.length;$f++){
+				if (FileClass.seExiste($PastaBins + bar + $Binario[$f]) && !FileClass.seExiste(conf.getEathenaData() + bar + $Binario[$f])) {
+					FileClass.arquivoMover($PastaBins + bar + $Binario[$f], conf.getEathenaData() + bar + $Binario[$f]);
+					setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">"+$Binario[$f]+"</font>...");
+				}
+			}
+		}
+
+		/*
+		mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
+		mv -uv conf/battle_local.conf.example conf/battle_local.conf
+		mv -uv conf/char_local.conf.example conf/char_local.conf
+		mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
+		mv -uv conf/gm_account.txt.example conf/gm_account.txt
+		mv -uv conf/help.txt.example conf/help.txt
+		mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
+		mv -uv conf/login_local.conf.example conf/login_local.conf
+		mv -uv conf/map_local.conf.example conf/map_local.conf
+		mv -uv conf/motd.txt.example conf/motd.txt
+		mv -uv save/account.txt.example save/account.txt
+		/**/
+
+		String $PastaSaves[] = new String[]{
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "save"
+		};
+		String $NomeOriginal[] = new String[]{
+			"atcommand_local.conf.example",
+			"battle_local.conf.example",
+			"char_local.conf.example",
+			"eathena-monitor.conf.example",
+			"gm_account.txt.example",
+			"help.txt.example",
+			"ladmin_local.conf.example",
+			"login_local.conf.example",
+			"map_local.conf.example",
+			"motd.txt.example",
+			"account.txt.example"
+		};
+		String $NomeUtil[] = new String[]{
+			"atcommand_local.conf",
+			"battle_local.conf",
+			"char_local.conf",
+			"eathena-monitor.conf",
+			"gm_account.txt",
+			"help.txt",
+			"ladmin_local.conf",
+			"login_local.conf",
+			"map_local.conf",
+			"motd.txt",
+			"account.txt"
+		};
+
+		for (int $File = 0; $File < $NomeOriginal.length; $File++) {
+			if (FileClass.seExiste($PastaSaves[$File] + bar + $NomeOriginal[$File])) {
+				/*if(FileClass.seExiste($PastaSaves[$File] + bar + $NomeUtil[$File])) {
+					FileClass.apagar($PastaSaves[$File] + bar + $NomeUtil[$File]);
+					setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>Apagando:</b></font> \"" + $NomeUtil[$File] + "\"!");
+				}/**/
+				if(!FileClass.seExiste($PastaSaves[$File]+bar+$NomeUtil[$File])) {
+					pgbStatusProgresso.setString("Renomeando...");
+					setAvisoEstatusPainel("<html><b>Renomeando:</b> \""+$NomeOriginal[$File]+"\" → \""+$NomeUtil[$File]+"\"");
+					FileClass.arquivoMover(
+						$PastaSaves[$File]+bar+$NomeOriginal[$File],
+						$PastaSaves[$File]+bar+$NomeUtil[$File]
+					);
+				}
+			}
+		}
+
+		if (!FileClass.seExiste(conf.getEathenaData() + bar + "log")) {
+			/**   Será que é realmente necessário esta pasta "LOG"?
+			* Ela serve para os logs do binário "eathena-monitor".
+			* Mas o TMwe-Maker2 não usa o binário "eathena-monitor".
+			* Mas será que são todos logs do binário "eathena-monitor" ou tem logs de outro sistema?.
+			* Em todo caso botarei o códig oabaixo e verificarei mais tarde se realmente é necessário.
+			*/
+			setAvisoEstatusPainel("<html><b>Criando Pasta:</b> \"" + conf.getEathenaData() + bar + "log\"...");
+			FileClass.pastaCriar(conf.getEathenaData() + bar + "log");
+		}
+
+		/*
+		rm $HOME/tmwserver // Apaga Link
+		ln -s $PWD $HOME/tmwserver //Recria Link
+		/**/
+		String $link = FileClass.getPastaDoUsuario() + bar + "tmwserver";
+		if (FileClass.seExiste($link)) {
+			pgbStatusProgresso.setString("Excluindo...");
+			setAvisoEstatusPainel("Apagando link \""+$link+"\"...");
+			FileClass.apagar($link);
+		}
+		pgbStatusProgresso.setString("Coligando...");
+		setAvisoEstatusPainel("Recriando link \""+$link+"\"...");
+		//String $Bash = "ln -s \""+ conf.getEathenaData()+"\" \""+$link+"\"";
+		//String $Bash = "ln -s \""+ conf.getEathenaData()+"\" "+$link;
+		String $Bash = "ln -s "+ conf.getEathenaData()+" "+$link;
+		System.out.println($Bash);
+		try{
+			doBash($Bash);
+		} catch (IOException ex) {
+			//Logger.getLogger(FrmTMWMaker2.class.getName()).log(Level.SEVERE, null, ex);
+			setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
+			pgbStatusProgresso.setString("!!!ERRO!!!");
+			pgbStatusProgresso.setIndeterminate(false);
+			mnpSistema.setEnabled(false);
+			mnpRepositorio.setEnabled(false);
+			mnpLocalhost.setEnabled(false);
+			mnpAjuda.setEnabled(false);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			return;
+		}
+
+		//
+		String $Depurador = conf.getEathenaData()+bar+"tmw-maker-depure.sh";
+		if(!FileClass.seExiste($Depurador)){
+			setAvisoEstatusPainel("<html><b>Criando Depurador:</b> \"<font color='#FF0000'>"+$Depurador +"</font>\"...");
+			FileClass.arquivoSalvar(
+				$Depurador,
+				"#!/bin/bash\n"+
+				"\n"+
+				"cd $HOME/tmwserver\n"+
+				"./login-server &\n"+
+				"./char-server &\n"+
+				"./map-server &"
+			);
+			//$Comando="chmod +x \""+$Depurador +"\"";
+			$Bash="chmod +x "+$Depurador;
+			try{
+				doBash($Bash);
+			} catch (IOException ex) {
+				//Logger.getLogger(FrmTMWMaker2.class.getName()).log(Level.SEVERE, null, ex);
+				setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font> "+$Bash);
+				pgbStatusProgresso.setString("!!!ERRO!!!");
+				pgbStatusProgresso.setIndeterminate(false);
+				mnpSistema.setEnabled(false);
+				mnpRepositorio.setEnabled(false);
+				mnpLocalhost.setEnabled(false);
+				mnpAjuda.setEnabled(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				return;
+			}
+		}
+		setAvisoEstatusPainel("<html><font color=\"#0000FF\">Locahost montado com sucesso!");
+		pgbStatusProgresso.setString("Concluido!");
+		DialogClass.showAlerta(
+			"<html>"+
+			"<font color=\"#0000FF\">Locahost montado com sucesso!</font><br/>"+
+			"<br/>"+
+			"Precione F7 para ativar o localhost, e<br/>"+
+			"depois F5 para executar o softcliente!",
+			"MONTAGEM CONCLUIDA",
+			new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png"))
+		);
+		pgbStatusProgresso.setIndeterminate(false);
+		mnpSistema.setEnabled(true);
+		mnpRepositorio.setEnabled(true);
+		mnpLocalhost.setEnabled(true);
+		mnpAjuda.setEnabled(true);
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	public void doMontarWindows(){
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		mnpSistema.setEnabled(false);
+		mnpRepositorio.setEnabled(false);
+		mnpLocalhost.setEnabled(false);
+		mnpAjuda.setEnabled(false);
+		pgbStatusProgresso.setEnabled(true);
+		pgbStatusProgresso.setValue(0);
+		pgbStatusProgresso.setIndeterminate(true);
+		String $Binario[] = {"cyggcc_s-1.dll","cygwin1.dll","cygz.dll","ladmin.exe","login-server.exe","char-server.exe","map-server.exe"};
+		if(
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[0]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[1]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[2]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[3]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[4]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[5]) ||
+			!FileClass.seExiste(conf.getEathenaData() + bar + $Binario[6])
+		){
+			String $URL = "http://tmw-maker.googlecode.com/svn/bins/"+FileClass.getSysName();
+			String $PastaBins = FrmTMWMaker2.conf.getConexaoLocalhost() + bar + "bins";
+			SummarizerSVN svnBinarios = new SummarizerSVN($URL, $PastaBins);
+			pgbStatusProgresso.setString("Baixando...");
+			addLinhaPainel("Preparando para baixar binários novos...");
+			addLinhaPainel(" * Origem: " + $URL);
+			addLinhaPainel(" * Destino: " + $PastaBins);
+			setAvisoEstatusPainel("Baixando binários novos...");
+			SVNRevision rev = svnBinarios.doCheckout();
+			if (rev.getNumber()>=0) {
+				setAvisoEstatusPainel("<html>Binários '<font color='#008800'>" + rev.getNumber() + "</font>' baixados com sucesso!");
+				pgbStatusProgresso.setString("Concluido!");
+			} else {
+				setAvisoEstatusPainel("<html><font color='#FF0000'>ERRO:</font>Falha ao baixar os binários!");
+				pgbStatusProgresso.setString("!!!ERRO!!!");
+				pgbStatusProgresso.setIndeterminate(false);
+				mnpSistema.setEnabled(false);
+				mnpRepositorio.setEnabled(false);
+				mnpLocalhost.setEnabled(false);
+				mnpAjuda.setEnabled(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				return;
+			}
+			pgbStatusProgresso.setString("Deslocando...");
+			for(int $f=0;$f<$Binario.length;$f++){
+				if (FileClass.seExiste($PastaBins + bar + $Binario[$f]) && !FileClass.seExiste(conf.getEathenaData() + bar + $Binario[$f])) {
+					FileClass.arquivoMover($PastaBins + bar + $Binario[$f], conf.getEathenaData() + bar + $Binario[$f]);
+					setAvisoEstatusPainel("<html>Deslocando <font color=\"#0000FF\">"+$Binario[$f]+"</font>...");
+				}
+			}
+		}
+
+		/*
+		mv -uv conf/atcommand_local.conf.example conf/atcommand_local.conf
+		mv -uv conf/battle_local.conf.example conf/battle_local.conf
+		mv -uv conf/char_local.conf.example conf/char_local.conf
+		mv -uv conf/eathena-monitor.conf.example conf/eathena-monitor.conf
+		mv -uv conf/gm_account.txt.example conf/gm_account.txt
+		mv -uv conf/help.txt.example conf/help.txt
+		mv -uv conf/ladmin_local.conf.example conf/ladmin_local.conf
+		mv -uv conf/login_local.conf.example conf/login_local.conf
+		mv -uv conf/map_local.conf.example conf/map_local.conf
+		mv -uv conf/motd.txt.example conf/motd.txt
+		mv -uv save/account.txt.example save/account.txt
+		/**/
+
+		String $PastaSaves[] = new String[]{
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "conf",
+			conf.getEathenaData() + bar + "save"
+		};
+		String $NomeOriginal[] = new String[]{
+			"atcommand_local.conf.example",
+			"battle_local.conf.example",
+			"char_local.conf.example",
+			"eathena-monitor.conf.example",
+			"gm_account.txt.example",
+			"help.txt.example",
+			"ladmin_local.conf.example",
+			"login_local.conf.example",
+			"map_local.conf.example",
+			"motd.txt.example",
+			"account.txt.example"
+		};
+		String $NomeUtil[] = new String[]{
+			"atcommand_local.conf",
+			"battle_local.conf",
+			"char_local.conf",
+			"eathena-monitor.conf",
+			"gm_account.txt",
+			"help.txt",
+			"ladmin_local.conf",
+			"login_local.conf",
+			"map_local.conf",
+			"motd.txt",
+			"account.txt"
+		};
+
+		for (int $File = 0; $File < $NomeOriginal.length; $File++) {
+			if (FileClass.seExiste($PastaSaves[$File] + bar + $NomeOriginal[$File])) {
+				if(!FileClass.seExiste($PastaSaves[$File]+bar+$NomeUtil[$File])) {
+					pgbStatusProgresso.setString("Renomeando...");
+					setAvisoEstatusPainel("<html><b>Renomeando:</b> \""+$NomeOriginal[$File]+"\" → \""+$NomeUtil[$File]+"\"");
+					FileClass.arquivoMover(
+						$PastaSaves[$File]+bar+$NomeOriginal[$File],
+						$PastaSaves[$File]+bar+$NomeUtil[$File]
+					);
+				}
+			}
+		}
+
+		if (!FileClass.seExiste(conf.getEathenaData() + bar + "log")) {
+			/**   Será que é realmente necessário esta pasta "LOG"?
+			* Ela serve para os logs do binário "eathena-monitor".
+			* Mas o TMwe-Maker2 não usa o binário "eathena-monitor".
+			* Mas será que são todos logs do binário "eathena-monitor" ou tem logs de outro sistema?.
+			* Em todo caso botarei o códig oabaixo e verificarei mais tarde se realmente é necessário.
+			*/
+			setAvisoEstatusPainel("<html><b>Criando Pasta:</b> \"" + conf.getEathenaData() + bar + "log\"...");
+			FileClass.pastaCriar(conf.getEathenaData() + bar + "log");
+		}
+
+		String $Depurador = conf.getEathenaData()+bar+"tmw-maker-depure.bat";
+		if(!FileClass.seExiste($Depurador)){
+			setAvisoEstatusPainel("<html><b>Criando Depurador:</b> \"<font color='#FF0000'>"+$Depurador +"</font>\"...");
+			FileClass.arquivoSalvar(
+				$Depurador,
+				"\n"+
+				//"@echo off\n"+"cls\n"+
+				"cd "+conf.getEathenaData()+bar+"\n"+
+				"login-server.exe &\n"+
+				"char-server.exe &\n"+
+				"map-server.exe &"
+			);
+		}/**/
+		setAvisoEstatusPainel("<html><font color=\"#0000FF\">Locahost montado com sucesso!");
+		pgbStatusProgresso.setString("Concluido!");
+		DialogClass.showAlerta(
+			"<html>"+
+			"<font color=\"#0000FF\">Locahost montado com sucesso!</font><br/>"+
+			"<br/>"+
+			"Precione F7 para ativar o localhost, e<br/>"+
+			"depois F5 para executar o softcliente!",
+			"MONTAGEM CONCLUIDA",
+			new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png"))
+		);
+		pgbStatusProgresso.setIndeterminate(false);
+		mnpSistema.setEnabled(true);
+		mnpRepositorio.setEnabled(true);
+		mnpLocalhost.setEnabled(true);
+		mnpAjuda.setEnabled(true);
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	public void ServerPlay() {
 		if (FileClass.getSysName().indexOf("win") >= 0) {
@@ -432,9 +562,6 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
 			//C:\cygwin\cygwin.exe
 			//C:\Arquivos de programas\Mana\mana.exe
-		} else if (FileClass.getSysName().indexOf("mac") >= 0) {
-			//Executador.exec("open " + URL);
-			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 		} else if (FileClass.getSysName().indexOf("linux") >= 0) {
 			Thread tThread = new Thread(new Runnable() {
 				public void run() {
@@ -443,6 +570,8 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			});
 			tThread.start();
 		} else {
+			//MAC → Executador.exec("open " + URL);
+			//MAC → DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 			DialogClass.showErro("Este comando ainda não foi implementado para o sistema operacional "+FileClass.getSysName()+"!", "Descupe!");
 		}
 	}
@@ -488,6 +617,48 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		}
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
+	public void ServerPlayWindows() {
+		pgbStatusProgresso.setEnabled(true);
+		pgbStatusProgresso.setValue(0);
+		pgbStatusProgresso.setMinimum(0);
+		pgbStatusProgresso.setMaximum(5);
+		txtPainel.setText("");
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		Runtime Executador = Runtime.getRuntime();
+		String line = "", $ServerDepurador = conf.getEathenaData()+bar+"tmw-maker-depure.bat";
+		if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
+			if(FileClass.seExiste($ServerDepurador)){
+				$ServerDepurador = $ServerDepurador.replaceAll(" ", "\\\\ ");
+				pgbStatusProgresso.setString("Ativando...");
+				setAvisoEstatusPainel("Ativando Servidor Local...");
+				try {
+					pgbStatusProgresso.setIndeterminate(true);
+					Executador = doBash(Executador, $ServerDepurador);
+					pgbStatusProgresso.setIndeterminate(false);
+					setAvisoEstatusPainel("<html>Eathena reiniciado com sucesso!");
+					if(mncTestarAposAtivacao.isSelected()){ServerExecutar();}
+				} catch (IOException e) {
+					e.printStackTrace();
+					setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + $ServerDepurador);
+					DialogClass.showErro(
+						"<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"
+						+ "01: <font face=\"monospace\" color=\"#FF0000\">" + $ServerDepurador + "</font><br/>"
+						+ "</html>",
+						"ERRO DE EXECUÇÃO"
+					);
+				}
+			}else{
+				setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> Não foi possível encontrar o depurador!");
+				DialogClass.showErro(
+					"<html><b>O TMW-Maker não conseguiu encontrar o depurador!</b><br/><br/>"
+					+ "01: <font face=\"monospace\" color=\"#FF0000\">" + $ServerDepurador + "</font><br/>"
+					+ "</html>",
+					"ERRO DE EXECUÇÃO"
+				);
+			}
+		}
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
 	public void ServerStop() {
 		if (FileClass.getSysName().indexOf("win") >= 0) {
 			/*String cmd[] = {
@@ -500,55 +671,98 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
 			//C:\cygwin\cygwin.exe
 			//C:\Arquivos de programas\Mana\mana.exe
-		} else if (FileClass.getSysName().indexOf("mac") >= 0) {
-			//Executador.exec("open " + URL);
-			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
-		} else {
+		} else if (FileClass.getSysName().indexOf("linux") >= 0) {
 			Thread tThread = new Thread(new Runnable() {
-
-				public void run() {
-					//mnpArquivo.setEnabled(false);
-					//mnpRepositorio.setEnabled(false);
-					//mnuLocalhostDesativar.setEnabled(false);
-					//VerificarbarDeFerramentas();
-
-					pgbStatusProgresso.setEnabled(true);
-					pgbStatusProgresso.setValue(0);
-					pgbStatusProgresso.setMinimum(0);
-					pgbStatusProgresso.setMaximum(5);
-					pgbStatusProgresso.setIndeterminate(false);
-
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					Runtime Executador = Runtime.getRuntime();
-					String line = "", Comando = "";
-
-					if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
-						pgbStatusProgresso.setString("Desativando...");
-						setAvisoEstatusPainel("Desativando localhost...");
-						//TxtEstatus.setText("Reiniciando localhost...");
-						try {
-							Executador = doBash(Executador, "pkill map-server");
-							Executador = doBash(Executador, "pkill char-server");
-							Executador = doBash(Executador, "pkill login-server");
-							setAvisoEstatusPainel("Localhost desativado com sucesso!");
-							pgbStatusProgresso.setString("Desativado!");
-						} catch (IOException e) {
-							pgbStatusProgresso.setString("ERRO");
-							e.printStackTrace();
-							//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
-							setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
-							DialogClass.showErro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"
-									  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
-									  + "</html>",
-									  "ERRO DE EXECUÇÃO");
-						}
-					}
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-				}
+				public void run() {ServerStopLinux();}
 			});
 			tThread.start();
+		} else {
+			//Executador.exec("open " + URL);
+			//DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+			DialogClass.showErro("Este comando ainda não foi implementado para o sistema operacional "+FileClass.getSysName()+"!", "Descupe!");
 		}
+	}
+	public void ServerStopLinux() {
+		//mnpArquivo.setEnabled(false);
+		//mnpRepositorio.setEnabled(false);
+		//mnuLocalhostDesativar.setEnabled(false);
+		//VerificarbarDeFerramentas();
+
+		pgbStatusProgresso.setEnabled(true);
+		pgbStatusProgresso.setValue(0);
+		pgbStatusProgresso.setMinimum(0);
+		pgbStatusProgresso.setMaximum(5);
+		pgbStatusProgresso.setIndeterminate(false);
+
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		Runtime Executador = Runtime.getRuntime();
+		String line = "", Comando = "";
+
+		if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
+			pgbStatusProgresso.setString("Desativando...");
+			setAvisoEstatusPainel("Desativando localhost...");
+			//TxtEstatus.setText("Reiniciando localhost...");
+			try {
+				Executador = doBash(Executador, "pkill map-server");
+				Executador = doBash(Executador, "pkill char-server");
+				Executador = doBash(Executador, "pkill login-server");
+				setAvisoEstatusPainel("Localhost desativado com sucesso!");
+				pgbStatusProgresso.setString("Desativado!");
+			} catch (IOException e) {
+				pgbStatusProgresso.setString("ERRO");
+				e.printStackTrace();
+				//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+				setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+				DialogClass.showErro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"
+						  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
+						  + "</html>",
+						  "ERRO DE EXECUÇÃO");
+			}
+		}
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	public void ServerStopWindows() {
+		//mnpArquivo.setEnabled(false);
+		//mnpRepositorio.setEnabled(false);
+		//mnuLocalhostDesativar.setEnabled(false);
+		//VerificarbarDeFerramentas();
+
+		pgbStatusProgresso.setEnabled(true);
+		pgbStatusProgresso.setValue(0);
+		pgbStatusProgresso.setMinimum(0);
+		pgbStatusProgresso.setMaximum(5);
+		pgbStatusProgresso.setIndeterminate(false);
+
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		Runtime Executador = Runtime.getRuntime();
+		String line = "", Comando = "";
+
+		if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
+			pgbStatusProgresso.setString("Desativando...");
+			setAvisoEstatusPainel("Desativando localhost...");
+			//TxtEstatus.setText("Reiniciando localhost...");
+			try {
+				//Executador = doBash(Executador, "taskkill /im map-server.exe");
+				//Executador = doBash(Executador, "taskkill /im char-server.exe");
+				//Executador = doBash(Executador, "taskkill /im login-server.exe");
+				Executador = doBash(Executador, "taskkill /im \""+conf.getEathenaData()+bar+"map-server.exe\"");
+				Executador = doBash(Executador, "taskkill /im \""+conf.getEathenaData()+bar+"char-server.exe\"");
+				Executador = doBash(Executador, "taskkill /im \""+conf.getEathenaData()+bar+"login-server.exe\"");
+
+				setAvisoEstatusPainel("Localhost desativado com sucesso!");
+				pgbStatusProgresso.setString("Desativado!");
+			} catch (IOException e) {
+				pgbStatusProgresso.setString("ERRO");
+				e.printStackTrace();
+				//TxtEstatus.setText(TxtEstatus.getText()+"\nERRO: "+Comando);
+				setAvisoEstatusPainel("<html><font color=\"#FF0000\"><b>ERRO:</b></font> " + Comando);
+				DialogClass.showErro("<html><b>O TMW-Maker não conseguiu reiniciar o eathena:</b><br/><br/>"
+						  + "01: <font face=\"monospace\" color=\"#FF0000\">" + Comando + "</font><br/>"
+						  + "</html>",
+						  "ERRO DE EXECUÇÃO");
+			}
+		}
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	public void ServerExecutar() {
 		if (FileClass.getSysName().indexOf("win") >= 0) {
@@ -565,74 +779,70 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			//Executador.exec("open " + URL);
 			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
 		} else {
-			Thread tThread = new Thread(new Runnable() {
-				public void run() {
-					//mnpArquivo.setEnabled(false);
-					//mnpRepositorio.setEnabled(false);
-					//VerificarbarDeFerramentas();
-
-
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					Runtime Executador = Runtime.getRuntime();
-					String line = "", Comando = "";
-
-					pgbStatusProgresso.setEnabled(true);
-					pgbStatusProgresso.setMinimum(0);
-					pgbStatusProgresso.setMaximum(5);
-					pgbStatusProgresso.setValue(5);
-					pgbStatusProgresso.setIndeterminate(false);
-					setAvisoEstatusPainel("<html>Contagem de 5 segundos antes da execução...");
-					long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
-					TempoInicio = System.currentTimeMillis();
-					do {
-						TempoAtual = System.currentTimeMillis();
-						Segundos = (TempoAtual - TempoInicio) / 1000;
-						pgbStatusProgresso.setValue((int) Segundos);
-						pgbStatusProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
-					} while (TempoAtual - TempoInicio < Milisegundos);
-					pgbStatusProgresso.setIndeterminate(true);
-
-					//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
-					setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
-					Comando = conf.getExecucaoComando() + " "
-							  + "--update-host --default " + //<-- O Manaplus só roda corretamente com essa linha...
-							  ((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("--skip-update --data " + conf.getTMWData() + " ") : "")
-							  + (conf.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + conf.getExecucaoParametroServidor() + " "))
-							  + (conf.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + conf.getExecucaoParametroConta() + " "))
-							  + (conf.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + conf.getExecucaoParametroSenha() + " "))
-							  + (conf.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + conf.getExecucaoParametroPersonagem() + " "))
-							  + (conf.getExecucaoParametroSemOpenGL() == true ? "--no-opengl" : "");
-					//DialogClass.showAlerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
-					try {
-						Process Retorno = Executador.exec(Comando);
-						System.out.println(Comando.replaceAll(conf.getExecucaoParametroSenha(), "********"));
-						BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-						while ((line = in.readLine()) != null) {
-							System.out.println(line);
-							//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-							setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
-							pgbStatusProgresso.setString("Executando...");
-						}
-						pgbStatusProgresso.setString("Fechado!");
-						setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
-						if(mncDesativarAposTestes.isSelected()){ServerStop();}
-						//pgbProgresso.setIndeterminate(false);
-					} catch (IOException e) {
-						//pgbProgresso.setIndeterminate(false);
-						e.printStackTrace();
-						//pgbProgresso.setValue(5);
-						//mnpArquivo.setEnabled(true);
-						//mnpRepositorio.setEnabled(true);
-						//VerificarbarDeFerramentas();
-						//setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						//return;
-					}
-					pgbStatusProgresso.setIndeterminate(false);
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				}
-			});
+			Thread tThread = new Thread(new Runnable(){public void run() {ServerExecutarLinux();}});
 			tThread.start();
 		}
+	}
+	public void ServerExecutarLinux() {
+		//mnpArquivo.setEnabled(false);
+		//mnpRepositorio.setEnabled(false);
+		//VerificarbarDeFerramentas();
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		Runtime Executador = Runtime.getRuntime();
+		String line = "", Comando = "";
+		pgbStatusProgresso.setEnabled(true);
+		pgbStatusProgresso.setMinimum(0);
+		pgbStatusProgresso.setMaximum(5);
+		pgbStatusProgresso.setValue(5);
+		pgbStatusProgresso.setIndeterminate(false);
+		setAvisoEstatusPainel("<html>Contagem de 5 segundos antes da execução...");
+		long TempoInicio = 0, TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
+		TempoInicio = System.currentTimeMillis();
+		do {
+			TempoAtual = System.currentTimeMillis();
+			Segundos = (TempoAtual - TempoInicio) / 1000;
+			pgbStatusProgresso.setValue((int) Segundos);
+			pgbStatusProgresso.setString("00:00:0" + (5 - ((int) Segundos)));
+		} while (TempoAtual - TempoInicio < Milisegundos);
+		pgbStatusProgresso.setIndeterminate(true);
+
+		//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
+		setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
+		Comando = conf.getExecucaoComando() + " "
+				  + "--update-host --default " + //<-- O Manaplus só roda corretamente com essa linha...
+				  ((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("--skip-update --data " + conf.getTMWData() + " ") : "")
+				  + (conf.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + conf.getExecucaoParametroServidor() + " "))
+				  + (conf.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + conf.getExecucaoParametroConta() + " "))
+				  + (conf.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + conf.getExecucaoParametroSenha() + " "))
+				  + (conf.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + conf.getExecucaoParametroPersonagem() + " "))
+				  + (conf.getExecucaoParametroSemOpenGL() == true ? "--no-opengl" : "");
+		//DialogClass.showAlerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
+		try {
+			Process Retorno = Executador.exec(Comando);
+			System.out.println(Comando.replaceAll(conf.getExecucaoParametroSenha(), "********"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+			while ((line = in.readLine()) != null) {
+				System.out.println(line);
+				//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
+				setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
+				pgbStatusProgresso.setString("Executando...");
+			}
+			pgbStatusProgresso.setString("Fechado!");
+			setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
+			if(mncDesativarAposTestes.isSelected()){ServerStop();}
+			//pgbProgresso.setIndeterminate(false);
+		} catch (IOException e) {
+			//pgbProgresso.setIndeterminate(false);
+			e.printStackTrace();
+			//pgbProgresso.setValue(5);
+			//mnpArquivo.setEnabled(true);
+			//mnpRepositorio.setEnabled(true);
+			//VerificarbarDeFerramentas();
+			//setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			//return;
+		}
+		pgbStatusProgresso.setIndeterminate(false);
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 
 	public void ExecutarJogo_deprecado() {
