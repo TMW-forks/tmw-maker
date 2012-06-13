@@ -19,6 +19,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.tmatesoft.svn.core.wc.SVNRevision;
 
+//public class FrmTMWMaker2 extends org.jdesktop.application.FrameView {
 public class FrmTMWMaker2 extends javax.swing.JFrame {
 	public FrmTMWMaker2() {
 		try {
@@ -27,7 +28,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			System.out.println("Icone erro:\n" + e.getMessage());
 		}
 		initComponents();
-	}
+	}/**/
 	public static ClassConfiguracao conf = new ClassConfiguracao();
 	SummarizerSVN svn;
 	String bar = FileClass.getSeparadorDePastas();
@@ -1163,6 +1164,8 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       lblStatusTexto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))); // NOI18N
       lblStatusTexto.setText("Bem Vindo!");
 
+      pgbStatusProgresso.setBackground(new java.awt.Color(0, 64, 0));
+      pgbStatusProgresso.setForeground(new java.awt.Color(0, 128, 0));
       pgbStatusProgresso.setValue(100);
       pgbStatusProgresso.setString("");
       pgbStatusProgresso.setStringPainted(true);
@@ -1473,7 +1476,6 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
-
 			public void run() {
 				new FrmTMWMaker2().setVisible(true);
 			}
