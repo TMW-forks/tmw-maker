@@ -345,11 +345,13 @@ public class FrmConfiguracao extends javax.swing.JDialog {
       jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Perdir permissão para atualização:"));
 
       jLabel6.setText("Engine:");
+      jLabel6.setEnabled(false);
 
       jLabel16.setText("Localhost:");
 
       CmbConfiguracaoComportamentoEngine.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nunca Perguntar", "Sempre ao Iniciar", "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente", "Bimestralmente", "Trimestralmente", "Semestralmente", "Anualmente" }));
       CmbConfiguracaoComportamentoEngine.setSelectedIndex(2);
+      CmbConfiguracaoComportamentoEngine.setEnabled(false);
 
       CmbConfiguracaoComportamentoLocalhost.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nunca Perguntar", "Sempre ao Iniciar", "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente", "Bimestralmente", "Trimestralmente", "Semestralmente", "Anualmente" }));
       CmbConfiguracaoComportamentoLocalhost.setSelectedIndex(2);
