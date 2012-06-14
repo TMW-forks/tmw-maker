@@ -155,7 +155,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 							"É necessário montá-lo para executar o modo offline!<br/>"+
 							"<font color='#0000FF'>Deseja montá-lo agora?</font>",
 							"MONTAGEM DE LOCALHOST",
-							new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png")),
+							new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png")),
 							new Object[] {"Montar", "Cancelar"},
 							1
 						);
@@ -382,7 +382,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			"Precione F7 para ativar o localhost, e<br/>"+
 			"depois F5 para executar o softcliente!",
 			"MONTAGEM CONCLUIDA",
-			new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png"))
+			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png"))
 		);
 		pgbStatusProgresso.setIndeterminate(false);
 		mnpSistema.setEnabled(true);
@@ -538,7 +538,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			"Precione F7 para ativar o localhost, e<br/>"+
 			"depois F5 para executar o softcliente!",
 			"MONTAGEM CONCLUIDA",
-			new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png"))
+			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png"))
 		);
 		pgbStatusProgresso.setIndeterminate(false);
 		mnpSistema.setEnabled(true);
@@ -1449,7 +1449,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				"Por esta razão, seu Localhost pode estar desatualizado.<br>"+ 
 				"Deseja procurar atualização criada por outros DEVs via internet?",
 				"ATUALIZAÇÃO DO LOCALHOST",
-				new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmw-96x96px.png")), //"/imagens/fundos/icon-tmw-96x96px.png",
+				new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png")), //"/imagens/simbolos/icon-tmw-96x96px.png",
 				new Object[]{"Sim, atualize!","Não, depois!"},0
 			);
 			if(resp==0){doCheckoutHead();}
@@ -1505,7 +1505,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			  DialogClass.showOpcoes(
 					"Deseja realmente limpar os dados do painel?",
 					"LIMPEZA DE PAINEL",
-					new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/icon-tmwmaker-96x96px.png")),
+					new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmwmaker-96x96px.png")),
 					new Object[] {"Limpar", "Cancelar"},
 					1
 				)==0
