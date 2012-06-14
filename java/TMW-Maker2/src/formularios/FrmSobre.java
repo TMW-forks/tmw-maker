@@ -41,14 +41,14 @@ public class FrmSobre extends javax.swing.JDialog {
          }
       });
 
-      jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/banner.png"))); // NOI18N
+      jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundos/banner-II.png"))); // NOI18N
       jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
       txpNavegador.setBorder(null);
       txpNavegador.setContentType("text/html");
       txpNavegador.setEditable(false);
       txpNavegador.setFont(txpNavegador.getFont());
-      txpNavegador.setText("<html>\n<body bgcolor=\"#edeceb\"  style=\"margin-left:10; margin-right:10\">\n<font face=\"arial\" size=\"3\">\n<h1>O TMW-Maker II Java</h1> \n\n<p align=\"justify\">\nEste é um software tipo Engine, que ajudará no desenvolvimento do jogo MMORPG  \n<a href=\"http://code.google.com/p/tmw-maker/wiki/opensource\">Open Source (GPL-v3)</a> de  \n<a href=\"https://sites.google.com/site/tmwbrasil/\">The Mana World</a>, facilitando a  \ninclusão, edição e teste de Personagens, Monstros,  Portais, Itens até por \nleigos em programação Eathena Script através de menus intuitivos.<br><br> \n\n<b>Site:</b> <a href=\"http://tmw-maker.googlecode.com\">tmw-maker.googlecode.com</a><br><br> \n\n<h2>COLABORADORES</h2> \n<a href=\"mailto:Vanderson%20Martins%20do%20Rosario<vandersonmr2@gmail.com>\">VandersonMR</a>, \n<a href=\"mailto:Ablankzim<ablankzinhu@hotmail.com>\">Ablankzim</a>, \n<a href=\"mailto:DiogoRBG<diogorbg@gmail.com>\">DiogoRBG</a>, \nEugenio Favalli, <a href=\"mailto:Lunovox%20Heavenfinder<rui.gravata@gmail.com>\">Lunovox</a>");
+      txpNavegador.setText("<html>\n<body bgcolor=\"#edeceb\"  style=\"margin-left:10; margin-right:10\">\n<font face=\"arial\" size=\"3\">\n<h1>O TMW-Maker II Java</h1> \n\n<p align=\"justify\">\nEste é um software Java tipo Engine-Portatil compatível com Windows e Linux, que ajudará no desenvolvimento do jogo MMORPG  \n<a href=\"http://code.google.com/p/tmw-maker/wiki/opensource\">Open Source (GPL-v3)</a> de  \n<a href=\"https://sites.google.com/site/tmwbrasil/\">The Mana World Brasil</a>, facilitando a  \ninclusão, edição e teste de Personagens, Monstros,  Portais, Itens até por \nleigos em programação Eathena Script através de menus intuitivos.<br><br> \n\n<b>Site:</b> <a href=\"http://tmw-maker.googlecode.com\">tmw-maker.googlecode.com</a><br><br> \n\n<h2>COLABORADORES</h2> \n<a href=\"mailto:Vanderson%20Martins%20do%20Rosario<vandersonmr2@gmail.com>\">VandersonMR</a>, \n<a href=\"mailto:Ablankzim<ablankzinhu@hotmail.com>\">Ablankzim</a>, \n<a href=\"mailto:DiogoRBG<diogorbg@gmail.com>\">DiogoRBG</a>, \nEugenio Favalli, <a href=\"mailto:Lunovox%20Heavenfinder<rui.gravata@gmail.com>\">Lunovox</a>");
       txpNavegador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
       txpNavegador.setMargin(new java.awt.Insets(0, 0, 0, 0));
       txpNavegador.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
@@ -70,11 +70,11 @@ public class FrmSobre extends javax.swing.JDialog {
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
          .addGroup(layout.createSequentialGroup()
             .addGap(12, 12, 12)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
             .addGap(12, 12, 12))
+         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, Short.MAX_VALUE)
       );
    }// </editor-fold>//GEN-END:initComponents
 
@@ -98,7 +98,7 @@ public class FrmSobre extends javax.swing.JDialog {
 }//GEN-LAST:event_txpNavegadorHyperlinkUpdate
 
 	 private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-		 setTitle("Sobre o TMW-Maker JAVA ("+
+		 setTitle("Sobre o TMW-Maker 2 JAVA ("+
 				FileClass.getSysName()+":"+
 				FileClass.getSysArquitetura()+":"+
 				//FileClass.getSysVersao()+":"+ // ← Desnecessário

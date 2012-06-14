@@ -1505,7 +1505,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			  DialogClass.showOpcoes(
 					"Deseja realmente limpar os dados do painel?",
 					"LIMPEZA DE PAINEL",
-					new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmwmaker-96x96px.png")),
+					new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png")),
 					new Object[] {"Limpar", "Cancelar"},
 					1
 				)==0
