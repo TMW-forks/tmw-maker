@@ -131,35 +131,37 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 				if(
-					FileClass.getSysName().toLowerCase().indexOf("linux") >= 0 &&
 					(
-						!FileClass.seExiste(conf.getEathenaData() + bar + "char-server") ||
-						!FileClass.seExiste(conf.getEathenaData() + bar + "login-server") ||
-						!FileClass.seExiste(conf.getEathenaData() + bar + "map-server") ||
-						!FileClass.seExiste(FileClass.getPastaDoUsuario() + bar + "tmwserver") ||
-						!FileClass.seExiste(conf.getEathenaData()+bar+"tmw-maker-depure.sh")
+					FileClass.getSysName().toLowerCase().indexOf("linux") >= 0 &&
+						(
+							!FileClass.seExiste(conf.getEathenaData() + bar + "char-server") ||
+							!FileClass.seExiste(conf.getEathenaData() + bar + "login-server") ||
+							!FileClass.seExiste(conf.getEathenaData() + bar + "map-server") ||
+							!FileClass.seExiste(FileClass.getPastaDoUsuario() + bar + "tmwserver") ||
+							!FileClass.seExiste(conf.getEathenaData()+bar+"tmw-maker-depure.sh")
+						)
+					) || (
+					FileClass.getSysName().toLowerCase().indexOf("win") >= 0 &&
+						(
+							!FileClass.seExiste(conf.getEathenaData() + bar + "char-server.exe") ||
+							!FileClass.seExiste(conf.getEathenaData() + bar + "login-server.exe") ||
+							!FileClass.seExiste(conf.getEathenaData() + bar + "map-server.exe") ||
+							!FileClass.seExiste(conf.getEathenaData()+bar+"tmw-maker-depure.bat")
+						)
 					)
 				){
 					int R = 0; //0 = "Cancelar"
-					if (
-						FileClass.seExiste(conf.getEathenaData() + bar + "char-server") ||
-						FileClass.seExiste(conf.getEathenaData() + bar + "login-server") ||
-						FileClass.seExiste(conf.getEathenaData() + bar + "map-server") ||
-						FileClass.seExiste(FileClass.getPastaDoUsuario() + bar + "tmwserver") ||
-						FileClass.seExiste(conf.getEathenaData()+bar+"tmw-maker-depure.sh")
-					) {
-						setAvisoEstatusPainel("Deseja montar o localhost agora?");
-						R = DialogClass.showOpcoes(
-							"<html>"+
-							"O seu localhost não está montado.<br/>"+
-							"É necessário montá-lo para executar o modo offline!<br/>"+
-							"<font color='#0000FF'>Deseja montá-lo agora?</font>",
-							"MONTAGEM DE LOCALHOST",
-							new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png")),
-							new Object[] {"Montar", "Cancelar"},
-							1
-						);
-					}
+					setAvisoEstatusPainel("Deseja montar o localhost agora?");
+					R = DialogClass.showOpcoes(
+						"<html>"+
+						"O seu localhost não está montado.<br/>"+
+						"É necessário montá-lo para executar o modo offline!<br/>"+
+						"<font color='#0000FF'>Deseja montá-lo agora?</font>",
+						"MONTAGEM DE LOCALHOST",
+						new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png")),
+						new Object[] {"Montar", "Cancelar"},
+						1
+					);
 					if (R == 0) {
 						doMontar();
 					} else {
