@@ -71,20 +71,20 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		//Runtime Executador = Runtime.getRuntime();
 		String line = "";
 		for(int $c=0;$c<$Comandos.length;$c++){
-			setAvisoEstatusPainel($Comandos[$c]);
+			addLinhaPainel($Comandos[$c]);
 		}
 		Process Retorno = Executador.exec($Comandos);
 		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
+		while ((line = in.readLine()) != null){ addLinhaPainel(line); }
 		return Executador;
 	}
 	public static Runtime doBash(Runtime Executador, String Comando) throws IOException {
 		//Runtime Executador = Runtime.getRuntime();
 		String line = "";
-		setAvisoEstatusPainel(Comando);
+		addLinhaPainel(Comando);
 		Process Retorno = Executador.exec(Comando);
 		BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-		while ((line = in.readLine()) != null){ setAvisoEstatusPainel(line); }
+		while ((line = in.readLine()) != null){ addLinhaPainel(line); }
 		return Executador;
 	}/**/
 	public static Runtime doBash(String Comando) throws IOException {
@@ -631,7 +631,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		String line = "", $ServerDepurador = conf.getEathenaData()+bar+"tmw-maker-depure.bat";
 		if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
 			if(FileClass.seExiste($ServerDepurador)){
-				$ServerDepurador = $ServerDepurador.replaceAll(" ", "\\\\ ");
+				//$ServerDepurador = $ServerDepurador.replaceAll(" ", "\\\\ "); //← Essa linha é inconveniente no windows
 				pgbStatusProgresso.setString("Ativando...");
 				setAvisoEstatusPainel("Ativando Servidor Local...");
 				try {
@@ -670,9 +670,13 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				"c:\\windows\\calc.exe"
 			};
 			Executador.exec(cmd);/**/
-			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
+			//DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
 			//C:\cygwin\cygwin.exe
 			//C:\Arquivos de programas\Mana\mana.exe
+			Thread tThread = new Thread(new Runnable() {
+				public void run() {ServerStopWindows();}
+			});
+			tThread.start();
 		} else if (FileClass.getSysName().indexOf("linux") >= 0) {
 			Thread tThread = new Thread(new Runnable() {
 				public void run() {ServerStopLinux();}
@@ -744,9 +748,10 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				//Executador = doBash(Executador, "taskkill /im map-server.exe");
 				//Executador = doBash(Executador, "taskkill /im char-server.exe");
 				//Executador = doBash(Executador, "taskkill /im login-server.exe");
-				Executador = doBash(Executador, "taskkill /im \""+conf.getEathenaData()+bar+"map-server.exe\"");
-				Executador = doBash(Executador, "taskkill /im \""+conf.getEathenaData()+bar+"char-server.exe\"");
-				Executador = doBash(Executador, "taskkill /im \""+conf.getEathenaData()+bar+"login-server.exe\"");
+				//taskkill /im "login-server.exe" -f
+				Executador = doBash(Executador, "taskkill /im \"map-server.exe\" -f");
+				Executador = doBash(Executador, "taskkill /im \"char-server.exe\" -f");
+				Executador = doBash(Executador, "taskkill /im \"login-server.exe\" -f");
 				setAvisoEstatusPainel("Localhost desativado com sucesso!");
 				pgbStatusProgresso.setString("Desativado!");
 			} catch (IOException e) {
@@ -759,28 +764,25 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	public void ServerExecutar() {
-		if (FileClass.getSysName().indexOf("win") >= 0) {
 			/*String[] cmd = new String[4];
 			cmd[0] = "cmd.exe";
 			cmd[1] = "/C";
 			cmd[2] = "start";
 			cmd[3] = URL;
 			Executador.exec(cmd);/**/
-			DialogClass.showErro("Este comando ainda não foi implementado para o windows!", "Descupe!");
-			//C:\cygwin\cygwin.exe
-			//C:\Arquivos de programas\Mana\mana.exe
-		} else if (FileClass.getSysName().indexOf("mac") >= 0) {
-			//Executador.exec("open " + URL);
-			DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
-		} else {
+		if (FileClass.getSysName().indexOf("win") >= 0) {
+			Thread tThread = new Thread(new Runnable(){public void run() {ServerExecutarWindows();}});
+			tThread.start();
+		} else if (FileClass.getSysName().indexOf("linux") >= 0) {
 			Thread tThread = new Thread(new Runnable(){public void run() {ServerExecutarLinux();}});
 			tThread.start();
+		} else {
+			//Executador.exec("open " + URL);
+			//DialogClass.showErro("Este comando ainda não foi implementado para o MAC!", "Descupe!");
+			DialogClass.showErro("Este comando ainda não foi implementado para o sistema operacional "+FileClass.getSysName()+"!", "Descupe!");
 		}
 	}
 	public void ServerExecutarLinux() {
-		//mnpArquivo.setEnabled(false);
-		//mnpRepositorio.setEnabled(false);
-		//VerificarbarDeFerramentas();
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		Runtime Executador = Runtime.getRuntime();
 		String line = "", Comando = "";
@@ -798,8 +800,8 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			pgbStatusProgresso.setString("00:00:0" + (((int)(Milisegundos/1000)) - ((int) Segundos)));
 		} while (TempoAtual - TempoInicio < Milisegundos);
 		pgbStatusProgresso.setIndeterminate(true);
+		pgbStatusProgresso.setString("Executando...");
 
-		//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
 		setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
 		Comando = conf.getExecucaoComando() + " "
 				  + "--update-host --default " + //<-- O Manaplus só roda corretamente com essa linha...
@@ -811,14 +813,11 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				  + (conf.getExecucaoParametroSemOpenGL() == true ? "--no-opengl" : "");
 		//DialogClass.showAlerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
 		try {
+			if(!conf.getExecucaoParametroSenha().equals("")){addLinhaPainel(Comando.replaceAll(conf.getExecucaoParametroSenha(), "********"));}
 			Process Retorno = Executador.exec(Comando);
-			System.out.println(Comando.replaceAll(conf.getExecucaoParametroSenha(), "********"));
 			BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
 			while ((line = in.readLine()) != null) {
-				System.out.println(line);
-				//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-				setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
-				pgbStatusProgresso.setString("Executando...");
+				addLinhaPainel(line);
 			}
 			pgbStatusProgresso.setString("Fechado!");
 			setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
@@ -838,61 +837,56 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	public void ServerExecutarWindows() {
-		//mnpArquivo.setEnabled(false);
-		//mnpRepositorio.setEnabled(false);
-		//VerificarbarDeFerramentas();
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		Runtime Executador = Runtime.getRuntime();
-		String line = "", Comando = "";
 		pgbStatusProgresso.setEnabled(true);
 		pgbStatusProgresso.setMinimum(0);
 		pgbStatusProgresso.setMaximum(5);
 		pgbStatusProgresso.setValue(5);
 		pgbStatusProgresso.setIndeterminate(false);
-		long TempoInicio = System.currentTimeMillis(), TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
-		setAvisoEstatusPainel("<html>Contagem de "+((int)(Milisegundos/1000))+" segundos antes da execução...");
-		do {
-			TempoAtual = System.currentTimeMillis();
-			Segundos = (TempoAtual - TempoInicio) / 1000;
-			pgbStatusProgresso.setValue((int) Segundos);
-			pgbStatusProgresso.setString("00:00:0" + (((int)(Milisegundos/1000)) - ((int) Segundos)));
-		} while (TempoAtual - TempoInicio < Milisegundos);
-		pgbStatusProgresso.setIndeterminate(true);
+		if(FileClass.seExiste(conf.getExecucaoComando())){
+			Runtime Executador = Runtime.getRuntime();
+			String line = "", Comando = "";
+			long TempoInicio = System.currentTimeMillis(), TempoAtual = 0, Milisegundos = 5500, Segundos = 0;
+			setAvisoEstatusPainel("<html>Contagem de "+((int)(Milisegundos/1000))+" segundos antes da execução...");
+			do {
+				TempoAtual = System.currentTimeMillis();
+				Segundos = (TempoAtual - TempoInicio) / 1000;
+				pgbStatusProgresso.setValue((int) Segundos);
+				pgbStatusProgresso.setString("00:00:0" + (((int)(Milisegundos/1000)) - ((int) Segundos)));
+			} while (TempoAtual - TempoInicio < Milisegundos);
+			pgbStatusProgresso.setIndeterminate(true);
+			pgbStatusProgresso.setString("Executando...");
 
-		//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
-		setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
-		Comando = conf.getExecucaoComando() + " "
-				  + "--update-host --default " + //<-- O Manaplus só roda corretamente com essa linha...
-				  ((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("--skip-update --data " + conf.getTMWData() + " ") : "")
-				  + (conf.getExecucaoParametroServidor().isEmpty() ? "" : ("--server " + conf.getExecucaoParametroServidor() + " "))
-				  + (conf.getExecucaoParametroConta().isEmpty() ? "" : ("--username " + conf.getExecucaoParametroConta() + " "))
-				  + (conf.getExecucaoParametroSenha().isEmpty() ? "" : ("--password " + conf.getExecucaoParametroSenha() + " "))
-				  + (conf.getExecucaoParametroPersonagem().isEmpty() ? "" : ("--character " + conf.getExecucaoParametroPersonagem() + " "))
-				  + (conf.getExecucaoParametroSemOpenGL() == true ? "--no-opengl" : "");
-		//DialogClass.showAlerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
-		try {
-			Process Retorno = Executador.exec(Comando);
-			System.out.println(Comando.replaceAll(conf.getExecucaoParametroSenha(), "********"));
-			BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
-			while ((line = in.readLine()) != null) {
-				System.out.println(line);
-				//TxtEstatus.setText(TxtEstatus.getText()+"\n     "+line);
-				setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\": " + line);
-				pgbStatusProgresso.setString("Executando...");
+			//TxtEstatus.setText(TxtEstatus.getText()+"\nAbrindo aplicativo \""+conf.getExecucaoComando()+"\"...");
+			setAvisoEstatusPainel("Abrindo aplicativo \"" + conf.getExecucaoComando() + "\"...");
+			// "C:\Arquivos de programas\Mana\manaplus.exe" "-udC:\Documents and Settings\Administrador\localhost\tmwdata"
+			Comando = conf.getExecucaoComando() + " "+
+					  "--update-host -D " + //<-- O Manaplus só roda corretamente com essa linha...
+					  ((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("-ud \"" + conf.getTMWData() + "\" ") : "") +
+					  //((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("--skip-update --data " + conf.getTMWData() + " ") : "")
+					  (conf.getExecucaoParametroServidor().isEmpty() ? "" : ("-s \"" + conf.getExecucaoParametroServidor() + "\" "))+ 
+					  (conf.getExecucaoParametroConta().isEmpty() ? "" : ("-U \"" + conf.getExecucaoParametroConta() + "\" "))+
+					  (conf.getExecucaoParametroSenha().isEmpty() ? "" : ("-P \"" + conf.getExecucaoParametroSenha() + "\" "))+
+					  (conf.getExecucaoParametroPersonagem().isEmpty() ? "" : ("-c \"" + conf.getExecucaoParametroPersonagem() + "\" "))+
+					  (conf.getExecucaoParametroSemOpenGL() == true ? "--no-opengl" : "");
+			//DialogClass.showAlerta("<html>Comando:<br/>"+Comando,"TESTE DE PROGRAMADOR");
+			try {
+				if(!conf.getExecucaoParametroSenha().equals("")){addLinhaPainel(Comando.replaceAll(conf.getExecucaoParametroSenha(), "********"));}
+				Process Retorno = Executador.exec(Comando);
+				BufferedReader in = new BufferedReader(new InputStreamReader(Retorno.getInputStream()));
+				while ((line = in.readLine()) != null) {
+					addLinhaPainel(line);
+				}
+				pgbStatusProgresso.setString("Fechado!");
+				setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
+				if(mncDesativarAposExecucao.isSelected()){ServerStop();}
+				//pgbProgresso.setIndeterminate(false);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			pgbStatusProgresso.setString("Fechado!");
-			setAvisoEstatusPainel("<html>Aplicativo \"<font color=\"#0000FF\"><b>" + conf.getExecucaoComando() + "</b></font>\" fechando!");
-			if(mncDesativarAposExecucao.isSelected()){ServerStop();}
-			//pgbProgresso.setIndeterminate(false);
-		} catch (IOException e) {
-			//pgbProgresso.setIndeterminate(false);
-			e.printStackTrace();
-			//pgbProgresso.setValue(5);
-			//mnpArquivo.setEnabled(true);
-			//mnpRepositorio.setEnabled(true);
-			//VerificarbarDeFerramentas();
-			//setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			//return;
+		}else{
+			setAvisoEstatusPainel("<html><font color=\"#0000FF\">ERRO:</font> Softcliente não encontrado → "+conf.getExecucaoComando());
+			DialogClass.showErro("<html>Softcliente não encontrado:<br/> → "+conf.getExecucaoComando(), "ERRO");
 		}
 		pgbStatusProgresso.setIndeterminate(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
