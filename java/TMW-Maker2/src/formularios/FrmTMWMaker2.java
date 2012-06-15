@@ -379,8 +379,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			"<html>"+
 			"<font color=\"#0000FF\">Locahost montado com sucesso!</font><br/>"+
 			"<br/>"+
-			"Precione F7 para ativar o localhost, e<br/>"+
-			"depois F5 para executar o softcliente!",
+			"Precione F5 para ativar o localhost e executar o softcliente!",
 			"MONTAGEM CONCLUIDA",
 			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png"))
 		);
@@ -535,8 +534,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			"<html>"+
 			"<font color=\"#0000FF\">Locahost montado com sucesso!</font><br/>"+
 			"<br/>"+
-			"Precione F7 para ativar o localhost, e<br/>"+
-			"depois F5 para executar o softcliente!",
+			"Precione F5 para ativar o localhost e executar o softcliente!",
 			"MONTAGEM CONCLUIDA",
 			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png"))
 		);
@@ -863,7 +861,6 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			Comando = conf.getExecucaoComando() + " "+
 					  "--update-host -D " + //<-- O Manaplus só roda corretamente com essa linha...
 					  ((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("-ud \"" + conf.getTMWData() + "\" ") : "") +
-					  //((!conf.getTMWData().isEmpty() && (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("127.0.0.1"))) ? ("--skip-update --data " + conf.getTMWData() + " ") : "")
 					  (conf.getExecucaoParametroServidor().isEmpty() ? "" : ("-s \"" + conf.getExecucaoParametroServidor() + "\" "))+ 
 					  (conf.getExecucaoParametroConta().isEmpty() ? "" : ("-U \"" + conf.getExecucaoParametroConta() + "\" "))+
 					  (conf.getExecucaoParametroSenha().isEmpty() ? "" : ("-P \"" + conf.getExecucaoParametroSenha() + "\" "))+
@@ -1501,7 +1498,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 					"LIMPEZA DE PAINEL",
 					new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png")),
 					new Object[] {"Limpar", "Cancelar"},
-					1
+					0
 				)==0
 			){txtPainel.setText("");}
 		}
