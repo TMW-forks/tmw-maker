@@ -1926,21 +1926,32 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
         });
     }/**/
     public static void main(final String args[]) {
-		 if(args.length>=2){
-			 java.awt.EventQueue.invokeLater(new Runnable() {
-				 public void run() {
-					 boolean SeDefineLocalhot=false;
-					 for(int $a=0;$a<args.length;$a++){
-						 if($a<args.length-1 && args[$a].toLowerCase().equals("--localhost")){
-							SeDefineLocalhot=true;
-							new FrmSpawnEditor(args[$a+1]).setVisible(true);
-						 }
-					 }
-					 if(!SeDefineLocalhot) DialogClass.showErro("<html>Declare a pasta do localhost do TMW pelo argumento: <font color=\"#FF0000\">--localhost \"endereço\"</FONT>","FALTA DE ARGUMENTO");
-				 }
-			 });
-		 }
-    }
+		if (args.length >= 2) {
+			java.awt.EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					boolean SeDefineLocalhot = false;
+					for (int $a = 0; $a < args.length; $a++) {
+						if ($a < args.length - 1 && args[$a].toLowerCase().equals("--localhost")) {
+							if (FileClass.seExiste(args[$a + 1])) {
+								SeDefineLocalhot = true;
+								new FrmSpawnEditor(args[$a + 1]).setVisible(true);
+							}else{
+								DialogClass.showErro(
+									"<html>Não foi possovel encontrar a pasta do localhost q foi declarada.<br/>"+
+									" → <font color=\"#FF0000\">args[$a + 1]</FONT>", "LOCALHOST NÃO ENCONTRADO"
+								);
+							}
+						}
+					}
+					if (!SeDefineLocalhot) {
+						DialogClass.showErro("<html>Declare a pasta do localhost do TMW pelo argumento: <font color=\"#FF0000\">--localhost \"endereço\"</FONT>", "FALTA DE ARGUMENTO");
+					}
+				}
+			});
+		} else {
+			DialogClass.showErro("<html>Declare a pasta do localhost do TMW pelo argumento: <font color=\"#FF0000\">--localhost \"endereço\"</FONT>", "FALTA DE ARGUMENTO");
+		}
+	}
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton BtnLocalizar;
