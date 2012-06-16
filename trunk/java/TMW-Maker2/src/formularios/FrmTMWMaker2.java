@@ -4,6 +4,7 @@
  * @author lunovox
  */
 package formularios;
+import Formularios.FrmSpawnEditor;
 import classes.ClassConfiguracao;
 import classes.DialogClass;
 import classes.FileClass;
@@ -1182,6 +1183,8 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       mnuRepositorioHistorico = new javax.swing.JMenuItem();
       jSeparator4 = new javax.swing.JPopupMenu.Separator();
       mnuRepositorioMontar = new javax.swing.JMenuItem();
+      mnpEditar = new javax.swing.JMenu();
+      mnuMonstros = new javax.swing.JMenuItem();
       mnpLocalhost = new javax.swing.JMenu();
       mnuLocalhostAtivar = new javax.swing.JMenuItem();
       mnuLocalhostDesativar = new javax.swing.JMenuItem();
@@ -1325,6 +1328,20 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       mnpRepositorio.add(mnuRepositorioMontar);
 
       mbrBarraDeMenu.add(mnpRepositorio);
+
+      mnpEditar.setText("Editar");
+
+      mnuMonstros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+      mnuMonstros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_caveira.png"))); // NOI18N
+      mnuMonstros.setText("Monstros");
+      mnuMonstros.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuMonstrosActionPerformed(evt);
+         }
+      });
+      mnpEditar.add(mnuMonstros);
+
+      mbrBarraDeMenu.add(mnpEditar);
 
       mnpLocalhost.setText("Localhost");
 
@@ -1517,6 +1534,10 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		FileClass.AbrirNavegador("http://forums.themanaworld.com.br");
 	}//GEN-LAST:event_mnuAjudaForumActionPerformed
+	private void mnuMonstrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMonstrosActionPerformed
+		// TODO add your handling code here:
+		FrmSpawnEditor.main(new String[]{"--localhost",conf.getConexaoLocalhost()});
+	}//GEN-LAST:event_mnuMonstrosActionPerformed
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1537,6 +1558,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JCheckBoxMenuItem mncDesativarAposExecucao;
    private javax.swing.JCheckBoxMenuItem mncExecutarAposAtivacao;
    private javax.swing.JMenu mnpAjuda;
+   private javax.swing.JMenu mnpEditar;
    private javax.swing.JMenu mnpLocalhost;
    private javax.swing.JMenu mnpRepositorio;
    private javax.swing.JMenu mnpSistema;
@@ -1546,6 +1568,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JMenuItem mnuLocalhostAtivar;
    private javax.swing.JMenuItem mnuLocalhostDesativar;
    private javax.swing.JMenuItem mnuLocalhostExecutar;
+   private javax.swing.JMenuItem mnuMonstros;
    private javax.swing.JMenuItem mnuRepositorioEnviar;
    private javax.swing.JMenuItem mnuRepositorioHistorico;
    private javax.swing.JMenuItem mnuRepositorioMontar;
