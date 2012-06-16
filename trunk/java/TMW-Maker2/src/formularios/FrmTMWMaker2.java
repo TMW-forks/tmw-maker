@@ -1185,6 +1185,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       mnuRepositorioMontar = new javax.swing.JMenuItem();
       mnpEditar = new javax.swing.JMenu();
       mnuMonstros = new javax.swing.JMenuItem();
+      mnuMapa = new javax.swing.JMenuItem();
       mnpLocalhost = new javax.swing.JMenu();
       mnuLocalhostAtivar = new javax.swing.JMenuItem();
       mnuLocalhostDesativar = new javax.swing.JMenuItem();
@@ -1340,6 +1341,17 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
          }
       });
       mnpEditar.add(mnuMonstros);
+
+      mnuMapa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+      mnuMapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_globo.gif"))); // NOI18N
+      mnuMapa.setText("Mapa");
+      mnuMapa.setEnabled(false);
+      mnuMapa.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuMapaActionPerformed(evt);
+         }
+      });
+      mnpEditar.add(mnuMapa);
 
       mbrBarraDeMenu.add(mnpEditar);
 
@@ -1539,6 +1551,38 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		FrmSpawnEditor.main(new String[]{"--localhost",conf.getConexaoLocalhost()});
 	}//GEN-LAST:event_mnuMonstrosActionPerformed
 
+	private void mnuMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMapaActionPerformed
+		// TODO add your handling code here:
+		Thread tThread = new Thread(new Runnable() {public void run() {
+			String $Tiled = FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar";
+			$Tiled=$Tiled.replaceAll("src/bibliotecas/FileClass.ja", "dist");
+			String $Mapa = "";
+			$Mapa = conf.getTMWData()+bar+"maps"+bar+"halicarnazo.tmx"; //← Ta funcionando correto!
+
+			if(FileClass.seExiste($Tiled)){
+				if($Mapa.equals("") || FileClass.seExiste($Mapa)){
+					FileClass.doBash("java -jar "+$Tiled+($Mapa!=""?" "+$Mapa:"")); //← Ta funcionando correto!
+				}else{
+					addLinhaPainel("Arquivo '"+$Mapa+"' não encontrando!");
+					DialogClass.showErro("Arquivo '"+FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar"+"' não encontrando!", "TILED NÃO ENCONTRADO");
+				}
+			}else{
+				addLinhaPainel("Arquivo '"+$Tiled+"' não encontrando!");
+				DialogClass.showErro(
+				  "<html>Tiled não encontrado!<br>"
+				  + "<br/>"
+				  + " → '"+FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar"+"'",
+				  "TILED NÃO ENCONTRADO"
+				 );
+			}
+
+			//tiled.mapeditor.MapEditor tiled = new tiled.mapeditor.MapEditor();
+			//tiled.loadMap("/home/lunovox/Desenvolvimento/TMW/localhost/tmwdata/maps/halicarnazo.tmx");
+			//tiled.shutdown();
+		}});
+		tThread.start();
+	}//GEN-LAST:event_mnuMapaActionPerformed
+
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -1568,6 +1612,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JMenuItem mnuLocalhostAtivar;
    private javax.swing.JMenuItem mnuLocalhostDesativar;
    private javax.swing.JMenuItem mnuLocalhostExecutar;
+   private javax.swing.JMenuItem mnuMapa;
    private javax.swing.JMenuItem mnuMonstros;
    private javax.swing.JMenuItem mnuRepositorioEnviar;
    private javax.swing.JMenuItem mnuRepositorioHistorico;
