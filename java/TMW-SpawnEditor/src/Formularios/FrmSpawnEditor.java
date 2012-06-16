@@ -11,6 +11,8 @@ import Classes.StringClass;
 import Modificadoras.MyComboBoxEditor;
 import classes.DialogClass;
 import classes.ImagemClass;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -151,6 +153,7 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
       setTitle("Editor de Monstros");
+      setResizable(false);
       addWindowListener(new java.awt.event.WindowAdapter() {
          public void windowOpened(java.awt.event.WindowEvent evt) {
             formWindowOpened(evt);
@@ -1280,9 +1283,11 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
       );
 
       jMenu1.setText("File");
+      jMenu1.setEnabled(false);
       jMenuBar1.add(jMenu1);
 
       jMenu2.setText("Edit");
+      jMenu2.setEnabled(false);
       jMenuBar1.add(jMenu2);
 
       setJMenuBar(jMenuBar1);
@@ -1934,12 +1939,24 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
 						if ($a < args.length - 1 && args[$a].toLowerCase().equals("--localhost")) {
 							if (FileClass.seExiste(args[$a + 1])) {
 								SeDefineLocalhot = true;
-								new FrmSpawnEditor(args[$a + 1]).setVisible(true);
+								Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
+								javax.swing.JFrame frmSpawnEditor = new FrmSpawnEditor(args[$a + 1]);
+								frmSpawnEditor.setBounds(
+									(Tela.width - frmSpawnEditor.getWidth()) / 2,
+									(Tela.height - frmSpawnEditor.getHeight()) / 2,
+									frmSpawnEditor.getWidth(), frmSpawnEditor.getHeight()
+								);
+								frmSpawnEditor.pack();
+								frmSpawnEditor.setVisible(true);/**/
+								//new FrmSpawnEditor(args[$a + 1]).setVisible(true);
 							}else{
 								DialogClass.showErro(
-									"<html>Não foi possovel encontrar a pasta do localhost q foi declarada.<br/>"+
-									" → <font color=\"#FF0000\">args[$a + 1]</FONT>", "LOCALHOST NÃO ENCONTRADO"
+									"<html>Não foi possível encontrar a pasta do localhost declarada: <br/>"+
+									"<br/>"+
+									" → <font color=\"#FF0000\">"+args[$a+1]+"</FONT>",
+									"LOCALHOST NÃO ENCONTRADO"
 								);
+								return;
 							}
 						}
 					}
