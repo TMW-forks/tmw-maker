@@ -35,14 +35,14 @@ public class StringClass {
             testoEmTratamento=UTF8toISO88591(testoEmTratamento);
         }
     }
-    public static String UTF8toISO88591(String UTF8){ // Só funciona se for executado fora do netbeans!
+    public static String UTF8toISO88591(String UTF8){ // SÃ³ funciona se for executado fora do netbeans!
         try{
             return URLDecoder.decode(UTF8, "ISO-8859-1");
         } catch(UnsupportedEncodingException E){
             return UTF8;
         }
     }
-    public static String ISO88591toUTF8(String ISO88591){ // Só funciona se for executado fora do netbeans!
+    public static String ISO88591toUTF8(String ISO88591){ // SÃ³ funciona se for executado fora do netbeans!
         try{
             return new String(ISO88591.getBytes("UTF-8"), "ISO-8859-1");
         } catch(UnsupportedEncodingException E){

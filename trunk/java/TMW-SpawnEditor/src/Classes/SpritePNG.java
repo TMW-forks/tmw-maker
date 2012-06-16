@@ -23,7 +23,7 @@ public class SpritePNG {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    } // Só executa de for instaciado como objeto
+    } // SÃ³ executa de for instaciado como objeto
     public SpritePNG(String Endereco) {
         try {
             File Arquivo = new File(Endereco);
@@ -38,7 +38,7 @@ public class SpritePNG {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    } // Só executa de for instaciado como objeto
+    } // SÃ³ executa de for instaciado como objeto
     /*public SpritePNG(BufferedImage Imagem, int Linhas, int Colunas) {
         SpriteEndereco="";
         SpriteLinhas=Linhas;
@@ -46,7 +46,7 @@ public class SpritePNG {
         Sprite = Imagem;
         BlocoLargura=Sprite.getWidth()/Colunas;
         BlocoAltura=Sprite.getHeight()/Linhas;
-    } // Só executa de for instaciado como objeto
+    } // SÃ³ executa de for instaciado como objeto
     public SpritePNG(BufferedImage Imagem) {
         SpriteEndereco="";
         SpriteLinhas=1;
@@ -54,7 +54,7 @@ public class SpritePNG {
         Sprite = Imagem;
         BlocoLargura=Sprite.getWidth();
         BlocoAltura=Sprite.getHeight();
-    } // Só executa de for instaciado como objeto
+    } // SÃ³ executa de for instaciado como objeto
     /**/
     
     BufferedImage Sprite;
@@ -137,7 +137,7 @@ public class SpritePNG {
         try {
             ImageIO.write(
                 getBloco(Bloco),
-                getSpriteTipo(),//Não pode ser um tipo diferente do SpriteOriginal
+                getSpriteTipo(),//NÃ£o pode ser um tipo diferente do SpriteOriginal
                 new File(Endereco)
             );
         } catch (IOException ex) {
