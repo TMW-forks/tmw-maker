@@ -15,10 +15,17 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmSpawnEditor extends javax.swing.JFrame {
     public FrmSpawnEditor(String PastaDoLocalhost) {
+		try {
+			super.setIconImage((new ImageIcon(getClass().getResource("/Imagens/botoes/sbl_localhost-tmw.png"))).getImage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println("Icone erro:\n" + e.getMessage());
+		}
 		pastaDoLocalhost = PastaDoLocalhost;
 		bdProds = new BancoDeDados.Banco_Itens(pastaDoLocalhost);
 		bdMOBs = new BancoDeDados.Banco_Monstros(pastaDoLocalhost);
@@ -45,19 +52,6 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
       java.awt.GridBagConstraints gridBagConstraints;
 
       grpDirecao = new javax.swing.ButtonGroup();
-      jToolBar1 = new javax.swing.JToolBar();
-      btnRegistroInicio = new javax.swing.JButton();
-      btnRegistroVoltar = new javax.swing.JButton();
-      btnRegistroAvancar = new javax.swing.JButton();
-      btnRegistroFinal = new javax.swing.JButton();
-      cmbIDs = new javax.swing.JComboBox();
-      BtnLocalizar = new javax.swing.JButton();
-      jSeparator1 = new javax.swing.JToolBar.Separator();
-      btnAbrir = new javax.swing.JButton();
-      btnSalvar = new javax.swing.JButton();
-      btnExcluir = new javax.swing.JButton();
-      jSeparator2 = new javax.swing.JToolBar.Separator();
-      btnAjuda = new javax.swing.JButton();
       jTabbedPane1 = new javax.swing.JTabbedPane();
       jPanel13 = new javax.swing.JPanel();
       jPanel12 = new javax.swing.JPanel();
@@ -147,9 +141,19 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
       tgbDirecaoDireita = new javax.swing.JToggleButton();
       tgbDirecaoAbaixo = new javax.swing.JToggleButton();
       tgbDirecaoCentral = new javax.swing.JToggleButton();
+      cmbIDs = new javax.swing.JComboBox();
       jMenuBar1 = new javax.swing.JMenuBar();
-      jMenu1 = new javax.swing.JMenu();
-      jMenu2 = new javax.swing.JMenu();
+      mnpRegistro = new javax.swing.JMenu();
+      mnuAbrir = new javax.swing.JMenuItem();
+      mnuSalvar = new javax.swing.JMenuItem();
+      mnuExcluir = new javax.swing.JMenuItem();
+      mnpNavegacao = new javax.swing.JMenu();
+      mnuRegistroInicio = new javax.swing.JMenuItem();
+      mnuRegistroVoltar = new javax.swing.JMenuItem();
+      mnuRegistroAvancar = new javax.swing.JMenuItem();
+      mnuRegistroFinal = new javax.swing.JMenuItem();
+      jSeparator3 = new javax.swing.JPopupMenu.Separator();
+      mnuLocalizar = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
       setTitle("Editor de Monstros");
@@ -159,119 +163,6 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
             formWindowOpened(evt);
          }
       });
-
-      jToolBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-      jToolBar1.setFloatable(false);
-
-      btnRegistroInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_inicio.gif"))); // NOI18N
-      btnRegistroInicio.setFocusable(false);
-      btnRegistroInicio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnRegistroInicio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      btnRegistroInicio.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnRegistroInicioActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(btnRegistroInicio);
-
-      btnRegistroVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_voltar.gif"))); // NOI18N
-      btnRegistroVoltar.setToolTipText("Anterior (Ctrl+Alt+←)");
-      btnRegistroVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnRegistroVoltar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      btnRegistroVoltar.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnRegistroVoltarActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(btnRegistroVoltar);
-
-      btnRegistroAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_avancar.gif"))); // NOI18N
-      btnRegistroAvancar.setToolTipText("Próxima (Ctrl+Alt+→)");
-      btnRegistroAvancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnRegistroAvancar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      btnRegistroAvancar.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnRegistroAvancarActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(btnRegistroAvancar);
-
-      btnRegistroFinal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_final.gif"))); // NOI18N
-      btnRegistroFinal.setFocusable(false);
-      btnRegistroFinal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnRegistroFinal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      btnRegistroFinal.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnRegistroFinalActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(btnRegistroFinal);
-
-      cmbIDs.setToolTipText("ID dos Monstros");
-      cmbIDs.setMaximumSize(new java.awt.Dimension(300, 25));
-      cmbIDs.setMinimumSize(new java.awt.Dimension(200, 25));
-      cmbIDs.setPreferredSize(new java.awt.Dimension(200, 25));
-      cmbIDs.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            cmbIDsActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(cmbIDs);
-
-      BtnLocalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_lupa.gif"))); // NOI18N
-      BtnLocalizar.setFocusable(false);
-      BtnLocalizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      BtnLocalizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      BtnLocalizar.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            BtnLocalizarActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(BtnLocalizar);
-      jToolBar1.add(jSeparator1);
-
-      btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_pasta.gif"))); // NOI18N
-      btnAbrir.setToolTipText("Abrir (Ctrl+A)");
-      btnAbrir.setEnabled(false);
-      btnAbrir.setFocusable(false);
-      btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      btnAbrir.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnAbrirActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(btnAbrir);
-
-      btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_disquete.gif"))); // NOI18N
-      btnSalvar.setToolTipText("Salvar (Ctrl+S)");
-      btnSalvar.setEnabled(false);
-      btnSalvar.setFocusable(false);
-      btnSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnSalvar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      btnSalvar.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnSalvarActionPerformed(evt);
-         }
-      });
-      jToolBar1.add(btnSalvar);
-
-      btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_lixeira.png"))); // NOI18N
-      btnExcluir.setToolTipText("Excluir (Ctrl+Del)");
-      btnExcluir.setEnabled(false);
-      btnExcluir.setFocusable(false);
-      btnExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnExcluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      jToolBar1.add(btnExcluir);
-      jToolBar1.add(jSeparator2);
-
-      btnAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/ajuda.gif"))); // NOI18N
-      btnAjuda.setToolTipText("Ajudar (F1)");
-      btnAjuda.setEnabled(false);
-      btnAjuda.setFocusable(false);
-      btnAjuda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-      btnAjuda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-      jToolBar1.add(btnAjuda);
 
       jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forma como o monstro comporta-se no jogo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12))); // NOI18N
       jPanel12.setLayout(new java.awt.GridBagLayout());
@@ -1185,23 +1076,6 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
       lblVisualizacao.setPreferredSize(new java.awt.Dimension(146, 316));
       lblVisualizacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-      javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-      jPanel4.setLayout(jPanel4Layout);
-      jPanel4Layout.setHorizontalGroup(
-         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel4Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-      );
-      jPanel4Layout.setVerticalGroup(
-         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel4Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 270, Short.MAX_VALUE)
-            .addContainerGap())
-      );
-
       grpDirecao.add(tgbDirecaoAcima);
       tgbDirecaoAcima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/ceta-norte.png"))); // NOI18N
       tgbDirecaoAcima.setMaximumSize(new java.awt.Dimension(23, 23));
@@ -1282,13 +1156,121 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
             .addComponent(tgbDirecaoAbaixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
-      jMenu1.setText("File");
-      jMenu1.setEnabled(false);
-      jMenuBar1.add(jMenu1);
+      javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+      jPanel4.setLayout(jPanel4Layout);
+      jPanel4Layout.setHorizontalGroup(
+         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel4Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+               .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      );
+      jPanel4Layout.setVerticalGroup(
+         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel4Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(lblVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      );
 
-      jMenu2.setText("Edit");
-      jMenu2.setEnabled(false);
-      jMenuBar1.add(jMenu2);
+      cmbIDs.setToolTipText("ID dos Monstros");
+      cmbIDs.setMaximumSize(new java.awt.Dimension(300, 25));
+      cmbIDs.setMinimumSize(new java.awt.Dimension(200, 25));
+      cmbIDs.setPreferredSize(new java.awt.Dimension(200, 25));
+      cmbIDs.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cmbIDsActionPerformed(evt);
+         }
+      });
+
+      mnpRegistro.setText("Registro");
+
+      mnuAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+      mnuAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_pasta.gif"))); // NOI18N
+      mnuAbrir.setText("Abrir");
+      mnuAbrir.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuAbrirActionPerformed(evt);
+         }
+      });
+      mnpRegistro.add(mnuAbrir);
+
+      mnuSalvar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+      mnuSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_disquete.gif"))); // NOI18N
+      mnuSalvar.setText("Salvar");
+      mnuSalvar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuSalvarActionPerformed(evt);
+         }
+      });
+      mnpRegistro.add(mnuSalvar);
+
+      mnuExcluir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.CTRL_MASK));
+      mnuExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_lixeira.png"))); // NOI18N
+      mnuExcluir.setText("Excluir");
+      mnuExcluir.setEnabled(false);
+      mnpRegistro.add(mnuExcluir);
+
+      jMenuBar1.add(mnpRegistro);
+
+      mnpNavegacao.setText("Navegação");
+
+      mnuRegistroInicio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+      mnuRegistroInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_inicio.gif"))); // NOI18N
+      mnuRegistroInicio.setText("Início");
+      mnuRegistroInicio.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuRegistroInicioActionPerformed(evt);
+         }
+      });
+      mnpNavegacao.add(mnuRegistroInicio);
+
+      mnuRegistroVoltar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.SHIFT_MASK));
+      mnuRegistroVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_voltar.gif"))); // NOI18N
+      mnuRegistroVoltar.setText("Voltar");
+      mnuRegistroVoltar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuRegistroVoltarActionPerformed(evt);
+         }
+      });
+      mnpNavegacao.add(mnuRegistroVoltar);
+
+      mnuRegistroAvancar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.SHIFT_MASK));
+      mnuRegistroAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_avancar.gif"))); // NOI18N
+      mnuRegistroAvancar.setText("Avançar");
+      mnuRegistroAvancar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuRegistroAvancarActionPerformed(evt);
+         }
+      });
+      mnpNavegacao.add(mnuRegistroAvancar);
+
+      mnuRegistroFinal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+      mnuRegistroFinal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_final.gif"))); // NOI18N
+      mnuRegistroFinal.setText("Final");
+      mnuRegistroFinal.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuRegistroFinalActionPerformed(evt);
+         }
+      });
+      mnpNavegacao.add(mnuRegistroFinal);
+      mnpNavegacao.add(jSeparator3);
+
+      mnuLocalizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+      mnuLocalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_lupa.gif"))); // NOI18N
+      mnuLocalizar.setText("Localizar");
+      mnuLocalizar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuLocalizarActionPerformed(evt);
+         }
+      });
+      mnpNavegacao.add(mnuLocalizar);
+
+      jMenuBar1.add(mnpNavegacao);
 
       setJMenuBar(jMenuBar1);
 
@@ -1296,42 +1278,39 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
-         .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createSequentialGroup()
-                  .addGap(45, 45, 45)
-                  .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+               .addComponent(cmbIDs, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap())
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                  .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(layout.createSequentialGroup()
+                  .addComponent(cmbIDs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       );
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
     private void darAuteracao(boolean Alterado){
-        btnAbrir.setEnabled(Alterado);
-        btnSalvar.setEnabled(Alterado);
-        btnRegistroInicio.setEnabled(!Alterado);
-        btnRegistroVoltar.setEnabled(!Alterado);
-        btnRegistroAvancar.setEnabled(!Alterado);
-        btnRegistroFinal.setEnabled(!Alterado);
+        mnuAbrir.setEnabled(Alterado);
+        mnuSalvar.setEnabled(Alterado);
+        mnuRegistroInicio.setEnabled(!Alterado);
+        mnuRegistroVoltar.setEnabled(!Alterado);
+        mnuRegistroAvancar.setEnabled(!Alterado);
+        mnuRegistroFinal.setEnabled(!Alterado);
         cmbIDs.setEnabled(!Alterado);
-        BtnLocalizar.setEnabled(!Alterado);
+        mnuLocalizar.setEnabled(!Alterado);
     }
     private Vector addItemVector(int IDTem, double PerctDeDrops){
         Vector Linha = new Vector();
@@ -1670,32 +1649,9 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
         tblItens.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(256);
     }
 
-    private void btnRegistroVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVoltarActionPerformed
-        if(cmbIDs.getSelectedIndex()>0){
-            cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()-1);
-            AbrirRegistro(cmbIDs.getSelectedIndex());
-        }
-        btnRegistroVoltar.grabFocus();
-}//GEN-LAST:event_btnRegistroVoltarActionPerformed
     private void cmbIDsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIDsActionPerformed
         AbrirRegistro(cmbIDs.getSelectedIndex());
 }//GEN-LAST:event_cmbIDsActionPerformed
-    private void btnRegistroAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAvancarActionPerformed
-        if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1){
-            cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()+1);
-            AbrirRegistro(cmbIDs.getSelectedIndex());
-        }
-        btnRegistroAvancar.grabFocus();
-}//GEN-LAST:event_btnRegistroAvancarActionPerformed
-    private void BtnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLocalizarActionPerformed
-        javax.swing.JDialog FrmMonstrosLocalizar = new FrmMonstrosLocalizar(this, rootPaneCheckingEnabled);
-        FrmMonstrosLocalizar.setLocation(
-                ((this.getWidth() - FrmMonstrosLocalizar.getWidth()) / 2) + this.getX(),
-                ((this.getHeight() - FrmMonstrosLocalizar.getHeight()) / 2) + this.getY());
-        FrmMonstrosLocalizar.pack();
-        FrmMonstrosLocalizar.setModal(true);
-        FrmMonstrosLocalizar.setVisible(true);/**/
-}//GEN-LAST:event_BtnLocalizarActionPerformed
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if(bdMOBs!=null && bdMOBs.getContMonstros()>=1){
             cmbIDs.setModel(new DefaultComboBoxModel(bdMOBs.getVectorIDs()));
@@ -1743,9 +1699,6 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
         lblDefMagico.setText("Def.M�gica: ("+sldDefMagico.getValue()+")");
         darAuteracao(true);
     }//GEN-LAST:event_sldDefMagicoStateChanged
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        SalvarRegistro();
-    }//GEN-LAST:event_btnSalvarActionPerformed
     private void txtNomeSumonicoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeSumonicoFocusLost
         String NomeSumonico = txtNomeSumonico.getText();
         NomeSumonico = NomeSumonico.replace(" ", "");
@@ -1754,12 +1707,6 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
             darAuteracao(true);
         }
 }//GEN-LAST:event_txtNomeSumonicoFocusLost
-    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        if(bdMOBs!=null && bdMOBs.getContMonstros()>=1){
-            AbrirRegistro(cmbIDs.getSelectedIndex());
-            darAuteracao(false);
-        }
-    }//GEN-LAST:event_btnAbrirActionPerformed
     private void sldEstatusForcaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldEstatusForcaStateChanged
         lblForca.setText("For�a: ("+sldEstatusForca.getValue()+")");
         darAuteracao(true);
@@ -1784,20 +1731,6 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
         lblSorte.setText("Sorte: ("+sldEstatusSorte.getValue()+")");
         darAuteracao(true);
     }//GEN-LAST:event_sldEstatusSorteStateChanged
-    private void btnRegistroInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroInicioActionPerformed
-        if(cmbIDs.getSelectedIndex()>0){
-            cmbIDs.setSelectedIndex(0);
-            AbrirRegistro(cmbIDs.getSelectedIndex());
-        }
-        btnRegistroInicio.grabFocus();
-    }//GEN-LAST:event_btnRegistroInicioActionPerformed
-    private void btnRegistroFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroFinalActionPerformed
-        if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1){
-            cmbIDs.setSelectedIndex(cmbIDs.getItemCount()-1);
-            AbrirRegistro(cmbIDs.getSelectedIndex());
-        }
-        btnRegistroFinal.grabFocus();
-    }//GEN-LAST:event_btnRegistroFinalActionPerformed
     private void tgbDirecaoAbaixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbDirecaoAbaixoActionPerformed
         exibirAparencia(cmbIDs.getSelectedIndex(),"stand","down");
     }//GEN-LAST:event_tgbDirecaoAbaixoActionPerformed
@@ -1914,6 +1847,59 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
         darAuteracao(true);
     }//GEN-LAST:event_txtDescricaoCaretUpdate
 
+	 private void mnuRegistroInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistroInicioActionPerformed
+		 if(cmbIDs.getSelectedIndex()>0){
+            cmbIDs.setSelectedIndex(0);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        //mnuRegistroInicio.grabFocus();
+	 }//GEN-LAST:event_mnuRegistroInicioActionPerformed
+
+	 private void mnuRegistroVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistroVoltarActionPerformed
+		 if(cmbIDs.getSelectedIndex()>0){
+            cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()-1);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        //mnuRegistroVoltar.grabFocus();
+	 }//GEN-LAST:event_mnuRegistroVoltarActionPerformed
+
+	 private void mnuRegistroAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistroAvancarActionPerformed
+		 if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1){
+            cmbIDs.setSelectedIndex(cmbIDs.getSelectedIndex()+1);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        //mnuRegistroAvancar.grabFocus();
+	 }//GEN-LAST:event_mnuRegistroAvancarActionPerformed
+
+	 private void mnuRegistroFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistroFinalActionPerformed
+		 if(cmbIDs.getSelectedIndex()<cmbIDs.getItemCount()-1){
+            cmbIDs.setSelectedIndex(cmbIDs.getItemCount()-1);
+            AbrirRegistro(cmbIDs.getSelectedIndex());
+        }
+        //mnuRegistroFinal.grabFocus();
+	 }//GEN-LAST:event_mnuRegistroFinalActionPerformed
+
+	 private void mnuLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLocalizarActionPerformed
+		 javax.swing.JDialog FrmMonstrosLocalizar = new FrmMonstrosLocalizar(this, rootPaneCheckingEnabled);
+        FrmMonstrosLocalizar.setLocation(
+                ((this.getWidth() - FrmMonstrosLocalizar.getWidth()) / 2) + this.getX(),
+                ((this.getHeight() - FrmMonstrosLocalizar.getHeight()) / 2) + this.getY());
+        FrmMonstrosLocalizar.pack();
+        FrmMonstrosLocalizar.setModal(true);
+        FrmMonstrosLocalizar.setVisible(true);/**/
+	 }//GEN-LAST:event_mnuLocalizarActionPerformed
+
+	 private void mnuAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAbrirActionPerformed
+		 if(bdMOBs != null && bdMOBs.getContMonstros() >= 1) {
+			 AbrirRegistro(cmbIDs.getSelectedIndex());
+			 darAuteracao(false);
+		 }
+	 }//GEN-LAST:event_mnuAbrirActionPerformed
+
+	 private void mnuSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalvarActionPerformed
+		 SalvarRegistro();
+	 }//GEN-LAST:event_mnuSalvarActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1971,17 +1957,8 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
 	}
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton BtnLocalizar;
-   private javax.swing.JButton btnAbrir;
-   private javax.swing.JButton btnAjuda;
-   private javax.swing.JButton btnExcluir;
    private javax.swing.JButton btnItemAdicionar;
    private javax.swing.JButton btnItemRemover;
-   private javax.swing.JButton btnRegistroAvancar;
-   private javax.swing.JButton btnRegistroFinal;
-   private javax.swing.JButton btnRegistroInicio;
-   private javax.swing.JButton btnRegistroVoltar;
-   private javax.swing.JButton btnSalvar;
    private javax.swing.JCheckBox chkComportamentoAgressor;
    private javax.swing.JCheckBox chkComportamentoAuxiliador;
    private javax.swing.JCheckBox chkComportamentoChefe;
@@ -2004,8 +1981,6 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel4;
    private javax.swing.JLabel jLabel5;
    private javax.swing.JLabel jLabel6;
-   private javax.swing.JMenu jMenu1;
-   private javax.swing.JMenu jMenu2;
    private javax.swing.JMenuBar jMenuBar1;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel11;
@@ -2024,10 +1999,8 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
    private javax.swing.JScrollPane jScrollPane2;
    private javax.swing.JScrollPane jScrollPane3;
    private javax.swing.JScrollPane jScrollPane4;
-   private javax.swing.JToolBar.Separator jSeparator1;
-   private javax.swing.JToolBar.Separator jSeparator2;
+   private javax.swing.JPopupMenu.Separator jSeparator3;
    private javax.swing.JTabbedPane jTabbedPane1;
-   private javax.swing.JToolBar jToolBar1;
    private javax.swing.JLabel lblAgilidade;
    private javax.swing.JLabel lblAtaque1;
    private javax.swing.JLabel lblAtaque2;
@@ -2046,6 +2019,16 @@ public class FrmSpawnEditor extends javax.swing.JFrame {
    private javax.swing.JLabel lblVisualizacao;
    private javax.swing.JLabel lblVitalidade;
    private javax.swing.JList lstAnimacoes;
+   private javax.swing.JMenu mnpNavegacao;
+   private javax.swing.JMenu mnpRegistro;
+   private javax.swing.JMenuItem mnuAbrir;
+   private javax.swing.JMenuItem mnuExcluir;
+   private javax.swing.JMenuItem mnuLocalizar;
+   private javax.swing.JMenuItem mnuRegistroAvancar;
+   private javax.swing.JMenuItem mnuRegistroFinal;
+   private javax.swing.JMenuItem mnuRegistroInicio;
+   private javax.swing.JMenuItem mnuRegistroVoltar;
+   private javax.swing.JMenuItem mnuSalvar;
    private javax.swing.JSlider sldAtaque1;
    private javax.swing.JSlider sldAtaque2;
    private javax.swing.JSlider sldDefFisico;
