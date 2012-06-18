@@ -7,7 +7,12 @@ package formularios;
 
 import classes.DialogClass;
 import classes.FileClass;
+import classes.ImagemClass;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class FrmImportador extends javax.swing.JDialog {
 	public FrmImportador(java.awt.Frame parent, boolean modal, String $PastaLocalhost) {
@@ -34,6 +39,45 @@ public class FrmImportador extends javax.swing.JDialog {
 			public int getSize() { return MapasFiltrados.size(); }
 			public Object getElementAt(int i) { return MapasFiltrados.get(i); }
 		});/**/
+	}
+	private void VisualizarMapa(String $NomeDoArquivoDoMapa) {
+		String $EnderecoMapa = FrmTMWMaker2.conf.getTMWData()+bar+"maps"+bar+$NomeDoArquivoDoMapa;
+		if(FileClass.seExiste($EnderecoMapa)){
+			btnCompilar.setEnabled(true);
+			btnAbrir.setEnabled(true);
+			//lblMiniatura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png")));
+			ImagemClass $mini = new ImagemClass(new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-441x548.png")));
+			//ImagemClass $mini = new ImagemClass("/imagens/simbolos/icon-tmw-maker-fenix-441x548.png");
+			if($mini.getAltura()>lblMiniatura.getHeight()){$mini.setZoom((double)lblMiniatura.getHeight()/(double)$mini.getAltura());}
+			if($mini.getLargura()>lblMiniatura.getWidth()){$mini.setZoom((double)lblMiniatura.getWidth()/(double)$mini.getLargura());}
+			lblMiniatura.setIcon($mini.getIcone());
+			//txtNome.setText($NomeDoArquivoDoMapa);
+			try {
+				Element Elementos = FileClass.arquivoAbrirXML($EnderecoMapa);
+				NodeList noPropriedades = Elementos.getElementsByTagName("property");
+				for (int i = 0; i < noPropriedades.getLength(); i++) {
+					//Vector Registro = new Vector();
+					Element tagPropriedade = (Element) noPropriedades.item(i);
+					if (FileClass.getAtributo(tagPropriedade, "name", "").toLowerCase().equals("name")) {
+						txtNome.setText(FileClass.getAtributo(tagPropriedade, "value", ""));
+					}else if (FileClass.getAtributo(tagPropriedade, "name", "").toLowerCase().equals("minimap")) {
+						String $EnderecoMiniatura = FrmTMWMaker2.conf.getTMWData()+bar+FileClass.getAtributo(tagPropriedade, "value", "");
+						if(FileClass.seExiste($EnderecoMiniatura)){
+							$mini = new ImagemClass($EnderecoMiniatura);
+							if($mini.getAltura()>lblMiniatura.getHeight()){$mini.setZoom((double)lblMiniatura.getHeight()/(double)$mini.getAltura());}
+							if($mini.getLargura()>lblMiniatura.getWidth()){$mini.setZoom((double)lblMiniatura.getWidth()/(double)$mini.getLargura());}
+							lblMiniatura.setIcon($mini.getIcone());
+						}
+					}
+				}
+			} catch (ClassCastException ex) {
+				 Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}else{
+			txtNome.setText("");
+			btnCompilar.setEnabled(false);
+			btnAbrir.setEnabled(false);
+		}
 	}
 	private void AbrirMapa(final String $NomeDoArquivo) {
 		String $Tiled = FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar";
@@ -63,20 +107,148 @@ public class FrmImportador extends javax.swing.JDialog {
 		//tiled.loadMap("/home/lunovox/Desenvolvimento/TMW/localhost/tmwdata/maps/halicarnazo.tmx");
 		//tiled.shutdown();
 	}
+	private void CompilarMapa(final String $NomeDoArquivo) {
+		int $r = 0; //0 = "Compilar"
+		$r = DialogClass.showOpcoes(
+			"<html>"+
+			"Se os dados de '<font color='#FF0000'>"+$NomeDoArquivo+"</font>' estiverem incorretos, <br/>"+
+			"o compilador danificará o código fonte do localhost.<br/>"+
+			"<br/>"+
+			"<font color='#0000FF'>Deseja realmente compilá-lo agora?</font>",
+			"COMPILAR MAPA",
+			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png")),
+			//new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png")),
+			new Object[] {"Compilar", "Cancelar"},
+			0
+		);
+		if($r==0){
+			String $EnderecoMapa = FrmTMWMaker2.conf.getTMWData()+bar+"maps"+bar+$NomeDoArquivo;
+			if(FileClass.seExiste($EnderecoMapa)){
+            try {
+					Element Elementos = FileClass.arquivoAbrirXML($EnderecoMapa);
+					NodeList noPropriedades = Elementos.getElementsByTagName("property");
+					//Vector Propriedades = new Vector();
+					String $PastaDoMapa = "";
 
-	/*public static void main(String args[]) {
-	java.awt.EventQueue.invokeLater(new Runnable() {
-	public void run() {
-	FrmImportador dialog = new FrmImportador(new javax.swing.JFrame(), true,"");
-	dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-	public void windowClosing(java.awt.event.WindowEvent e) {
-	System.exit(0);
+					for (int i = 0; i < noPropriedades.getLength(); i++) {
+						//Vector Registro = new Vector();
+						Element tagPropriedade = (Element) noPropriedades.item(i);
+						if (FileClass.getAtributo(tagPropriedade, "name", "").toLowerCase().equals("pasta") || FileClass.getAtributo(tagPropriedade, "name", "").toLowerCase().equals("folder")) {
+							$PastaDoMapa = FileClass.getAtributo(tagPropriedade, "value", "");
+						}
+						//Registro.addElement(FileClass.getAtributo(tagPropriedade,"name",""));
+						//Registro.addElement(FileClass.getAtributo(tagPropriedade,"value",""));
+						//Propriedades.add(Registro);
+					}
+					String $EnderecoDaPastaNPCs = FrmTMWMaker2.conf.getEathenaData() + bar + "npc";
+					String $EnderecoDaPastaDoMapa = $EnderecoDaPastaNPCs+bar+$PastaDoMapa;
+					NodeList noObject, noObjectGroup;
+					if(FileClass.seExiste($EnderecoDaPastaDoMapa)){
+						noObject = Elementos.getElementsByTagName("object");
+						noObjectGroup = Elementos.getElementsByTagName("objectgroup");
+
+						String $EnderecoWarps = $EnderecoDaPastaDoMapa + bar + "_warps.txt";
+						String $ConteudoWarps=
+						"///////////////////////////////////////////////////////////////////\n"+
+						"//  IDE: TMW-Maker 2 → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
+						"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+						"///////////////////////////////////////////////////////////////////\n"+
+						"\n";
+
+						String $EnderecoImport = $EnderecoDaPastaDoMapa + bar + "_import.txt";
+						String $ConteudoImport=
+						"///////////////////////////////////////////////////////////////////\n"+
+						"//  IDE: TMW-Maker 2 → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
+						"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+						"///////////////////////////////////////////////////////////////////\n"+
+						"\n";
+						$ConteudoImport+="map: "+$NomeDoArquivo.replace(".tmx", ".gat")+"\n";
+
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_mobs.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_mobs.txt";}
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_scripts.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_scripts.txt";}
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_warps.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_warps.txt";}
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_shops.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_shops.txt";}
+						$ConteudoImport+="\n\n";
+
+						for (int $o = 0; $o < noObjectGroup.getLength(); $o++) {
+							Element tagObjectGroup = (Element) noObjectGroup.item($o);
+							if (FileClass.getAtributo(tagObjectGroup, "name", "").toLowerCase().equals("scripts")) {
+								NodeList noProperty = tagObjectGroup.getElementsByTagName("property");
+								for (int $p = 0; $p < noProperty.getLength(); $p++) {
+									Element tagProperty = (Element) noProperty.item($p);
+									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().indexOf("file")==0) {
+										String $ArquivoScript = FileClass.getAtributo(tagProperty, "value", "");
+										$ConteudoImport+="npc: npc"+bar+$PastaDoMapa+bar+$ArquivoScript+"\n";
+									}
+								}
+							}
+						}
+
+						for (int $o = 0; $o < noObject.getLength(); $o++) {
+							Element tagObjet = (Element) noObject.item($o);
+
+							if (FileClass.getAtributo(tagObjet, "type", "").toLowerCase().equals("warp")) {
+								String $Name=FileClass.getAtributo(tagObjet, "name", "");
+								int $X= FileClass.getAtributo(tagObjet, "x", 0)/32;
+								int $Y= FileClass.getAtributo(tagObjet, "y", 0)/32;
+								int $width= FileClass.getAtributo(tagObjet, "width", 0)/32;
+								int $height= FileClass.getAtributo(tagObjet, "height", 0)/32;
+								//$X+=$width/2;	$Y+=$height/2;
+								String $toMap =""; int $toX=0, $toY=0;
+
+								NodeList noProperty = tagObjet.getElementsByTagName("property");
+								for (int $p = 0; $p < noProperty.getLength(); $p++) {
+									Element tagProperty = (Element) noProperty.item($p);
+									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("map")) {
+										$toMap = FileClass.getAtributo(tagProperty, "value", "");
+									}else if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("dest_map")) {
+										$toMap = FileClass.getAtributo(tagProperty, "value", "");
+									}
+									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("x")) {
+										$toX = FileClass.getAtributo(tagProperty, "value", 0);
+									}else if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("dest_x")) {
+										$toX = FileClass.getAtributo(tagProperty, "value", 0)/32;
+									}
+									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("y")) {
+										$toY = FileClass.getAtributo(tagProperty, "value", 0);
+									}else if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("dest_y")) {
+										$toY = FileClass.getAtributo(tagProperty, "value", 0)/32;
+									}
+								}
+								$ConteudoWarps+=$NomeDoArquivo.replace(".tmx", ".gat")+","+($X+($width/2))+","+($Y+($height/2))+"\twarp\t"+$Name+"\t"+($width-1)+","+($height-1)+","+$toMap+".gat,"+$toX+","+$toY+"\n";
+								
+							}else if (FileClass.getAtributo(tagObjet, "type", "").toLowerCase().equals("script")) {
+								NodeList noProperty = tagObjet.getElementsByTagName("property");
+								for (int $p = 0; $p < noProperty.getLength(); $p++) {
+									Element tagProperty = (Element) noProperty.item($p);
+									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("file")) {
+										String $ArquivoScript = FileClass.getAtributo(tagProperty, "value", "");
+										$ConteudoImport+="npc: npc"+bar+$PastaDoMapa+bar+$ArquivoScript+"\n";
+									}
+								}
+							}
+
+						}
+						FileClass.arquivoSalvar($EnderecoWarps, $ConteudoWarps);
+						FileClass.arquivoSalvar($EnderecoImport, $ConteudoImport);
+
+						DialogClass.showAlerta(
+							"<html>Mapa '<font color='#0000FF'>"+$NomeDoArquivo+"</font>' compilado com sucesso!",
+							"COMPILADOR",
+							new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png"))
+						);
+					}else{
+						DialogClass.showErro("<html>A pasta '<font color='#FF0000'>"+$EnderecoDaPastaDoMapa+"</font>' foi apagado ou não existe!","PASTA NÃO ENCONTRADA");
+					}
+				} catch (ClassCastException ex) {
+                Logger.getLogger(FileClass.class.getName()).log(Level.SEVERE, null, ex);
+            }
+			}else{
+				DialogClass.showErro("<html>O mapa '<font color='#FF0000'>"+$NomeDoArquivo+"</font>' foi apagado ou não existe!","ARQUIVO NÃO ENCONTRADO");
+			}
+		}
 	}
-	});
-	dialog.setVisible(true);
-	}
-	});
-	}/**/
+
 	@SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
@@ -119,8 +291,13 @@ public class FrmImportador extends javax.swing.JDialog {
       btnCompilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_atomico.gif"))); // NOI18N
       btnCompilar.setText("Compilar");
       btnCompilar.setEnabled(false);
+      btnCompilar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnCompilarActionPerformed(evt);
+         }
+      });
 
-      lblMiniatura.setBackground(java.awt.Color.gray);
+      lblMiniatura.setBackground(java.awt.Color.black);
       lblMiniatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
       lblMiniatura.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
       lblMiniatura.setOpaque(true);
@@ -148,7 +325,7 @@ public class FrmImportador extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(lblMiniatura, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+               .addComponent(lblMiniatura, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addComponent(btnImportar)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,7 +349,7 @@ public class FrmImportador extends javax.swing.JDialog {
                      .addComponent(jLabel1)
                      .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(lblMiniatura, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                  .addComponent(lblMiniatura, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                      .addComponent(btnImportar)
@@ -207,16 +384,32 @@ public class FrmImportador extends javax.swing.JDialog {
 	}//GEN-LAST:event_formWindowOpened
 	private void lstMapasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstMapasValueChanged
 		// TODO add your handling code here:
-		btnCompilar.setEnabled(true);
-		btnAbrir.setEnabled(true);
-		txtNome.setText(lstMapas.getSelectedValue().toString());
+		Thread tThread = new Thread(
+			new Runnable() {
+			  public void run() {
+				  VisualizarMapa(lstMapas.getSelectedValue().toString());
+			  }
+			});
+		tThread.start();
 	}//GEN-LAST:event_lstMapasValueChanged
 	private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-		Thread tThread = new Thread(new Runnable() {public void run() {
-			AbrirMapa(lstMapas.getSelectedValue().toString());
-		}});
+		Thread tThread = new Thread(
+			new Runnable() {
+			  public void run() {
+				  AbrirMapa(lstMapas.getSelectedValue().toString());
+			  }
+			});
 		tThread.start();
 	}//GEN-LAST:event_btnAbrirActionPerformed
+	private void btnCompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilarActionPerformed
+		Thread tThread = new Thread(
+			new Runnable() {
+			  public void run() {
+				  CompilarMapa(lstMapas.getSelectedValue().toString());
+			  }
+			});
+		tThread.start();
+	}//GEN-LAST:event_btnCompilarActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnAbrir;
@@ -226,9 +419,9 @@ public class FrmImportador extends javax.swing.JDialog {
    private javax.swing.JPanel jPanel1;
    private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JTabbedPane jTabbedPane1;
-   private javax.swing.JLabel lblMiniatura;
+   public static javax.swing.JLabel lblMiniatura;
    private javax.swing.JList lstMapas;
-   private javax.swing.JTextField txtNome;
+   public static javax.swing.JTextField txtNome;
    // End of variables declaration//GEN-END:variables
 
 }
