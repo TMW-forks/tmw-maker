@@ -1177,8 +1177,9 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       jSeparator5 = new javax.swing.JPopupMenu.Separator();
       mnuSistemaSair = new javax.swing.JMenuItem();
       mnpRepositorio = new javax.swing.JMenu();
-      mnuRepositorioEnviar = new javax.swing.JMenuItem();
       mnuRepositorioReceber = new javax.swing.JMenuItem();
+      mnuRepositorioImportar = new javax.swing.JMenuItem();
+      mnuRepositorioEnviar = new javax.swing.JMenuItem();
       jSeparator1 = new javax.swing.JPopupMenu.Separator();
       mnuRepositorioHistorico = new javax.swing.JMenuItem();
       jSeparator4 = new javax.swing.JPopupMenu.Separator();
@@ -1291,12 +1292,6 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 
       mnpRepositorio.setText("Repositório");
 
-      mnuRepositorioEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.SHIFT_MASK));
-      mnuRepositorioEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_upload.gif"))); // NOI18N
-      mnuRepositorioEnviar.setText("Enviar");
-      mnuRepositorioEnviar.setEnabled(false);
-      mnpRepositorio.add(mnuRepositorioEnviar);
-
       mnuRepositorioReceber.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_DOWN, java.awt.event.InputEvent.SHIFT_MASK));
       mnuRepositorioReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_download.gif"))); // NOI18N
       mnuRepositorioReceber.setText("Receber");
@@ -1306,6 +1301,16 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
          }
       });
       mnpRepositorio.add(mnuRepositorioReceber);
+
+      mnuRepositorioImportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_pasta.gif"))); // NOI18N
+      mnuRepositorioImportar.setText("Importar...");
+      mnpRepositorio.add(mnuRepositorioImportar);
+
+      mnuRepositorioEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.SHIFT_MASK));
+      mnuRepositorioEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_upload.gif"))); // NOI18N
+      mnuRepositorioEnviar.setText("Enviar");
+      mnuRepositorioEnviar.setEnabled(false);
+      mnpRepositorio.add(mnuRepositorioEnviar);
       mnpRepositorio.add(jSeparator1);
 
       mnuRepositorioHistorico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
@@ -1616,6 +1621,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JMenuItem mnuMonstros;
    private javax.swing.JMenuItem mnuRepositorioEnviar;
    private javax.swing.JMenuItem mnuRepositorioHistorico;
+   private javax.swing.JMenuItem mnuRepositorioImportar;
    private javax.swing.JMenuItem mnuRepositorioMontar;
    private javax.swing.JMenuItem mnuRepositorioReceber;
    private javax.swing.JMenuItem mnuSistemaAtualizar;
