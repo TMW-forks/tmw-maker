@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author lunovox
  */
 
 package classes;
 
-/**
- *
- * @author lunovox
- */
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
