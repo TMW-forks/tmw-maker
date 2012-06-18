@@ -49,8 +49,10 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		Linha = Linha.replaceAll("<br>", "\n");
 		System.out.println(Linha);
 		txtPainel.setText(txtPainel.getText() + "\n" + Linha);
-		txtPainel.setSelectionStart(txtPainel.getText().length() - 1);
-		txtPainel.setSelectionEnd(txtPainel.getText().length() - 1);
+		if(!txtPainel.getText().trim().equals("")){
+			txtPainel.setSelectionStart(txtPainel.getText().length() - 1);
+			txtPainel.setSelectionEnd(txtPainel.getText().length() - 1);
+		}
 	}
 	public static void setAvisoEstatus(String Aviso) {
 		lblStatusTexto.setText(Aviso.toString());
@@ -159,7 +161,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 						"É necessário montá-lo para executar o modo offline!<br/>"+
 						"<font color='#0000FF'>Deseja montá-lo agora?</font>",
 						"MONTAGEM DE LOCALHOST",
-						new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png")),
+						new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png")),
 						new Object[] {"Montar", "Cancelar"},
 						1
 					);
@@ -384,7 +386,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			"<br/>"+
 			"Precione F5 para ativar o localhost e executar o softcliente!",
 			"MONTAGEM CONCLUIDA",
-			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png"))
+			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png"))
 		);
 		pgbStatusProgresso.setIndeterminate(false);
 		mnpSistema.setEnabled(true);
@@ -539,7 +541,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			"<br/>"+
 			"Precione F5 para ativar o localhost e executar o softcliente!",
 			"MONTAGEM CONCLUIDA",
-			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png"))
+			new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png"))
 		);
 		pgbStatusProgresso.setIndeterminate(false);
 		mnpSistema.setEnabled(true);
@@ -1470,7 +1472,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				"Por esta razão, seu Localhost pode estar desatualizado.<br>"+ 
 				"Deseja procurar atualização criada por outros DEVs via internet?",
 				"ATUALIZAÇÃO DO LOCALHOST",
-				new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-96x96px.png")), //"/imagens/simbolos/icon-tmw-96x96px.png",
+				new javax.swing.ImageIcon(getClass().getResource("/imagens/simbolos/icon-tmw-maker-fenix-96x119.png")), //"/imagens/simbolos/icon-tmw-maker-fenix-96x119.png",
 				new Object[]{"Sim, atualize!","Não, depois!"},0
 			);
 			if(resp==0){doCheckoutHead();}
