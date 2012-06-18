@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import classes.DialogClass;
 import classes.FileClass;
 import java.util.Vector;
 
@@ -13,18 +14,15 @@ public class FrmImportador extends javax.swing.JDialog {
 		super(parent, modal);
 		pastaLocalhost=$PastaLocalhost;
 		//baseScripts = pastaLocalhost + Barra + "eathena-data" + Barra + "npc";
-		pastaDeMapas = pastaLocalhost + Barra + "tmwdata" + Barra + "maps";
+		pastaDeMapas = pastaLocalhost + bar + "tmwdata" + bar + "maps";
 		initComponents();
 	}
-	private static String Barra = System.getProperty("file.separator");
+	private static String bar = System.getProperty("file.separator");
 	String pastaLocalhost;
 	private static String pastaDeMapas;
-	private static Vector MapasFiltrados = new Vector();
-	//bdWarps
-	//static Banco_Mapas bdWarps;
-
 
 	private void ListarMapas() {
+		final Vector MapasFiltrados = new Vector();
 		String $Mapas[] = FileClass.listarArquivos(pastaDeMapas);
 		MapasFiltrados.clear();
 		for (int $m = 0; $m < $Mapas.length; $m++) {
@@ -36,6 +34,34 @@ public class FrmImportador extends javax.swing.JDialog {
 			public int getSize() { return MapasFiltrados.size(); }
 			public Object getElementAt(int i) { return MapasFiltrados.get(i); }
 		});/**/
+	}
+	private void AbrirMapa(final String $NomeDoArquivo) {
+		String $Tiled = FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar";
+		$Tiled=$Tiled.replaceAll("src/bibliotecas/FileClass.ja", "dist");
+		String $Mapa = "";
+		//$Mapa = conf.getTMWData()+bar+"maps"+bar+"halicarnazo.tmx"; //← Ta funcionando correto!
+		//$Mapa = FrmTMWMaker2.conf.getTMWData()+bar+"maps"+bar+lstMapas.getSelectedValue().toString();
+		$Mapa = FrmTMWMaker2.conf.getTMWData()+bar+"maps"+bar+$NomeDoArquivo;
+		if(FileClass.seExiste($Tiled)){
+			if($Mapa.equals("") || FileClass.seExiste($Mapa)){
+				FileClass.doBash("java -jar "+$Tiled+($Mapa!=""?" "+$Mapa:"")); //← Ta funcionando correto!
+			}else{
+				FrmTMWMaker2.addLinhaPainel("Arquivo '"+$Mapa+"' não encontrando!");
+				DialogClass.showErro("Arquivo '"+FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar"+"' não encontrando!", "TILED NÃO ENCONTRADO");
+			}
+		}else{
+			FrmTMWMaker2.addLinhaPainel("Arquivo '"+$Tiled+"' não encontrando!");
+			DialogClass.showErro(
+			  "<html>Tiled não encontrado!<br>"
+			  + "<br/>"
+			  + " → '"+FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar"+"'",
+			  "TILED NÃO ENCONTRADO"
+			 );
+		}
+
+		//tiled.mapeditor.MapEditor tiled = new tiled.mapeditor.MapEditor();
+		//tiled.loadMap("/home/lunovox/Desenvolvimento/TMW/localhost/tmwdata/maps/halicarnazo.tmx");
+		//tiled.shutdown();
 	}
 
 	/*public static void main(String args[]) {
@@ -64,7 +90,7 @@ public class FrmImportador extends javax.swing.JDialog {
       lblMiniatura = new javax.swing.JLabel();
       btnAbrir = new javax.swing.JButton();
       jLabel1 = new javax.swing.JLabel();
-      jTextField1 = new javax.swing.JTextField();
+      txtNome = new javax.swing.JTextField();
 
       setTitle("Importador");
       setResizable(false);
@@ -79,6 +105,7 @@ public class FrmImportador extends javax.swing.JDialog {
          public int getSize() { return strings.length; }
          public Object getElementAt(int i) { return strings[i]; }
       });
+      lstMapas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
       lstMapas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
          public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
             lstMapasValueChanged(evt);
@@ -101,11 +128,16 @@ public class FrmImportador extends javax.swing.JDialog {
       btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_pasta.gif"))); // NOI18N
       btnAbrir.setText("Abrir");
       btnAbrir.setEnabled(false);
+      btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnAbrirActionPerformed(evt);
+         }
+      });
 
       jLabel1.setText("Nome:");
 
-      jTextField1.setEditable(false);
-      jTextField1.setOpaque(false);
+      txtNome.setEditable(false);
+      txtNome.setOpaque(false);
 
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
@@ -126,7 +158,7 @@ public class FrmImportador extends javax.swing.JDialog {
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addComponent(jLabel1)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)))
+                  .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)))
             .addContainerGap())
       );
       jPanel1Layout.setVerticalGroup(
@@ -138,7 +170,7 @@ public class FrmImportador extends javax.swing.JDialog {
                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                      .addComponent(jLabel1)
-                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(lblMiniatura, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -173,13 +205,18 @@ public class FrmImportador extends javax.swing.JDialog {
 		// TODO add your handling code here:
 		ListarMapas();
 	}//GEN-LAST:event_formWindowOpened
-
 	private void lstMapasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstMapasValueChanged
 		// TODO add your handling code here:
 		btnCompilar.setEnabled(true);
 		btnAbrir.setEnabled(true);
-		this.setTitle(lstMapas.getSelectedValue().toString());
+		txtNome.setText(lstMapas.getSelectedValue().toString());
 	}//GEN-LAST:event_lstMapasValueChanged
+	private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+		Thread tThread = new Thread(new Runnable() {public void run() {
+			AbrirMapa(lstMapas.getSelectedValue().toString());
+		}});
+		tThread.start();
+	}//GEN-LAST:event_btnAbrirActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnAbrir;
@@ -189,9 +226,9 @@ public class FrmImportador extends javax.swing.JDialog {
    private javax.swing.JPanel jPanel1;
    private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JTabbedPane jTabbedPane1;
-   private javax.swing.JTextField jTextField1;
    private javax.swing.JLabel lblMiniatura;
    private javax.swing.JList lstMapas;
+   private javax.swing.JTextField txtNome;
    // End of variables declaration//GEN-END:variables
 
 }
