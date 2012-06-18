@@ -1302,8 +1302,14 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       });
       mnpRepositorio.add(mnuRepositorioReceber);
 
+      mnuRepositorioImportar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
       mnuRepositorioImportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_pasta.gif"))); // NOI18N
       mnuRepositorioImportar.setText("Importar...");
+      mnuRepositorioImportar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuRepositorioImportarActionPerformed(evt);
+         }
+      });
       mnpRepositorio.add(mnuRepositorioImportar);
 
       mnuRepositorioEnviar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_PAGE_UP, java.awt.event.InputEvent.SHIFT_MASK));
@@ -1555,7 +1561,6 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		FrmSpawnEditor.main(new String[]{"--localhost",conf.getConexaoLocalhost()});
 	}//GEN-LAST:event_mnuMonstrosActionPerformed
-
 	private void mnuMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMapaActionPerformed
 		// TODO add your handling code here:
 		Thread tThread = new Thread(new Runnable() {public void run() {
@@ -1587,6 +1592,17 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		}});
 		tThread.start();
 	}//GEN-LAST:event_mnuMapaActionPerformed
+	private void mnuRepositorioImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRepositorioImportarActionPerformed
+		// TODO add your handling code here:
+		javax.swing.JDialog frmImportador = new FrmImportador(this, rootPaneCheckingEnabled,conf.getConexaoLocalhost());
+		frmImportador.pack();
+		frmImportador.setModal(true);
+		frmImportador.setLocation(
+			((this.getWidth() - frmImportador.getWidth()) / 2) + this.getX(),
+			((this.getHeight() - frmImportador.getHeight()) / 2) + this.getY()
+		);
+		frmImportador.setVisible(true);/**/
+	}//GEN-LAST:event_mnuRepositorioImportarActionPerformed
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
