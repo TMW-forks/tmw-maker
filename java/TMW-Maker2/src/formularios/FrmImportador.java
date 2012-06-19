@@ -26,7 +26,7 @@ public class FrmImportador extends javax.swing.JDialog {
 	String pastaLocalhost;
 	private static String pastaDeMapas;
 
-	private void ListarMapas() {
+	private void MapasListar() {
 		final Vector MapasFiltrados = new Vector();
 		String $Mapas[] = FileClass.listarArquivos(pastaDeMapas);
 		MapasFiltrados.clear();
@@ -40,7 +40,7 @@ public class FrmImportador extends javax.swing.JDialog {
 			public Object getElementAt(int i) { return MapasFiltrados.get(i); }
 		});/**/
 	}
-	private void VisualizarMapa(String $NomeDoArquivoDoMapa) {
+	private void MapaVisualizar(String $NomeDoArquivoDoMapa) {
 		String $EnderecoMapa = FrmTMWMaker2.conf.getTMWData()+bar+"maps"+bar+$NomeDoArquivoDoMapa;
 		if(FileClass.seExiste($EnderecoMapa)){
 			btnCompilar.setEnabled(true);
@@ -79,7 +79,7 @@ public class FrmImportador extends javax.swing.JDialog {
 			btnAbrir.setEnabled(false);
 		}
 	}
-	private void AbrirMapa(final String $NomeDoArquivo) {
+	private void MapaAbrir(final String $NomeDoArquivo) {
 		String $Tiled = FileClass.getPastaDoSistema()+bar+"lib"+bar+"tiled.jar";
 		$Tiled=$Tiled.replaceAll("src/bibliotecas/FileClass.ja", "dist");
 		String $Mapa = "";
@@ -107,7 +107,7 @@ public class FrmImportador extends javax.swing.JDialog {
 		//tiled.loadMap("/home/lunovox/Desenvolvimento/TMW/localhost/tmwdata/maps/halicarnazo.tmx");
 		//tiled.shutdown();
 	}
-	private void CompilarMapa(final String $NomeDoArquivo) {
+	private void MapaCompilar(final String $NomeDoArquivo) {
 		int $r = 0; //0 = "Compilar"
 		$r = DialogClass.showOpcoes(
 			"<html>"+
@@ -181,7 +181,7 @@ public class FrmImportador extends javax.swing.JDialog {
 						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_shops.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_shops.txt";}
 						$ConteudoImport+="\n\n";
 
-						for (int $o = 0; $o < noObjectGroup.getLength(); $o++) {
+						for (int $o = 0; $o < noObjectGroup.getLength(); $o++) { // Label: _AddNPC
 							Element tagObjectGroup = (Element) noObjectGroup.item($o);
 							if (FileClass.getAtributo(tagObjectGroup, "name", "").toLowerCase().equals("scripts")) {
 								NodeList noProperty = tagObjectGroup.getElementsByTagName("property");
@@ -228,15 +228,15 @@ public class FrmImportador extends javax.swing.JDialog {
 								}
 								$ConteudoWarps+=$NomeDoArquivo.replace(".tmx", ".gat")+","+($X+($width/2))+","+($Y+($height/2))+"\twarp\t"+$Name+"\t"+($width-1)+","+($height-1)+","+$toMap+".gat,"+$toX+","+$toY+"\n";
 								
-							}else if (FileClass.getAtributo(tagObjet, "type", "").toLowerCase().equals("script")) {
+							/*}else if (FileClass.getAtributo(tagObjet, "type", "").toLowerCase().equals("script")) { //← Código desnecessário pq o código em "_AddNPC" ja adiciona das duas forma!
 								NodeList noProperty = tagObjet.getElementsByTagName("property");
 								for (int $p = 0; $p < noProperty.getLength(); $p++) {
 									Element tagProperty = (Element) noProperty.item($p);
-									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("file")) {
+									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().indexOf("file")==0) {
 										String $ArquivoScript = FileClass.getAtributo(tagProperty, "value", "");
 										$ConteudoImport+="npc: npc"+bar+$PastaDoMapa+bar+$ArquivoScript+"\n";
 									}
-								}
+								}/**/
 							}else if (FileClass.getAtributo(tagObjet, "type", "").toLowerCase().equals("spawn")) {
 								String $Name=FileClass.getAtributo(tagObjet, "name", "");
 								int $X= FileClass.getAtributo(tagObjet, "x", 0)/32;
@@ -432,14 +432,14 @@ public class FrmImportador extends javax.swing.JDialog {
 
 	private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 		// TODO add your handling code here:
-		ListarMapas();
+		MapasListar();
 	}//GEN-LAST:event_formWindowOpened
 	private void lstMapasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstMapasValueChanged
 		// TODO add your handling code here:
 		Thread tThread = new Thread(
 			new Runnable() {
 			  public void run() {
-				  VisualizarMapa(lstMapas.getSelectedValue().toString());
+				  MapaVisualizar(lstMapas.getSelectedValue().toString());
 			  }
 			});
 		tThread.start();
@@ -448,7 +448,7 @@ public class FrmImportador extends javax.swing.JDialog {
 		Thread tThread = new Thread(
 			new Runnable() {
 			  public void run() {
-				  AbrirMapa(lstMapas.getSelectedValue().toString());
+				  MapaAbrir(lstMapas.getSelectedValue().toString());
 			  }
 			});
 		tThread.start();
@@ -457,7 +457,7 @@ public class FrmImportador extends javax.swing.JDialog {
 		Thread tThread = new Thread(
 			new Runnable() {
 			  public void run() {
-				  CompilarMapa(lstMapas.getSelectedValue().toString());
+				  MapaCompilar(lstMapas.getSelectedValue().toString());
 			  }
 			});
 		tThread.start();
