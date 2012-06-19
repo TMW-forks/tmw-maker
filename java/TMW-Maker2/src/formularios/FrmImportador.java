@@ -147,6 +147,16 @@ public class FrmImportador extends javax.swing.JDialog {
 						noObject = Elementos.getElementsByTagName("object");
 						noObjectGroup = Elementos.getElementsByTagName("objectgroup");
 
+						String $EnderecoMobs = $EnderecoDaPastaDoMapa + bar + "_mobs.txt";
+						String $ConteudoMobs1=
+						"///////////////////////////////////////////////////////////////////\n"+
+						"//  IDE: TMW-Maker 2 → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
+						"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+						"///////////////////////////////////////////////////////////////////\n"+
+						"\n";
+						String $ConteudoMobs2="", $ConteudoMobs3="";
+						FileClass.arquivoSalvar($EnderecoMobs, $ConteudoMobs1); //← Salva somente para fazer o arquivo existir no _import.txt!
+
 						String $EnderecoWarps = $EnderecoDaPastaDoMapa + bar + "_warps.txt";
 						String $ConteudoWarps=
 						"///////////////////////////////////////////////////////////////////\n"+
@@ -154,6 +164,7 @@ public class FrmImportador extends javax.swing.JDialog {
 						"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
 						"///////////////////////////////////////////////////////////////////\n"+
 						"\n";
+						FileClass.arquivoSalvar($EnderecoWarps, $ConteudoWarps); //← Salva somente para fazer o arquivo existir no _import.txt!
 
 						String $EnderecoImport = $EnderecoDaPastaDoMapa + bar + "_import.txt";
 						String $ConteudoImport=
@@ -226,8 +237,49 @@ public class FrmImportador extends javax.swing.JDialog {
 										$ConteudoImport+="npc: npc"+bar+$PastaDoMapa+bar+$ArquivoScript+"\n";
 									}
 								}
+							}else if (FileClass.getAtributo(tagObjet, "type", "").toLowerCase().equals("spawn")) {
+								String $Name=FileClass.getAtributo(tagObjet, "name", "");
+								int $X= FileClass.getAtributo(tagObjet, "x", 0)/32;
+								int $Y= FileClass.getAtributo(tagObjet, "y", 0)/32;
+								int $width= FileClass.getAtributo(tagObjet, "width", 0)/32;
+								int $height= FileClass.getAtributo(tagObjet, "height", 0)/32;
+								int $id=0, $amount=0, $delay1=0, $delay2=0;
+								NodeList noProperty = tagObjet.getElementsByTagName("property");
+								for (int $p = 0; $p < noProperty.getLength(); $p++) {
+									Element tagProperty = (Element) noProperty.item($p);
+									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("id")) {
+										$id = FileClass.getAtributo(tagProperty, "value", 0);
+									}else if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("amount")) {
+										$amount = FileClass.getAtributo(tagProperty, "value", 0);
+									}else if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("delay1")) {
+										$delay1 = FileClass.getAtributo(tagProperty, "value", 0);
+									}else if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().equals("delay2")) {
+										$delay2 = FileClass.getAtributo(tagProperty, "value", 0);
+									}
+								}
+								if($id>0 && $amount>0){
+									$ConteudoMobs2+=
+									$NomeDoArquivo.replace(".tmx", ".gat")+","+($X+($width/2))+","+($Y+($height/2))+","+$width+","+$height+
+									"\tmonster\t"+$Name+"\t"+
+									$id+","+$amount+","+$delay1+","+$delay2+",Mob"+$NomeDoArquivo.replace(".tmx", "")+"::On"+$id+"\n";
+									if($ConteudoMobs3.indexOf("On"+$id+":")==-1){
+										$ConteudoMobs3+=
+										"On"+$id+":\n"+
+										"\tset @mobID, "+$id+";\n"+
+										"\tcallfunc \"MobPoints\";\n"+
+										//"\tcallsub _MOBS_queimaduraTartaruga;\n"+
+										"break;\n\n";
+									}
+								}
 							}
 
+						}
+						if(!$ConteudoMobs2.equals("")){
+							$ConteudoMobs2+="\n"+$NomeDoArquivo.replace(".tmx", ".gat")+",0,0,0\tscript\tMob"+$NomeDoArquivo.replace(".tmx", "")+"\t-1,{\n\n";
+							$ConteudoMobs2+=$ConteudoMobs3;
+							$ConteudoMobs2+="end;\n}";
+							$ConteudoMobs1+=$ConteudoMobs2;
+							FileClass.arquivoSalvar($EnderecoMobs, $ConteudoMobs1);
 						}
 						FileClass.arquivoSalvar($EnderecoWarps, $ConteudoWarps);
 						FileClass.arquivoSalvar($EnderecoImport, $ConteudoImport);
