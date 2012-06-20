@@ -150,8 +150,9 @@ public class FrmImportador extends javax.swing.JDialog {
 						String $EnderecoMobs = $EnderecoDaPastaDoMapa + bar + "_mobs.txt";
 						String $ConteudoMobs1=
 						"///////////////////////////////////////////////////////////////////\n"+
-						"//  IDE: TMW-Maker 2 → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
-						"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+						"//  IDE: TMW-Maker 2 Java\n"+
+						"//   → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
+						//"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+ // ← Arquivos compilados não devem ter sua data interna alterada pq são muito compilados!
 						"///////////////////////////////////////////////////////////////////\n"+
 						"\n";
 						String $ConteudoMobs2="", $ConteudoMobs3="";
@@ -160,8 +161,9 @@ public class FrmImportador extends javax.swing.JDialog {
 						String $EnderecoWarps = $EnderecoDaPastaDoMapa + bar + "_warps.txt";
 						String $ConteudoWarps=
 						"///////////////////////////////////////////////////////////////////\n"+
-						"//  IDE: TMW-Maker 2 → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
-						"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+						"//  IDE: TMW-Maker 2 Java\n"+
+						"//   → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
+						//"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+ // ← Arquivos compilados não devem ter sua data interna alterada pq são muito compilados!
 						"///////////////////////////////////////////////////////////////////\n"+
 						"\n";
 						FileClass.arquivoSalvar($EnderecoWarps, $ConteudoWarps); //← Salva somente para fazer o arquivo existir no _import.txt!
@@ -169,8 +171,9 @@ public class FrmImportador extends javax.swing.JDialog {
 						String $EnderecoImport = $EnderecoDaPastaDoMapa + bar + "_import.txt";
 						String $ConteudoImport=
 						"///////////////////////////////////////////////////////////////////\n"+
-						"//  IDE: TMW-Maker 2 → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
-						"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+
+						"//  IDE: TMW-Maker 2 Java\n"+
+						"//   → Arquivo compilado apartir de "+$NomeDoArquivo+"\n"+
+						//"//  MODIFICADO: "+FileClass.AGORAtoFORMATO("dd/MM/yyyy h:mm a")+"\n"+ // ← Arquivos compilados não devem ter sua data interna alterada pq são muito compilados!
 						"///////////////////////////////////////////////////////////////////\n"+
 						"\n";
 						$ConteudoImport+="map: "+$NomeDoArquivo.replace(".tmx", ".gat")+"\n";
@@ -339,6 +342,7 @@ public class FrmImportador extends javax.swing.JDialog {
 
       btnImportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_dependencias.gif"))); // NOI18N
       btnImportar.setText("Importar");
+      btnImportar.setEnabled(false);
 
       btnCompilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_atomico.gif"))); // NOI18N
       btnCompilar.setText("Compilar");
