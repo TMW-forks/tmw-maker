@@ -142,6 +142,7 @@
                   <Image iconType="3" name="/imagens/botoes/sbl_dependencias.gif"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Importar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnCompilar">
