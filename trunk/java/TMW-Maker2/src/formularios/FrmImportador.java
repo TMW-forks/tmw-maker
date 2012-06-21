@@ -178,10 +178,10 @@ public class FrmImportador extends javax.swing.JDialog {
 						"\n";
 						$ConteudoImport+="map: "+$NomeDoArquivo.replace(".tmx", ".gat")+"\n";
 
-						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_mobs.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_mobs.txt";}
-						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_scripts.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_scripts.txt";}
-						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_warps.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_warps.txt";}
-						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_shops.txt")){$ConteudoImport+="\nnpc: npc"+bar+$PastaDoMapa+bar+"_shops.txt";}
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_mobs.txt")){$ConteudoImport+="\nnpc: npc/"+$PastaDoMapa+"/"+"_mobs.txt";}
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_scripts.txt")){$ConteudoImport+="\nnpc: npc/"+$PastaDoMapa+"/"+"_scripts.txt";}
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_warps.txt")){$ConteudoImport+="\nnpc: npc/"+$PastaDoMapa+"/"+"_warps.txt";}
+						if(FileClass.seExiste($EnderecoDaPastaDoMapa+bar+"_shops.txt")){$ConteudoImport+="\nnpc: npc/"+$PastaDoMapa+"/"+"_shops.txt";}
 						$ConteudoImport+="\n\n";
 
 						for (int $o = 0; $o < noObjectGroup.getLength(); $o++) { // Label: _AddNPC
@@ -192,7 +192,7 @@ public class FrmImportador extends javax.swing.JDialog {
 									Element tagProperty = (Element) noProperty.item($p);
 									if (FileClass.getAtributo(tagProperty, "name", "").toLowerCase().indexOf("file")==0) {
 										String $ArquivoScript = FileClass.getAtributo(tagProperty, "value", "");
-										$ConteudoImport+="npc: npc"+bar+$PastaDoMapa+bar+$ArquivoScript+"\n";
+										$ConteudoImport+="npc: npc/"+$PastaDoMapa+"/"+$ArquivoScript+"\n";
 									}
 								}
 							}
