@@ -527,9 +527,9 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				"\n"+
 				//"@echo off\n"+"cls\n"+
 				"cd "+conf.getEathenaData()+bar+"\n"+
-				"login-server.exe &\n"+
-				"char-server.exe &\n"+
-				"map-server.exe &"
+				"start login-server.exe &\n"+
+				"start char-server.exe &\n"+
+				"start map-server.exe &"
 			);
 		}/**/
 
@@ -631,8 +631,10 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		txtPainel.setText("");
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		Runtime Executador = Runtime.getRuntime();
-		String line = "", $ServerDepurador = conf.getEathenaData()+bar+"tmw-maker-depure.bat";
+		String line = "";
+
 		if (conf.getExecucaoParametroServidor().equals("localhost") || conf.getExecucaoParametroServidor().equals("localhost")) {
+			String $ServerDepurador = conf.getEathenaData()+bar+"tmw-maker-depure.bat";
 			if(FileClass.seExiste($ServerDepurador)){
 				//$ServerDepurador = $ServerDepurador.replaceAll(" ", "\\\\ "); //← Essa linha é inconveniente no windows
 				pgbStatusProgresso.setString("Ativando...");
@@ -660,7 +662,12 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 					+ "</html>",
 					"ERRO DE EXECUÇÃO"
 				);
-			}
+			}/**/
+			/*String[] $Comandos = new String[4];
+			$Comandos[0] = "cmd.exe";
+			$Comandos[1] = "/C";
+			$Comandos[2] = "start";
+			$Comandos[3] = URL;/**/
 		}
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
