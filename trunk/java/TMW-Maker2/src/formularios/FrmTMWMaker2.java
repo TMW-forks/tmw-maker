@@ -722,6 +722,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				Executador = doBash(Executador, "pkill map-server");
 				Executador = doBash(Executador, "pkill char-server");
 				Executador = doBash(Executador, "pkill login-server");
+				Executador = doBash(Executador, "pkill manaplus");
 				setAvisoEstatusPainel("Localhost desativado com sucesso!");
 				pgbStatusProgresso.setString("Desativado!");
 			} catch (IOException e) {
@@ -762,6 +763,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				Executador = doBash(Executador, "taskkill /im \"map-server.exe\" -f");
 				Executador = doBash(Executador, "taskkill /im \"char-server.exe\" -f");
 				Executador = doBash(Executador, "taskkill /im \"login-server.exe\" -f");
+				Executador = doBash(Executador, "taskkill /im \"manaplus.exe\" -f");// ← atendendo a pedidos dos usuários. (não sei se funcionará!)
 				setAvisoEstatusPainel("Localhost desativado com sucesso!");
 				pgbStatusProgresso.setString("Desativado!");
 			} catch (IOException e) {
