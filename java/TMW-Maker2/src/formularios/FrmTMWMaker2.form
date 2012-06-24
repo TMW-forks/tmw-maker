@@ -214,12 +214,26 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Executar ap&#xf3;s ativa&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="mncExecutarAposAtivacaoStateChanged"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mncDesativarAposExecucao">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Desativar ap&#xf3;s Execu&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="mncDesativarAposExecucaoStateChanged"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mncFechaClienteAposDesativar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fechar Cliente ao desativar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="mncFechaClienteAposDesativarStateChanged"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
