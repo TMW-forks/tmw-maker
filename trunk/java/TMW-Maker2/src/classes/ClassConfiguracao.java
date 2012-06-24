@@ -34,6 +34,10 @@ public final class ClassConfiguracao {
 	private String ExecucaoParametroPersonagem = ""; //Inicia sem valor
 	private boolean ExecucaoParametroSemopengl = true; //Inicia Sem OpenGL
 
+	private boolean SeExecutarAposAtivacao = true;
+	private boolean SeDesativarAposExecucao = true;
+	private boolean SeFecharClienteAposDesativacao = false;
+
 	private long ComportAtualizacaoEngineUltima = 0;
 	private int ComportAtualizacaoEngineIntervalo = 7; // Semanalmente (Cada 7 Dias)
 	private long ComportAtualizacaoLocalhostUltima = 0;
@@ -137,6 +141,15 @@ public final class ClassConfiguracao {
 			return -1;
 		}
 	}
+	public boolean getSeExecutarAposAtivacao() {
+		return SeExecutarAposAtivacao;
+	}
+	public boolean getSeDesativarAposExecucao() {
+		return SeDesativarAposExecucao;
+	}
+	public boolean getSeFecharClienteAposDesativacao() {
+		return SeFecharClienteAposDesativacao;
+	}
 
 	public void setConexaoRepositorio(String URL) {
 		ConexaoRepositorio = URL;
@@ -167,6 +180,15 @@ public final class ClassConfiguracao {
 	}
 	public void setExecucaoParametroSemOpenGL(boolean SemOpenGL) {
 		ExecucaoParametroSemopengl = SemOpenGL;
+	}
+	public void setSeExecutarAposAtivacao(boolean $SeExecutar) {
+		SeExecutarAposAtivacao = $SeExecutar;
+	}
+	public void setSeDesativarAposExecucao(boolean $SeDesativar) {
+		SeDesativarAposExecucao = $SeDesativar;
+	}
+	public void setSeFecharClienteAposDesativacao(boolean $SeFechar) {
+		SeFecharClienteAposDesativacao = $SeFechar;
 	}
 
 	public void setAtualizacaoEngineIntervalo(int Dias) {
@@ -204,6 +226,12 @@ public final class ClassConfiguracao {
 			config.setAttribute("version", "hope");
 			config.setAttribute("update", String.valueOf(getAtualizacaoEngineUltima()));
 			config.setAttribute("upinterval", String.valueOf(getAtualizacaoEngineIntervalo()));
+
+			Element behavior = Doc.createElement("behavior"); //Comportamento
+			behavior.setAttribute("RunAfterActivation", getSeExecutarAposAtivacao()==true?"true":"false");
+			behavior.setAttribute("DisableAfterExecution", getSeDesativarAposExecucao()==true?"true":"false");
+			behavior.setAttribute("CloseClientAfterDeactivation", getSeFecharClienteAposDesativacao()==true?"true":"false");
+			config.appendChild(behavior);
 
 			Element conexao = Doc.createElement("conexao");
 			conexao.setAttribute("repository", getConexaoRepositorio());
@@ -250,6 +278,12 @@ public final class ClassConfiguracao {
 			setAtualizacaoEngineIntervalo(FileClass.getAtributo(tagConfig,"upinterval",getAtualizacaoEngineIntervalo()));
 			//setAtualizacaoEngineUltima(FileClass.getAtributo(tagConfig,"update",-1));
 			//setAtualizacaoEngineIntervalo(FileClass.getAtributo(tagConfig,"upinterval",-1));
+
+			NodeList nodBehavior = Elementos.getElementsByTagName("behavior");
+			Element tagBehavior = (Element) nodBehavior.item(0);
+			setSeExecutarAposAtivacao(FileClass.getAtributo(tagBehavior,"RunAfterActivation",getSeExecutarAposAtivacao()));
+			setSeDesativarAposExecucao(FileClass.getAtributo(tagBehavior,"DisableAfterExecution",getSeDesativarAposExecucao()));
+			setSeFecharClienteAposDesativacao(FileClass.getAtributo(tagBehavior,"CloseClientAfterDeactivation",getSeFecharClienteAposDesativacao()));
 
 			NodeList nodConexao = Elementos.getElementsByTagName("conexao");
 			Element tagConexao = (Element) nodConexao.item(0);

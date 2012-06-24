@@ -722,7 +722,9 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				Executador = doBash(Executador, "pkill map-server");
 				Executador = doBash(Executador, "pkill char-server");
 				Executador = doBash(Executador, "pkill login-server");
-				Executador = doBash(Executador, "pkill manaplus");
+				if(mncFechaClienteAposDesativar.isSelected()){
+					Executador = doBash(Executador, "pkill manaplus");
+				}
 				setAvisoEstatusPainel("Localhost desativado com sucesso!");
 				pgbStatusProgresso.setString("Desativado!");
 			} catch (IOException e) {
@@ -763,7 +765,9 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 				Executador = doBash(Executador, "taskkill /im \"map-server.exe\" -f");
 				Executador = doBash(Executador, "taskkill /im \"char-server.exe\" -f");
 				Executador = doBash(Executador, "taskkill /im \"login-server.exe\" -f");
-				Executador = doBash(Executador, "taskkill /im \"manaplus.exe\" -f");// ← atendendo a pedidos dos usuários. (não sei se funcionará!)
+				if(mncFechaClienteAposDesativar.isSelected()){
+					Executador = doBash(Executador, "taskkill /im \"manaplus.exe\" -f");// ← atendendo a pedidos dos usuários. (não sei se funcionará!)
+				}
 				setAvisoEstatusPainel("Localhost desativado com sucesso!");
 				pgbStatusProgresso.setString("Desativado!");
 			} catch (IOException e) {
@@ -1204,6 +1208,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       jSeparator2 = new javax.swing.JPopupMenu.Separator();
       mncExecutarAposAtivacao = new javax.swing.JCheckBoxMenuItem();
       mncDesativarAposExecucao = new javax.swing.JCheckBoxMenuItem();
+      mncFechaClienteAposDesativar = new javax.swing.JCheckBoxMenuItem();
       mnpAjuda = new javax.swing.JMenu();
       mnuAjudaInformarDefeito = new javax.swing.JMenuItem();
       mnuAjudaForum = new javax.swing.JMenuItem();
@@ -1400,11 +1405,29 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 
       mncExecutarAposAtivacao.setSelected(true);
       mncExecutarAposAtivacao.setText("Executar após ativação");
+      mncExecutarAposAtivacao.addChangeListener(new javax.swing.event.ChangeListener() {
+         public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            mncExecutarAposAtivacaoStateChanged(evt);
+         }
+      });
       mnpLocalhost.add(mncExecutarAposAtivacao);
 
       mncDesativarAposExecucao.setSelected(true);
       mncDesativarAposExecucao.setText("Desativar após Execução");
+      mncDesativarAposExecucao.addChangeListener(new javax.swing.event.ChangeListener() {
+         public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            mncDesativarAposExecucaoStateChanged(evt);
+         }
+      });
       mnpLocalhost.add(mncDesativarAposExecucao);
+
+      mncFechaClienteAposDesativar.setText("Fechar Cliente ao desativar");
+      mncFechaClienteAposDesativar.addChangeListener(new javax.swing.event.ChangeListener() {
+         public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            mncFechaClienteAposDesativarStateChanged(evt);
+         }
+      });
+      mnpLocalhost.add(mncFechaClienteAposDesativar);
 
       mbrBarraDeMenu.add(mnpLocalhost);
 
@@ -1475,6 +1498,11 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 			this.getWidth(), this.getHeight()
 		);
 		this.setExtendedState(MAXIMIZED_BOTH); //Maximiza a tela
+
+		mncExecutarAposAtivacao.setSelected(conf.getSeExecutarAposAtivacao());
+		mncDesativarAposExecucao.setSelected(conf.getSeDesativarAposExecucao());
+		mncFechaClienteAposDesativar.setSelected(conf.getSeFecharClienteAposDesativacao());
+
 		if(conf.getAtualizacaoLocalhostIntervalo() >= 0 && FileClass.getAgora() >= conf.getAtualizacaoLocalhostFutura()) {
 			int resp = DialogClass.showOpcoes(
 				"<html>O TMW-Maker é uma ferramenta de desenvolvimento colaborativa.<br>"+ 
@@ -1571,6 +1599,18 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		);
 		frmImportador.setVisible(true);/**/
 	}//GEN-LAST:event_mnuRepositorioImportarActionPerformed
+	private void mncExecutarAposAtivacaoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mncExecutarAposAtivacaoStateChanged
+		conf.setSeExecutarAposAtivacao(mncExecutarAposAtivacao.isSelected());
+		conf.doSalvar();
+	}//GEN-LAST:event_mncExecutarAposAtivacaoStateChanged
+	private void mncDesativarAposExecucaoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mncDesativarAposExecucaoStateChanged
+		conf.setSeDesativarAposExecucao(mncDesativarAposExecucao.isSelected());
+		conf.doSalvar();
+	}//GEN-LAST:event_mncDesativarAposExecucaoStateChanged
+	private void mncFechaClienteAposDesativarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mncFechaClienteAposDesativarStateChanged
+		conf.setSeFecharClienteAposDesativacao(mncFechaClienteAposDesativar.isSelected());
+		conf.doSalvar();
+	}//GEN-LAST:event_mncFechaClienteAposDesativarStateChanged
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1590,6 +1630,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JMenuBar mbrBarraDeMenu;
    private javax.swing.JCheckBoxMenuItem mncDesativarAposExecucao;
    private javax.swing.JCheckBoxMenuItem mncExecutarAposAtivacao;
+   private javax.swing.JCheckBoxMenuItem mncFechaClienteAposDesativar;
    private javax.swing.JMenu mnpAjuda;
    private javax.swing.JMenu mnpEditar;
    private javax.swing.JMenu mnpLocalhost;
