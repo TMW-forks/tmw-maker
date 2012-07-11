@@ -1,12 +1,19 @@
 ##0
-##0 ______________________________________________
+##0 __________________________________________________
 ##0
-##1   .:: Dois Novos Reinos. (2012-06-30) ::.
-##0 Os reino de ##2Froz##0 e ##2Halicarnazo##0 estão abertos 
-##0 até o dia 2012-07-06. Após esta data só será
-##0 possivel entrar nos reinos através de guerras.
-##0 Os reinos de Aeros e Hades serão construidos.
-##0 ______________________________________________
+##3   .:: GUERRA DOS REINOS (2012-07-11) ::.
+##0 Proteja seu reino (##2Froz##0 ou ##2Halicarnazo##0) contra
+##0 invasores.  Caso ela seja conquistada, perderás 
+##0 o direito de entrar até o dia que seja reconquistada.
+##0 
+##2 Os reinos de Aeros e Hades ainda serão construidos.
+##0 __________________________________________________
+##0
+##3      .:: Precisamos de Você! (2012-07-11)  ::.
+##0 Contribua com o The Mana World Brasil. Faça
+##0 sua doação e ajude a manter o nosso servidor
+##0 vivo. Para doar acesse: ##3http://goo.gl/uKjj9
+##0 __________________________________________________
 ##0
 ##3          .:: REGRAS DO SERVIDOR ::.
 ##0
@@ -38,6 +45,11 @@
 ##0 tal empréstimo será punido no lugar de quem 
 ##0 solicitou o emprestimo.
 ##0 
+##1 Não jogue em PCs públicos! ##0→ Computadores
+##0 públicos (Ex.: Lan-Houses, SESCs, Escolas e etc) 
+##0 normalmente estão infectados. O TMW-BR não tem 
+##0 responsabilidade sobre contas hackeadas.
+##0 
 ##1 Evite emprestar ítens! ##0→ Não existem empréstimos 
 ##0 em MMORPGs. Quem pegou emprestado algum item, 
 ##0 não tem nenhum obrigação de devolver.
@@ -48,40 +60,18 @@
 ##0 eventos sazonais.
 ##0 
 ##3 Façamos um servidor agradável para todos! =D
-##0 ______________________________________________
-##0
-##1  .:: Reiniciar todas as contas do TMW-BR? ::.
-##0 Está havendo uma enquete sobre a possibilidade
-##0 que reiniar todas as contas do servidor. Sua
-##0 opinião é muito importante para nós.
-##0
-##0 Para informar-se e votar na enquete acesse:
-##0  * ##3 http://goo.gl/2wmtb
-##0 ______________________________________________
-##0
-##3         .:: Precisamos de Você! ::.
-##0 Contribua com o The Mana World Brasil. Faça 
-##0 sua doação e ajude a manter o nosso servidor 
-##0 vivo. Para doar acesse: ##3http://goo.gl/uKjj9
-##0 ______________________________________________
+##0 __________________________________________________
 ##0
 ##3          .:: Pedido de Socorro ::.
 ##0 Se alguém ficar preço, peça ajuda a um GM pelo
 ##0 comando: ##2 @wgm socorro!
-##0 ______________________________________________
+##0 __________________________________________________
 ##0
 ##3       .:: Penalidade por derrota ::.
 ##0 O Jogador que for derrotado fora da zona de 
 ##0 segurança perderá pontos de experiência. 
 ##0
 ##0 Não se descuide! ##1MORRER PODE CUSTAR CARO!!!
-##0 ______________________________________________
-##0
-##3      .:: Gratuita Passagem de Navio ::.
-##0 Viaje em grande estilo no navio do capitão
-##0 Mirc. Por enquanto ele não está cobrando por
-##0 seus serviços, mas a promoção é por tempo
-##0 limitado.
-##0 ______________________________________________
+##0 __________________________________________________
 ##0
 ##0 ASS.: ##2Administrador Lunovox Heavenfinder
