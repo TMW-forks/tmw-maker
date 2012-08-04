@@ -1,6 +1,6 @@
 ##1################## AVISOS #########################
 ##0
-##3         .:: BAÚ SAVER (2012-08-08) ::.
+##3         .:: BAÚ SAVER (2012-08-04) ::.
 ##0 Existe um baú-mágico dentro do navio, que é similar 
 ##0 ao menir-das-almas, e que aparece sempre quando o 
 ##0 navio está atracado ao porto das Terras Desconhecidas 
