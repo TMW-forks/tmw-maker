@@ -1,4 +1,11 @@
+
+##1################## AVISOS #########################
 ##0
+##3         .:: BAÚ SAVER (2012-08-08) ::.
+##0 Existe um baú-mágico similar ao menir-das-almas
+##0  que aparece sempre quando o navio está atracado 
+##0 ao porto das Terras Desconhecidas e ao porto do 
+##0 Polo Norte.
 ##0 __________________________________________________
 ##0
 ##3   .:: GUERRA DOS REINOS (2012-07-11) ::.
@@ -15,7 +22,20 @@
 ##0 vivo. Para doar acesse: ##3http://goo.gl/uKjj9
 ##0 __________________________________________________
 ##0
-##3          .:: REGRAS DO SERVIDOR ::.
+##3          .:: Pedido de Socorro ::.
+##0 Se alguém ficar preço, peça ajuda a um GM pelo
+##0 comando: ##2 @wgm socorro!
+##0 __________________________________________________
+##0
+##3       .:: Penalidade por derrota ::.
+##0 O Jogador que for derrotado fora da zona de
+##0 segurança perderá pontos de experiência.
+##0
+##0 Não se descuide! ##1MORRER PODE CUSTAR CARO!!!
+##0
+##1###################################################
+
+##1############# REGRAS DO SERVIDOR ##################
 ##0
 ##1 Quer Novidade? ##0→ Se querem novidade no TMW-BR 
 ##0 façam vocês mesmos. Lembre-se que o TMW-BR é 
@@ -60,18 +80,7 @@
 ##0 eventos sazonais.
 ##0 
 ##3 Façamos um servidor agradável para todos! =D
-##0 __________________________________________________
 ##0
-##3          .:: Pedido de Socorro ::.
-##0 Se alguém ficar preço, peça ajuda a um GM pelo
-##0 comando: ##2 @wgm socorro!
-##0 __________________________________________________
-##0
-##3       .:: Penalidade por derrota ::.
-##0 O Jogador que for derrotado fora da zona de 
-##0 segurança perderá pontos de experiência. 
-##0
-##0 Não se descuide! ##1MORRER PODE CUSTAR CARO!!!
-##0 __________________________________________________
-##0
+##1###################################################
+
 ##0 ASS.: ##2Administrador Lunovox Heavenfinder
