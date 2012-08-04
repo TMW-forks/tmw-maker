@@ -1,11 +1,10 @@
-
 ##1################## AVISOS #########################
 ##0
 ##3         .:: BAÚ SAVER (2012-08-08) ::.
-##0 Existe um baú-mágico similar ao menir-das-almas
-##0  que aparece sempre quando o navio está atracado 
-##0 ao porto das Terras Desconhecidas e ao porto do 
-##0 Polo Norte.
+##0 Existe um baú-mágico dentro do navio, que é similar 
+##0 ao menir-das-almas, e que aparece sempre quando o 
+##0 navio está atracado ao porto das Terras Desconhecidas 
+##0 e ao porto do Polo Norte.
 ##0 __________________________________________________
 ##0
 ##3   .:: GUERRA DOS REINOS (2012-07-11) ::.
