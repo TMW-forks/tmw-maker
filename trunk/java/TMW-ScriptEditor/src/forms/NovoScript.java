@@ -208,7 +208,7 @@ private TelaPrincipal telaAnterior;
         ""+mapa+".gat,"+x+","+y+",0  script  "+nomeNPC+" 0, {\n"+
         "\n"+
         "}\n";
-        TelaPrincipal.AreaTextoScript.setText(texto);
+        TelaPrincipal.atsPalco.setText(texto);
         dispose();
         telaAnterior.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
