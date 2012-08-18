@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas;
+package forms;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -163,7 +163,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
 	    this.setEnabled(false);
-        new telas.NovoScript(this).setVisible(true);
+        new forms.NovoScript(this).setVisible(true);
     }//GEN-LAST:event_BtnNovoActionPerformed
 
     private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
