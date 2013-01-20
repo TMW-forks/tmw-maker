@@ -1,7 +1,7 @@
 #labels SourceCode,CódigoFonte,Java,TMW-Maker,NetBeans
 <img height="300" align_="left" src="http://info.abril.com.br/aberto/infonews/fotos/filtragem-inprivate-no-ie8-20091019150116.jpg"><img height="300" align_="right" src="http://ompldr.org/vOGdubg/edicion_colectiva1.jpg">
 
-= Baixando o código-fonte do TMW-Maker pelo Netbeans=
+= Baixando o código-fonte do TMW-Maker 2 pelo Netbeans=
 
 O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização de seu código fonte. Existem dois modos para você adquirir o *Código Fonte Java* do TMW-Maker. Esse dois modos variam conforme os seus planos. Se você deseja baixar o código fonte, escolha um os modos abaixo, e digite o respectivo comando abaixo em seu terminal.
 
@@ -9,23 +9,21 @@ O TMW-Maker está sobre a licença GPL versão 3 que exige a disponibilização 
 
 || <img align="abscenter" src="http://news360.lewispr.com/calendar/images/iconCalendar.gif"> [http://code.google.com/p/tmw-maker/source/list Histórico de Alterações] || <img align="abscenter" src="http://cache.filehippo.com/img/ex/1258t__netbeans.png"> [http://code.google.com/p/tmw-maker/wiki/ComoInstalarNetBeans Download NetBeans] || <img align="abscenter" src="http://www.babooforum.com.br/forum/public/style_images/blue/lock.png"> [https://code.google.com/hosting/settings Usuário e Senha] || <img align="abscenter" src="http://www.kangarootours.com.br/contents/ico/ico-email-contato.png"> [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador Fale Conosco] ||
 
-O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker diretamente no NetBeans 6.9 em Português:
+O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker 2 diretamente no NetBeans 6.9 em Português:
 
  # Abra o NetBeans 6.9.
  # Vá no menu: *Equipe → SVN Subversion → Checkout* 
  # Escolha abaixo o tipo de acesso ao código-fonte:
   * *Modo Colaborativo:*  É apenas para colaboradores que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. Entre em [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador contato conosco] relatando seu desejo de participação para conseguir o *[https://code.google.com/hosting/settings Nome de Usuário e Senha]*. O protocolo para o código-fonte no modo colaborativo é: 
-   * *TMW-Maker 1(Obsoleto);* {{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}
    * *TMW-Maker 2:* {{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker2 }}}
-  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. O protocolo para o código-fonte no modo observador é: 
-   * *TMW-Maker 1(Obsoleto);* {{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}
+  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker 2 para compartilhar suas alterações para outros colaboradores. O protocolo para o código-fonte no modo observador é: 
    * *TMW-Maker 2:* {{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker2 }}}
  # Se sua escolha for pelo modo colaborativo digite o *Protocolo* de sua escolha e preencha seu *Usuário* e *Senha* de forma similar ao que foi mostrado abaixo. Caso contrário apenas digite o *Protocolo* do modo observador e clique em Avançar: <img src="http://ompldr.org/vOGdvaA/Checkout_01.png">
  # Marque a opção "*Pesquisar projetos do NetBeans após a verificação*".
  # Desmarque as opções "*Ignorar 'TMW-Maker' e obter apenas o conteúdo.*" e "*Exportar uma árvore de diretório limpa de repositório.*"
- # O próprio NetBeans faz uma sugestão de *Pasta Local* onde será baixado os arquivo do código-fonte do TMW-Maker. Sugiro que não mudem o local, pois corre o risco de usuários esquecer qual foi o local que ele próprio selecionou. 
+ # O próprio NetBeans faz uma sugestão de *Pasta Local* onde será baixado os arquivo do código-fonte do TMW-Maker 2. Sugiro que não mudem o local, pois corre o risco de usuários esquecer qual foi o local que ele próprio selecionou. 
  # Verifique está similar ao mostrado abaixo, clique em *Finalizar*: <img src="http://ompldr.org/vOGdveA/Checkout_02.png">
- # Espere o NetBeans terminar baixar o código-fonte do TMW-Maker. Se Tudo der certo,  como mostrado abaixo, vai aparecer os arquivos do código fonte na aba de projetos que pode ser aberta em Janela → Projeto. *Bem Vindo ao Projeto TMW-Maker!!!* =D <img src="http://ompldr.org/vOGdwZg/Checkout_03.png">
+ # Espere o NetBeans terminar baixar o código-fonte do TMW-Maker 2. Se Tudo der certo,  como mostrado abaixo, vai aparecer os arquivos do código fonte na aba de projetos que pode ser aberta em Janela → Projeto. *Bem Vindo ao Projeto TMW-Maker!!!* =D <img src="http://ompldr.org/vOGdwZg/Checkout_03.png">
 
 ----
 
