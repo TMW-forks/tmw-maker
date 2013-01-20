@@ -27,7 +27,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		} catch (Exception e) {
 			System.out.println("Icone erro:\n" + e.getMessage());
 		}
-		initComponents();
+			initComponents();
 	}/**/
 	public static ClassConfiguracao conf = new ClassConfiguracao();
 	SummarizerSVN svn;
