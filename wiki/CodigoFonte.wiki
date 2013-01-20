@@ -14,8 +14,12 @@ O Exemplo a segui será demonstrado como baixar o Código Fonte do TMW-Maker dir
  # Abra o NetBeans 6.9.
  # Vá no menu: *Equipe → SVN Subversion → Checkout* 
  # Escolha abaixo o tipo de acesso ao código-fonte:
-  * *Modo Colaborativo:*  É apenas para colaboradores que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. Entre em [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador contato conosco] relatando seu desejo de participação para conseguir o *[https://code.google.com/hosting/settings Nome de Usuário e Senha]*. O protocolo para o código-fonte no modo colaborativo é: *{{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}* 
-  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. O protocolo para o código-fonte no modo observador é: *{{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}*
+  * *Modo Colaborativo:*  É apenas para colaboradores que tem autorização para usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. Entre em [http://code.google.com/p/tmw-maker/issues/entry?template=Cadidato%20a%20Colaborador contato conosco] relatando seu desejo de participação para conseguir o *[https://code.google.com/hosting/settings Nome de Usuário e Senha]*. O protocolo para o código-fonte no modo colaborativo é: 
+   * *TMW-Maker 1(Obsoleto);* {{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}
+   * *TMW-Maker 2:* {{{ https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker2 }}}
+  * *Modo Observador:* É acesso do código-fonte para usuários anônimos. Não é preciso identificar-se. Mas deste modo não é possível usar o repositório do TMW-Maker para compartilhar suas alterações para outros colaboradores. O protocolo para o código-fonte no modo observador é: 
+   * *TMW-Maker 1(Obsoleto);* {{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker }}}
+   * *TMW-Maker 2:* {{{ http://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker2 }}}
  # Se sua escolha for pelo modo colaborativo digite o *Protocolo* de sua escolha e preencha seu *Usuário* e *Senha* de forma similar ao que foi mostrado abaixo. Caso contrário apenas digite o *Protocolo* do modo observador e clique em Avançar: <img src="http://ompldr.org/vOGdvaA/Checkout_01.png">
  # Marque a opção "*Pesquisar projetos do NetBeans após a verificação*".
  # Desmarque as opções "*Ignorar 'TMW-Maker' e obter apenas o conteúdo.*" e "*Exportar uma árvore de diretório limpa de repositório.*"
