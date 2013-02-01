@@ -107,7 +107,7 @@ public class FrmImportador extends javax.swing.JDialog {
 		//tiled.loadMap("/home/lunovox/Desenvolvimento/TMW/localhost/tmwdata/maps/halicarnazo.tmx");
 		//tiled.shutdown();
 	}
-	private void MapaCompilar(final String $NomeDoArquivo) {
+	public void MapaCompilar(final String $NomeDoArquivo) {
 		int $r = 0; //0 = "Compilar"
 		$r = DialogClass.showOpcoes(
 			"<html>"+
@@ -342,7 +342,11 @@ public class FrmImportador extends javax.swing.JDialog {
 
       btnImportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_dependencias.gif"))); // NOI18N
       btnImportar.setText("Importar");
-      btnImportar.setEnabled(false);
+      btnImportar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnImportarActionPerformed(evt);
+         }
+      });
 
       btnCompilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_atomico.gif"))); // NOI18N
       btnCompilar.setText("Compilar");
@@ -466,6 +470,18 @@ public class FrmImportador extends javax.swing.JDialog {
 			});
 		tThread.start();
 	}//GEN-LAST:event_btnCompilarActionPerformed
+	private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
+		//javax.swing.JDialog frmMapaImportador = new FrmMapaImportador(this, rootPaneCheckingEnabled);
+		//FrmMapaImportador dialog = new FrmMapaImportador(new javax.swing.JFrame(), true, "");
+		FrmMapaImportador frmMapaImportador = new FrmMapaImportador(this, true, pastaLocalhost);
+		frmMapaImportador.setLocation(
+			((this.getWidth() - frmMapaImportador.getWidth()) / 2) + this.getX(),
+			((this.getHeight() - frmMapaImportador.getHeight()) / 2) + this.getY()
+		);
+		frmMapaImportador.pack();
+		frmMapaImportador.setModal(true);
+		frmMapaImportador.setVisible(true);/**/
+	}//GEN-LAST:event_btnImportarActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnAbrir;
