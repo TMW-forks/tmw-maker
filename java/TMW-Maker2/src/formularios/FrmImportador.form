@@ -142,8 +142,10 @@
                   <Image iconType="3" name="/imagens/botoes/sbl_dependencias.gif"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Importar"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImportarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCompilar">
               <Properties>
