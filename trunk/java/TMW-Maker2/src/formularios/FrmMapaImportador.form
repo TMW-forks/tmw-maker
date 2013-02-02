@@ -96,13 +96,11 @@
           <Color blue="a2" green="a5" id="Button.shadow" palette="3" red="a9" type="palette"/>
         </Property>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="/home/lunovox/&#xc1;rea de Trabalho/Mapa Delete-me/000000.tmx"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSelecionarTMX">
       <Properties>
         <Property name="text" type="java.lang.String" value="Selecionar"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecionarTMXActionPerformed"/>
@@ -119,13 +117,11 @@
           <Color blue="a2" green="a5" id="Button.shadow" palette="3" red="a9" type="palette"/>
         </Property>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="/home/lunovox/&#xc1;rea de Trabalho/Mapa Delete-me/000000.wlk"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSelecionarWLK">
       <Properties>
         <Property name="text" type="java.lang.String" value="Selecionar"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecionarWLKActionPerformed"/>

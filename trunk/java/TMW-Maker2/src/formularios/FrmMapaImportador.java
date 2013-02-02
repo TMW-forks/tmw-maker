@@ -67,10 +67,8 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 
       txtMapaTMX.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
       txtMapaTMX.setEditable(false);
-      txtMapaTMX.setText("/home/lunovox/Área de Trabalho/Mapa Delete-me/000000.tmx");
 
       btnSelecionarTMX.setText("Selecionar");
-      btnSelecionarTMX.setEnabled(false);
       btnSelecionarTMX.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnSelecionarTMXActionPerformed(evt);
@@ -81,10 +79,8 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 
       txtColisoesWLK.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
       txtColisoesWLK.setEditable(false);
-      txtColisoesWLK.setText("/home/lunovox/Área de Trabalho/Mapa Delete-me/000000.wlk");
 
       btnSelecionarWLK.setText("Selecionar");
-      btnSelecionarWLK.setEnabled(false);
       btnSelecionarWLK.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnSelecionarWLKActionPerformed(evt);
@@ -223,66 +219,51 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 	 private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
 		 File $ArqTMX = new File(txtMapaTMX.getText());
 		 String $UrlDestinoTMX = pastaDeMapas + bar + $ArqTMX.getName();
- 		 String $PastaDestinoTMX = $ArqTMX.getParent();
+ 		 String $PastaDestinoTMX = $UrlDestinoTMX.replace(bar+$ArqTMX.getName(), "");
 		 Element $ConteudoMapaTMX = FileClass.arquivoAbrirXML($ArqTMX.getPath());
-		 Document $NovoMapaTMX = $ConteudoMapaTMX.getOwnerDocument();
-		 /*if (chkAddTilesets.isSelected()) {
-			 NodeList noImagens = $ConteudoMapaTMX.getElementsByTagName("image");
-			 for (int $i = 0; $i < noImagens.getLength(); $i++) {
-				 Element tagPropImagem = (Element) noImagens.item($i);
-				 String $UrlOrigemTileset = FileClass.getAtributo(tagPropImagem, "source", "");
-				 String $UrlAbsolutaOrigemTileset = $PastaDestinoTMX + bar + $UrlOrigemTileset;
-				 if (FileClass.seExiste($UrlAbsolutaOrigemTileset)) {
-					 System.out.println("Copiando: " + $UrlAbsolutaOrigemTileset);
-					 File $Handler = new File($UrlAbsolutaOrigemTileset);
-					 String $NomeArqTileset = $Handler.getName();
-					 String $UrlDestinoTilesetAbsoluto = pastaDeTilesets + bar + $NomeArqTileset;
-					 String $UrlDestinoTilesetRelativo = "../graphics/tiles/" + $NomeArqTileset;
-					 if (!FileClass.seExiste($UrlDestinoTilesetAbsoluto)) {
-						 //FileClass.arquivoCopiar($UrlAbsolutaOrigemTileset, $UrlDestinoTilesetAbsoluto);
+		 Element $NovoMapaTMX = $ConteudoMapaTMX;
+		 if (chkAddTilesets.isSelected()) {
+			 //NodeList $TilesetNode = $ConteudoMapaTMX.getElementsByTagName("image");
+			 NodeList $MapaNode = $ConteudoMapaTMX.getChildNodes();
+			 for (int $m = 0; $m < $MapaNode.getLength(); $m++) {
+				 if($MapaNode.item($m).getNodeName().equals("tileset")){
+					 Element $TilesetTag = (Element) $MapaNode.item($m);
+					 for (int $t = 0; $t < $TilesetTag.getChildNodes().getLength(); $t++) {
+						 if($TilesetTag.getChildNodes().item($t).getNodeName().equals("image")){
+							 Element $ImagemTag = (Element) $TilesetTag.getChildNodes().item($t);
 
-
-
-
-
-
-
-
-							NodeList pTags = $NovoMapaTMX.getElementsByTagName("image");
-							Node p1 = pTags.item(0);
-							$NovoMapaTMX.removeChild(p1);
-							//Leia mais em: Manipulando arquivos XML em Java http://www.devmedia.com.br/manipulando-arquivos-xml-em-java/3245#ixzz2Jl6Us34u
-
-
-						 //$NovoMapaTMX.removeChild($NovoMapaTMX.getElementsByTagName("image").item($i));
-						 //tagPropImagem.setAttribute(bar, bar)
-						 //$NovoMapaTMX.setAttributeNode(null)
-						 tagPropImagem.setAttribute("source", $UrlDestinoTilesetRelativo);
-						 $NovoMapaTMX.appendChild(tagPropImagem);
-
-
-
-
-
-					 }else{
-						 //System.out.println("FALHA AO COPIAR TILESET: Já existe o '"+$NomeArqTileset+"' na pasta de Tileste!");
-						 DialogClass.showErro("<html>Já existe o '<font color='#FF0000'>"+$NomeArqTileset+"</font>' na pasta de Tileste!", "FALHA AO COPIAR TILESET");
+							 String $UrlOrigemTileset = FileClass.getAtributo($ImagemTag, "source", "");
+							 String $UrlOrigemTilesetAbsoluta = $ArqTMX.getParent() + bar + $UrlOrigemTileset;
+							 if (FileClass.seExiste($UrlOrigemTilesetAbsoluta)) {
+								 //Element $ImagemTag = (Element) $TilesetTag.getChildNodes().item($t);
+								 System.out.println("Copiando: " + $UrlOrigemTilesetAbsoluta);
+								 File $Handler = new File($UrlOrigemTilesetAbsoluta);
+								 String $NomeArqTileset = $Handler.getName();
+								 String $UrlDestinoTilesetAbsoluto = pastaDeTilesets + bar + $NomeArqTileset;
+								 String $UrlDestinoTilesetRelativo = "../graphics/tiles/" + $NomeArqTileset;
+								 $ImagemTag.setAttribute("source", $UrlDestinoTilesetRelativo);
+								 if (!FileClass.seExiste($UrlDestinoTilesetAbsoluto)) {
+									 FileClass.arquivoCopiar($UrlOrigemTilesetAbsoluta, $UrlDestinoTilesetAbsoluto);
+								 }else{
+									 DialogClass.showErro("<html>Já existe o '<font color='#FF0000'>"+$NomeArqTileset+"</font>' na pasta de Tileste!", "FALHA AO COPIAR TILESET");
+								 }
+							 }else{
+								 DialogClass.showErro("<html>Não possivel encontrar o tileset '<font color='#FF0000'>" + $UrlOrigemTilesetAbsoluta + "</font>' !", "FALHA AO COPIAR TILESET");
+							 }/**/
+						 }
 					 }
-				 } else {
-					 DialogClass.showErro("<html>Não possivel encontrar o tileset '<font color='#FF0000'>" + $UrlAbsolutaOrigemTileset + "</font>' !", "FALHA AO COPIAR TILESET");
 				 }
 			 }
-		 }/**/
-
+		 }
 
 		 if (!$ArqTMX.getPath().equals($UrlDestinoTMX)) {
 			 //FileClass.arquivoCopiar($ArqTMX, $UrlDestinoTMX);
-			 FileClass.arquivoSalvarXML($UrlDestinoTMX,$NovoMapaTMX); // ← Salva o arquivo com endereço de tilesets alterados.
+			 FileClass.arquivoSalvarXML($UrlDestinoTMX,$NovoMapaTMX.getOwnerDocument()); // ← Salva o arquivo com endereço de tilesets alterados.
 		 } else {
 			 System.out.println("Não é possível importar o mapa '"+$ArqTMX.getName()+"' devolta para sua pasta de origem!");
 		 }
 
-		 /*File $ArqWLK = new File(txtColisoesWLK.getText());
+		 File $ArqWLK = new File(txtColisoesWLK.getText());
 		 String $UrlDestinoWLK = pastaDeColisoes + bar + $ArqWLK.getName();
 		 if (!$ArqWLK.getPath().equals($UrlDestinoWLK)) {
 			 FileClass.arquivoCopiar($ArqWLK, $UrlDestinoWLK);
@@ -333,7 +314,9 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 				 frmImportador.MapaCompilar($ArqTMX.getName());
 			 }
 		 }/**/
-		 
+
+		 frmImportador.MapasListar();
+		 this.dispose();
 	 }//GEN-LAST:event_btnImportarActionPerformed
 
 	/**
