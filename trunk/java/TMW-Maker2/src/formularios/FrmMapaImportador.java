@@ -6,13 +6,16 @@
 
 package formularios;
 
+import classes.DialogClass;
 import classes.FileClass;
 import java.awt.Dialog;
 import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class FrmMapaImportador extends javax.swing.JDialog {
@@ -23,8 +26,9 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 		pastaLocalhost=$PastaLocalhost;
 
 		//baseScripts = pastaLocalhost + Barra + "eathena-data" + Barra + "npc";
-		pastaDeMapas = pastaLocalhost + bar + "tmwdata" + bar + "maps";
-		pastaDeColisoes = pastaLocalhost + bar + "eathena-data" + bar + "data";
+		pastaDeMapas		= pastaLocalhost + bar + "tmwdata" + bar + "maps";
+		pastaDeTilesets	= pastaLocalhost + bar + "tmwdata" + bar + "graphics"+ bar + "tiles";
+		pastaDeColisoes	= pastaLocalhost + bar + "eathena-data" + bar + "data";
 		initComponents();
 	}
 	FrmImportador frmImportador;
@@ -32,6 +36,7 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 	String pastaLocalhost;
 	private static String pastaDeMapas;
 	private static String pastaDeColisoes;
+	private static String pastaDeTilesets;
 	JFileChooser Dialogo = new JFileChooser();;
 
 	/** This method is called from within the constructor to
@@ -62,8 +67,10 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 
       txtMapaTMX.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
       txtMapaTMX.setEditable(false);
+      txtMapaTMX.setText("/home/lunovox/Área de Trabalho/Mapa Delete-me/000000.tmx");
 
       btnSelecionarTMX.setText("Selecionar");
+      btnSelecionarTMX.setEnabled(false);
       btnSelecionarTMX.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnSelecionarTMXActionPerformed(evt);
@@ -74,8 +81,10 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 
       txtColisoesWLK.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
       txtColisoesWLK.setEditable(false);
+      txtColisoesWLK.setText("/home/lunovox/Área de Trabalho/Mapa Delete-me/000000.wlk");
 
       btnSelecionarWLK.setText("Selecionar");
+      btnSelecionarWLK.setEnabled(false);
       btnSelecionarWLK.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnSelecionarWLKActionPerformed(evt);
@@ -97,8 +106,8 @@ public class FrmMapaImportador extends javax.swing.JDialog {
          }
       });
 
+      chkAddTilesets.setSelected(true);
       chkAddTilesets.setText("Adicionar tilesets ao repositório");
-      chkAddTilesets.setEnabled(false);
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -212,30 +221,82 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 		 }
 	 }//GEN-LAST:event_btnSelecionarWLKActionPerformed
 	 private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
-		 File ArqTMX = new File(txtMapaTMX.getText());
-		 String DestinoTMX = pastaDeMapas + bar + ArqTMX.getName();
-		 if (!ArqTMX.getPath().equals(DestinoTMX)) {
-			 FileClass.arquivoCopiar(ArqTMX, DestinoTMX);
-		 } else {
-			 //DialogClass.showErro("<html>Não é possível importar o mapa '<font color='#FF0000'>"+ArqTMX.getName()+"</font>' para sua pasta de origem", "Endereço Invalido");
-			 //return;
+		 File $ArqTMX = new File(txtMapaTMX.getText());
+		 String $UrlDestinoTMX = pastaDeMapas + bar + $ArqTMX.getName();
+ 		 String $PastaDestinoTMX = $ArqTMX.getParent();
+		 Element $ConteudoMapaTMX = FileClass.arquivoAbrirXML($ArqTMX.getPath());
+		 Document $NovoMapaTMX = $ConteudoMapaTMX.getOwnerDocument();
+		 /*if (chkAddTilesets.isSelected()) {
+			 NodeList noImagens = $ConteudoMapaTMX.getElementsByTagName("image");
+			 for (int $i = 0; $i < noImagens.getLength(); $i++) {
+				 Element tagPropImagem = (Element) noImagens.item($i);
+				 String $UrlOrigemTileset = FileClass.getAtributo(tagPropImagem, "source", "");
+				 String $UrlAbsolutaOrigemTileset = $PastaDestinoTMX + bar + $UrlOrigemTileset;
+				 if (FileClass.seExiste($UrlAbsolutaOrigemTileset)) {
+					 System.out.println("Copiando: " + $UrlAbsolutaOrigemTileset);
+					 File $Handler = new File($UrlAbsolutaOrigemTileset);
+					 String $NomeArqTileset = $Handler.getName();
+					 String $UrlDestinoTilesetAbsoluto = pastaDeTilesets + bar + $NomeArqTileset;
+					 String $UrlDestinoTilesetRelativo = "../graphics/tiles/" + $NomeArqTileset;
+					 if (!FileClass.seExiste($UrlDestinoTilesetAbsoluto)) {
+						 //FileClass.arquivoCopiar($UrlAbsolutaOrigemTileset, $UrlDestinoTilesetAbsoluto);
+
+
+
+
+
+
+
+
+							NodeList pTags = $NovoMapaTMX.getElementsByTagName("image");
+							Node p1 = pTags.item(0);
+							$NovoMapaTMX.removeChild(p1);
+							//Leia mais em: Manipulando arquivos XML em Java http://www.devmedia.com.br/manipulando-arquivos-xml-em-java/3245#ixzz2Jl6Us34u
+
+
+						 //$NovoMapaTMX.removeChild($NovoMapaTMX.getElementsByTagName("image").item($i));
+						 //tagPropImagem.setAttribute(bar, bar)
+						 //$NovoMapaTMX.setAttributeNode(null)
+						 tagPropImagem.setAttribute("source", $UrlDestinoTilesetRelativo);
+						 $NovoMapaTMX.appendChild(tagPropImagem);
+
+
+
+
+
+					 }else{
+						 //System.out.println("FALHA AO COPIAR TILESET: Já existe o '"+$NomeArqTileset+"' na pasta de Tileste!");
+						 DialogClass.showErro("<html>Já existe o '<font color='#FF0000'>"+$NomeArqTileset+"</font>' na pasta de Tileste!", "FALHA AO COPIAR TILESET");
+					 }
+				 } else {
+					 DialogClass.showErro("<html>Não possivel encontrar o tileset '<font color='#FF0000'>" + $UrlAbsolutaOrigemTileset + "</font>' !", "FALHA AO COPIAR TILESET");
+				 }
+			 }
 		 }/**/
 
-		 File ArqWLK = new File(txtColisoesWLK.getText());
-		 String DestinoWLK = pastaDeColisoes + bar + ArqWLK.getName();
-		 if (!ArqWLK.getPath().equals(DestinoWLK)) {
-			 FileClass.arquivoCopiar(ArqWLK, DestinoWLK);
-		 } else {
-			 //DialogClass.showErro("<html>Não é possível importar a colisão '<font color='#FF0000'>"+ArqWLK.getName()+"</font>' para sua pasta de origem", "Endereço Invalido");
-			 //return;
-		 }/**/
 
+		 if (!$ArqTMX.getPath().equals($UrlDestinoTMX)) {
+			 //FileClass.arquivoCopiar($ArqTMX, $UrlDestinoTMX);
+			 FileClass.arquivoSalvarXML($UrlDestinoTMX,$NovoMapaTMX); // ← Salva o arquivo com endereço de tilesets alterados.
+		 } else {
+			 System.out.println("Não é possível importar o mapa '"+$ArqTMX.getName()+"' devolta para sua pasta de origem!");
+		 }
+
+		 /*File $ArqWLK = new File(txtColisoesWLK.getText());
+		 String $UrlDestinoWLK = pastaDeColisoes + bar + $ArqWLK.getName();
+		 if (!$ArqWLK.getPath().equals($UrlDestinoWLK)) {
+			 FileClass.arquivoCopiar($ArqWLK, $UrlDestinoWLK);
+		 } else {
+			 System.out.println("Não é possível importar o mapa '"+$ArqWLK.getName()+"' devolta para sua pasta de origem!");
+		 }
+
+		 //################################################################################################################
 		 String $UrlDosNPCsdoMapa = "", $PastaDosNPCsdoMapa = "";
-		 Element MapaTMX = FileClass.arquivoAbrirXML(DestinoTMX);
-		 NodeList noPropriedades = MapaTMX.getElementsByTagName("property");
+		 NodeList noPropriedades = $ConteudoMapaTMX.getElementsByTagName("property");
 		 for (int i = 0; i < noPropriedades.getLength(); i++) {
 			 Element tagPropriedade = (Element) noPropriedades.item(i);
 			 if (FileClass.getAtributo(tagPropriedade, "name", "").toLowerCase().equals("pasta")) {
+				 //##########################################################################################################
 				 $PastaDosNPCsdoMapa = FileClass.getAtributo(tagPropriedade, "value", "");
 				 $UrlDosNPCsdoMapa = pastaLocalhost + bar + "eathena-data" + bar + "npc" + bar + $PastaDosNPCsdoMapa;
 				 if (!FileClass.seExiste($UrlDosNPCsdoMapa)) {
@@ -244,12 +305,12 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 				 } else {
 					 System.out.println("Ja existe uma pasta '" + $PastaDosNPCsdoMapa + "' para NPCs deste mapa!");
 				 }
-
+				 //##########################################################################################################
 				 System.out.println("Importanto mapa '" + $PastaDosNPCsdoMapa + "' para repositório!");
 				 String $Import = $UrlDosNPCsdoMapa + bar + "_import.txt";
-				 String $GatFile=ArqWLK.getName().replaceAll("wlk", "gat");
+				 String $GatFile=$ArqWLK.getName().replaceAll("wlk", "gat");
 				 if (!FileClass.seExiste($Import)) {FileClass.arquivoSalvar($Import,"map: "+$GatFile+"\n");}
-
+				 //##########################################################################################################
 				 String $ImportPrincipal = pastaLocalhost + bar + "eathena-data" + bar + "npc" + bar + "_import.txt";
 				 if (FileClass.seExiste($ImportPrincipal)) {
 					 String $Conteudo = FileClass.arquivoAbrir($ImportPrincipal);
@@ -258,23 +319,21 @@ public class FrmMapaImportador extends javax.swing.JDialog {
 						FileClass.arquivoSalvar($ImportPrincipal,$Conteudo);
 					 }
 				 }
+				 //##########################################################################################################
 				 String $ImportColisions = pastaLocalhost + bar + "eathena-data" + bar + "data" + bar + "resnametable.txt";
 				 if (FileClass.seExiste($ImportColisions)) {
 					 String $Conteudo = FileClass.arquivoAbrir($ImportColisions);
 
 					 if($Conteudo.indexOf($GatFile)<0){
-						$Conteudo+="\n"+$GatFile+"#"+ArqWLK.getName()+"#";
+						$Conteudo+="\n"+$GatFile+"#"+$ArqWLK.getName()+"#";
 						FileClass.arquivoSalvar($ImportColisions,$Conteudo);
 					 }
 				 }
-
-				 frmImportador.MapaCompilar(ArqTMX.getName());
-
-
-				 
-
+				 //##########################################################################################################
+				 frmImportador.MapaCompilar($ArqTMX.getName());
 			 }
-		 }
+		 }/**/
+		 
 	 }//GEN-LAST:event_btnImportarActionPerformed
 
 	/**
