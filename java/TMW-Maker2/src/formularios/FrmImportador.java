@@ -26,7 +26,7 @@ public class FrmImportador extends javax.swing.JDialog {
 	String pastaLocalhost;
 	private static String pastaDeMapas;
 
-	private void MapasListar() {
+	public void MapasListar() {
 		final Vector MapasFiltrados = new Vector();
 		String $Mapas[] = FileClass.listarArquivos(pastaDeMapas);
 		MapasFiltrados.clear();
