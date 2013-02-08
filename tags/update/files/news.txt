@@ -1,18 +1,11 @@
+
 ##1################## AVISOS #########################
 ##0
-##3         .:: BAÚ SAVER (2012-08-04) ::.
-##0 Existe um baú-mágico dentro do navio, que é similar 
-##0 ao menir-das-almas, e que aparece sempre quando o 
-##0 navio está atracado ao porto das Terras Desconhecidas 
-##0 e ao porto do Polo Norte.
-##0 __________________________________________________
-##0
-##3   .:: GUERRA DOS REINOS (2012-07-11) ::.
-##0 Proteja seu reino (##2Froz##0 ou ##2Halicarnazo##0) contra
-##0 invasores.  Caso ela seja conquistada, perderás 
-##0 o direito de entrar até o dia que seja reconquistada.
-##0 
-##2 Os reinos de Aeros e Hades ainda serão construidos.
+##3     .:: FÓRUM OFICIAL OFFLINE (2013-02-08) ::.
+##0 O fórum oficial do TMW-BR está enfrentando alguns 
+##0 problemas(Bug ou Hacker). estamos tentando resolver
+##0 este problema urgentemente. Enquanto isso pode usar 
+##0 o forum DEV. → http://tmwbrdev.forumrpglife.com
 ##0 __________________________________________________
 ##0
 ##3      .:: Precisamos de Você! (2012-07-11)  ::.
@@ -21,16 +14,11 @@
 ##0 vivo. Para doar acesse: ##3http://goo.gl/uKjj9
 ##0 __________________________________________________
 ##0
-##3          .:: Pedido de Socorro ::.
-##0 Se alguém ficar preço, peça ajuda a um GM pelo
-##0 comando: ##2 @wgm socorro!
-##0 __________________________________________________
-##0
-##3       .:: Penalidade por derrota ::.
-##0 O Jogador que for derrotado fora da zona de
-##0 segurança perderá pontos de experiência.
-##0
-##0 Não se descuide! ##1MORRER PODE CUSTAR CARO!!!
+##3         .:: BAÚ SAVER (2012-08-04) ::.
+##0 Existe um baú-mágico dentro do navio, que é similar
+##0 ao menir-das-almas, e que aparece sempre quando o
+##0 navio está atracado ao porto das Terras Desconhecidas
+##0 e ao porto do Polo Norte.
 ##0
 ##1###################################################
 
@@ -43,7 +31,7 @@
 ##2 Publishers e Treinadores.
 ##0
 ##0 Envie seus trabalhos para:
-##0  * ##3 http://forums.themanaworld.com.br
+##0  * ##3 http://tmwbrdev.forumrpglife.com
 ##0 Envie suas dúvidas para:
 ##0  * ##3 Lunovox<rui.gravata@gmail.com>
 ##0 
