@@ -1,12 +1,5 @@
-
 ##1################## AVISOS #########################
 ##0
-##3     .:: FÓRUM OFICIAL OFFLINE (2013-02-08) ::.
-##0 O fórum oficial do TMW-BR está enfrentando alguns 
-##0 problemas(Bug ou Hacker). estamos tentando resolver
-##0 este problema urgentemente. Enquanto isso pode usar 
-##0 o forum DEV. → http://tmwbrdev.forumrpglife.com
-##0 __________________________________________________
 ##0
 ##3      .:: Precisamos de Você! (2012-07-11)  ::.
 ##0 Contribua com o The Mana World Brasil. Faça
@@ -31,7 +24,7 @@
 ##2 Publishers e Treinadores.
 ##0
 ##0 Envie seus trabalhos para:
-##0  * ##3 http://tmwbrdev.forumrpglife.com
+##0  * ##3 http://forums.themanaworld.com.br
 ##0 Envie suas dúvidas para:
 ##0  * ##3 Lunovox<rui.gravata@gmail.com>
 ##0 
