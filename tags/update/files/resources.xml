@@ -23,4 +23,5 @@
 	<update type="data"  hash="2daa1ec2" file="2012-06-30_tmwdata.zip" description="Principais XMLs do TMW-BR"/>
  	<update type="music" hash="3af89da2" file="2012-06-29_music.zip" description="Musicas OGGs do TMW-BR" required="no" />
 	<update type="music" hash="973888bb" file="musicas.zip" desciption="Music data v01" required="no" />
+	<update type="data"  hash="7368f4f2" file="update_2013-02-13.zip" description="Outdoors de Doações"/>
 </updates>
