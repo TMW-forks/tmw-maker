@@ -8,14 +8,10 @@ package formularios;
 
 import classes.DialogClass;
 import classes.FileClass;
-import java.awt.Dialog;
 import java.io.File;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class FrmMapaImportador extends javax.swing.JDialog {
