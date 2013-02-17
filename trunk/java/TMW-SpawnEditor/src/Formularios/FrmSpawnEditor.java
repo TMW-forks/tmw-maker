@@ -21,7 +21,8 @@ import javax.swing.table.DefaultTableModel;
 public class FrmSpawnEditor extends javax.swing.JFrame {
     public FrmSpawnEditor(String PastaDoLocalhost) {
 		try {
-			super.setIconImage((new ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_localhost-tmw.png"))).getImage());
+			//super.setIconImage((new ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_localhost-tmw.png"))).getImage());
+			super.setIconImage((new ImageIcon(getClass().getResource("/Imagens/Botoes/sbl_halloween.png"))).getImage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			//System.out.println("Icone erro:\n" + e.getMessage());
