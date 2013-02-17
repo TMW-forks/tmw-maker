@@ -27,7 +27,8 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		} catch (Exception e) {
 			System.out.println("Icone erro:\n" + e.getMessage());
 		}
-			initComponents();
+		initComponents();
+		onAtivacao();
 	}/**/
 	public static ClassConfiguracao conf = new ClassConfiguracao();
 	SummarizerSVN svn;
@@ -39,7 +40,9 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		mnpRepositorio.setEnabled(SeAtivo);
 		mnpEditar.setEnabled(SeAtivo);
 		mnpLocalhost.setEnabled(SeAtivo);
-
+		onAtivacao();
+	}
+	public void onAtivacao(){
 		btnSistemaImportarArquivo.setEnabled(mnpSistema.isEnabled() && mnuSistemaImportarArquivo.isEnabled());
 		btnSistemaLimparPainel.setEnabled(mnpSistema.isEnabled() && mnuSistemaLimparPainel.isEnabled());
 		btnSistemaConfigurar.setEnabled(mnpSistema.isEnabled() && mnuSistemaConfigurar.isEnabled());
@@ -50,6 +53,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 		btnRepositorioMontar.setEnabled(mnpRepositorio.isEnabled() && mnuRepositorioMontar.isEnabled());
 
 		btnEditarMonstros.setEnabled(mnpEditar.isEnabled() && mnuEditarMonstros.isEnabled());
+		btnEditarSequencia.setEnabled(mnpEditar.isEnabled() && mnuEditarSequencia.isEnabled());
 
 		btnLocalhostAtivar.setEnabled(mnpLocalhost.isEnabled() && mnuLocalhostAtivar.isEnabled());
 		btnLocalhostDesativar.setEnabled(mnpLocalhost.isEnabled() && mnuLocalhostDesativar.isEnabled());
@@ -926,6 +930,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       btnRepositorioMontar = new javax.swing.JButton();
       jSeparator9 = new javax.swing.JToolBar.Separator();
       btnEditarMonstros = new javax.swing.JButton();
+      btnEditarSequencia = new javax.swing.JButton();
       jSeparator10 = new javax.swing.JToolBar.Separator();
       btnLocalhostAtivar = new javax.swing.JButton();
       btnLocalhostDesativar = new javax.swing.JButton();
@@ -956,6 +961,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       mnuRepositorioMontar = new javax.swing.JMenuItem();
       mnpEditar = new javax.swing.JMenu();
       mnuEditarMonstros = new javax.swing.JMenuItem();
+      mnuEditarSequencia = new javax.swing.JMenuItem();
       mnpLocalhost = new javax.swing.JMenu();
       mnuLocalhostAtivar = new javax.swing.JMenuItem();
       mnuLocalhostDesativar = new javax.swing.JMenuItem();
@@ -982,7 +988,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       txtPainel.setBackground(new java.awt.Color(0, 92, 0));
       txtPainel.setColumns(20);
       txtPainel.setEditable(false);
-      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
+      txtPainel.setFont(new java.awt.Font("Courier New", 0, 15));
       txtPainel.setForeground(java.awt.Color.white);
       txtPainel.setRows(5);
       txtPainel.setText("\n     → Bem Vindos ao TMW-Maker Java versão II...\n");
@@ -1075,7 +1081,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       jToolBar1.add(btnRepositorioMontar);
       jToolBar1.add(jSeparator9);
 
-      btnEditarMonstros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_caveira.png"))); // NOI18N
+      btnEditarMonstros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_halloween.png"))); // NOI18N
       btnEditarMonstros.setToolTipText("Editar Monstros (Ctrl+M)");
       btnEditarMonstros.setFocusable(false);
       btnEditarMonstros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1086,6 +1092,18 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
          }
       });
       jToolBar1.add(btnEditarMonstros);
+
+      btnEditarSequencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_good.gif"))); // NOI18N
+      btnEditarSequencia.setToolTipText("Editar Sequência de Animação de Sprite (Ctrl+Q)");
+      btnEditarSequencia.setFocusable(false);
+      btnEditarSequencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+      btnEditarSequencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+      btnEditarSequencia.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEditarSequenciaActionPerformed(evt);
+         }
+      });
+      jToolBar1.add(btnEditarSequencia);
       jToolBar1.add(jSeparator10);
 
       btnLocalhostAtivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_play.png"))); // NOI18N
@@ -1282,7 +1300,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       mnpEditar.setText("Editar");
 
       mnuEditarMonstros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-      mnuEditarMonstros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_caveira.png"))); // NOI18N
+      mnuEditarMonstros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_halloween.png"))); // NOI18N
       mnuEditarMonstros.setText("Monstros");
       mnuEditarMonstros.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1290,6 +1308,16 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
          }
       });
       mnpEditar.add(mnuEditarMonstros);
+
+      mnuEditarSequencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+      mnuEditarSequencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_good.gif"))); // NOI18N
+      mnuEditarSequencia.setText("Sequências");
+      mnuEditarSequencia.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuEditarSequenciaActionPerformed(evt);
+         }
+      });
+      mnpEditar.add(mnuEditarSequencia);
 
       mbrBarraDeMenu.add(mnpEditar);
 
@@ -1397,9 +1425,9 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-         .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-         .addComponent(scpPainel, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+         .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+         .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+         .addComponent(scpPainel, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1579,6 +1607,12 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 	private void btnAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjudaSobreActionPerformed
 		if(mnpAjuda.isEnabled() && mnuAjudaSobre.isEnabled()){mnuAjudaSobreActionPerformed(evt);}
 	}//GEN-LAST:event_btnAjudaSobreActionPerformed
+	private void btnEditarSequenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSequenciaActionPerformed
+		if(mnpEditar.isEnabled() && mnuEditarSequencia.isEnabled()){mnuEditarSequenciaActionPerformed(evt);}
+	}//GEN-LAST:event_btnEditarSequenciaActionPerformed
+	private void mnuEditarSequenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarSequenciaActionPerformed
+		FrmAnimationEditor.main(new String[]{"--localhost",conf.getConexaoLocalhost()});
+	}//GEN-LAST:event_mnuEditarSequenciaActionPerformed
 
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1592,6 +1626,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JButton btnAjudaInformarDefeito;
    private javax.swing.JButton btnAjudaSobre;
    private javax.swing.JButton btnEditarMonstros;
+   private javax.swing.JButton btnEditarSequencia;
    private javax.swing.JButton btnLocalhostAtivar;
    private javax.swing.JButton btnLocalhostDesativar;
    private javax.swing.JButton btnLocalhostExecutar;
@@ -1630,6 +1665,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JMenuItem mnuAjudaInformarDefeito;
    private javax.swing.JMenuItem mnuAjudaSobre;
    private javax.swing.JMenuItem mnuEditarMonstros;
+   private javax.swing.JMenuItem mnuEditarSequencia;
    private javax.swing.JMenuItem mnuLocalhostAtivar;
    private javax.swing.JMenuItem mnuLocalhostDesativar;
    private javax.swing.JMenuItem mnuLocalhostExecutar;
