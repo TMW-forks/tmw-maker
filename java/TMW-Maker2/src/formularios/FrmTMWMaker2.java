@@ -10,6 +10,7 @@ import classes.DialogClass;
 import classes.FileClass;
 import classes.ImagemClass;
 import classes.SummarizerSVN;
+import forms.FrmScriptEditor2;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -54,6 +55,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 
 		btnEditarMonstros.setEnabled(mnpEditar.isEnabled() && mnuEditarMonstros.isEnabled());
 		btnEditarSequencia.setEnabled(mnpEditar.isEnabled() && mnuEditarSequencia.isEnabled());
+		btnEditarScript.setEnabled(mnpEditar.isEnabled() && mnuEditarScript.isEnabled());
 
 		btnLocalhostAtivar.setEnabled(mnpLocalhost.isEnabled() && mnuLocalhostAtivar.isEnabled());
 		btnLocalhostDesativar.setEnabled(mnpLocalhost.isEnabled() && mnuLocalhostDesativar.isEnabled());
@@ -931,6 +933,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       jSeparator9 = new javax.swing.JToolBar.Separator();
       btnEditarMonstros = new javax.swing.JButton();
       btnEditarSequencia = new javax.swing.JButton();
+      btnEditarScript = new javax.swing.JButton();
       jSeparator10 = new javax.swing.JToolBar.Separator();
       btnLocalhostAtivar = new javax.swing.JButton();
       btnLocalhostDesativar = new javax.swing.JButton();
@@ -962,6 +965,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
       mnpEditar = new javax.swing.JMenu();
       mnuEditarMonstros = new javax.swing.JMenuItem();
       mnuEditarSequencia = new javax.swing.JMenuItem();
+      mnuEditarScript = new javax.swing.JMenuItem();
       mnpLocalhost = new javax.swing.JMenu();
       mnuLocalhostAtivar = new javax.swing.JMenuItem();
       mnuLocalhostDesativar = new javax.swing.JMenuItem();
@@ -1104,6 +1108,18 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
          }
       });
       jToolBar1.add(btnEditarSequencia);
+
+      btnEditarScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_grad.png"))); // NOI18N
+      btnEditarScript.setToolTipText("Editar Sequência de Animação de Sprite (Ctrl+Q)");
+      btnEditarScript.setFocusable(false);
+      btnEditarScript.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+      btnEditarScript.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+      btnEditarScript.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEditarScriptActionPerformed(evt);
+         }
+      });
+      jToolBar1.add(btnEditarScript);
       jToolBar1.add(jSeparator10);
 
       btnLocalhostAtivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_play.png"))); // NOI18N
@@ -1318,6 +1334,16 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
          }
       });
       mnpEditar.add(mnuEditarSequencia);
+
+      mnuEditarScript.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+      mnuEditarScript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes/sbl_grad.png"))); // NOI18N
+      mnuEditarScript.setText("Script");
+      mnuEditarScript.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mnuEditarScriptActionPerformed(evt);
+         }
+      });
+      mnpEditar.add(mnuEditarScript);
 
       mbrBarraDeMenu.add(mnpEditar);
 
@@ -1613,13 +1639,18 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
 	private void mnuEditarSequenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarSequenciaActionPerformed
 		FrmAnimationEditor.main(new String[]{"--localhost",conf.getConexaoLocalhost()});
 	}//GEN-LAST:event_mnuEditarSequenciaActionPerformed
+	private void btnEditarScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarScriptActionPerformed
+		if(mnpEditar.isEnabled() && mnuEditarScript.isEnabled()){mnuEditarScriptActionPerformed(evt);}
+	}//GEN-LAST:event_btnEditarScriptActionPerformed
+	private void mnuEditarScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarScriptActionPerformed
+		FrmScriptEditor2.main(new String[]{"--localhost",conf.getConexaoLocalhost()});
+	}//GEN-LAST:event_mnuEditarScriptActionPerformed
 
 	public static void main(String args[]) {
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("GTK+".equals(info.getName())) {
 				//if ("Nimbus".equals(info.getName())) {
-
+				if ("GTK+".equals(info.getName())) { 
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
@@ -1654,6 +1685,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JButton btnAjudaInformarDefeito;
    private javax.swing.JButton btnAjudaSobre;
    private javax.swing.JButton btnEditarMonstros;
+   private javax.swing.JButton btnEditarScript;
    private javax.swing.JButton btnEditarSequencia;
    private javax.swing.JButton btnLocalhostAtivar;
    private javax.swing.JButton btnLocalhostDesativar;
@@ -1693,6 +1725,7 @@ public class FrmTMWMaker2 extends javax.swing.JFrame {
    private javax.swing.JMenuItem mnuAjudaInformarDefeito;
    private javax.swing.JMenuItem mnuAjudaSobre;
    private javax.swing.JMenuItem mnuEditarMonstros;
+   private javax.swing.JMenuItem mnuEditarScript;
    private javax.swing.JMenuItem mnuEditarSequencia;
    private javax.swing.JMenuItem mnuLocalhostAtivar;
    private javax.swing.JMenuItem mnuLocalhostDesativar;

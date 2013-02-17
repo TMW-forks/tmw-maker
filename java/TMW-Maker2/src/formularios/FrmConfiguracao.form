@@ -51,7 +51,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="AbaConfiguracoes" min="-2" pref="260" max="-2" attributes="0"/>
+              <Component id="AbaConfiguracoes" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtnConfiguracaoOk" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -175,8 +175,8 @@
                                   <Component id="jLabel3" min="-2" pref="22" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="TxtConfiguracaoConexaoIdentificacaoSenha" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="TxtConfiguracaoConexaoIdentificacaoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="TxtConfiguracaoConexaoIdentificacaoSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jLabel4" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
@@ -276,8 +276,8 @@
                           <Component id="CmbConfiguracaoExecucaoSoftwareCliente" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jPanel5" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -324,27 +324,27 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroServidor" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtConfiguracaoExecucaoParamentroConta" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroConta" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroSenha" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="TxtConfiguracaoExecucaoParamentroPersonagem" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" linkSize="2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ChkConfiguracaoExecucaoParamentroSemopengl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -435,7 +435,7 @@
                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ChkPedirCompartilhamentoAofechar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
