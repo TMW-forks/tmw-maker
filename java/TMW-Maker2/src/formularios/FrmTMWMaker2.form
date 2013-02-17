@@ -154,12 +154,26 @@
                   <KeyStroke key="Ctrl+M"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagens/botoes/sbl_caveira.png"/>
+                  <Image iconType="3" name="/imagens/botoes/sbl_halloween.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Monstros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuEditarMonstrosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuEditarSequencia">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Q"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/botoes/sbl_good.gif"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Sequ&#xea;ncias"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuEditarSequenciaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -322,9 +336,9 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" alignment="0" pref="456" max="32767" attributes="0"/>
-          <Component id="jToolBar2" alignment="0" pref="456" max="32767" attributes="0"/>
-          <Component id="scpPainel" alignment="0" pref="456" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="539" max="32767" attributes="0"/>
+          <Component id="jToolBar2" alignment="0" pref="539" max="32767" attributes="0"/>
+          <Component id="scpPainel" alignment="0" pref="539" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -482,7 +496,7 @@
         <Component class="javax.swing.JButton" name="btnEditarMonstros">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagens/botoes/sbl_caveira.png"/>
+              <Image iconType="3" name="/imagens/botoes/sbl_halloween.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Editar Monstros (Ctrl+M)"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -491,6 +505,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarMonstrosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnEditarSequencia">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/botoes/sbl_good.gif"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Editar Sequ&#xea;ncia de Anima&#xe7;&#xe3;o de Sprite (Ctrl+Q)"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarSequenciaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator10">
