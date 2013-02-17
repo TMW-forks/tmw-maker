@@ -1,15 +1,11 @@
 #labels download,tmw-maker
-=DOWNLOAD DO TMW-MAKER=
-O TMW-Maker passa constantemente por várias evoluções. Mesmo assim esse por enquanto funciona apenas no sistema operacional Ubuntu Linux de arquitetura i386/x64/amd64. Ou seja, se você possui Windows nem adianta tentar usa-lo. Existe planos de adaptar o TMW-Maker para o Windows também, mas isso só ocorrerá após o final de sua construção.
-
-<p align="center"><img src="http://tmw-maker.googlecode.com/svn-history/r901/Imagens/Versoes/TMW-Maker_Java.png">
+=DOWNLOAD DO TMW-MAKER 2 Java=
+O TMW-Maker passa constantemente por várias evoluções. E por causa disso, é com prazer que conseguimos fazer o TMW-Maker 2 Java funcionar no sistema operacional Linux e Windows. Muita coisa ainda precisa ser feita: Correção bugs, Adição de novas ferramentas, Intuitivação de processos, e etc. Mas temos fé que um dias conseguiremos vencer todas as barreiras para criar uma ferramenta completamente indispensável.
 
 || <img align="bottom" src="https://tmw-maker.googlecode.com/svn/trunk/java/TMW-Maker/src/Imagem/Botoes/sbl_localhost-tmw.png"> *Download* || *Tamanho* || *Descrição* ||
-|| <p align="center"> *TMW-Maker1 (v2012.0526.1).zip* <br/><font color="#FF0000">(Obsoleto)</font>|| <p align="center">7,6MB+ || Este um pacote com a estrutura pré-montada do programa. Ao executar, o procurará suas principais dependências automaticamente na internet. Mais apenas para Linux na arquitetura: i386 e amd64. Se você possuir outra arquitetura linux, informe-nos tal é sua arquitetura que iremos pesquisas formas de adaptação. Infelizmente ainda não conseguimos adaptação para o sistema Windows. ||
-|| <p align="center"> *[http://tmw-maker.googlecode.com/files/TMW-Maker2%28v2013.0217.1%29.zip TMW-Maker2 (v2013.0217.1).zip]* <br/> || <p align="center">7,6MB+ || Este um pacote com a estrutura pré-montada do programa. A versão 2 do tmw-maker funciona no linux e no windows. ||
-|| <p align="center"> *[http://code.google.com/p/tmw-maker/downloads/list Diversos]* <br/><font color="#FF0000">(Obsoleto)</font> || <p align="center">?,?MB || Outros programas e versões do TMW-maker que pode ser uteis. ||
+|| <p align="center"> *[http://tmw-maker.googlecode.com/files/TMW-Maker2%28v2013.0217.1%29.zip TMW-Maker2 (v2013.0217.1).zip]* <br/> || <p align="center">8,8MB+ || Este um pacote com a estrutura pré-montada do programa. A versão 2 do tmw-maker funciona no linux e no windows. ||
 || <p align="center">*[CodigoFonte Código Fonte Java]* ||<p align="center">22,8MB+ || Para programadores Java que desejam modificar o TMW-Maker ao seu próprio modo, respeitando os termos da licença *[GNU_GPL_v3 GNU GPL v3]*. Vão necessitar apenas da IDE *[NetBeans NetBeans 6.7]* (ou superior) que também é [opensource Open Source] para visualizar e editar este código fonte. ||
+|| <p align="center"> *[http://code.google.com/p/tmw-maker/downloads/list Diversos]* <br/><font color="#FF0000">(Obsoleto)</font> || <p align="center">?,?MB || Outros programas e versões do TMW-maker que pode ser uteis. ||
+|| <p align="center"> *TMW-Maker1 (v2012.0526.1).zip* <br/><font color="#FF0000">(Obsoleto)</font>|| <p align="center">7,6MB+ || Este um pacote com a estrutura pré-montada do programa. Ao executar, o procurará suas principais dependências automaticamente na internet. Mais apenas para Linux na arquitetura: i386 e amd64. Se você possuir outra arquitetura linux, informe-nos tal é sua arquitetura que iremos pesquisas formas de adaptação. Infelizmente ainda não conseguimos adaptação para o sistema Windows. ||
 
-<p align="center"><wiki:video url="http://www.youtube.com/watch?v=cc1bvwp6ALE" width="680" height="386"/>
-
-||<img align="center" width="64" src="http://3.bp.blogspot.com/_hteHpie_z0Q/SVt8I7L2rAI/AAAAAAAACPg/jjFwujq5KWk/s400/aviso.png">|| Todas as funções do TMW-Maker só funcionarão se tiver todas as suas *[Dependencias Dependências]* pré-atendidas no linux. http://forums.themanaworld.com.br/images/smilies/icon_e_biggrin.gif ||
+<p align="center"><img src="http://tmw-maker.googlecode.com/svn/Imagens/Versoes/TMW-Maker2.png">
