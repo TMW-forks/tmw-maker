@@ -2,8 +2,12 @@
  *
  * @author Danilo
  */
-
 package forms;
+
+import classes.DialogClass;
+import classes.FileClass;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,22 +18,24 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
 public class FrmScriptEditor2 extends javax.swing.JFrame {
-    public FrmScriptEditor2() {
-		 try {
-			 super.setIconImage((new ImageIcon(getClass().getResource("/imagens/botoes/sbl_grad.png"))).getImage());
-		 } catch (Exception e) {
-			 System.out.println("Icone erro:\n" + e.getMessage());
-		 }
-		 initComponents();
-		 atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
-		 //atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
-		 //atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_WINDOWS_BATCH);
-		 //atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CSHARP);
-		 atsPalco.setTabSize(3);
-    }
-	 JFileChooser dialogo = new JFileChooser();
+	public FrmScriptEditor2(String PastaDoLocalhost) {
+		try {
+			super.setIconImage((new ImageIcon(getClass().getResource("/imagens/botoes/sbl_grad.png"))).getImage());
+		} catch (Exception e) {
+			System.out.println("Icone erro:\n" + e.getMessage());
+		}
+		pastaDoLocalhost = PastaDoLocalhost;
+		initComponents();
+		atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+		//atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		//atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_WINDOWS_BATCH);
+		//atsPalco.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CSHARP);
+		atsPalco.setTabSize(3);
+	}
+	public String pastaDoLocalhost = "";
+	public JFileChooser dialogo = new JFileChooser();
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
@@ -61,7 +67,7 @@ public class FrmScriptEditor2 extends javax.swing.JFrame {
          pnlBarraDeEstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBarraDeEstatusLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(lblBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+            .addComponent(lblBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
@@ -142,12 +148,12 @@ public class FrmScriptEditor2 extends javax.swing.JFrame {
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addComponent(pnlBarraDeEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addComponent(scpPalco, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+         .addComponent(scpPalco, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(scpPalco, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+            .addComponent(scpPalco, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(pnlBarraDeEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
@@ -156,24 +162,23 @@ public class FrmScriptEditor2 extends javax.swing.JFrame {
    }// </editor-fold>//GEN-END:initComponents
 
 	 private void mnuArquivoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArquivoNovoActionPerformed
-		FrmScriptNovo frmScriptNovo = new FrmScriptNovo(this, rootPaneCheckingEnabled);
-		frmScriptNovo.setLocation(
-			((this.getWidth() - frmScriptNovo.getWidth()) / 2) + this.getX(),
-			((this.getHeight() - frmScriptNovo.getHeight()) / 2) + this.getY()
-		);
-		frmScriptNovo.pack();
-		frmScriptNovo.setModal(true);
-		frmScriptNovo.setVisible(true);
+		 FrmScriptNovo frmScriptNovo = new FrmScriptNovo(this, rootPaneCheckingEnabled);
+		 frmScriptNovo.setLocation(
+					((this.getWidth() - frmScriptNovo.getWidth()) / 2) + this.getX(),
+					((this.getHeight() - frmScriptNovo.getHeight()) / 2) + this.getY());
+		 frmScriptNovo.pack();
+		 frmScriptNovo.setModal(true);
+		 frmScriptNovo.setVisible(true);
 	 }//GEN-LAST:event_mnuArquivoNovoActionPerformed
 	 private void mnuArquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArquivoAbrirActionPerformed
 		 dialogo.setDialogTitle("Abrir Código eAthena");
 		 dialogo.resetChoosableFileFilters();
-       dialogo.setFileFilter(new FileNameExtensionFilter("Todos os Scripts Suportados", new String[]{"npc","conf","txt"}));
+		 dialogo.setFileFilter(new FileNameExtensionFilter("Todos os Scripts Suportados", new String[]{"npc", "conf", "txt"}));
 		 dialogo.addChoosableFileFilter(new FileNameExtensionFilter("NPC do TMW (.npc)", "npc"));
 		 dialogo.addChoosableFileFilter(new FileNameExtensionFilter("Script Genérico (.conf)", "conf"));
 		 dialogo.addChoosableFileFilter(new FileNameExtensionFilter("Texto Simples (.txt)", "txt"));
 		 dialogo.setAcceptAllFileFilterUsed(false);
-       dialogo.setMultiSelectionEnabled(false);
+		 dialogo.setMultiSelectionEnabled(false);
 
 		 if (dialogo.showOpenDialog(this) == dialogo.APPROVE_OPTION) {
 			 try {
@@ -181,7 +186,7 @@ public class FrmScriptEditor2 extends javax.swing.JFrame {
 				 atsPalco.read(new FileReader(dialogo.getSelectedFile().getAbsolutePath()), null);
 				 //lblBarraDeEstatus.setText(String.format("Localizaçao do Mouse: [%d, %d]", evt.getX(), evt.getY()));
 				 //lblBarraDeEstatus.setText(String.format("Localizaçao do Mouse: [%d, %d]", evt.getX(), evt.getY()));
-				 this.setTitle("TMW Script Editor ["+dialogo.getSelectedFile().getName()+"]");
+				 this.setTitle("TMW Script Editor [" + dialogo.getSelectedFile().getName() + "]");
 				 lblBarraDeEstatus.setText("Arquivo " + dialogo.getSelectedFile().getAbsolutePath() + " aberto");
 			 } catch (IOException ex) {
 				 lblBarraDeEstatus.setText("Problema ao acessar o arquivo " + dialogo.getSelectedFile().getAbsolutePath());
@@ -197,17 +202,17 @@ public class FrmScriptEditor2 extends javax.swing.JFrame {
 		 dialogo.addChoosableFileFilter(new FileNameExtensionFilter("Script Genérico (.conf)", "conf"));
 		 dialogo.addChoosableFileFilter(new FileNameExtensionFilter("Texto Simples (.txt)", "txt"));
 		 dialogo.setAcceptAllFileFilterUsed(false);
-       dialogo.setMultiSelectionEnabled(false);
+		 dialogo.setMultiSelectionEnabled(false);
 
 		 if (dialogo.showSaveDialog(this) == dialogo.APPROVE_OPTION) {
-		 //if (dialogo.showSaveDialog(FrmScriptEditor2.this) == dialogo.APPROVE_OPTION) {
+			 //if (dialogo.showSaveDialog(FrmScriptEditor2.this) == dialogo.APPROVE_OPTION) {
 			 try {
 				 if (dialogo.getSelectedFile().exists()) {
 					 if (JOptionPane.showConfirmDialog(null, "Arquivo já existe. \n Deseja sobrescrever?", "Aviso!", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						 BufferedWriter writer = new BufferedWriter(new FileWriter(dialogo.getSelectedFile()));
 						 writer.write(atsPalco.getText());
 						 writer.close();
-						 this.setTitle("TMW Script Editor ["+dialogo.getSelectedFile().getName()+"]");
+						 this.setTitle("TMW Script Editor [" + dialogo.getSelectedFile().getName() + "]");
 					 } else {
 						 lblBarraDeEstatus.setText("Gravação do arquivo " + dialogo.getSelectedFile().getName() + " cancelado");
 					 }
@@ -229,38 +234,66 @@ public class FrmScriptEditor2 extends javax.swing.JFrame {
 	 private void mnuArquivoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArquivoSairActionPerformed
 		 this.dispose();
 	 }//GEN-LAST:event_mnuArquivoSairActionPerformed
-
 	 private void atsPalcoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_atsPalcoCaretUpdate
 		 lblBarraDeEstatus.setText("Linha:" + atsPalco.getCaretLineNumber() + " Posição:" + atsPalco.getCaretOffsetFromLineStart());
 	 }//GEN-LAST:event_atsPalcoCaretUpdate
 
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }/**/
+	public static void main(final String args[]) {
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException ex) {
+			java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			java.util.logging.Logger.getLogger(FrmScriptEditor2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		}/**/
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-					FrmScriptEditor2 frmScriptEditor = new FrmScriptEditor2();
-					frmScriptEditor.setExtendedState(MAXIMIZED_BOTH);
-					frmScriptEditor.setVisible(true);
-            }
-        });
-    }
+		if (args.length >= 2) {
+			java.awt.EventQueue.invokeLater(new Runnable() {
+
+				public void run() {
+					boolean SeDefineLocalhot = false;
+					for (int $a = 0; $a < args.length; $a++) {
+						if ($a < args.length - 1 && args[$a].toLowerCase().equals("--localhost")) {
+							if (FileClass.seExiste(args[$a + 1])) {
+								SeDefineLocalhot = true;
+								FrmScriptEditor2 frmSpawnEditor = new FrmScriptEditor2(args[$a + 1]);
+								Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
+								frmSpawnEditor.setBounds(
+								(Tela.width - frmSpawnEditor.getWidth()) / 2,
+								(Tela.height - frmSpawnEditor.getHeight()) / 2,
+								frmSpawnEditor.getWidth(), frmSpawnEditor.getHeight());/**/
+								//frmSpawnEditor.setExtendedState(MAXIMIZED_BOTH);
+								frmSpawnEditor.pack();
+								frmSpawnEditor.setVisible(true);/**/
+								//new FrmSpawnEditor(args[$a + 1]).setVisible(true);
+							} else {
+								DialogClass.showErro(
+										  "<html>Não foi possível encontrar a pasta do localhost declarada: <br/>"
+										  + "<br/>"
+										  + " → <font color=\"#FF0000\">" + args[$a + 1] + "</FONT>",
+										  "LOCALHOST NÃO ENCONTRADO");
+								return;
+							}
+						}
+					}
+					if (!SeDefineLocalhot) {
+						DialogClass.showErro("<html>Declare a pasta do localhost do TMW pelo argumento: <font color=\"#FF0000\">--localhost \"endereço\"</FONT>", "FALTA DE ARGUMENTO");
+					}
+				}
+			});
+		} else {
+			DialogClass.showErro("<html>Declare a pasta do localhost do TMW pelo argumento: <font color=\"#FF0000\">--localhost \"endereço\"</FONT>", "FALTA DE ARGUMENTO");
+		}
+	}
    // Variables declaration - do not modify//GEN-BEGIN:variables
    public org.fife.ui.rsyntaxtextarea.RSyntaxTextArea atsPalco;
    private javax.swing.JMenuBar jMenuBar1;
