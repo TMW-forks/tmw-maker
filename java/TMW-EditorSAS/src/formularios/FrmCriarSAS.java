@@ -1,5 +1,5 @@
 /**
- * FrmAnimationCriar.java
+ * FrmCriarSAS.java
  * Created on 04/02/2013, 19:51:09
  * @author lunovox
  */
@@ -15,15 +15,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-public final class FrmAnimationCriar extends javax.swing.JDialog {
+public final class FrmCriarSAS extends javax.swing.JDialog {
 
-	public FrmAnimationCriar(FrmAnimationEditor parent, boolean modal) {
+	public FrmCriarSAS(FrmEditorSAS parent, boolean modal) {
 		super(parent, modal);
 		frmAnimationEditor = parent;
 		initComponents();
 		ListarBases();
 	}
-	FrmAnimationEditor frmAnimationEditor;
+	FrmEditorSAS frmAnimationEditor;
 	JFileChooser dialogo = new JFileChooser();
 	ImagemClass miniatura = null;
 	private String bar = System.getProperty("file.separator");
@@ -357,7 +357,7 @@ public final class FrmAnimationCriar extends javax.swing.JDialog {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				FrmAnimationCriar dialog = new FrmAnimationCriar(new FrmAnimationEditor(), true);
+				FrmCriarSAS dialog = new FrmCriarSAS(new FrmEditorSAS(), true);
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
 					public void windowClosing(java.awt.event.WindowEvent e) {

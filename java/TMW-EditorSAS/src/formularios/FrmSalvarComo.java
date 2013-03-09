@@ -4,7 +4,7 @@
  */
 
 /*
- * FrmAnimationSalvarComo.java
+ * FrmSalvarComo.java
  *
  * Created on 12/02/2013, 15:44:23
  */
@@ -19,10 +19,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author lunovox
  */
-public class FrmAnimationSalvarComo extends javax.swing.JDialog {
+public class FrmSalvarComo extends javax.swing.JDialog {
 
-	/** Creates new form FrmAnimationSalvarComo */
-	public FrmAnimationSalvarComo(FrmAnimationEditor parent, boolean modal) {
+	/** Creates new form FrmSalvarComo */
+	public FrmSalvarComo(FrmEditorSAS parent, boolean modal) {
 		super(parent, modal);
 		frmAnimationEditor = parent;
 		File $File = new File((new File(frmAnimationEditor.sptMainImg.getEndereco())).getName().replaceAll("png", "sas"));
@@ -31,7 +31,7 @@ public class FrmAnimationSalvarComo extends javax.swing.JDialog {
 		initComponents();
 		txtSpriteUrl.setText(LocalPadrao);
 	}
-	FrmAnimationEditor frmAnimationEditor;
+	FrmEditorSAS frmAnimationEditor;
 	JFileChooser dialogo = new JFileChooser();
 	private String bar = System.getProperty("file.separator");
 	String LocalPadrao = "";
@@ -295,7 +295,7 @@ public class FrmAnimationSalvarComo extends javax.swing.JDialog {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				FrmAnimationSalvarComo dialog = new FrmAnimationSalvarComo(new FrmAnimationEditor(), true);
+				FrmSalvarComo dialog = new FrmSalvarComo(new FrmEditorSAS(), true);
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
 					public void windowClosing(java.awt.event.WindowEvent e) {
