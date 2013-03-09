@@ -1,5 +1,5 @@
 /*
- * FrmAnimationEditor.java
+ * FrmEditorSAS.java
  * Created on 30/01/2013, 20:59:20
  * @author lunovox
  */
@@ -17,11 +17,11 @@ import javax.swing.ImageIcon;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-public class FrmAnimationEditor extends javax.swing.JFrame {
-	public FrmAnimationEditor() {
+public class FrmEditorSAS extends javax.swing.JFrame {
+	public FrmEditorSAS() {
 		initComponents();
 	}
-	private FrmAnimationEditor(String PastaDoLocalhost) {
+	private FrmEditorSAS(String PastaDoLocalhost) {
 		System.out.println(PastaDoLocalhost);
 		try {
 			//super.setIconImage((new ImageIcon(getClass().getResource("/imagens/botoes/sbl_localhost-tmw.png"))).getImage());
@@ -1005,7 +1005,7 @@ public class FrmAnimationEditor extends javax.swing.JFrame {
 		System.exit(0);
 	}//GEN-LAST:event_mnuSairActionPerformed
 	private void mnuNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuNovoActionPerformed
-		FrmAnimationCriar frmAnimacaoNova = new FrmAnimationCriar(this, rootPaneCheckingEnabled);
+		FrmCriarSAS frmAnimacaoNova = new FrmCriarSAS(this, rootPaneCheckingEnabled);
 		frmAnimacaoNova.setLocation(
 				  ((this.getWidth() - frmAnimacaoNova.getWidth()) / 2) + this.getX(),
 				  ((this.getHeight() - frmAnimacaoNova.getHeight()) / 2) + this.getY());
@@ -1103,7 +1103,7 @@ public class FrmAnimationEditor extends javax.swing.JFrame {
 	}//GEN-LAST:event_mnuSalvarActionPerformed
 
 	private void mnuSalvarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalvarComoActionPerformed
-		FrmAnimationSalvarComo frmAnimationSalvarComo = new FrmAnimationSalvarComo(this, rootPaneCheckingEnabled);
+		FrmSalvarComo frmAnimationSalvarComo = new FrmSalvarComo(this, rootPaneCheckingEnabled);
 		frmAnimationSalvarComo.setLocation(
 				  ((this.getWidth() - frmAnimationSalvarComo.getWidth()) / 2) + this.getX(),
 				  ((this.getHeight() - frmAnimationSalvarComo.getHeight()) / 2) + this.getY());
@@ -1123,7 +1123,7 @@ public class FrmAnimationEditor extends javax.swing.JFrame {
 							//System.out.println(args[$a]);
 							if (FileClass.seExiste(args[$a + 1])) {
 								Dimension Tela = Toolkit.getDefaultToolkit().getScreenSize();
-								FrmAnimationEditor frmActionEditor = new FrmAnimationEditor(args[$a + 1]);
+								FrmEditorSAS frmActionEditor = new FrmEditorSAS(args[$a + 1]);
 								frmActionEditor.setBounds(
 										  (Tela.width - frmActionEditor.getWidth()) / 2,
 										  (Tela.height - frmActionEditor.getHeight()) / 2,
