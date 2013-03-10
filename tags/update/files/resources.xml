@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <updates>
-	<!--update type="music" required="no" file="musicas_2010-09-28.zip" hash="6db7aab8" desciption="Novas músicas"/>
-	<update type="music" required="no" file="musicas_2010-11-13.zip" hash="e108eee" desciption="Cemitério do Org"/>
-	<update type="data" file="2010_geral.zip" hash="f3a22a1d"/>
-	<update type="data" file="2010_graphics.zip" hash="c22d1269"/>
-	<update type="data" file="2010_sprites.zip" hash="d30c7a3e"/>
-	<update type="data" file="2010_tiles.zip" hash="99a055a0"/>
-	<update type="data" file="2011_mana.zip" hash="a22e4d89"/>
-	<update type="data" file="update_2010-11-02.zip" hash="f8bac20d"/>
-	<update type="data" file="update_2010-11-13.zip" hash="5d491b8b"/>
-	<update type="data" file="update_2010-12-20.zip" hash="fc5b6d9b"/>
-	<update type="data" file="update_2011-01-02.zip" hash="f4f1855b"/>
-	<update type="data" file="update_2011-02-08.zip" hash="ea4cdef3"/>
-	<update type="data" file="update_2011-04-12.zip" hash="cc0a5ced"/>
-	<update type="data" file="update_2011-05-22.zip" hash="94942089"/>
-	<update type="data" file="update_2011-09-07.zip" hash="893f076a"/>
-	<update type="data" file="update_2012-01-14.zip" hash="4fc0a906"/>
-	<update type="data" file="update_2012-06-09.zip" hash="c5942ceb"/-->
+	<!--
+	<update type="music" hash="6db7aab8" required="no" file="musicas_2010-09-28.zip" desciption="Novas músicas"/>
+	<update type="music" hash="e108eee"  required="no" file="musicas_2010-11-13.zip" desciption="Cemitério do Org"/>
+	<update type="data" hash="f3a22a1d" file="2010_geral.zip"/>
+	<update type="data" hash="c22d1269" file="2010_graphics.zip"/>
+	<update type="data" hash="d30c7a3e" file="2010_sprites.zip"/>
+	<update type="data" hash="99a055a0" file="2010_tiles.zip"/>
+	<update type="data" hash="a22e4d89" file="2011_mana.zip"/>
+	<update type="data" hash="f8bac20d" file="update_2010-11-02.zip"/>
+	<update type="data" hash="5d491b8b" file="update_2010-11-13.zip"/>
+	<update type="data" hash="fc5b6d9b" file="update_2010-12-20.zip"/>
+	<update type="data" hash="f4f1855b" file="update_2011-01-02.zip"/>
+	<update type="data" hash="ea4cdef3" file="update_2011-02-08.zip"/>
+	<update type="data" hash="cc0a5ced" file="update_2011-04-12.zip"/>
+	<update type="data" hash="94942089" file="update_2011-05-22.zip"/>
+	<update type="data" hash="893f076a" file="update_2011-09-07.zip"/>
+	<update type="data" hash="4fc0a906" file="update_2012-01-14.zip"/>
+	<update type="data" hash="c5942ceb" file="update_2012-06-09.zip"/>
+	-->
 	<update type="data"  hash="c83e53dd" file="2012-06-29_graphics.zip" description="Imagens PNGs do TMW-BR"/>
 	<update type="data"  hash="8d071dc7" file="2012-06-29_maps.zip" description="Mapas TMXs do TMW-BR"/>
+ 	<update type="music" hash="3af89da2" file="2012-06-29_music.zip" description="Musicas OGGs do TMW-BR" required="no" />
 	<update type="data"  hash="485ba118" file="2012-06-29_sfx.zip" description="Áudios OGGs do TMW-BR"/>
 	<update type="data"  hash="2daa1ec2" file="2012-06-30_tmwdata.zip" description="Principais XMLs do TMW-BR"/>
- 	<update type="music" hash="3af89da2" file="2012-06-29_music.zip" description="Musicas OGGs do TMW-BR" required="no" />
+	<update type="data"  hash="7368f4f2" file="2013-02-13_outdoor.zip" description="Outdoors de Doações"/>
 	<update type="music" hash="973888bb" file="musicas.zip" desciption="Music data v01" required="no" />
-	<update type="data"  hash="7368f4f2" file="update_2013-02-13.zip" description="Outdoors de Doações"/>
 </updates>
