@@ -1,29 +1,38 @@
-##1############ PEDIDO DE SOCORRO ###################
+##0 ______________________________________________
 ##0
-##3      .:: Precisamos de Você! (2013-02-13)  ::.
-##0 Temos até o final de Abril de 2013 para arrecadar
-##0 o valor de R$ 450,00 que é pago anualmente para
-##0 manter o servidor TMW-BR funcionando.
-##0 
-##0 Contribua com o The Mana World Brasil! Faça uma 
-##0 doação de qualquer valor e ajude a manter o seu 
-##0 servidor funcionando.!
-##0 
-##0 Para doar acesse: ##3http://goo.gl/uKjj9
-##1 (Não precisa ter conta em nenhum banco)
-##1###################################################
-##0 
-##1################## AVISOS #########################
+##3         .:: Níveis e Itens perdidos ::.
 ##0
-##3         .:: BAÚ SAVER (2012-08-04) ::.
-##0 Existe um baú-mágico dentro do navio, que é similar
-##0 ao menir-das-almas, e que aparece sempre quando o
-##0 navio está atracado ao porto das Terras Desconhecidas
-##0 e ao porto do Polo Norte.
+##0 Pedimos desculpas pelos transtornos a todos os 
+##0 jogadores deste servidor por terem perdido seus
+##0 atributos e itens. O que foi perdido não pode 
+##0 ser recuperado. Mans estamos resolvendo este 
+##0 problema de infra-estrutura para que isto não
+##0 volte a acontecer. 
+##0 ______________________________________________
 ##0
-##1###################################################
-##0 
-##1############# REGRAS DO SERVIDOR ##################
+##3         .:: Precisamos de Você! ::.
+##0
+##0 Contribua com o The Mana World Brasil. Faça 
+##0 sua doação e ajude a manter o nosso servidor 
+##0 vivo. Para doar acesse: ##3http://goo.gl/uKjj9
+##0 ______________________________________________
+##0
+##3          .:: Mensagem de IRC ::.
+##0
+##0 Estamos instalando um mensageiro instantaneo 
+##0 de IRC diretamente no site oficial do TMW-BR.
+##0 Quem precisar de ajuda de fora do jogo, favor
+##0 se conectar ao canal [##3 #TMW-BR ##0]no servidor
+##0 [##3 irc.freenode.net ##0].
+##0 ______________________________________________
+##0
+##3          .:: Pedido de Socorro ::.
+##0
+##0 Se alguém ficar preço, peça ajuda a um GM pelo
+##0 comando: ##2 @wgm socorro!
+##0 ______________________________________________
+##0
+##3          .:: REGRAS DO SERVIDOR ::.
 ##0
 ##1 Quer Novidade? ##0→ Se querem novidade no TMW-BR 
 ##0 façam vocês mesmos. Lembre-se que o TMW-BR é 
@@ -36,6 +45,13 @@
 ##0 Envie suas dúvidas para:
 ##0  * ##3 Lunovox<rui.gravata@gmail.com>
 ##0 
+##1 Banco de Dado Mutável ##0→ A administração 
+##0 reservamos o direito de alterar os atributos de 
+##0 qualquer item que esteja no servidor sem prévia 
+##0 comunicação a quem quer que seja. Esta medida 
+##0 será tomanada para balancear os poderes de alguns 
+##0 jogadores que estão semi-indestrutíveis.
+##0
 ##1 Não use softbots! ##0→ É proibido usar qualquer 
 ##0 software que facilite o desenvolvimento do jogador. 
 ##0 Se o GM falar com o jogador que está se movendo, 
@@ -53,11 +69,6 @@
 ##0 tal empréstimo será punido no lugar de quem 
 ##0 solicitou o emprestimo.
 ##0 
-##1 Não jogue em PCs públicos! ##0→ Computadores
-##0 públicos (Ex.: Lan-Houses, SESCs, Escolas e etc) 
-##0 normalmente estão infectados. O TMW-BR não tem 
-##0 responsabilidade sobre contas hackeadas.
-##0 
 ##1 Evite emprestar ítens! ##0→ Não existem empréstimos 
 ##0 em MMORPGs. Quem pegou emprestado algum item, 
 ##0 não tem nenhum obrigação de devolver.
@@ -68,7 +79,6 @@
 ##0 eventos sazonais.
 ##0 
 ##3 Façamos um servidor agradável para todos! =D
+##0 ______________________________________________
 ##0
-##1###################################################
-##0 
 ##0 ASS.: ##2Administrador Lunovox Heavenfinder
