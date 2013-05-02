@@ -1,7 +1,5 @@
-musicas.zip 973888bb
-2012-06-29_music.zip 3af89da2
-2012-06-29_graphics.zip c83e53dd
-2012-06-29_maps.zip 8d071dc7
-2012-06-29_sfx.zip 485ba118
-2012-06-30_tmwdata.zip 2daa1ec2
-2013-02-13_outdoor.zip 7368f4f2
+2013-05-01_graphics.zip 4467fe79 
+2013-05-01_maps.zip 376cb7c8 
+2013-05-01_music.zip de326bb3 
+2013-05-01_sfx.zip d5b266c4 
+2013-05-01_tmwdata.zip f19cce63 

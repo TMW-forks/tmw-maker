@@ -19,11 +19,18 @@
 	<update type="data" hash="4fc0a906" file="update_2012-01-14.zip"/>
 	<update type="data" hash="c5942ceb" file="update_2012-06-09.zip"/>
 	-->
-	<update type="data"  hash="c83e53dd" file="2012-06-29_graphics.zip" description="Imagens PNGs do TMW-BR"/>
+	<!--update type="data"  hash="c83e53dd" file="2012-06-29_graphics.zip" description="Imagens PNGs do TMW-BR"/>
 	<update type="data"  hash="8d071dc7" file="2012-06-29_maps.zip" description="Mapas TMXs do TMW-BR"/>
  	<update type="music" hash="3af89da2" file="2012-06-29_music.zip" description="Musicas OGGs do TMW-BR" required="no" />
 	<update type="data"  hash="485ba118" file="2012-06-29_sfx.zip" description="Áudios OGGs do TMW-BR"/>
 	<update type="data"  hash="2daa1ec2" file="2012-06-30_tmwdata.zip" description="Principais XMLs do TMW-BR"/>
 	<update type="data"  hash="7368f4f2" file="2013-02-13_outdoor.zip" description="Outdoors de Doações"/>
-	<update type="music" hash="973888bb" file="musicas.zip" desciption="Music data v01" required="no" />
+	<update type="music" hash="973888bb" file="musicas.zip" desciption="Music data v01" required="no" /-->
+	
+	<update type="data"  hash="4467fe79" file="2013-05-01_graphics.zip" description="Imagens PNGs do TMW-BR" required="yes"/>
+	<update type="data"  hash="376cb7c8" file="2013-05-01_maps.zip" description="Mapas TMXs do TMW-BR" required="yes"/>
+	<update type="music" hash="de326bb3" file="2013-05-01_music.zip" description="Musicas OGGs do TMW-BR" required="yes"/>
+	<update type="data"  hash="d5b266c4" file="2013-05-01_sfx.zip" description="Efeito Sonoros OGGs do TMW-BR" required="yes"/>
+	<update type="data"  hash="f19cce63" file="2013-05-01_tmwdata.zip" description="Principais Configurações do TMW-BR" required="yes"/>
+	
 </updates>
