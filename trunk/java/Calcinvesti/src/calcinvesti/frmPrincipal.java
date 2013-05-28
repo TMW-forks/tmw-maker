@@ -19,9 +19,10 @@ public class frmPrincipal extends javax.swing.JFrame {
 		);
 		calcInvestimento();
 	}
+	CalculadoraFinanceira finCalc=null;
 
 	public void calcInvestimento() {
-		CalculadoraFinanceira finCalc= new CalculadoraFinanceira(
+		finCalc= new CalculadoraFinanceira(
 			Float.parseFloat(spnAplicacaoMensal.getValue().toString()),
 			Float.parseFloat(spnJurosDeRendimento.getValue().toString()),
 			Integer.parseInt(spnTempoAplicado.getValue().toString())
@@ -30,6 +31,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 		txtRendimentoUltimoMes.setText(finCalc.getFarmatoMoedaNacional(finCalc.getRendimentoMonetarioUltimoMes()));
 		txtRendimenTotal.setText("(+"+finCalc.getArredondado(finCalc.getRendimentoPercentualTotal(),2)+"%) "+finCalc.getFarmatoMoedaNacional(finCalc.getRendimentoMonetarioTotal()));
 		txtSaldoAcumulado.setText(finCalc.getFarmatoMoedaNacional(finCalc.getSaldoMonetarioTotal()));
+		lblAnosAplicados.setText("= "+ Float.parseFloat(spnTempoAplicado.getValue().toString())/12 +" anos");
 		//Runtime Executador = Runtime.getRuntime();
 	}
 
@@ -56,33 +58,35 @@ public class frmPrincipal extends javax.swing.JFrame {
       txtSaldoAcumulado = new javax.swing.JTextField();
       jLabel7 = new javax.swing.JLabel();
       txtRendimentoUltimoMes = new javax.swing.JTextField();
-      btnExplicacao = new javax.swing.JButton();
+      jSeparator1 = new javax.swing.JSeparator();
+      jLabel8 = new javax.swing.JLabel();
+      lblAnosAplicados = new javax.swing.JLabel();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("Calculadora de Fundo de Investimento");
       setResizable(false);
 
-      jLabel1.setText("Aplicação Mensal (R$):");
+      jLabel1.setText("C=Aplicação Mensal (R$):");
 
-      spnAplicacaoMensal.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1000.96f), Float.valueOf(0.0f), Float.valueOf(10000.0f), Float.valueOf(0.01f)));
+      spnAplicacaoMensal.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(300.0f), Float.valueOf(0.0f), Float.valueOf(10000.0f), Float.valueOf(0.01f)));
       spnAplicacaoMensal.addChangeListener(new javax.swing.event.ChangeListener() {
          public void stateChanged(javax.swing.event.ChangeEvent evt) {
             spnAplicacaoMensalStateChanged(evt);
          }
       });
 
-      jLabel2.setText("Juros de Rendimento (%):");
+      jLabel2.setText("J=Juros de Rendimento (%):");
 
-      spnJurosDeRendimento.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), Float.valueOf(0.0f), Float.valueOf(10.0f), Float.valueOf(0.01f)));
+      spnJurosDeRendimento.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.5f), Float.valueOf(0.0f), Float.valueOf(10.0f), Float.valueOf(0.01f)));
       spnJurosDeRendimento.addChangeListener(new javax.swing.event.ChangeListener() {
          public void stateChanged(javax.swing.event.ChangeEvent evt) {
             spnJurosDeRendimentoStateChanged(evt);
          }
       });
 
-      jLabel3.setText("Tempo Aplicado (Meses):");
+      jLabel3.setText("T=Tempo Aplicado (Meses):");
 
-      spnTempoAplicado.setModel(new javax.swing.SpinnerNumberModel(240, 6, 480, 6));
+      spnTempoAplicado.setModel(new javax.swing.SpinnerNumberModel(60, 6, 480, 6));
       spnTempoAplicado.addChangeListener(new javax.swing.event.ChangeListener() {
          public void stateChanged(javax.swing.event.ChangeEvent evt) {
             spnTempoAplicadoStateChanged(evt);
@@ -103,7 +107,7 @@ public class frmPrincipal extends javax.swing.JFrame {
       txtRendimenTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
       txtRendimenTotal.setText("R$ 0,00");
 
-      jLabel6.setText("Saldo Acumulado (R$):");
+      jLabel6.setText("M=Saldo Acumulado (R$):");
 
       txtSaldoAcumulado.setBackground(java.awt.SystemColor.inactiveCaptionBorder);
       txtSaldoAcumulado.setEditable(false);
@@ -117,8 +121,9 @@ public class frmPrincipal extends javax.swing.JFrame {
       txtRendimentoUltimoMes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
       txtRendimentoUltimoMes.setText("R$ 0,00");
 
-      btnExplicacao.setText("Explicação");
-      btnExplicacao.setEnabled(false);
+      jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/formulas/FormulaAplicacaoFinanceira.png"))); // NOI18N
+
+      lblAnosAplicados.setText("= 5 anos");
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -126,6 +131,12 @@ public class frmPrincipal extends javax.swing.JFrame {
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
             .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+               .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+               .addComponent(jLabel8))
+            .addContainerGap())
+         .addGroup(layout.createSequentialGroup()
+            .addGap(12, 12, 12)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -136,15 +147,17 @@ public class frmPrincipal extends javax.swing.JFrame {
                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(btnExplicacao)
                .addComponent(spnJurosDeRendimento, 0, 0, Short.MAX_VALUE)
-               .addComponent(spnTempoAplicado, 0, 0, Short.MAX_VALUE)
                .addComponent(spnAplicacaoMensal, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                .addComponent(txtAplicacaoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                .addComponent(txtRendimenTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                .addComponent(txtSaldoAcumulado, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-               .addComponent(txtRendimentoUltimoMes, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
-            .addContainerGap())
+               .addComponent(txtRendimentoUltimoMes, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+               .addGroup(layout.createSequentialGroup()
+                  .addComponent(spnTempoAplicado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(lblAnosAplicados)))
+            .addContainerGap(12, Short.MAX_VALUE))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +173,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                .addComponent(jLabel3)
-               .addComponent(spnTempoAplicado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(spnTempoAplicado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(lblAnosAplicados))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel4)
@@ -178,7 +192,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                .addComponent(jLabel6)
                .addComponent(txtSaldoAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(btnExplicacao)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       );
 
@@ -192,13 +208,32 @@ public class frmPrincipal extends javax.swing.JFrame {
 	    calcInvestimento();
     }//GEN-LAST:event_spnJurosDeRendimentoStateChanged
     private void spnTempoAplicadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnTempoAplicadoStateChanged
-	    calcInvestimento();
+		 //lblAnosAplicados.setText("= "+ (Float.parseFloat(spnTempoAplicado.getValue().toString())/12) +" anos");
+		 calcInvestimento();
     }//GEN-LAST:event_spnTempoAplicadoStateChanged
 
 	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+				//if ("Nimbus".equals(info.getName())) {
+				if ("GTK+".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException ex) {
+			java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		}/**/
+
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
@@ -207,7 +242,6 @@ public class frmPrincipal extends javax.swing.JFrame {
 		});
 	}
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton btnExplicacao;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
@@ -215,6 +249,9 @@ public class frmPrincipal extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel5;
    private javax.swing.JLabel jLabel6;
    private javax.swing.JLabel jLabel7;
+   private javax.swing.JLabel jLabel8;
+   private javax.swing.JSeparator jSeparator1;
+   private javax.swing.JLabel lblAnosAplicados;
    private javax.swing.JSpinner spnAplicacaoMensal;
    private javax.swing.JSpinner spnJurosDeRendimento;
    private javax.swing.JSpinner spnTempoAplicado;

@@ -1,6 +1,5 @@
 package calcinvesti;
 
-
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -19,9 +18,8 @@ public class CalculadoraFinanceira {
 		float $AM = aplicacaoMensal;
 		float $JR = jurosDeInvestimento;
 		int $TA=mesesAplicados;
-
 		int $RP=0; float $SA=0, $AT=0, $RT=0, $RUM=0;
-		for (int $m = 0; $m < $TA; $m++) {
+		/*for (int $m = 0; $m < $TA; $m++) {
 			//$SA+=$m<1?$AM:($SA+$AM)+(($SA+$AM)*($JR/100));
 			$SA+=$AM;
 			$AT+=$AM;
@@ -30,7 +28,13 @@ public class CalculadoraFinanceira {
 				$RT+=$SA*($JR / 100);
 			}
 			if($m==$TA-1){ $RUM=$SA*($JR / 100);}
-		}
+		}/**/
+		$AT=$AM*$TA;
+		$SA = $AM * ((((float) Math.pow((double)(1+($JR / 100)),(double)$TA))-1)/($JR / 100))*(1+($JR / 100));
+		$RUM=$SA*($JR / 100);
+		$RT=$SA-$AT;/**/
+
+
 		aplicacaoMonetarioTotal=$AT;
 		rendimentoMonetarioUltimoMes=$RUM;
 		rendimentoPercentualTotal=$RT/$AT;
