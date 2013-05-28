@@ -24,8 +24,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="jSeparator1" alignment="2" pref="434" max="32767" attributes="0"/>
+                  <Component id="jLabel8" alignment="2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -37,16 +45,19 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnExplicacao" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="spnJurosDeRendimento" min="0" pref="0" max="32767" attributes="1"/>
-                  <Component id="spnTempoAplicado" min="0" pref="0" max="32767" attributes="1"/>
                   <Component id="spnAplicacaoMensal" alignment="0" pref="207" max="32767" attributes="1"/>
                   <Component id="txtAplicacaoTotal" alignment="0" pref="207" max="32767" attributes="0"/>
                   <Component id="txtRendimenTotal" alignment="0" pref="207" max="32767" attributes="0"/>
                   <Component id="txtSaldoAcumulado" alignment="0" pref="207" max="32767" attributes="0"/>
                   <Component id="txtRendimentoUltimoMes" alignment="0" pref="207" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="spnTempoAplicado" min="-2" pref="80" max="-2" attributes="1"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblAnosAplicados" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,6 +78,7 @@
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="jLabel3" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="spnTempoAplicado" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAnosAplicados" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -89,7 +101,9 @@
                   <Component id="txtSaldoAcumulado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnExplicacao" min="-2" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel8" min="-2" pref="70" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -98,13 +112,13 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aplica&#xe7;&#xe3;o Mensal (R$):"/>
+        <Property name="text" type="java.lang.String" value="C=Aplica&#xe7;&#xe3;o Mensal (R$):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spnAplicacaoMensal">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="1000.96" maximum="10000.0" minimum="0.0" numberType="java.lang.Float" stepSize="0.01" type="number"/>
+          <SpinnerModel initial="300.0" maximum="10000.0" minimum="0.0" numberType="java.lang.Float" stepSize="0.01" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -113,13 +127,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Juros de Rendimento (%):"/>
+        <Property name="text" type="java.lang.String" value="J=Juros de Rendimento (%):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spnJurosDeRendimento">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="1.0" maximum="10.0" minimum="0.0" numberType="java.lang.Float" stepSize="0.01" type="number"/>
+          <SpinnerModel initial="0.5" maximum="10.0" minimum="0.0" numberType="java.lang.Float" stepSize="0.01" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -128,13 +142,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tempo Aplicado (Meses):"/>
+        <Property name="text" type="java.lang.String" value="T=Tempo Aplicado (Meses):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spnTempoAplicado">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="240" maximum="480" minimum="6" numberType="java.lang.Integer" stepSize="6" type="number"/>
+          <SpinnerModel initial="60" maximum="480" minimum="6" numberType="java.lang.Integer" stepSize="6" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -173,7 +187,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Saldo Acumulado (R$):"/>
+        <Property name="text" type="java.lang.String" value="M=Saldo Acumulado (R$):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSaldoAcumulado">
@@ -201,10 +215,18 @@
         <Property name="text" type="java.lang.String" value="R$ 0,00"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnExplicacao">
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Explica&#xe7;&#xe3;o"/>
-        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagens/formulas/FormulaAplicacaoFinanceira.png"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAnosAplicados">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="= 5 anos"/>
       </Properties>
     </Component>
   </SubComponents>
