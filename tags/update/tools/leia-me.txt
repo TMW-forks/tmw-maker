@@ -1,0 +1,2 @@
+Para rodar o "Gadler32.jar" como um programa, precisará instalar uma JVM (Java Virtual Machine) que irá emular este arquivo.
+Maiores informações: "Lunovox Reavenfinder <rui.gravata@gmail.com>" ou Skype:Lunovox
