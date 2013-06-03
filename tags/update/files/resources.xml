@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <updates>
-	<update type="data"  hash="4467fe79" file="2013-05-01_graphics.zip" description="Imagens PNGs do TMW-BR (75,9MB)" required="yes"/>
+	<update type="data"  hash="c6cee98e" file="2013-06-03_graphics.zip" description="Imagens PNGs do TMW-BR (38,1MB)" required="yes"/>
+	<!--<update type="data"  hash="4467fe79" file="2013-05-01_graphics.zip" description="Imagens PNGs do TMW-BR (75,9MB)" required="yes"/>-->
 	<update type="music" hash="de326bb3" file="2013-05-01_music.zip" description="Musicas OGGs do TMW-BR (36,9MB)" required="no"/>
 	<update type="data"  hash="d5b266c4" file="2013-05-01_sfx.zip" description="Efeito Sonoros OGGs do TMW-BR (5,8MB)" required="yes"/>
 	<update type="data"  hash="376cb7c8" file="2013-05-01_maps.zip" description="Mapas TMXs do TMW-BR (1,3MB)" required="yes"/>
 	<update type="data"  hash="f19cce63" file="2013-05-01_tmwdata.zip" description="Principais Configurações do TMW-BR (74,4KB)" required="yes"/>
 
-	<update type="data"  hash="e64a463" file="2013-06-03_RescuiBUG.zip" description="Conserto de BUG de Ponte das Fadas" required="yes"/>
+	<!--<update type="data"  hash="e64a463" file="2013-06-03_RescuiBUG.zip" description="Conserto de BUG de Ponte das Fadas" required="yes"/>-->
+	
 </updates>
