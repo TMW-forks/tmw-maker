@@ -1,13 +1,9 @@
 ##0 ______________________________________________
 ##0
-##3         .:: Níveis e Itens perdidos ::.
+##3         .:: PONTE DAS FADAS ::.
 ##0
-##0 Pedimos desculpas pelos transtornos a todos os 
-##0 jogadores deste servidor por terem perdido seus
-##0 atributos e itens. O que foi perdido não pode 
-##0 ser recuperado. Mans estamos resolvendo este 
-##0 problema de infra-estrutura para que isto não
-##0 volte a acontecer. 
+##0 A quest da ponte de fadas foi consertado. Vcs
+##0 ja podem testar sua bravura pulando da ponte.
 ##0 ______________________________________________
 ##0
 ##3         .:: Precisamos de Você! ::.
